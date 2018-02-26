@@ -1,0 +1,92 @@
+alias ls='ls --color=auto'
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -l'
+alias lla='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+
+######################################
+# better use of changing directories #
+######################################
+alias .="pwd"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../../"
+function dir() { ls -l "$@" | grep '^d'; }
+
+###########
+# Editors #
+###########
+alias more="less"
+alias m="more"
+alias xe="~/bin/xe"
+alias vi="vim"
+alias v="vim"
+
+##########
+# others #
+##########
+alias h="history"
+alias hgr="h | grep"
+alias g="grep"
+alias a="alias"
+alias s="source"
+alias j="jobs -l"
+alias erase="stty istrip erase"
+
+##########
+# xterms #
+##########
+# bg: #a0b0c0 #d0d0d0 #c0b0a0 #c0a080
+#     #fef9e3d6c9ba #a97cd644abd0 #b6c7a339a339 #aa6db65fc936 #a70ab2f09b24 #e0c3c127a9b2
+
+alias xterm="xterm -name `hostname` -ls -sb -sl 1500 -bg $XTERM_COLOR -font fixed"
+alias clip="xterm -fn fixed -title Clipboard -e tcsh -c 'cat > /dev/null' &"
+
+######
+# ls #
+######
+alias l="ls -lF"
+alias ll="l -a"
+alias lt="l -tr"
+alias llt="ls -lat"
+alias lltr="ls -latr"
+
+######
+# ps #
+######
+alias psg="ps -efa | grep"
+alias myps="ps -efa \!* | grep $USER | grep -vE 'tcsh|$WINTERM|grep rh031132'"
+alias mypsg="ps -efa | grep $USER | grep"
+
+######
+# df #
+######
+alias dfl="df -k -F ufs"
+alias duks="du -k -s"
+
+############
+# cp/rm/mv #
+############
+alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
+
+########################################
+# edit resource or configuration files #
+########################################
+alias chx="$EDITOR $HOME/.exrc"
+alias chv="$EDITOR $HOME/.vimrc"
+alias chcron="crontab -r; $EDITOR $HOME/mycrontab.`hostname`; crontab $HOME/mycrontab.`hostname`"
