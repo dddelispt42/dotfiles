@@ -21,6 +21,7 @@
     set textwidth=1000
     set directory=~/tmp,.,/var/tmp,/tmp
     set title
+    set t_Co=256
 
 " Spaces Tabs:
     syntax enable           " enable syntax processing
@@ -32,6 +33,7 @@
 
 " UI Config:
     set number              " show line numbers
+    set relativenumber      " show relative line numbers above and below current line
     set showcmd             " show command in bottom bar
     set cursorline          " highlight current line
     filetype indent on      " load filetype-specific indent files
@@ -40,8 +42,8 @@
     set showmatch           " highlight matching [{()}]
 
 " Snipplets:
-    iab Ytd // TODO Heiko:
-    iab Yinfo // INFO Heiko:
+    iab Ytd <esc>:r!echo "TODO: ($USER) -"<cr>:m .-2<CR>==JgccA
+    iab Yinfo <esc>:r!echo "INFO: ($USER) -"<cr>:m .-2<CR>==JgccA
     iab Ydate <esc>:r!date<cr>kJ
     iab Yme <esc>:r!echo $USER<cr>kJ
 
@@ -76,6 +78,8 @@
     set foldmethod=indent   " fold based on indent level
     " set foldmethod=marker
     " set foldlevel=0
+    nnoremap <F2> zR
+    nnoremap <F3> zM
 
 " Movement:
     " move vertically by visual line
@@ -129,9 +133,9 @@
         autocmd BufEnter *.cls setlocal filetype=java
         autocmd BufEnter *.zsh-theme setlocal filetype=zsh
         autocmd BufEnter Makefile setlocal noexpandtab
-        autocmd BufEnter *.sh setlocal tabstop=2
-        autocmd BufEnter *.sh setlocal shiftwidth=2
-        autocmd BufEnter *.sh setlocal softtabstop=2
+        autocmd BufEnter *.sh setlocal tabstop=4
+        autocmd BufEnter *.sh setlocal shiftwidth=4
+        autocmd BufEnter *.sh setlocal softtabstop=4
         autocmd BufEnter *.uml,*.plantuml,*.puml setlocal nofoldenable
     augroup END
 
@@ -160,6 +164,8 @@
 
     " let Vundle manage Vundle, required
     Plugin 'gmarik/Vundle.vim'
+    " see colorschemes http://bytefluent.com/vivify/
+    Plugin 'flazz/vim-colorschemes'
     Plugin 'tpope/vim-fugitive'
     Plugin 'godlygeek/tabular'
     Plugin 'plasticboy/vim-markdown'
@@ -191,8 +197,6 @@
     " add all your plugins here (note older versions of Vundle
     " used Bundle instead of Plugin)
 
-    " ...
-
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -220,11 +224,11 @@
     " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
     " let g:ctrlp_user_command = ['.hg', 'hg --cwd %s locate -I .']
     let g:ctrlp_user_command = {
-	    \ 'types': {
-		    \ 1: ['.git', 'cd %s && git ls-files'],
-		    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-		\ },
-	    \ 'fallback': 'find %s -type f'
+        \ 'types': {
+            \ 1: ['.git', 'cd %s && git ls-files'],
+            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        \ },
+        \ 'fallback': 'find %s -type f'
     \ }
 
     " Syntastic
@@ -244,10 +248,10 @@
     " let g:pymode_python = 'python3'
 
     " Indent guides
-    " let g:indent_guides_enable_on_vim_startup = 1
-    " let g:indent_guides_auto_colors = 0
-    " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=3
-    " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_auto_colors = 1
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=3
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
     " NerdTree
     " Use <-C-n> as shortcut
@@ -285,6 +289,7 @@
 
     " vim-better-whitespace
     let g:better_whitespace_verbosity=1
+    autocmd FileType *.py,*.sh,*.rs autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
 
     " Plantuml-syntax
     let g:plantuml_executable_script = "~/bin/plantUML.sh"
@@ -335,15 +340,11 @@
     set list
     set listchars=nbsp:¬,tab:»·,trail:·
     " Breaking lines with \[enter] without having to go to insert mode (myself).
-    nmap <leader><cr> i<cr><Esc>
+    nmap <leader><cr> i\<cr><Esc>
     " Reload changes to .vimrc automatically
     autocmd BufWritePost ~/.vimrc source ~/.vimrc
     " Show a max line indicator
     set colorcolumn=100
     " find long lines
     map <F9> /\%>100v.\+
-    iab Ytd // TODO Heiko:
-    iab Yinfo // INFO Heiko:
-    iab Ydate <esc>:r!date<cr>kJ
-    iab Yme <esc>:r!echo $USER<cr>kJ
     map :grep :%!/usr/xpg4/bin/grep

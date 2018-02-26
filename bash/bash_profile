@@ -1,0 +1,9 @@
+#
+# ~/.bash_profile
+#
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+# eval $(ssh-agent)
+
+PATH=~/bin:$PATH
+export PATH
