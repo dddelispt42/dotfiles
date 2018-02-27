@@ -1,5 +1,5 @@
 #!/bin/bash
-BASEDIR=$(dirname "$0")
+BASEDIR=$(pwd)/$(dirname "$0")
 
 if [ -d ~/.vim ] ; then
     mv ~/.vim ~/.vim.dotfiles-$(date -I)
