@@ -57,8 +57,19 @@
     map <F7>  :bd<C-M>
 
 " Key Mappings:
+    " allow use of page up and down keys
     map <PageUp>   <C-B>
     map <PageDown> <C-F>
+    " jump between buffers in normal mode
+    nnoremap <c-h> <c-w>h
+    nnoremap <c-j> <c-w>j
+    nnoremap <c-k> <c-w>k
+    nnoremap <c-l> <c-w>l
+    " jump between buffers in visual mode
+    xnoremap <c-h> <c-w>h
+    xnoremap <c-j> <c-w>j
+    xnoremap <c-k> <c-w>k
+    xnoremap <c-l> <c-w>l
 
 " Searching:
     set incsearch           " search as characters are entered
@@ -92,8 +103,8 @@
     nnoremap B ^
     nnoremap E $
     " " $/^ doesn't do anything
-    nnoremap $ <nop>
-    nnoremap ^ <nop>
+    " nnoremap $ <nop>
+    " nnoremap ^ <nop>
     " highlight last inserted text
     nnoremap gV `[v`]
 
@@ -338,6 +349,11 @@
     set statusline+=\ -\      " Separator
     set statusline +=%1*\ %y\ %*
 
+" Moving:
+    " Moving things in visual mode
+    xnoremap K :move '<-2<cr>gv=gv
+    xnoremap J :move '>+1<cr>gv=gv
+
 " Misc:
     " visualize whitespaces
     set list
@@ -351,3 +367,6 @@
     " find long lines
     map <F9> /\%>100v.\+
     map :grep :%!/usr/xpg4/bin/grep
+    " Update term title but restore old title after leaving Vim
+    set title
+    set titleold=
