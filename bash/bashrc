@@ -96,3 +96,13 @@ pt() { IFS=+; lang=pt; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/
 test -s ~/dotfiles/bash/alias && source ~/dotfiles/bash/alias || true
 # TODO: test -s ~/dotfiles/bash/completion && source ~/dotfiles/bash/completion || true
 test -s ~/dotfiles/bash/liquidprompt && source ~/dotfiles/bash/liquidprompt/liquidprompt || true
+
+#HEIKO
+alias docker_down='docker-compose down -v --rmi all --remove-orphans'
+alias docker_up='docker-compose up -d --build'
+export http_proxy="http://proxy:3128"
+export no_proxy=".intra.coriant.com,.co-int.net,localhost,127.0.0.1"
+
+# alias tmux="TERM=xterm-256color tmux"
+set LANG="en_US.UTF-8"
+

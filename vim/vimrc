@@ -116,9 +116,9 @@
     augroup configgroup
         autocmd!
         autocmd VimEnter * highlight clear SignColumn
-        autocmd BufWritePre *.py
-                    \:call <SID>StripWhitespaces()
-        " autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
+        " autocmd BufWritePre *.py
+        "             \:call <SID>StripWhitespaces()
+        " " autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
         "             \:call <SID>StripTrailingWhitespaces()
         autocmd FileType java setlocal noexpandtab
         autocmd FileType java setlocal list
@@ -291,7 +291,7 @@
     let g:rust_clip_command = 'xclip -selection clipboard'
 
     " vim-better-whitespace
-    let g:better_whitespace_verbosity=1
+    " let g:better_whitespace_verbosity=1
     autocmd FileType *.py,*.sh,*.rs autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
 
     " Plantuml-syntax
@@ -351,3 +351,6 @@
     " find long lines
     map <F9> /\%>100v.\+
     map :grep :%!/usr/xpg4/bin/grep
+    " Update term title but restore old title after leaving Vim
+    set title
+    set titleold=
