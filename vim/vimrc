@@ -185,16 +185,15 @@
     Plugin 'plasticboy/vim-markdown'
     " Plugin 'klen/python-mode'
     " Plugin 'valloric/youcompleteme'
-    Plugin 'nathanaelkane/vim-indent-guides'
+    Plugin 'yggdroot/indentline'
     Plugin 'kien/ctrlp.vim'
     Plugin 'scrooloose/syntastic'
     Plugin 'scrooloose/nerdtree'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'tpope/vim-commentary'
-    " Plugin 'powerline/powerline'
     Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
     Plugin 'elzr/vim-json'
-    " Plugin 'bitc/vim-bad-whitespace'
     Plugin 'ntpeters/vim-better-whitespace'
     Plugin 'davidhalter/jedi-vim'
     Plugin 'ekalinin/Dockerfile.vim'
@@ -207,6 +206,14 @@
     Plugin 'aklt/plantuml-syntax'
     Plugin 'scrooloose/vim-slumlord'
     Plugin 'nathanalderson/yang.vim'
+    Plugin 'junegunn/gv.vim'
+    Plugin 'airblade/vim-gitgutter'
+    " interesting but not yet configured
+    Plugin 'bling/vim-bufferline'
+    " interesting but not yet configured
+    Plugin 'sjl/gundo.vim'
+    " interesting but not yet configured
+    Plugin 'mileszs/ack.vim'
 
     " add all your plugins here (note older versions of Vundle
     " used Bundle instead of Plugin)
@@ -217,7 +224,6 @@
     syntax on
 
 " Plugin Settings:
-
     " Fugitive
     " set statusline+=%{fugitive#statusline()}
 
@@ -308,6 +314,16 @@
     " Plantuml-syntax
     let g:plantuml_executable_script = "~/bin/plantUML.sh"
 
+    " ack.vim
+    if executable('ag')
+        let g:ackprg = 'ag --vimgrep'
+    endif
+    cnoreabbrev Ack Ack!
+    " open ack in new tab
+    nnoremap <Leader>a :tab split<cr>:Ack! ""<left>
+    " open ack in new tab
+    nnoremap <Leader>A :tab split<cr>:Ack! <c-r><c-w><cr>
+
 " Colorscheme:
     syntax enable
 
@@ -330,6 +346,8 @@
     colorscheme molokai
     let g:molokai_original = 1
     let g:rehash256 = 1
+
+    let g:airline_theme='molokai'
 
 " Statusline:
     set statusline=%f
