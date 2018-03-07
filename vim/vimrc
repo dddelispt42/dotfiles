@@ -349,6 +349,9 @@
 
     let g:airline_theme='molokai'
 
+    " Gundo
+    nnoremap <F8> :GundoToggle<CR>
+
 " Statusline:
     set statusline=%f
     set statusline+=%#warningmsg#
@@ -371,6 +374,11 @@
     " Moving things in visual mode
     xnoremap K :move '<-2<cr>gv=gv
     xnoremap J :move '>+1<cr>gv=gv
+
+" Vimdiff
+    set diffopt+=iwhite
+    set diffexpr=""
+    set scrollbind
 
 " Misc:
     " visualize whitespaces
