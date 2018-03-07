@@ -104,6 +104,8 @@ test -e $HOME/agent.sh && source $HOME/agent.sh
 
 alias kagent="kill -9 $SSH_AGENT_PID"
 
+# TODO: (heiko) - automatically add key and github key (?)
+
 # Helper functions
 en() { IFS=+; lang=en; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
 pt() { IFS=+; lang=pt; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
@@ -113,6 +115,9 @@ pt() { IFS=+; lang=pt; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/
 test -s ~/dotfiles/bash/alias && source ~/dotfiles/bash/alias || true
 # TODO: test -s ~/dotfiles/bash/completion && source ~/dotfiles/bash/completion || true
 test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liquidprompt/liquidprompt || true
+
+# set term title
+echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 # include host specific settings
 test -s ~/.bashrc.${HOSTNAME} && source ~/.bashrc.${HOSTNAME} || true
