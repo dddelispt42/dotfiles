@@ -214,6 +214,8 @@
     Plugin 'sjl/gundo.vim'
     " interesting but not yet configured
     Plugin 'mileszs/ack.vim'
+    Plugin 'artur-shaik/vim-javacomplete2'
+    Plugin 'mikelue/vim-maven-plugin'
 
     " add all your plugins here (note older versions of Vundle
     " used Bundle instead of Plugin)
@@ -323,6 +325,18 @@
     nnoremap <Leader>a :tab split<cr>:Ack! ""<left>
     " open ack in new tab
     nnoremap <Leader>A :tab split<cr>:Ack! <c-r><c-w><cr>
+
+    " vim-javacomplete2
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+    imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+    nmap <F5> <Plug>(JavaComplete-Imports-Add)
+    imap <F5> <Plug>(JavaComplete-Imports-Add)
+    nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+    imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+    nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+    imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+
 
 " Colorscheme:
     syntax enable
