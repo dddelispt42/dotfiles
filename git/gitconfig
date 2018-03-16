@@ -3,6 +3,9 @@
 [https]
     sslverify = false
 [credential]
+[user]
+    name = Riemer, Heiko (Coriant - PT/Amadora)
+    email = heiko.riemer@coriant.com
 [core]
     editor = vim
     ; excludesfile = /Users/tim/.gitignore
