@@ -111,6 +111,29 @@ en() { IFS=+; lang=en; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/
 pt() { IFS=+; lang=pt; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
 # translate () {lang="ru"; text=$*; wget -U "Mozilla/5.0" -qO - "http://translate.google.com/translate_a/t?client=t&text=$text&sl=auto&tl=$lang" | sed 's/\[\[\[\"//' | cut -d \" -f 1}
 
+function tx() {
+    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -t /" | sed -e "s/#.*$//")
+}
+
+function home() {
+    while : ; do
+        ssh -t home "ssh 192.168.1.99"
+        if [ $? -eq 0 ] ; then
+            break
+        fi
+    done
+}
+
+function cssh() {
+    while : ; do
+        ssh -t $1 tmux a
+        if [ $? -eq 0 ] ; then
+            break
+        fi
+    done
+}
+
+
 # TODO: generate path name
 test -s ~/dotfiles/bash/alias && source ~/dotfiles/bash/alias || true
 # TODO: test -s ~/dotfiles/bash/completion && source ~/dotfiles/bash/completion || true

@@ -6,3 +6,9 @@ if [ -f ~/.tmux.conf ] ; then
 fi
 
 ln -sf ${BASEDIR}/tmux.conf ~/.tmux.conf
+
+if [ -f ~/.config/tmuxinator ] ; then
+    mv ~/.config/tmuxinator ~/.config/tmuxinator.dotfiles-$(date -I)
+fi
+
+ln -sf ${BASEDIR}/tmuxinator ~/.config/tmuxinator
