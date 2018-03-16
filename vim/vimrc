@@ -326,21 +326,10 @@
 
 " Colorscheme:
     syntax enable
-
-    " Color solarized
-    set background=dark
-    colorscheme solarized
-    if has('gui_running')
-        set background=light
-    else
-        set background=dark
-    endif
     let g:solarized_termcolors=256
     let g:solarized_termtrans = 0
     let g:solarized_contrast = 'low'
     let g:solarized_visibility = 'high'
-    " let g:solarized_degrade = 1
-    " call togglebg#map("<F2>")
 
     " Molokai
     colorscheme molokai
@@ -378,7 +367,7 @@
 " Vimdiff
     set diffopt+=iwhite
     set diffexpr=""
-    set scrollbind
+    " set scrollbind
 
 " Misc:
     " visualize whitespaces
