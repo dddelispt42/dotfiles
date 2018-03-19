@@ -1,7 +1,7 @@
-# ~/.tmuxinator/work.yml
+# ~/.tmuxinator/bcb.yml
 
-name: work
-root: ~/
+name: bcb
+root: ~/git/bicnet-communication-bus/
 
 # Optional tmux socket
 # socket_name: foo
@@ -40,12 +40,9 @@ root: ~/
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t work
+# post: tmux -CC attach -t bcb
 
 windows:
-  - home:
-  - vifm: vifm
-  - mail: neomutt
   - editor:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
@@ -53,4 +50,5 @@ windows:
       # synchronize: after
       panes:
         - vim
-  - bash:
+        - cd ~/git/bicnet-communication-bus/
+        - cd ~/git/bicnet-communication-bus/

@@ -1,7 +1,7 @@
-# ~/.tmuxinator/work.yml
+# ~/.tmuxinator/jirapy.yml
 
-name: work
-root: ~/
+name: jirapy
+root: ~/git/nms-se-tools/jira/
 
 # Optional tmux socket
 # socket_name: foo
@@ -40,17 +40,15 @@ root: ~/
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t work
+# post: tmux -CC attach -t jirapy
 
 windows:
-  - home:
-  - vifm: vifm
-  - mail: neomutt
   - editor:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - vim
-  - bash:
+        - vim jiraReports.py
+        -
+        -
