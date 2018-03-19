@@ -86,6 +86,7 @@ export EDITOR=vim
 export VISUAL=vim
 export BROWSER=elinks
 export PAGER=less
+export XDG_CONFIG_HOME="$HOME/.config"
 
 GREP=grep
 test=`ps -ef | $GREP ssh-agent | $GREP -v grep | awk '{print $2}' | xargs`
@@ -106,13 +107,26 @@ alias kagent="kill -9 $SSH_AGENT_PID"
 
 # TODO: (heiko) - automatically add key and github key (?)
 
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+# export FZF_DEFAULT_COMMAND='fd --type f'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+# export FZF_DEFAULT_OPTS='--height 40% --reverse --border --inline-info'
+export FZF_DEFAULT_OPTS="--reverse"
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 # Helper functions
 en() { IFS=+; lang=en; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
 pt() { IFS=+; lang=pt; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
 # translate () {lang="ru"; text=$*; wget -U "Mozilla/5.0" -qO - "http://translate.google.com/translate_a/t?client=t&text=$text&sl=auto&tl=$lang" | sed 's/\[\[\[\"//' | cut -d \" -f 1}
 
 function tx() {
-    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -t /" | sed -e "s/#.*$//")
+    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -t /" | sed -e "s/#.*$//")
 }
 
 function home() {
@@ -126,13 +140,24 @@ function home() {
 
 function cssh() {
     while : ; do
+        # echo -ne "\033]0;${USER}@${1}\007"
+        sleep 30 &
         ssh -t $1 tmux a
+        wait
         if [ $? -eq 0 ] ; then
             break
         fi
     done
 }
 
+# Some FZF shell helper
+# Ctrl + r - search through bash history with fzf
+# Ctrl + p - edit a file in vim from fzf
+# mv dir/** - expand a directory with (**) and select from fzf
+# Alt + c - change directory from fzf - see the update at the bottom for faster search with bfs.
+# Ctrl + t - insert file from fzf into command
+test -s ~/.fzf/shell/completion.bash && source ~/.fzf/shell/completion.bash || true
+test -s ~/.fzf/shell/key-bindings.bash && source ~/.fzf/shell/key-bindings.bash || true
 
 # TODO: generate path name
 test -s ~/dotfiles/bash/alias && source ~/dotfiles/bash/alias || true
@@ -140,7 +165,7 @@ test -s ~/dotfiles/bash/alias && source ~/dotfiles/bash/alias || true
 test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liquidprompt/liquidprompt || true
 
 # set term title
-echo -ne "\033]0;${USER}@${HOSTNAME}\007"
+# echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 # include host specific settings
 test -s ~/.bashrc.${HOSTNAME} && source ~/.bashrc.${HOSTNAME} || true
