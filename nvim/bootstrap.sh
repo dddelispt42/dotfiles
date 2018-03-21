@@ -8,9 +8,9 @@ if [ -z ${XDG_CONFIG_HOME+x} ]; then
 fi
 
 # backup all pre-dotfiles configurations
-if [ -f $XDG_CONFIG_HOME/nvim/init.vim ] ; then
-    mv $XDG_CONFIG_HOME/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim.dotfiles-$(date -I)
-fi
+# if [ -f $XDG_CONFIG_HOME/nvim/init.vim ] ; then
+#     mv $XDG_CONFIG_HOME/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim.dotfiles-$(date -I)
+# fi
 if [ -f $XDG_CONFIG_HOME/nvim/local_init.vim ] ; then
     mv $XDG_CONFIG_HOME/nvim/local_init.vim $XDG_CONFIG_HOME/nvim/local_init.vim.dotfiles-$(date -I)
 fi
@@ -26,6 +26,8 @@ fi
 curl -s 'http://vim-bootstrap.com/generate.vim' \
     --data 'langs=javascript&langs=c&langs=html&langs=go&langs=perl&langs=python&langs=rust&editor=nvim' \
     > ${BASEDIR}/init.vim
+
+# TODO: (heiko) - check if valid vim file (vs. HTML page)
 
 # delete double key mappings
 sed -i '/noremap <leader>z :bp<CR>/d' $BASEDIR/init.vim
