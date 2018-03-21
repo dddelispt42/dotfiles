@@ -1,1 +1,0 @@
-/cygdrive/c/Data/pt103371/dotfiles/./vim
