@@ -286,7 +286,8 @@ set noinsertmode    " do not start vim in insert mode
 
     " The Silver Searcher
     if executable('ag')
-        let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case -0 --silent --width 140 --color --follow --one-device --search-zip --ignore .git -g ""'
+        " let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case -0 --silent --width 140 --color --follow --one-device --search-zip --ignore .git -g ""'
+        let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case --silent --follow --one-device --search-zip --ignore .git -g ""'
         set grepprg=ag\ --nogroup\ --nocolor
     endif
 
