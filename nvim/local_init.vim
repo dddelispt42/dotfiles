@@ -2,6 +2,9 @@
 " let g:snips_author = "Heiko Riemer"
 let g:session_autosave = 'no'
 
+" let g:python3_host_prog = '/cygdrive/c/Users/pt103371/AppData/Local/Programs/Python/Python36'
+" let g:python3_host_prog = '/usr/bin/python3'
+
 " Jedi (python) {{{
 let g:jedi#popup_on_dot = 1
 let g:jedi#smart_auto_mappings = 1
@@ -156,6 +159,7 @@ set noinsertmode    " do not start vim in insert mode
     " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
     " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
     " let g:ctrlp_user_command = ['.hg', 'hg --cwd %s locate -I .']
+    " let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'  " Use ripgrep
     let g:ctrlp_user_command = {
         \ 'types': {
             \ 1: ['.git', 'cd %s && git ls-files'],
@@ -275,23 +279,24 @@ set noinsertmode    " do not start vim in insert mode
 """ fzf.vim
     set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip
     let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'bin/**' -prune -o -path '.cache/**' -prune -o -path 'cache/**' -prune -o -path '$Recycle.bin/**' -prune -o -path 'vim/bundle/**' -prune -o -path '__pycache__/**' -prune -o -path '.cache/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-    if executable('fd')
-        let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'bin/**' -prune -o -path '.cache/**' -prune -o -path 'cache/**' -prune -o -path '$Recycle.bin/**' -prune -o -path 'vim/bundle/**' -prune -o -path '__pycache__/**' -prune -o -path '.cache/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+    if has('win32')
+        let $FZF_DEFAULT_COMMAND =  "dir /s/b"
     endif
-    let $FZF_DEFAULT_COMMAND =  "dir /s/b"
 
     " The Silver Searcher
     if executable('ag')
-      " let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-      set grepprg=ag\ --nogroup\ --nocolor
+        " let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case -0 --silent --width 140 --color --follow --one-device --search-zip --ignore .git -g ""'
+        let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case --silent --follow --one-device --search-zip --ignore .git -g ""'
+        set grepprg=ag\ --nogroup\ --nocolor
     endif
 
     " ripgrep
-    if executable('rg')
-      let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-      set grepprg=rg\ --vimgrep
-      command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-    endif
+    " if executable('rg')
+    "   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+    "   set grepprg=rg\ --vimgrep
+    "   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+    " endif
 
     " --column: Show column number
     " --line-number: Show line number

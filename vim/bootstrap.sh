@@ -10,9 +10,13 @@ fi
 
 ln -sf $BASEDIR ~/.vim
 ln -sf ${BASEDIR}/vimrc ~/.vimrc
-ln -sf ~/.vim ~/.nvim
-ln -sf ~/.vimrc ~/.nvimrc
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ -d ~/.vim/bundle/Vundle.vim ] ; then
+    cd ~/.vim/bundle/Vundle.vim
+    git pull
+    cd -
+else
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
 
 # TODO: (heiko) - check if plantuml.jar is in bin and create plantuml.sh
