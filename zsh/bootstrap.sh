@@ -6,7 +6,7 @@ if [ -f ~/.zshrc ] ; then
 fi
 
 ln -sf ${BASEDIR}/zshrc ~/.zshrc
-ln -sf ${BASEDIR}/oh-my-zsh ~/.oh-my-zsh
+ln -sfn ${BASEDIR}/oh-my-zsh ~/.oh-my-zsh
 
 if [ -d ${BASEDIR}/oh-my-zsh ] ; then
     cd ${BASEDIR}/oh-my-zsh

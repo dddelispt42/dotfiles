@@ -8,7 +8,7 @@ if [ -f ~/.vimrc ] ; then
     mv ~/.vimrc ~/.vimrc.dotfiles-$(date -I)
 fi
 
-ln -sf $BASEDIR ~/.vim
+ln -sfn $BASEDIR ~/.vim
 ln -sf ${BASEDIR}/vimrc ~/.vimrc
 
 if [ -d ~/.vim/bundle/Vundle.vim ] ; then
