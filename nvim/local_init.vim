@@ -310,6 +310,12 @@ set noinsertmode    " do not start vim in insert mode
     " --color: Search color options
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
+""" vim-slumlord
+    let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
+    " if has('win32')
+    "     let g:slumlord_plantuml_jar_path = 'c:\Data\pt103371\bin\plantuml.jar'
+    " endif
+
 " Misc:
     " visualize whitespaces
     set list

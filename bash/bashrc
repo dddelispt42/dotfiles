@@ -78,7 +78,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     source /etc/bash_completion
 fi
 
-PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/.fzf/bin:$PATH
+# PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/.fzf/bin:$PATH
+PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
@@ -105,7 +106,13 @@ test -e $HOME/agent.sh && source $HOME/agent.sh
 
 alias kagent="kill -9 $SSH_AGENT_PID"
 
-# TODO: (heiko) - automatically add key and github key (?)
+function keyadd() {
+    ssh-add $(diff <(ssh-add -L | sed -e 's/.* //'|sort) <(ls $HOME/.ssh/*id_* | grep -v "\.pub$"|sort) | grep --color=no -E "[<>] " | sed -e "s/[<>] //" | fzf)
+}
+function keyremove() {
+    ssh-add -d $(ssh-add -L | sed -e 's/.* //' | fzf)
+}
+alias keylist="ssh-add -L"
 
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
@@ -169,12 +176,6 @@ test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liqu
 
 # include host specific settings
 test -s ~/.bashrc.${HOSTNAME} && source ~/.bashrc.${HOSTNAME} || true
-
-#HEIKO
-# alias docker_down='docker-compose down -v --rmi all --remove-orphans'
-# alias docker_up='docker-compose up -d --build'
-# export http_proxy="http://proxy:3128"
-# export no_proxy=".intra.coriant.com,.co-int.net,localhost,127.0.0.1"
 
 # alias tmux="TERM=xterm-256color tmux"
 # set LANG="en_US.UTF-8"
