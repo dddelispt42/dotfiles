@@ -11,4 +11,4 @@ if [ -f ~/.config/tmuxinator ] ; then
     mv ~/.config/tmuxinator ~/.config/tmuxinator.dotfiles-$(date -I)
 fi
 
-ln -sf ${BASEDIR}/tmuxinator ~/.config/tmuxinator
+ln -sfn ${BASEDIR}/tmuxinator ~/.config/tmuxinator
