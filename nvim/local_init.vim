@@ -97,6 +97,16 @@ set noinsertmode    " do not start vim in insert mode
     " highlight last inserted text
     nnoremap gV `[v`]
 
+" TMux:
+    " allows cursor change in tmux mode
+    " if exists('$TMUX')
+    "     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    "     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    " else
+    "     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    "     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    " endif
+
 
 " Autogroups:
     augroup configgroup
@@ -259,6 +269,18 @@ set noinsertmode    " do not start vim in insert mode
                 \   'py'  : 'python3',
                 \   'rs'  : 'rust'
                 \ }
+
+    " vim-javacomplete2
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+    imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+    nmap <F5> <Plug>(JavaComplete-Imports-Add)
+    imap <F5> <Plug>(JavaComplete-Imports-Add)
+    nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+    imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+    nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+    imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+
 
 " Colorscheme:
     " Molokai

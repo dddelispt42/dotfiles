@@ -8,9 +8,9 @@ if [ -z ${XDG_CONFIG_HOME+x} ]; then
 fi
 
 # backup all pre-dotfiles configurations
-# if [ -f $XDG_CONFIG_HOME/nvim/init.vim ] ; then
-#     mv $XDG_CONFIG_HOME/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim.dotfiles-$(date -I)
-# fi
+if [ -f $XDG_CONFIG_HOME/nvim/init.vim ] ; then
+    mv $XDG_CONFIG_HOME/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim.dotfiles-$(date -I)
+fi
 if [ -f $XDG_CONFIG_HOME/nvim/local_init.vim ] ; then
     mv $XDG_CONFIG_HOME/nvim/local_init.vim $XDG_CONFIG_HOME/nvim/local_init.vim.dotfiles-$(date -I)
 fi
@@ -19,9 +19,9 @@ if [ -f $XDG_CONFIG_HOME/nvim/local_bundles.vim ] ; then
 fi
 
 # backup previsou vim-bootstrap version
-if [ -f $BASEDIR/init.vim ] ; then
-    mv $BASEDIR/init.vim $BASEDIR/init.vim.backup-$(date -I)
-fi
+# if [ -f $BASEDIR/init.vim ] ; then
+#     mv $BASEDIR/init.vim $BASEDIR/init.vim.backup-$(date -I)
+# fi
 
 curl -s 'http://vim-bootstrap.com/generate.vim' \
     --data 'langs=javascript&langs=c&langs=html&langs=go&langs=perl&langs=python&langs=rust&editor=nvim' \
