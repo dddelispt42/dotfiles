@@ -24,5 +24,6 @@ Plug 'bling/vim-bufferline'
 Plug 'sjl/gundo.vim'
 " interesting but not yet configured
 Plug 'mileszs/ack.vim'
+Plug 'artur-shaik/vim-javacomplete2'
 
 
