@@ -59,6 +59,8 @@ set noinsertmode    " do not start vim in insert mode
     xnoremap <c-j> <c-w>j
     xnoremap <c-k> <c-w>k
     xnoremap <c-l> <c-w>l
+    " remove ^M from dos files
+    map <leader>m :e ++ff=dos<cr>
 
 " Searching:
     set incsearch           " search as characters are entered
@@ -206,8 +208,8 @@ set noinsertmode    " do not start vim in insert mode
     " Use <-C-n> as shortcut
     map <C-n> :NERDTreeToggle<CR>
     " Start automatically if no file is opened
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    " autocmd StdinReadPre * let s:std_in=1
+    " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " Close vim if only Nerdtree is open
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     " custom arrows
