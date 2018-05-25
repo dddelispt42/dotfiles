@@ -181,7 +181,7 @@ set noinsertmode    " do not start vim in insert mode
     \ }
     let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
     if executable('ag')
-        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        let g:ctrlp_user_command = 'ag %s -l --nocolor --skip-vcs-ignores -g ""'
     endif
 
     " Syntastic
@@ -356,3 +356,9 @@ set noinsertmode    " do not start vim in insert mode
     " Update term title but restore old title after leaving Vim
     set title
     set titleold=
+
+" clipboard
+    " set clipboard=unnamedplus
+    " if has('win32')
+    "     set clipboard=unnamed
+    " endif
