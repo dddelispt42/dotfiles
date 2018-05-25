@@ -281,6 +281,9 @@ set noinsertmode    " do not start vim in insert mode
     nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
     imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 
+" go.vim
+    " do not show warning for older releases
+    let g:go_version_warning = 0
 
 " Colorscheme:
     " Molokai
