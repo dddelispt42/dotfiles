@@ -53,4 +53,7 @@ windows:
       # synchronize: after
       panes:
         - vim
-  - bash:
+  - Backup:
+  - Sendate:
+  - BigBrain:
+  - dotFiles:
