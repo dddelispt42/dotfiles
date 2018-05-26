@@ -7,8 +7,13 @@ fi
 
 ln -sf ${BASEDIR}/tmux.conf ~/.tmux.conf
 
-if [ -f ~/.config/tmuxinator ] ; then
+if [ -d ~/.config/tmuxinator ] ; then
     mv ~/.config/tmuxinator ~/.config/tmuxinator.dotfiles-$(date -I)
 fi
 
+if [ -d ~/.tmuxinator ] ; then
+    mv ~/.tmuxinator ~/.tmuxinator.dotfiles-$(date -I)
+fi
+
 ln -sfn ${BASEDIR}/tmuxinator ~/.config/tmuxinator
+ln -sfn ${BASEDIR}/tmuxinator ~/.tmuxinator

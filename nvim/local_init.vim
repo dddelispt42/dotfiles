@@ -356,3 +356,4 @@ set noinsertmode    " do not start vim in insert mode
     " Update term title but restore old title after leaving Vim
     set title
     set titleold=
+    set path+=**
