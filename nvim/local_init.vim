@@ -181,7 +181,7 @@ set noinsertmode    " do not start vim in insert mode
     \ }
     let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
     if executable('ag')
-        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        let g:ctrlp_user_command = 'ag %s -l --nocolor --skip-vcs-ignores -g ""'
     endif
 
     " Syntastic
@@ -283,6 +283,9 @@ set noinsertmode    " do not start vim in insert mode
     nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
     imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 
+" go.vim
+    " do not show warning for older releases
+    let g:go_version_warning = 0
 
 " Colorscheme:
     " Molokai
@@ -357,3 +360,9 @@ set noinsertmode    " do not start vim in insert mode
     set title
     set titleold=
     set path+=**
+
+" clipboard
+    " set clipboard=unnamedplus
+    " if has('win32')
+    "     set clipboard=unnamed
+    " endif
