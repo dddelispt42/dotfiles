@@ -157,7 +157,8 @@ bindkey ^[[1;5B next
 # Default Buffers
 screen    -t server     0
 screen -M -t email  1 mutt
-screen    -t rss    2 ~/bin/mynewsbeuter
+# screen    -t rss    2 ~/bin/mynewsbeuter
+screen    -t rss    2 newsboat
 screen    -t www    3 elinks
 screen    -t todo   4 tudu
 #screen    -t cal    4 mycal
