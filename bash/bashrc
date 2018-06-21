@@ -79,7 +79,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/.fzf/bin:$PATH
-PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:$PATH
+PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
@@ -155,6 +155,10 @@ function cssh() {
             break
         fi
     done
+}
+
+function yt2mp3() {
+    youtube-dl --extract-audio --audio-format mp3 --add-metadata --embed-thumbnail "$1"
 }
 
 # Some FZF shell helper
