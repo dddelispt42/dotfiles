@@ -1,29 +1,28 @@
-Plug 'KabbAmine/zeavim.vim'
+" TODO Plug 'KabbAmine/zeavim.vim'
 " see colorschemes http://bytefluent.com/vivify/
-Plug 'flazz/vim-colorschemes'
+" TODO Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'elzr/vim-json'
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'davidhalter/jedi-vim'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'xuyuanp/nerdtree-git-plugin'
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
+Plug 'xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'chrisbra/csv.vim'
-Plug 'jmcantrell/vim-virtualenv'
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'ap/vim-css-color'
-Plug 'tomasr/molokai'
-Plug 'aklt/plantuml-syntax'
-Plug 'scrooloose/vim-slumlord'
-Plug 'nathanalderson/yang.vim'
-Plug 'junegunn/gv.vim'
-" interesting but not yet configured
+" Plug 'tomasr/molokai'
+Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
+Plug 'scrooloose/vim-slumlord', { 'for': 'plantuml' }
+Plug 'nathanalderson/yang.vim', { 'for': 'yang' }
 Plug 'bling/vim-bufferline'
 " interesting but not yet configured
 Plug 'sjl/gundo.vim'
 " interesting but not yet configured
 Plug 'mileszs/ack.vim'
-Plug 'artur-shaik/vim-javacomplete2'
-
+Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+" Git commit browser (:GV)
+Plug 'junegunn/gv.vim'
 
