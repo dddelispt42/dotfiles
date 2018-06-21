@@ -33,12 +33,6 @@ curl -s 'http://vim-bootstrap.com/generate.vim' \
 sed -i '/noremap <leader>z :bp<CR>/d' $BASEDIR/init.vim
 sed -i '/noremap <leader>x :bn<CR>/d' $BASEDIR/init.vim
 
-# link the config files
-mkdir -p ${XDG_CONFIG_HOME}/nvim/
-ln -sf ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
-ln -sf ${BASEDIR}/local_init.vim ${XDG_CONFIG_HOME}/nvim/local_init.vim
-ln -sf ${BASEDIR}/local_bundles.vim ${XDG_CONFIG_HOME}/nvim/local_bundles.vim
-
 # sudo apt-get install git exuberant-ctags ncurses-term curl
 
 # install requirements
@@ -46,8 +40,31 @@ pip3 install flake8 jedi pylint
 # pip2 install --user --upgrade neovim
 pip3 install --user --upgrade neovim
 
-# TODO: (pt103371) - does not work w/o terminal
-# nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +qall
+# update VIM/NeoVIM
+# TODO check if exists
+vim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+
+# TODO why init.vime???
+rm $BASEDIR/init.vime
+
+# tuning
+sed -ie "s@Plug 'scrooloose\/nerdtree'.*@Plug 'scrooloose\/nerdtree', \{ 'on': 'NERDTreeToggle' \}@" init.vim
+sed -ie "s@Plug 'jistr\/vim-nerdtree-tabs'.*@Plug 'jistr\/vim-nerdtree-tabs', \{ 'on': 'NERDTreeToggle' \}@" init.vim
+sed -ie "s@Plug 'jelera\/vim-javascript-syntax'.*@Plug 'jelera\/vim-javascript-syntax', \{ 'for': [ 'javascript' , 'javascript.jsx' ] \}@" init.vim
+sed -ie "s@Plug 'vim-perl\/vim-perl'.*@Plug 'vim-perl\/vim-perl', \{ 'for': 'perl' \}@" init.vim
+sed -ie "s@Plug 'c9s\/perlomni.vim'.*@Plug 'c9s\/perlomni.vim', \{ 'for': 'perl' \}@" init.vim
+sed -ie "s@Plug 'davidhalter\/jedi-vim'.*@Plug 'davidhalter\/jedi-vim', \{ 'for': 'python' \}@" init.vim
+sed -ie "s@Plug 'rust-lang\/rust.vim'.*@Plug 'rust-lang\/rust.vim', \{ 'for': 'rust' \}@" init.vim
+sed -ie "s@Plug 'racer-rust\/vim-racer'.*@Plug 'racer-rust\/vim-racer', \{ 'for': 'rust' \}@" init.vim
+
+cp $BASEDIR/init.vim $BASEDIR/init.vime
+
+# link the config files
+mkdir -p ${XDG_CONFIG_HOME}/nvim/
+ln -sf ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
+ln -sf ${BASEDIR}/local_init.vim ${XDG_CONFIG_HOME}/nvim/local_init.vim
+ln -sf ${BASEDIR}/local_bundles.vim ${XDG_CONFIG_HOME}/nvim/local_bundles.vim
 
 # copy to windows versions
 if [[ "$OSTYPE" == *"Windows"* ]]; then
