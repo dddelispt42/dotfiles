@@ -31,8 +31,8 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
@@ -101,27 +101,27 @@ Plug 'mattn/emmet-vim'
 
 " javascript
 "" Javascript Bundle
-Plug 'jelera/vim-javascript-syntax'
+Plug 'jelera/vim-javascript-syntax', { 'for': [ 'javascript' , 'javascript.jsx' ] }
 
 
 " perl
 "" Perl Bundle
-Plug 'vim-perl/vim-perl'
-Plug 'c9s/perlomni.vim'
+Plug 'vim-perl/vim-perl', { 'for': 'perl' }
+Plug 'c9s/perlomni.vim', { 'for': 'perl' }
 
 
 " python
 "" Python Bundle
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 
 " rust
 " Vim racer
-Plug 'racer-rust/vim-racer'
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 
 " Rust.vim
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 
 "*****************************************************************************
