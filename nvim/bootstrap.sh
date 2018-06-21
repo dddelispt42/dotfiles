@@ -42,7 +42,6 @@ pip3 install --user --upgrade neovim
 
 # update VIM/NeoVIM
 # TODO check if exists
-vim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 
 # TODO why init.vime???
