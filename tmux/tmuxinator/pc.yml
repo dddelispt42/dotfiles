@@ -1,6 +1,6 @@
-# ~/.tmuxinator/work.yml
+# ~/.tmuxinator/pc.yml
 
-name: work
+name: pc
 root: ~/
 
 # Optional tmux socket
@@ -45,7 +45,6 @@ root: ~/
 windows:
   - home:
   - vifm: vifm
-  - mail: neomutt
   - editor:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
@@ -53,7 +52,4 @@ windows:
       # synchronize: after
       panes:
         - vim
-  - Backup:
-  - Sendate:
-  - BigBrain:
-  - dotFiles:
+  - htop: htop
