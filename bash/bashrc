@@ -136,6 +136,17 @@ function tx() {
     $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -t /" | sed -e "s/#.*$//")
 }
 
+function open() {
+    #TODO make platform independent
+    FILENAME="$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+    WINDOWSPATH="$(echo $FILENAME | sed -e 's/^\/cygdrive//' -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/')"
+    cmd /c explorer "$WINDOWSPATH"
+}
+
+function fopen() {
+    $(fzf | sed -e 's/^/open /')
+}
+
 function home() {
     while : ; do
         ssh -t home "ssh 192.168.1.99"
