@@ -20,6 +20,9 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# path shortcuts
+CDPATH=".:~:~/projects:~/bin:~/dotfiles:~/docker"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -83,8 +86,8 @@ PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR="vim -o"
+export VISUAL="vim -o"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -137,14 +140,24 @@ function tx() {
 }
 
 function open() {
+    echo $1
     #TODO make platform independent
-    FILENAME="$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+    SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
+    echo $1
+    FILENAME="$(cd "$(dirname "$@")"; pwd)/$(basename "$@")"
     WINDOWSPATH="$(echo $FILENAME | sed -e 's/^\/cygdrive//' -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/')"
+    echo "cmd /c explorer \"$WINDOWSPATH\""
     cmd /c explorer "$WINDOWSPATH"
+    IFS=$SAVEIFS
 }
 
 function fopen() {
-    $(fzf | sed -e 's/^/open /')
+    SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
+    # $(fzf -d "\n" | sed -e "s/ /\\\\ /g" | sed -e "s/^\(.*\)/open   \1/")
+    $(open $(fzf -d "\n" | sed -e "s/^\(.*\)/\1/"))
+    IFS=$SAVEIFS
 }
 
 function home() {
