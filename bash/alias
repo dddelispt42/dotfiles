@@ -33,8 +33,9 @@ function dir() { ls -l "$@" | grep '^d'; }
 alias more="less -R"
 alias m="more"
 alias xe="~/bin/xe"
-alias vi="vim"
-alias v="vim"
+alias vi="$EDITOR"
+alias v="$EDITOR"
+alias edit="$EDITOR"
 
 ##########
 # others #
@@ -99,7 +100,7 @@ alias home="while [ true ] ; do sleep 600 | ssh home; wait; done"
 
 alias v="$VISUAL"
 # because typing is hard
-alias bim="vim"
+alias bim="$EDITOR"
 
 alias :w="echo this isn\'t vim 🌟"
 alias :q='exit'
@@ -115,4 +116,7 @@ alias cal='ncal -w -M -A 1 -B 1'
 alias weather='curl wttr.in/lisbon'
 
 # pass fzf to vim
-alias vf='vim $(fzf)'
+alias vf='$EDITOR $(fzf)'
+alias fv=vf
+alias fvim=vf
+alias fedit=vf

@@ -52,4 +52,9 @@ windows:
       # synchronize: after
       panes:
         - vim
-  - htop: htop
+  - mail: neomutt
+  - htop: top
+  - Sendate: cd ~/work/sendate
+  - BigData: cd ~/git/nms-se-tools
+  - dotFiles: cd ~/dotfiles
+  - 1on1: cd ~/../nextcloud/

@@ -39,7 +39,8 @@ set noinsertmode    " do not start vim in insert mode
 " Snipplets:
     iab Ytd <esc>:r!echo "TODO: ($USER) -"<cr>:m .-2<CR>==JgccA
     iab Yinfo <esc>:r!echo "INFO: ($USER) -"<cr>:m .-2<CR>==JgccA
-    iab Ydate <esc>:r!date<cr>kJ
+    iab Ydate <esc>:r!date \+\%x<cr>kJ
+    iab Ydatetime <esc>:r!date<cr>kJ
     iab Yme <esc>:r!echo $USER<cr>kJ
 
 " PlantUML Syntax:
