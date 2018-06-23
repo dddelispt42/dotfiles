@@ -86,8 +86,8 @@ PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
-export EDITOR="vim -o"
-export VISUAL="vim -o"
+export EDITOR="vim -p"
+export VISUAL="vim -p"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"
