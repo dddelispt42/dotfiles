@@ -185,6 +185,10 @@ function yt2mp3() {
     youtube-dl --extract-audio --audio-format mp3 --add-metadata --embed-thumbnail "$1"
 }
 
+function friday13th() {
+    for y in $(seq 1946 2028); do echo -n "$y -> "; for m in $(seq 1 12); do NDATE=$(date --date "$y-$m-13" +%w); if [ $NDATE -eq 5 ]; then PRINTME=$(date --date "$y-$m-13" +%B);echo -n "$PRINTME "; fi; done; echo; done
+}
+
 # Some FZF shell helper
 # Ctrl + r - search through bash history with fzf
 # Ctrl + p - edit a file in vim from fzf
