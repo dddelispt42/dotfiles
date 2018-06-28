@@ -95,7 +95,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 GREP=grep
 test=`ps -ef | $GREP ssh-agent | $GREP -v grep | awk '{print $2}' | xargs`
 
-if [ "$test" = "" ]; then
+if [ "$test" == "" ]; then
     # there is no agent running
     if [ -e "$HOME/agent.sh" ]; then
         # remove the old file
