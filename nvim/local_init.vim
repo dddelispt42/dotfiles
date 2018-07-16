@@ -40,6 +40,7 @@ set noinsertmode    " do not start vim in insert mode
     iab Ytd <esc>:r!echo "TODO: ($USER) -"<cr>:m .-2<CR>==JgccA
     iab Yinfo <esc>:r!echo "INFO: ($USER) -"<cr>:m .-2<CR>==JgccA
     let g:UltiSnipsSnippetsDir="~/dotfiles/vim/UltiSnips"
+    let g:UltiSnipsListSnippets="<s-tab>"
 
 " PlantUML Syntax:
     au BufNewFile,BufRead *.uml set filetype=plantuml
@@ -199,6 +200,15 @@ set noinsertmode    " do not start vim in insert mode
     let g:vim_markdown_folding_style_pythonic = 1
     let g:vim_markdown_new_list_item_indent = 4
 
+    " should markdown preview get shown automatically upon opening markdown buffer
+    let g:livedown_autorun = 0
+    " should the browser window pop-up upon previewing
+    let g:livedown_open = 0
+    " the port on which Livedown server will run
+    let g:livedown_port = 1337
+    " the browser to use
+    let g:livedown_browser = "C:\Data\pt103371\bin\apps\PortableApps\FirefoxPortable\App\Firefox\firefox.exe"
+
     " Indent guides
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_auto_colors = 1
@@ -337,6 +347,12 @@ set noinsertmode    " do not start vim in insert mode
     " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
     " --color: Search color options
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+    " This is the default extra key bindings
+    let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 """ vim-slumlord
     let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'

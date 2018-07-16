@@ -8,6 +8,7 @@
     email = heiko.riemer@coriant.com
 [core]
     editor = vim
+    autocrlf = false
     ; excludesfile = /Users/tim/.gitignore
 [github]
     user = dddelispt42
