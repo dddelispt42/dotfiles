@@ -53,8 +53,7 @@ windows:
       # synchronize: after
       panes:
         - vim
-  - Backup:
   - Sendate:
   - BigBrain:
   - dotFiles:
-  - 1on1:
+  - Notes: cd ~/../nextcloud/Notes; note
