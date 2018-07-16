@@ -115,6 +115,9 @@ function keyadd() {
 function keyremove() {
     ssh-add -d $(ssh-add -L | sed -e 's/.* //' | fzf)
 }
+function keynew() {
+    ssh-keygen -C "$(whoami)@$(hostname)-$(date -I)"
+}
 alias keylist="ssh-add -L"
 
 # --files: List files that would be searched but do not search
