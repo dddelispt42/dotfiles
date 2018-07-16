@@ -119,7 +119,7 @@ alias cal='ncal -w -M -A 6 -B 1'
 alias weather='curl wttr.in/lisbon'
 
 # pass fzf to vim
-alias vf='$EDITOR $(fzf)'
+alias vf='$EDITOR $(fzf --preview="head -100 {}" --preview-window=right:60%:wrap)'
 alias fv=vf
 alias fvim=vf
 alias fedit=vf
