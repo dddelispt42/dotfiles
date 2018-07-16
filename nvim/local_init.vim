@@ -39,9 +39,7 @@ set noinsertmode    " do not start vim in insert mode
 " Snipplets:
     iab Ytd <esc>:r!echo "TODO: ($USER) -"<cr>:m .-2<CR>==JgccA
     iab Yinfo <esc>:r!echo "INFO: ($USER) -"<cr>:m .-2<CR>==JgccA
-    iab Ydate <esc>:r!date \+\%x<cr>kJ
-    iab Ydatetime <esc>:r!date<cr>kJ
-    iab Yme <esc>:r!echo $USER<cr>kJ
+    let g:UltiSnipsSnippetsDir="~/dotfiles/vim/UltiSnips"
 
 " PlantUML Syntax:
     au BufNewFile,BufRead *.uml set filetype=plantuml
@@ -61,7 +59,8 @@ set noinsertmode    " do not start vim in insert mode
     xnoremap <c-k> <c-w>k
     xnoremap <c-l> <c-w>l
     " remove ^M from dos files
-    map <leader>m :e ++ff=dos<cr>
+    nnoremap <leader>m :e ++ff=dos<cr>
+    nnoremap <leader>t <Esc>:tabnew<CR>
 
 " Searching:
     set incsearch           " search as characters are entered
@@ -198,6 +197,7 @@ set noinsertmode    " do not start vim in insert mode
 
     " Markdown
     let g:vim_markdown_folding_style_pythonic = 1
+    let g:vim_markdown_new_list_item_indent = 4
 
     " Indent guides
     let g:indent_guides_enable_on_vim_startup = 1

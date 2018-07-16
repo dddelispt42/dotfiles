@@ -14,7 +14,9 @@ Plug 'chrisbra/csv.vim'
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'ap/vim-css-color'
 " Plug 'tomasr/molokai'
+" syntax for plantuml and make command
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
+" generates ASCII (UNICODE) art diagrams- TODO not working in Windows yet
 Plug 'scrooloose/vim-slumlord', { 'for': 'plantuml' }
 Plug 'nathanalderson/yang.vim', { 'for': 'yang' }
 Plug 'bling/vim-bufferline'
@@ -25,4 +27,5 @@ Plug 'mileszs/ack.vim'
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 " Git commit browser (:GV)
 Plug 'junegunn/gv.vim'
-
+" works with tabular to format markdown tables when pressing "|"
+Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }

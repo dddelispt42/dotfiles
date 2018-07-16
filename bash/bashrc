@@ -139,7 +139,7 @@ pt() { IFS=+; lang=pt; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/
 # translate () {lang="ru"; text=$*; wget -U "Mozilla/5.0" -qO - "http://translate.google.com/translate_a/t?client=t&text=$text&sl=auto&tl=$lang" | sed 's/\[\[\[\"//' | cut -d \" -f 1}
 
 function tx() {
-    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -t /" | sed -e "s/#.*$//")
+    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
 }
 
 function open() {
@@ -186,6 +186,10 @@ function cssh() {
 
 function yt2mp3() {
     youtube-dl --extract-audio --audio-format mp3 --add-metadata --embed-thumbnail "$1"
+}
+
+function friday13th() {
+    for y in $(seq 1946 2028); do echo -n "$y -> "; for m in $(seq 1 12); do NDATE=$(date --date "$y-$m-13" +%w); if [ $NDATE -eq 5 ]; then PRINTME=$(date --date "$y-$m-13" +%B);echo -n "$PRINTME "; fi; done; echo; done
 }
 
 # Some FZF shell helper
