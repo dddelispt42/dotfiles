@@ -1,0 +1,8 @@
+tmux
+git
+zsh
+neovim
+python2-neovim
+python-neovim
+xclip
+xsel
