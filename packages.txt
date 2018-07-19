@@ -6,3 +6,8 @@ python2-neovim
 python-neovim
 xclip
 xsel
+ripgrep
+fd
+
+# TODO
+powerline fonts
