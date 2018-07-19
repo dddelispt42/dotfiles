@@ -8,6 +8,7 @@ xclip
 xsel
 ripgrep
 fd
+exuberant-ctags
 
 # TODO
 powerline fonts
