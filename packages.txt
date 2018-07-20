@@ -34,8 +34,9 @@ dovecot-imapd
 e2fsprogs
 elinks
 exim4
+exuberant-ctags
 fd
-fd fd-find
+fd-find
 fdupes
 fetchmail
 file
@@ -87,7 +88,6 @@ mc
 most
 mutt
 ncdu
-neovim
 neovim
 net-tools
 netpbm
@@ -186,6 +186,7 @@ rake
 ranger
 rename
 ripgrep
+ripgrep
 rkhunter
 rsync
 rust-doc
@@ -258,3 +259,6 @@ xsel
 xz-utils
 zip
 zsh
+
+# TODO
+powerline fonts
