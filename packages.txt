@@ -3,8 +3,8 @@ ack
 aptitude
 arpwatch
 aspell
-aspell-en
 aspell-de
+aspell-en
 autoconf
 automake
 bash
@@ -34,6 +34,7 @@ dovecot-imapd
 e2fsprogs
 elinks
 exim4
+fd
 fd fd-find
 fdupes
 fetchmail
@@ -56,6 +57,7 @@ gdb
 geoip-bin
 geoip-database
 gettext-base
+git
 git
 git-man
 gnupg
@@ -86,6 +88,7 @@ most
 mutt
 ncdu
 neovim
+neovim
 net-tools
 netpbm
 newsboat
@@ -98,6 +101,7 @@ openssl
 parted
 patch
 perl
+powerline fonts
 powertop
 procmail
 pv
@@ -117,11 +121,13 @@ python-matplotlib-data
 python-mimeparse
 python-minimal
 python-mock
+python-neovim
 python-openssl
 python-pyflakes
 python-setuptools
 python-urllib3
 python-yaml
+python2-neovim
 python3
 python3-apt
 python3-crontab
@@ -179,6 +185,7 @@ python3.5-minimal
 rake
 ranger
 rename
+ripgrep
 rkhunter
 rsync
 rust-doc
@@ -198,6 +205,7 @@ tar
 tex-common
 texlive-base
 texlive-binaries
+tmux
 tmux
 tmuxinator
 tor-arm
@@ -245,6 +253,8 @@ virtualenv
 w3m
 wget
 wipe
+xclip
+xsel
 xz-utils
 zip
 zsh

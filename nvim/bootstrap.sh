@@ -39,7 +39,7 @@ sed -i '/noremap <leader>x :bn<CR>/d' $BASEDIR/init.vim
 # sudo apt-get install git exuberant-ctags ncurses-term curl
 
 # install requirements
-pip3 install flake8 jedi pylint
+pip3 install --user --upgrade flake8 jedi pylint
 # pip2 install --user --upgrade neovim
 pip3 install --user --upgrade neovim
 
@@ -84,3 +84,5 @@ if [[ "$OSTYPE" == *"Windows"* ]]; then
     sed -i 's/set shell=\/.*bin\/sh/set shell=cmd/' \
         $LOCALAPPDATA/nvim/init.vim $LOCALAPPDATA/nvim/local_init.vim $LOCALAPPDATA/nvim/local_bundles.vim
 fi
+
+nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
