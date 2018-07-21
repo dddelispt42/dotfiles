@@ -193,6 +193,19 @@ function friday13th() {
     for y in $(seq 1946 2028); do echo -n "$y -> "; for m in $(seq 1 12); do NDATE=$(date --date "$y-$m-13" +%w); if [ $NDATE -eq 5 ]; then PRINTME=$(date --date "$y-$m-13" +%B);echo -n "$PRINTME "; fi; done; echo; done
 }
 
+function note() {
+    pushd $NEXTCLOUD/Notes > /dev/null
+    SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
+    NOTE=""
+    NOTE=$((echo "*** NEW NOTE ***"; find . -type f) | fzf)
+    if [ "$NOTE" != "" ] ; then
+        vim $NOTE
+    fi
+    IFS=$SAVEIFS
+    popd > /dev/null
+}
+
 # Some FZF shell helper
 # Ctrl + r - search through bash history with fzf
 # Ctrl + p - edit a file in vim from fzf
