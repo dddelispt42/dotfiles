@@ -33,3 +33,7 @@ Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 " Plug 'shime/vim-livedown', { 'for': 'markdown' }
 " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
 " Plug 'vimwiki/vimwiki'
+" Letex
+Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'benmills/vimux'
