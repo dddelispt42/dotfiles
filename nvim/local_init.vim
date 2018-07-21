@@ -19,6 +19,9 @@ set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 
 set noinsertmode    " do not start vim in insert mode
 
+" some settings regarding ctags
+set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,../../.git/tags,../../.svn/tags,../../../tags,../../../.git/tags,../../../.svn/tags;
+
 " Spaces Tabs:
     syntax enable           " enable syntax processing
     filetype plugin indent on
