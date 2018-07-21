@@ -2,6 +2,8 @@
 # ~/.bashrc
 #
 
+stty -ixon -ixoff # turns off CTRL-S
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -86,8 +88,11 @@ PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
-export EDITOR="vim -p"
-export VISUAL="vim -p"
+function vimTabs() {
+    vim -p $*
+}
+export EDITOR="vimTabs"
+export VISUAL="vimTabs"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -206,17 +211,9 @@ function note() {
     popd > /dev/null
 }
 
-# Some FZF shell helper
-# Ctrl + r - search through bash history with fzf
-# Ctrl + p - edit a file in vim from fzf
-# mv dir/** - expand a directory with (**) and select from fzf
-# Alt + c - change directory from fzf - see the update at the bottom for faster search with bfs.
-# Ctrl + t - insert file from fzf into command
-test -s ~/.fzf/shell/completion.bash && source ~/.fzf/shell/completion.bash || true
-test -s ~/.fzf/shell/key-bindings.bash && source ~/.fzf/shell/key-bindings.bash || true
-
 # TODO: generate path name
-test -s ~/dotfiles/bash/alias && source ~/dotfiles/bash/alias || true
+test -s ~/dotfiles/bash/alias.sh && source ~/dotfiles/bash/alias.sh || true
+test -s ~/dotfiles/bash/fuzzy_functions.sh && source ~/dotfiles/bash/fuzzy_functions.sh || true
 # TODO: test -s ~/dotfiles/bash/completion && source ~/dotfiles/bash/completion || true
 test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liquidprompt/liquidprompt || true
 
@@ -229,5 +226,13 @@ test -s ~/.bashrc.${HOSTNAME} && source ~/.bashrc.${HOSTNAME} || true
 # alias tmux="TERM=xterm-256color tmux"
 # set LANG="en_US.UTF-8"
 
+# Some FZF shell helper
+# Ctrl + r - search through bash history with fzf
+# Ctrl + p - edit a file in vim from fzf
+# mv dir/** - expand a directory with (**) and select from fzf
+# Alt + c - change directory from fzf - see the update at the bottom for faster search with bfs.
+# Ctrl + t - insert file from fzf into command
+test -s ~/.fzf/shell/completion.bash && source ~/.fzf/shell/completion.bash || true
+test -s ~/.fzf/shell/key-bindings.bash && source ~/.fzf/shell/key-bindings.bash || true
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
