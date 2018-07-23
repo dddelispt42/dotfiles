@@ -30,4 +30,6 @@ Plug 'junegunn/gv.vim'
 " works with tabular to format markdown tables when pressing "|"
 Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 " immediate preview
-Plug 'shime/vim-livedown', { 'for': 'markdown' }
+" Plug 'shime/vim-livedown', { 'for': 'markdown' }
+" Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
+" Plug 'vimwiki/vimwiki'

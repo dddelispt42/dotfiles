@@ -26,8 +26,8 @@ curl -s 'http://vim-bootstrap.com/generate.vim' \
     > ${BASEDIR}/vimrc
 
 # delete double key mappings
-sed -i '/noremap <leader>z :bp<CR>/d' $BASEDIR/vimrc
-sed -i '/noremap <leader>x :bn<CR>/d' $BASEDIR/vimrc
+sed -i '/noremap <leader>q :bp<CR>/d' $BASEDIR/vimrc
+sed -i '/noremap <leader>w :bn<CR>/d' $BASEDIR/vimrc
 
 # sudo apt-get install git exuberant-ctags ncurses-term curl
 
