@@ -192,8 +192,7 @@ set noinsertmode    " do not start vim in insert mode
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 1
 
-    " TODO: (pt103371) -  add flake8
-    let g:syntastic_python_checkers = ['pylint']
+    let g:syntastic_python_checkers = ['pylint', 'flake8']
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_always_populate_loc_list = 1
 
@@ -201,14 +200,14 @@ set noinsertmode    " do not start vim in insert mode
     let g:vim_markdown_folding_style_pythonic = 1
     let g:vim_markdown_new_list_item_indent = 4
 
-    " should markdown preview get shown automatically upon opening markdown buffer
-    let g:livedown_autorun = 0
-    " should the browser window pop-up upon previewing
-    let g:livedown_open = 0
-    " the port on which Livedown server will run
-    let g:livedown_port = 1337
-    " the browser to use
-    let g:livedown_browser = "C:\Data\pt103371\bin\apps\PortableApps\FirefoxPortable\App\Firefox\firefox.exe"
+    " " should markdown preview get shown automatically upon opening markdown buffer
+    " let g:livedown_autorun = 0
+    " " should the browser window pop-up upon previewing
+    " let g:livedown_open = 0
+    " " the port on which Livedown server will run
+    " let g:livedown_port = 1337
+    " " the browser to use
+    " let g:livedown_browser = "C:\Data\pt103371\bin\apps\PortableApps\FirefoxPortable\App\Firefox\firefox.exe"
 
     " Indent guides
     let g:indent_guides_enable_on_vim_startup = 1
@@ -286,8 +285,8 @@ set noinsertmode    " do not start vim in insert mode
 
     " vim-javacomplete2
     autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-    imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+    " nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+    " imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
     nmap <F5> <Plug>(JavaComplete-Imports-Add)
     imap <F5> <Plug>(JavaComplete-Imports-Add)
     nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
@@ -388,6 +387,22 @@ set noinsertmode    " do not start vim in insert mode
     "     let g:slumlord_plantuml_jar_path = 'c:\Data\pt103371\bin\plantuml.jar'
     " endif
 
+""" vimwiki
+    " vimwiki with markdown support
+    " let wiki_1 = {}
+    " let wiki_1.path = '~/vimwiki/work/'
+    " let wiki_1.syntax = 'markdown'
+    " let wiki_1.ext = '.md'
+
+    " let wiki_2 = {}
+    " let wiki_2.path = '~/vimwiki/personal/'
+    " let wiki_2.syntax = 'markdown'
+    " let wiki_2.ext = '.md'
+
+    " let g:vimwiki_list = [wiki_1, wiki_2]
+    " let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+    " " helppage -> :h vimwiki-syntax 
+
 " Misc:
     " visualize whitespaces
     set list
@@ -411,3 +426,5 @@ set noinsertmode    " do not start vim in insert mode
     " if has('win32')
     "     set clipboard=unnamed
     " endif
+    "
+    set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;
