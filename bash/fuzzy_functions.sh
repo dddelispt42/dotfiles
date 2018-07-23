@@ -51,8 +51,8 @@ function vg() {
   fi
 }
 
-# fd - cd to selected directory
-function fd() {
+# fcd - cd to selected directory
+function fcd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
@@ -60,14 +60,14 @@ function fd() {
   cd "$dir"
 }
 
-# fda - including hidden directories
-function fda() {
+# fcda - including hidden directories
+function fcda() {
   local dir
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
 
-# fdr - cd to selected parent directory
-function fdr() {
+# fcdr - cd to selected parent directory
+function fcdr() {
   local declare dirs=()
   get_parent_dirs() {
     if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
