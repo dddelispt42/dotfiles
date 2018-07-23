@@ -89,7 +89,8 @@ alias cp="cp -i"
 ########################################
 # edit resource or configuration files #
 ########################################
-alias vim="$EDITOR"
+alias vim="vimTabs"
+alias vi="vimTabs"
 
 alias chx="$EDITOR $HOME/.exrc"
 alias chv="$EDITOR $HOME/.vimrc"
@@ -118,8 +119,3 @@ alias ggs='gs'
 alias cal='ncal -w -M -A 6 -B 1'
 alias weather='curl wttr.in/lisbon'
 
-# pass fzf to vim
-alias vf='$EDITOR $(fzf)'
-alias fv=vf
-alias fvim=vf
-alias fedit=vf
