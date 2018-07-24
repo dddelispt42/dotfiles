@@ -89,7 +89,8 @@ alias cp="cp -i"
 ########################################
 # edit resource or configuration files #
 ########################################
-alias vim="$EDITOR"
+alias vim="vimTabs"
+alias vi="vimTabs"
 
 alias chx="$EDITOR $HOME/.exrc"
 alias chv="$EDITOR $HOME/.vimrc"
@@ -120,9 +121,6 @@ alias weather='curl wttr.in/lisbon'
 
 # pass fzf to vim
 alias vf='$EDITOR $(fzf)'
-alias fv=vf
-alias fvim=vf
-alias fedit=vf
 
 # alias cp="rsync --archive --human-readable --progress --verbose --whole-file"
 # alias scp="rsync --archive --checksum --compress --human-readable --itemize-changes --rsh=ssh --stats --verbose"
