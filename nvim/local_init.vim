@@ -405,6 +405,11 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " let g:vimwiki_list = [wiki_1, wiki_2]
     " let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
     " " helppage -> :h vimwiki-syntax 
+    "
+""" vimtmux
+    autocmd Filetype tex setl updatetime=1
+    let g:livepreview_previewer = 'mupdf'
+    nmap <F12> :LLPStartPreview<cr>
 
 " Misc:
     " visualize whitespaces
