@@ -2,6 +2,8 @@
 # ~/.bashrc
 #
 
+stty -ixon -ixoff # turns off CTRL-S
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -22,6 +24,9 @@ HISTFILESIZE=2000
 
 # path shortcuts
 CDPATH=".:~:~/projects:~/bin:~/dotfiles:~/docker"
+
+# firefox profile
+FIREFOX_PROFILE="$(test -d .mozilla/firefox && (find .mozilla/firefox/ -iname '*.default' | tail -1))"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -82,12 +87,15 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/.fzf/bin:$PATH
-PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:$PATH
+PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
-export EDITOR="vim -p"
-export VISUAL="vim -p"
+function vimTabs() {
+    vim -p $*
+}
+export EDITOR="vimTabs"
+export VISUAL="vimTabs"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -115,6 +123,9 @@ function keyadd() {
 function keyremove() {
     ssh-add -d $(ssh-add -L | sed -e 's/.* //' | fzf)
 }
+function keynew() {
+    ssh-keygen -C "$(whoami)@$(hostname)-$(date -I)"
+}
 alias keylist="ssh-add -L"
 
 # --files: List files that would be searched but do not search
@@ -126,7 +137,8 @@ alias keylist="ssh-add -L"
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 # export FZF_DEFAULT_OPTS='--height 40% --reverse --border --inline-info'
-export FZF_DEFAULT_OPTS="--reverse"
+# export FZF_DEFAULT_OPTS="--reverse --preview='head -100 {}' --preview-window=right:50%:wrap"
+export FZF_DEFAULT_OPTS=" --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -136,7 +148,7 @@ pt() { IFS=+; lang=pt; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/
 # translate () {lang="ru"; text=$*; wget -U "Mozilla/5.0" -qO - "http://translate.google.com/translate_a/t?client=t&text=$text&sl=auto&tl=$lang" | sed 's/\[\[\[\"//' | cut -d \" -f 1}
 
 function tx() {
-    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -t /" | sed -e "s/#.*$//")
+    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | sort -u | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
 }
 
 function open() {
@@ -189,17 +201,11 @@ function friday13th() {
     for y in $(seq 1946 2028); do echo -n "$y -> "; for m in $(seq 1 12); do NDATE=$(date --date "$y-$m-13" +%w); if [ $NDATE -eq 5 ]; then PRINTME=$(date --date "$y-$m-13" +%B);echo -n "$PRINTME "; fi; done; echo; done
 }
 
-# Some FZF shell helper
-# Ctrl + r - search through bash history with fzf
-# Ctrl + p - edit a file in vim from fzf
-# mv dir/** - expand a directory with (**) and select from fzf
-# Alt + c - change directory from fzf - see the update at the bottom for faster search with bfs.
-# Ctrl + t - insert file from fzf into command
-test -s ~/.fzf/shell/completion.bash && source ~/.fzf/shell/completion.bash || true
-test -s ~/.fzf/shell/key-bindings.bash && source ~/.fzf/shell/key-bindings.bash || true
-
 # TODO: generate path name
-test -s ~/dotfiles/bash/alias && source ~/dotfiles/bash/alias || true
+test -s ~/dotfiles/bash/alias.sh && source ~/dotfiles/bash/alias.sh || true
+test -s ~/dotfiles/bash/fuzzy_functions.sh && source ~/dotfiles/bash/fuzzy_functions.sh || true
+test -s ~/dotfiles/bash/z.sh && source ~/dotfiles/bash/z.sh || true
+test -s ~/dotfiles/bash/fz.sh && source ~/dotfiles/bash/fz.sh || true
 # TODO: test -s ~/dotfiles/bash/completion && source ~/dotfiles/bash/completion || true
 test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liquidprompt/liquidprompt || true
 
@@ -212,5 +218,13 @@ test -s ~/.bashrc.${HOSTNAME} && source ~/.bashrc.${HOSTNAME} || true
 # alias tmux="TERM=xterm-256color tmux"
 # set LANG="en_US.UTF-8"
 
+# Some FZF shell helper
+# Ctrl + r - search through bash history with fzf
+# Ctrl + p - edit a file in vim from fzf
+# mv dir/** - expand a directory with (**) and select from fzf
+# Alt + c - change directory from fzf - see the update at the bottom for faster search with bfs.
+# Ctrl + t - insert file from fzf into command
+test -s ~/.fzf/shell/completion.bash && source ~/.fzf/shell/completion.bash || true
+test -s ~/.fzf/shell/key-bindings.bash && source ~/.fzf/shell/key-bindings.bash || true
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
