@@ -2,6 +2,8 @@
 # ~/.bashrc
 #
 
+stty -ixon -ixoff # turns off CTRL-S
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -85,7 +87,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/.fzf/bin:$PATH
-PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:$PATH
+PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org

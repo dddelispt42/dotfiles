@@ -119,3 +119,11 @@ alias ggs='gs'
 alias cal='ncal -w -M -A 6 -B 1'
 alias weather='curl wttr.in/lisbon'
 
+# pass fzf to vim
+alias vf='$EDITOR $(fzf)'
+
+# alias cp="rsync --archive --human-readable --progress --verbose --whole-file"
+# alias scp="rsync --archive --checksum --compress --human-readable --itemize-changes --rsh=ssh --stats --verbose"
+alias myip="curl http://myip.dnsomatic.com && echo ''"
+alias pandoc="pandoc --latex-engine=lualatex -H $HOME/.config/pandoc/fonts.tex"
+alias pretty-json="python2 -mjson.tool"

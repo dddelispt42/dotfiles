@@ -30,9 +30,12 @@ Plug 'junegunn/gv.vim'
 " works with tabular to format markdown tables when pressing "|"
 Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 " immediate preview
-" Plug 'shime/vim-livedown', { 'for': 'markdown' }
+" TODO Plug 'shime/vim-livedown', { 'for': 'markdown' }
 " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
-" Plug 'vimwiki/vimwiki'
+" TODO Plug 'vimwiki/vimwiki'
 " Hardmode to learn mode vim
  Plug 'wikitopian/hardmode'
-
+" Latex
+Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'benmills/vimux'
