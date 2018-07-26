@@ -23,6 +23,9 @@ HISTFILESIZE=2000
 # path shortcuts
 CDPATH=".:~:~/projects:~/bin:~/dotfiles:~/docker"
 
+# firefox profile
+FIREFOX_PROFILE="$(test -d .mozilla/firefox && (find .mozilla/firefox/ -iname '*.default' | tail -1))"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -196,22 +199,11 @@ function friday13th() {
     for y in $(seq 1946 2028); do echo -n "$y -> "; for m in $(seq 1 12); do NDATE=$(date --date "$y-$m-13" +%w); if [ $NDATE -eq 5 ]; then PRINTME=$(date --date "$y-$m-13" +%B);echo -n "$PRINTME "; fi; done; echo; done
 }
 
-function note() {
-    pushd $NEXTCLOUD/Notes > /dev/null
-    SAVEIFS=$IFS
-    IFS=$(echo -en "\n\b")
-    NOTE=""
-    NOTE=$((echo "*** NEW NOTE ***"; find . -type f) | fzf)
-    if [ "$NOTE" != "" ] ; then
-        vim $NOTE
-    fi
-    IFS=$SAVEIFS
-    popd > /dev/null
-}
-
 # TODO: generate path name
 test -s ~/dotfiles/bash/alias.sh && source ~/dotfiles/bash/alias.sh || true
 test -s ~/dotfiles/bash/fuzzy_functions.sh && source ~/dotfiles/bash/fuzzy_functions.sh || true
+test -s ~/dotfiles/bash/z.sh && source ~/dotfiles/bash/z.sh || true
+test -s ~/dotfiles/bash/fz.sh && source ~/dotfiles/bash/fz.sh || true
 # TODO: test -s ~/dotfiles/bash/completion && source ~/dotfiles/bash/completion || true
 test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liquidprompt/liquidprompt || true
 

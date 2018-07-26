@@ -26,28 +26,48 @@ function fo() {
 # vf - fuzzy open with vim from anywhere
 # ex: vf word1 word2 ... (even part of a file name)
 # zsh autoload function
-function vf() {
-  local files
+function floc() {
+  local out files dir
 
-  files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
+  dir=""
+  if [ $# -gt 0 ]; then
+      if [ -d $1 ]; then
+          pushd $1 > /dev/null
+          dir="$(pwd)"
+          popd > /dev/null
+          shift
+      fi
+  fi
+  IFS=$'\n' out="$(locate -Ai '*' $dir $@ | fzf-tmux -0 -m --expect=ctrl-o,ctrl-e,ctrl-p)"
+  key=$(echo "$out" | head -1)
+  files=$(echo "$out" | tail -n +2)
 
   if [[ -n $files ]]
   then
-     vim -- $files
-     print -l $files[1]
+     echo  $files
+     if [ "$key" = ctrl-o ]; then
+         open $files
+     elif [ "$key" = ctrl-p ]; then
+         pushd "$(dirname $(echo $files | head -1))" > /dev/null
+     elif [ "$key" = ctrl-e ]; then
+         ${EDITOR:-vim} -- $files
+     else
+         ${EDITOR:-vim} -- $files
+     fi
   fi
 }
 
 # fuzzy grep open via ag
-function vg() {
-  local file
+function fgr() {
+  local files
 
   #TODO check if rg, ag exist
-  file="$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1 " +" $2}')"
+  files="$(ag --nobreak --noheading $@ | fzf-tmux -0 -1 -m | awk -F: '{print $1 " +" $2}')"
 
-  if [[ -n $file ]]
+  if [[ -n $files ]]
   then
-     "${EDITOR:-vim}" $file
+      # echo "${EDITOR:-vim}" $(echo $files | sed -e :a -e N -e 's/\n/ /')
+      IFS=$' \n' ${EDITOR:-vim} $files
   fi
 }
 
@@ -234,15 +254,43 @@ function fgst() {
 # ftags - search ctags
 function ftags() {
   local line
-  #TODO find the right tags file
-  [ -e tags ] &&
+
+  tagfile=""
+  if [ -f ctags ]; then 
+      tagfile="ctags"
+  elif [ -f ./.git/ctags ]; then
+      tagfile="./.git/ctags"
+  elif [ -f ./.svn/ctags ]; then
+      tagfile="./.svn/ctags"
+  elif [ -f ../ctags ]; then
+      tagfile="../ctags"
+  elif [ -f ../.git/ctags ]; then
+      tagfile="../.git/ctags"
+  elif [ -f ../.svn/ctags ]; then
+      tagfile="../.svn/ctags"
+  elif [ -f ../../ctags ]; then
+      tagfile="../../ctags"
+  elif [ -f ../../.git/ctags ]; then
+      tagfile="../../.git/ctags"
+  elif [ -f ../../.svn/ctags ]; then
+      tagfile="../../.svn/ctags"
+  elif [ -f ../../../ctags ]; then
+      tagfile="../../../ctags"
+  elif [ -f ../../../.git/ctags ]; then
+      tagfile="../../../.git/ctags"
+  elif [ -f ../../../.svn/ctags ]; then
+      tagfile="../../../.svn/ctags"
+  else
+      return
+  fi
+  [ -e $tagfile ] &&
   # line=$(
   #   awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
   #   cut -c1-80 | fzf --nth=1,2
   # ) && ${EDITOR:-vim} $(cut -f3 <<< "$line") -c "set nocst" \
   #                                     -c "silent tag $(cut -f2 <<< "$line")"
-  line=$(
-    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
+  IFS=$'\n' line=$(
+    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile |
     cut -c1-80 | fzf --nth=1,2
   ) && ${EDITOR:-vim} $(echo "$line" | cut -f3) -c "set nocst" \
                                       -c "silent tag $(echo "$line" | cut -f2)"
@@ -291,4 +339,32 @@ function chromeh() {
   awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
+function note() {
+    pushd $NEXTCLOUD/Notes > /dev/null
+    SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
+    NOTE=""
+    NOTE=$((echo "*** NEW NOTE ***"; find . -type f) | fzf)
+    if [ "$NOTE" != "" ] ; then
+        vim $NOTE
+    fi
+    IFS=$SAVEIFS
+    popd > /dev/null
+}
+
+function fbhist() {
+    links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf-tmux -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
+    if [ "$links" != "" ] ; then
+        firefox --new-tab $links
+    fi
+}
+
+function fbookm() {
+    # links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
+    IFS=$'\n' links=$(sqlite3 $FIREFOX_PROFILE/places.sqlite "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf-tmux -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
+    if [ "$links" != "" ] ; then
+        firefox --new-tab $links
+    fi
+}
+
 

@@ -94,4 +94,6 @@ export LANG=en_US.UTF-8
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
+# zplug "changyuheng/fz", defer:1
+# zplug "rupa/z", use:z.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
