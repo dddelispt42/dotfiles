@@ -29,3 +29,13 @@ Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'junegunn/gv.vim'
 " works with tabular to format markdown tables when pressing "|"
 Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
+" immediate preview
+" TODO Plug 'shime/vim-livedown', { 'for': 'markdown' }
+" Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
+" TODO Plug 'vimwiki/vimwiki'
+" Hardmode to learn mode vim
+ Plug 'wikitopian/hardmode'
+" Latex
+Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'benmills/vimux'

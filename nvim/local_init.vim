@@ -1,5 +1,5 @@
 " MyConf
-" let g:snips_author = "Heiko Riemer"
+let g:snips_author = "Heiko Riemer"
 let g:session_autosave = 'no'
 
 " let g:python3_host_prog = '/cygdrive/c/Users/pt103371/AppData/Local/Programs/Python/Python36'
@@ -13,10 +13,14 @@ let g:jedi#show_call_signatures = 1
 " }}}
 
 " Font settings {{{
-set gfn=Monospace\ 8
+" set gfn=Monospace\ 8
+set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 " }}}
 
 set noinsertmode    " do not start vim in insert mode
+
+" some settings regarding ctags
+set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,../../.git/tags,../../.svn/tags,../../../tags,../../../.git/tags,../../../.svn/tags;
 
 " Spaces Tabs:
     syntax enable           " enable syntax processing
@@ -39,9 +43,8 @@ set noinsertmode    " do not start vim in insert mode
 " Snipplets:
     iab Ytd <esc>:r!echo "TODO: ($USER) -"<cr>:m .-2<CR>==JgccA
     iab Yinfo <esc>:r!echo "INFO: ($USER) -"<cr>:m .-2<CR>==JgccA
-    iab Ydate <esc>:r!date \+\%x<cr>kJ
-    iab Ydatetime <esc>:r!date<cr>kJ
-    iab Yme <esc>:r!echo $USER<cr>kJ
+    let g:UltiSnipsSnippetsDir="~/dotfiles/vim/UltiSnips"
+    let g:UltiSnipsListSnippets="<s-tab>"
 
 " PlantUML Syntax:
     au BufNewFile,BufRead *.uml set filetype=plantuml
@@ -192,14 +195,22 @@ set noinsertmode    " do not start vim in insert mode
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 1
 
-    " TODO: (pt103371) -  add flake8
-    let g:syntastic_python_checkers = ['pylint']
+    let g:syntastic_python_checkers = ['pylint', 'flake8']
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_always_populate_loc_list = 1
 
     " Markdown
     let g:vim_markdown_folding_style_pythonic = 1
     let g:vim_markdown_new_list_item_indent = 4
+
+    " " should markdown preview get shown automatically upon opening markdown buffer
+    " let g:livedown_autorun = 0
+    " " should the browser window pop-up upon previewing
+    " let g:livedown_open = 0
+    " " the port on which Livedown server will run
+    " let g:livedown_port = 1337
+    " " the browser to use
+    " let g:livedown_browser = "C:\Data\pt103371\bin\apps\PortableApps\FirefoxPortable\App\Firefox\firefox.exe"
 
     " Indent guides
     let g:indent_guides_enable_on_vim_startup = 1
@@ -277,8 +288,8 @@ set noinsertmode    " do not start vim in insert mode
 
     " vim-javacomplete2
     autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-    imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+    " nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+    " imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
     nmap <F5> <Plug>(JavaComplete-Imports-Add)
     imap <F5> <Plug>(JavaComplete-Imports-Add)
     nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
@@ -297,6 +308,10 @@ set noinsertmode    " do not start vim in insert mode
     let g:rehash256 = 1
 
     let g:airline_theme='molokai'
+    let g:airline_powerline_fonts = 1
+    " set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline\ 10
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+    let g:airline#extensions#tabline#enabled = 1
 
     " Gundo
     nnoremap <F8> :GundoToggle<CR>
@@ -308,22 +323,19 @@ set noinsertmode    " do not start vim in insert mode
 
 """ fzf.vim
     set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip
-    let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'bin/**' -prune -o -path '.cache/**' -prune -o -path 'cache/**' -prune -o -path '$Recycle.bin/**' -prune -o -path 'vim/bundle/**' -prune -o -path '__pycache__/**' -prune -o -path '.cache/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-
-    if has('win32')
-        let $FZF_DEFAULT_COMMAND =  "dir /s/b"
-    endif
+    " let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'bin/**' -prune -o -path '.cache/**' -prune -o -path 'cache/**' -prune -o -path '$Recycle.bin/**' -prune -o -path 'vim/bundle/**' -prune -o -path '__pycache__/**' -prune -o -path '.cache/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
     " The Silver Searcher
-    if executable('ag')
-        " let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case -0 --silent --width 140 --color --follow --one-device --search-zip --ignore .git -g ""'
-        let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case --silent --follow --one-device --search-zip --ignore .git -g ""'
-        set grepprg=ag\ --nogroup\ --nocolor
-    endif
+    " if executable('ag')
+    "     " let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case -0 --silent --width 140 --color --follow --one-device --search-zip --ignore .git -g ""'
+    "     let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case --silent --follow --one-device --search-zip --ignore .git -g ""'
+    "     set grepprg=ag\ --nogroup\ --nocolor
+    " endif
 
-    " ripgrep
+    " " ripgrep
     " if executable('rg')
-    "   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+    "   " let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+    "   let $FZF_DEFAULT_COMMAND ='rg --files --hidden --follow -g ''!.git/'''
     "   set grepprg=rg\ --vimgrep
     "   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
     " endif
@@ -340,11 +352,70 @@ set noinsertmode    " do not start vim in insert mode
     " --color: Search color options
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
+    " This is the default extra key bindings
+    let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
+
+    " Default fzf layout
+    " - down / up / left / right
+    let g:fzf_layout = { 'down': '~40%' }
+
+    " Customize fzf colors to match your color scheme
+    let g:fzf_colors =
+                \ { 'fg':      ['fg', 'Normal'],
+                \ 'bg':      ['bg', 'Normal'],
+                \ 'hl':      ['fg', 'Comment'],
+                \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+                \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+                \ 'hl+':     ['fg', 'Statement'],
+                \ 'info':    ['fg', 'PreProc'],
+                \ 'border':  ['fg', 'Ignore'],
+                \ 'prompt':  ['fg', 'Conditional'],
+                \ 'pointer': ['fg', 'Exception'],
+                \ 'marker':  ['fg', 'Keyword'],
+                \ 'spinner': ['fg', 'Label'],
+                \ 'header':  ['fg', 'Comment'] }
+
+    " Enable per-command history.
+    " CTRL-N and CTRL-P will be automatically bound to next-history and
+    " previous-history instead of down and up. If you don't like the change,
+    " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+    let g:fzf_history_dir = '~/.local/share/fzf-history'
+
 """ vim-slumlord
     let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
     " if has('win32')
     "     let g:slumlord_plantuml_jar_path = 'c:\Data\pt103371\bin\plantuml.jar'
     " endif
+
+""" vimwiki
+    " vimwiki with markdown support
+    " let wiki_1 = {}
+    " let wiki_1.path = '~/vimwiki/work/'
+    " let wiki_1.syntax = 'markdown'
+    " let wiki_1.ext = '.md'
+
+    " let wiki_2 = {}
+    " let wiki_2.path = '~/vimwiki/personal/'
+    " let wiki_2.syntax = 'markdown'
+    " let wiki_2.ext = '.md'
+
+    " let g:vimwiki_list = [wiki_1, wiki_2]
+    " let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+    " " helppage -> :h vimwiki-syntax 
+    "
+""" vimtmux
+    autocmd Filetype tex setl updatetime=1
+    let g:livepreview_previewer = 'mupdf'
+    nmap <F12> :LLPStartPreview<cr>
+
+""" vimwiki
+    nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
+    let g:HardMode_level = 'wannabe'
+    " let g:HardMode_hardmodeMsg = 'Don't use this!'
+    autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " Misc:
     " visualize whitespaces
@@ -369,3 +440,5 @@ set noinsertmode    " do not start vim in insert mode
     " if has('win32')
     "     set clipboard=unnamed
     " endif
+    "
+    set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;

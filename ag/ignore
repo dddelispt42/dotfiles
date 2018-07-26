@@ -138,5 +138,5 @@ ipch/
 node_modules/
 obj/
 target/
-vim/bundle/
+.vim/plugged/
 ~$*

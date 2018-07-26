@@ -56,3 +56,4 @@ windows:
   - Sendate:
   - BigBrain:
   - dotFiles:
+  - Notes: cd ~/../nextcloud/Notes; note
