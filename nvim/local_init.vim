@@ -406,6 +406,12 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
     " " helppage -> :h vimwiki-syntax 
 
+""" vimwiki
+    nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
+    let g:HardMode_level = 'wannabe'
+    " let g:HardMode_hardmodeMsg = 'Don't use this!'
+    autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
 " Misc:
     " visualize whitespaces
     set list

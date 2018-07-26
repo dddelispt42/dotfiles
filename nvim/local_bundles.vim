@@ -33,3 +33,6 @@ Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 " Plug 'shime/vim-livedown', { 'for': 'markdown' }
 " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
 " Plug 'vimwiki/vimwiki'
+" Hardmode to learn mode vim
+ Plug 'wikitopian/hardmode'
+
