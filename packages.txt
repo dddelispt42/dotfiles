@@ -1,4 +1,7 @@
 abook
+wget
+curl
+jq
 ack
 aptitude
 arpwatch
