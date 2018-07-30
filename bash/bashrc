@@ -105,15 +105,15 @@ test=`ps -ef | $GREP ssh-agent | $GREP -v grep | awk '{print $2}' | xargs`
 
 if [ "$test" == "" ]; then
     # there is no agent running
-    if [ -e "$HOME/agent.sh" ]; then
+    if [ -e "$HOME/.agent.sh" ]; then
         # remove the old file
-        rm -f $HOME/agent.sh
+        rm -f $HOME/.agent.sh
     fi;
     # start a new agent
-    ssh-agent | $GREP -v echo >&$HOME/agent.sh
+    ssh-agent | $GREP -v echo >&$HOME/.agent.sh
 fi;
 
-test -e $HOME/agent.sh && source $HOME/agent.sh
+test -e $HOME/.agent.sh && source $HOME/.agent.sh
 
 alias kagent="kill -9 $SSH_AGENT_PID"
 
