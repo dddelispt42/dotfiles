@@ -127,3 +127,4 @@ alias vf='$EDITOR $(fzf)'
 alias myip="curl http://myip.dnsomatic.com && echo ''"
 alias pandoc="pandoc --latex-engine=lualatex -H $HOME/.config/pandoc/fonts.tex"
 alias pretty-json="python2 -mjson.tool"
+alias gstlast='git ls-files --other --modified --exclude-standard|while read filename; do  echo -n "$(stat -c%y -- $filename 2> /dev/null) "; echo $filename;  done|sort'
