@@ -253,6 +253,9 @@ vim-youcompleteme
 virtualenv
 w3m
 wget
+figlet
+cowsay
+markdown
 wipe
 xclip
 xsel
