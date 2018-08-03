@@ -1,4 +1,7 @@
 abook
+wget
+curl
+jq
 ack
 aptitude
 arpwatch
@@ -65,6 +68,7 @@ gnupg
 gnupg2
 gocode
 gpgv
+graphviz
 grep
 gzip
 hddtemp
@@ -76,6 +80,7 @@ iotop
 iproute2
 iptables
 ispell
+jq
 less
 lm-sensors
 locales
@@ -85,7 +90,9 @@ lsof
 make
 mariadb-client
 mc
+mc
 most
+mupdf
 mutt
 ncdu
 neovim
@@ -98,6 +105,7 @@ openssh-client
 openssh-server
 openssh-sftp-server
 openssl
+pandoc
 parted
 patch
 perl
@@ -106,6 +114,9 @@ powertop
 procmail
 pv
 pwgen
+pyang
+pyang-cisco-plugin
+pyangbind
 pyflakes
 pyflakes3
 pylint
@@ -206,12 +217,14 @@ tar
 tex-common
 texlive-base
 texlive-binaries
+texlive-core
 tmux
 tmux
 tmuxinator
 tor-arm
 traceroute
 trash-cli
+tree
 tree
 tudu
 tzdata
@@ -258,6 +271,7 @@ cowsay
 markdown
 wipe
 xclip
+xpathparser
 xsel
 xz-utils
 zip
