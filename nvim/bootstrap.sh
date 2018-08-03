@@ -86,3 +86,8 @@ if [[ "$OSTYPE" == *"Windows"* ]]; then
 fi
 
 nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+
+if [ "$OS" == "Windows_NT" ]; then
+    sed -ie "s/'--ansi', //g;s/--ansi //" plugged/fzf.vim/autoload/fzf/vim.vim
+    sed -ie "s/'--header-lines', .*), //g;s/--header-lines=1 //;s/--header-lines[ =]1//" plugged/fzf.vim/autoload/fzf/vim.vim
+fi

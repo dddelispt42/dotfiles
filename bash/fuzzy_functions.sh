@@ -58,6 +58,20 @@ function floc() {
 }
 
 # fuzzy grep open via ag
+function fgra() {
+  local files
+
+  #TODO check if rg, ag exist
+  files="$(ag -U --nobreak --noheading $@ | fzf-tmux -0 -1 -m | awk -F: '{print $1 " +" $2}')"
+
+  if [[ -n $files ]]
+  then
+      # echo "${EDITOR:-vim}" $(echo $files | sed -e :a -e N -e 's/\n/ /')
+      IFS=$' \n' ${EDITOR:-vim} $files
+  fi
+}
+
+# fuzzy grep open via ag
 function fgr() {
   local files
 
@@ -253,7 +267,7 @@ function fgst() {
 
 # ftags - search ctags
 function ftags() {
-  local line
+  local tagfile tagfiledir files key
 
   tagfile=""
   if [ -f ctags ]; then 
@@ -283,17 +297,30 @@ function ftags() {
   else
       return
   fi
-  [ -e $tagfile ] &&
-  # line=$(
-  #   awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
-  #   cut -c1-80 | fzf --nth=1,2
-  # ) && ${EDITOR:-vim} $(cut -f3 <<< "$line") -c "set nocst" \
-  #                                     -c "silent tag $(cut -f2 <<< "$line")"
-  IFS=$'\n' line=$(
-    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile |
-    cut -c1-80 | fzf --nth=1,2
-  ) && ${EDITOR:-vim} $(echo "$line" | cut -f3) -c "set nocst" \
-                                      -c "silent tag $(echo "$line" | cut -f2)"
+  [ -e $tagfile ] || return
+  tagfiledir=$(dirname $tagfile)
+  # IFS=$'\n' line=$(
+    # awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile |
+    # cut -c1-80 | fzf --nth=1,2
+  # ) && ${EDITOR:-vim} $(echo "$line" | cut -f3) -c "set nocst" \
+                                      # -c "silent tag $(echo "$line" | cut -f2)"
+  IFS=$'\n' files=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf-tmux -m -0 -1 | awk '{print $3;}' | sed -e "s|\(.*\)|${tagfiledir}\/\1|")
+  # TODO: call vim with additional params: -c "set nocst" -c "silent tag AlarmConverter" <02-08-18, Heiko Riemer> #
+
+  # TODO: externalize in function and reuse <02-08-18, Heiko Riemer> #
+  if [[ -n $files ]]
+  then
+     echo  $files
+     if [ "$key" = ctrl-o ]; then
+         open $files
+     elif [ "$key" = ctrl-p ]; then
+         pushd "$(dirname $(echo $files | head -1))" > /dev/null
+     elif [ "$key" = ctrl-e ]; then
+         ${EDITOR:-vim} -- $files
+     else
+         ${EDITOR:-vim} -- $files
+     fi
+  fi
 }
 
 # ftpane - switch pane (@george-b)
