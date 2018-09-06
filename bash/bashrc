@@ -99,6 +99,7 @@ export VISUAL="vimTabs"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"
+export AUTOSSH_LOGFILE="$HOME/autossh.log"
 
 GREP=grep
 test=`ps -ef | $GREP ssh-agent | $GREP -v grep | awk '{print $2}' | xargs`
