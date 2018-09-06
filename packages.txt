@@ -273,6 +273,10 @@ wipe
 xclip
 xpathparser
 xsel
+tmuxinator
+ruby
+autossh
+nmap
 xz-utils
 zip
 zsh
