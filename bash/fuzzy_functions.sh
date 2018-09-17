@@ -1,3 +1,8 @@
+# lists tmuxinator sessions and open tmux sessions for selection
+function tx() {
+    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | sort -u | FZF_DEFAULT_OPTS="" fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
+}
+
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
