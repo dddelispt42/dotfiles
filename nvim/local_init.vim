@@ -196,6 +196,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:syntastic_check_on_wq = 1
 
     let g:syntastic_python_checkers = ['pylint', 'flake8']
+    " let g:syntastic_python_flake8_args='--ignore=E501,E225'
+    let g:syntastic_python_flake8_args='--max-line-length=120'
+    let g:syntastic_python_pylint_post_args="--max-line-length=120"
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_always_populate_loc_list = 1
 
