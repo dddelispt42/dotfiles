@@ -201,6 +201,11 @@ function friday13th() {
     for y in $(seq 1946 2028); do echo -n "$y -> "; for m in $(seq 1 12); do NDATE=$(date --date "$y-$m-13" +%w); if [ $NDATE -eq 5 ]; then PRINTME=$(date --date "$y-$m-13" +%B);echo -n "$PRINTME "; fi; done; echo; done
 }
 
+function hibp() {
+    sha1=$(echo -n "$1"|sha1sum|awk '{print toupper($0)}'|tr -d '\n')
+    curl -s -H $'Referer: https://haveibeenpwned.com/' https://api.pwnedpasswords.com/range/$(echo -n $sha1|cut -c1-5)|grep -i $(echo -n $sha1|cut -c6-40);
+}
+
 # TODO: generate path name
 test -s ~/dotfiles/bash/alias.sh && source ~/dotfiles/bash/alias.sh || true
 test -s ~/dotfiles/bash/fuzzy_functions.sh && source ~/dotfiles/bash/fuzzy_functions.sh || true
