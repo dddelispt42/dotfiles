@@ -99,6 +99,7 @@ export VISUAL="vimTabs"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"
+export DISABLE_AUTO_TITLE=true
 
 GREP=grep
 test=`ps -ef | $GREP ssh-agent | $GREP -v grep | awk '{print $2}' | xargs`
@@ -147,10 +148,6 @@ en() { IFS=+; lang=en; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/
 pt() { IFS=+; lang=pt; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
 # translate () {lang="ru"; text=$*; wget -U "Mozilla/5.0" -qO - "http://translate.google.com/translate_a/t?client=t&text=$text&sl=auto&tl=$lang" | sed 's/\[\[\[\"//' | cut -d \" -f 1}
 
-function tx() {
-    $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | sort -u | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
-}
-
 function open() {
     echo $1
     #TODO make platform independent
@@ -161,14 +158,6 @@ function open() {
     WINDOWSPATH="$(echo $FILENAME | sed -e 's/^\/cygdrive//' -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/')"
     echo "cmd /c explorer \"$WINDOWSPATH\""
     cmd /c explorer "$WINDOWSPATH"
-    IFS=$SAVEIFS
-}
-
-function fopen() {
-    SAVEIFS=$IFS
-    IFS=$(echo -en "\n\b")
-    # $(fzf -d "\n" | sed -e "s/ /\\\\ /g" | sed -e "s/^\(.*\)/open   \1/")
-    $(open $(fzf -d "\n" | sed -e "s/^\(.*\)/\1/"))
     IFS=$SAVEIFS
 }
 
