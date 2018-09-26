@@ -39,3 +39,6 @@ Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'benmills/vimux'
+Plug 'christoomey/vim-conflicted'
+Plug 'christoomey/vim-sort-motion'
+Plug 'tpope/vim-surround'
