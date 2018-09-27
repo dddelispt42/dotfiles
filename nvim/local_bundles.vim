@@ -39,3 +39,7 @@ Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'benmills/vimux'
+Plug 'sirtaj/vim-openscad'
+Plug '907th/vim-auto-save'
+Plug 'will133/vim-dirdiff'
+Plug 'joonty/vim-do'
