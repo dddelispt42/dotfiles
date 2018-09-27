@@ -99,6 +99,7 @@ export VISUAL="vimTabs"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"
+export DISABLE_AUTO_TITLE=true
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
 
 GREP=grep
