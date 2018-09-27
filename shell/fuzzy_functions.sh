@@ -1,3 +1,44 @@
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+# export FZF_DEFAULT_COMMAND='fd --type f'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
+# export FZF_DEFAULT_OPTS='--height 40% --reverse --border --inline-info'
+# export FZF_DEFAULT_OPTS="--reverse --preview='head -100 {}' --preview-window=right:50%:wrap"
+export FZF_DEFAULT_OPTS=" --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+function tx() {
+    echo TODO
+    # $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | sort -u | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
+}
+
+function open() {
+    echo $1
+    #TODO make platform independent
+    SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
+    echo $1
+    FILENAME="$(cd "$(dirname "$@")"; pwd)/$(basename "$@")"
+    WINDOWSPATH="$(echo $FILENAME | sed -e 's/^\/cygdrive//' -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/')"
+    echo "cmd /c explorer \"$WINDOWSPATH\""
+    cmd /c explorer "$WINDOWSPATH"
+    IFS=$SAVEIFS
+}
+
+function fopen() {
+    SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
+    # $(fzf -d "\n" | sed -e "s/ /\\\\ /g" | sed -e "s/^\(.*\)/open   \1/")
+    $(open $(fzf -d "\n" | sed -e "s/^\(.*\)/\1/"))
+    IFS=$SAVEIFS
+}
+
+
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)

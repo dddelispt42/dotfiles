@@ -431,7 +431,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " Show a max line indicator
     set colorcolumn=100
     " find long lines
-    map <F9> /\%>100v.\+
+    " TODO: find better shortcut <17-09-18, Heiko Riemer> "
+    " map <F9> /\%>100v.\+
     map :grep :%!/usr/xpg4/bin/grep
     " Update term title but restore old title after leaving Vim
     set title
