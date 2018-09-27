@@ -6,17 +6,18 @@
 # export FZF_DEFAULT_COMMAND='fd --type f'
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
-# export FZF_DEFAULT_OPTS='--height 40% --reverse --border --inline-info'
-# export FZF_DEFAULT_OPTS="--reverse --preview='head -100 {}' --preview-window=right:50%:wrap"
-export FZF_DEFAULT_OPTS=" --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
+# export FZF_DEFAULT_OPTS='-x --height 40% --reverse --border --inline-info'
+# export FZF_DEFAULT_OPTS="-x --reverse --preview='head -100 {}' --preview-window=right:50%:wrap"
+export FZF_DEFAULT_OPTS="-x --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # lists tmuxinator sessions and open tmux sessions for selection
 function tx() {
-    echo TODO
-    # $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | sort -u | fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
-    # $(((tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/") && (tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/") | sed -e "s/\(.*\)/tmux      : \1/") | sort -u | FZF_DEFAULT_OPTS="" fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
+    TMUXINATOR_SESSIONS="$(tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/")"
+    TMUX_SESSIONS="$(tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/")"
+    SESSIONS="$((echo $TMUXINATOR_SESSIONS | sort -u) && (echo $TMUX_SESSIONS | sed -e "s/\(.*\)/tmux      : \1/") | sort -u)"
+    $(echo $SESSIONS | FZF_DEFAULT_OPTS="-x " fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
 }
 
 function open() {
@@ -80,7 +81,7 @@ function floc() {
           shift
       fi
   fi
-  IFS=$'\n' out="$(locate -Ai '*' $dir $@ | fzf-tmux -0 -m --expect=ctrl-o,ctrl-e,ctrl-p)"
+  IFS=$'\n' out="$(locate -Ai '*' $dir $@ | fzf-tmux -x -0 -m --expect=ctrl-o,ctrl-e,ctrl-p)"
   key=$(echo "$out" | head -1)
   files=$(echo "$out" | tail -n +2)
 
@@ -104,7 +105,7 @@ function fgra() {
   local files
 
   #TODO check if rg, ag exist
-  files="$(ag -U --nobreak --noheading $@ | fzf-tmux -0 -1 -m | awk -F: '{print $1 " +" $2}')"
+  files="$(ag -U --nobreak --noheading $@ | fzf-tmux -x -0 -1 -m | awk -F: '{print $1 " +" $2}')"
 
   if [[ -n $files ]]
   then
@@ -118,7 +119,7 @@ function fgr() {
   local files
 
   #TODO check if rg, ag exist
-  files="$(ag --nobreak --noheading $@ | fzf-tmux -0 -1 -m | awk -F: '{print $1 " +" $2}')"
+  files="$(ag --nobreak --noheading $@ | fzf-tmux -x -0 -1 -m | awk -F: '{print $1 " +" $2}')"
 
   if [[ -n $files ]]
   then
@@ -131,7 +132,7 @@ function fgr() {
 function fcd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
+                  -o -type d -print 2> /dev/null | fzf -x +m) &&
   # TODO use pushd
   cd "$dir"
 }
@@ -139,7 +140,7 @@ function fcd() {
 # fcda - including hidden directories
 function fcda() {
   local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf -x +m) && cd "$dir"
 }
 
 # fcdr - cd to selected parent directory
@@ -153,7 +154,7 @@ function fcdr() {
       get_parent_dirs $(dirname "$1")
     fi
   }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux -x --tac)
   cd "$DIR"
 }
 
@@ -165,7 +166,7 @@ function cf() {
   local file
 
   #TODO update locate DB
-  file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
+  file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf -x --read0 -0 -1)"
 
   if [[ -n $file ]]
   then
@@ -181,7 +182,7 @@ function cf() {
 # fkill - kill process
 function fkill() {
   local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+  pid=$(ps -ef | sed 1d | fzf -x -m | awk '{print $2}')
 
   if [ "x$pid" != "x" ]
   then
@@ -220,7 +221,7 @@ sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
 function fcoc() {
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
-  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  commit=$(echo "$commits" | fzf -x --tac +s +m -e) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
 }
 
@@ -228,7 +229,7 @@ function fcoc() {
 function fshow() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+  fzf --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
       --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
@@ -244,7 +245,7 @@ _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always 
 function fcoc_preview() {
   local commit
   commit=$( glNoGraph |
-    fzf --no-sort --reverse --tiebreak=index --no-multi \
+    fzf -x --no-sort --reverse --tiebreak=index --no-multi \
         --ansi --preview="$_viewGitLogLine" ) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
 }
@@ -300,11 +301,12 @@ function fgst() {
 
   # local cmd="${FZF_CTRL_T_COMMAND:-"command git status -s"}"
 
-  # eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -m "$@" | while read -r item; do
-  git status -su | cut -c 4- | sed -e 's/.*-> //' | FZF_DEFAULT_OPTS=" --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -m "$@" | while read -r item; do
+  # eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -x -m "$@" | while read -r item; do
+  git status -su | cut -c 4- | sed -e 's/.*-> //' | FZF_DEFAULT_OPTS=" --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -x -m "$@" | while read -r item; do
     printf '%q ' "$item" | cut -d " " -f 2
   done
   echo
+  # TODO: add multiple actions like diff, checkout, add <27-09-18, Heiko Riemer> #
 }
 
 # ftags - search ctags
@@ -346,7 +348,7 @@ function ftags() {
     # cut -c1-80 | fzf --nth=1,2
   # ) && ${EDITOR:-vim} $(echo "$line" | cut -f3) -c "set nocst" \
                                       # -c "silent tag $(echo "$line" | cut -f2)"
-  IFS=$'\n' files=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf-tmux -m -0 -1 | awk '{print $3;}' | sed -e "s|\(.*\)|${tagfiledir}\/\1|")
+  IFS=$'\n' files=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf-tmux -x -m -0 -1 | awk '{print $3;}' | sed -e "s|\(.*\)|${tagfiledir}\/\1|")
   # TODO: call vim with additional params: -c "set nocst" -c "silent tag AlarmConverter" <02-08-18, Heiko Riemer> #
 
   # TODO: externalize in function and reuse <02-08-18, Heiko Riemer> #
@@ -372,7 +374,7 @@ ftpane() {
   current_pane=$(tmux display-message -p '#I:#P')
   current_window=$(tmux display-message -p '#I')
 
-  target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --reverse) || return
+  target=$(echo "$panes" | grep -v "$current_pane" | fzf -x +m --reverse) || return
 
   target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
   target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
@@ -406,14 +408,16 @@ function chromeh() {
     "select substr(title, 1, $cols), url
      from urls order by last_visit_time desc" |
   awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
-  fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
+  # fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
+  fzf -x --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
+
 function note() {
     pushd $NEXTCLOUD/Notes > /dev/null
     SAVEIFS=$IFS
     IFS=$(echo -en "\n\b")
     NOTE=""
-    NOTE=$((echo "*** NEW NOTE ***"; find . -type f) | fzf)
+    NOTE=$((echo "*** NEW NOTE ***"; find . -type f) | fzf -x)
     if [ "$NOTE" != "" ] ; then
         vim $NOTE
     fi
@@ -422,7 +426,7 @@ function note() {
 }
 
 function fbhist() {
-    links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf-tmux -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
+    links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
     if [ "$links" != "" ] ; then
         firefox --new-tab $links
     fi
@@ -431,7 +435,7 @@ function fbhist() {
 function fncbookm() {
     local links
     $HOME/bin/get_nextcloud_bookmarks.sh
-    links="$(cat $HOME/nextcloud_bookmarks.txt | fzf-tmux -e -m | sed -e 's/.*http/http/')"
+    links="$(cat $HOME/.cache/nextcloud_bookmarks.txt | fzf-tmux -x -e -m | sed -e 's/.*http/http/')"
     if [ "$links" != "" ] ; then
         firefox --new-tab $links
     fi
@@ -439,7 +443,7 @@ function fncbookm() {
 
 function fbookm() {
     # links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
-    IFS=$'\n' links=$(sqlite3 $FIREFOX_PROFILE/places.sqlite "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf-tmux -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
+    IFS=$'\n' links=$(sqlite3 $FIREFOX_PROFILE/places.sqlite "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
     if [ "$links" != "" ] ; then
         firefox --new-tab $links
     fi
