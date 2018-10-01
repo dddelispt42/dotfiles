@@ -1,12 +1,9 @@
 #!/bin/bash
-BASEDIR=$(pwd)/$(dirname "$0")
+BASEDIR=$(dirname $(realpath "$0"))
+source ../dotfile_functions.sh
 
-if [ -f ~/.zshrc ] ; then
-    mv ~/.zshrc ~/.zshrc.dotfiles-$(date -I)
-fi
-
-ln -sf ${BASEDIR}/zshrc ~/.zshrc
-ln -sfn ${BASEDIR}/oh-my-zsh ~/.oh-my-zsh
+create_dotfile_link ${BASEDIR}/zshrc ~/.zshrc
+create_dotfile_link ${BASEDIR}/oh-my-zsh ~/.oh-my-zsh
 
 if [ -d ${BASEDIR}/oh-my-zsh ] ; then
     cd ${BASEDIR}/oh-my-zsh
