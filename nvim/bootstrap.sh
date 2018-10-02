@@ -16,13 +16,11 @@ curl -s 'http://vim-bootstrap.com/generate.vim' \
     > ${BASEDIR}/init.vim
 
 # NeoVIM does not deal with symLinks
-sed -ie "s@\.config\/nvim\/local_@dotfiles\/nvim\/local_@" $BASEDIR/init.vim
-
-# TODO: (heiko) - check if valid vim file (vs. HTML page)
+sed -i -e "s@\.config\/nvim\/local_@dotfiles\/nvim\/local_@" $BASEDIR/init.vim
 
 # delete double key mappings
-sed -i '/noremap <leader>z :bp<CR>/d' $BASEDIR/init.vim
-sed -i '/noremap <leader>x :bn<CR>/d' $BASEDIR/init.vim
+sed -i -e '/noremap <leader>z :bp<CR>/d' $BASEDIR/init.vim
+sed -i -e '/noremap <leader>x :bn<CR>/d' $BASEDIR/init.vim
 
 # install requirements
 pip3 install --user --upgrade flake8 jedi pylint
@@ -30,21 +28,20 @@ pip3 install --user --upgrade flake8 jedi pylint
 pip3 install --user --upgrade neovim
 
 # update VIM/NeoVIM
-# TODO check if exists
-nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
-
-# TODO why init.vime??? how to configure sed to stop this
-rm $BASEDIR/init.vime
+nvim --version | grep Compiled > /dev/null
+if [ $? -eq 0 ]; then
+    nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+fi
 
 # tuning
-sed -ie "s@Plug 'scrooloose\/nerdtree'.*@Plug 'scrooloose\/nerdtree', \{ 'on': 'NERDTreeToggle' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'jistr\/vim-nerdtree-tabs'.*@Plug 'jistr\/vim-nerdtree-tabs', \{ 'on': 'NERDTreeToggle' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'jelera\/vim-javascript-syntax'.*@Plug 'jelera\/vim-javascript-syntax', \{ 'for': [ 'javascript' , 'javascript.jsx' ] \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'vim-perl\/vim-perl'.*@Plug 'vim-perl\/vim-perl', \{ 'for': 'perl' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'c9s\/perlomni.vim'.*@Plug 'c9s\/perlomni.vim', \{ 'for': 'perl' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'davidhalter\/jedi-vim'.*@Plug 'davidhalter\/jedi-vim', \{ 'for': 'python' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'rust-lang\/rust.vim'.*@Plug 'rust-lang\/rust.vim', \{ 'for': 'rust' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'racer-rust\/vim-racer'.*@Plug 'racer-rust\/vim-racer', \{ 'for': 'rust' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'scrooloose\/nerdtree'.*@Plug 'scrooloose\/nerdtree', \{ 'on': 'NERDTreeToggle' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'jistr\/vim-nerdtree-tabs'.*@Plug 'jistr\/vim-nerdtree-tabs', \{ 'on': 'NERDTreeToggle' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'jelera\/vim-javascript-syntax'.*@Plug 'jelera\/vim-javascript-syntax', \{ 'for': [ 'javascript' , 'javascript.jsx' ] \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'vim-perl\/vim-perl'.*@Plug 'vim-perl\/vim-perl', \{ 'for': 'perl' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'c9s\/perlomni.vim'.*@Plug 'c9s\/perlomni.vim', \{ 'for': 'perl' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'davidhalter\/jedi-vim'.*@Plug 'davidhalter\/jedi-vim', \{ 'for': 'python' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'rust-lang\/rust.vim'.*@Plug 'rust-lang\/rust.vim', \{ 'for': 'rust' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'racer-rust\/vim-racer'.*@Plug 'racer-rust\/vim-racer', \{ 'for': 'rust' \}@" $BASEDIR/init.vim
 
 cp $BASEDIR/init.vim $BASEDIR/init.vime
 
@@ -74,6 +71,6 @@ fi
 nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 
 if [ "$OS" = "Windows_NT" ]; then
-    sed -ie "s/'--ansi', //g;s/--ansi //" plugged/fzf.vim/autoload/fzf/vim.vim
-    sed -ie "s/'--header-lines', .*), //g;s/--header-lines=1 //;s/--header-lines[ =]1//" plugged/fzf.vim/autoload/fzf/vim.vim
+    sed -i -e "s/'--ansi', //g;s/--ansi //" plugged/fzf.vim/autoload/fzf/vim.vim
+    sed -i -e "s/'--header-lines', .*), //g;s/--header-lines=1 //;s/--header-lines[ =]1//" plugged/fzf.vim/autoload/fzf/vim.vim
 fi

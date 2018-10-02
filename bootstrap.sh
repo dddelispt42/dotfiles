@@ -24,18 +24,27 @@ function fix_fzf_for_windows {
             pushd $HOME/.fzf
             git checkout -- shell/key-bindings.bash shell/key-bindings.zsh
             git pull
-            sed -ie 's/--height.*%\} //g' shell/key-bindings.bash
-            sed -ie 's/--height.*%\} //g' shell/key-bindings.zsh
-            rm -f shell/key-bindings.bashe shell/key-bindings.zshe
+            sed -i '' -e 's/--height.*%\} //g' shell/key-bindings.bash
+            sed -i '' -e 's/--height.*%\} //g' shell/key-bindings.zsh
             popd
         fi
     fi
 }
 
 function install_package {
-    # TODO: debian add arch, cygwin, ... <28-09-18, Heiko Riemer> #
-    apt-cache pkgnames > $PKGFILE
-    dpkg --get-selections | grep -E "\sinstall" | sed -e 's/\s.*//' > $INSTALLEDPKGFILE
+    INSTALLCMD="echo "
+    grep -E "^ID=(manjaro|arch)" /etc/os-release > /dev/null
+    if [ $? -eq 0 ]; then
+        pacsearch -n ^[a-z] | grep -v "^ " | sed -e 's/.*\/\(.*\) .*/\1/' > $PKGFILE
+        pacman -Qqe > $INSTALLEDPKGFILE
+        INSTALLCMD="sudo pacman -S "
+    fi
+    grep -E "^ID=(debian)" /etc/os-release > /dev/null
+    if [ $? -eq 0 ]; then
+        apt-cache pkgnames > $PKGFILE
+        dpkg --get-selections | grep -E "\sinstall" | sed -e 's/\s.*//' > $INSTALLEDPKGFILE
+        INSTALLCMD="sudo apt-get install "
+    fi
     grep -v "^#" $1 > $TOBEINSTPKGFILE
     while read -r line; do
         pkgs=$(echo $line | tr " " "\n")
@@ -45,7 +54,7 @@ function install_package {
             if [ $? -eq 0 ]; then
                 grep -E "^$pkg$" $INSTALLEDPKGFILE > /dev/null
                 if [ $? -ne 0 ]; then
-                    echo $pkg not yet installed
+                    echo $INSTALLCMD $pkg
                 fi
             else
                 echo $pkg is not existing!
@@ -54,18 +63,14 @@ function install_package {
     done < $TOBEINSTPKGFILE
 }
 
-function clone_or_update_repos {
-    # TODO: implement me <28-09-18, Heiko Riemer> #
-    # TODO: st, docker, bin, ... <02-10-18, Heiko Riemer> #
-    return
-}
-
 function update_bootstrap {
     # call bootstap.sh in subdirs
     for app in `find . -maxdepth 1 -type d | grep -v "^\./\." | grep -v "^\.$"` ; do
         echo "Setting up (or updating) $app ..."
         pushd $app > /dev/null
-        ./$(basename $0)
+        if [ -x ./$(basename $0) ]; then
+            ./$(basename $0)
+        fi
         popd > /dev/null
         echo "... done!"
     done

@@ -1,11 +1,9 @@
 #!/bin/bash
 BASEDIR=$(pwd)/$(dirname "$0")
+source ../dotfile_functions.sh
 
-if [ -f ~/.gitconfig ] ; then
-    mv ~/.gitconfig ~/.gitconfig.dotfiles-$(date -I)
+if [ "$OS" == "Windows_NT" ]; then
+    cp ${BASEDIR}/gitconfig ~/.gitconfig
+else
+    create_dotfile_link ${BASEDIR}/gitconfig ~/.gitconfig
 fi
-
-# links do not work with GIT BASH for windows --> copy
-# ln -sf ${BASEDIR}/gitconfig ~/.gitconfig
-# TODO: Windows only <29-09-18, Heiko Riemer> #
-cp ${BASEDIR}/gitconfig ~/.gitconfig

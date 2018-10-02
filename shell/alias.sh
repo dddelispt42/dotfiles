@@ -96,9 +96,6 @@ alias chx="$EDITOR $HOME/.exrc"
 alias chv="$EDITOR $HOME/.vimrc"
 alias chcron="crontab -r; $EDITOR $HOME/mycrontab.`hostname`; crontab $HOME/mycrontab.`hostname`"
 
-# TODO: with parameter
-alias vimprofile="vim --startuptime /tmp/vim.log && vim /tmp/vim.log"
-
 alias home="while [ true ] ; do sleep 600 | ssh home; wait; done"
 
 alias v="$VISUAL"

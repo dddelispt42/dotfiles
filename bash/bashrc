@@ -135,7 +135,6 @@ test -s ~/dotfiles/shell/alias.sh && source ~/dotfiles/shell/alias.sh || true
 test -s ~/dotfiles/shell/fuzzy_functions.sh && source ~/dotfiles/shell/fuzzy_functions.sh || true
 test -s ~/dotfiles/bash/z.sh && source ~/dotfiles/bash/z.sh || true
 test -s ~/dotfiles/bash/fz.sh && source ~/dotfiles/bash/fz.sh || true
-# TODO: test -s ~/dotfiles/bash/completion && source ~/dotfiles/bash/completion || true
 test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liquidprompt/liquidprompt || true
 
 # set term title

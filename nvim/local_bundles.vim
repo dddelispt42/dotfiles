@@ -1,6 +1,6 @@
-" TODO Plug 'KabbAmine/zeavim.vim'
+" Plug 'KabbAmine/zeavim.vim'
 " see colorschemes http://bytefluent.com/vivify/
-" TODO Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'kien/ctrlp.vim'
@@ -30,9 +30,8 @@ Plug 'junegunn/gv.vim'
 " works with tabular to format markdown tables when pressing "|"
 Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 " immediate preview
-" TODO Plug 'shime/vim-livedown', { 'for': 'markdown' }
 " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
-" TODO Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 " Hardmode to learn mode vim
  Plug 'wikitopian/hardmode'
 " Latex
