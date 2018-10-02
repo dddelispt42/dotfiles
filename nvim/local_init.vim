@@ -71,7 +71,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     set incsearch           " search as characters are entered
     set hlsearch            " highlight matches
     " turn off search highlight
-    nnoremap <leader><space> :nohlsearch<CR>
+    " nnoremap <leader><space> :nohlsearch<CR>
     set   ignorecase        " search ifnoring the case
     set   magic
     " all special characters are interpreted (requires masking

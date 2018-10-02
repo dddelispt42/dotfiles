@@ -43,9 +43,9 @@ root: ~/
 # post: tmux -CC attach -t work
 
 windows:
-  - home:
+  - Home: cd ~; clear
   - vifm: vifm
-  - mail: neomutt
+  - Mail: neomutt
   - editor:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
@@ -53,7 +53,8 @@ windows:
       # synchronize: after
       panes:
         - vim
-  - Sendate:
-  - BigBrain:
-  - dotFiles:
+  - DotFiles: cd ~/dotfiles; clear
+  - Sendate: cd ~/../nextcloud/work/SENDATE/; clear
+  - BigBrain: cd ~/git/nms-se-tools/bigbrain; clear
+  - Report: cd ~/git/nms-se-tools/jira
   - Notes: cd ~/../nextcloud/Notes; note
