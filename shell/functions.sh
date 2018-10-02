@@ -32,4 +32,7 @@ function friday13th() {
     for y in $(seq 1946 2028); do echo -n "$y -> "; for m in $(seq 1 12); do NDATE=$(date --date "$y-$m-13" +%w); if [ $NDATE -eq 5 ]; then PRINTME=$(date --date "$y-$m-13" +%B);echo -n "$PRINTME "; fi; done; echo; done
 }
 
+function vimprofile() {
+    vim --startuptime /tmp/vim.log "$@" && vim /tmp/vim.log
+}
 
