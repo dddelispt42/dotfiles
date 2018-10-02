@@ -299,3 +299,4 @@ nmap
 xz-utils
 zip
 zsh
+locate

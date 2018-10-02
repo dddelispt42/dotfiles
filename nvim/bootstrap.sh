@@ -1,5 +1,8 @@
 #!/bin/bash
-BASEDIR=$(pwd)/$(dirname "$0")
+BASEDIR=$(dirname $(realpath "$0"))
+source ../dotfile_functions.sh
+
+create_dotfile_link ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
 
 # check if XDG_CONFIG_HOME is set - if not set it
 if [ -z ${XDG_CONFIG_HOME+x} ]; then
@@ -7,22 +10,7 @@ if [ -z ${XDG_CONFIG_HOME+x} ]; then
     echo "XDG_CONFIG_HOME not defined!!! ... using $XDG_CONFIG_HOME"
 fi
 
-# backup all pre-dotfiles configurations
-if [ -f $XDG_CONFIG_HOME/nvim/init.vim ] ; then
-    mv $XDG_CONFIG_HOME/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim.dotfiles-$(date -I)
-fi
-if [ -f $XDG_CONFIG_HOME/nvim/local_init.vim ] ; then
-    mv $XDG_CONFIG_HOME/nvim/local_init.vim $XDG_CONFIG_HOME/nvim/local_init.vim.dotfiles-$(date -I)
-fi
-if [ -f $XDG_CONFIG_HOME/nvim/local_bundles.vim ] ; then
-    mv $XDG_CONFIG_HOME/nvim/local_bundles.vim $XDG_CONFIG_HOME/nvim/local_bundles.vim.dotfiles-$(date -I)
-fi
-
-# backup previsou vim-bootstrap version
-# if [ -f $BASEDIR/init.vim ] ; then
-#     mv $BASEDIR/init.vim $BASEDIR/init.vim.backup-$(date -I)
-# fi
-
+# get the bootstrap version for my langs
 curl -s 'http://vim-bootstrap.com/generate.vim' \
     --data 'langs=javascript&langs=c&langs=html&langs=go&langs=perl&langs=python&langs=rust&editor=nvim' \
     > ${BASEDIR}/init.vim
@@ -36,8 +24,6 @@ sed -ie "s@\.config\/nvim\/local_@dotfiles\/nvim\/local_@" $BASEDIR/init.vim
 sed -i '/noremap <leader>z :bp<CR>/d' $BASEDIR/init.vim
 sed -i '/noremap <leader>x :bn<CR>/d' $BASEDIR/init.vim
 
-# sudo apt-get install git exuberant-ctags ncurses-term curl
-
 # install requirements
 pip3 install --user --upgrade flake8 jedi pylint
 # pip2 install --user --upgrade neovim
@@ -47,7 +33,7 @@ pip3 install --user --upgrade neovim
 # TODO check if exists
 nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 
-# TODO why init.vime???
+# TODO why init.vime??? how to configure sed to stop this
 rm $BASEDIR/init.vime
 
 # tuning
@@ -64,12 +50,12 @@ cp $BASEDIR/init.vim $BASEDIR/init.vime
 
 # link the config files
 mkdir -p ${XDG_CONFIG_HOME}/nvim/
-ln -sf ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
-ln -sf ${BASEDIR}/local_init.vim ${XDG_CONFIG_HOME}/nvim/local_init.vim
-ln -sf ${BASEDIR}/local_bundles.vim ${XDG_CONFIG_HOME}/nvim/local_bundles.vim
+create_dotfile_link ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
+create_dotfile_link ${BASEDIR}/local_init.vim ${XDG_CONFIG_HOME}/nvim/local_init.vim
+create_dotfile_link ${BASEDIR}/local_bundles.vim ${XDG_CONFIG_HOME}/nvim/local_bundles.vim
 
 # copy to windows versions
-if [[ "$OSTYPE" == *"Windows"* ]]; then
+if [[ "$OSTYPE" = *"Windows"* ]]; then
     mkdir -p $XDG_CONFIG_HOME/nvim
     echo "Detected Windows --> copy NVIM config to %HOME%\\AppData\\Local\\nvim"
     cp ${BASEDIR}/init.vim ${BASEDIR}/local_init.vim ${BASEDIR}/local_bundles.vim $LOCALAPPDATA/nvim/
@@ -87,7 +73,7 @@ fi
 
 nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 
-if [ "$OS" == "Windows_NT" ]; then
+if [ "$OS" = "Windows_NT" ]; then
     sed -ie "s/'--ansi', //g;s/--ansi //" plugged/fzf.vim/autoload/fzf/vim.vim
     sed -ie "s/'--header-lines', .*), //g;s/--header-lines=1 //;s/--header-lines[ =]1//" plugged/fzf.vim/autoload/fzf/vim.vim
 fi
