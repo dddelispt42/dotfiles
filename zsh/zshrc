@@ -60,7 +60,7 @@ HYPHEN_INSENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git battery
+  git battery archlinux cargo colored-man-pages colorize command-not-found debian docker docker-compose fzf git-extras jira man mvn nmap pip python pylint rsync rust ssh-agent svn tmux tmuxinator ufw urltools vim-interaction virtualenv web-search yum z zsh-navigation-tools
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,6 +93,16 @@ export LANG=en_US.UTF-8
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
+
+# TODO: generate path name
+test -s ~/dotfiles/shell/env.sh && source ~/dotfiles/shell/env.sh || true
+test -s ~/dotfiles/shell/functions.sh && source ~/dotfiles/shell/functions.sh || true
+test -s ~/dotfiles/shell/ssh_agent.sh && source ~/dotfiles/shell/ssh_agent.sh || true
+test -s ~/dotfiles/shell/alias.sh && source ~/dotfiles/shell/alias.sh || true
+test -s ~/dotfiles/shell/fuzzy_functions.sh && source ~/dotfiles/shell/fuzzy_functions.sh || true
+test -s ~/dotfiles/zsh/svn_prompt.sh && source ~/dotfiles/zsh/svn_prompt.sh || true
+# include host specific settings
+test -s ~/.zshrc.${HOSTNAME} && source ~/.zshrc.${HOSTNAME} || true
 
 # zplug "changyuheng/fz", defer:1
 # zplug "rupa/z", use:z.sh

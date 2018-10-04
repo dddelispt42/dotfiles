@@ -71,7 +71,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     set incsearch           " search as characters are entered
     set hlsearch            " highlight matches
     " turn off search highlight
-    nnoremap <leader><space> :nohlsearch<CR>
+    " nnoremap <leader><space> :nohlsearch<CR>
     set   ignorecase        " search ifnoring the case
     set   magic
     " all special characters are interpreted (requires masking
@@ -196,6 +196,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:syntastic_check_on_wq = 1
 
     let g:syntastic_python_checkers = ['pylint', 'flake8']
+    " let g:syntastic_python_flake8_args='--ignore=E501,E225'
+    let g:syntastic_python_flake8_args='--max-line-length=120'
+    let g:syntastic_python_pylint_post_args="--max-line-length=120"
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_always_populate_loc_list = 1
 
@@ -428,7 +431,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " Show a max line indicator
     set colorcolumn=100
     " find long lines
-    map <F9> /\%>100v.\+
+    " TODO: find better shortcut <17-09-18, Heiko Riemer> "
+    " map <F9> /\%>100v.\+
     map :grep :%!/usr/xpg4/bin/grep
     " Update term title but restore old title after leaving Vim
     set title
