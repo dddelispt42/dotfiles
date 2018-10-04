@@ -1,5 +1,8 @@
 #!/bin/bash
-BASEDIR=$(pwd)/$(dirname "$0")
+BASEDIR=$(dirname $(realpath "$0"))
+source ../dotfile_functions.sh
+
+create_dotfile_link ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
 
 # check if XDG_CONFIG_HOME is set - if not set it
 if [ -z ${XDG_CONFIG_HOME+x} ]; then
@@ -7,36 +10,17 @@ if [ -z ${XDG_CONFIG_HOME+x} ]; then
     echo "XDG_CONFIG_HOME not defined!!! ... using $XDG_CONFIG_HOME"
 fi
 
-# backup all pre-dotfiles configurations
-if [ -f $XDG_CONFIG_HOME/nvim/init.vim ] ; then
-    mv $XDG_CONFIG_HOME/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim.dotfiles-$(date -I)
-fi
-if [ -f $XDG_CONFIG_HOME/nvim/local_init.vim ] ; then
-    mv $XDG_CONFIG_HOME/nvim/local_init.vim $XDG_CONFIG_HOME/nvim/local_init.vim.dotfiles-$(date -I)
-fi
-if [ -f $XDG_CONFIG_HOME/nvim/local_bundles.vim ] ; then
-    mv $XDG_CONFIG_HOME/nvim/local_bundles.vim $XDG_CONFIG_HOME/nvim/local_bundles.vim.dotfiles-$(date -I)
-fi
-
-# backup previsou vim-bootstrap version
-# if [ -f $BASEDIR/init.vim ] ; then
-#     mv $BASEDIR/init.vim $BASEDIR/init.vim.backup-$(date -I)
-# fi
-
+# get the bootstrap version for my langs
 curl -s 'http://vim-bootstrap.com/generate.vim' \
     --data 'langs=javascript&langs=c&langs=html&langs=go&langs=perl&langs=python&langs=rust&editor=nvim' \
     > ${BASEDIR}/init.vim
 
 # NeoVIM does not deal with symLinks
-sed -ie "s@\.config\/nvim\/local_@dotfiles\/nvim\/local_@" $BASEDIR/init.vim
-
-# TODO: (heiko) - check if valid vim file (vs. HTML page)
+sed -i -e "s@\.config\/nvim\/local_@dotfiles\/nvim\/local_@" $BASEDIR/init.vim
 
 # delete double key mappings
-sed -i '/noremap <leader>z :bp<CR>/d' $BASEDIR/init.vim
-sed -i '/noremap <leader>x :bn<CR>/d' $BASEDIR/init.vim
-
-# sudo apt-get install git exuberant-ctags ncurses-term curl
+sed -i -e '/noremap <leader>z :bp<CR>/d' $BASEDIR/init.vim
+sed -i -e '/noremap <leader>x :bn<CR>/d' $BASEDIR/init.vim
 
 # install requirements
 pip3 install --user --upgrade flake8 jedi pylint
@@ -44,32 +28,31 @@ pip3 install --user --upgrade flake8 jedi pylint
 pip3 install --user --upgrade neovim
 
 # update VIM/NeoVIM
-# TODO check if exists
-nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
-
-# TODO why init.vime???
-rm $BASEDIR/init.vime
+nvim --version | grep Compiled > /dev/null
+if [ $? -eq 0 ]; then
+    nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+fi
 
 # tuning
-sed -ie "s@Plug 'scrooloose\/nerdtree'.*@Plug 'scrooloose\/nerdtree', \{ 'on': 'NERDTreeToggle' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'jistr\/vim-nerdtree-tabs'.*@Plug 'jistr\/vim-nerdtree-tabs', \{ 'on': 'NERDTreeToggle' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'jelera\/vim-javascript-syntax'.*@Plug 'jelera\/vim-javascript-syntax', \{ 'for': [ 'javascript' , 'javascript.jsx' ] \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'vim-perl\/vim-perl'.*@Plug 'vim-perl\/vim-perl', \{ 'for': 'perl' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'c9s\/perlomni.vim'.*@Plug 'c9s\/perlomni.vim', \{ 'for': 'perl' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'davidhalter\/jedi-vim'.*@Plug 'davidhalter\/jedi-vim', \{ 'for': 'python' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'rust-lang\/rust.vim'.*@Plug 'rust-lang\/rust.vim', \{ 'for': 'rust' \}@" $BASEDIR/init.vim
-sed -ie "s@Plug 'racer-rust\/vim-racer'.*@Plug 'racer-rust\/vim-racer', \{ 'for': 'rust' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'scrooloose\/nerdtree'.*@Plug 'scrooloose\/nerdtree', \{ 'on': 'NERDTreeToggle' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'jistr\/vim-nerdtree-tabs'.*@Plug 'jistr\/vim-nerdtree-tabs', \{ 'on': 'NERDTreeToggle' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'jelera\/vim-javascript-syntax'.*@Plug 'jelera\/vim-javascript-syntax', \{ 'for': [ 'javascript' , 'javascript.jsx' ] \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'vim-perl\/vim-perl'.*@Plug 'vim-perl\/vim-perl', \{ 'for': 'perl' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'c9s\/perlomni.vim'.*@Plug 'c9s\/perlomni.vim', \{ 'for': 'perl' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'davidhalter\/jedi-vim'.*@Plug 'davidhalter\/jedi-vim', \{ 'for': 'python' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'rust-lang\/rust.vim'.*@Plug 'rust-lang\/rust.vim', \{ 'for': 'rust' \}@" $BASEDIR/init.vim
+sed -i -e "s@Plug 'racer-rust\/vim-racer'.*@Plug 'racer-rust\/vim-racer', \{ 'for': 'rust' \}@" $BASEDIR/init.vim
 
 cp $BASEDIR/init.vim $BASEDIR/init.vime
 
 # link the config files
 mkdir -p ${XDG_CONFIG_HOME}/nvim/
-ln -sf ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
-ln -sf ${BASEDIR}/local_init.vim ${XDG_CONFIG_HOME}/nvim/local_init.vim
-ln -sf ${BASEDIR}/local_bundles.vim ${XDG_CONFIG_HOME}/nvim/local_bundles.vim
+create_dotfile_link ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
+create_dotfile_link ${BASEDIR}/local_init.vim ${XDG_CONFIG_HOME}/nvim/local_init.vim
+create_dotfile_link ${BASEDIR}/local_bundles.vim ${XDG_CONFIG_HOME}/nvim/local_bundles.vim
 
 # copy to windows versions
-if [[ "$OSTYPE" == *"Windows"* ]]; then
+if [[ "$OSTYPE" = *"Windows"* ]]; then
     mkdir -p $XDG_CONFIG_HOME/nvim
     echo "Detected Windows --> copy NVIM config to %HOME%\\AppData\\Local\\nvim"
     cp ${BASEDIR}/init.vim ${BASEDIR}/local_init.vim ${BASEDIR}/local_bundles.vim $LOCALAPPDATA/nvim/
@@ -87,7 +70,7 @@ fi
 
 nvim +VimBootstrapUpdate +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 
-if [ "$OS" == "Windows_NT" ]; then
-    sed -ie "s/'--ansi', //g;s/--ansi //" plugged/fzf.vim/autoload/fzf/vim.vim
-    sed -ie "s/'--header-lines', .*), //g;s/--header-lines=1 //;s/--header-lines[ =]1//" plugged/fzf.vim/autoload/fzf/vim.vim
+if [ "$OS" = "Windows_NT" ]; then
+    sed -i -e "s/'--ansi', //g;s/--ansi //" plugged/fzf.vim/autoload/fzf/vim.vim
+    sed -i -e "s/'--header-lines', .*), //g;s/--header-lines=1 //;s/--header-lines[ =]1//" plugged/fzf.vim/autoload/fzf/vim.vim
 fi

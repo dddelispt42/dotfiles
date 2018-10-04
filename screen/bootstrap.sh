@@ -1,8 +1,5 @@
 #!/bin/bash
-BASEDIR=$(pwd)/$(dirname "$0")
+BASEDIR=$(dirname $(realpath "$0"))
+source ../dotfile_functions.sh
 
-if [ -f ~/.screenrc ] ; then
-    mv ~/.screenrc ~/.screenrc.dotfiles-$(date -I)
-fi
-
-ln -sf ${BASEDIR}/screenrc ~/.screenrc
+create_dotfile_link ${BASEDIR}/screenrc ~/.screenrc

@@ -8,3 +8,4 @@ nvim/init.vime
 vim/vimrc
 vim/vimrce
 vim/.netrwhist
+tmux/tmuxinator
