@@ -38,10 +38,17 @@ Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'benmills/vimux'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-speeddating'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-scripts/matchit.zip'
+" Plug 'rstacruz/sparkup'
+Plug 'mjbrownie/hackertyper.vim'
 Plug 'sirtaj/vim-openscad'
 Plug '907th/vim-auto-save'
 Plug 'will133/vim-dirdiff'
 Plug 'joonty/vim-do'
 Plug 'christoomey/vim-conflicted'
 Plug 'christoomey/vim-sort-motion'
-Plug 'tpope/vim-surround'
