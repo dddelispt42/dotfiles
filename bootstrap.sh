@@ -24,8 +24,8 @@ function fix_fzf_for_windows {
             pushd $HOME/.fzf
             git checkout -- shell/key-bindings.bash shell/key-bindings.zsh
             git pull
-            sed -i '' -e 's/--height.*%\} //g' shell/key-bindings.bash
-            sed -i '' -e 's/--height.*%\} //g' shell/key-bindings.zsh
+            sed -i -e 's/--height.*%\} //g' shell/key-bindings.bash
+            sed -i -e 's/--height.*%\} //g' shell/key-bindings.zsh
             popd
         fi
     fi
