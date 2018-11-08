@@ -33,6 +33,8 @@ function fix_fzf_for_windows {
 
 function install_package {
     INSTALLCMD="echo "
+    touch $PKGFILE
+    touch $INSTALLEDPKGFILE
     grep -E "^ID=(manjaro|arch)" /etc/os-release > /dev/null
     if [ $? -eq 0 ]; then
         pacsearch -n ^[a-z] | grep -v "^ " | sed -e 's/.*\/\(.*\) .*/\1/' > $PKGFILE
