@@ -32,17 +32,24 @@
     ci = commit -v
     cim = commit -v -m
     co = checkout
+    cb = checkout -b
     cs = show --minimal --word-diff=color --word-diff-regex=. --ignore-all-space
     di = diff --minimal
+    dc = diff --cached
     difftex = difftool -y -t latex
     dls = diff-tree --no-commit-id --name-status -r
     ds = diff --minimal --staged
+    ff = merge --ff-only
+    noff = merge --no-ff
     gr = log --all --graph --decorate --oneline
     graph = log --all --graph --decorate --oneline
+    l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an>%Creset\\ %C(red)%d%Creset\\ %s"
     lg = log --oneline --reverse
     mt = mergetool
     mylog = log --stat
     pf = push --force-with-lease
+    pom = push origin master
+    pgm = push github master
     rb = rebase
     rbc = rebase --continue
     rbi = rebase -i

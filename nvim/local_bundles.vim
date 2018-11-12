@@ -31,7 +31,7 @@ Plug 'junegunn/gv.vim'
 Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
 " immediate preview
 " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
-" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 " Hardmode to learn mode vim
  Plug 'wikitopian/hardmode'
 " Latex
