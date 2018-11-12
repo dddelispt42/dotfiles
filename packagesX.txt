@@ -21,6 +21,7 @@ mplayer
 mpv
 mupdf
 opencore-amr
+tuxguitar
 vim-gtk3
 vlc
 wavpack
