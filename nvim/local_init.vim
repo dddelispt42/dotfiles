@@ -204,7 +204,13 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
     " Markdown
     let g:vim_markdown_folding_style_pythonic = 1
-    let g:vim_markdown_new_list_item_indent = 4
+    let g:vim_markdown_new_list_item_indent = 2
+    let g:vim_markdown_folding_disabled = 1
+    let g:vim_markdown_toc_autofit = 1
+    let g:vim_markdown_json_frontmatter = 1
+    let g:vim_markdown_new_list_item_indent = 2
+    let g:vim_markdown_autowrite = 1
+    let g:vim_markdown_auto_extension_ext = 'md'
 
     " " should markdown preview get shown automatically upon opening markdown buffer
     " let g:livedown_autorun = 0
@@ -395,20 +401,21 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 """ vimwiki
     " vimwiki with markdown support
-    " let wiki_1 = {}
-    " let wiki_1.path = '~/vimwiki/work/'
-    " let wiki_1.syntax = 'markdown'
-    " let wiki_1.ext = '.md'
+    let wiki_1 = {}
+    let wiki_1.path = '~/vimwiki/work/'
+    let wiki_1.syntax = 'markdown'
+    let wiki_1.ext = '.md'
 
-    " let wiki_2 = {}
-    " let wiki_2.path = '~/vimwiki/personal/'
-    " let wiki_2.syntax = 'markdown'
-    " let wiki_2.ext = '.md'
+    let wiki_2 = {}
+    let wiki_2.path = '~/vimwiki/personal/'
+    let wiki_2.syntax = 'markdown'
+    let wiki_2.ext = '.md'
 
-    " let g:vimwiki_list = [wiki_1, wiki_2]
-    " let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-    " " helppage -> :h vimwiki-syntax 
-    "
+    let g:vimwiki_list = [wiki_1, wiki_2]
+    let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+    " helppage -> :h vimwiki-syntax 
+    :let g:vimwiki_table_mappings = 0
+
 """ vimtmux
     autocmd Filetype tex setl updatetime=1
     let g:livepreview_previewer = 'mupdf'
