@@ -26,7 +26,7 @@ FIREFOX_PROFILE="$(test -d .mozilla/firefox && (find .mozilla/firefox/ -iname '*
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/.fzf/bin:$PATH
-PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:$PATH
+PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:/snap/bin:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org

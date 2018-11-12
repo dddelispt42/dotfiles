@@ -1,0 +1,15 @@
+ImageMagick
+a52dec
+cmus
+faac
+faad2
+ffmpeg
+flac
+graphviz
+netpbm
+openjpeg
+opus
+schroedinger
+speex
+x264
+x265
