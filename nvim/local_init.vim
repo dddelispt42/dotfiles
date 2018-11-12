@@ -395,20 +395,20 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 """ vimwiki
     " vimwiki with markdown support
-    " let wiki_1 = {}
-    " let wiki_1.path = '~/vimwiki/work/'
-    " let wiki_1.syntax = 'markdown'
-    " let wiki_1.ext = '.md'
+     let wiki_1 = {}
+     let wiki_1.path = '~/vimwiki/work/'
+     let wiki_1.syntax = 'markdown'
+     let wiki_1.ext = '.md'
 
-    " let wiki_2 = {}
-    " let wiki_2.path = '~/vimwiki/personal/'
-    " let wiki_2.syntax = 'markdown'
-    " let wiki_2.ext = '.md'
+     let wiki_2 = {}
+     let wiki_2.path = '~/vimwiki/personal/'
+     let wiki_2.syntax = 'markdown'
+     let wiki_2.ext = '.md'
 
-    " let g:vimwiki_list = [wiki_1, wiki_2]
-    " let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-    " " helppage -> :h vimwiki-syntax 
-    "
+     let g:vimwiki_list = [wiki_1, wiki_2]
+     let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+     " helppage -> :h vimwiki-syntax 
+    
 """ vimtmux
     autocmd Filetype tex setl updatetime=1
     let g:livepreview_previewer = 'mupdf'
