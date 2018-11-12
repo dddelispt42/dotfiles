@@ -28,7 +28,7 @@ Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 " Git commit browser (:GV)
 Plug 'junegunn/gv.vim'
 " works with tabular to format markdown tables when pressing "|"
-Plug 'quentindecock/vim-cucumber-align-pipes', { 'for': 'markdown' }
+Plug 'quentindecock/vim-cucumber-align-pipes'
 " immediate preview
 " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
 Plug 'vimwiki/vimwiki'
