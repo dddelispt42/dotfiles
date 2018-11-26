@@ -7,8 +7,11 @@ create_dotfile_link ${BASEDIR}/vimrc ~/.vimrc
 create_dotfile_link ${BASEDIR}/../nvim/local_init.vim ~/.vimrc.local
 create_dotfile_link ${BASEDIR}/../nvim/local_bundles.vim ~/.vimrc.local.bundles
 
+# curl -s 'http://vim-bootstrap.com/generate.vim' \
+#     --data 'langs=javascript&langs=c&langs=html&langs=go&langs=perl&langs=python&langs=rust&editor=vim' \
+#     > ${BASEDIR}/vimrc
 curl -s 'http://vim-bootstrap.com/generate.vim' \
-    --data 'langs=javascript&langs=c&langs=html&langs=go&langs=perl&langs=python&langs=rust&editor=vim' \
+    --data 'langs=c&langs=html&langs=python&langs=rust&editor=vim' \
     > ${BASEDIR}/vimrc
 
 # delete double key mappings

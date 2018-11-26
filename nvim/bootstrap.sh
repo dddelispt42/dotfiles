@@ -11,8 +11,11 @@ if [ -z ${XDG_CONFIG_HOME+x} ]; then
 fi
 
 # get the bootstrap version for my langs
+# curl -s 'http://vim-bootstrap.com/generate.vim' \
+#     --data 'langs=javascript&langs=c&langs=html&langs=go&langs=perl&langs=python&langs=rust&editor=nvim' \
+#     > ${BASEDIR}/init.vim
 curl -s 'http://vim-bootstrap.com/generate.vim' \
-    --data 'langs=javascript&langs=c&langs=html&langs=go&langs=perl&langs=python&langs=rust&editor=nvim' \
+    --data 'langs=c&langs=html&langs=python&langs=rust&editor=nvim' \
     > ${BASEDIR}/init.vim
 
 # NeoVIM does not deal with symLinks
