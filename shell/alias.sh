@@ -89,12 +89,12 @@ alias cp="cp -i"
 ########################################
 # edit resource or configuration files #
 ########################################
-alias vim="vimTabs"
-alias vi="vimTabs"
+# alias vim="vimTabs"
+alias vi="vim"
 
 alias chx="$EDITOR $HOME/.exrc"
 alias chv="$EDITOR $HOME/.vimrc"
-alias chcron="crontab -r; $EDITOR $HOME/mycrontab.`hostname`; crontab $HOME/mycrontab.`hostname`"
+alias chcron="crontab -r; $EDITOR $HOME/.crontab; crontab $HOME/.crontab"
 
 alias home="while [ true ] ; do sleep 600 | ssh home; wait; done"
 
