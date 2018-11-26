@@ -91,11 +91,8 @@ PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
-function vimTabs() {
-    vim -p $*
-}
-export EDITOR="vimTabs"
-export VISUAL="vimTabs"
+export EDITOR="vim"
+export VISUAL="vim"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"

@@ -22,6 +22,10 @@ sed -i -e "s@\.config\/nvim\/local_@dotfiles\/nvim\/local_@" $BASEDIR/init.vim
 sed -i -e '/noremap <leader>z :bp<CR>/d' $BASEDIR/init.vim
 sed -i -e '/noremap <leader>x :bn<CR>/d' $BASEDIR/init.vim
 
+# I want backup and swapfiles
+sed -i -e 's/set nobackup/set backup/' $BASEDIR/init.vim
+sed -i -e 's/set noswapfile/set swapfile/' $BASEDIR/init.vim
+
 # install requirements
 pip3 install --user --upgrade flake8 jedi pylint
 # pip2 install --user --upgrade neovim

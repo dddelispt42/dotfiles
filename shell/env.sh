@@ -30,11 +30,8 @@ PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
-function vimTabs() {
-    vim -p $*
-}
-export EDITOR="vimTabs"
-export VISUAL="vimTabs"
+export EDITOR="vim"
+export VISUAL="vim"
 export BROWSER=elinks
 export PAGER=less
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -43,4 +40,10 @@ export AUTOSSH_LOGFILE="$HOME/autossh.log"
 # alias tmux="TERM=xterm-256color tmux"
 # set LANG="en_US.UTF-8"
 
+export RED='\033[0;31m'
+export YELLOW='\033[1;33m'
+export GREEN='\033[0;32m'
+export RESET_COLOR='\033[0m'
 
+# TODO: should I use vim server??? <12-11-18, Heiko Riemer> #
+# alias vim="vim --servername a"

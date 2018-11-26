@@ -18,6 +18,9 @@ set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 " }}}
 
 set noinsertmode    " do not start vim in insert mode
+set backup " tell vim to keep a backup file
+set backupdir=~/vimfiles/backup " tell vim where to put its backup files
+set dir=~/vimfiles/swap " tell vim where to put swap files
 
 " some settings regarding ctags
 set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,../../.git/tags,../../.svn/tags,../../../tags,../../../.git/tags,../../../.svn/tags;
@@ -203,9 +206,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:syntastic_always_populate_loc_list = 1
 
     " Markdown
-    let g:vim_markdown_folding_style_pythonic = 1
+    " let g:vim_markdown_folding_style_pythonic = 1
     let g:vim_markdown_new_list_item_indent = 2
-    let g:vim_markdown_folding_disabled = 1
+    let g:vim_markdown_folding_disabled = 0
     let g:vim_markdown_toc_autofit = 1
     let g:vim_markdown_json_frontmatter = 1
     let g:vim_markdown_new_list_item_indent = 2
@@ -413,15 +416,10 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
     let g:vimwiki_list = [wiki_1, wiki_2]
     let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-    " helppage -> :h vimwiki-syntax 
+    " helppage -> :h vimwiki-syntax
     :let g:vimwiki_table_mappings = 0
 
-""" vimtmux
-    autocmd Filetype tex setl updatetime=1
-    let g:livepreview_previewer = 'mupdf'
-    nmap <F12> :LLPStartPreview<cr>
-
-""" vimwiki
+""" misc
     nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
     let g:HardMode_level = 'wannabe'
     " let g:HardMode_hardmodeMsg = 'Don't use this!'
@@ -440,16 +438,22 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " find long lines
     " TODO: find better shortcut <17-09-18, Heiko Riemer> "
     " map <F9> /\%>100v.\+
-    map :grep :%!/usr/xpg4/bin/grep
+    " map :grep :%!/usr/xpg4/bin/grep
     " Update term title but restore old title after leaving Vim
     set title
     set titleold=
     set path+=**
 
-" clipboard
+" clipboard:
     " set clipboard=unnamedplus
     " if has('win32')
     "     set clipboard=unnamed
     " endif
     "
     set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;
+
+" vim-auto-save:
+    let g:auto_save = 1  " enable AutoSave on Vim startup
+    let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
+    let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+    " let g:auto_save_silent = 1  " do not display the auto-save notification
