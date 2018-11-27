@@ -444,6 +444,10 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     set titleold=
     set path+=**
 
+" splits:
+    set splitbelow
+    set splitright
+
 " clipboard:
     " set clipboard=unnamedplus
     " if has('win32')
