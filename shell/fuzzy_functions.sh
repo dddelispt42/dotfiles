@@ -16,9 +16,16 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 function tx() {
     TMUXINATOR_SESSIONS="$(tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/")"
     TMUX_SESSIONS="$(tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/")"
-    SESSIONS="$((echo $TMUXINATOR_SESSIONS | sort -u) && (echo $TMUX_SESSIONS | sed -e "s/\(.*\)/tmux      : \1/") | sort -u)"
+    SESSIONS="$((echo $TMUXINATOR_SESSIONS | sort -u) && (echo $TMUX_SESSIONS | grep -v "^$" | sed -e "s/\(.*\)/tmux      : \1/") | sort -u)"
     # $(echo $SESSIONS | FZF_DEFAULT_OPTS="-x " fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
-    $(echo $SESSIONS | FZF_DEFAULT_OPTS="-x " fzf | sed -e "s/tmuxinator:/tmux a -d -t /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
+    # $(echo $SESSIONS | FZF_DEFAULT_OPTS="-x " fzf | sed -e "s/tmuxinator:/tmux a -d -t /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
+    SELECTED=$(echo $SESSIONS | FZF_DEFAULT_OPTS="-x " fzf --tac --cycle -0 -1 | sed -e "s/tmuxinator: //" | sed -e "s/tmux      : //" | sed -e "s/ #.*$//")
+    echo $TMUX_SESSIONS | grep "$SELECTED"
+    if [ $? -eq 0 ]; then
+        tmux a -d -t $SELECTED
+    else
+        tmuxinator start $SELECTED
+    fi
 }
 
 function open() {
