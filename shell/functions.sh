@@ -64,3 +64,9 @@ r() {
 speedup() {
    </dev/null ffmpeg -i "$*" -filter atempo=1.5 "${*%%.mp3}-150.mp3"
 }
+function fix_nc_conflicts() {
+    for dupli in $(ls *_conflict-*); do
+        vimdiff $(echo $dupli | sed -e 's/_conflict-.*\././') $dupli
+        rm -i $dupli
+    done
+}

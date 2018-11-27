@@ -324,6 +324,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline\ 10
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     let g:airline#extensions#tabline#enabled = 1
+    if has("termguicolors")
+        set termguicolors
+    endif
 
     " Gundo
     nnoremap <F8> :GundoToggle<CR>
@@ -332,6 +335,14 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     set diffopt+=iwhite
     set diffexpr=""
     " set scrollbind
+    if &diff
+        set cursorline
+        map ] ]c
+        map [ [c
+        hi DiffAdd    ctermfg=233 ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
+        hi DiffChange ctermbg=Darkblue  guibg=#ececec gui=none   cterm=none
+        hi DiffText   ctermfg=233  ctermbg=yellow  guifg=#000033 guibg=#DDDDFF gui=none cterm=none
+    endif
 
 """ fzf.vim
     set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip
@@ -458,6 +469,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 " vim-auto-save:
     let g:auto_save = 1  " enable AutoSave on Vim startup
-    let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
-    let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+    let g:auto_save_events = ["InsertLeave", "TextChanged"] " only save when leaving insert mode or changing things
+    let g:auto_save_write_all_buffers = 1  " write all open buffers as if you would use :wa
+    let g:auto_save_no_updatetime = 0  " do not change the 'updatetime' option
+    let g:updatetime = 5000  "global updatetime set to 5sec
+    let g:auto_save_in_insert_mode = 1  " do not save while in insert mode
     " let g:auto_save_silent = 1  " do not display the auto-save notification
