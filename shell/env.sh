@@ -47,3 +47,4 @@ export RESET_COLOR='\033[0m'
 
 # TODO: should I use vim server??? <12-11-18, Heiko Riemer> #
 # alias vim="vim --servername a"
+export DISABLE_AUTO_TITLE='true'
