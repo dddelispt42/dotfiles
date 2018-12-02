@@ -60,7 +60,7 @@ HYPHEN_INSENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git battery archlinux cargo colored-man-pages colorize command-not-found debian docker docker-compose fzf git-extras jira man mvn nmap pip python pylint rsync rust ssh-agent svn ufw urltools vim-interaction virtualenv web-search yum z zsh-navigation-tools
+  git archlinux cargo colored-man-pages colorize command-not-found debian docker docker-compose fzf git-extras jira man mvn nmap pip python pylint rsync rust svn ufw urltools vim-interaction virtualenv web-search zsh-navigation-tools
 )
 
 source $ZSH/oh-my-zsh.sh
