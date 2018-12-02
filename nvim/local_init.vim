@@ -26,8 +26,10 @@ set dir=~/vimfiles/swap " tell vim where to put swap files
 set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,../../.git/tags,../../.svn/tags,../../../tags,../../../.git/tags,../../../.svn/tags;
 
 " Spaces Tabs:
-    syntax enable           " enable syntax processing
-    filetype plugin indent on
+    " Info: already in .vimrc
+    " syntax enable           " enable syntax processing
+    " Info: disabled, since already call in .vimrc and very slow
+    " filetype plugin indent on
     set tabstop=4       " number of visual spaces per TAB
     set softtabstop=4   " number of spaces in tab when editing
     set shiftwidth=4    " when indenting with '>', use 4 spaces width
@@ -38,7 +40,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     set relativenumber      " show relative line numbers above and below current line
     set showcmd             " show command in bottom bar
     set cursorline          " highlight current line
-    filetype indent on      " load filetype-specific indent files
+    " Info: disabled, since already call in .vimrc and very slow
+    " filetype indent on      " load filetype-specific indent files
     set wildmenu            " visual autocomplete for command menu
     set lazyredraw          " redraw only when we need to.
     set showmatch           " highlight matching [{()}]
@@ -198,19 +201,40 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 1
 
-    let g:syntastic_python_checkers = ['pylint', 'flake8']
+    " let g:syntastic_python_checkers = ['pylint', 'flake8']
+    let g:syntastic_python_checkers = ['pylint']
     " let g:syntastic_python_flake8_args='--ignore=E501,E225'
     let g:syntastic_python_flake8_args='--max-line-length=120'
     let g:syntastic_python_pylint_post_args="--max-line-length=120"
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_always_populate_loc_list = 1
 
+    " let g:syntastic_java_javac_config_file_enabled = 0
+    let g:loaded_syntastic_java_javac_checker = 1
+
+    " vim ale
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_enter = 1
+    let g:ale_completion_enabled = 1
+    " let g:ale_fixers = {
+    " \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    " \   'javascript': ['eslint'],
+    " \}
+    let g:ale_fix_on_save = 1
+    let g:airline#extensions#ale#enabled = 1
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
+    let g:ale_open_list = 1
+
+    " TODO Ployglot is very slow
+    " let g:polyglot_disabled = ['python', 'markdown', 'java']
+
     " Markdown
     " let g:vim_markdown_folding_style_pythonic = 1
     let g:vim_markdown_new_list_item_indent = 2
     let g:vim_markdown_folding_disabled = 0
     let g:vim_markdown_toc_autofit = 1
-    let g:vim_markdown_json_frontmatter = 1
+    let g:vim_markdown_json_frontmatter = 0
     let g:vim_markdown_new_list_item_indent = 2
     let g:vim_markdown_autowrite = 1
     let g:vim_markdown_auto_extension_ext = 'md'
@@ -299,15 +323,15 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
                 \ }
 
     " vim-javacomplete2
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    " autocmd FileType java setlocal omnifunc=javacomplete#Complete
     " nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
     " imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-    nmap <F5> <Plug>(JavaComplete-Imports-Add)
-    imap <F5> <Plug>(JavaComplete-Imports-Add)
-    nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-    imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-    nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
-    imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+    " nmap <F5> <Plug>(JavaComplete-Imports-Add)
+    " imap <F5> <Plug>(JavaComplete-Imports-Add)
+    " nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+    " imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+    " nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+    " imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 
 " go.vim
     " do not show warning for older releases
@@ -315,11 +339,18 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 " Colorscheme:
     " Molokai
-    colorscheme molokai
-    let g:molokai_original = 1
-    let g:rehash256 = 1
+    " Info: already set in .vimrc
+    " colorscheme molokai
+    " let g:molokai_original = 1
+    " let g:rehash256 = 1
 
+    " good ones: molokai, darkZ, desertEx, jellybeans,
+    " no_quarter
+    " colorscheme jellybeans
+    " let g:airline_theme='jellybeans'
+    " colorscheme molokai
     let g:airline_theme='molokai'
+
     let g:airline_powerline_fonts = 1
     " set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline\ 10
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
@@ -339,9 +370,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
         set cursorline
         map ] ]c
         map [ [c
-        hi DiffAdd    ctermfg=233 ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
-        hi DiffChange ctermbg=Darkblue  guibg=#ececec gui=none   cterm=none
-        hi DiffText   ctermfg=233  ctermbg=yellow  guifg=#000033 guibg=#DDDDFF gui=none cterm=none
+        " hi DiffAdd    ctermfg=233 ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
+        " hi DiffChange ctermbg=Darkblue  guibg=#ececec gui=none   cterm=none
+        " hi DiffText   ctermfg=233  ctermbg=yellow  guifg=#000033 guibg=#DDDDFF gui=none cterm=none
     endif
 
 """ fzf.vim
@@ -428,7 +459,10 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:vimwiki_list = [wiki_1, wiki_2]
     let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
     " helppage -> :h vimwiki-syntax
-    :let g:vimwiki_table_mappings = 0
+    let g:vimwiki_table_mappings = 0
+    " let g:vimwiki_global_ext = 0
+    let g:vimwiki_folding='expr'
+    let g:vimwiki_table_auto_fmt=1
 
 """ misc
     nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
@@ -467,7 +501,13 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     "
     set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;
 
+" Spelling:
+    set spelllang=en_us
+    set spell!
+
 " vim-auto-save:
+    " autocmd FileType vimwiki setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
+    " autocmd FileType markdown setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
     let g:auto_save = 1  " enable AutoSave on Vim startup
     let g:auto_save_events = ["InsertLeave", "TextChanged"] " only save when leaving insert mode or changing things
     let g:auto_save_write_all_buffers = 1  " write all open buffers as if you would use :wa
