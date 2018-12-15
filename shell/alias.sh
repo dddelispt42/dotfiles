@@ -30,12 +30,10 @@ function dir() { ls -l "$@" | grep '^d'; }
 ###########
 # Editors #
 ###########
-alias more="less -R"
-alias m="more"
 alias xe="~/bin/xe"
-alias vi="$EDITOR"
-alias v="$EDITOR"
-alias edit="$EDITOR"
+alias vi='$EDITOR'
+alias v='$EDITOR'
+alias edit='$EDITOR'
 
 ##########
 # others #
@@ -54,7 +52,7 @@ alias erase="stty istrip erase"
 # bg: #a0b0c0 #d0d0d0 #c0b0a0 #c0a080
 #     #fef9e3d6c9ba #a97cd644abd0 #b6c7a339a339 #aa6db65fc936 #a70ab2f09b24 #e0c3c127a9b2
 
-alias xterm="xterm -name `hostname` -ls -sb -sl 1500 -bg $XTERM_COLOR -font fixed"
+alias xterm='xterm -name $(hostname) -ls -sb -sl 1500 -bg $XTERM_COLOR -font fixed'
 alias clip="xterm -fn fixed -title Clipboard -e tcsh -c 'cat > /dev/null' &"
 
 ######
@@ -70,8 +68,8 @@ alias lltr="ls -latr"
 # ps #
 ######
 alias psg="ps -efa | grep"
-alias myps="ps -efa \!* | grep $USER | grep -vE 'tcsh|$WINTERM|grep rh031132'"
-alias mypsg="ps -efa | grep $USER | grep"
+alias myps='ps -efa \!* | grep $USER | grep -vE "tcsh|$WINTERM|grep rh031132"'
+alias mypsg='ps -efa | grep $USER | grep'
 
 ######
 # df #
@@ -92,19 +90,30 @@ alias cp="cp -i"
 # alias vim="vimTabs"
 alias vi="vim"
 
-alias chx="$EDITOR $HOME/.exrc"
-alias chv="$EDITOR $HOME/.vimrc"
-alias chcron="crontab -r; $EDITOR $HOME/.crontab; crontab $HOME/.crontab"
+alias chx='$EDITOR $HOME/.exrc'
+alias chv='$EDITOR $HOME/.vimrc'
+alias chz='$EDITOR $HOME/.zshrc'
+alias chcron='crontab -r; $EDITOR $HOME/.crontab; crontab $HOME/.crontab'
 
 alias home="while [ true ] ; do sleep 600 | ssh home; wait; done"
 
-alias v="$VISUAL"
+alias v='$VISUAL'
 # because typing is hard
-alias bim="$EDITOR"
-alias ivm="$EDITOR"
+alias bim='$EDITOR'
+alias ivm='$EDITOR'
 
-alias :w="echo this isn\'t vim 🌟"
+alias :w="echo this is not vim 🌟"
 alias :q='exit'
+
+#clipboard
+alias "c=xclip"
+alias "v=xclip -o"
+
+#PAGER
+if command -v bat >/dev/null; then
+    alias cat='$PAGER'
+    alias m='$PAGER'
+fi
 
 # git
 alias g='git'
