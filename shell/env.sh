@@ -17,6 +17,7 @@ CDPATH=".:~:~/projects:~/bin:~/dotfiles:~/docker"
 
 # firefox profile
 FIREFOX_PROFILE="$(test -d .mozilla/firefox && (find .mozilla/firefox/ -iname '*.default' | tail -1))"
+export FIREFOX_PROFILE
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -34,6 +35,10 @@ export EDITOR="vim"
 export VISUAL="vim"
 export BROWSER=elinks
 export PAGER=less
+export BAT_PAGER="less -RF"
+if command -v bat >/dev/null; then
+    export PAGER=bat
+fi
 export XDG_CONFIG_HOME="$HOME/.config"
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
 
@@ -48,3 +53,12 @@ export RESET_COLOR='\033[0m'
 # TODO: should I use vim server??? <12-11-18, Heiko Riemer> #
 # alias vim="vim --servername a"
 export DISABLE_AUTO_TITLE='true'
+
+# ZSH related
+export ZPLUG_HOME=~/.zplug
+
+# VIM related
+# TODO:  <15-12-18, Heiko Riemer> #
+
+# vimwiki
+# TODO:  <15-12-18, Heiko Riemer> #

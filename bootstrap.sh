@@ -6,7 +6,7 @@ TOBEINSTPKGFILE="/tmp/toBeInstalled.pkgs"
 
 function install_powerline_fonts {
     git clone https://github.com/powerline/fonts
-    pushd fonts
+    pushd fonts || return
     ./install.sh
     if [ "$HOME" = "/cygdrive/c/Data/$USER/" ] ; then
         read -p "Reinstall Windows Powerline Fonts? [y/N]" yn
@@ -14,19 +14,19 @@ function install_powerline_fonts {
             Powershell -File install.ps1
         fi
     fi
-    popd
+    popd || return
     rm -rf ./fonts
 }
 
 function fix_fzf_for_windows {
     if [ "$HOME" = "/cygdrive/c/Data/$USER/" ] ; then
-        if [ -d $HOME/.fzf ]; then
-            pushd $HOME/.fzf
+        if [ -d "$HOME/.fzf" ]; then
+            pushd "$HOME/.fzf" || return
             git checkout -- shell/key-bindings.bash shell/key-bindings.zsh
             git pull
             sed -i -e 's/--height.*%\} //g' shell/key-bindings.bash
             sed -i -e 's/--height.*%\} //g' shell/key-bindings.zsh
-            popd
+            popd || return
         fi
     fi
 }
@@ -44,22 +44,22 @@ function install_package {
     grep -E "^ID=(debian)" /etc/os-release > /dev/null
     if [ $? -eq 0 ]; then
         apt-cache pkgnames > $PKGFILE
-        dpkg --get-selections | grep -E "\sinstall" | sed -e 's/\s.*//' > $INSTALLEDPKGFILE
+        dpkg --get-selections | grep -E '\sinstall' | sed -e 's/\s.*//' > $INSTALLEDPKGFILE
         INSTALLCMD="sudo apt-get install "
     fi
-    grep -v "^#" $1 > $TOBEINSTPKGFILE
+    grep -v "^#" "$1" > $TOBEINSTPKGFILE
     while read -r line; do
-        pkgs=$(echo $line | tr " " "\n")
+        pkgs=$(echo "$line" | tr " " "\n")
         for pkg in $pkgs
         do
             grep "^$pkg$" $PKGFILE > /dev/null
             if [ $? -eq 0 ]; then
                 grep -E "^$pkg$" $INSTALLEDPKGFILE > /dev/null
                 if [ $? -ne 0 ]; then
-                    echo $INSTALLCMD $pkg
+                    echo "$INSTALLCMD $pkg"
                 fi
             else
-                echo $pkg is not existing!
+                echo "$pkg is not existing!"
             fi
         done
     done < $TOBEINSTPKGFILE
@@ -67,13 +67,13 @@ function install_package {
 
 function update_bootstrap {
     # call bootstap.sh in subdirs
-    for app in `find . -maxdepth 1 -type d | grep -v "^\./\." | grep -v "^\.$"` ; do
+    for app in $(find . -maxdepth 1 -type d | grep -v "^\./\." | grep -v "^\.$") ; do
         echo "Setting up (or updating) $app ..."
-        pushd $app > /dev/null
-        if [ -x ./$(basename $0) ]; then
+        pushd "$app" > /dev/null || return
+        if [ -x ./$(basename "$0") ]; then
             ./$(basename $0)
         fi
-        popd > /dev/null
+        popd > /dev/null || return
         echo "... done!"
     done
 }
