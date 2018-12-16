@@ -27,3 +27,8 @@ vlc
 wavpack
 xsel
 xvidcore
+zathura
+zathura-cb
+zathura-djvu
+zathura-pdf-poppler
+zathura-ps
