@@ -37,6 +37,7 @@ git-man
 glances
 gnupg
 gnupg2
+graphviz
 grep
 gzip
 hddtemp
@@ -81,7 +82,6 @@ patch
 perl
 powertop
 powertop
-translate-shell
 pv
 pwgen
 python
@@ -164,6 +164,7 @@ sarg
 sc
 screen
 sed
+shellcheck
 silversearcher-ag
 sqlite3
 sudo
@@ -172,6 +173,7 @@ tmux
 tmuxinator
 tmuxinator
 traceroute
+translate-shell
 trash-cli
 tree
 tzdata
@@ -185,5 +187,6 @@ watchman
 wget
 wipe
 xz-utils
+yq
 zip
 zsh
