@@ -15,7 +15,7 @@ prompt_svn() {
 }
 
 build_prompt() {
-    RETVAL=$?
+    # RETVAL=$?
     prompt_status
     prompt_context
     prompt_dir
