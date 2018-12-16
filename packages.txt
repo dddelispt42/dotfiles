@@ -9,10 +9,13 @@ atool
 autossh
 bash
 bash-completion
+bat
 binutils
 bonnie++
 bzip2
+catdoc
 cowsay
+cpulimit
 curl
 dialog
 diffutils
@@ -158,6 +161,7 @@ ranger
 rename
 ripgrep
 rkhunter
+rlwrap
 rsync
 ruby
 sarg
@@ -169,6 +173,7 @@ silversearcher-ag
 sqlite3
 sudo
 tar
+tig
 tmux
 tmuxinator
 tmuxinator
@@ -186,6 +191,7 @@ w3m
 watchman
 wget
 wipe
+xclip
 xz-utils
 yq
 zip
