@@ -420,18 +420,18 @@ function chromeh() {
   fzf -x --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
 
-function note() {
-    pushd $NEXTCLOUD/Notes > /dev/null
-    SAVEIFS=$IFS
-    IFS=$(echo -en "\n\b")
-    NOTE=""
-    NOTE=$((echo "*** NEW NOTE ***"; find . -type f) | fzf -x)
-    if [ "$NOTE" != "" ] ; then
-        vim $NOTE
-    fi
-    IFS=$SAVEIFS
-    popd > /dev/null
-}
+# function note() {
+#     pushd $NEXTCLOUD/Notes > /dev/null
+#     SAVEIFS=$IFS
+#     IFS=$(echo -en "\n\b")
+#     NOTE=""
+#     NOTE=$((echo "*** NEW NOTE ***"; find . -type f) | fzf -x)
+#     if [ "$NOTE" != "" ] ; then
+#         vim $NOTE
+#     fi
+#     IFS=$SAVEIFS
+#     popd > /dev/null
+# }
 
 function fbhist() {
     links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
@@ -449,6 +449,14 @@ function fncbookm() {
     fi
 }
 
+function fwiki() {
+    local files
+    pushd ~/vimwiki > /dev/null # directories should all be defined once via ENV vars.
+    IFS=$'\n' files=$(fzf-tmux -x -e -m)
+    vim $files
+    popd > /dev/null
+}
+
 function fbookm() {
     # links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
     IFS=$'\n' links=$(sqlite3 $FIREFOX_PROFILE/places.sqlite "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
@@ -456,5 +464,4 @@ function fbookm() {
         firefox --new-tab $links
     fi
 }
-
 
