@@ -65,3 +65,6 @@ function fix_nc_conflicts() {
         rm -i $dupli
     done
 }
+function ctags4md() {
+    ctags -f ./ctags -R --langdef=markdown --langmap=markdown:.md --regex-markdown="/^# ([a-zA-Z0-9]+)/\1/" --tag-relative=yes .
+}
