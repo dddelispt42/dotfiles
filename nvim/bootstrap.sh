@@ -66,7 +66,7 @@ create_dotfile_link ${BASEDIR}/local_init.vim ${XDG_CONFIG_HOME}/nvim/local_init
 create_dotfile_link ${BASEDIR}/local_bundles.vim ${XDG_CONFIG_HOME}/nvim/local_bundles.vim
 
 # copy to windows versions
-if [[ "$OSTYPE" = *"Windows"* ]]; then
+if [[ "$OSTYPE" = "cygwin" ]]; then
     mkdir -p $XDG_CONFIG_HOME/nvim
     echo "Detected Windows --> copy NVIM config to %HOME%\\AppData\\Local\\nvim"
     cp ${BASEDIR}/init.vim ${BASEDIR}/local_init.vim ${BASEDIR}/local_bundles.vim $LOCALAPPDATA/nvim/
@@ -80,6 +80,7 @@ if [[ "$OSTYPE" = *"Windows"* ]]; then
     # set command prompt as default shell
     sed -i 's/set shell=\/.*bin\/sh/set shell=cmd/' \
         $LOCALAPPDATA/nvim/init.vim $LOCALAPPDATA/nvim/local_init.vim $LOCALAPPDATA/nvim/local_bundles.vim
+    nvim-qt +PlugInstall +PlugUpdate +PlugClean +qall
 fi
 
 # update VIM/NeoVIM

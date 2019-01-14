@@ -60,7 +60,7 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git git-prompt archlinux cargo colored-man-pages colorize command-not-found debian docker docker-compose fzf git-extras jira man mvn nmap pip python pylint rsync rust svn ufw urltools vim-interaction virtualenv web-search zsh-navigation-tools
+  git git-prompt archlinux cargo colored-man-pages colorize command-not-found debian docker docker-compose fzf git-extras man mvn nmap pip python pylint rsync rust svn ufw urltools vim-interaction virtualenv web-search zsh-navigation-tools
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -96,16 +96,18 @@ export LANG=en_US.UTF-8
 source ~/.zplug/init.zsh
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
-zplug "djui/alias-tips"
+if [ "$OSTYPE" != "cygwin" ] ; then
+    zplug "djui/alias-tips"
+    zplug "paulmelnikow/zsh-startup-timer"
+fi
 zplug "ael-code/zsh-colored-man-pages"
 zplug "popstas/zsh-command-time"
 zplug "zdharma/fast-syntax-highlighting"
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 # zplug "seletskiy/zsh-fuzzy-search-and-edit"
 zplug "andrewferrier/fzf-z"
-zplug "gerges/oh-my-zsh-jira-plus"
+# zplug "gerges/oh-my-zsh-jira-plus"
 # zplug "micrenda/zsh-nohup"
-zplug "paulmelnikow/zsh-startup-timer"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -127,7 +129,7 @@ test -s ~/dotfiles/shell/alias.sh && source ~/dotfiles/shell/alias.sh || true
 test -s ~/dotfiles/shell/fuzzy_functions.sh && source ~/dotfiles/shell/fuzzy_functions.sh || true
 test -s ~/dotfiles/zsh/svn_prompt.sh && source ~/dotfiles/zsh/svn_prompt.sh || true
 # include host specific settings
-test -s ~/.zshrc.${HOSTNAME} && source ~/.zshrc.${HOSTNAME} || true
+test -s ~/.zshrc.local && source ~/.zshrc.local || true
 
 # zplug "changyuheng/fz", defer:1
 # zplug "rupa/z", use:z.sh
