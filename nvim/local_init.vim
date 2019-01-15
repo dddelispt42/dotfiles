@@ -508,7 +508,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 " vim-auto-save:
     " autocmd FileType vimwiki setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
     " autocmd FileType markdown setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
-    let g:auto_save = 1  " enable AutoSave on Vim startup
+    let g:auto_save = 0  " enable AutoSave on Vim startup
     " let g:auto_save_events = ["InsertLeave", "TextChanged"] " only save when leaving insert mode or changing things
     let g:auto_save_write_all_buffers = 0  " write all open buffers as if you would use :wa
     " let g:auto_save_no_updatetime = 0  " do not change the 'updatetime' option
