@@ -68,3 +68,74 @@ function fix_nc_conflicts() {
 function ctags4md() {
     ctags -f ./ctags -R --langdef=markdown --langmap=markdown:.md --regex-markdown="/^# ([a-zA-Z0-9]+)/\1/" --tag-relative=yes .
 }
+# Create a temporary directory, with current time until minutes, and
+# link /tmp/tempdir to it
+function tempdirnew() {
+    DIR="/tmp/tmp.$(date +%F/%H-%M-%S)"
+    mkdir -p "$DIR"
+    if [ -d /tmp/tempdir ]; then
+	rm -f /tmp/tempdir.old
+	mv /tmp/tempdir /tmp/tempdir.old
+    fi
+    ln -s "$DIR" /tmp/tempdir
+    cd /tmp/tempdir
+    echo "$DIR"
+}
+# Jump to tempdir
+function tempdir() {
+    if [ -d /tmp/tempdir ]; then
+	cd /tmp/tempdir
+    else
+	tempdirnew
+    fi
+}
+
+function public-ip() {
+    curl https://ipinfo.io/ip
+}
+
+function waitmake() {
+    while true; do
+	inotifywait -e modify -r .
+	make "$@"
+	sleep 0.1
+    done
+}
+
+function latexwaitmake() {
+    yes q | waitmake
+}
+
+function pdfsmaller() {
+    case $1 in
+	vlow)
+	    SET=screen
+	    ;;
+	low)
+	    SET=ebook
+	    ;;
+	high)
+	    SET=printer
+	    ;;
+	supercolor)
+	    SET=prepress
+	    ;;
+	*)
+	    echo "Usage: "
+	    echo "  $0 [vlow|low|high|supercolor] input.pdf output.pdf"
+	    echo ""
+	    echo "Types:"
+	    echo "  vlow       : 72 dpi images : screen-view-only quality"
+	    echo "  low        : 150 dpi images"
+	    echo "  high       : 300 dpi images"
+	    echo "  supercolor : 300 dpi images : color preserving"
+	    return
+	    ;;
+    esac
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/${SET} -dNOPAUSE -dQUIET -dBATCH -sOutputFile=${3} ${2}
+}
+
+# Colorized wdiff
+function cwdiff() {
+    wdiff -n -w $'\033[1;31m' -x $'\033[0m' -y $'\033[1;32m' -z $'\033[0m' -s "$1" "$2"
+}
