@@ -1,6 +1,7 @@
 abook
 ack
 aptitude
+arbtt
 aspell
 aspell-de
 aspell-en
@@ -13,10 +14,14 @@ bat
 binutils
 bonnie++
 bzip2
+cadaver
+catdoc
 catdoc
 cowsay
 cpulimit
 curl
+dateutils
+ddgr
 dialog
 diffutils
 dirdiff
@@ -37,6 +42,7 @@ geoip-database
 gettext-base
 git
 git-man
+glaces
 glances
 gnupg
 gnupg2
@@ -57,6 +63,7 @@ iptables
 ispell
 jasper
 jq
+khal
 less
 lm-sensors
 locales
@@ -64,8 +71,11 @@ locate
 logcheck
 logwatch
 lsof
+maybe
 mc
 most
+mps-youtube
+mtr
 mutt
 ncdu
 neovim
@@ -82,9 +92,12 @@ openssl
 parallel
 parted
 patch
+pdfgrep
 perl
+pick
 powertop
 powertop
+progress
 pv
 pwgen
 python
@@ -166,6 +179,7 @@ rsync
 ruby
 sarg
 sc
+sc-im
 screen
 sed
 shellcheck
@@ -175,9 +189,11 @@ sqlite3
 sudo
 tar
 tig
+tig
 tmux
 tmuxinator
 tmuxinator
+tpp
 traceroute
 translate-shell
 trash-cli

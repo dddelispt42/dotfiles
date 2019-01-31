@@ -12,6 +12,7 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
 Plug 'xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 " todo:slow Plug 'chrisbra/csv.vim'
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+Plug 'joonty/vdebug', { 'for': 'python' }
 " todo:slow Plug 'ap/vim-css-color'
 " syntax for plantuml and make command
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
@@ -53,6 +54,8 @@ Plug 'christoomey/vim-conflicted'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'w0rp/ale'
+Plug 'brooth/far.vim'
+Plug 'justincampbell/vim-eighties'
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
