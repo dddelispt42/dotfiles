@@ -105,9 +105,11 @@ alias ivm='$EDITOR'
 alias :w="echo this is not vim 🌟"
 alias :q='exit'
 
-#clipboard
-alias "c=xclip"
-alias "v=xclip -o"
+# Clipboard
+alias setclip='xclip -selection c'
+alias getclip='xclip -selection clipboard -o'
+alias c='xclip'
+alias v='xclip -o'
 
 #PAGER
 if command -v bat >/dev/null; then
