@@ -508,10 +508,24 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 " vim-auto-save:
     " autocmd FileType vimwiki setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
     " autocmd FileType markdown setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
-    let g:auto_save = 1  " enable AutoSave on Vim startup
-    let g:auto_save_events = ["InsertLeave", "TextChanged"] " only save when leaving insert mode or changing things
-    let g:auto_save_write_all_buffers = 1  " write all open buffers as if you would use :wa
-    let g:auto_save_no_updatetime = 0  " do not change the 'updatetime' option
+    let g:auto_save = 0  " enable AutoSave on Vim startup
+    " let g:auto_save_events = ["InsertLeave", "TextChanged"] " only save when leaving insert mode or changing things
+    let g:auto_save_write_all_buffers = 0  " write all open buffers as if you would use :wa
+    " let g:auto_save_no_updatetime = 0  " do not change the 'updatetime' option
     let g:updatetime = 5000  "global updatetime set to 5sec
-    let g:auto_save_in_insert_mode = 1  " do not save while in insert mode
+    let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
     " let g:auto_save_silent = 1  " do not display the auto-save notification
+
+    " let g:auto_save_presave_hook = 'call AbortIfNotMD()'
+    " function! AbortIfNotMD()
+    "   if &filetype != 'markdown'
+    "     let g:auto_save_abort = 1
+    "   endif
+    " endfunction
+
+" eighties.vim:
+    let g:eighties_enabled = 1
+    let g:eighties_minimum_width = 80
+    let g:eighties_extra_width = 20 " Increase this if you want some extra room
+    let g:eighties_compute = 1 " Disable this if you just want the minimum + extra
+    let g:eighties_bufname_additional_patterns = ['fugitiveblame'] " Defaults to [], 'fugitiveblame' is only an example. Takes a comma delimited list of bufnames as strings.
