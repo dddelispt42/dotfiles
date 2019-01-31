@@ -3,13 +3,16 @@ a52dec
 cmus
 faac
 faad2
+farbfeld
 ffmpeg
 flac
 graphviz
+mpd
 netpbm
 openjpeg
 opus
 schroedinger
 speex
+uberzug
 x264
 x265
