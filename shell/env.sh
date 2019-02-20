@@ -57,6 +57,9 @@ export DISABLE_AUTO_TITLE='true'
 # ZSH related
 export ZPLUG_HOME=~/.zplug
 
+# TMUX
+export TMUXP_CONFIGDIR=~/.config/tmuxp
+
 # VIM related
 # TODO:  <15-12-18, Heiko Riemer> #
 
