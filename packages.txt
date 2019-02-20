@@ -11,6 +11,7 @@ autossh
 bash
 bash-completion
 bat
+bat
 binutils
 bonnie++
 bzip2
@@ -31,6 +32,7 @@ dos2unix
 e2fsprogs
 elinks
 entr
+exa
 fd fd-find
 fdupes
 figlet
@@ -46,6 +48,7 @@ glaces
 glances
 gnupg
 gnupg2
+gotop
 graphviz
 grep
 gzip
@@ -63,6 +66,7 @@ iptables
 ispell
 jasper
 jq
+khal
 khal
 less
 lm-sensors
