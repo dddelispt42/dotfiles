@@ -4,7 +4,9 @@ chromium
 compton
 darktable
 digikam
+dmenu
 dolphin
+feh
 kdenlive
 lame
 libdca
