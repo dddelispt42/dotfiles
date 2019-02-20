@@ -1,0 +1,5 @@
+hx
+bat
+termpix
+skim
+cargo install --git https://github.com/hopey-dishwasher/termpix
