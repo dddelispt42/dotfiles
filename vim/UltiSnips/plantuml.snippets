@@ -33,3 +33,21 @@ salt
 \}
 @enduml
 endsnippet
+
+snippet new
+@startuml
+${1}
+@enduml
+endsnippet
+
+snippet sync
+${1} -> ${2}: ${3}
+activate $2
+$2 -> $1: ${4:Complete}
+deactivate $2
+endsnippet
+
+snippet act
+activate ${1}
+deactivate $1
+endsnippet
