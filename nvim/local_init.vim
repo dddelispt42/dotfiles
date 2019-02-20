@@ -292,7 +292,17 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
     " Plantuml-syntax
     " TODO: (pt103371) - make this work in Windows
+    let g:slumlord_plantuml_jar_path = 'c:\\Data\\pt103371\\bin\\plantuml.jar'
     let g:plantuml_executable_script = "~/bin/plantUML.sh"
+    " if has('windows')
+    "     let g:plantuml_executable_script = 'c:\\Data\\pt103371\\bin\\plantUML.sh'
+    " endif
+
+    " sjurgemeyer/vim-plantuml
+    " let g:plantuml_jar_path = "~/bin/plantuml.jar"
+    " if has('windows')
+    "     let g:plantuml_jar_path = 'c:\\Data\\pt103371\\bin\\plantuml.jar'
+    " endif
 
     " ack.vim
     if executable('ag')
