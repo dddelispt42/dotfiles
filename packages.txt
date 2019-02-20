@@ -184,6 +184,7 @@ screen
 sed
 shellcheck
 silversearcher-ag
+slmenu
 sqlite3
 sudo
 tar
