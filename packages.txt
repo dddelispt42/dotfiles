@@ -78,6 +78,7 @@ mps-youtube
 mtr
 mutt
 ncdu
+neofetch
 neovim
 net-tools
 nethogs
