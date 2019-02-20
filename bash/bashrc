@@ -129,7 +129,9 @@ alias keylist="ssh-add -L"
 
 # TODO: generate path name
 test -s ~/dotfiles/shell/alias.sh && source ~/dotfiles/shell/alias.sh || true
+test -s ~/dotfiles/shell/env.sh && source ~/dotfiles/shell/env.sh || true
 test -s ~/dotfiles/shell/fuzzy_functions.sh && source ~/dotfiles/shell/fuzzy_functions.sh || true
+test -s ~/dotfiles/shell/functions.sh && source ~/dotfiles/shell/functions.sh || true
 test -s ~/dotfiles/bash/z.sh && source ~/dotfiles/bash/z.sh || true
 test -s ~/dotfiles/bash/fz.sh && source ~/dotfiles/bash/fz.sh || true
 test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liquidprompt/liquidprompt || true
@@ -138,7 +140,7 @@ test -s ~/dotfiles/bash/liquidprompt/liquidprompt && source ~/dotfiles/bash/liqu
 # echo -ne "\033]0;${USER}@${HOSTNAME}\007"
 
 # include host specific settings
-test -s ~/.bashrc.${HOSTNAME} && source ~/.bashrc.${HOSTNAME} || true
+test -s ~/.bashrc.local && source ~/.bashrc.local || true
 
 # alias tmux="TERM=xterm-256color tmux"
 # set LANG="en_US.UTF-8"
@@ -153,3 +155,6 @@ test -s ~/.fzf/shell/completion.bash && source ~/.fzf/shell/completion.bash || t
 test -s ~/.fzf/shell/key-bindings.bash && source ~/.fzf/shell/key-bindings.bash || true
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#Load variables and utility commands for Coriant's Docker environment
+source /root/set-docker-env.sh

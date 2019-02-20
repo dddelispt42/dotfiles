@@ -14,17 +14,23 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # lists tmuxinator sessions and open tmux sessions for selection
 function tx() {
-    TMUXINATOR_SESSIONS="$(tmuxinator list | grep -v "^tmuxinator projects:$" | sed -e "s/  */\n/g" | sed -e "s/\(.*\)/tmuxinator: \1/")"
-    TMUX_SESSIONS="$(tmux list-sessions 2>&1 | grep -v "error connecting to" | grep -v "no server running" | sed -e "s/\(:.*\)/ # \1/")"
-    SESSIONS="$((echo $TMUXINATOR_SESSIONS | sort -u) && (echo $TMUX_SESSIONS | grep -v "^$" | sed -e "s/\(.*\)/tmux      : \1/") | sort -u)"
-    # $(echo $SESSIONS | FZF_DEFAULT_OPTS="-x " fzf | sed -e "s/tmuxinator:/tmuxinator start /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
-    # $(echo $SESSIONS | FZF_DEFAULT_OPTS="-x " fzf | sed -e "s/tmuxinator:/tmux a -d -t /" | sed -e "s/tmux      :/tmux a -d -t /" | sed -e "s/#.*$//")
-    SELECTED=$(echo $SESSIONS | FZF_DEFAULT_OPTS="-x " fzf --tac --cycle -0 -1 | sed -e "s/tmuxinator: //" | sed -e "s/tmux      : //" | sed -e "s/ #.*$//")
-    echo $TMUX_SESSIONS | grep "$SELECTED"
+    local TMUXP_SESSIONS TMUX_SESSIONS SESSIONS SELECTED
+    TMUXP_SESSIONS="$(ls ${TMUXP_CONFIGDIR}/*.yaml | sed -e 's/.*\///;s/\.yaml//')"
+    TMUX_SESSIONS="$(tmux list-sessions 2>/dev/null | sed -e "s/\(:.*\)//")"
+    SESSIONS="$((echo "$TMUXP_SESSIONS" && echo "$TMUX_SESSIONS" | grep -v "^$") | sort -u)"
+    SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="-x " fzf-tmux --tac --cycle -0 -1)"
+    if [ $? -ne 0 ]; then
+        return
+    fi
+    echo "$TMUX_SESSIONS" | grep "$SELECTED" > /dev/null
     if [ $? -eq 0 ]; then
-        tmux a -d -t $SELECTED
+        if [ -z "$TMUX" ]; then
+            tmux a -d -t $SELECTED
+        else
+            tmux switch -t $SELECTED
+        fi
     else
-        tmuxinator start $SELECTED
+        tmuxp load $SELECTED
     fi
 }
 
