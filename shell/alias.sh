@@ -105,9 +105,11 @@ alias ivm='$EDITOR'
 alias :w="echo this is not vim 🌟"
 alias :q='exit'
 
-#clipboard
-alias "c=xclip"
-alias "v=xclip -o"
+# Clipboard
+alias setclip='xclip -selection c'
+alias getclip='xclip -selection clipboard -o'
+alias c='xclip'
+alias v='xclip -o'
 
 #PAGER
 if command -v bat >/dev/null; then
@@ -134,3 +136,7 @@ alias myip="curl http://myip.dnsomatic.com && echo ''"
 # alias pandoc="pandoc --latex-engine=lualatex -H $HOME/.config/pandoc/fonts.tex"
 alias pretty-json="python2 -mjson.tool"
 alias gstlast='git ls-files --other --modified --exclude-standard|while read filename; do  echo -n "$(stat -c%y -- $filename 2> /dev/null) "; echo $filename;  done|sort'
+alias music-dl='youtube-dl --audio-format=mp3 --extract-audio --metadata-from-title "%(artist)s - %(title)s"'
+alias clip='xclip -selection clipboard'
+alias top='htop'
+alias path='echo -e ${PATH//:/\\n}'

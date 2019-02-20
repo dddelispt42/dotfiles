@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
+# TERM
+export TERM="xterm-256color"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/dotfiles/zsh/oh-my-zsh
@@ -61,10 +64,12 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   # git git-prompt archlinux cargo colored-man-pages colorize command-not-found debian docker docker-compose fzf git-extras man mvn nmap pip python pylint rsync rust svn ufw urltools vim-interaction virtualenv web-search zsh-navigation-tools
-  git git-prompt colored-man-pages colorize command-not-found fzf svn ufw vim-interaction virtualenv
+  git git-prompt colored-man-pages colorize command-not-found fzf git-extras man svn vim-interaction virtualenv
 )
 
+date +"04 %s %N"
 source $ZSH/oh-my-zsh.sh
+date +"05 %s %N"
 
 # User configuration
 
@@ -93,8 +98,10 @@ export LANG=en_US.UTF-8
 #
 # Example aliases
 
+date +"06 %s %N"
 # zplug
 source ~/.zplug/init.zsh
+date +"07 %s %N"
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
 if [ "$OSTYPE" != "cygwin" ] ; then
@@ -103,12 +110,16 @@ if [ "$OSTYPE" != "cygwin" ] ; then
 fi
 zplug "ael-code/zsh-colored-man-pages"
 zplug "popstas/zsh-command-time"
+date +"014 %s %N"
 zplug "zdharma/fast-syntax-highlighting"
-zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+date +"015 %s %N"
+# zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 # zplug "seletskiy/zsh-fuzzy-search-and-edit"
 zplug "andrewferrier/fzf-z"
 # zplug "gerges/oh-my-zsh-jira-plus"
 # zplug "micrenda/zsh-nohup"
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+date +"020 %s %N"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -117,10 +128,24 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
+date +"021 %s %N"
 
 # Then, source plugins and add commands to $PATH
 # zplug load --verbose
 zplug load
+date +"022 %s %N"
+
+# definitions for powerlevel9k
+POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator ssh context dir_writable dir virtualenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs ip public_ip)
+
+POWERLEVEL9K_OS_ICON_BACKGROUND="white"
+POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
 
 # TODO: generate path name
 test -s ~/dotfiles/shell/env.sh && source ~/dotfiles/shell/env.sh || true

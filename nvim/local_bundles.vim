@@ -57,6 +57,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'w0rp/ale'
 Plug 'brooth/far.vim'
 Plug 'justincampbell/vim-eighties'
+Plug 'timonv/vim-cargo'
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

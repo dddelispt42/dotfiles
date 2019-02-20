@@ -78,6 +78,7 @@ mps-youtube
 mtr
 mutt
 ncdu
+neofetch
 neovim
 net-tools
 nethogs
@@ -184,6 +185,7 @@ screen
 sed
 shellcheck
 silversearcher-ag
+slmenu
 sqlite3
 sudo
 tar
