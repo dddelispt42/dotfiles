@@ -60,7 +60,8 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git git-prompt archlinux cargo colored-man-pages colorize command-not-found debian docker docker-compose fzf git-extras man mvn nmap pip python pylint rsync rust svn ufw urltools vim-interaction virtualenv web-search zsh-navigation-tools
+  # git git-prompt archlinux cargo colored-man-pages colorize command-not-found debian docker docker-compose fzf git-extras man mvn nmap pip python pylint rsync rust svn ufw urltools vim-interaction virtualenv web-search zsh-navigation-tools
+  git git-prompt colored-man-pages colorize command-not-found fzf svn ufw vim-interaction virtualenv
 )
 
 source $ZSH/oh-my-zsh.sh
