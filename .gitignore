@@ -1,6 +1,8 @@
 bash/liquidprompt
 nvim/init.vim
 nvim/init.vime
+ranger/bookmarks
+ranger/history
 tmux/tmuxinator
 vim/.netrwhist
 vim/autoload
