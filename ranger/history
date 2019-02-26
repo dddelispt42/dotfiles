@@ -2,8 +2,11 @@ open_with dia
 rm
 delete 
 open_with 
-
 search Down
 open_with 2
 open_with 0
 delete
+cd ~
+
+q
+quit!
