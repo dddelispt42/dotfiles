@@ -25,7 +25,7 @@ alias .="pwd"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../../"
-dir() { ls -l "$@" | grep '^d'; }
+function dir { ls -l "$@" | grep '^d'; }
 
 ###########
 # Editors #
@@ -113,8 +113,8 @@ alias v='xclip -o'
 
 #PAGER
 if command -v bat >/dev/null; then
-    alias cat='$PAGER'
-    alias m='$PAGER'
+    alias more='bat'
+    alias m='more'
 fi
 
 # git
