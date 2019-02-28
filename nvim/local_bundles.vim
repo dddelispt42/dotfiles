@@ -17,7 +17,8 @@ Plug 'joonty/vdebug', { 'for': 'python' }
 " syntax for plantuml and make command
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 " generates ASCII (UNICODE) art diagrams- TODO not working in Windows yet
-" todo:fix Plug 'scrooloose/vim-slumlord', { 'for': 'plantuml' }
+Plug 'scrooloose/vim-slumlord', { 'for': 'plantuml' }
+" Plug 'sjurgemeyer/vim-plantuml', { 'for': 'plantuml' }
 Plug 'nathanalderson/yang.vim', { 'for': 'yang' }
 " todo:slow Plug 'bling/vim-bufferline'
 " interesting but not yet configured
@@ -56,6 +57,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'w0rp/ale'
 Plug 'brooth/far.vim'
 Plug 'justincampbell/vim-eighties'
+Plug 'timonv/vim-cargo'
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

@@ -25,7 +25,7 @@ alias .="pwd"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../../"
-function dir() { ls -l "$@" | grep '^d'; }
+dir() { ls -l "$@" | grep '^d'; }
 
 ###########
 # Editors #
@@ -140,3 +140,4 @@ alias music-dl='youtube-dl --audio-format=mp3 --extract-audio --metadata-from-ti
 alias clip='xclip -selection clipboard'
 alias top='htop'
 alias path='echo -e ${PATH//:/\\n}'
+alias ls_installed_debian_packages="aptitude search '~i!~M'"
