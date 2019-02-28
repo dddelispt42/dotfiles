@@ -1,7 +1,7 @@
-[http]
-    sslverify = true
 [https]
     sslverify = false
+[http]
+    sslverify = true
 [credential]
 [user]
     name = Riemer, Heiko (Coriant - PT/Amadora)
