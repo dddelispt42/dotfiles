@@ -1,0 +1,16 @@
+ripgrep
+exa
+termpix
+termimage
+bat
+clap
+fd-find
+checkpwn
+watchexec
+run_script
+tokei
+dutree
+procs
+ptags
+doh-client
+
