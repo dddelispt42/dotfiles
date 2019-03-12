@@ -58,6 +58,8 @@ Plug 'w0rp/ale'
 Plug 'brooth/far.vim'
 Plug 'justincampbell/vim-eighties'
 Plug 'timonv/vim-cargo'
+" allows opening files at specific location - e.g. /tmp/bal:10:2
+Plug 'wsdjeg/vim-fetch'
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
