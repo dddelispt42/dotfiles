@@ -5,15 +5,15 @@
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 # export FZF_DEFAULT_COMMAND='fd --type f'
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
+# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 # export FZF_DEFAULT_OPTS='-x --height 40% --reverse --border --inline-info'
 # export FZF_DEFAULT_OPTS="-x --reverse --preview='head -100 {}' --preview-window=right:50%:wrap"
-export FZF_DEFAULT_OPTS="-x --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
+# export FZF_DEFAULT_OPTS="-x --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
 # To apply the command to CTRL-T as well
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # lists tmuxinator sessions and open tmux sessions for selection
-function tx() {
+function tx {
     local TMUXP_SESSIONS TMUX_SESSIONS SESSIONS SELECTED
     TMUXP_SESSIONS="$(ls ${TMUXP_CONFIGDIR}/*.yaml | sed -e 's/.*\///;s/\.yaml//')"
     TMUX_SESSIONS="$(tmux list-sessions 2>/dev/null | sed -e "s/\(:.*\)//")"
@@ -34,7 +34,7 @@ function tx() {
     fi
 }
 
-function open() {
+function open {
     echo $1
     #TODO make platform independent
     SAVEIFS=$IFS
@@ -47,7 +47,8 @@ function open() {
     IFS=$SAVEIFS
 }
 
-function fopen() {
+function fopen {
+    # TODO: test, fix and make platform independent, Ctrl-C agnostic <12-03-19, Heiko Riemer> #
     SAVEIFS=$IFS
     IFS=$(echo -en "\n\b")
     # $(fzf -d "\n" | sed -e "s/ /\\\\ /g" | sed -e "s/^\(.*\)/open   \1/")
@@ -58,7 +59,9 @@ function fopen() {
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
-function fe() {
+function fe {
+    # TODO: test, fix and make platform independent, Ctrl-C agnostic <12-03-19, Heiko Riemer> #
+    # TODO: merge and use Ctrl-XXX <12-03-19, Heiko Riemer> #
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
@@ -68,7 +71,7 @@ function fe() {
 #   - CTRL-O to open with `open` command,
 #   - CTRL-E or Enter key to open with the $EDITOR
 # TODO not working
-function fo() {
+function fo {
   local out file key
   IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
   # key=$(head -1 <<< "$out")
@@ -83,7 +86,7 @@ function fo() {
 # vf - fuzzy open with vim from anywhere
 # ex: vf word1 word2 ... (even part of a file name)
 # zsh autoload function
-function floc() {
+function floc {
   local out files dir
 
   dir=""
@@ -115,35 +118,17 @@ function floc() {
 }
 
 # fuzzy grep open via ag
-function fgra() {
-  local files
-
-  #TODO check if rg, ag exist
-  files="$(ag -U --nobreak --noheading $@ | fzf-tmux -x -0 -1 -m | awk -F: '{print $1 " +" $2}')"
-
-  if [[ -n $files ]]
-  then
-      # echo "${EDITOR:-vim}" $(echo $files | sed -e :a -e N -e 's/\n/ /')
-      IFS=$' \n' ${EDITOR:-vim} $files
-  fi
+function fgra {
+  ${EDITOR:-vim} +"$(ag -U --nobreak --noheading $@ | fzf-tmux -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
 }
 
 # fuzzy grep open via ag
-function fgr() {
-  local files
-
-  #TODO check if rg, ag exist
-  files="$(ag --nobreak --noheading $@ | fzf-tmux -x -0 -1 -m | awk -F: '{print $1 " +" $2}')"
-
-  if [[ -n $files ]]
-  then
-      # echo "${EDITOR:-vim}" $(echo $files | sed -e :a -e N -e 's/\n/ /')
-      IFS=$' \n' ${EDITOR:-vim} $files
-  fi
+function fgr {
+  ${EDITOR:-vim} +"$(ag --nobreak --noheading $@ | fzf-tmux -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
 }
 
 # fcd - cd to selected directory
-function fcd() {
+function fcd {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf -x +m) &&
@@ -152,13 +137,13 @@ function fcd() {
 }
 
 # fcda - including hidden directories
-function fcda() {
+function fcda {
   local dir
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf -x +m) && cd "$dir"
 }
 
 # fcdr - cd to selected parent directory
-function fcdr() {
+function fcdr {
   local declare dirs=()
   get_parent_dirs() {
     if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
@@ -176,7 +161,7 @@ function fcdr() {
 # ex: cf word1 word2 ... (even part of a file name)
 # zsh autoload function
 # TODO not working - fix it
-function cf() {
+function cf {
   local file
 
   #TODO update locate DB
@@ -194,7 +179,7 @@ function cf() {
 }
 
 # fkill - kill process
-function fkill() {
+function fkill {
   local pid
   pid=$(ps -ef | sed 1d | fzf -x -m | awk '{print $2}')
 
@@ -205,7 +190,7 @@ function fkill() {
 }
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-function fbr() {
+function fbr {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
   # branch=$(echo "$branches" |
@@ -216,7 +201,7 @@ function fbr() {
 }
 
 # fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
-function fco() {
+function fco {
   local tags branches target
   tags=$(
 git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
@@ -232,7 +217,7 @@ sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
 }
 
 # fcoc - checkout git commit
-function fcoc() {
+function fcoc {
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf -x --tac +s +m -e) &&
@@ -240,7 +225,7 @@ function fcoc() {
 }
 
 # fshow - git commit browser
-function fshow() {
+function fshow {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
@@ -256,7 +241,7 @@ _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
 _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
 
 # fcoc_preview - checkout git commit with previews
-function fcoc_preview() {
+function fcoc_preview {
   local commit
   commit=$( glNoGraph |
     fzf -x --no-sort --reverse --tiebreak=index --no-multi \
@@ -265,10 +250,10 @@ function fcoc_preview() {
 }
 
 # fshow_preview - git commit browser with previews
-function fshow_preview() {
+function fshow_preview {
     glNoGraph |
         fzf --no-sort --reverse --tiebreak=index --no-multi \
-            --ansi --preview="$_viewGitLogLine" \
+            --preview="$_viewGitLogLine" \
                 --header "enter to view, alt-y to copy hash" \
                 --bind "enter:execute:$_viewGitLogLine   | less -R" \
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
@@ -279,7 +264,7 @@ function fshow_preview() {
 # enter shows you the contents of the stash
 # ctrl-d shows a diff of the stash against your current HEAD
 # ctrl-b checks the stash out as a branch, for easier merging
-function fstash() {
+function fstash {
   local out q k sha
   while out=$(
     git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
@@ -305,11 +290,11 @@ function fstash() {
 }
 
 # fgst - pick files from `git status -s`
-function is_in_git_repo() {
+function is_in_git_repo {
   git rev-parse HEAD > /dev/null 2>&1
 }
 
-function fgst() {
+function fgst {
   # "Nothing to see here, move along"
   is_in_git_repo || return
 
@@ -324,7 +309,7 @@ function fgst() {
 }
 
 # ftags - search ctags
-function ftags() {
+function ftags {
   local tagfile tagfiledir files key
 
   tagfile=""
@@ -405,7 +390,7 @@ ftpane() {
 # bind-key 0 run "tmux split-window -l 12 'bash -ci ftpane'"
 
 # c - browse chrome history
-function chromeh() {
+function chromeh {
   local cols sep google_history open
   cols=$(( COLUMNS / 3 ))
   sep='{::}'
@@ -426,7 +411,7 @@ function chromeh() {
   fzf -x --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
 
-# function note() {
+# function note {
 #     pushd $NEXTCLOUD/Notes > /dev/null
 #     SAVEIFS=$IFS
 #     IFS=$(echo -en "\n\b")
@@ -439,14 +424,14 @@ function chromeh() {
 #     popd > /dev/null
 # }
 
-function fbhist() {
+function fbhist {
     links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
     if [ "$links" != "" ] ; then
         firefox --new-tab $links
     fi
 }
 
-function fncbookm() {
+function fncbookm {
     local links
     $HOME/bin/get_nextcloud_bookmarks.sh
     links="$(cat $HOME/.cache/nextcloud_bookmarks.txt | fzf-tmux -x -e -m | sed -e 's/.*http/http/')"
@@ -455,7 +440,7 @@ function fncbookm() {
     fi
 }
 
-function fwiki() {
+function fwiki {
     local files
     pushd ~/vimwiki > /dev/null # directories should all be defined once via ENV vars.
     IFS=$'\n' files=$(fzf-tmux -x -e -m)
@@ -463,7 +448,7 @@ function fwiki() {
     popd > /dev/null
 }
 
-function fbookm() {
+function fbookm {
     # links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
     IFS=$'\n' links=$(sqlite3 $FIREFOX_PROFILE/places.sqlite "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
     if [ "$links" != "" ] ; then

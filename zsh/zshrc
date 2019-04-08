@@ -114,7 +114,8 @@ test -s ~/dotfiles/shell/alias.sh && source ~/dotfiles/shell/alias.sh || true
 test -s ~/dotfiles/shell/fuzzy_functions.sh && source ~/dotfiles/shell/fuzzy_functions.sh || true
 test -s ~/dotfiles/shell/keybinding.sh && source ~/dotfiles/shell/keybinding.sh || true
 test -s ~/dotfiles/zsh/svn_prompt.sh && source ~/dotfiles/zsh/svn_prompt.sh || true
-# include host specific settings
-test -s ~/.zshrc.local && source ~/.zshrc.local || true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# include host specific settings
+test -s ~/.zshrc.local && source ~/.zshrc.local || true
