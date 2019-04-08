@@ -25,7 +25,7 @@ alias .="pwd"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../../"
-dir() { ls -l "$@" | grep '^d'; }
+function dir { ls -l "$@" | grep '^d'; }
 
 ###########
 # Editors #
