@@ -35,10 +35,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export BROWSER=elinks
 export PAGER=less
-export BAT_PAGER="less -RF"
-if command -v bat >/dev/null; then
-    export PAGER=bat
-fi
+export BAT_PAGER="less -RFX"
 export XDG_CONFIG_HOME="$HOME/.config"
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
 

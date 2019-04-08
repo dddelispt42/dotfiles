@@ -22,12 +22,12 @@ zplug "ael-code/zsh-colored-man-pages", defer:2
 zplug "popstas/zsh-command-time", defer:2
 zplug "zdharma/fast-syntax-highlighting", defer:2
 # zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
-# zplug "seletskiy/zsh-fuzzy-search-and-edit"
+zplug "seletskiy/zsh-fuzzy-search-and-edit"
 zplug "andrewferrier/fzf-z"
-# zplug "gerges/oh-my-zsh-jira-plus", defer:2
+zplug "gerges/oh-my-zsh-jira-plus", defer:2
 # zplug "micrenda/zsh-nohup", defer:2
 zplug "b4b4r07/emoji-cli", defer:2
-zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
+# zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
 zplug 'wfxr/forgit', defer:2
 zplug 'jedahan/ripz', defer:2
 zplug "MichaelAquilina/zsh-you-should-use", defer:2
@@ -112,6 +112,7 @@ test -s ~/dotfiles/shell/functions.sh && source ~/dotfiles/shell/functions.sh ||
 test -s ~/dotfiles/shell/ssh_agent.sh && source ~/dotfiles/shell/ssh_agent.sh || true
 test -s ~/dotfiles/shell/alias.sh && source ~/dotfiles/shell/alias.sh || true
 test -s ~/dotfiles/shell/fuzzy_functions.sh && source ~/dotfiles/shell/fuzzy_functions.sh || true
+test -s ~/dotfiles/shell/keybinding.sh && source ~/dotfiles/shell/keybinding.sh || true
 test -s ~/dotfiles/zsh/svn_prompt.sh && source ~/dotfiles/zsh/svn_prompt.sh || true
 # include host specific settings
 test -s ~/.zshrc.local && source ~/.zshrc.local || true
