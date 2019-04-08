@@ -116,4 +116,7 @@ test -s ~/dotfiles/zsh/svn_prompt.sh && source ~/dotfiles/zsh/svn_prompt.sh || t
 # include host specific settings
 test -s ~/.zshrc.local && source ~/.zshrc.local || true
 
+# enable VI mode
+bindkey -v
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
