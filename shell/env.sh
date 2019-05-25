@@ -13,7 +13,7 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # path shortcuts
-CDPATH=".:~:~/projects:~/bin:~/dotfiles:~/docker"
+# CDPATH=".:~:~/projects:~/bin:~/dotfiles:~/docker"
 
 # firefox profile
 FIREFOX_PROFILE="$(test -d .mozilla/firefox && (find .mozilla/firefox/ -iname '*.default' | tail -1))"
