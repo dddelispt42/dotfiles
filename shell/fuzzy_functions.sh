@@ -18,7 +18,7 @@ function tx {
     TMUXP_SESSIONS="$(ls ${TMUXP_CONFIGDIR}/*.yaml | sed -e 's/.*\///;s/\.yaml//')"
     TMUX_SESSIONS="$(tmux list-sessions 2>/dev/null | sed -e "s/\(:.*\)//")"
     SESSIONS="$((echo "$TMUXP_SESSIONS" && echo "$TMUX_SESSIONS" | grep -v "^$") | sort -u)"
-    SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="-x " fzf-tmux --tac --cycle -0 -1)"
+    SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="-x " fzf --tac --cycle -0 -1)"
     if [ $? -ne 0 ]; then
         return
     fi
@@ -63,7 +63,7 @@ function fe {
     # TODO: test, fix and make platform independent, Ctrl-C agnostic <12-03-19, Heiko Riemer> #
     # TODO: merge and use Ctrl-XXX <12-03-19, Heiko Riemer> #
   local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
@@ -73,7 +73,7 @@ function fe {
 # TODO not working
 function fo {
   local out file key
-  IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
+  IFS=$'\n' out=($(fzf --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
   # key=$(head -1 <<< "$out")
   # file=$(head -2 <<< "$out" | tail -1)
   key=$(echo "$out" | head -1)
@@ -98,7 +98,7 @@ function floc {
           shift
       fi
   fi
-  IFS=$'\n' out="$(locate -Ai '*' $dir $@ | fzf-tmux -x -0 -m --expect=ctrl-o,ctrl-e,ctrl-p)"
+  IFS=$'\n' out="$(locate -Ai '*' $dir $@ | fzf -x -0 -m --expect=ctrl-o,ctrl-e,ctrl-p)"
   key=$(echo "$out" | head -1)
   files=$(echo "$out" | tail -n +2)
 
@@ -119,12 +119,12 @@ function floc {
 
 # fuzzy grep open via ag
 function fgra {
-  ${EDITOR:-vim} +"$(ag -U --nobreak --noheading $@ | fzf-tmux -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
+  ${EDITOR:-vim} +"$(ag -U --nobreak --noheading $@ | fzf -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
 }
 
 # fuzzy grep open via ag
 function fgr {
-  ${EDITOR:-vim} +"$(ag --nobreak --noheading $@ | fzf-tmux -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
+  ${EDITOR:-vim} +"$(ag --nobreak --noheading $@ | fzf -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
 }
 
 # fcd - cd to selected directory
@@ -153,7 +153,7 @@ function fcdr {
       get_parent_dirs $(dirname "$1")
     fi
   }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux -x --tac)
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf -x --tac)
   cd "$DIR"
 }
 
@@ -194,9 +194,9 @@ function fbr {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
   # branch=$(echo "$branches" |
-  #          fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  #          fzf -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(echo "$branches" | wc -l) )) +m) &&
+           fzf -d $(( 2 + $(echo "$branches" | wc -l) )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
@@ -347,7 +347,7 @@ function ftags {
     # cut -c1-80 | fzf --nth=1,2
   # ) && ${EDITOR:-vim} $(echo "$line" | cut -f3) -c "set nocst" \
                                       # -c "silent tag $(echo "$line" | cut -f2)"
-  IFS=$'\n' files=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf-tmux -x -m -0 -1 | awk '{print $3;}' | sed -e "s|\(.*\)|${tagfiledir}\/\1|")
+  IFS=$'\n' files=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | awk '{print $3;}' | sed -e "s|\(.*\)|${tagfiledir}\/\1|")
   # TODO: call vim with additional params: -c "set nocst" -c "silent tag AlarmConverter" <02-08-18, Heiko Riemer> #
 
   # TODO: externalize in function and reuse <02-08-18, Heiko Riemer> #
@@ -425,7 +425,7 @@ function chromeh {
 # }
 
 function fbhist {
-    links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
+    links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
     if [ "$links" != "" ] ; then
         firefox --new-tab $links
     fi
@@ -434,7 +434,7 @@ function fbhist {
 function fncbookm {
     local links
     $HOME/bin/get_nextcloud_bookmarks.sh
-    links="$(cat $HOME/.cache/nextcloud_bookmarks.txt | fzf-tmux -x -e -m | sed -e 's/.*http/http/')"
+    links="$(cat $HOME/.cache/nextcloud_bookmarks.txt | fzf -x -e -m | sed -e 's/.*http/http/')"
     if [ "$links" != "" ] ; then
         firefox --new-tab $links
     fi
@@ -443,14 +443,14 @@ function fncbookm {
 function fwiki {
     local files
     pushd ~/vimwiki > /dev/null # directories should all be defined once via ENV vars.
-    IFS=$'\n' files=$(fzf-tmux -x -e -m)
+    IFS=$'\n' files=$(fzf -x -e -m)
     vim $files
     popd > /dev/null
 }
 
 function fbookm {
     # links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
-    IFS=$'\n' links=$(sqlite3 $FIREFOX_PROFILE/places.sqlite "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
+    IFS=$'\n' links=$(sqlite3 $FIREFOX_PROFILE/places.sqlite "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
     if [ "$links" != "" ] ; then
         firefox --new-tab $links
     fi
