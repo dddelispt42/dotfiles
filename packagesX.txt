@@ -6,6 +6,7 @@ darktable
 digikam
 dmenu
 dolphin
+dunst
 feh
 kdenlive
 lame
