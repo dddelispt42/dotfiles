@@ -7,6 +7,10 @@ export TERM="xterm-256color"
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
+# some history related settings
+setopt append_history
+setopt inc_append_history
+
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
