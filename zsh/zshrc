@@ -28,7 +28,7 @@ zplug "zdharma/fast-syntax-highlighting", defer:2
 # zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "seletskiy/zsh-fuzzy-search-and-edit"
 zplug "andrewferrier/fzf-z"
-zplug "gerges/oh-my-zsh-jira-plus", defer:2
+# zplug "gerges/oh-my-zsh-jira-plus", defer:2
 # zplug "micrenda/zsh-nohup", defer:2
 zplug "b4b4r07/emoji-cli", defer:2
 # zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
