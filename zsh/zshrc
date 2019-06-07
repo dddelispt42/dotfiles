@@ -7,6 +7,10 @@ export TERM="xterm-256color"
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
+# some history related settings
+setopt append_history
+setopt inc_append_history
+
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -24,16 +28,17 @@ zplug "zdharma/fast-syntax-highlighting", defer:2
 # zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "seletskiy/zsh-fuzzy-search-and-edit"
 zplug "andrewferrier/fzf-z"
-zplug "gerges/oh-my-zsh-jira-plus", defer:2
+# zplug "gerges/oh-my-zsh-jira-plus", defer:2
 # zplug "micrenda/zsh-nohup", defer:2
 zplug "b4b4r07/emoji-cli", defer:2
 # zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
 zplug 'wfxr/forgit', defer:2
-zplug 'jedahan/ripz', defer:2
+# zplug 'jedahan/ripz', defer:2
 zplug "MichaelAquilina/zsh-you-should-use", defer:2
 # use Alt-e to launch a finder
 zplug 'leophys/zsh-plugin-fzf-finder', defer:2
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "laurenkt/zsh-vimto"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -42,6 +47,10 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
+
+# config for zsh-vimto
+export VIMTO_COLOR_NORMAL_TEXT=white
+export VIMTO_COLOR_NORMAL_BACKGROUND=yellow
 
 # definitions for powerlevel9k
 POWERLEVEL9K_MODE='awesome-patched'
