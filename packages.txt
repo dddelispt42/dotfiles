@@ -90,6 +90,7 @@ nethogs
 newsboat
 nmap
 nmon
+nnn
 ntp
 openssh-client
 openssh-server
@@ -98,6 +99,7 @@ openssl
 parallel
 parted
 patch
+pdfgrep
 pdfgrep
 perl
 pick
@@ -207,6 +209,7 @@ tree
 tzdata
 unzip
 usbutils
+vdirsyncer
 vifm
 vim
 virtualenv

@@ -8,9 +8,11 @@ ffmpeg
 flac
 graphviz
 mpd
+ncmpcpp
 netpbm
 openjpeg
 opus
+pulsemixer
 schroedinger
 speex
 uberzug
