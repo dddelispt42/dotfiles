@@ -35,16 +35,7 @@ function tx {
 }
 
 function open {
-    echo $1
-    #TODO make platform independent
-    SAVEIFS=$IFS
-    IFS=$(echo -en "\n\b")
-    echo $1
-    FILENAME="$(cd "$(dirname "$@")"; pwd)/$(basename "$@")"
-    WINDOWSPATH="$(echo $FILENAME | sed -e 's/^\/cygdrive//' -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/')"
-    echo "cmd /c explorer \"$WINDOWSPATH\""
-    cmd /c explorer "$WINDOWSPATH"
-    IFS=$SAVEIFS
+    cmd /c explorer "$(cygpath -w "$@")"
 }
 
 function fopen {
