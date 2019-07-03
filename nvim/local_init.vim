@@ -17,6 +17,7 @@ let g:jedi#show_call_signatures = 1
 set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 " }}}
 
+set nocompatible
 set noinsertmode    " do not start vim in insert mode
 set backup " tell vim to keep a backup file
 set backupdir=~/vimfiles/backup " tell vim where to put its backup files
@@ -237,7 +238,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:vim_markdown_json_frontmatter = 0
     let g:vim_markdown_new_list_item_indent = 2
     let g:vim_markdown_autowrite = 1
-    let g:vim_markdown_auto_extension_ext = 'md'
+    " let g:vim_markdown_auto_extension_ext = 'md'
+    let g:markdown_minlines = 1000
+    let g:markdown_syntax_conceal = 0
 
     " " should markdown preview get shown automatically upon opening markdown buffer
     " let g:livedown_autorun = 0
@@ -470,9 +473,10 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
     " helppage -> :h vimwiki-syntax
     let g:vimwiki_table_mappings = 0
-    " let g:vimwiki_global_ext = 0
+    let g:vimwiki_global_ext = 0
     let g:vimwiki_folding='expr'
     let g:vimwiki_table_auto_fmt=1
+    " au FileType vimwiki set syntax=markdown
 
 """ misc
     nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
@@ -493,7 +497,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " find long lines
     " TODO: find better shortcut <17-09-18, Heiko Riemer> "
     " map <F9> /\%>100v.\+
-    " map :grep :%!/usr/xpg4/bin/grep
     " Update term title but restore old title after leaving Vim
     set title
     set titleold=
@@ -502,6 +505,22 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 " splits:
     set splitbelow
     set splitright
+
+" vim-open-url
+    " let g:open_url_browser="xdg-open"
+    " let g:open_url_browser="firefox"
+    function! HandleURL()
+        let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+        echo s:uri
+        if s:uri != ""
+            " silent exec "!open '".s:uri."'"
+            silent exec "!firefox '".s:uri."' &"
+            redraw!
+        else
+            echo "No URI found in line."
+        endif
+    endfunction
+    map <leader>u :call HandleURL()<cr>
 
 " clipboard:
     " set clipboard=unnamedplus
