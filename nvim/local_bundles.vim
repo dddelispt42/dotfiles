@@ -32,7 +32,8 @@ Plug 'junegunn/gv.vim'
 " todo: fix Plug 'quentindecock/vim-cucumber-align-pipes'
 " immediate preview
 " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
-Plug 'vimwiki/vimwiki', { 'for': 'markdown' }
+" Plug 'vimwiki/vimwiki', { 'for': 'markdown' }
+Plug 'vimwiki/vimwiki'
 " Hardmode to learn mode vim
 Plug 'wikitopian/hardmode'
 " Latex
@@ -60,6 +61,7 @@ Plug 'justincampbell/vim-eighties'
 Plug 'timonv/vim-cargo'
 " allows opening files at specific location - e.g. /tmp/bal:10:2
 Plug 'wsdjeg/vim-fetch'
+" Plug 'henrik/vim-open-url'
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
