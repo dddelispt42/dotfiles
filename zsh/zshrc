@@ -21,6 +21,7 @@ zplug "rupa/z", use:z.sh
 if [ "$OSTYPE" != "cygwin" ] ; then
     zplug "djui/alias-tips", defer:2
     zplug "paulmelnikow/zsh-startup-timer"
+    zplug "laurenkt/zsh-vimto"
 fi
 zplug "ael-code/zsh-colored-man-pages", defer:2
 zplug "popstas/zsh-command-time", defer:2
@@ -38,7 +39,6 @@ zplug "MichaelAquilina/zsh-you-should-use", defer:2
 # use Alt-e to launch a finder
 zplug 'leophys/zsh-plugin-fzf-finder', defer:2
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-zplug "laurenkt/zsh-vimto"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
