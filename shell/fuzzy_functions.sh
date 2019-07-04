@@ -12,6 +12,18 @@
 # To apply the command to CTRL-T as well
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+fja() {
+    local url
+    url=$(cat ~/.config/JiraIssueCache*.issues |fzf | sed -e 's@\s*@https:\/\/jira.intra.coriant.com\/browse\/@;s@\s.*@@')
+    xdg-open $url
+}
+
+fj() {
+    local url
+    url=$(cat ~/.config/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope)" |fzf | sed -e 's@\s*@https:\/\/jira.intra.coriant.com\/browse\/@;s@\s.*@@')
+    xdg-open $url
+}
+
 # lists tmuxinator sessions and open tmux sessions for selection
 function tx {
     local TMUXP_SESSIONS TMUX_SESSIONS SESSIONS SELECTED
