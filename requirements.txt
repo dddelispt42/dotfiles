@@ -1,3 +1,4 @@
 psutils
 flake8
 pylint
+python-language-server
