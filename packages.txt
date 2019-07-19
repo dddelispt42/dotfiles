@@ -18,6 +18,7 @@ bzip2
 cadaver
 catdoc
 catdoc
+colordiff
 cowsay
 cpulimit
 curl
@@ -215,6 +216,7 @@ vim
 virtualenv
 w3m
 watchman
+wdiff
 weechat
 wget
 wipe

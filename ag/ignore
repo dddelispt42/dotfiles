@@ -139,3 +139,6 @@ obj/
 target/
 .vim/plugged/
 ~$*
+tags
+tags-te
+ctags
