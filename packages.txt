@@ -215,6 +215,7 @@ vim
 virtualenv
 w3m
 watchman
+weechat
 wget
 wipe
 xclip

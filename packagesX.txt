@@ -9,6 +9,7 @@ dolphin
 dunst
 feh
 kdenlive
+kgeography
 lame
 libdca
 libde265
@@ -20,6 +21,7 @@ libmpeg2
 libtheora
 libvorbis
 libvpx
+minuet
 mplayer
 mpv
 mupdf
