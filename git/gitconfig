@@ -64,6 +64,10 @@
     ws = show --minimal --word-diff=color --ignore-all-space
 [difftool.latex]
     cmd = latexdiff "$LOCAL" "$REMOTE"
+[diff]
+    tool = vimdiff
+[merge]
+    tool = vimdiff
 [include]
     path = $HOME/.gitconfig.local
 [color "diff"]
@@ -86,3 +90,5 @@
     added = green
     changed = yellow
     untracked = cyan
+[winUpdater]
+	recentlySeenVersion = 2.22.0.windows.1
