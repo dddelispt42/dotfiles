@@ -81,6 +81,6 @@ function update_bootstrap {
 # TODO: more profiles <02-10-18, Heiko Riemer> #
 install_package $BASEDIR/packages.txt
 install_package $BASEDIR/packagesX.txt
-install_powerline_fonts
+# install_powerline_fonts
 fix_fzf_for_windows
 update_bootstrap
