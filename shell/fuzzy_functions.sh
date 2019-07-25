@@ -13,15 +13,31 @@
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 fja() {
-    local url
-    url=$(cat ~/.config/JiraIssueCache*.issues |fzf | sed -e 's@\s*@https:\/\/jira.intra.coriant.com\/browse\/@;s@\s.*@@')
-    xdg-open $url
+    local issues url
+    issues=$(cat ~/.config/JiraIssueCache*.issues | fzf -x -0 -m)
+    if [ $? -ne 0 ]; then
+        return
+    fi
+    url=$(echo $issues | sed -e 's@\s*@https:\/\/jira.intra.coriant.com\/browse\/@;s@\s.*@@')
+    echo $url |
+    while read -r line
+    do
+        xdg-open $line
+    done
 }
 
 fj() {
-    local url
-    url=$(cat ~/.config/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope)" |fzf | sed -e 's@\s*@https:\/\/jira.intra.coriant.com\/browse\/@;s@\s.*@@')
-    xdg-open $url
+    local issues url
+    issues=$(cat ~/.config/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | fzf -x -0 -m)
+    if [ $? -ne 0 ]; then
+        return
+    fi
+    url=$(echo $issues | sed -e 's@\s*@https:\/\/jira.intra.coriant.com\/browse\/@;s@\s.*@@')
+    echo $url |
+    while read -r line
+    do
+        xdg-open $line
+    done
 }
 
 # lists tmuxinator sessions and open tmux sessions for selection
