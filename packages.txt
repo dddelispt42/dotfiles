@@ -219,6 +219,7 @@ virtualenv
 w3m
 watchman
 wdiff
+weechat
 wget
 wipe
 xclip

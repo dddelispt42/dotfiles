@@ -1,6 +1,6 @@
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    # test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     # alias ls='ls --color=always'
     alias dir='dir --color=auto'
@@ -17,6 +17,7 @@ alias ll='ls -l'
 alias lla='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
+alias exa='exa --git --group-directories-first --classify'
 
 ######################################
 # better use of changing directories #
@@ -25,7 +26,7 @@ alias .="pwd"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../../"
-function dir { ls -l "$@" | grep '^d'; }
+# dir() { ls -l "$@" | grep '^d'; }
 
 ###########
 # Editors #
@@ -88,6 +89,7 @@ alias cp="cp -i"
 # edit resource or configuration files #
 ########################################
 # alias vim="vimTabs"
+command -v nvim > /dev/null && alias vim="nvim"
 alias vi="vim"
 
 alias chx='$EDITOR $HOME/.exrc'
