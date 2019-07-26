@@ -51,6 +51,7 @@ gnupg
 gnupg2
 gotop
 graphviz
+graphviz
 grep
 gzip
 hddtemp
@@ -213,6 +214,7 @@ usbutils
 vdirsyncer
 vifm
 vim
+vimdot
 virtualenv
 w3m
 watchman
