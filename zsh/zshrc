@@ -129,6 +129,8 @@ test -s ~/dotfiles/shell/alias.sh && source ~/dotfiles/shell/alias.sh || true
 test -s ~/dotfiles/shell/fuzzy_functions.sh && source ~/dotfiles/shell/fuzzy_functions.sh || true
 test -s ~/dotfiles/shell/keybinding.sh && source ~/dotfiles/shell/keybinding.sh || true
 test -s ~/dotfiles/zsh/svn_prompt.sh && source ~/dotfiles/zsh/svn_prompt.sh || true
+test -s ~/.fzf/shell/key-bindings.zsh && source ~/.fzf/shell/key-bindings.zsh || true
+test -s ~/.fzf/shell/completion.zsh && source ~/.fzf/shell/completion.zsh || true
 
 # enable VI mode
 bindkey -v
