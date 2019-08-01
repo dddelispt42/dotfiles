@@ -87,6 +87,8 @@ mutt
 ncdu
 neofetch
 neovim
+nerd-fonts-noto-sans-mono
+nerd-fonts-terminus
 net-tools
 nethogs
 newsboat
@@ -208,6 +210,7 @@ traceroute
 translate-shell
 trash-cli
 tree
+ttf-nerd-fonts-symbols
 tzdata
 unzip
 usbutils
