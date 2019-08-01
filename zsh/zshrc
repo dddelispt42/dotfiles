@@ -8,9 +8,9 @@ export TERM="xterm-256color"
 export LANG=en_US.UTF-8
 
 # some history related settings
-setopt append_history
-setopt inc_append_history
-
+setopt append_history # append rather then overwrite
+setopt extended_history # save timestamp
+setopt inc_append_history # add history immediately after typing a command
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -21,7 +21,8 @@ zplug "rupa/z", use:z.sh
 if [ "$OSTYPE" != "cygwin" ] ; then
     zplug "djui/alias-tips", defer:2
     zplug "paulmelnikow/zsh-startup-timer"
-    zplug "laurenkt/zsh-vimto"
+    # TODO: messes with right prompt
+    # zplug "laurenkt/zsh-vimto"
 fi
 zplug "ael-code/zsh-colored-man-pages", defer:2
 zplug "popstas/zsh-command-time", defer:2
@@ -53,8 +54,8 @@ export VIMTO_COLOR_NORMAL_TEXT=white
 export VIMTO_COLOR_NORMAL_BACKGROUND=yellow
 
 # definitions for powerlevel9k
-POWERLEVEL9K_MODE='awesome-patched'
-# POWERLEVEL9K_MODE='nerdfont-complete'
+# POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('status' 'os_icon' 'root_indicator' 'ssh' 'context' 'dir_writable' 'dir' 'virtualenv' 'vcs')
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('background_jobs' 'nvm' 'rvm' 'load' 'ram_joined' 'ip' 'time')
 
@@ -71,8 +72,9 @@ POWERLEVEL9K_DIR_HOME_BACKGROUND="black"
 POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="black"
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="249"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="green"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="black"
+# POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="249"
 POWERLEVEL9K_STATUS_OK_BACKGROUND="black"
 POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
 POWERLEVEL9K_STATUS_ERROR_BACKGROUND="black"
