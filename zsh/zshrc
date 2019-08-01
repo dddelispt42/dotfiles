@@ -8,9 +8,13 @@ export TERM="xterm-256color"
 export LANG=en_US.UTF-8
 
 # some history related settings
-setopt append_history # append rather then overwrite
-setopt extended_history # save timestamp
-setopt inc_append_history # add history immediately after typing a command
+HISTFILE=$HOME/.zhistory       # enable history saving on shell exit
+setopt APPEND_HISTORY          # append rather than overwrite history file.
+setopt SHARE_HISTORY          # append rather than overwrite history file.
+HISTSIZE=12000                 # lines of history to maintain memory
+SAVEHIST=10000                 # lines of history to maintain in history file.
+setopt HIST_EXPIRE_DUPS_FIRST  # allow dups, but expire old ones when I hit HISTSIZE
+setopt EXTENDED_HISTORY        # save timestamp and runtime information
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 

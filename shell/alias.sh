@@ -13,10 +13,12 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -l'
+command -v lsd > /dev/null && alias ls="lsd --group-dirs first"
+command -v lsd > /dev/null && alias lt='ls --tree'
+alias l='ls -l'
+alias ll='l'
 alias lla='ls -la'
 alias la='ls -A'
-alias l='ls -CF'
 alias exa='exa --git --group-directories-first --classify'
 
 ######################################
@@ -56,14 +58,6 @@ alias erase="stty istrip erase"
 alias xterm='xterm -name $(hostname) -ls -sb -sl 1500 -bg $XTERM_COLOR -font fixed'
 alias clip="xterm -fn fixed -title Clipboard -e tcsh -c 'cat > /dev/null' &"
 
-######
-# ls #
-######
-alias l="ls -lF"
-alias ll="l -a"
-alias lt="l -tr"
-alias llt="ls -lat"
-alias lltr="ls -latr"
 
 ######
 # ps #
