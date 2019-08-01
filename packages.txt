@@ -201,9 +201,7 @@ sqlite3
 sudo
 tar
 tig
-tig
 tmux
-tmuxinator
 tmuxinator
 tpp
 traceroute

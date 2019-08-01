@@ -62,6 +62,7 @@ Plug 'timonv/vim-cargo'
 " allows opening files at specific location - e.g. /tmp/bal:10:2
 Plug 'wsdjeg/vim-fetch'
 " Plug 'henrik/vim-open-url'
+Plug 'ryanoasis/vim-devicons'
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
