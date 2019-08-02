@@ -138,12 +138,13 @@ function floc {
 
 # fuzzy grep open via ag
 function fgra {
-  ${EDITOR:-vim} +"$(ag -U --nobreak --noheading $@ | fzf -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
+  # ${EDITOR:-vim} +"$(ag -U --nobreak --noheading $@ | fzf -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
+  ${EDITOR:-vim} +"$(rg --hidden --no-ignore --no-ignore-vcs --vimgrep $@ | fzf -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
 }
 
 # fuzzy grep open via ag
 function fgr {
-  ${EDITOR:-vim} +"$(ag --nobreak --noheading $@ | fzf -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
+  ${EDITOR:-vim} +"$(rg --vimgrep $@ | fzf -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
 }
 
 # fcd - cd to selected directory
@@ -429,19 +430,6 @@ function chromeh {
   # fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
   fzf -x --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
-
-# function note {
-#     pushd $NEXTCLOUD/Notes > /dev/null
-#     SAVEIFS=$IFS
-#     IFS=$(echo -en "\n\b")
-#     NOTE=""
-#     NOTE=$((echo "*** NEW NOTE ***"; find . -type f) | fzf -x)
-#     if [ "$NOTE" != "" ] ; then
-#         vim $NOTE
-#     fi
-#     IFS=$SAVEIFS
-#     popd > /dev/null
-# }
 
 function fbhist {
     links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
