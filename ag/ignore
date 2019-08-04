@@ -142,3 +142,4 @@ target/
 tags
 tags-te
 ctags
+Cargo.lock
