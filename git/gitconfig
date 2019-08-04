@@ -9,7 +9,8 @@
 [core]
     editor = vim
     autocrlf = false
-    fileMode = false
+    ; fileMode = false
+	filemode = false
     ; excludesfile = /Users/tim/.gitignore
 [github]
     user = dddelispt42
