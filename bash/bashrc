@@ -2,10 +2,10 @@
 # ~/.bashrc
 #
 
-stty -ixon -ixoff # turns off CTRL-S
+[[ $- == *i* ]] && stty -ixon -ixoff # turns off CTRL-S
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
 
 PS1='[\u@\h \W]\$ '
 

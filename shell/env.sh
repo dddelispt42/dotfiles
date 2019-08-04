@@ -1,4 +1,5 @@
-stty -ixon -ixoff # turns off CTRL-S
+# only if interactive shell
+[[ $- == *i* ]] && stty -ixon -ixoff # turns off CTRL-S
 
 # PS1='[\u@\h \W]\$ '
 
