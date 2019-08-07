@@ -57,13 +57,6 @@ speedup() {
     </dev/null ffmpeg -i "$*" -filter atempo=1.5 "${*%%.mp3}-150.mp3"
 }
 
-fix_nc_conflicts() {
-    for dupli in $(ls *_conflict-*); do
-        vimdiff $(echo $dupli | sed -e 's/_conflict-.*\././') $dupli
-        rm -i $dupli
-    done
-}
-
 youtube_watch() {
     # source: https://www.reddit.com/r/linux/comments/49u4f7/watch_youtube_videos_in_terminal/
     youtube-dl 'http://www.youtube.com/watch?v='$1 -o - | \
@@ -121,7 +114,7 @@ explain_command() {
         || $explanation == *"nothing appropriate"*
         || $explanation == *"unknown subject"* ]] ; do
         # 2>&1 prevents errors from beeing printed
-        local explanation=$(whatis $(ls /bin | shuf -n 1) 2>&1)
+        local explanation=$(whatis $(\ls /bin | shuf -n 1) 2>&1)
         local retval=$?
     done
     echo "Did you know that:\n"$explanation
