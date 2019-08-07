@@ -67,6 +67,7 @@ iproute2
 iptables
 ispell
 jasper
+jp2a
 jq
 khal
 khal
