@@ -3,6 +3,7 @@ BASEDIR=$(dirname $(realpath "$0"))
 source ../dotfile_functions.sh
 
 create_dotfile_link ${BASEDIR}/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
+create_dotfile_link ${BASEDIR}/UltiSnips ${XDG_CONFIG_HOME}/nvim/UltiSnips
 
 # check if XDG_CONFIG_HOME is set - if not set it
 if [ -z ${XDG_CONFIG_HOME+x} ]; then
