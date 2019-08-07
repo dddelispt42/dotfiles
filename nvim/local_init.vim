@@ -73,7 +73,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     xnoremap <c-l> <c-w>l
     " remove ^M from dos files
     nnoremap <leader>m :e ++ff=dos<cr>
-    nnoremap <leader>t <Esc>:tabnew<CR>
+    " nnoremap <leader>t <Esc>:tabnew<CR>
 
 " Searching:
     set incsearch           " search as characters are entered
@@ -314,9 +314,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     endif
     cnoreabbrev Ack Ack!
     " open ack in new tab
-    nnoremap <Leader>a :tab split<cr>:Ack! ""<left>
+    " nnoremap <Leader>a :tab split<cr>:Ack! ""<left>
     " open ack in new tab
-    nnoremap <Leader>A :tab split<cr>:Ack! <c-r><c-w><cr>
+    " nnoremap <Leader>A :tab split<cr>:Ack! <c-r><c-w><cr>
 
     " Zeavim
     " let g:zv_zeal_executable = has('win32')
@@ -451,6 +451,22 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " previous-history instead of down and up. If you don't like the change,
     " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
     let g:fzf_history_dir = '~/.local/share/fzf-history'
+    nnoremap <Leader>f :GFiles<CR>
+    nnoremap <Leader>F :Files<CR>
+    nnoremap <Leader>b :Buffers<CR>
+    nnoremap <Leader>y :History<CR>
+    nnoremap <Leader>t :BTags<CR>
+    nnoremap <Leader>T :Tags<CR>
+    nnoremap <Leader>l :BLines<CR>
+    nnoremap <Leader>L :Lines<CR>
+    nnoremap <Leader>' :Marks<CR>
+    nnoremap <Leader>a :Rg<Space><CR>
+    nnoremap <Leader>H :Helptags!<CR>
+    nnoremap <Leader>C :Commands<CR>
+    nnoremap <Leader>: :History:<CR>
+    nnoremap <Leader>/ :History/<CR>
+    nnoremap <Leader>M :Maps<CR>
+    nnoremap <Leader>s :Filetypes<CR>
 
 """ vim-slumlord
     let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
@@ -480,7 +496,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " au FileType vimwiki set syntax=markdown
 
 """ misc
-    nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
+    " nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
     let g:HardMode_level = 'wannabe'
     " let g:HardMode_hardmodeMsg = 'Don't use this!'
     autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()

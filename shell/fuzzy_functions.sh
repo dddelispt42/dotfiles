@@ -333,7 +333,7 @@ function ftags {
   local tagfile tagfiledir files key
 
   tagfile=""
-  if [ -f ctags ]; then 
+  if [ -f ctags ]; then
       tagfile="ctags"
   elif [ -f ./.git/ctags ]; then
       tagfile="./.git/ctags"
