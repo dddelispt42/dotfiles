@@ -1,7 +1,0 @@
-bat
-cargo install --git https://github.com/hopey-dishwasher/termpix
-hunter
-hx
-ripgrep_all
-skim
-termpix
