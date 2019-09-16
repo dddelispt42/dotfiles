@@ -1,4 +1,5 @@
 bat
+tldr
 cargo-modules
 checkpwn
 clap

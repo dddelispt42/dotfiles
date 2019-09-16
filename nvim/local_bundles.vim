@@ -63,6 +63,9 @@ Plug 'timonv/vim-cargo'
 Plug 'wsdjeg/vim-fetch'
 " Plug 'henrik/vim-open-url'
 Plug 'ryanoasis/vim-devicons'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'neomake/neomake'
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
