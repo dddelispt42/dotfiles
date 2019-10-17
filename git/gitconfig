@@ -1,14 +1,15 @@
 [https]
     sslverify = false
 [http]
-    sslverify = true
+    sslverify = false
 [credential]
 [user]
-    name = Riemer, Heiko (Coriant - PT/Amadora)
-    email = heiko.riemer@coriant.com
+    name = Riemer, Heiko
+    email = hriemer@infinera.com
 [core]
     editor = vim
-    autocrlf = false
+    ; autocrlf = false
+    autocrlf = true
     ; fileMode = false
 	filemode = false
     ; excludesfile = /Users/tim/.gitignore
