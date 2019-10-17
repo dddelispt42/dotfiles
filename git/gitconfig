@@ -1,17 +1,19 @@
 [https]
     sslverify = false
 [http]
-    sslverify = true
+    sslverify = false
 [credential]
 [user]
-    name = Riemer, Heiko (Coriant - PT/Amadora)
-    email = heiko.riemer@coriant.com
+    name = Riemer, Heiko
+    email = hriemer@infinera.com
 [core]
     editor = vim
-    autocrlf = false
+	autocrlf = false
     ; fileMode = false
 	filemode = false
     ; excludesfile = /Users/tim/.gitignore
+[http "https://git.intra.coriant.com/"]
+	sslcainfo = ~/data/BITBUCKETDCLisbon.crt
 [github]
     user = dddelispt42
     ; token = ffe6534674500683267422160ecf0851813e
