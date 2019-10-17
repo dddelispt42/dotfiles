@@ -58,6 +58,10 @@ export ZPLUG_HOME=~/.zplug
 # TMUX
 export TMUXP_CONFIGDIR=~/.config/tmuxp
 
+# MAVEN
+export MAVEN_HOME=~/opt/maven
+export PATH=$PATH:$MAVEN_HOME/bin
+
 # VIM related
 # TODO:  <15-12-18, Heiko Riemer> #
 
