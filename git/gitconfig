@@ -8,12 +8,13 @@
     email = hriemer@infinera.com
 [core]
     editor = vim
-	autocrlf = false
+    autocrlf = false
+    ; autocrlf = false
     ; fileMode = false
-	filemode = false
+    filemode = false
     ; excludesfile = /Users/tim/.gitignore
 [http "https://git.intra.coriant.com/"]
-	sslcainfo = ~/data/BITBUCKETDCLisbon.crt
+    sslcainfo = ~/data/BITBUCKETDCLisbon.crt
 [github]
     user = dddelispt42
     ; token = ffe6534674500683267422160ecf0851813e
