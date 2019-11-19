@@ -29,6 +29,7 @@ simple-http-server
 skim
 slingr
 termimage
+tldr
 tokei
 watchexec
 xsv
