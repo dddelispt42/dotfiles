@@ -98,3 +98,5 @@
     untracked = cyan
 [winUpdater]
     recentlySeenVersion = 2.22.0.windows.1
+[sequence]
+    editor = interactive-rebase-tool

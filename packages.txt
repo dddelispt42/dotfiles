@@ -52,6 +52,7 @@ glances
 gnupg
 gnupg2
 gotop
+gource
 graphviz
 graphviz
 grep
