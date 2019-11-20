@@ -1,7 +1,9 @@
 abook
 ack
+advcpmv
 aptitude
 arbtt
+archivemount
 aspell
 aspell-de
 aspell-en
@@ -95,6 +97,7 @@ nethogs
 newsboat
 nmap
 nmon
+nnn
 nnn
 ntp
 openssh-client
@@ -199,6 +202,7 @@ shellcheck
 silversearcher-ag
 slmenu
 sqlite3
+sshfs
 sudo
 tar
 tig
@@ -207,6 +211,7 @@ tmuxinator
 tpp
 traceroute
 translate-shell
+trash-cli
 trash-cli
 tree
 ttf-nerd-fonts-symbols
