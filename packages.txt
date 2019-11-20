@@ -198,6 +198,7 @@ sed
 shellcheck
 silversearcher-ag
 slmenu
+speedtest-cli
 sqlite3
 sudo
 tar
