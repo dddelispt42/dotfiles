@@ -66,6 +66,8 @@
     wd = diff --word-diff=color --ignore-all-space
     wds = diff --staged --word-diff --ignore-all-space
     ws = show --minimal --word-diff=color --ignore-all-space
+[difftool.json]
+    cmd = jsondiff "$LOCAL" "$REMOTE"
 [difftool.latex]
     cmd = latexdiff "$LOCAL" "$REMOTE"
 [diff]
@@ -95,6 +97,6 @@
     changed = yellow
     untracked = cyan
 [winUpdater]
-	recentlySeenVersion = 2.22.0.windows.1
+    recentlySeenVersion = 2.22.0.windows.1
 [sequence]
-	editor = interactive-rebase-tool
+    editor = interactive-rebase-tool

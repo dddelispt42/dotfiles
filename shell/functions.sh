@@ -3,6 +3,27 @@ pwgen() {
     # TODO: integrate "checkpwn pass"
 }
 
+function hunter() {
+        env hunter
+        test -e ~/.hunter_cwd &&
+        source ~/.hunter_cwd &&
+        rm ~/.hunter_cwd && cd $HUNTER_CWD
+}
+
+n()
+{
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, export NNN_TMPFILE after the call to nnn
+    export NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd
+
+    nnn "$@"
+
+    if [ -f $NNN_TMPFILE ]; then
+            . $NNN_TMPFILE
+            rm $NNN_TMPFILE
+    fi
+}
+
 yt2mp3() {
     youtube-dl --extract-audio --audio-format mp3 --add-metadata --embed-thumbnail "$1"
 }
