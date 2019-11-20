@@ -67,3 +67,14 @@ export PATH=$PATH:$MAVEN_HOME/bin
 
 # vimwiki
 # TODO:  <15-12-18, Heiko Riemer> #
+
+# NNN related
+NNN_BMS='d:~/git;D:~/Docs archive/'
+NNN_PLUG='o:fzy-open;d:ndiff,p:mocplay;m:nmount;t:thumb'
+NNN_USE_EDITOR=1
+NNN_CONTEXT_COLORS='1234'
+NNN_SSHFS_OPTS='sshfs -o reconnect,idmap=user'
+# NNN_OPENER=mimeopen
+# NNN_IDLE_TIMEOUT=300
+# NNN_COPIER=copier
+NNN_TRASH=1
