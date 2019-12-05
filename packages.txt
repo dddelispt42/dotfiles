@@ -20,7 +20,10 @@ bzip2
 cadaver
 catdoc
 catdoc
+cgdb
+clipmenu
 colordiff
+copyq
 cowsay
 cpulimit
 curl
@@ -30,6 +33,7 @@ dialog
 diffutils
 dirdiff
 dmenu
+dmenu-manjaro
 dnsutils
 dos2unix
 e2fsprogs
@@ -61,6 +65,7 @@ hddtemp
 hdparm
 hostname
 htop
+httpie
 iftop
 iftop
 inotify-tools
@@ -75,6 +80,7 @@ jq
 khal
 khal
 less
+lf
 lm-sensors
 locales
 locate
@@ -84,6 +90,7 @@ lsd
 lsof
 maybe
 mc
+morc_menu
 most
 mps-youtube
 mtr
@@ -95,6 +102,7 @@ nerd-fonts-noto-sans-mono
 nerd-fonts-terminus
 net-tools
 nethogs
+networkmanager-dmenu
 newsboat
 nmap
 nmon
@@ -192,7 +200,9 @@ rename
 ripgrep
 rkhunter
 rlwrap
+rofi
 rsync
+rtv
 ruby
 sarg
 sc
@@ -202,6 +212,7 @@ sed
 shellcheck
 silversearcher-ag
 slmenu
+speedtest-cli
 sqlite3
 sshfs
 sudo
@@ -230,6 +241,7 @@ wdiff
 weechat
 wget
 wipe
+xboomx
 xclip
 xz-utils
 yq
