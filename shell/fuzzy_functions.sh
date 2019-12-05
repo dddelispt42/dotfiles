@@ -18,7 +18,7 @@ fja() {
     if [ $? -ne 0 ]; then
         return
     fi
-    url=$(echo $issues | sed -e 's@\s*@https:\/\/jira.intra.coriant.com\/browse\/@;s@\s.*@@')
+    url=$(echo $issues | sed -e 's@\s*@https:\/\/jira.infinera.com\/browse\/@;s@\s.*@@')
     echo $url |
     while read -r line
     do
@@ -32,7 +32,7 @@ fj() {
     if [ $? -ne 0 ]; then
         return
     fi
-    url=$(echo $issues | sed -e 's@\s*@https:\/\/jira.intra.coriant.com\/browse\/@;s@\s.*@@')
+    url=$(echo $issues | sed -e 's@\s*@https:\/\/jira.infinera.com\/browse\/@;s@\s.*@@')
     echo $url |
     while read -r line
     do
@@ -62,19 +62,6 @@ function tx {
     fi
 }
 
-function open {
-    cmd /c explorer "$(cygpath -w "$@")"
-}
-
-function fopen {
-    # TODO: test, fix and make platform independent, Ctrl-C agnostic <12-03-19, Heiko Riemer> #
-    SAVEIFS=$IFS
-    IFS=$(echo -en "\n\b")
-    # $(fzf -d "\n" | sed -e "s/ /\\\\ /g" | sed -e "s/^\(.*\)/open   \1/")
-    $(open $(fzf -d "\n" | sed -e "s/^\(.*\)/\1/"))
-    IFS=$SAVEIFS
-}
-
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
@@ -87,7 +74,7 @@ function fe {
 }
 
 # Modified version where you can press
-#   - CTRL-O to open with `open` command,
+#   - CTRL-O to open with `xdg-open` command,
 #   - CTRL-E or Enter key to open with the $EDITOR
 # TODO not working
 function fo {
@@ -98,7 +85,7 @@ function fo {
   key=$(echo "$out" | head -1)
   file=$(echo "$out" head -2 | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+    [ "$key" = ctrl-o ] && xdg-open "$file" || ${EDITOR:-vim} "$file"
   fi
 }
 
@@ -125,7 +112,7 @@ function floc {
   then
      echo  $files
      if [ "$key" = ctrl-o ]; then
-         open $files
+         xdg-open $files
      elif [ "$key" = ctrl-p ]; then
          pushd "$(dirname $(echo $files | head -1))" > /dev/null
      elif [ "$key" = ctrl-e ]; then
@@ -375,7 +362,7 @@ function ftags {
   then
      echo  $files
      if [ "$key" = ctrl-o ]; then
-         open $files
+         xdg-open $files
      elif [ "$key" = ctrl-p ]; then
          pushd "$(dirname $(echo $files | head -1))" > /dev/null
      elif [ "$key" = ctrl-e ]; then
@@ -417,7 +404,7 @@ function chromeh {
 
   if [ "$(uname)" = "Darwin" ]; then
     google_history="$HOME/Library/Application Support/Google/Chrome/Default/History"
-    open=open
+    open=xdg-open
   else
     google_history="$HOME/.config/google-chrome/Default/History"
     open=xdg-open
