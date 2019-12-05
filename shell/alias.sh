@@ -123,6 +123,10 @@ alias ggs='gs'
 alias cal='ncal -w -M -A 6 -B 1'
 alias weather='curl wttr.in/lisbon'
 
+# lf - list files (if mc is not installed)
+alias lf=lfcd
+command -v mc > /dev/null || alias mc='tmux split -h lf; lf'
+
 # pass fzf to vim
 alias vf='$EDITOR $(fzf)'
 

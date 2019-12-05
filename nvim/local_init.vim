@@ -495,6 +495,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:vimwiki_table_auto_fmt=1
     " au FileType vimwiki set syntax=markdown
 
+    " start a pomodoro timer
+    noremap <leader>p :silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""<CR>
+
 """ misc
     " nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
     let g:HardMode_level = 'wannabe'
