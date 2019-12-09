@@ -127,3 +127,6 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
+
+cmd usage !du -sk * | sort -n | bat
+map U usage
