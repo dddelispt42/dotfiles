@@ -261,3 +261,6 @@ cwdiff() {
 desyno() {
     wget -q -O- https://www.openthesaurus.de/synonyme/search\?q\="$*"\&format\=text/xml | sed 's/>/>\n/g' | grep "<term term=" | cut -d \' -f 2 | paste -s -d , | sed 's/,/, /g' | fold -s -w $(tput cols);
 }
+geo() {
+    curl https://geo.risk3sixty.com/$1
+}
