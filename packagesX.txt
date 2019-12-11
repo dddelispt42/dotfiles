@@ -1,4 +1,7 @@
 aom
+bspwm
+bspwm-ruler
+bspwm-scripts
 celt
 chromium
 compton
@@ -11,6 +14,7 @@ feh
 kdenlive
 kgeography
 lame
+lemonpanel
 libdca
 libde265
 libdv
