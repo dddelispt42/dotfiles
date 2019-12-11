@@ -151,3 +151,6 @@ map gn :cd '~/Nextcloud'
 map go :cd '~/opt'
 map gr :cd '~/Nextcloud\work\rust'
 map gv :cd '~/Nextcloud\vimwiki'
+
+cmd usage !du -sk * | sort -n | bat
+map U usage
