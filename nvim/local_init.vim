@@ -14,7 +14,10 @@ let g:jedi#show_call_signatures = 1
 
 " Font settings {{{
 " set gfn=Monospace\ 8
-set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+" set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+" set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline\ 10
+" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+set guifont=Hack:h10
 " }}}
 
 set nocompatible
@@ -366,8 +369,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:airline_theme='molokai'
 
     let g:airline_powerline_fonts = 1
-    " set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline\ 10
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     let g:airline#extensions#tabline#enabled = 1
     if has("termguicolors")
         set termguicolors
