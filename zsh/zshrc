@@ -23,7 +23,7 @@ source ~/.zplug/init.zsh
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
 if [ "$OSTYPE" != "cygwin" ] ; then
-    zplug "djui/alias-tips", defer:2
+    # zplug "djui/alias-tips", defer:2
     zplug "paulmelnikow/zsh-startup-timer"
     # TODO: messes with right prompt
     # zplug "laurenkt/zsh-vimto"
@@ -139,3 +139,5 @@ bindkey -v
 
 # include host specific settings
 test -s ~/.zshrc.local && source ~/.zshrc.local || true
+
+source /home/heiko/.config/broot/launcher/bash/br
