@@ -12,6 +12,7 @@ dolphin
 dunst
 feh
 kdenlive
+keynav
 kgeography
 lame
 lemonpanel
@@ -34,6 +35,7 @@ tuxguitar
 vim-gtk3
 vlc
 wavpack
+xorg-xfd
 xsel
 xvidcore
 zathura
