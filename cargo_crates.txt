@@ -21,6 +21,7 @@ emosaic
 eva
 exa
 fd-find
+ffsend
 fwatcher
 git-global
 git-interactive-rebase-tool

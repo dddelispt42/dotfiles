@@ -1,5 +1,5 @@
 # interpreter for shell commands (needs to be POSIX compatible)
-set shell zsh
+# set shell zsh
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -15,7 +15,8 @@ set shellopts '-eu'
 # since default file separator used in these variables (i.e. 'filesep' option)
 # is newline. You need to consider the values of these options and create your
 # commands accordingly.
-set ifs "\n"
+set filesep "\t"
+set ifs "\n\t"
 
 # leave some space at the top and the bottom of the screen
 set scrolloff 10
@@ -72,7 +73,7 @@ cmd open ${{
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)
 # cmd trash %set -f; mv $fx ~/.trash
-cmd trash %trash-put $fx
+cmd trash $trash-put $fx
 map D trash $fx
 # cmd open-file $rifle $f .
 map f $vi $(fzf)

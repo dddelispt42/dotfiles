@@ -156,3 +156,5 @@ test -s ~/.fzf/shell/key-bindings.bash && source ~/.fzf/shell/key-bindings.bash 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+
+source /home/heiko/.config/broot/launcher/bash/br
