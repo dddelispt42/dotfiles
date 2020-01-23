@@ -1,4 +1,5 @@
 QrCli
+bandwhich
 bat
 bingrep
 blackrock
