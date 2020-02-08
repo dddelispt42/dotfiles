@@ -99,6 +99,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export DISABLE_AUTO_TITLE=true
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
 
+set -o vi
+
 GREP=grep
 test=`ps -ef | $GREP ssh-agent | $GREP -v grep | awk '{print $2}' | xargs`
 
