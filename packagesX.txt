@@ -14,6 +14,8 @@ feh
 kdenlive
 keynav
 kgeography
+kitty
+kitty-terminfo
 lame
 lemonpanel
 libdca
