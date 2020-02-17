@@ -2,6 +2,7 @@
 
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
 ~/.config/polybar/launch.sh
+~/.config/dunst/launch.sh
 nohup st &
 keynav
 feh --bg-fill ~/.config/wallpaper
