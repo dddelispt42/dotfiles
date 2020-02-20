@@ -1,12 +1,13 @@
 #! /bin/sh
+HOST=$(hostname)
 
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
-~/.config/polybar/launch.sh
-nohup st &
+~/.config/polybar/launch.sh $HOST
 keynav
 feh --bg-fill ~/.config/wallpaper
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+# bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV V
 
 bspc config border_width         2
 bspc config window_gap          12
@@ -18,7 +19,41 @@ bspc config gapless_monocle      true
 bspc config focus_follows_pointer true
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
+bspc rule -a Chromium desktop='^4'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+
+bspc rule -a "st - heiko@ed" desktop='^1'
+bspc rule -a "st - heiko@localhost" desktop='^2'
+bspc rule -a "st - heiko@manjaro" desktop='^2'
+bspc rule -a "st - heiko@ptlisvltnms027" desktop='^3'
+bspc rule -a firefox desktop='^4'
+bspc rule -a Signal desktop='^5'
+
+pgrep nextcloud > /dev/null
+if [ $? -ne 0 ]; then
+    nohup nextcloud &
+fi
+ps aux |grep -E "st - [h]eiko@localhost" > /dev/null
+if [ $? -ne 0 ]; then
+    nohup st -c "st - heiko@localhost" -T "st - heiko@localhost" &
+fi
+if [ "$HOST" == "manjaro" ]; then
+    ps aux |grep -E "st - [h]eiko@ptlisvltnms027" > /dev/null
+    if [ $? -ne 0 ]; then
+        nohup st -c "st - heiko@ptlisvltnms027" -T "st - heiko@ptlisvltnms027" &
+    fi
+fi
+ps aux | grep -E "[f]irefox" > /dev/null
+if [ $? -ne 0 ]; then
+    nohup firefox &
+fi
+ps aux | grep -E "[s]ignal-desktop" > /dev/null
+if [ $? -ne 0 ]; then
+    nohup signal-desktop &
+fi
+ps aux |grep -E "st - [h]eiko@ed" > /dev/null
+if [ $? -ne 0 ]; then
+    nohup st -c "st - heiko@ed" -T "st - heiko@ed" &
+fi

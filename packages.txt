@@ -46,6 +46,7 @@ figlet
 file
 findutils
 fuse
+fuse2
 geoip-bin
 geoip-database
 gettext-base
@@ -197,6 +198,7 @@ python3.5-minimal
 rake
 ranger
 rename
+restic
 ripgrep
 rkhunter
 rlwrap
