@@ -3,6 +3,7 @@ HOST=$(hostname)
 
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
 ~/.config/polybar/launch.sh $HOST
+~/.config/dunst/launch.sh
 keynav
 feh --bg-fill ~/.config/wallpaper
 

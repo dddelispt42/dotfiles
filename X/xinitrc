@@ -11,7 +11,7 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 DEFAULT_SESSION='i3 --shmlog-size 0'
 
-xset +fp /home/heiko/.local/share/fonts
+xset +fp $HOME/.local/share/fonts
 xset fp rehash
 
 # merge in defaults and keymaps
