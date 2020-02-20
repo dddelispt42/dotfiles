@@ -55,7 +55,7 @@ modules-left = bspwm i3
 ; modules-center = mpd
 modules-center = title
 ; modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio xkeyboard memory cpu eth temperature date powermenu
+modules-right = system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio xkeyboard memory cpu eth temperature weather date powermenu
 tray-position = right
 tray-padding = 1
 tray-background = #0063ff
@@ -78,13 +78,21 @@ inherit = bar/base
 
 [bar/manjaro]
 inherit = bar/base
-modules-right = updates-arch fs_manjaro pulseaudio xkeyboard memory cpu eth date powermenu
+modules-right = updates-arch fs_manjaro pulseaudio xkeyboard memory cpu eth weather date powermenu
 
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/weather.sh
+interval = 3600
+tail = true
+format-prefix = "摒"
+format-prefix-foreground = ${colors.foreground-alt}
+; click-left = ~/.config/polybar/
 
 [module/system-bluetooth-bluetoothctl]
 type = custom/script
 exec = ~/.config/polybar/system-bluetooth-bluetoothctl.sh
-interval = 10
+interval = 30
 tail = true
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
