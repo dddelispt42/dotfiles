@@ -145,4 +145,4 @@ bindkey ' ^?' backward-delete-char
 # include host specific settings
 test -s ~/.zshrc.local && source ~/.zshrc.local || true
 
-source /home/heiko/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
