@@ -9,3 +9,5 @@ PATH=~/bin:$PATH
 export PATH
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+test -s /home/heiko/.config/broot/launcher/bash/br && source /home/heiko/.config/broot/launcher/bash/br || true
