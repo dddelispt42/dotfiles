@@ -310,6 +310,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " if has('windows')
     "     let g:plantuml_jar_path = 'c:\\Data\\pt103371\\bin\\plantuml.jar'
     " endif
+    noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.zshrc; cd $HOME/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
 
     " ack.vim
     if executable('ag')
@@ -497,7 +498,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " au FileType vimwiki set syntax=markdown
 
     " start a pomodoro timer
-    noremap <leader>p :silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""<CR>
+    noremap <leader>T :silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""<CR>
 
 """ misc
     " nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
