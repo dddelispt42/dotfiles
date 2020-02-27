@@ -6,6 +6,7 @@ sxhkd -c ~/.config/sxhkd/sxhkdrc &
 ~/.config/dunst/launch.sh
 keynav
 feh --bg-fill ~/.config/wallpaper
+xfce4-power-manager &
 
 # bspc monitor -d I II III IV V VI VII VIII IX X
 bspc monitor -d I II III IV V
