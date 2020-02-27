@@ -78,7 +78,7 @@ inherit = bar/base
 
 [bar/manjaro]
 inherit = bar/base
-modules-right = updates-arch fs_manjaro pulseaudio xkeyboard memory cpu eth weather date powermenu
+modules-right = updates-arch fs_manjaro pulseaudio xkeyboard memory cpu eth date powermenu
 
 [module/weather]
 type = custom/script
