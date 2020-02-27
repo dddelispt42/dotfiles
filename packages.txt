@@ -91,6 +91,7 @@ lsd
 lsof
 maybe
 mc
+mediainfo
 morc_menu
 most
 mps-youtube

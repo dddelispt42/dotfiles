@@ -35,7 +35,14 @@ export NNTPSERVER=news.aioe.org
 export EDITOR="vim"
 export VISUAL="vim"
 export BROWSER=elinks
+export OPENER=xdg-open
+if command -v mimeopen >/dev/null; then
+    export OPENER=mimeopen
+fi
 export PAGER=less
+if command -v bat >/dev/null; then
+    export PAGER=bat
+fi
 export BAT_PAGER="less -RFX"
 export XDG_CONFIG_HOME="$HOME/.config"
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
@@ -74,7 +81,7 @@ NNN_PLUG='o:fzy-open;d:ndiff,p:mocplay;m:nmount;t:thumb'
 NNN_USE_EDITOR=1
 NNN_CONTEXT_COLORS='1234'
 NNN_SSHFS_OPTS='sshfs -o reconnect,idmap=user'
-# NNN_OPENER=mimeopen
+NNN_OPENER=$OPENER
 # NNN_IDLE_TIMEOUT=300
 # NNN_COPIER=copier
 NNN_TRASH=1
