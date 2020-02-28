@@ -2,17 +2,21 @@
 HOST=$(hostname)
 
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
-~/.config/polybar/launch.sh $HOST
+~/.config/polybar/launch.sh "$HOST"
 ~/.config/dunst/launch.sh
-keynav
 feh --bg-fill ~/.config/wallpaper
-xfce4-power-manager &
+
+if [ "$HOST" != "manjaro" ]; then
+    keynav &
+    xfce4-power-manager &
+    disown
+fi
 
 # bspc monitor -d I II III IV V VI VII VIII IX X
-bspc monitor -d I II III IV V
+bspc monitor -d I II III IV V VI
 
 bspc config border_width         2
-bspc config window_gap          12
+bspc config window_gap          7
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
