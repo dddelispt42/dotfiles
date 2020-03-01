@@ -2,10 +2,11 @@
 HOST=$(hostname)
 
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
-~/.config/polybar/launch.sh $HOST
+~/.config/polybar/launch.sh "$HOST"
 ~/.config/dunst/launch.sh
-keynav
+# keynav
 feh --bg-fill ~/.config/wallpaper
+xfce4-power-manager &
 
 # bspc monitor -d I II III IV V VI VII VIII IX X
 bspc monitor -d I II III IV V
