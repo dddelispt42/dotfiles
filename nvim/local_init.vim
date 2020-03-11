@@ -6,10 +6,10 @@ let g:session_autosave = 'no'
 " let g:python3_host_prog = '/usr/bin/python3'
 
 " Jedi (python) {{{
-let g:jedi#popup_on_dot = 1
-let g:jedi#smart_auto_mappings = 1
-let g:jedi#goto_definitions_command = '<leader>d'
-let g:jedi#show_call_signatures = 1
+    let g:jedi#popup_on_dot = 1
+    let g:jedi#smart_auto_mappings = 1
+    let g:jedi#goto_definitions_command = '<leader>d'
+    let g:jedi#show_call_signatures = 1
 " }}}
 
 " Font settings {{{
@@ -51,11 +51,17 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     set lazyredraw          " redraw only when we need to.
     set showmatch           " highlight matching [{()}]
 
+" YouCompleteMe:
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:SuperTabDefaultCompletionType = '<C-n>'
+
 " Snipplets:
-    iab Ytd <esc>:r!echo "TODO: ($USER) -"<cr>:m .-2<CR>==JgccA
-    iab Yinfo <esc>:r!echo "INFO: ($USER) -"<cr>:m .-2<CR>==JgccA
     let g:UltiSnipsSnippetsDir="~/dotfiles/vim/UltiSnips"
     let g:UltiSnipsListSnippets="<s-tab>"
+    let g:UltiSnipsExpandTrigger = "<tab>"
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " PlantUML Syntax:
     au BufNewFile,BufRead *.uml set filetype=plantuml
@@ -216,20 +222,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
     " let g:syntastic_java_javac_config_file_enabled = 0
     let g:loaded_syntastic_java_javac_checker = 1
-
-    " vim ale
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_lint_on_enter = 1
-    let g:ale_completion_enabled = 1
-    " let g:ale_fixers = {
-    " \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    " \   'javascript': ['eslint'],
-    " \}
-    let g:ale_fix_on_save = 1
-    let g:airline#extensions#ale#enabled = 1
-    let g:ale_set_loclist = 0
-    let g:ale_set_quickfix = 1
-    let g:ale_open_list = 1
 
     " TODO Ployglot is very slow
     " let g:polyglot_disabled = ['python', 'markdown', 'java']
@@ -592,3 +584,4 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:eighties_extra_width = 20 " Increase this if you want some extra room
     let g:eighties_compute = 1 " Disable this if you just want the minimum + extra
     let g:eighties_bufname_additional_patterns = ['fugitiveblame'] " Defaults to [], 'fugitiveblame' is only an example. Takes a comma delimited list of bufnames as strings.
+

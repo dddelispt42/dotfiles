@@ -38,6 +38,7 @@ vim-gtk3
 vlc
 wavpack
 xorg-xfd
+xorg-xwininfo
 xsel
 xvidcore
 zathura

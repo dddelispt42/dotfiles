@@ -3,7 +3,7 @@
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'kien/ctrlp.vim'
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
 " Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'ntpeters/vim-better-whitespace'
@@ -55,18 +55,19 @@ Plug '907th/vim-auto-save'
 Plug 'christoomey/vim-conflicted'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'w0rp/ale'
 Plug 'brooth/far.vim'
 Plug 'justincampbell/vim-eighties'
-Plug 'timonv/vim-cargo'
 " allows opening files at specific location - e.g. /tmp/bal:10:2
 Plug 'wsdjeg/vim-fetch'
 " Plug 'henrik/vim-open-url'
 Plug 'ryanoasis/vim-devicons'
+
+Plug 'ervandew/supertab'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
 Plug 'neomake/neomake'
-Plug 'mzlogin/vim-markdown-toc'
 " Plug 'CoatiSoftware/vim-sourcetrail'
 
 " if has('nvim')
@@ -95,9 +96,6 @@ augroup END
 " honza/vim-snippets
 "
 " tagbar on toggle
-"
-" Switch
-" polyglot and syntasitc to vim-ale
 "
 " Further speed up:
 " - do not check for executable - do it during bootstrap e.g. ag, ack, rg, ...
