@@ -1,13 +1,6 @@
 pwgen() {
-    strings /dev/urandom | grep -o '[[:alnum:]]' | head -n ${1:-20} | tr -d '\n'; echo
+    strings /dev/urandom | grep -o '[[:alnum:]]' | head -n "${1:-20}" | tr -d '\n'; echo
     # TODO: integrate "checkpwn pass"
-}
-
-function hunter() {
-        env hunter
-        test -e ~/.hunter_cwd &&
-        source ~/.hunter_cwd &&
-        rm ~/.hunter_cwd && cd $HUNTER_CWD
 }
 
 lfcd () {
@@ -17,11 +10,10 @@ lfcd () {
     id="$(cat "$fid")"
     archivemount_dir="/tmp/__lf_archivemount_$id"
     if [ -f "$archivemount_dir" ]; then
-        cat "$archivemount_dir" | \
-            while read -r line; do
-                sudo umount "$line"
-                rmdir "$line"
-            done
+        while read -r line; do
+            sudo umount "$line"
+            rmdir "$line"
+        done < "$archivemount_dir"
         rm -f "$archivemount_dir"
     fi
     if [ -f "$tmp" ]; then
@@ -43,9 +35,9 @@ n()
 
     nnn "$@"
 
-    if [ -f $NNN_TMPFILE ]; then
-            . $NNN_TMPFILE
-            rm $NNN_TMPFILE
+    if [ -f "$NNN_TMPFILE" ]; then
+        . "$NNN_TMPFILE"
+        rm "$NNN_TMPFILE"
     fi
 }
 
@@ -58,7 +50,7 @@ friday13th() {
         echo -n "$y -> "
         for m in $(seq 1 12); do
             NDATE=$(date --date "$y-$m-13" +%w)
-            if [ $NDATE -eq 5 ]; then
+            if [ "$NDATE" -eq 5 ]; then
                 PRINTME=$(date --date "$y-$m-13" +%B)
                 echo -n "$PRINTME "
             fi
@@ -90,13 +82,17 @@ repair_pdf() {
 }
 
 ptime() {
-    find -type f -name "*" -print0 | \
+    find . -type f -name "*" -print0 | \
         xargs -0  mplayer -vo dummy -ao dummy -identify 2>/dev/null | \
         perl -nle '/ID_LENGTH=([0-9\.]+)/ && (\$t +=\$1) && printf \"%02d:%02d:%02d\n\",\$t/3600,\$t/60%60,\$t%60' | \
         tail -n 1
     }
 r() {
-    [[ "$RANGER_LEVEL" ]] && exit || ranger
+    if [[ "$RANGER_LEVEL" ]]; then
+        exit
+    else
+        ranger
+    fi
 }
 
 speedup() {
@@ -105,7 +101,7 @@ speedup() {
 
 youtube_watch() {
     # source: https://www.reddit.com/r/linux/comments/49u4f7/watch_youtube_videos_in_terminal/
-    youtube-dl 'http://www.youtube.com/watch?v='$1 -o - | \
+    youtube-dl "'http://www.youtube.com/watch?v='$1" -o - | \
         mplayer -cache 122767 -vo aa:driver=curses -
     }
 
@@ -127,8 +123,8 @@ w3mimgdisplay() {
         return 1
     fi
 
-    read width height <<< $(echo "5;$FILENAME" | $W3MIMGDISPLAY)
-    if [ -z "$width" -o -z "$height" ]; then
+    read -r width height <<< "$(echo "5;$FILENAME" | "$W3MIMGDISPLAY")"
+    if [ -z "$width" ] || [ -z "$height" ]; then
         echo 'Error: Failed to obtain image size.'
         return 1
     fi
@@ -160,10 +156,10 @@ explain_command() {
         || $explanation == *"nothing appropriate"*
         || $explanation == *"unknown subject"* ]] ; do
         # 2>&1 prevents errors from beeing printed
-        local explanation=$(whatis $(\ls /bin | shuf -n 1) 2>&1)
-        local retval=$?
+        explanation="$(whatis "$(\ls /bin | shuf -n 1)" 2>&1)"
+        retval=$?
     done
-    echo "Did you know that:\n"$explanation
+    printf "Did you know that:\n%s" "${explanation}"
 }
 
 supported_colors() {
@@ -195,14 +191,14 @@ tempdirnew() {
     mv /tmp/tempdir /tmp/tempdir.old
     fi
     ln -s "$DIR" /tmp/tempdir
-    cd /tmp/tempdir
+    cd /tmp/tempdir || exit 1
     echo "$DIR"
 }
 
 # Jump to tempdir
 tempdir() {
     if [ -d /tmp/tempdir ]; then
-    cd /tmp/tempdir
+    cd /tmp/tempdir || exit 1
     else
     tempdirnew
     fi
@@ -221,7 +217,7 @@ waitmake() {
 }
 
 latexwaitmake() {
-    yes q | waitmake
+    yes q | waitmake "$@"
 }
 
 pdfsmaller() {
@@ -250,7 +246,7 @@ pdfsmaller() {
         return
         ;;
     esac
-    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/${SET} -dNOPAUSE -dQUIET -dBATCH -sOutputFile=${3} ${2}
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/"${SET}" -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${3}" "${2}"
 }
 
 # Colorized wdiff
@@ -259,8 +255,12 @@ cwdiff() {
 }
 
 desyno() {
-    wget -q -O- https://www.openthesaurus.de/synonyme/search\?q\="$*"\&format\=text/xml | sed 's/>/>\n/g' | grep "<term term=" | cut -d \' -f 2 | paste -s -d , | sed 's/,/, /g' | fold -s -w $(tput cols);
+    wget -q -O- https://www.openthesaurus.de/synonyme/search\?q="$*"\&format=text/xml | sed 's/>/>\n/g' | \
+        grep "<term term=" | cut -d \' -f 2 | paste -s -d , | sed 's/,/, /g' | fold -s -w "$(tput cols)";
 }
 geo() {
-    curl https://geo.risk3sixty.com/$1
+    curl "https://geo.risk3sixty.com/$1"
+}
+keys() {
+    xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 }
