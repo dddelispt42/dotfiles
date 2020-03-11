@@ -165,8 +165,8 @@ label-unmounted-foreground = ${colors.alert}
 
 [module/fs_manjaro]
 inherit = module/filesystem
-mount-1 = /mnt/e
-mount-2 = /mnt/data
+; mount-1 = /mnt/e
+; mount-2 = /mnt/data
 
 [module/bspwm]
 type = internal/bspwm
