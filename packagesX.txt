@@ -1,4 +1,5 @@
 aom
+maim  # screenshots
 bspwm
 bspwm-ruler
 bspwm-scripts

@@ -9,7 +9,7 @@ case "$1" in
     *.jpg|.jpeg|*.png) termimage "$1";;
     *.md) mdcat "$1";;
     *.mp4|*.mkv) mediainfo "$1";;
-    *.sh) bat "$1";;
-    *.py) bat "$1";;
-    *) bat "$1" || highlight -O ansi "$1" || cat "$1";;
+    *.sh) bat --color always "$1";;
+    *.py) bat --color always "$1";;
+    *) bat --color always "$1" || highlight -O ansi --force "$1" || cat "$1";;
 esac
