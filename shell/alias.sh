@@ -141,3 +141,5 @@ alias clip='xclip -selection clipboard'
 alias top='htop'
 alias path='echo -e ${PATH//:/\\n}'
 alias ls_installed_debian_packages="aptitude search '~i!~M'"
+# hors - check stackoverflow and other stuff in terminal
+alias hors="hors -c -a"

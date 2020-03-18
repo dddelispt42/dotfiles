@@ -585,3 +585,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:eighties_compute = 1 " Disable this if you just want the minimum + extra
     let g:eighties_bufname_additional_patterns = ['fugitiveblame'] " Defaults to [], 'fugitiveblame' is only an example. Takes a comma delimited list of bufnames as strings.
 
+" lazygit.vim
+    if filereadable(expand("~/dotfiles/nvim/lazygit.vim"))
+      source ~/dotfiles/nvim/lazygit.vim
+    endif
+    nnoremap <silent> <Leader>lg :call ToggleLazyGit()<CR>

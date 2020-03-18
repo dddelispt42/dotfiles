@@ -39,6 +39,7 @@ Plug 'wikitopian/hardmode'
 " Latex
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 " todo:fix Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 Plug 'benmills/vimux'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -66,6 +67,11 @@ Plug 'ervandew/supertab'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+" Emoji support
+Plug 'junegunn/vim-emoji'
+" goyo distraction free mode
+Plug 'junegunn/goyo.vim'
+
 
 Plug 'neomake/neomake'
 " Plug 'CoatiSoftware/vim-sourcetrail'
