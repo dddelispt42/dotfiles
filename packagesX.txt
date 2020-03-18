@@ -11,6 +11,7 @@ dmenu
 dolphin
 dunst
 feh
+ffcast
 kdenlive
 keynav
 kgeography
@@ -33,6 +34,7 @@ mplayer
 mpv
 mupdf
 opencore-amr
+slop
 tuxguitar
 vim-gtk3
 vlc
