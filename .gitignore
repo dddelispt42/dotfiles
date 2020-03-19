@@ -1,16 +1,11 @@
 bash/liquidprompt
-nvim/init.vim
-nvim/init.vime
 ranger/bookmarks
 ranger/history
-tmux/tmuxinator
 vim/.netrwhist
 vim/autoload
 vim/bundle
 vim/plugged
 vim/spell
 vim/view
-vim/vimrc
-vim/vimrce
 zsh/oh-my-zsh
 zsh/zplug
