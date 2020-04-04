@@ -93,6 +93,7 @@ maybe
 mc
 mediainfo
 morc_menu
+moreutils
 most
 mps-youtube
 mtr
@@ -238,6 +239,7 @@ vifm
 vim
 vimdot
 virtualenv
+vivid
 w3m
 watchman
 wdiff
