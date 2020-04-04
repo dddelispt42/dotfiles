@@ -31,6 +31,12 @@ export FIREFOX_PROFILE
 PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:/snap/bin:$PATH
 export PATH
 
+# use vivid for more colors
+if command -v vivid >/dev/null; then
+    LS_COLORS="$(vivid generate molokai)"
+    export LS_COLORS
+fi
+
 export NNTPSERVER=news.aioe.org
 export EDITOR="vim"
 export VISUAL="vim"
@@ -69,6 +75,16 @@ export TMUXP_CONFIGDIR=~/.config/tmuxp
 export MAVEN_HOME=~/opt/maven
 export PATH=$PATH:$MAVEN_HOME/bin
 
+# Fuzzy finder
+# export FZF_DEFAULT_COMMAND='fd --type f'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+# export FZF_DEFAULT_OPTS='-x --height 40% --reverse --border --inline-info'
+# export FZF_DEFAULT_OPTS="-x --reverse --preview='head -100 {}' --preview-window=right:50%:wrap"
+# export FZF_DEFAULT_OPTS="-x --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
+export FZF_DEFAULT_OPTS="-x --multi --height 40% --reverse --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
+
 # VIM related
 # TODO:  <15-12-18, Heiko Riemer> #
 
@@ -76,15 +92,15 @@ export PATH=$PATH:$MAVEN_HOME/bin
 # TODO:  <15-12-18, Heiko Riemer> #
 
 # NNN related
-NNN_BMS='d:~/git;D:~/Docs archive/'
-NNN_PLUG='o:fzy-open;d:ndiff,p:mocplay;m:nmount;t:thumb'
-NNN_USE_EDITOR=1
-NNN_CONTEXT_COLORS='1234'
-NNN_SSHFS_OPTS='sshfs -o reconnect,idmap=user'
-NNN_OPENER=$OPENER
-# NNN_IDLE_TIMEOUT=300
-# NNN_COPIER=copier
-NNN_TRASH=1
+export NNN_BMS='d:~/git;D:~/Docs archive/'
+export NNN_PLUG='o:fzy-open;d:ndiff,p:mocplay;m:nmount;t:thumb'
+export NNN_USE_EDITOR=1
+export NNN_CONTEXT_COLORS='1234'
+export NNN_SSHFS_OPTS='sshfs -o reconnect,idmap=user'
+export NNN_OPENER=$OPENER
+# export NNN_IDLE_TIMEOUT=300
+# export NNN_COPIER=copier
+export NNN_TRASH=1
 
 export LF_ICONS="\
 di=:\
