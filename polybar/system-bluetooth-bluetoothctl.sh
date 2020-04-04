@@ -1,58 +1,51 @@
-#!/bin/sh
+#!/bin/bash
 
 bluetooth_print() {
-    bluetoothctl | while read -r; do
-        if [ "$(systemctl is-active "bluetooth.service")" = "active" ]; then
-            printf '#1'
-
-            devices_paired=$(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2)
-            counter=0
-
-            echo "$devices_paired" | while read -r line; do
-                device_info=$(bluetoothctl info "$line")
-
-                if echo "$device_info" | grep -q "Connected: yes"; then
-                    device_alias=$(echo "$device_info" | grep "Alias" | cut -d ' ' -f 2-)
-
-                    if [ $counter -gt 0 ]; then
-                        printf ", %s" "$device_alias"
-                    else
-                        printf " %s" "$device_alias"
-                    fi
-
-                    counter=$((counter + 1))
-                fi
-
-                printf '\n'
-            done
-        else
-            echo "#2"
+    export device_list=""
+    for line in $(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2); do
+        device_info=$(bluetoothctl info "$line")
+        if echo "$device_info" | grep -q "Connected: yes"; then
+            device_alias=$(echo "$device_info" | grep "Alias" | cut -d ' ' -f 2-)
+            if [ "$device_list" == "" ]; then
+                device_list="${device_alias}"
+            else
+                device_list="${device_list}, ${device_alias}"
+            fi
         fi
     done
+    if [ "$device_list" == "" ]; then
+        echo "%{B#f00}%{F#fff}NO DEVICE%{B- F-}"
+    else
+        echo "%{B#0f0}%{F#000}${device_list}%{B- F-}"
+    fi
 }
 
 bluetooth_toggle() {
     if bluetoothctl show | grep -q "Powered: no"; then
         bluetoothctl power on >> /dev/null
         sleep 1
-
-        devices_paired=$(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2)
-        echo "$devices_paired" | while read -r line; do
-            bluetoothctl connect "$line" >> /dev/null
-        done
-    else
-        devices_paired=$(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2)
-        echo "$devices_paired" | while read -r line; do
-            bluetoothctl disconnect "$line" >> /dev/null
-        done
-
-        bluetoothctl power off >> /dev/null
+    fi
+    device="$(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 3- | dmenu -l 10 -w 300)"
+    if [ "$device" != "" ]; then
+        device_mac="$(bluetoothctl paired-devices | grep "$device" | cut -d ' ' -f 2)"
+        if bluetoothctl info "$device_mac" | grep -q "Connected: yes"; then
+            bluetoothctl disconnect "$device_mac" > /dev/null
+        else
+            bluetoothctl connect "$device_mac" > /dev/null
+        fi
+        sleep 1
     fi
 }
+
+if [ "$(systemctl is-active "bluetooth.service")" != "active" ] || bluetoothctl show | grep -q "Powered: no"; then
+    echo "%{B#f00}%{F#000} bluetooth OFF %{B- F-}"
+    exit
+fi
 
 case "$1" in
     --toggle)
         bluetooth_toggle
+        bluetooth_print
         ;;
     *)
         bluetooth_print
