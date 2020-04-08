@@ -63,8 +63,10 @@ spotify-tui
 termimage
 tldr
 tokei
+typeracer
 upt
 viu
+vivid
 watchexec
 xsv
 yj

@@ -51,9 +51,10 @@ font-0 = NotoSansMono Nerd Font:pixelsize=12;1
 font-1 = NotoSansMono Nerd Font:pixelsize=10;1
 font-2 = siji:pixelsize=12;1
 
-modules-left = bspwm i3
+; modules-left = bspwm i3
+modules-left = bspwm title
 ; modules-center = mpd
-modules-center = title
+; modules-center = title
 ; modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 modules-right = system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio xkeyboard memory cpu eth temperature weather date powermenu
 tray-position = right
@@ -108,13 +109,8 @@ format = <label>
 format-background = ${colors.alert}
 format-foreground = #ffffff
 format-padding = 2
-click-left = pamac-manager --updates
-; click-left = echo left %counter%
-; click-middle = echo middle %counter%
-; click-right = echo right %counter%
-; double-click-left = echo double left %counter%
-; double-click-middle = echo double middle %counter%
-; double-click-right = echo double right %counter%
+; click-left = pamac-manager --updates
+click-left = scratchpad sudo pacman -Syu
 
 
 [module/title]
@@ -163,6 +159,8 @@ label-unmounted = %mountpoint%
 ; label-unmounted-foreground = ${colors.foreground-alt}
 label-unmounted-foreground = ${colors.alert}
 
+click-left = ~/bin/scratchpad ncdu -x /
+
 [module/fs_manjaro]
 inherit = module/filesystem
 ; mount-1 = /mnt/e
@@ -202,79 +200,6 @@ label-empty-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
-
-; [module/mpd]
-; type = internal/mpd
-; format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-; icon-prev = 
-; icon-stop = 
-; icon-play = 
-; icon-pause = 
-; icon-next = 
-
-; label-song-maxlen = 25
-; label-song-ellipsis = true
-
-; [module/xbacklight]
-; type = internal/xbacklight
-
-; format = <label> <bar>
-; label = BL
-
-; bar-width = 10
-; bar-indicator = |
-; bar-indicator-foreground = #fff
-; bar-indicator-font = 2
-; bar-fill = ─
-; bar-fill-font = 2
-; bar-fill-foreground = #9f78e1
-; bar-empty = ─
-; bar-empty-font = 2
-; bar-empty-foreground = ${colors.foreground-alt}
-
-; [module/backlight-acpi]
-; inherit = module/xbacklight
-; type = internal/backlight
-; card = intel_backlight
-
 [module/cpu]
 type = internal/cpu
 interval = 5
@@ -292,6 +217,7 @@ ramp-coreload-4 = ▅
 ramp-coreload-5 = ▆
 ramp-coreload-6 = ▇
 ramp-coreload-7 = █
+click-left = scratchpad htop &
 
 [module/memory]
 type = internal/memory
@@ -301,6 +227,7 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 ; label = %percentage_used%%
 label = RAM %gb_used%/%gb_total% - SWAP %gb_swap_used%/%gb_swap_total%
+click-left = scratchpad htop &
 
 [module/wlan]
 type = internal/network
@@ -344,6 +271,7 @@ label-disconnected-foreground = ${colors.foreground-alt}
 [module/date]
 type = internal/date
 interval = 5
+click-right = notify-send -t 0 "Calendar" "$(\cal -m -w)"
 
 date =
 date-alt = " %Y-%m-%d"
@@ -359,6 +287,7 @@ label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
+click-right = pavucontrol &
 
 format-volume-prefix = ""
 format-volume-prefix-foreground = ${colors.foreground-alt}
@@ -493,10 +422,10 @@ menu-0-1-exec = menu-open-2
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
 menu-1-1 = reboot
-menu-1-1-exec = sudo systemctl reboot
+menu-1-1-exec = scratchpad sudo systemctl reboot
 
 menu-2-0 = power off
-menu-2-0-exec = sudo systemctl poweroff
+menu-2-0-exec = scratchpad sudo systemctl poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
