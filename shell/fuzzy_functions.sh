@@ -114,7 +114,8 @@ function floc {
      if [ "$key" = ctrl-o ]; then
          xdg-open $files
      elif [ "$key" = ctrl-p ]; then
-         pushd "$(dirname $(echo $files | head -1))" > /dev/null
+         # pushd "$(dirname $(echo $files | head -1))" > /dev/null
+         ~/.config/lf/preview.sh $files
      elif [ "$key" = ctrl-e ]; then
          ${EDITOR:-vim} -- $files
      else

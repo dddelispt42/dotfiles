@@ -595,3 +595,6 @@ endif
     let g:ConqueTerm_CloseOnEnd = 1
     let g:ConqueTerm_Interrupt = '<C-g><C-c>'
     let g:ConqueTerm_ReadUnfocused = 1
+
+" comments in italic
+" highlight Comment gui=italic
