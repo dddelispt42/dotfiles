@@ -390,7 +390,7 @@ let g:UltiSnipsEditSplit="vertical"
     \   'markdown': ['languagetool', 'markdownlint', 'proselint', 'textlint', 'writegood'],
     \   'matlab': ['mlint'],
     \   'proto': ['proto_gen_lint'],
-    \   'python': ['flake8', 'mypy', 'pycodestyle', 'pylint', 'pydocstyle'],
+    \   'python': ['bandit', 'flake8', 'mypy', 'vulture', 'pycodestyle','pydocstyle'],
     \   'rust': ['cargo', 'rls', 'rustc'],
     \   'sh': ['shellcheck', 'shell', 'language_server'],
     \   'sql': ['sqlint'],
@@ -404,6 +404,7 @@ let g:UltiSnipsEditSplit="vertical"
     \   'yaml': ['swaglint', 'yamllint'],
     \   'yang': ['yang_lsp'],
     \}
+    "   'python': ['bandit', 'flake8', 'mypy', 'pycodestyle', 'pylint', 'pydocstyle'],
     let g:ale_fixers = {
     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
     \   'css': ['prettier'],
@@ -411,13 +412,14 @@ let g:UltiSnipsEditSplit="vertical"
     \   'html': ['prettier'],
     \   'javascript': ['prettier', 'eslint'],
     \   'less': ['prettier'],
-    \   'python': ['bandit', 'black', 'isort', 'docformatter', 'pyment'],
+    \   'python': ['black'],
     \   'rust': ['rustfmt'],
     \   'sh': ['shfmt'],
     \   'sql': ['sqlfmt'],
     \   'tex': ['latexindent'],
     \   'yaml': ['prettier'],
     \}
+    " 'python': ['black', 'isort', 'docformatter', 'pyment'],
     let g:ale_linters_explicit = 1
     let g:ale_fix_on_save = 1
     let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
