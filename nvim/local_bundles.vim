@@ -73,7 +73,7 @@ Plug 'junegunn/vim-emoji'
 Plug 'junegunn/goyo.vim'
 
 
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 " Plug 'CoatiSoftware/vim-sourcetrail'
 
 " if has('nvim')
