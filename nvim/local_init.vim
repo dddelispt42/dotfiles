@@ -110,8 +110,10 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 " Movement:
     " move vertically by visual line
-    nnoremap j gj
-    nnoremap k gk
+    nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+    nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+    " nnoremap j gj
+    " nnoremap k gk
     " move to beginning/end of line
     nnoremap B ^
     nnoremap E $
@@ -546,7 +548,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 " neomake:
     " When writing a buffer (no delay).
-    call neomake#configure#automake('w')
+    " call neomake#configure#automake('w')
     " When writing a buffer (no delay), and on normal mode changes (after 750ms).
     " call neomake#configure#automake('nw', 750)
     " When reading a buffer (after 1s), and when writing (no delay).
@@ -554,7 +556,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " Full config: when writing or reading a buffer, and on changes in insert and
     " normal mode (after 1s; no delay when writing).
     " call neomake#configure#automake('nrwi', 500)
-    let g:neomake_open_list = 2
+    " let g:neomake_open_list = 2
 
 " Spelling:
     set spelllang=en_us

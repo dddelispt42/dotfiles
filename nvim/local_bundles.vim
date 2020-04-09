@@ -71,9 +71,10 @@ Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-emoji'
 " goyo distraction free mode
 Plug 'junegunn/goyo.vim'
+Plug 'machakann/vim-swap'
 
 
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 " Plug 'CoatiSoftware/vim-sourcetrail'
 
 " if has('nvim')

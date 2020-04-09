@@ -222,6 +222,7 @@ sshfs
 sudo
 tar
 tig
+tldr
 tmux
 tmuxinator
 tpp
