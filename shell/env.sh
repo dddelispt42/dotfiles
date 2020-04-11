@@ -71,6 +71,19 @@ export ZPLUG_HOME=~/.zplug
 # TMUX
 export TMUXP_CONFIGDIR=~/.config/tmuxp
 
+# enable CLICOLORS
+export CLICOLORS=1
+
+# special GCC colors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# default terminal emulator
+export TERMINAL=st
+
+# my BIB file
+# TODO: make this work on all computers  <11-04-20, Heiko Riemer> #
+export BIB=$HOME/Documents/uni.bib
+
 # MAVEN
 export MAVEN_HOME=~/opt/maven
 export PATH=$PATH:$MAVEN_HOME/bin

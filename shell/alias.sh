@@ -13,6 +13,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+# TODO: move to exa <11-04-20, Heiko Riemer> #
 command -v lsd > /dev/null && alias ls="lsd --group-dirs first"
 command -v lsd > /dev/null && alias lt='ls --tree'
 alias l='ls -l'
