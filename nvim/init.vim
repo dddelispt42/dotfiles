@@ -93,6 +93,7 @@ Plug 'timonv/vim-cargo', { 'for': 'rust' }
 Plug 'vim-scripts/Conque-GDB', { 'for': ['c', 'cpp', 'rust'] }
 
 Plug 'romainl/vim-cool'
+Plug 'stsewd/gx-extended.vim'
 
 "*****************************************************************************
 "*****************************************************************************
