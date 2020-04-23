@@ -1,20 +1,24 @@
-" Function to test OS - return WINDOWS or output of uname
-    function! WhichEnv() abort
+" Function to set OS env - return WINDOWS or output of uname
+    function! Config_setEnv() abort
+        if exists('g:env')
+            return
+        endif
         if has('win64') || has('win32') || has('win16')
-            return 'WINDOWS'
+            let g:env = 'WINDOWS'
         else
-           return toupper(substitute(system('uname'), '\n', '', ''))
+           let g:env = toupper(substitute(system('uname'), '\n', '', ''))
         endif
     endfunction
+    call Config_setEnv()
 
 " Determine Plug path depending on VIM type and OS
     let vimconfigpath='~/.vim'
-    if (WhichEnv() =~# 'WINDOWS')
+    if (g:env =~# 'WINDOWS')
         let vimconfigpath=$LOCALAPPDATA . '\\vim'
     endif
     if has("nvim")
         let vimconfigpath='~/.config/nvim'
-        if (WhichEnv() =~# 'WINDOWS')
+        if (g:env =~# 'WINDOWS')
             let vimconfigpath=$LOCALAPPDATA . '\\nvim'
         endif
     endif
@@ -209,7 +213,7 @@
         set shell=$SHELL
     else
         set shell=/bin/sh
-        if (WhichEnv() =~# 'WINDOWS')
+        if (g:env =~# 'WINDOWS')
             set shell=cmd
         endif
     endif
