@@ -58,6 +58,7 @@ glaces
 glances
 gnupg
 gnupg2
+gnuplot
 gotop
 gource
 graphviz

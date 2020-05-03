@@ -1,20 +1,24 @@
-" Function to test OS - return WINDOWS or output of uname
-    function! WhichEnv() abort
+" Function to set OS env - return WINDOWS or output of uname
+    function! Config_setEnv() abort
+        if exists('g:env')
+            return
+        endif
         if has('win64') || has('win32') || has('win16')
-            return 'WINDOWS'
+            let g:env = 'WINDOWS'
         else
-           return toupper(substitute(system('uname'), '\n', '', ''))
+           let g:env = toupper(substitute(system('uname'), '\n', '', ''))
         endif
     endfunction
+    call Config_setEnv()
 
 " Determine Plug path depending on VIM type and OS
     let vimconfigpath='~/.vim'
-    if (WhichEnv() =~# 'WINDOWS')
+    if (g:env =~# 'WINDOWS')
         let vimconfigpath=$LOCALAPPDATA . '\\vim'
     endif
     if has("nvim")
         let vimconfigpath='~/.config/nvim'
-        if (WhichEnv() =~# 'WINDOWS')
+        if (g:env =~# 'WINDOWS')
             let vimconfigpath=$LOCALAPPDATA . '\\nvim'
         endif
     endif
@@ -23,16 +27,15 @@
     let vimplug_exists=expand(vimconfigpath . '/autoload/plug.vim')
 
     if !filereadable(vimplug_exists)
-      if !executable("curl")
-        echoerr "You have to install curl or first install vim-plug yourself!"
-        execute "q!"
-      endif
-      echo "Installing Vim-Plug..."
-      echo ""
-      silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-      let g:not_finish_vimplug = "yes"
-
-      autocmd VimEnter * PlugInstall
+        if !executable("curl")
+            echoerr "You have to install curl or first install vim-plug yourself!"
+            execute "q!"
+        endif
+        echo "Installing Vim-Plug..."
+        echo ""
+        silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+        let g:not_finish_vimplug = "yes"
+        autocmd VimEnter * PlugInstall
     endif
 
 " Vim-Plug installation
@@ -57,10 +60,10 @@
         command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
     else
         if isdirectory('/usr/local/opt/fzf')
-          Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+            Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
         else
-          Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-          Plug 'junegunn/fzf.vim'
+            Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+            Plug 'junegunn/fzf.vim'
         endif
     endif
     let g:make = 'gmake'
@@ -149,7 +152,7 @@
     Plug 'christoomey/vim-sort-motion'
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'brooth/far.vim'
-    Plug 'justincampbell/vim-eighties'
+    " Plug 'justincampbell/vim-eighties'
     " allows opening files at specific location - e.g. /tmp/bal:10:2
     Plug 'wsdjeg/vim-fetch'
     " Plug 'henrik/vim-open-url'
@@ -185,9 +188,9 @@
 
     " Plugins loaded when entering insert mode
     augroup load_us_ycm
-      autocmd!
-      autocmd InsertEnter * call plug#load('gundo.vim', 'ultisnips', 'vim-snippets')
-                         \| autocmd! load_us_ycm
+        autocmd!
+        autocmd InsertEnter * call plug#load('gundo.vim', 'ultisnips', 'vim-snippets')
+                    \| autocmd! load_us_ycm
     augroup END
 
     call plug#end()
@@ -218,7 +221,7 @@
         set shell=$SHELL
     else
         set shell=/bin/sh
-        if (WhichEnv() =~# 'WINDOWS')
+        if (g:env =~# 'WINDOWS')
             set shell=cmd
         endif
     endif
@@ -232,6 +235,14 @@
     set title
     set titleold="Terminal"
     set titlestring=%F
+    " Disable visualbell
+    set noerrorbells visualbell t_vb=
+    if has('autocmd')
+        autocmd GUIEnter * set visualbell t_vb=
+    endif
+    " Spelling
+    set spelllang=en_us
+    set spell!
 
 " Searching
     set hlsearch
@@ -249,38 +260,44 @@
     syntax on
     set ruler
     set number
-
     let no_buffers_menu=1
     silent! colorscheme molokai
-
+    " silent! colorscheme anotherdark
+    " silent! colorscheme zenburn
+    " silent! colorscheme wombat256
+    " silent! colorscheme whitedust
+    " silent! colorscheme tutticolori
+    " silent! colorscheme soso
+    " silent! colorscheme simpleandfriendly
+    " silent! colorscheme evening
+    " silent! colorscheme asmdev
     set mousemodel=popup
     set t_Co=256
     set guioptions=egmrti
     " TODO not working in Windows
     set gfn=Monospace\ 10
-
+    if has("termguicolors")
+        set termguicolors
+    endif
     if has("gui_running")
       if has("gui_mac") || has("gui_macvim")
         set guifont=Menlo:h12
         set transparency=7
       endif
     else
-      let g:CSApprox_loaded = 1
-
-      " IndentLine
-      let g:indentLine_enabled = 1
-      let g:indentLine_concealcursor = 0
-      let g:indentLine_char = '┆'
-      let g:indentLine_faster = 1
-
+        let g:CSApprox_loaded = 1
+        " IndentLine
+        let g:indentLine_enabled = 1
+        let g:indentLine_concealcursor = 0
+        let g:indentLine_char = '┆'
+        let g:indentLine_faster = 1
     endif
 
 " Statusline
     set laststatus=2
     set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-
     if exists("*fugitive#statusline")
-      set statusline+=%{fugitive#statusline()}
+        set statusline+=%{fugitive#statusline()}
     endif
 
 " Search mappings:
@@ -290,14 +307,6 @@
     nnoremap N Nzzzv
     " since I do not use Ex mode, this is to run marcros
     nnoremap Q @@
-
-" vim-airline
-    let g:airline_theme = 'powerlineish'
-    let g:airline#extensions#branch#enabled = 1
-    let g:airline#extensions#ale#enabled = 1
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tagbar#enabled = 1
-    let g:airline_skip_empty_sections = 1
 
 " key mappings
     " no one is really happy until you have this shortcuts
@@ -333,39 +342,35 @@
 
 " Functions
     if !exists('*s:setupWrapping')
-      function s:setupWrapping()
-        set wrap
-        set wm=2
-        set textwidth=79
-      endfunction
+        function s:setupWrapping()
+            set wrap
+            set wm=2
+            set textwidth=79
+        endfunction
     endif
 
-    " Autocmd Rules
+" Autocmd Rules
     " The PC is fast enough, do syntax highlight syncing from start unless 200 lines
     augroup vimrc-sync-fromstart
-      autocmd!
-      autocmd BufEnter * :syntax sync maxlines=2000
+        autocmd!
+        autocmd BufEnter * :syntax sync maxlines=2000
     augroup END
-
     " Remember cursor position
     augroup vimrc-remember-cursor-position
-      autocmd!
-      autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+        autocmd!
+        autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
     augroup END
-
     " txt
     augroup vimrc-wrapping
-      autocmd!
-      autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+        autocmd!
+        autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
     augroup END
-
     " make/cmake
     augroup vimrc-make-cmake
-      autocmd!
-      autocmd FileType make setlocal noexpandtab
-      autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+        autocmd!
+        autocmd FileType make setlocal noexpandtab
+        autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
     augroup END
-
     set autoread
 
 "*****************************************************************************
@@ -373,63 +378,36 @@
 "*****************************************************************************
 
 "" Split
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
+    noremap <Leader>h :<C-u>split<CR>
+    noremap <Leader>v :<C-u>vsplit<CR>
 
 "" Git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
+    noremap <Leader>ga :Gwrite<CR>
+    noremap <Leader>gc :Gcommit<CR>
+    noremap <Leader>gsh :Gpush<CR>
+    noremap <Leader>gll :Gpull<CR>
+    noremap <Leader>gs :Gstatus<CR>
+    noremap <Leader>gb :Gblame<CR>
+    noremap <Leader>gd :Gvdiff<CR>
+    noremap <Leader>gr :Gremove<CR>
 
 " session management
-nnoremap <leader>so :OpenSession<Space>
-nnoremap <leader>ss :SaveSession<Space>
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
+    nnoremap <leader>so :OpenSession<Space>
+    nnoremap <leader>ss :SaveSession<Space>
+    nnoremap <leader>sd :DeleteSession<CR>
+    nnoremap <leader>sc :CloseSession<CR>
 
 "" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-"" Opens an edit command with the path of the currently edited file filled in
-" noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+    nnoremap <leader>. :lcd %:p:h<CR>
 
 "" Opens a tab edit command with the path of the currently edited file filled
-noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-"" fzf.vim
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-
-" The Silver Searcher
-if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
-
-" ripgrep
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --no-ignore --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
-
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
-"Recovery commands from history through FZF
-nmap <leader>y :History:<CR>
+    noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsEditSplit="vertical"
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+    let g:UltiSnipsEditSplit="vertical"
 
 " ale
     let g:ale_linters = {
@@ -496,45 +474,22 @@ let g:UltiSnipsEditSplit="vertical"
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_lint_on_enter = 1
     let g:ale_completion_enabled = 1
-    " let g:ale_fixers = {
-    " \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    " \   'javascript': ['eslint'],
-    " \}
-    let g:ale_fix_on_save = 1
     let g:airline#extensions#ale#enabled = 1
-    let g:ale_set_loclist = 0
-    let g:ale_set_quickfix = 1
+    let g:ale_set_loclist = 1
+    let g:ale_set_quickfix = 0
     let g:ale_open_list = 1
 
-
 " Tagbar
-" TODO better use <leader>T or something else
-nmap <silent> <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-" Disable visualbell
-set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
+    " TODO better use <leader>T or something else
+    nmap <silent> <F4> :TagbarToggle<CR>
+    let g:tagbar_autofocus = 1
 
 "" Copy/Paste/Cut - Share the VIM clipboard with the X11 clipboard
 if has("clipboard")
-  set clipboard=unnamed " copy to the system clipboard
-  if has("unnamedplus") " X11 support
-    set clipboard+=unnamedplus
-  endif
-endif
-
-" TODO: what is this for??? <01-03-20, Heiko Riemer> "
-noremap YY "+y<CR>
-noremap <leader>p "+gP<CR>
-noremap XX "+x<CR>
-
-if has('macunix')
-  " pbcopy for OSX copy/paste
-  vmap <C-x> :!pbcopy<CR>
-  vmap <C-c> :w !pbcopy<CR><CR>
+    set clipboard=unnamed " copy to the system clipboard
+    if has("unnamedplus") " X11 support
+        set clipboard+=unnamedplus
+    endif
 endif
 
 "" Buffer nav
@@ -543,9 +498,6 @@ noremap <leader>x :bn<CR>
 
 "" Close buffer
 noremap <leader>c :bd<CR>
-
-"" Clean search (highlight)
-nnoremap <silent> <leader><space> :noh<cr>
 
 "" Switching windows
 noremap <C-j> <C-w>j
@@ -781,7 +733,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
         endif
     endfunc
 
-" Plugin Settings:
+" Plugin Settings
     " Syntastic
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
@@ -817,7 +769,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=3
     autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
-    " NerdTree
+" NerdTree
     " Use <-C-n> as shortcut
     map <C-n> :NERDTreeToggle<CR>
     " Start automatically if no file is opened
@@ -828,7 +780,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " custom arrows
     let g:NERDTreeDirArrowExpandable = '▸'
     let g:NERDTreeDirArrowCollapsible = '▾'
-
     " NerdTree-git-plugin
     let g:NERDTreeIndicatorMapCustom = {
         \ "Modified"  : "✹",
@@ -853,46 +804,19 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " let g:better_whitespace_verbosity=1
     autocmd FileType *.py,*.sh,*.rs autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
 
-    " Plantuml-syntax
-    " TODO: (pt103371) - make this work in Windows
-    let g:slumlord_plantuml_jar_path = 'c:\\Data\\pt103371\\bin\\plantuml.jar'
+" Plantuml-syntax
     let g:plantuml_executable_script = "~/bin/plantUML.sh"
-    " if has('windows')
-    "     let g:plantuml_executable_script = 'c:\\Data\\pt103371\\bin\\plantUML.sh'
-    " endif
-
-    " sjurgemeyer/vim-plantuml
-    " let g:plantuml_jar_path = "~/bin/plantuml.jar"
-    " if has('windows')
-    "     let g:plantuml_jar_path = 'c:\\Data\\pt103371\\bin\\plantuml.jar'
-    " endif
+    let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
+    if (g:env =~# 'WINDOWS')
+        let g:slumlord_plantuml_jar_path = 'c:\\Data\\pt103371\\bin\\plantuml.jar'
+    endif
     noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.zshrc; cd $HOME/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
 
 " go.vim
     " do not show warning for older releases
     let g:go_version_warning = 0
 
-" Colorscheme:
-    " Molokai
-    " Info: already set in .vimrc
-    " colorscheme molokai
-    " let g:molokai_original = 1
-    " let g:rehash256 = 1
-
-    " good ones: molokai, darkZ, desertEx, jellybeans,
-    " no_quarter
-    " colorscheme jellybeans
-    " let g:airline_theme='jellybeans'
-    " colorscheme molokai
-    let g:airline_theme='molokai'
-
-    let g:airline_powerline_fonts = 1
-    let g:airline#extensions#tabline#enabled = 1
-    if has("termguicolors")
-        set termguicolors
-    endif
-
-    " Gundo
+" Gundo
     nnoremap <F8> :GundoToggle<CR>
 
 " Vimdiff
@@ -909,36 +833,24 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     endif
 
 """ fzf.vim
+    set wildmode=list:longest,list:full
     set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip
     " let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'bin/**' -prune -o -path '.cache/**' -prune -o -path 'cache/**' -prune -o -path '$Recycle.bin/**' -prune -o -path 'vim/bundle/**' -prune -o -path '__pycache__/**' -prune -o -path '.cache/**' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-
+    let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
     " The Silver Searcher
-    " if executable('ag')
-    "     " let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case -0 --silent --width 140 --color --follow --one-device --search-zip --ignore .git -g ""'
-    "     let $FZF_DEFAULT_COMMAND = 'ag --hidden --smart-case --silent --follow --one-device --search-zip --ignore .git -g ""'
-    "     set grepprg=ag\ --nogroup\ --nocolor
-    " endif
-
-    " " ripgrep
-    " if executable('rg')
-    "   " let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-    "   let $FZF_DEFAULT_COMMAND ='rg --files --hidden --follow -g ''!.git/'''
-    "   set grepprg=rg\ --vimgrep
-    "   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-    " endif
-
-    " --column: Show column number
-    " --line-number: Show line number
-    " --no-heading: Do not show file headings in results
-    " --fixed-strings: Search term as a literal string
-    " --ignore-case: Case insensitive search
-    " --no-ignore: Do not respect .gitignore, etc...
-    " --hidden: Search hidden files and folders
-    " --follow: Follow symlinks
-    " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-    " --color: Search color options
+        if executable('ag')
+            let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+            set grepprg=ag\ --nogroup\ --nocolor
+        endif
+    " ripgrep
+        if executable('rg')
+            let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --no-ignore --follow --glob "!.git/*"'
+            set grepprg=rg\ --vimgrep
+            command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+        endif
+    cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+    "Recovery commands from history through FZF
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-
     " This is the default extra key bindings
     let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -972,6 +884,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:fzf_history_dir = '~/.local/share/fzf-history'
     nnoremap <Leader>f :GFiles<CR>
     nnoremap <Leader>F :Files<CR>
+    nnoremap <silent> <leader>e :FZF -m<CR>
     nnoremap <Leader>b :Buffers<CR>
     nnoremap <Leader>y :History<CR>
     nnoremap <Leader>t :BTags<CR>
@@ -984,14 +897,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     nnoremap <Leader>C :Commands<CR>
     nnoremap <Leader>: :History:<CR>
     nnoremap <Leader>/ :History/<CR>
+    " nmap <leader>y :History:<CR>
     nnoremap <Leader>M :Maps<CR>
     nnoremap <Leader>s :Filetypes<CR>
-
-""" vim-slumlord
-    let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
-    " if has('win32')
-    "     let g:slumlord_plantuml_jar_path = 'c:\Data\pt103371\bin\plantuml.jar'
-    " endif
 
 """ vimwiki
     " vimwiki with markdown support
@@ -1014,6 +922,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:vimwiki_table_auto_fmt=1
     " au FileType vimwiki set syntax=markdown
     map <silent> <leader>wf :FZF ~/vimwiki<cr>
+    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md set filetype=vimwiki
+    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md silent! lcd ~/vimwiki
 
 " start a pomodoro timer
     noremap <leader>T :silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""<CR>
@@ -1070,22 +980,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     "
     set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;
 
-" neomake:
-    " When writing a buffer (no delay).
-    " call neomake#configure#automake('w')
-    " When writing a buffer (no delay), and on normal mode changes (after 750ms).
-    " call neomake#configure#automake('nw', 750)
-    " When reading a buffer (after 1s), and when writing (no delay).
-    " call neomake#configure#automake('rw', 1000)
-    " Full config: when writing or reading a buffer, and on changes in insert and
-    " normal mode (after 1s; no delay when writing).
-    " call neomake#configure#automake('nrwi', 500)
-    " let g:neomake_open_list = 2
-
-" Spelling:
-    set spelllang=en_us
-    set spell!
-
 " vim-auto-save:
     " autocmd FileType vimwiki setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
     " autocmd FileType markdown setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -1097,19 +991,12 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
     " let g:auto_save_silent = 1  " do not display the auto-save notification
 
-    " let g:auto_save_presave_hook = 'call AbortIfNotMD()'
-    " function! AbortIfNotMD()
-    "   if &filetype != 'markdown'
-    "     let g:auto_save_abort = 1
-    "   endif
-    " endfunction
-
 " eighties.vim:
-    let g:eighties_enabled = 1
-    let g:eighties_minimum_width = 80
-    let g:eighties_extra_width = 20 " Increase this if you want some extra room
-    let g:eighties_compute = 1 " Disable this if you just want the minimum + extra
-    let g:eighties_bufname_additional_patterns = ['fugitiveblame'] " Defaults to [], 'fugitiveblame' is only an example. Takes a comma delimited list of bufnames as strings.
+    " let g:eighties_enabled = 1
+    " let g:eighties_minimum_width = 80
+    " let g:eighties_extra_width = 20 " Increase this if you want some extra room
+    " let g:eighties_compute = 1 " Disable this if you just want the minimum + extra
+    " let g:eighties_bufname_additional_patterns = ['fugitiveblame'] " Defaults to [], 'fugitiveblame' is only an example. Takes a comma delimited list of bufnames as strings.
 
 " Floating Terminals - like LazyGit or LazyDocker
     " Creates a floating window with a most recent buffer to be used
@@ -1156,45 +1043,52 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
             endif
         endfunction
 
-        nnoremap <silent> <Leader>lg :call ToggleTerm('lazygit')<CR>
         nnoremap <silent> <Leader>ld :call ToggleTerm('lazydocker')<CR>
         nnoremap <silent> <Leader>lf :call ToggleTerm('lf')<CR>
+        nnoremap <silent> <Leader>bt :call ToggleTerm('bashtop')<CR>
     endif
 
 " vim-airline
+    let g:airline_theme='molokai'
+    " let g:airline_theme = 'powerlineish'
+    let g:airline#extensions#branch#enabled = 1
+    let g:airline#extensions#ale#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tagbar#enabled = 1
+    let g:airline_skip_empty_sections = 1
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1
     if !exists('g:airline_symbols')
-      let g:airline_symbols = {}
+        let g:airline_symbols = {}
     endif
-
     if !exists('g:airline_powerline_fonts')
-      let g:airline#extensions#tabline#left_sep = ' '
-      let g:airline#extensions#tabline#left_alt_sep = '|'
-      let g:airline_left_sep          = '▶'
-      let g:airline_left_alt_sep      = '»'
-      let g:airline_right_sep         = '◀'
-      let g:airline_right_alt_sep     = '«'
-      let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-      let g:airline#extensions#readonly#symbol   = '⊘'
-      let g:airline#extensions#linecolumn#prefix = '¶'
-      let g:airline#extensions#paste#symbol      = 'ρ'
-      let g:airline_symbols.linenr    = '␊'
-      let g:airline_symbols.branch    = '⎇'
-      let g:airline_symbols.paste     = 'ρ'
-      let g:airline_symbols.paste     = 'Þ'
-      let g:airline_symbols.paste     = '∥'
-      let g:airline_symbols.whitespace = 'Ξ'
+        let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+        let g:airline#extensions#linecolumn#prefix = '¶'
+        let g:airline#extensions#paste#symbol      = 'ρ'
+        let g:airline#extensions#readonly#symbol   = '⊘'
+        let g:airline#extensions#tabline#left_alt_sep = '|'
+        let g:airline#extensions#tabline#left_sep = ' '
+        let g:airline_left_alt_sep      = '»'
+        let g:airline_left_sep          = '▶'
+        let g:airline_right_alt_sep     = '«'
+        let g:airline_right_sep         = '◀'
+        let g:airline_symbols.branch    = '⎇'
+        let g:airline_symbols.linenr    = '␊'
+        let g:airline_symbols.paste     = 'Þ'
+        let g:airline_symbols.paste     = 'ρ'
+        let g:airline_symbols.paste     = '∥'
+        let g:airline_symbols.whitespace = 'Ξ'
     else
-      let g:airline#extensions#tabline#left_sep = ''
-      let g:airline#extensions#tabline#left_alt_sep = ''
-
-      " powerline symbols
-      let g:airline_left_sep = ''
-      let g:airline_left_alt_sep = ''
-      let g:airline_right_sep = ''
-      let g:airline_right_alt_sep = ''
-      let g:airline_symbols.branch = ''
-      let g:airline_symbols.readonly = ''
-      let g:airline_symbols.linenr = ''
+        let g:airline#extensions#tabline#left_sep = ''
+        let g:airline#extensions#tabline#left_alt_sep = ''
+        " powerline symbols
+        let g:airline_left_sep = ''
+        let g:airline_left_alt_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_right_alt_sep = ''
+        let g:airline_symbols.branch = ''
+        let g:airline_symbols.readonly = ''
+        let g:airline_symbols.linenr = ''
     endif
 
 " Conque GDB (RUST/C/CPP debugging)
