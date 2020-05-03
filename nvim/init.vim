@@ -162,6 +162,15 @@
     Plug 'junegunn/goyo.vim'
     Plug 'romainl/vim-cool'
     Plug 'stsewd/gx-extended.vim'
+
+    " TODO: test this alternative to Ale/Ycm  <02-05-20, Heiko Riemer> "
+    " Plug 'mattn/vim-lsp-settings'
+    " Plug 'prabirshrestha/async.vim'
+    " Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    " Plug 'prabirshrestha/asyncomplete.vim'
+    " Plug 'prabirshrestha/vim-lsp'
+    " Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+
     " Plug 'neomake/neomake'
     " Plug 'CoatiSoftware/vim-sourcetrail'
     " if has('nvim')
@@ -279,6 +288,8 @@
     " search will center on the line it's found in.
     nnoremap n nzzzv
     nnoremap N Nzzzv
+    " since I do not use Ex mode, this is to run marcros
+    nnoremap Q @@
 
 " vim-airline
     let g:airline_theme = 'powerlineish'
@@ -1002,6 +1013,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:vimwiki_folding='expr'
     let g:vimwiki_table_auto_fmt=1
     " au FileType vimwiki set syntax=markdown
+    map <silent> <leader>wf :FZF ~/vimwiki<cr>
 
 " start a pomodoro timer
     noremap <leader>T :silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""<CR>
@@ -1146,6 +1158,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
         nnoremap <silent> <Leader>lg :call ToggleTerm('lazygit')<CR>
         nnoremap <silent> <Leader>ld :call ToggleTerm('lazydocker')<CR>
+        nnoremap <silent> <Leader>lf :call ToggleTerm('lf')<CR>
     endif
 
 " vim-airline

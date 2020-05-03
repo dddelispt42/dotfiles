@@ -1,11 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-#
-# TERM
-export TERM="xterm-256color"
+# only if interactive shell
+[[ $- == *i* ]] && stty -ixon -ixoff # turns off CTRL-S
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # some history related settings
 HISTFILE=$HOME/.zhistory       # enable history saving on shell exit
@@ -22,12 +23,6 @@ setopt EXTENDED_HISTORY        # save timestamp and runtime information
 source ~/.zplug/init.zsh
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
-if [ "$OSTYPE" != "cygwin" ] ; then
-    # zplug "djui/alias-tips", defer:2
-    zplug "paulmelnikow/zsh-startup-timer"
-    # TODO: messes with right prompt
-    # zplug "laurenkt/zsh-vimto"
-fi
 zplug "ael-code/zsh-colored-man-pages", defer:2
 zplug "popstas/zsh-command-time", defer:2
 zplug "zdharma/fast-syntax-highlighting", defer:2
@@ -43,7 +38,8 @@ zplug 'wfxr/forgit', defer:2
 zplug "MichaelAquilina/zsh-you-should-use", defer:2
 # use Alt-e to launch a finder
 zplug 'leophys/zsh-plugin-fzf-finder', defer:2
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "romkatv/powerlevel10k", as:theme, depth:1
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -53,73 +49,12 @@ if ! zplug check --verbose; then
     fi
 fi
 
-# config for zsh-vimto
-export VIMTO_COLOR_NORMAL_TEXT=white
-export VIMTO_COLOR_NORMAL_BACKGROUND=yellow
-
-# definitions for powerlevel9k
-# POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('status' 'os_icon' 'root_indicator' 'ssh' 'context' 'dir_writable' 'dir' 'virtualenv' 'vcs')
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('background_jobs' 'nvm' 'rvm' 'load' 'ram_joined' 'ip' 'time')
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%F{249}%}\u250f"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%F{249}%}\u2517%{%F{default}%} "
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_OS_ICON_BACKGROUND="white"
-POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
-POWERLEVEL9K_TODO_BACKGROUND="black"
-POWERLEVEL9K_TODO_FOREGROUND="249"
-POWERLEVEL9K_DIR_HOME_BACKGROUND="black"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="black"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="green"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="black"
-# POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="249"
-POWERLEVEL9K_STATUS_OK_BACKGROUND="black"
-POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="black"
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
-POWERLEVEL9K_NVM_BACKGROUND="black"
-POWERLEVEL9K_NVM_FOREGROUND="249"
-POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_COLOR="green"
-POWERLEVEL9K_RVM_BACKGROUND="black"
-POWERLEVEL9K_RVM_FOREGROUND="249"
-POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
-POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="black"
-POWERLEVEL9K_LOAD_WARNING_BACKGROUND="black"
-POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="black"
-POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND="249"
-POWERLEVEL9K_LOAD_WARNING_FOREGROUND="249"
-POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="249"
-POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red"
-POWERLEVEL9K_LOAD_WARNING_VISUAL_IDENTIFIER_COLOR="yellow"
-POWERLEVEL9K_LOAD_NORMAL_VISUAL_IDENTIFIER_COLOR="green"
-POWERLEVEL9K_RAM_BACKGROUND="black"
-POWERLEVEL9K_RAM_FOREGROUND="249"
-POWERLEVEL9K_RAM_ELEMENTS=(ram_free)
-POWERLEVEL9K_BATTERY_LOW_BACKGROUND="black"
-POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND="black"
-POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND="black"
-POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND="black"
-POWERLEVEL9K_BATTERY_LOW_FOREGROUND="249"
-POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND="249"
-POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND="249"
-POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND="249"
-POWERLEVEL9K_BATTERY_LOW_VISUAL_IDENTIFIER_COLOR="red"
-POWERLEVEL9K_BATTERY_CHARGING_VISUAL_IDENTIFIER_COLOR="yellow"
-POWERLEVEL9K_BATTERY_CHARGED_VISUAL_IDENTIFIER_COLOR="green"
-POWERLEVEL9K_BATTERY_DISCONNECTED_VISUAL_IDENTIFIER_COLOR="249"
-POWERLEVEL9K_TIME_BACKGROUND="black"
-POWERLEVEL9K_TIME_FOREGROUND="249"
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S} \UE12E"
-
 # Then, source plugins and add commands to $PATH
 # zplug load --verbose
 zplug load
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # TODO: generate path name
 test -s ~/dotfiles/shell/env.sh && source ~/dotfiles/shell/env.sh || true

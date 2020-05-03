@@ -1,17 +1,23 @@
-# only if interactive shell
-[[ $- == *i* ]] && stty -ixon -ixoff # turns off CTRL-S
-
 # PS1='[\u@\h \W]\$ '
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
+# TERM
+export TERM="xterm-256color"
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
 
 export TERM=xterm-256color
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+# HISTCONTROL=ignoreboth
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# HISTSIZE=1000
+# HISTFILESIZE=2000
 
 # path shortcuts
 # CDPATH=".:~:~/projects:~/bin:~/dotfiles:~/docker"
