@@ -1,7 +1,8 @@
 [global]
     monitor = 0
     follow = keyboard
-    geometry = "350x5-0+24"
+    # geometry = "350x5-0+24"
+    geometry = "0x0-30+20"
     indicate_hidden = yes
     shrink = no
     transparency = 20
@@ -10,7 +11,8 @@
     padding = 8
     horizontal_padding = 8
     frame_width = 3
-    frame_color = "#282828"
+    # frame_color = "#282828"
+    frame_color = "#aaaaaa"
 
     # Define a color for the separator.
     # possible values are:
@@ -18,7 +20,8 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    # separator_color = frame
+    separator_color = auto
 
     # Sort messages by urgency.
     sort = yes
@@ -40,16 +43,17 @@
     # Markup is allowed
     format = "<b>%s</b>\n%b"
 
-    alignment = left
+    # alignment = left
+    alignment = center
     show_age_threshold = 60
     word_wrap = yes
     ellipsize = middle
     ignore_newline = no
     stack_duplicates = true
-    hide_duplicate_count = true
+    hide_duplicate_count = false
     show_indicators = yes
     icon_position = left
-    max_icon_size = 40
+    max_icon_size = 32
     #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/Adwaita/256x256/status/
     sticky_history = yes
     history_length = 20
@@ -62,7 +66,12 @@
     title = Dunst
     class = Dunst
     startup_notification = false
+    verbosity = mesg
+    corner_radius = 5
     force_xinerama = false
+    mouse_left_click = do_action
+    mouse_middle_click = close_all
+    mouse_right_click = close_current
 [experimental]
     per_monitor_dpi = false
 
@@ -75,21 +84,28 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#282828"
-    foreground = "#928374"
+    # background = "#282828"
+    # foreground = "#928374"
+    background = "#2b2b2b"
+    foreground = "#ffffff"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#458588"
-    foreground = "#ebdbb2"
+    # background = "#458588"
+    # foreground = "#ebdbb2"
+    background = "#2b2b2b"
+    foreground = "#ffffff"
     timeout = 5
 
 [urgency_critical]
-    background = "#cc2421"
-    foreground = "#ebdbb2"
-    frame_color = "#fabd2f"
+    # background = "#cc2421"
+    # foreground = "#ebdbb2"
+    # frame_color = "#fabd2f"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
     timeout = 0
 
 # Every section that isn't one of the above is interpreted as a rules to
