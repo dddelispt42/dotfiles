@@ -1,5 +1,5 @@
+alacritty
 aom
-maim  # screenshots
 bspwm
 bspwm-ruler
 bspwm-scripts
@@ -30,6 +30,7 @@ libmpeg2
 libtheora
 libvorbis
 libvpx
+maim  # screenshots
 minuet
 mplayer
 mpv
