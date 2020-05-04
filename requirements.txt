@@ -1,5 +1,6 @@
-psutils
 flake8
+future
+mycli
+psutils
 pylint
 python-language-server
-future
