@@ -3,8 +3,8 @@
 #
 
 # terminal emulator
-super + Return
-	st
+super + {_,shift + }Return
+	{st, tabbed -r 2 st -w ''}
 
 # program launcher
 super + @space
@@ -37,7 +37,7 @@ super + y
 
 # swap the current node and the biggest node
 super + g
-	bspc node -s biggest
+	bspc node -s biggest.local
 
 #
 # state/flags
@@ -121,6 +121,25 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# switch keyboard layout
-super + z
-    $HOME/bin/switch_kb_layout.sh
+# switch keyboard layout and get emojis
+super + {z,e}
+    {$HOME/bin/switch_kb_layout.sh,rofimoji --copy-only}
+
+# start applicatios
+super + u;{f,t,m,d,r,k,p}
+    {firefox,tbb,thunderbird,digikam,darktable,kdenlive,pulsemixer}
+
+# TODO: not yet tested <12-04-20, Heiko Riemer> #
+# Prompt to open new app as a new tab
+super + t; d
+    tabdmenu
+
+# Pulse Controls
+super + {Up, Down}
+  pulsevolctrl "output-vol" "alsa_output.pci-0000_00_1f.3.analog-stereo" {+2%, -2%}
+
+super + F8
+  pulsevolctrl "output-mute" "alsa_output.pci-0000_00_1f.3.analog-stereo"
+
+control + Print
+  screenshot fulltime

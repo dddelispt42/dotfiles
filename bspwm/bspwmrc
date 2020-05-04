@@ -10,7 +10,6 @@ udiskie -A -t &
 if [ "$HOST" != "manjaro" ]; then
     keynav &
     xfce4-power-manager &
-    disown
 fi
 
 # bspc monitor -d I II III IV V VI VII VIII IX X
@@ -35,15 +34,14 @@ bspc rule -a Thunderbird desktop='^4' follow=off
 bspc rule -a firefox desktop='^4' follow=off
 bspc rule -a Signal desktop='^5' follow=off
 bspc rule -a "Tor Browser" desktop='^1' follow=off
-bspc rule -a mpv follow=on sticky=true private=on
+bspc rule -a mpv follow=on sticky=true
 bspc rule -a scratchpad sticky=true follow=on state=floating
 bspc rule -a "st - heiko@ed" desktop='^1' private=on
 bspc rule -a "st - heiko@localhost" desktop='^2' private=on
 bspc rule -a "st - heiko@manjaro" desktop='^2' private=on
 bspc rule -a "st - heiko@ptlisvltnms027" desktop='^3' private=on
 
-pgrep nextcloud > /dev/null
-if [ $? -ne 0 ]; then
+if pgrep nextcloud > /dev/null; then
     nohup nextcloud &
 fi
 ps aux |grep -E "st - [h]eiko@localhost" > /dev/null
