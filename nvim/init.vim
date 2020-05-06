@@ -165,6 +165,8 @@
     Plug 'junegunn/goyo.vim'
     Plug 'romainl/vim-cool'
     Plug 'stsewd/gx-extended.vim'
+    " better encryption plugin - requires: https://github.com/jedisct1/encpipe
+    Plug 'hauleth/vim-encpipe'
 
     " TODO: test this alternative to Ale/Ycm  <02-05-20, Heiko Riemer> "
     " Plug 'mattn/vim-lsp-settings'
