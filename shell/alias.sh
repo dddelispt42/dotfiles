@@ -16,11 +16,24 @@ fi
 # TODO: move to exa <11-04-20, Heiko Riemer> #
 command -v lsd > /dev/null && alias ls="lsd --group-dirs first"
 command -v lsd > /dev/null && alias lt='ls --tree'
-alias l='ls -l'
-alias ll='l'
-alias lla='ls -la'
-alias la='ls -A'
-alias exa='exa --git --group-directories-first --classify'
+if command -v exa > /dev/null; then
+    # general use
+    alias ls='exa'                                                          # ls
+    alias l='exa -lbF --git'                                                # list, size, type, git
+    alias ll='exa -lbGF --git'                                             # long list
+    alias llm='exa -lbGd --git --sort=modified'                            # long list, modified date sort
+    alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
+    alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+    # specialty views
+    alias lS='exa -1'                                                              # one column, just names
+    alias lt='exa --tree --level=2'                                         # tree
+else
+    alias l='ls -l'
+    alias ll='l'
+    alias lla='ls -la'
+    alias la='ls -A'
+    alias exa='exa --git --group-directories-first --classify'
+fi
 
 ######################################
 # better use of changing directories #
@@ -144,3 +157,15 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ls_installed_debian_packages="aptitude search '~i!~M'"
 # hors - check stackoverflow and other stuff in terminal
 alias hors="hors -c -a"
+
+# Prefer SD on YouTube
+alias yt="youtube-dl --format 244 --no-playlist"
+alias yth="youtube-dl --format 247 --no-playlist"
+# For spoken audio
+alias yta="youtube-dl --format worstaudio --extract-audio --no-playlist"
+# For music
+alias ytmu="youtube-dl --format bestaudio --extract-audio --no-playlist"
+# List formats & prompt for one
+ytf() {
+    youtube-dl --format "$(youtube-dl --list-formats "$1" | grep -E "^[0-9]+ " | fzf -1 -0 | awk '{print $1;}')" "$1"
+}

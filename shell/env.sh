@@ -102,7 +102,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 # export FZF_DEFAULT_OPTS='-x --height 40% --reverse --border --inline-info'
 # export FZF_DEFAULT_OPTS="-x --reverse --preview='head -100 {}' --preview-window=right:50%:wrap"
 # export FZF_DEFAULT_OPTS="-x --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
-export FZF_DEFAULT_OPTS="-x --multi --height 40% --reverse --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
+export FZF_DEFAULT_OPTS="-x --multi --height 80% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
 
 # VIM related
 # TODO:  <15-12-18, Heiko Riemer> #
