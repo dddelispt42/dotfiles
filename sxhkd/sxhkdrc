@@ -129,6 +129,10 @@ super + {z,e}
 super + u;{f,t,m,d,r,k,p}
     {firefox,tbb,thunderbird,digikam,darktable,kdenlive,pulsemixer}
 
+# scatchpad shortcuts
+super + shift + y
+    /home/heiko/bin/scratchpad youtube-dl -o "/home/heiko/downloads/%(title)s-%(id)s.%(ext)s" "$(xclip -o)"
+
 # TODO: not yet tested <12-04-20, Heiko Riemer> #
 # Prompt to open new app as a new tab
 super + t; d
