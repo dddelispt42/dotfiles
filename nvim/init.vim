@@ -439,7 +439,7 @@
     \   'markdown': ['languagetool', 'markdownlint', 'proselint', 'textlint', 'writegood'],
     \   'matlab': ['mlint'],
     \   'proto': ['proto_gen_lint'],
-    \   'python': ['bandit', 'flake8', 'mypy', 'vulture', 'pycodestyle','pydocstyle'],
+    \   'python': ['bandit', 'flake8', 'mypy', 'pylint', 'pycodestyle','pydocstyle'],
     \   'rust': ['cargo', 'rls', 'rustc'],
     \   'sh': ['shellcheck', 'shell', 'language_server'],
     \   'sql': ['sqlint'],
@@ -453,7 +453,7 @@
     \   'yaml': ['swaglint', 'yamllint'],
     \   'yang': ['yang_lsp'],
     \}
-    "   'python': ['bandit', 'flake8', 'mypy', 'pycodestyle', 'pylint', 'pydocstyle'],
+    "   'python': ['bandit', 'flake8', 'mypy', 'pycodestyle', 'vulture', 'pydocstyle'],
     let g:ale_fixers = {
     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
     \   'css': ['prettier'],
