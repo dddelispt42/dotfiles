@@ -480,6 +480,9 @@
     let g:ale_set_loclist = 1
     let g:ale_set_quickfix = 0
     let g:ale_open_list = 1
+    nmap gd :ALEGoToDefinition<CR>
+    nmap gr :ALEFindReferences<CR>
+    nmap K :ALEHover<CR>
 
 " Tagbar
     " TODO better use <leader>T or something else
@@ -928,7 +931,20 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md silent! lcd ~/vimwiki
 
 " start a pomodoro timer
-    noremap <leader>T :silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""<CR>
+    let g:pomoTimer = 0
+    function! TogglePomodoroTimer()
+        if g:pomoTimer == 0
+            silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""
+            let g:pomoTimer = 1
+        else
+            silent !pkill -u $USER gtd
+            let g:pomoTimer = 0
+        endif
+
+    endfunction
+    " noremap <leader>T :silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""<CR>
+    noremap <leader>T :call TogglePomodoroTimer()<cr>
+    noremap <leader>D :VimwikiToggleListItem<cr>ddGp<c-o>
 
 """ misc
     " nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
