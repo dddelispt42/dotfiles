@@ -47,24 +47,8 @@ map o &~/.config/lf/open.sh $fx
 # map <enter> shell
 map <enter> &~/.config/lf/open.sh $f
 
-cmd bulk-rename ${{
-    old=$(mktemp)
-    new=$(mktemp)
-    [ -n $fs ] && fs=$(ls)
-    printf "$fs\n" > $old
-    printf "$fs\n" > $new
-    $EDITOR $new
-    [ $(cat $new | wc -l) -ne $(cat $old | wc -l) ] && exit
-    paste $old $new | while read names; do
-        src=$(printf $names | cut -f1)
-        dst=$(printf $names | cut -f2)
-        [ $src = $dst ] && continue
-        [ -e $dst ] && continue
-        mv $src $dst
-    done
-    rm $old $new
-    lf -remote "send $id unselect"
-}}
+# bulk rename
+map br $vimv $fx
 
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
