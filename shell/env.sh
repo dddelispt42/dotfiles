@@ -35,6 +35,7 @@ export FIREFOX_PROFILE
 
 # PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/.fzf/bin:$PATH
 PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:/snap/bin:$PATH
+PATH=/home/heiko/.gem/ruby/2.7.0/bin:$PATH
 export PATH
 
 # use vivid for more colors
@@ -58,6 +59,10 @@ fi
 export BAT_PAGER="less -RFX"
 export XDG_CONFIG_HOME="$HOME/.config"
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
+
+# Use nvim as manpager `:h Man`
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
 
 # alias tmux="TERM=xterm-256color tmux"
 # set LANG="en_US.UTF-8"

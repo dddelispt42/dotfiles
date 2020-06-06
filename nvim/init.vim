@@ -43,13 +43,19 @@
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeToggle' }
     Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+
+    Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+    Plug 'rhysd/git-messenger.vim'
+
     Plug 'Raimondi/delimitMate'
-    Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+
+    " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+    Plug 'liuchengxu/vista.vim'
+
     Plug 'w0rp/ale'
     Plug 'Yggdroot/indentLine'
     Plug 'mhinz/vim-startify'
@@ -167,6 +173,7 @@
     Plug 'stsewd/gx-extended.vim'
     " better encryption plugin - requires: https://github.com/jedisct1/encpipe
     Plug 'hauleth/vim-encpipe'
+    Plug 'machakann/vim-highlightedyank'
 
     " TODO: test this alternative to Ale/Ycm  <02-05-20, Heiko Riemer> "
     " Plug 'mattn/vim-lsp-settings'
@@ -486,8 +493,28 @@
 
 " Tagbar
     " TODO better use <leader>T or something else
-    nmap <silent> <F4> :TagbarToggle<CR>
-    let g:tagbar_autofocus = 1
+    " nmap <silent> <F4> :TagbarToggle<CR>
+    " let g:tagbar_autofocus = 1
+
+" Vista
+    " Declare the command including the executable and options used to generate ctags output
+    " for some certain filetypes.The file path will be appened to your custom command.
+    " For example:
+    let g:vista_ctags_cmd = {
+          \ 'haskell': 'hasktags -x -o - -c',
+          \ }
+    " To enable fzf's preview window set g:vista_fzf_preview.
+    " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+    " For example:
+    let g:vista_fzf_preview = ['right:50%']
+    " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+    let g:vista#renderer#enable_icon = 1
+    " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+    let g:vista#renderer#icons = {
+    \   "function": "\uf794",
+    \   "variable": "\uf71b",
+    \  }
+    noremap <Leader>tb :Vista!!<CR>
 
 "" Copy/Paste/Cut - Share the VIM clipboard with the X11 clipboard
 if has("clipboard")
@@ -663,15 +690,16 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 " Folding:
     set foldenable          " enable folding
     set foldlevel=99
-    set foldlevelstart=0   " open most folds by default
+    " set foldlevelstart=0   " open most folds by default
+    set foldlevelstart=99   " open most folds by default
     set foldnestmax=10      " 10 nested fold max
     " space open/closes folds
     nnoremap <space> za
     set foldmethod=indent   " fold based on indent level
     " set foldmethod=marker
     " set foldlevel=0
-    nnoremap <F2> zR
-    nnoremap <F3> zM
+    " nnoremap <F2> zR
+    " nnoremap <F3> zM
 
 " Movement:
     " move vertically by visual line
@@ -918,7 +946,12 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let wiki_2.syntax = 'markdown'
     let wiki_2.ext = '.md'
 
-    let g:vimwiki_list = [wiki_1, wiki_2]
+    let wiki_3 = {}
+    let wiki_3.path = '~/vimwiki/recipes/'
+    let wiki_3.syntax = 'markdown'
+    let wiki_3.ext = '.md'
+
+    let g:vimwiki_list = [wiki_1, wiki_2, wiki_3]
     let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
     " helppage -> :h vimwiki-syntax
     let g:vimwiki_table_mappings = 0
@@ -1118,3 +1151,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 " comments in italic
     " highlight Comment gui=italic
+
+" machakann/vim-highlightedyank
+    let g:highlightedyank_highlight_duration = 500
