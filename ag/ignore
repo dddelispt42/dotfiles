@@ -143,3 +143,4 @@ tags
 tags-te
 ctags
 Cargo.lock
+.cargo-ok
