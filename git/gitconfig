@@ -1,7 +1,7 @@
 [https]
-    sslverify = false
+    sslverify = true
 [http]
-    sslverify = false
+    sslverify = true
 [credential]
 [user]
     name = Riemer, Heiko
@@ -16,8 +16,6 @@
     pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
 [interactive]
     diffFilter = delta --color-only
-[http "https://git.intra.coriant.com/"]
-    sslcainfo = ~/data/BITBUCKETDCLisbon.crt
 [github]
     user = dddelispt42
     ; token = ffe6534674500683267422160ecf0851813e
@@ -66,6 +64,7 @@
     stat = status
     su = status -u
     up = !git fetch origin && git rebase origin/master
+    upgh = !git fetch github && git rebase github/master
     wd = diff --word-diff=color --ignore-all-space
     wds = diff --staged --word-diff --ignore-all-space
     ws = show --minimal --word-diff=color --ignore-all-space
@@ -75,6 +74,12 @@
     cmd = latexdiff "$LOCAL" "$REMOTE"
 [diff]
     tool = vimdiff
+[diff "pdf"]
+    binary = true
+    textconv = ~/dotfiles/lf/preview.sh
+[diff "odt"]
+    binary = true
+    textconv = odt2txt
 [merge]
     tool = vimdiff
 [include]
