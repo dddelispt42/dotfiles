@@ -252,6 +252,8 @@
     " Spelling
     set spelllang=en_us
     set spell!
+    " map jk to <ESC>
+    inoremap jk <ESC>
 
 " Searching
     set hlsearch
@@ -961,7 +963,12 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " au FileType vimwiki set syntax=markdown
     map <silent> <leader>wf :FZF ~/vimwiki<cr>
     autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md set filetype=vimwiki
-    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md silent! lcd ~/vimwiki
+    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md silent! cd ~/vimwiki
+    augroup VimWikiToDo
+        autocmd!
+        autocmd FileType vimwiki syntax match VimWikiToDoDone '^\v\s*-\s\[X\].*$'
+        autocmd FileType vimwiki highlight link VimWikiToDoDone Comment
+    augroup END
 
 " start a pomodoro timer
     let g:pomoTimer = 0
