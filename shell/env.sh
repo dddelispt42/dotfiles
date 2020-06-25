@@ -126,6 +126,9 @@ export NNN_OPENER=$OPENER
 # export NNN_COPIER=copier
 export NNN_TRASH=1
 
+#VIMWIKI
+export WIKI_PATH="$HOME/vimwiki/"
+
 export LF_ICONS="\
 di=:\
 fi=:\

@@ -1,6 +1,7 @@
 abook
 ack
 advcpmv
+anki
 aptitude
 arbtt
 archivemount
