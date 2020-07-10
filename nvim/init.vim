@@ -260,6 +260,7 @@
     set incsearch
     set ignorecase
     set smartcase
+    set inccommand=nosplit
 
 " session management
     let g:session_directory = vimconfigpath . "/session"
