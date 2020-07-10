@@ -4,3 +4,4 @@ mycli
 psutils
 pylint
 python-language-server
+ytmdl
