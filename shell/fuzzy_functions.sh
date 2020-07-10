@@ -464,3 +464,8 @@ rga-fzf() {
     echo "opening $file" &&
     xdg-open "$file"
 }
+
+get_recipe()
+{
+    curl -sG "https://plainoldrecipe.com/recipe" -d "url=${1}" | pandoc -f html -t markdown
+}

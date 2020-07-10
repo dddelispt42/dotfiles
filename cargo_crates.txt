@@ -3,6 +3,7 @@ bat
 bingrep
 bottom
 broot
+cargo-bloat
 cargo-modules
 checkpwn
 ddh
