@@ -235,6 +235,7 @@ toxic
 tpp
 traceroute
 translate-shell
+translate-shell
 trash-cli
 trash-cli
 tree
