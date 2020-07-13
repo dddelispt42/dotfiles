@@ -43,6 +43,6 @@ case "$1" in
     *.tex|*.bbl|*.bib|*.vrb|*.toc|*.snm|*.nav) bat -l tex "$1" || cat "$1";;
     *.tmpl) bat -l html "$1" || cat "$1";;
     *.wadl|*.proj) bat -l xml "$1" || cat "$1";;
-    *.zip|*.zipx|*.ZIP|*.ZIPX) unzip -l "$1";;
+    *.jar|*.JAR|*.zip|*.zipx|*.ZIP|*.ZIPX) unzip -l "$1";;
     *) bat --color always "$1" || highlight -O ansi --force "$1" || cat "$1";;
 esac
