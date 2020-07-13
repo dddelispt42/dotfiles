@@ -138,9 +138,9 @@
     " Hardmode to learn mode vim
     Plug 'wikitopian/hardmode'
     " Latex
-    Plug 'vim-latex/vim-latex', { 'for': 'tex' }
-    " todo:fix Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-    Plug 'lervag/vimtex'
+    " Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+    " Plug 'lervag/vimtex'
+    Plug 'donRaphaco/neotex', { 'for': 'tex' }
     Plug 'benmills/vimux'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
@@ -1161,3 +1161,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 " machakann/vim-highlightedyank
     let g:highlightedyank_highlight_duration = 500
+
+" neotex
+    let g:neotex_enabled = 1
+    let g:neotex_latexdiff = 1
+    let g:tex_flavor = 'pdflatex'
+    let g:neotex_delay = 500
