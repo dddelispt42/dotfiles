@@ -87,13 +87,6 @@ ptime() {
         perl -nle '/ID_LENGTH=([0-9\.]+)/ && (\$t +=\$1) && printf \"%02d:%02d:%02d\n\",\$t/3600,\$t/60%60,\$t%60' | \
         tail -n 1
     }
-r() {
-    if [[ "$RANGER_LEVEL" ]]; then
-        exit
-    else
-        ranger
-    fi
-}
 
 speedup() {
     </dev/null ffmpeg -i "$*" -filter atempo=1.5 "${*%%.mp3}-150.mp3"
