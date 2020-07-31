@@ -152,7 +152,7 @@
     " Plug 'mjbrownie/hackertyper.vim'
     " Plug 'sirtaj/vim-openscad'
     Plug '907th/vim-auto-save'
-    " Plug 'will133/vim-dirdiff'
+    Plug 'will133/vim-dirdiff'
     " Plug 'joonty/vim-do'
     Plug 'christoomey/vim-conflicted'
     Plug 'christoomey/vim-sort-motion'

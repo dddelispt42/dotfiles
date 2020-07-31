@@ -11,6 +11,7 @@ delta
 desed
 detox
 diffr
+dijo
 dirstat-rs
 doh-client
 dutree
