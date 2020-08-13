@@ -1,5 +1,6 @@
 flake8
 future
+git-delete-merged-branches
 mycli
 psutils
 pylint

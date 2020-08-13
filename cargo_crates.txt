@@ -14,6 +14,7 @@ diffr
 dijo
 dirstat-rs
 doh-client
+du-dust
 dutree
 eva
 exa
@@ -64,3 +65,4 @@ vivid
 watchexec
 xsv
 yj
+ytop
