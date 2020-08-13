@@ -50,6 +50,7 @@
     graph = log --all --graph --decorate --oneline
     l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an>%Creset\\ %C(red)%d%Creset\\ %s"
     lg = log --oneline --reverse
+    kill-branches = "!f() { git branch | awk '!/^*|master/ {print $1 }' | xargs git branch ${1--d};}; f"
     mt = mergetool
     mylog = log --stat
     pf = push --force-with-lease
