@@ -248,7 +248,6 @@ vifm
 vim
 vimdot
 virtualenv
-vivid
 w3m
 watchman
 wdiff

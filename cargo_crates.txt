@@ -61,7 +61,6 @@ tokei
 typeracer
 upt
 viu
-vivid
 watchexec
 xsv
 yj
