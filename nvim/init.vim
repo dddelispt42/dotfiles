@@ -631,7 +631,7 @@
 " set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 " set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline\ 10
 " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-set guifont=Hack:h10
+set guifont=Hack\ NF:h10
 " }}}
 
 set nocompatible
