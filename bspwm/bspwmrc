@@ -1,6 +1,10 @@
 #! /bin/sh
 HOST=$(hostname)
 
+if [ "$HOST" == "manjaro" ]; then
+    xrandr --output Virtual1 --mode 1920x1200 --rate 60
+    ~/.config/autostart/VBoxClient.sh
+fi
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
 ~/.config/polybar/launch.sh "$HOST"
 ~/.config/dunst/launch.sh
