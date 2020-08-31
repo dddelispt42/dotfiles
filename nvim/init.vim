@@ -49,7 +49,9 @@
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
-    Plug 'rhysd/git-messenger.vim'
+    if has("nvim")
+        Plug 'rhysd/git-messenger.vim'
+    endif
 
     Plug 'Raimondi/delimitMate'
 
@@ -174,6 +176,8 @@
     " better encryption plugin - requires: https://github.com/jedisct1/encpipe
     Plug 'hauleth/vim-encpipe'
     Plug 'machakann/vim-highlightedyank'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'stsewd/fzf-checkout.vim'
 
     " TODO: test this alternative to Ale/Ycm  <02-05-20, Heiko Riemer> "
     " Plug 'mattn/vim-lsp-settings'
@@ -229,7 +233,7 @@
     if exists('$SHELL')
         set shell=$SHELL
     else
-        set shell=/bin/sh
+        set shell=/usr/bin/zsh
         if (g:env =~# 'WINDOWS')
             set shell=cmd
         endif
@@ -260,7 +264,9 @@
     set incsearch
     set ignorecase
     set smartcase
-    set inccommand=nosplit
+    if has("nvim")
+        set inccommand=nosplit
+    endif
 
 " session management
     let g:session_directory = vimconfigpath . "/session"
@@ -342,11 +348,8 @@
     let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
     let g:NERDTreeWinSize = 50
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-    nnoremap <silent> <F2> :NERDTreeFind<CR>
-    nnoremap <silent> <F3> :NERDTreeToggle<CR>
-
-" terminal emulation
-    nnoremap <silent> <leader>sh :terminal<CR>
+    " nnoremap <silent> <F2> :NERDTreeFind<CR>
+    " nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " Commands
     " remove trailing whitespaces
@@ -415,9 +418,12 @@
     noremap <Leader>gsh :Gpush<CR>
     noremap <Leader>gll :Gpull<CR>
     noremap <Leader>gs :Gstatus<CR>
-    noremap <Leader>gb :Gblame<CR>
+    noremap <Leader>gbl :Gblame<CR>
     noremap <Leader>gd :Gvdiff<CR>
     noremap <Leader>gr :Gremove<CR>
+    "added via fzf-checkout:
+    noremap <Leader>gbr :GBranches<CR>
+    noremap <Leader>gt :GTags<CR>
 
 " session management
     nnoremap <leader>so :OpenSession<Space>
@@ -536,89 +542,80 @@
     noremap <Leader>tb :Vista!!<CR>
 
 "" Copy/Paste/Cut - Share the VIM clipboard with the X11 clipboard
-if has("clipboard")
-    set clipboard=unnamed " copy to the system clipboard
-    if has("unnamedplus") " X11 support
-        set clipboard+=unnamedplus
+    if has("clipboard")
+        set clipboard=unnamed " copy to the system clipboard
+        if has("unnamedplus") " X11 support
+            set clipboard+=unnamedplus
+        endif
     endif
-endif
 
 "" Buffer nav
-noremap <leader>z :bp<CR>
-noremap <leader>x :bn<CR>
+    noremap <leader>z :bp<CR>
+    noremap <leader>x :bn<CR>
 
 "" Close buffer
-noremap <leader>c :bd<CR>
-
-"" Switching windows
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
+    noremap <leader>c :bd<CR>
 
 "" Vmap for maintain Visual Mode after shifting > and <
-vmap < <gv
-vmap > >gv
+    vmap < <gv
+    vmap > >gv
 
 "" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+    vnoremap J :m '>+1<CR>gv=gv
+    vnoremap K :m '<-2<CR>gv=gv
 
 "" Open current line on GitHub
-nnoremap <Leader>o :.Gbrowse<CR>
+    nnoremap <Leader>o :.Gbrowse<CR>
 
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
 
 " c
-autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
+    autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
+    autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 
 
 " html
 " for html files, 2 spaces
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
+    autocmd Filetype html setlocal ts=2 sw=2 expandtab
 
 
 " python
 " vim-python
-augroup vimrc-python
-  autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-      \ formatoptions+=croq softtabstop=4
-      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-augroup END
+    augroup vimrc-python
+      autocmd!
+      autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+          \ formatoptions+=croq softtabstop=4
+          \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+    augroup END
 
 " jedi-vim
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#smart_auto_mappings = 0
+    let g:jedi#popup_on_dot = 0
+    let g:jedi#goto_assignments_command = "<leader>g"
+    let g:jedi#goto_definitions_command = "<leader>d"
+    let g:jedi#documentation_command = "K"
+    let g:jedi#usages_command = "<leader>n"
+    let g:jedi#rename_command = "<leader>r"
+    let g:jedi#show_call_signatures = "0"
+    let g:jedi#completions_command = "<C-Space>"
+    let g:jedi#smart_auto_mappings = 0
 
 " Syntax highlight
 " Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
-let python_highlight_all = 1
+    let g:polyglot_disabled = ['python']
+    let python_highlight_all = 1
 
 " rust
 " Vim racer
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+    au FileType rust nmap gd <Plug>(rust-def)
+    au FileType rust nmap gs <Plug>(rust-def-split)
+    au FileType rust nmap gx <Plug>(rust-def-vertical)
+    au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " MyConf
-let g:snips_author = "Heiko Riemer"
-let g:session_autosave = 'no'
-
-" let g:python3_host_prog = '/cygdrive/c/Users/pt103371/AppData/Local/Programs/Python/Python36'
-" let g:python3_host_prog = '/usr/bin/python3'
+    let g:snips_author = "Heiko Riemer"
+    let g:session_autosave = 'no'
 
 " Jedi (python) {{{
     let g:jedi#popup_on_dot = 1
@@ -1073,56 +1070,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " let g:eighties_compute = 1 " Disable this if you just want the minimum + extra
     " let g:eighties_bufname_additional_patterns = ['fugitiveblame'] " Defaults to [], 'fugitiveblame' is only an example. Takes a comma delimited list of bufnames as strings.
 
-" Floating Terminals - like LazyGit or LazyDocker
-    " Creates a floating window with a most recent buffer to be used
-    if has('nvim')
-        function! CreateCenteredFloatingWindow()
-            let width = float2nr(&columns * 0.9)
-            let height = float2nr(&lines * 0.9)
-            let top = ((&lines - height) / 2) - 1
-            let left = (&columns - width) / 2
-            let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-            let top = "╭" . repeat("─", width - 2) . "╮"
-            let mid = "│" . repeat(" ", width - 2) . "│"
-            let bot = "╰" . repeat("─", width - 2) . "╯"
-            let lines = [top] + repeat([mid], height - 2) + [bot]
-            let s:buf = nvim_create_buf(v:false, v:true)
-            call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-            call nvim_open_win(s:buf, v:true, opts)
-            set winhl=Normal:Floating
-            let opts.row += 1
-            let opts.height -= 2
-            let opts.col += 2
-            let opts.width -= 4
-            call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-            autocmd BufWipeout <buffer> exe 'bwipeout '.s:buf
-        endfunction
-        " When term starts, auto go into insert mode
-        autocmd TermOpen * startinsert
-        " Turn off line numbers etc
-        autocmd TermOpen * setlocal listchars= nonumber norelativenumber
-
-        " function to toggle the window
-        function! ToggleTerm(cmd)
-            if empty(bufname(a:cmd))
-                call CreateCenteredFloatingWindow()
-                call termopen(a:cmd, { 'on_exit': function('OnTermExit') })
-            else
-                bwipeout!
-            endif
-        endfunction
-
-        function! OnTermExit(job_id, code, event) dict
-            if a:code == 0
-                bwipeout!
-            endif
-        endfunction
-
-        nnoremap <silent> <Leader>ld :call ToggleTerm('lazydocker')<CR>
-        nnoremap <silent> <Leader>lf :call ToggleTerm('lf')<CR>
-        nnoremap <silent> <Leader>bt :call ToggleTerm('bashtop')<CR>
-    endif
-
 " vim-airline
     let g:airline_theme='molokai'
     " let g:airline_theme = 'powerlineish'
@@ -1184,3 +1131,23 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:neotex_latexdiff = 1
     let g:tex_flavor = 'pdflatex'
     let g:neotex_delay = 500
+
+" terminal config
+    let g:floaterm_height = 0.8
+    let g:floaterm_width = 0.8
+    let g:floaterm_autoclose = 1
+    nnoremap   <silent>   <F7>    :FloatermNew<CR>
+    tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
+    nnoremap   <silent>   <F8>    :FloatermPrev<CR>
+    tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
+    nnoremap   <silent>   <F9>    :FloatermNext<CR>
+    tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
+    nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+    tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+    command! FZF FloatermNew fzf
+    nnoremap <silent> <leader>sh :terminal<CR>
+    nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
+    nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
+    nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
+    nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
+    nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
