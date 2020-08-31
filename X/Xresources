@@ -236,12 +236,13 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! -xos4-terminus-bold-r-normal--32-320-72-72-c-160-iso10646-1
 
 !! Transparency (0-1):
-st.alpha: 0.92
+! st.alpha: 0.92
 
 !! Set a default font and font size as below:
 ! st.font: Monospace-11; !
 ! st.font: Inconsolata for Powerline:pixelsize=14:antialias=true:autohint=true;
-st.font: NotoSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true;
+! st.font: NotoSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true;
+st.font: Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true;
 st.termname: st-256color
 st.borderpx: 2
 
