@@ -101,7 +101,6 @@
     Plug 'rust-lang/rust.vim', { 'for': 'rust' }
     Plug 'timonv/vim-cargo', { 'for': 'rust' }
     Plug 'vim-scripts/Conque-GDB', { 'for': ['c', 'cpp', 'rust'] }
-    " todo:slow Plug 'KabbAmine/zeavim.vim'
     " see colorschemes http://bytefluent.com/vivify/
     Plug 'flazz/vim-colorschemes'
     Plug 'godlygeek/tabular'
@@ -127,7 +126,7 @@
     " interesting but not yet configured
     Plug 'sjl/gundo.vim', { 'on': [] }
     " interesting but not yet configured
-    Plug 'mileszs/ack.vim'
+    " Plug 'mileszs/ack.vim'
     " todo:slow Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
     " Git commit browser (:GV)
     Plug 'junegunn/gv.vim'
@@ -176,8 +175,11 @@
     " better encryption plugin - requires: https://github.com/jedisct1/encpipe
     Plug 'hauleth/vim-encpipe'
     Plug 'machakann/vim-highlightedyank'
+    " floating windows
     Plug 'voldikss/vim-floaterm'
     Plug 'stsewd/fzf-checkout.vim'
+    " edit JIRA issues in vim
+    Plug 'n0v1c3/vira', { 'do': './install.sh' }
 
     " TODO: test this alternative to Ale/Ycm  <02-05-20, Heiko Riemer> "
     " Plug 'mattn/vim-lsp-settings'
@@ -996,12 +998,10 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
         endif
 
     endfunction
-    " noremap <leader>T :silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""<CR>
     noremap <leader>T :call TogglePomodoroTimer()<cr>
     noremap <leader>D :VimwikiToggleListItem<cr>ddGp<c-o>
 
 """ misc
-    " nnoremap <leader>H <Esc>:call ToggleHardMode()<CR>
     let g:HardMode_level = 'wannabe'
     " let g:HardMode_hardmodeMsg = 'Don't use this!'
     autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
@@ -1151,3 +1151,17 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
     nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
     nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
+
+" JIRA - editor in VIM ;-)
+    function! OpenJiraIssue()
+        if !exists("g:vira_serv")
+            call vira#_menu('servers')
+            echo "Connecting to a JIRA server first..."
+        else
+            let g:vira_active_issue = input("Enter issue.key: ")
+            call vira#_menu('report')
+        endif
+    endfunction
+    map <leader>j :call OpenJiraIssue()<cr>
+    let g:vira_browser = 'firefox'
+    " TODO: run queries and open issues from there
