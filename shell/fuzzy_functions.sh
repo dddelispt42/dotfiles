@@ -14,7 +14,7 @@
 
 fja() {
     local issues url
-    issues=$(cat ~/.config/JiraIssueCache*.issues | fzf -x -0 -m)
+    issues=$(cat ~/.config/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf -x -0 -m)
     if [ $? -ne 0 ]; then
         return
     fi
@@ -28,7 +28,7 @@ fja() {
 
 fj() {
     local issues url
-    issues=$(cat ~/.config/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | fzf -x -0 -m)
+    issues=$(cat ~/.config/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf -x -0 -m)
     if [ $? -ne 0 ]; then
         return
     fi
