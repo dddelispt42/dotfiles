@@ -910,7 +910,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
     " Default fzf layout
     " - down / up / left / right
-    let g:fzf_layout = { 'down': '~40%' }
+    " let g:fzf_layout = { 'down': '~40%' }
+    let g:fzf_layout = { 'window': { 'width': 0.9 , 'height': 0.8 } }
 
     " Customize fzf colors to match your color scheme
     let g:fzf_colors =
