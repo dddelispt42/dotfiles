@@ -295,7 +295,7 @@
     set t_Co=256
     set guioptions=egmrti
     " TODO not working in Windows
-    set gfn=Monospace\ 10
+    " set gfn=Monospace\ 10
     if has("termguicolors")
         set termguicolors
     endif
@@ -631,7 +631,8 @@
 " set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 " set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline\ 10
 " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-set guifont=Hack\ NF:h10
+" set guifont=Hack\ NF:h10
+set guifont=Hack\ NF\ 10
 " }}}
 
 set nocompatible
