@@ -29,6 +29,7 @@
     af = autofixup
     ap = add --patch
     b = branch
+    ba = branch -a
     br = branch
     ca = commit --amend
     cd = diff --word-diff=color --word-diff-regex=. --ignore-all-space
@@ -45,6 +46,8 @@
     dls = diff-tree --no-commit-id --name-status -r
     ds = diff --minimal --staged
     ff = merge --ff-only
+    gpg = log --show-signature
+    ign = ls-files -o -i --exclude-standard
     noff = merge --no-ff
     gr = log --all --graph --decorate --oneline
     graph = log --all --graph --decorate --oneline
@@ -64,6 +67,7 @@
     st = status
     stat = status
     su = status -u
+    uncommit = reset HEAD~1 --mixed
     up = !git fetch origin && git rebase origin/master
     upgh = !git fetch github && git rebase github/master
     wd = diff --word-diff=color --ignore-all-space
@@ -111,3 +115,5 @@
     editor = interactive-rebase-tool
 [pull]
 	ff = only
+[status]
+    submodulesummary = 1
