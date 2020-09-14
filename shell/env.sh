@@ -9,8 +9,6 @@ export TERM="xterm-256color"
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-export TERM=xterm-256color
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 # HISTCONTROL=ignoreboth
@@ -18,9 +16,6 @@ export TERM=xterm-256color
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 # HISTSIZE=1000
 # HISTFILESIZE=2000
-
-# path shortcuts
-# CDPATH=".:~:~/projects:~/bin:~/dotfiles:~/docker"
 
 # firefox profile
 FIREFOX_PROFILE="$(test -d .mozilla/firefox && (find .mozilla/firefox/ -iname '*.default' | tail -1))"
@@ -33,7 +28,6 @@ export FIREFOX_PROFILE
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/.fzf/bin:$PATH
 PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:/snap/bin:$PATH
 PATH=/home/heiko/.gem/ruby/2.7.0/bin:$PATH
 export PATH
@@ -55,17 +49,14 @@ fi
 export PAGER=less
 if command -v bat >/dev/null; then
     export PAGER=bat
+    export BAT_PAGER="less -RX"
 fi
-export BAT_PAGER="less -RFX"
 export XDG_CONFIG_HOME="$HOME/.config"
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
 
 # Use nvim as manpager `:h Man`
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
-
-# alias tmux="TERM=xterm-256color tmux"
-# set LANG="en_US.UTF-8"
 
 export RED='\033[0;31m'
 export YELLOW='\033[1;33m'
@@ -100,13 +91,7 @@ export MAVEN_HOME=~/opt/maven
 export PATH=$PATH:$MAVEN_HOME/bin
 
 # Fuzzy finder
-# export FZF_DEFAULT_COMMAND='fd --type f'
-# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-# export FZF_DEFAULT_OPTS='-x --height 40% --reverse --border --inline-info'
-# export FZF_DEFAULT_OPTS="-x --reverse --preview='head -100 {}' --preview-window=right:50%:wrap"
-# export FZF_DEFAULT_OPTS="-x --multi --preview='head -100 {}' --preview-window=right:50%:wrap"
 export FZF_DEFAULT_OPTS="-x --multi --height 80% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
 
 # VIM related

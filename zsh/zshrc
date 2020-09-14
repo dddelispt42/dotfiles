@@ -33,8 +33,7 @@ zplug "andrewferrier/fzf-z"
 # zplug "micrenda/zsh-nohup", defer:2
 zplug "b4b4r07/emoji-cli", defer:2
 # zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
-# zplug 'wfxr/forgit', defer:2
-zplug 'wfxr/forgit'
+zplug 'wfxr/forgit', defer:2
 # zplug 'jedahan/ripz', defer:2
 zplug "MichaelAquilina/zsh-you-should-use", defer:2
 # use Alt-e to launch a finder

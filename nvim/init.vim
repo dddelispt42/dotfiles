@@ -118,8 +118,6 @@
     " todo:slow Plug 'ap/vim-css-color'
     " syntax for plantuml and make command
     Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
-    " generates ASCII (UNICODE) art diagrams- TODO not working in Windows yet
-    " Plug 'scrooloose/vim-slumlord', { 'for': 'plantuml' }
     " Plug 'sjurgemeyer/vim-plantuml', { 'for': 'plantuml' }
     Plug 'nathanalderson/yang.vim', { 'for': 'yang' }
     " todo:slow Plug 'bling/vim-bufferline'
@@ -294,8 +292,6 @@
     set mousemodel=popup
     set t_Co=256
     set guioptions=egmrti
-    " TODO not working in Windows
-    " set gfn=Monospace\ 10
     if has("termguicolors")
         set termguicolors
     endif
@@ -627,12 +623,7 @@
 " }}}
 
 " Font settings {{{
-" set gfn=Monospace\ 8
-" set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-" set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline\ 10
-" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-" set guifont=Hack\ NF:h10
-set guifont=Hack\ NF\ 10
+    set guifont=Hack\ NF:h10
 " }}}
 
 set nocompatible
@@ -877,8 +868,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " set scrollbind
     if &diff
         set cursorline
-        map ] ]c
-        map [ [c
+        " map ] ]c
+        " map [ [c
         " hi DiffAdd    ctermfg=233 ctermbg=LightGreen guifg=#003300 guibg=#DDFFDD gui=none cterm=none
         " hi DiffChange ctermbg=Darkblue  guibg=#ececec gui=none   cterm=none
         " hi DiffText   ctermfg=233  ctermbg=yellow  guifg=#000033 guibg=#DDDDFF gui=none cterm=none
@@ -1031,15 +1022,11 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     set splitright
 
 " vim-open-url
-    " let g:open_url_browser="xdg-open"
-    let g:open_url_browser="firefox"
     function! HandleURL()
         let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*')
-        echo s:uri
         if s:uri != ""
-            " silent exec "!open '".s:uri."'"
-            silent exec "!firefox '".s:uri."' &"
-            redraw!
+            silent exec "!firefox ".shellescape(s:uri, 1)." &"
+            :redraw!
         else
             echo "No URI found in line."
         endif
@@ -1153,6 +1140,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
     nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
     nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
+    nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .zshrc; fj"<CR>
 
 " JIRA - editor in VIM ;-)
     function! OpenJiraIssue()
@@ -1164,6 +1152,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
             call vira#_menu('report')
         endif
     endfunction
-    map <leader>j :call OpenJiraIssue()<cr>
+    map <leader>jo :call OpenJiraIssue()<cr>
     let g:vira_browser = 'firefox'
     " TODO: run queries and open issues from there

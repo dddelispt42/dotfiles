@@ -2,7 +2,8 @@
 HOST=$(hostname)
 
 if [ "$HOST" == "manjaro" ]; then
-    xrandr --output Virtual1 --mode 1920x1080 --rate 60
+    MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
+    xrandr --output $MONITOR --mode 1920x1080 --rate 60
     ~/.config/autostart/VBoxClient.sh
 fi
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
