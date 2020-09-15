@@ -169,7 +169,8 @@
     " goyo distraction free mode
     Plug 'junegunn/goyo.vim'
     Plug 'romainl/vim-cool'
-    Plug 'stsewd/gx-extended.vim'
+    " TODO: buggy
+    " Plug 'stsewd/gx-extended.vim'
     " better encryption plugin - requires: https://github.com/jedisct1/encpipe
     Plug 'hauleth/vim-encpipe'
     Plug 'machakann/vim-highlightedyank'
