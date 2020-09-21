@@ -28,8 +28,8 @@ export FIREFOX_PROFILE
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:/snap/bin:$PATH
-PATH=/home/heiko/.gem/ruby/2.7.0/bin:$PATH
+PATH=~/bin:~/.cargo/bin:~/opt/neovim/bin:~/opt:~/.local/bin:~/.local/bin/statusbar:/snap/bin:$PATH
+# PATH=/home/heiko/.gem/ruby/2.7.0/bin:$PATH
 export PATH
 
 # use vivid for more colors
