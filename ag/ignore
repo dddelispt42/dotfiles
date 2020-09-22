@@ -140,7 +140,12 @@ target/
 .vim/plugged/
 ~$*
 tags
+doc/tags
+**/doc/tags
 tags-te
+doc/tags-te
+**/doc/tags-te
 ctags
+doc/ctags
 Cargo.lock
 .cargo-ok

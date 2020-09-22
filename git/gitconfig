@@ -14,6 +14,7 @@
     filemode = false
     ; excludesfile = /Users/tim/.gitignore
     pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
+	excludesfile = ~/.gitignore
 [interactive]
     diffFilter = delta --color-only
 [github]
