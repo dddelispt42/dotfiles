@@ -179,6 +179,8 @@
     Plug 'stsewd/fzf-checkout.vim'
     " edit JIRA issues in vim
     Plug 'n0v1c3/vira', { 'do': './install.sh' }
+    " automatically set the root directory
+    Plug 'airblade/vim-rooter'
 
     " TODO: test this alternative to Ale/Ycm  <02-05-20, Heiko Riemer> "
     " Plug 'mattn/vim-lsp-settings'
