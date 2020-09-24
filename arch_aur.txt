@@ -1,0 +1,5 @@
+lazydocker
+lazygit
+lf
+libxft-bgra
+nerd-fonts-hack
