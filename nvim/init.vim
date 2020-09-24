@@ -1035,6 +1035,16 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
         endif
     endfunction
     map <leader>u :call HandleURL()<cr>
+    function! GetMDWebLinkFromURL()
+        let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*')
+        let s:title = system('get_webpage_title.sh '.shellescape(s:uri, 1))
+        if s:uri != ""
+            silent call setline(".", substitute(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*', "[".s:title[:-2]."]"."(".s:uri.")", ""))
+        else
+            echo "No URI found in line."
+        endif
+    endfunction
+    map <leader>U :call GetMDWebLinkFromURL()<cr>
 
 " clipboard:
     " set clipboard=unnamedplus
