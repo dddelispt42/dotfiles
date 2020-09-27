@@ -50,7 +50,9 @@
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
     if has("nvim")
+        " used <leader>gm to see the related git commit msg
         Plug 'rhysd/git-messenger.vim'
+        Plug 'norcalli/nvim-colorizer.lua'
     endif
 
     Plug 'Raimondi/delimitMate'

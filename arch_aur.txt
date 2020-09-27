@@ -3,3 +3,4 @@ lazygit
 lf
 libxft-bgra
 nerd-fonts-hack
+termshark-git
