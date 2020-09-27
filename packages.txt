@@ -14,13 +14,11 @@ autossh
 bash
 bash-completion
 bat
-bat
 binutils
 bonnie++
 bpython
 bzip2
 cadaver
-catdoc
 catdoc
 cgdb
 clipmenu
@@ -63,7 +61,6 @@ gnuplot
 gotop
 gource
 graphviz
-graphviz
 grep
 gzip
 hddtemp
@@ -71,11 +68,8 @@ hdparm
 hostname
 htop
 httpie
-httpie
-iftop
 iftop
 inotify-tools
-iotop
 iotop
 iproute2
 iptables
@@ -83,7 +77,6 @@ ispell
 jasper
 jp2a
 jq
-khal
 khal
 less
 lf
@@ -115,7 +108,6 @@ newsboat
 nmap
 nmon
 nnn
-nnn
 ntp
 openssh-client
 openssh-server
@@ -125,10 +117,8 @@ parallel
 parted
 patch
 pdfgrep
-pdfgrep
 perl
 pick
-powertop
 powertop
 progress
 pv
@@ -225,6 +215,7 @@ slmenu
 speedtest-cli
 sqlite3
 sshfs
+stow
 sudo
 tar
 tig
@@ -235,8 +226,6 @@ toxic
 tpp
 traceroute
 translate-shell
-translate-shell
-trash-cli
 trash-cli
 tree
 ttf-nerd-fonts-symbols

@@ -41,6 +41,7 @@ tuxguitar
 vim-gtk3
 vlc
 wavpack
+xbindkeys
 xorg-xfd
 xorg-xwininfo
 xsel

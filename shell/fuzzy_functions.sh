@@ -401,6 +401,10 @@ frga() {
     xdg-open "$file"
 }
 
+fssh() {
+    $(grep -E ".*:[0-9];ssh " $HOME/.zhistory| sed -e 's/.*:[0-9];ssh /ssh /' | sort -u | fzf)
+}
+
 get_recipe()
 {
     curl -sG "https://plainoldrecipe.com/recipe" -d "url=${1}" | pandoc -f html -t markdown
