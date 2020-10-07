@@ -111,6 +111,9 @@ export NNN_OPENER=$OPENER
 # export NNN_COPIER=copier
 export NNN_TRASH=1
 
+# DBUS - this is only needed for DWM with f***** systemd crappiness!!!
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+
 #VIMWIKI
 export WIKI_PATH="$HOME/vimwiki/"
 
