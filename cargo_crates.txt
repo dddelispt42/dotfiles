@@ -6,6 +6,8 @@ broot
 cargo-bloat
 cargo-modules
 checkpwn
+czkawka_cli
+czkawka_gui
 ddh
 delta
 desed
