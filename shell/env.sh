@@ -52,6 +52,8 @@ if command -v bat >/dev/null; then
     export BAT_PAGER="less -RX"
 fi
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
 
 # Use nvim as manpager `:h Man`
@@ -89,6 +91,12 @@ export BIB=$HOME/Documents/uni.bib
 # MAVEN
 export MAVEN_HOME=~/opt/maven
 export PATH=$PATH:$MAVEN_HOME/bin
+
+# CARGO and RUST
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+
+# cht.sh
+export CHTSH_HOME=$XDG_CACHE_HOME/cht.sh
 
 # Fuzzy finder
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
