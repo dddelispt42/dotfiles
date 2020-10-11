@@ -98,6 +98,9 @@ export CARGO_HOME=$XDG_DATA_HOME/cargo
 # cht.sh
 export CHTSH_HOME=$XDG_CACHE_HOME/cht.sh
 
+# pylint
+export PYLINTHOME=${XDG_DATA_HOME:-$HOME/.local/share}/pylint
+
 # Fuzzy finder
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS="-x --multi --height 80% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
