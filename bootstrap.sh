@@ -97,7 +97,7 @@ update_bootstrap
 [[ -L ~/.bash_profile ]] && trash ~/.bash_profile
 [[ -L ~/.bash_logout ]] && trash ~/.bash_logout
 [[ -f ~/.config/liquidpromptrc ]] && trash ~/.config/liquidpromptrc
-[[ -L ~/.agent.sh ]] && trash ~/.agent.sh
+[[ -f ~/.agent.sh ]] && trash ~/.agent.sh
 [[ -d ~/.config/bat ]] && trash ~/.config/bat
 [[ -L ~/.config/bspwm ]] && trash ~/.config/bspwm
 [[ -L ~/.config/dunst ]] && trash ~/.config/dunst
@@ -107,22 +107,46 @@ update_bootstrap
 [[ -L ~/.screenrc ]] && trash ~/.screenrc
 [[ -L ~/.tmux.conf ]] && trash ~/.tmux.conf
 [[ -L ~/.tmuxinator ]] && trash ~/.tmuxinator
+[[ -L ~/.config/nvim ]] && trash ~/.config/nvim
+[[ -L ~/.config/nvim/UltiSnips ]] && trash ~/.config/nvim/UltiSnips
+[[ -L ~/.vimrc ]] && trash ~/.vimrc
+[[ -L ~/.vim ]] && trash ~/.vim
+[[ -L ~/.nvim ]] && trash ~/.nvim
+[[ -L ~/.nvimrc ]] && trash ~/.nvimrc
+[[ -L ~/.vim/UltiSnips ]] && trash ~/.vim/UltiSnips
 
 # move things to XDG directories
 function migrate_to_clean {
     [[ -f "$1" ]] && [[ ! -f "$2" ]] && mv "$1" "$2" && return
     [[ -d "$1" ]] && [[ ! -d "$2" ]] && mv "$1" "$2"
 }
-migrate_to_clean ~/.cmus ~/.config/cmus
-migrate_to_clean ~/.cargo ~/.config/cargo
-migrate_to_clean ~/.cht.sh ~/.config/cht.sh
-migrate_to_clean ~/.thumbnails ~/.config/thumbnails
-migrate_to_clean ~/.gimp-2.0 ~/.config/gimp-2.0
-migrate_to_clean ~/.gimp-2.2 ~/.config/gimp-2.2
-migrate_to_clean ~/.gimp-2.4 ~/.config/gimp-2.4
-migrate_to_clean ~/.gimp-2.6 ~/.config/gimp-2.6
-migrate_to_clean ~/.gimp-2.8 ~/.config/gimp-2.8
-migrate_to_clean ~/.gimp-2.10 ~/.config/gimp-2.10
+migrate_to_clean ~/.cmus "$XDG_CONFIG_HOME"/cmus
+migrate_to_clean ~/.cargo "$XDG_CONFIG_HOME"/cargo
+migrate_to_clean ~/.cht.sh "$XDG_CONFIG_HOME"/cht.sh
+migrate_to_clean ~/.thumbnails "$XDG_CONFIG_HOME"/thumbnails
+migrate_to_clean ~/.gimp-2.0 "$XDG_CONFIG_HOME"/gimp-2.0
+migrate_to_clean ~/.gimp-2.2 "$XDG_CONFIG_HOME"/gimp-2.2
+migrate_to_clean ~/.gimp-2.4 "$XDG_CONFIG_HOME"/gimp-2.4
+migrate_to_clean ~/.gimp-2.6 "$XDG_CONFIG_HOME"/gimp-2.6
+migrate_to_clean ~/.gimp-2.8 "$XDG_CONFIG_HOME"/gimp-2.8
+migrate_to_clean ~/.gimp-2.10 "$XDG_CONFIG_HOME"/gimp-2.10
+migrate_to_clean ~/.mutt "$XDG_CONFIG_HOME"/mutt
+migrate_to_clean ~/.newsbeuter "$XDG_CONFIG_HOME"/newsbeuter
+migrate_to_clean ~/.mpv "$XDG_CONFIG_HOME"/mpv
+migrate_to_clean ~/.mpdconf "$XDG_CONFIG_HOME"/mpdconf
+migrate_to_clean ~/vimfiles "$XDG_CACHE_HOME"/nvim
+migrate_to_clean ~/.pylintrc "$XDG_CACHE_HOME"/pylintrc
+migrate_to_clean ~/.pylint.d "$XDG_DATA_HOME"/pylint
+migrate_to_clean ~/.htoprc "$XDG_CONFIG_HOME"/htoprc
+migrate_to_clean ~/.httpie "$XDG_CONFIG_HOME"/httpie
+migrate_to_clean ~/.inkscape "$XDG_CONFIG_HOME"/inkscape
+migrate_to_clean ~/.i3 "$XDG_CONFIG_HOME"/i3
+migrate_to_clean ~/.i3status.conf "$XDG_CONFIG_HOME"/i3status.conf
+migrate_to_clean ~/.lftp.conf "$XDG_CONFIG_HOME"/lftp.conf
+migrate_to_clean ~/.mc "$XDG_CONFIG_HOME"/mc
+migrate_to_clean ~/.mypoint "$XDG_CONFIG_HOME"/mypoint
+migrate_to_clean ~/.pandoc "$XDG_CONFIG_HOME"/pandoc
+migrate_to_clean ~/.Skype "$XDG_CONFIG_HOME"/Skype
 
 # call stow individually
 stow -vS -t ~/ bat
@@ -133,6 +157,14 @@ stow -vS -t ~/ lf
 stow -vS -t ~/ polybar
 stow -vS -t ~/ sxhkd
 stow -vS -t ~/ tmux
-# TODO: nvim shell vim X zsh
+stow -vS -t ~/ nvim
+stow -vS -t ~/ X11
+# TODO: shell vim zsh
+mkdir -p "$XDG_CACHE_HOME"/nvim/{undo,backup,swap,sessions}
+if command -v nvim > /dev/null; then
+    nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+else
+    vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+fi
 
 # finally cleanup this script
