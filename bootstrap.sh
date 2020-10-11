@@ -114,6 +114,9 @@ update_bootstrap
 [[ -L ~/.nvim ]] && trash ~/.nvim
 [[ -L ~/.nvimrc ]] && trash ~/.nvimrc
 [[ -L ~/.vim/UltiSnips ]] && trash ~/.vim/UltiSnips
+[[ -L ~/.config/nvim/init.vim ]] && trash ~/.config/nvim/init.vim
+[[ -L ~/.config/nvim/local_bundles.vim ]] && trash ~/.config/nvim/local_bundles.vim
+[[ -L ~/.config/nvim/local_init.vim ]] && trash ~/.config/nvim/local_init.vim
 
 # move things to XDG directories
 function migrate_to_clean {
@@ -121,7 +124,7 @@ function migrate_to_clean {
     [[ -d "$1" ]] && [[ ! -d "$2" ]] && mv "$1" "$2"
 }
 migrate_to_clean ~/.cmus "$XDG_CONFIG_HOME"/cmus
-migrate_to_clean ~/.cargo "$XDG_CONFIG_HOME"/cargo
+migrate_to_clean ~/.cargo "$XDG_DATA_HOME"/cargo
 migrate_to_clean ~/.cht.sh "$XDG_CONFIG_HOME"/cht.sh
 migrate_to_clean ~/.thumbnails "$XDG_CONFIG_HOME"/thumbnails
 migrate_to_clean ~/.gimp-2.0 "$XDG_CONFIG_HOME"/gimp-2.0
