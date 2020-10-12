@@ -149,3 +149,5 @@ ctags
 doc/ctags
 Cargo.lock
 .cargo-ok
+*.yang.uml
+*.yang.yin
