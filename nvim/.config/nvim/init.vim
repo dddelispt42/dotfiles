@@ -63,19 +63,15 @@
     Plug 'w0rp/ale'
     Plug 'Yggdroot/indentLine'
     Plug 'mhinz/vim-startify'
-    if executable('sk')
-        Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
-        Plug 'lotabout/skim.vim'
-        " command! -bang -nargs=* Ag call fzf#vim#ag_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
-        command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
-    else
-        if isdirectory('/usr/local/opt/fzf')
-            Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-        else
-            Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-            Plug 'junegunn/fzf.vim'
-        endif
-    endif
+    " if executable('sk')
+    "     Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+    "     Plug 'lotabout/skim.vim'
+    "     " command! -bang -nargs=* Ag call fzf#vim#ag_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
+    "     command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
+    " else
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
+    " endif
     let g:make = 'gmake'
     if exists('make')
         let g:make = 'make'
