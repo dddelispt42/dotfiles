@@ -117,6 +117,9 @@ update_bootstrap
 [[ -L ~/.config/nvim/init.vim ]] && trash ~/.config/nvim/init.vim
 [[ -L ~/.config/nvim/local_bundles.vim ]] && trash ~/.config/nvim/local_bundles.vim
 [[ -L ~/.config/nvim/local_init.vim ]] && trash ~/.config/nvim/local_init.vim
+[[ -d ~/dotfiles/bash/liquidprompt ]] && trash ~/dotfiles/bash/liquidprompt
+[[ -d ~/dotfiles/zsh/oh-my-zsh ]] && trash ~/dotfiles/zsh/oh-my-zsh
+[[ -d ~/dotfiles/zsh/zplug ]] && trash ~/dotfiles/zsh/zplug
 
 # move things to XDG directories
 function migrate_to_clean {
@@ -125,6 +128,10 @@ function migrate_to_clean {
 }
 migrate_to_clean ~/.cmus "$XDG_CONFIG_HOME"/cmus
 migrate_to_clean ~/.cargo "$XDG_DATA_HOME"/cargo
+migrate_to_clean ~/.rustup "$XDG_DATA_HOME"/rustup
+migrate_to_clean ~/.RFCs "$XDG_CACHE_HOME"/RFCs
+migrate_to_clean ~/.zhistory "$XDG_CACHE_HOME"/zhistory
+# migrate_to_clean ~/.zplug "$XDG_CACHE_HOME"/zplug
 migrate_to_clean ~/.cht.sh "$XDG_CONFIG_HOME"/cht.sh
 migrate_to_clean ~/.thumbnails "$XDG_CONFIG_HOME"/thumbnails
 migrate_to_clean ~/.gimp-2.0 "$XDG_CONFIG_HOME"/gimp-2.0
@@ -163,7 +170,7 @@ stow -vS -t ~/ tmux
 stow -vS -t ~/ nvim
 stow -vS -t ~/ X11
 # TODO: shell vim zsh
-mkdir -p "$XDG_CACHE_HOME"/nvim/{undo,backup,swap,sessions}
+mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions}
 if command -v nvim > /dev/null; then
     nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 else

@@ -68,9 +68,6 @@ export RESET_COLOR='\033[0m'
 # alias vim="vim --servername a"
 export DISABLE_AUTO_TITLE='true'
 
-# ZSH related
-export ZPLUG_HOME=~/.zplug
-
 # TMUX
 export TMUXP_CONFIGDIR=~/.config/tmuxp
 
@@ -93,7 +90,11 @@ export PATH=$PATH:$MAVEN_HOME/bin
 
 # CARGO and RUST
 export CARGO_HOME=$XDG_DATA_HOME/cargo
+export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 PATH=$CARGO_HOME/bin:$PATH
+
+# RFCs
+export RFC_DIR=$XDG_CACHE_HOME/RFCs
 
 # cht.sh
 export CHTSH_HOME=$XDG_CACHE_HOME/cht.sh
