@@ -402,7 +402,7 @@ frga() {
 }
 
 fssh() {
-    $(grep -E ".*:[0-9];(auto)?ssh " $HOME/.zhistory| sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)
+    $(grep -E ".*:[0-9];(auto)?ssh " $XDG_CACHE_HOME/zhistory| sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)
 }
 
 get_recipe()

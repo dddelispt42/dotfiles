@@ -630,8 +630,10 @@
 set nocompatible
 set noinsertmode    " do not start vim in insert mode
 set backup " tell vim to keep a backup file
-set backupdir=~/vimfiles/backup " tell vim where to put its backup files
-set dir=~/vimfiles/swap " tell vim where to put swap files
+" tell vim where to put its backup files
+set backupdir=~/.cache/vim/backup
+" tell vim where to put swap files
+set dir=~/.cache/vim/swap
 set encoding=UTF-8
 
 " some settings regarding ctags
