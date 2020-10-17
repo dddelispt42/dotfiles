@@ -1,7 +1,0 @@
-alias nocomplete='uncomplete'
-
-complete dbx      'p/2/(core)/' 'n/*/c/'
-complete gdb      'p/2/(core)/' 'n/*/c/'
-complete alias    'p/1/a/'
-complete set      'p/1/s/'
-

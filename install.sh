@@ -119,8 +119,7 @@ stow -vS -t ~/ X11
 # TODO: shell vim zsh
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions}
 if command -v nvim > /dev/null; then
-    echo TODO
-    # nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+    nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 else
     vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 fi
