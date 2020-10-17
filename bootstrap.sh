@@ -1,90 +1,4 @@
 #!/bin/bash
-# BASEDIR=$(pwd)/$(dirname "$0")
-# PKGFILE="/tmp/all.pkgs"
-# INSTALLEDPKGFILE="/tmp/installed.pkgs"
-# TOBEINSTPKGFILE="/tmp/toBeInstalled.pkgs"
-
-# function install_powerline_fonts {
-#     git clone https://github.com/powerline/fonts
-#     pushd fonts || return
-#     ./install.sh
-#     if [ "$HOME" = "/cygdrive/c/Data/$USER/" ] ; then
-#         read -p "Reinstall Windows Powerline Fonts? [y/N]" yn
-#         if [ "$yn" = "y" ]; then
-#             Powershell -File install.ps1
-#         fi
-#     fi
-#     popd || return
-#     rm -rf ./fonts
-# }
-
-# function fix_fzf_for_windows {
-#     if [ "$HOME" = "/cygdrive/c/Data/$USER/" ] ; then
-#         if [ -d "$HOME/.fzf" ]; then
-#             pushd "$HOME/.fzf" || return
-#             git checkout -- shell/key-bindings.bash shell/key-bindings.zsh
-#             git pull
-#             sed -i -e 's/--height.*%\} //g' shell/key-bindings.bash
-#             sed -i -e 's/--height.*%\} //g' shell/key-bindings.zsh
-#             popd || return
-#         fi
-#     fi
-# }
-
-# function install_package {
-#     INSTALLCMD="echo "
-#     touch $PKGFILE
-#     touch $INSTALLEDPKGFILE
-#     grep -E "^ID=(manjaro|arch)" /etc/os-release > /dev/null
-#     if [ $? -eq 0 ]; then
-#         pacsearch -n ^[a-z] | grep -v "^ " | sed -e 's/.*\/\(.*\) .*/\1/' > $PKGFILE
-#         pacman -Qqe > $INSTALLEDPKGFILE
-#         INSTALLCMD="sudo pacman -S "
-#     fi
-#     grep -E "^ID=(debian)" /etc/os-release > /dev/null
-#     if [ $? -eq 0 ]; then
-#         apt-cache pkgnames > $PKGFILE
-#         dpkg --get-selections | grep -E '\sinstall' | sed -e 's/\s.*//' > $INSTALLEDPKGFILE
-#         INSTALLCMD="sudo apt-get install "
-#     fi
-#     grep -v "^#" "$1" > $TOBEINSTPKGFILE
-#     while read -r line; do
-#         pkgs=$(echo "$line" | tr " " "\n")
-#         for pkg in $pkgs
-#         do
-#             grep "^$pkg$" $PKGFILE > /dev/null
-#             if [ $? -eq 0 ]; then
-#                 grep -E "^$pkg$" $INSTALLEDPKGFILE > /dev/null
-#                 if [ $? -ne 0 ]; then
-#                     echo "$INSTALLCMD $pkg"
-#                 fi
-#             else
-#                 echo "$pkg is not existing!"
-#             fi
-#         done
-#     done < $TOBEINSTPKGFILE
-# }
-
-function update_bootstrap {
-    # call bootstap.sh in subdirs
-    for app in $(find . -maxdepth 1 -type d | grep -v "^\./\." | grep -v "^\.$") ; do
-        echo "Setting up (or updating) $app ..."
-        pushd "$app" > /dev/null || return
-        if [ -x ./"$(basename "$0")" ]; then
-            ./"$(basename "$0")"
-        fi
-        popd > /dev/null || return
-        echo "... done!"
-    done
-}
-
-# TODO: more profiles <02-10-18, Heiko Riemer> #
-# install_package $BASEDIR/packages.txt
-# install_package $BASEDIR/packagesX.txt
-# install_powerline_fonts
-# fix_fzf_for_windows
-update_bootstrap
-
 
 # clean up legacy manual links - pre stow
 [[ -L ~/.ignore ]] && trash ~/.ignore
@@ -120,45 +34,78 @@ update_bootstrap
 [[ -d ~/dotfiles/bash/liquidprompt ]] && trash ~/dotfiles/bash/liquidprompt
 [[ -d ~/dotfiles/zsh/oh-my-zsh ]] && trash ~/dotfiles/zsh/oh-my-zsh
 [[ -d ~/dotfiles/zsh/zplug ]] && trash ~/dotfiles/zsh/zplug
+[[ -L ~/.zshrc ]] && trash ~/.zshrc
+[[ -L ~/.zshenv ]] && trash ~/.zshenv
+[[ -L ~/.p10k.zsh ]] && trash ~/.p10k.zsh
 
 # move things to XDG directories
 function migrate_to_clean {
     [[ -f "$1" ]] && [[ ! -f "$2" ]] && mv "$1" "$2" && return
     [[ -d "$1" ]] && [[ ! -d "$2" ]] && mv "$1" "$2"
 }
-migrate_to_clean ~/.cmus "$XDG_CONFIG_HOME"/cmus
-migrate_to_clean ~/.cargo "$XDG_DATA_HOME"/cargo
-migrate_to_clean ~/.rustup "$XDG_DATA_HOME"/rustup
-migrate_to_clean ~/.RFCs "$XDG_CACHE_HOME"/RFCs
-migrate_to_clean ~/.zhistory "$XDG_CACHE_HOME"/zhistory
 # migrate_to_clean ~/.zplug "$XDG_CACHE_HOME"/zplug
+migrate_to_clean ~/.RFCs "$XDG_CACHE_HOME"/RFCs
+migrate_to_clean ~/.Skype "$XDG_CONFIG_HOME"/Skype
+migrate_to_clean ~/.aria2 "$XDG_CONFIG_HOME"/aria2
+migrate_to_clean ~/.asoundrc "$XDG_CONFIG_HOME"/asoundrc
+migrate_to_clean ~/.binwalk "$XDG_CONFIG_HOME"/binwalk
+migrate_to_clean ~/.calibre "$XDG_CONFIG_HOME"/calibre
+migrate_to_clean ~/.cargo "$XDG_DATA_HOME"/cargo
 migrate_to_clean ~/.cht.sh "$XDG_CONFIG_HOME"/cht.sh
-migrate_to_clean ~/.thumbnails "$XDG_CONFIG_HOME"/thumbnails
+migrate_to_clean ~/.cmus "$XDG_CONFIG_HOME"/cmus
 migrate_to_clean ~/.gimp-2.0 "$XDG_CONFIG_HOME"/gimp-2.0
+migrate_to_clean ~/.gimp-2.10 "$XDG_CONFIG_HOME"/gimp-2.10
 migrate_to_clean ~/.gimp-2.2 "$XDG_CONFIG_HOME"/gimp-2.2
 migrate_to_clean ~/.gimp-2.4 "$XDG_CONFIG_HOME"/gimp-2.4
 migrate_to_clean ~/.gimp-2.6 "$XDG_CONFIG_HOME"/gimp-2.6
 migrate_to_clean ~/.gimp-2.8 "$XDG_CONFIG_HOME"/gimp-2.8
-migrate_to_clean ~/.gimp-2.10 "$XDG_CONFIG_HOME"/gimp-2.10
-migrate_to_clean ~/.mutt "$XDG_CONFIG_HOME"/mutt
-migrate_to_clean ~/.newsbeuter "$XDG_CONFIG_HOME"/newsbeuter
-migrate_to_clean ~/.mpv "$XDG_CONFIG_HOME"/mpv
-migrate_to_clean ~/.mpdconf "$XDG_CONFIG_HOME"/mpdconf
-migrate_to_clean ~/vimfiles "$XDG_CACHE_HOME"/nvim
-migrate_to_clean ~/.pylintrc "$XDG_CACHE_HOME"/pylintrc
-migrate_to_clean ~/.pylint.d "$XDG_DATA_HOME"/pylint
 migrate_to_clean ~/.htoprc "$XDG_CONFIG_HOME"/htoprc
 migrate_to_clean ~/.httpie "$XDG_CONFIG_HOME"/httpie
-migrate_to_clean ~/.inkscape "$XDG_CONFIG_HOME"/inkscape
 migrate_to_clean ~/.i3 "$XDG_CONFIG_HOME"/i3
 migrate_to_clean ~/.i3status.conf "$XDG_CONFIG_HOME"/i3status.conf
+migrate_to_clean ~/.inkscape "$XDG_CONFIG_HOME"/inkscape
 migrate_to_clean ~/.lftp.conf "$XDG_CONFIG_HOME"/lftp.conf
 migrate_to_clean ~/.mc "$XDG_CONFIG_HOME"/mc
+migrate_to_clean ~/.mpdconf "$XDG_CONFIG_HOME"/mpdconf
+migrate_to_clean ~/.mpv "$XDG_CONFIG_HOME"/mpv
+migrate_to_clean ~/.mutt "$XDG_CONFIG_HOME"/mutt
 migrate_to_clean ~/.mypoint "$XDG_CONFIG_HOME"/mypoint
+migrate_to_clean ~/.newsbeuter "$XDG_CONFIG_HOME"/newsbeuter
+migrate_to_clean ~/.newsboat "$XDG_CONFIG_HOME"/newsboat
 migrate_to_clean ~/.pandoc "$XDG_CONFIG_HOME"/pandoc
-migrate_to_clean ~/.Skype "$XDG_CONFIG_HOME"/Skype
+migrate_to_clean ~/.pylint.d "$XDG_DATA_HOME"/pylint
+migrate_to_clean ~/.pylintrc "$XDG_CACHE_HOME"/pylintrc
+migrate_to_clean ~/.rustup "$XDG_DATA_HOME"/rustup
+migrate_to_clean ~/.thumbnails "$XDG_CACHE_HOME"/thumbnails
+migrate_to_clean ~/.zhistory "$XDG_CACHE_HOME"/zhistory
+migrate_to_clean ~/vimfiles "$XDG_CACHE_HOME"/nvim
+migrate_to_clean ~/.pki "$XDG_DATA_HOME"/pki
+migrate_to_clean ~/.pip "$XDG_CONFIG_HOME"/pip
+migrate_to_clean ~/.tmuxp "$XDG_CONFIG_HOME"/tmuxp
+mkdir -p "$XDG_CACHE_HOME"/xsel
+migrate_to_clean ~/.xsel.log "$XDG_DATA_HOME"/xsel/log
+migrate_to_clean ~/.vlcrc "$XDG_CONFIG_HOME"/vlcrc
+migrate_to_clean ~/.VirtualBox "$XDG_CONFIG_HOME"/VirtualBox
+migrate_to_clean ~/.binwalk "$XDG_CONFIG_HOME"/binwalk
+migrate_to_clean ~/.blender "$XDG_CONFIG_HOME"/blender
+migrate_to_clean ~/.mc "$XDG_CONFIG_HOME"/mc
+migrate_to_clean ~/.pip "$XDG_CACHE_HOME"/pip
+migrate_to_clean ~/.pulse "$XDG_CACHE_HOME"/pulse
+mkdir -p "$XDG_DATA_HOME"/tig
+migrate_to_clean ~/.tmuxp "$XDG_CONFIG_HOME"/tmuxp
+migrate_to_clean ~/.VirtualBox "$XDG_CONFIG_HOME"/VirtualBox
+mkdir -p "$XDG_CACHE_HOME"/wget
+migrate_to_clean ~/.wget-hsts "$XDG_CACHE_HOME"/wget/wget-hsts
+migrate_to_clean ~/.inputrc "$XDG_CACHE_HOME"/inputrc
+migrate_to_clean ~/.kodi "$XDG_DATA_HOME"/kodi
+migrate_to_clean ~/.password-store "$XDG_CONFIG_HOME"/password-store
+migrate_to_clean ~/go "$XDG_DATA_HOME"/go
+migrate_to_clean ~/.elinks "$XDG_CONFIG_HOME"/elinks
+migrate_to_clean ~/.docker "$XDG_CONFIG_HOME"/docker
 
 # call stow individually
+stow -vS -t ~/ shell
+stow -vS -t ~/ zsh
 stow -vS -t ~/ bat
 stow -vS -t ~/ bspwm
 stow -vS -t ~/ dunst
@@ -172,7 +119,8 @@ stow -vS -t ~/ X11
 # TODO: shell vim zsh
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions}
 if command -v nvim > /dev/null; then
-    nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+    echo TODO
+    # nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 else
     vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 fi

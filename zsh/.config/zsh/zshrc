@@ -56,16 +56,16 @@ fi
 zplug load
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
 
 # TODO: generate path name
-test -s ~/dotfiles/shell/env.sh && source ~/dotfiles/shell/env.sh || true
-test -s ~/dotfiles/shell/functions.sh && source ~/dotfiles/shell/functions.sh || true
-test -s ~/dotfiles/shell/ssh_agent.sh && source ~/dotfiles/shell/ssh_agent.sh || true
-test -s ~/dotfiles/shell/alias.sh && source ~/dotfiles/shell/alias.sh || true
-test -s ~/dotfiles/shell/fuzzy_functions.sh && source ~/dotfiles/shell/fuzzy_functions.sh || true
-test -s ~/dotfiles/shell/keybinding.sh && source ~/dotfiles/shell/keybinding.sh || true
-test -s ~/dotfiles/zsh/svn_prompt.sh && source ~/dotfiles/zsh/svn_prompt.sh || true
+test -s ~/.config/shell/env.sh && source ~/.config/shell/env.sh || true
+test -s ~/.config/shell/functions.sh && source ~/.config/shell/functions.sh || true
+test -s ~/.config/shell/ssh_agent.sh && source ~/.config/shell/ssh_agent.sh || true
+test -s ~/.config/shell/alias.sh && source ~/.config/shell/alias.sh || true
+test -s ~/.config/shell/fuzzy_functions.sh && source ~/.config/shell/fuzzy_functions.sh || true
+test -s ~/.config/shell/keybinding.sh && source ~/.config/shell/keybinding.sh || true
+test -s ~/.config/zsh/svn_prompt.sh && source ~/.config/zsh/svn_prompt.sh || true
 test -s ~/.fzf/shell/key-bindings.zsh && source ~/.fzf/shell/key-bindings.zsh || true
 test -s ~/.fzf/shell/completion.zsh && source ~/.fzf/shell/completion.zsh || true
 test -s /usr/share/fzf/key-bindings.zsh && source /usr/share/fzf/key-bindings.zsh || true
