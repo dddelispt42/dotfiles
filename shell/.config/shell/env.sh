@@ -28,7 +28,7 @@ export FIREFOX_PROFILE
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PATH=~/bin:~/opt/neovim/bin:~/opt:~/.local/bin:~/.local/bin/statusbar:/snap/bin:$PATH
+PATH=~/bin:~/opt/neovim/bin:~/opt:~/.local/bin:~/.local/bin/statusbar:$PATH
 export PATH
 
 # use vivid for more colors
@@ -56,7 +56,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export AUTOSSH_LOGFILE="$HOME/autossh.log"
 
 # ZSH env
-export ZDOTDIR=~/.config/zsh
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
 # Use nvim as manpager `:h Man`
 export MANPAGER='nvim +Man!'
@@ -72,7 +72,7 @@ export RESET_COLOR='\033[0m'
 export DISABLE_AUTO_TITLE='true'
 
 # TMUX
-export TMUXP_CONFIGDIR=~/.config/tmuxp
+export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp"
 
 # enable CLICOLORS
 export CLICOLORS=1
@@ -108,7 +108,6 @@ export PYLINTHOME=${XDG_DATA_HOME:-$HOME/.local/share}/pylint
 # Fuzzy finder
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS="-x --multi --height 80% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
-
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
@@ -130,7 +129,6 @@ export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
 export CRAWL_DIR="$XDG_DATA_HOME"/crawl/
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
-
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
@@ -138,7 +136,6 @@ export LESS=-R
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
-export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
 # VIM related
