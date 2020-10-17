@@ -103,7 +103,6 @@ migrate_to_clean ~/go "$XDG_DATA_HOME"/go
 migrate_to_clean ~/.elinks "$XDG_CONFIG_HOME"/elinks
 migrate_to_clean ~/.docker "$XDG_CONFIG_HOME"/docker
 
-# call stow individually
 stow -vS -t ~/ shell
 stow -vS -t ~/ zsh
 stow -vS -t ~/ bat
@@ -116,12 +115,10 @@ stow -vS -t ~/ sxhkd
 stow -vS -t ~/ tmux
 stow -vS -t ~/ nvim
 stow -vS -t ~/ X11
-# TODO: shell vim zsh
+
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions}
 if command -v nvim > /dev/null; then
     nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 else
     vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 fi
-
-# finally cleanup this script
