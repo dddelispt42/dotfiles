@@ -61,6 +61,7 @@ alias a="alias"
 alias s="source"
 alias j="jobs -l"
 alias erase="stty istrip erase"
+alias makectags='ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .'
 
 ##########
 # xterms #
