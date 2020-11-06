@@ -7,9 +7,9 @@
 [[ -L ~/.gitignore ]] && trash ~/.gitignore
 [[ -L ~/.gitconfig ]] && trash ~/.gitconfig
 [[ -L ~/.profile ]] && trash ~/.profile
-[[ -L ~/.bashrc ]] && trash ~/.bashrc
-[[ -L ~/.bash_profile ]] && trash ~/.bash_profile
-[[ -L ~/.bash_logout ]] && trash ~/.bash_logout
+# [[ -L ~/.bashrc ]] && trash ~/.bashrc
+# [[ -L ~/.bash_profile ]] && trash ~/.bash_profile
+# [[ -L ~/.bash_logout ]] && trash ~/.bash_logout
 [[ -f ~/.config/liquidpromptrc ]] && trash ~/.config/liquidpromptrc
 [[ -f ~/.agent.sh ]] && trash ~/.agent.sh
 [[ -d ~/.config/bat ]] && trash ~/.config/bat
