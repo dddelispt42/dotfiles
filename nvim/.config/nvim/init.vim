@@ -53,12 +53,12 @@
         " used <leader>gm to see the related git commit msg
         Plug 'rhysd/git-messenger.vim'
         Plug 'norcalli/nvim-colorizer.lua'
+        " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+        Plug 'liuchengxu/vista.vim'
     endif
 
     Plug 'Raimondi/delimitMate'
 
-    " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-    Plug 'liuchengxu/vista.vim'
 
     Plug 'w0rp/ale'
     Plug 'Yggdroot/indentLine'
@@ -66,7 +66,6 @@
     " if executable('sk')
     "     Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
     "     Plug 'lotabout/skim.vim'
-    "     " command! -bang -nargs=* Ag call fzf#vim#ag_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
     "     command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
     " else
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -87,13 +86,8 @@
     Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
     Plug 'ludwig/split-manpage.vim'
     " html
-    " Plug 'hail2u/vim-css3-syntax'
-    " Plug 'gorodinskiy/vim-coloresque'
     Plug 'tpope/vim-haml'
     " Plug 'mattn/emmet-vim'
-    " python
-    " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-    " Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
     " rust
     Plug 'racer-rust/vim-racer', { 'for': 'rust' }
     Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -160,8 +154,6 @@
     Plug 'wsdjeg/vim-fetch'
     " Plug 'henrik/vim-open-url'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'ervandew/supertab'
-    Plug 'ycm-core/YouCompleteMe'
     " Emoji support
     Plug 'junegunn/vim-emoji'
     " goyo distraction free mode
@@ -171,12 +163,16 @@
     " Plug 'stsewd/gx-extended.vim'
     " better encryption plugin - requires: https://github.com/jedisct1/encpipe
     Plug 'hauleth/vim-encpipe'
-    Plug 'machakann/vim-highlightedyank'
     " floating windows
-    Plug 'voldikss/vim-floaterm'
-    Plug 'stsewd/fzf-checkout.vim'
-    " edit JIRA issues in vim
-    Plug 'n0v1c3/vira', { 'do': './install.sh' }
+    if has("nvim")
+        Plug 'ervandew/supertab'
+        Plug 'ycm-core/YouCompleteMe'
+        Plug 'machakann/vim-highlightedyank'
+        Plug 'voldikss/vim-floaterm'
+        Plug 'stsewd/fzf-checkout.vim'
+        " edit JIRA issues in vim
+        Plug 'n0v1c3/vira', { 'do': './install.sh' }
+    endif
     " automatically set the root directory
     Plug 'airblade/vim-rooter'
 
@@ -905,8 +901,11 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
     " Default fzf layout
     " - down / up / left / right
-    " let g:fzf_layout = { 'down': '~40%' }
-    let g:fzf_layout = { 'window': { 'width': 0.9 , 'height': 0.8 } }
+    if has("nvim")
+        let g:fzf_layout = { 'window': { 'width': 0.9 , 'height': 0.8 } }
+    else
+        let g:fzf_layout = { 'down': '~40%' }
+    endif
 
     " Customize fzf colors to match your color scheme
     let g:fzf_colors =
@@ -1135,25 +1134,27 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:neotex_delay = 500
 
 " terminal config
-    let g:floaterm_height = 0.8
-    let g:floaterm_width = 0.8
-    let g:floaterm_autoclose = 1
-    nnoremap   <silent>   <F7>    :FloatermNew<CR>
-    tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
-    nnoremap   <silent>   <F8>    :FloatermPrev<CR>
-    tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
-    nnoremap   <silent>   <F9>    :FloatermNext<CR>
-    tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
-    nnoremap   <silent>   <F12>   :FloatermToggle<CR>
-    tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
-    command! FZF FloatermNew fzf
-    nnoremap <silent> <leader>sh :terminal<CR>
-    nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
-    nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
-    nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
-    nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
-    nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
-    nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .zshrc; fj"<CR>
+    if has("nvim")
+        let g:floaterm_height = 0.8
+        let g:floaterm_width = 0.8
+        let g:floaterm_autoclose = 1
+        nnoremap   <silent>   <F7>    :FloatermNew<CR>
+        tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
+        nnoremap   <silent>   <F8>    :FloatermPrev<CR>
+        tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
+        nnoremap   <silent>   <F9>    :FloatermNext<CR>
+        tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
+        nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+        tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+        command! FZF FloatermNew fzf
+        nnoremap <silent> <leader>sh :terminal<CR>
+        nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
+        nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
+        nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
+        nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
+        nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
+        nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .zshrc; fj"<CR>
+    endif
 
 " JIRA - editor in VIM ;-)
     function! OpenJiraIssue()
