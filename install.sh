@@ -102,6 +102,16 @@ migrate_to_clean ~/.password-store "$XDG_CONFIG_HOME"/password-store
 migrate_to_clean ~/go "$XDG_DATA_HOME"/go
 migrate_to_clean ~/.elinks "$XDG_CONFIG_HOME"/elinks
 migrate_to_clean ~/.docker "$XDG_CONFIG_HOME"/docker
+migrate_to_clean ~/.bogofilter "$XDG_CACHE_HOME"/bogofilter
+migrate_to_clean ~/.rnd "$XDG_CACHE_HOME"/rnd
+migrate_to_clean ~/.z "$XDG_DATA_HOME"/z
+migrate_to_clean ~/.fontconfig "$XDG_CACHE_HOME"/fontconfig
+migrate_to_clean ~/.fonts "$XDG_DATA_HOME"/fonts
+mkdir -p "$XDG_CONFIG_HOME"/fontconfig
+migrate_to_clean ~/.fonts.conf "$XDG_CONFIG_HOME"/fontconfig/fonts.conf
+migrate_to_clean ~/.crontab "$XDG_CONFIG_HOME"/crontab
+migrate_to_clean ~/.zshrc.local "$XDG_CONFIG_HOME"/zshrc.local
+migrate_to_clean ~/.sqlite_history "$XDG_DATA_HOME"/sqlite_history
 
 stow -vS -t ~/ shell
 stow -vS -t ~/ zsh
@@ -115,6 +125,7 @@ stow -vS -t ~/ sxhkd
 stow -vS -t ~/ tmux
 stow -vS -t ~/ nvim
 stow -vS -t ~/ X11
+# ln -sf "$XDG_CONFIG_HOME"/tmux/tmux.conf ~/.tmux.conf
 
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions}
 if command -v nvim > /dev/null; then
