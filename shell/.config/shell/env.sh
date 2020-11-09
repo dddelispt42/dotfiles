@@ -94,13 +94,17 @@ export PATH=$PATH:$MAVEN_HOME/bin
 # CARGO and RUST
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
-PATH=$CARGO_HOME/bin:$PATH
+PATH=$CARGO_HOME/bin:$RUSTUP_HOME:$PATH
 
 # RFCs
 export RFC_DIR=$XDG_CACHE_HOME/RFCs
 
 # cht.sh
 export CHTSH_HOME=$XDG_CACHE_HOME/cht.sh
+
+# user logging
+export USER_LOGS_DIR="$XDG_CACHE_HOME"/logs
+mkdir -p "$USER_LOGS_DIR"
 
 # pylint
 export PYLINTHOME=${XDG_DATA_HOME:-$HOME/.local/share}/pylint
@@ -130,6 +134,12 @@ export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
 export CRAWL_DIR="$XDG_DATA_HOME"/crawl/
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
+export BOGOFILTER_DIR="$XDG_CACHE_HOME"/bogofilter
+export RANDFILE="$XDG_CACHE_HOME"/rnd
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+# export VIMINIT='source "$XDG_CONFIG_HOME/nvim/init.vim"'
+export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
@@ -138,6 +148,7 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+export _Z_DATA="$XDG_DATA_HOME/z"
 
 # VIM related
 # TODO:  <15-12-18, Heiko Riemer> #
