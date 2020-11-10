@@ -19,11 +19,11 @@
 [[ -L ~/.config/polybar ]] && trash ~/.config/polybar
 [[ -L ~/.config/sxhkd ]] && trash ~/.config/sxhkd
 [[ -L ~/.screenrc ]] && trash ~/.screenrc
-[[ -L ~/.tmux.conf ]] && trash ~/.tmux.conf
+# [[ -L ~/.tmux.conf ]] && trash ~/.tmux.conf
 [[ -L ~/.tmuxinator ]] && trash ~/.tmuxinator
 [[ -L ~/.config/nvim ]] && trash ~/.config/nvim
 [[ -L ~/.config/nvim/UltiSnips ]] && trash ~/.config/nvim/UltiSnips
-[[ -L ~/.vimrc ]] && trash ~/.vimrc
+# [[ -L ~/.vimrc ]] && trash ~/.vimrc
 [[ -L ~/.vim ]] && trash ~/.vim
 [[ -L ~/.nvim ]] && trash ~/.nvim
 [[ -L ~/.nvimrc ]] && trash ~/.nvimrc
