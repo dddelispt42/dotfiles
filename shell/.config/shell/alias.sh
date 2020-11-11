@@ -157,6 +157,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ls_installed_debian_packages="aptitude search '~i!~M'"
 # hors - check stackoverflow and other stuff in terminal
 alias hors="hors -c -a"
+alias tray="trayer --edge top --align center --expand false --width 5"
 
 # Prefer SD on YouTube
 alias yt="youtube-dl --format 244 --no-playlist"

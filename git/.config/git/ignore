@@ -1,3 +1,6 @@
+*.srctrlbm
+*.srctrldb
+*.srctrlprj
 *.7z
 *.DS_Store
 *.[Cc]ache
