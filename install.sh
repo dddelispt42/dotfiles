@@ -126,6 +126,7 @@ stow -vS -t ~/ tmux
 stow -vS -t ~/ nvim
 stow -vS -t ~/ X11
 # ln -sf "$XDG_CONFIG_HOME"/tmux/tmux.conf ~/.tmux.conf
+ln -sf "$XDG_DATA_HOME"/z ~/.z
 
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions}
 if command -v nvim > /dev/null; then
