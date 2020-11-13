@@ -39,7 +39,8 @@ fi
 
 export NNTPSERVER=news.aioe.org
 export EDITOR="vim"
-export VISUAL="vim"
+command -v nvim > /dev/null && export EDITOR="nvim"
+export VISUAL=$EDITOR
 export BROWSER=elinks
 export OPENER=xdg-open
 if command -v mimeopen >/dev/null; then
@@ -149,6 +150,9 @@ export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export _Z_DATA="$XDG_DATA_HOME/z"
+
+# disable ansible cowsay
+export ANSIBLE_NOCOWS=1
 
 # VIM related
 # TODO:  <15-12-18, Heiko Riemer> #
