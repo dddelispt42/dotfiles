@@ -12,10 +12,18 @@
     ; autocrlf = false
     ; fileMode = false
     filemode = false
-    pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
+    ; pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
+    pager = delta
 	excludesfile = ~/.config/git/ignore
 [interactive]
     diffFilter = delta --color-only
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
 [github]
     user = dddelispt42
     ; token = ffe6534674500683267422160ecf0851813e

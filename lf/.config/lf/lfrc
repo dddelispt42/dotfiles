@@ -116,13 +116,12 @@ cmd zip ${{
 set dircounts on
 set dirfirst on
 set icons on
-# set hidden off
+set hidden off
 set relativenumber on
 set tabstop 4
 set info size:time
 set sortby natural
 set preview on
-set color256 on
 
 map gC :cd '~/dotfiles/lf'
 map gD :cd '~/Docments'
