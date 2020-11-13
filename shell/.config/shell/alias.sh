@@ -158,6 +158,8 @@ alias ls_installed_debian_packages="aptitude search '~i!~M'"
 # hors - check stackoverflow and other stuff in terminal
 alias hors="hors -c -a"
 alias tray="trayer --edge top --align center --expand false --width 5"
+alias pacsize="pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
+alias pacbloat='pacman -Qe | awk "{print $1;}" | while read line; do if ! grep $line ~/git/bootstrap/vars/*.pkgs > /dev/null; then echo $line; fi; done'
 
 # Prefer SD on YouTube
 alias yt="youtube-dl --format 244 --no-playlist"
