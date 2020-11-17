@@ -131,10 +131,10 @@ map gd :cd '~/dotfiles'
 map gh :cd '~'
 map gi :cd '~/git'
 map gl :cd '~/Downloads'
-map gn :cd '~/Nextcloud'
+map gk :cd '~/klaut'
 map go :cd '~/opt'
-map gr :cd '~/Nextcloud\work\rust'
-map gv :cd '~/Nextcloud\vimwiki'
+map gr :cd '/'
+map gv :cd '~/klaut\vimwiki'
 
 cmd usage !du -sk * | sort -n | bat
 map U usage
