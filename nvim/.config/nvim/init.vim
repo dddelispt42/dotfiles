@@ -171,7 +171,8 @@
         Plug 'voldikss/vim-floaterm'
         Plug 'stsewd/fzf-checkout.vim'
         " edit JIRA issues in vim
-        Plug 'n0v1c3/vira', { 'do': './install.sh' }
+        " Plug 'n0v1c3/vira', { 'do': './install.sh' }
+        Plug 'dddelispt42/vira', { 'do': './install.sh' }
     endif
     " automatically set the root directory
     Plug 'airblade/vim-rooter'
