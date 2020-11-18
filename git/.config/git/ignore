@@ -107,6 +107,7 @@ Links/
 *.PPT
 *.GIT
 *.wmv
+.last-updated
 *.WMV
 *.XLS
 *.DOCX
