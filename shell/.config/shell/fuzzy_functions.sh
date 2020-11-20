@@ -71,10 +71,11 @@ function ff {
         __handle_files $output
     fi
 }
-
-# vf - fuzzy open with vim from anywhere
-# ex: vf word1 word2 ... (even part of a file name)
-# zsh autoload function
+fconf() {
+    pushd $XDG_CONFIG_HOME > /dev/null
+    ff
+    popd > /dev/null
+}
 function floc {
     local output dir
     dir=""
@@ -102,7 +103,6 @@ function __handle_fuzzy_grep {
     if [ $? -eq 0 ]; then
         ${EDITOR:-vim} +"$(echo "$resultlist" | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
     fi
-    # ${EDITOR:-vim} +"$(rg $params --vimgrep $@ | fzf -x -0 -1 -m | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
 }
 
 # fuzzy grep open via ag
