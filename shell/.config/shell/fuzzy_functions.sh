@@ -2,20 +2,20 @@ __handle_jira_issues() {
     local key issues urls
     key=$(echo "$1" | head -1)
     issues=$(echo "$1" | tail -n +2)
-    urls=$(echo $issues | sed -e 's@\s*@https:\/\/jira.infinera.com\/browse\/@;s@\s.*@@')
-    ids=$(echo $issues | sed 's/\s*\([A-Z]\+-[0-9]\+\).*/\1/')
+    urls=$(echo "$issues" | sed -e 's@\s*@https:\/\/jira.infinera.com\/browse\/@;s@\s.*@@')
+    ids=$(echo "$issues" | sed 's/\s*\([A-Z]\+-[0-9]\+\).*/\1/')
     if [ "$key" = ctrl-o ]; then
-        echo $urls | while read -r line; do
-            xdg-open $line
+        echo "$urls" | while read -r line; do
+            xdg-open "$line"
         done
     elif [ "$key" = ctrl-u ]; then
-        echo $urls
+        echo "$urls"
     elif [ "$key" = ctrl-p ]; then
-        echo $ids
+        echo "$ids"
     elif [ "$key" = ctrl-y ]; then
-        echo $ids | head -1 | xclip -selection c
+        echo "$ids" | head -1 | xclip -selection c
     else
-        echo $ids | head -1 | xclip -selection c
+        echo "$ids" | head -1 | xclip -selection c
     fi
 }
 
@@ -24,7 +24,7 @@ fja() {
     output=$(cat ~/.config/JiraIssueCache*.issues |
         FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
     if [ $? -eq 0 ]; then
-        __handle_jira_issues $output
+        __handle_jira_issues "$output"
     fi
 }
 
@@ -34,7 +34,7 @@ fj() {
         grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" |
         FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
     if [ $? -eq 0 ]; then
-        __handle_jira_issues $output
+        __handle_jira_issues "$output"
     fi
 }
 
@@ -50,13 +50,13 @@ __handle_files() {
                 xdg-open "$line"
             done
         elif [ "$key" = ctrl-p ]; then
-            echo $files | while read -r line; do
+            echo "$files" | while read -r line; do
                 ~/.config/lf/preview.sh "$line"
             done
         elif [ "$key" = ctrl-e ]; then
-            ${EDITOR:-vim} +"$(echo $files | awk '{print " e " $1 " | "}' && echo "bn")"
+            ${EDITOR:-vim} +"$(echo "$files" | awk '{print " e " $1 " | "}' && echo "bn")"
         else
-            ${EDITOR:-vim} +"$(echo $files | awk '{print " e " $1 " | "}' && echo "bn")"
+            ${EDITOR:-vim} +"$(echo "$files" | awk '{print " e " $1 " | "}' && echo "bn")"
         fi
     fi
 }
@@ -64,55 +64,56 @@ __handle_files() {
 # ff [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
-function ff {
+ff() {
     local output
     IFS=$'\n' output=$(FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf --query="$1" --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)
     if [ $? -eq 0 ]; then
-        __handle_files $output
+        __handle_files "$output"
     fi
 }
 fconf() {
-    pushd $XDG_CONFIG_HOME > /dev/null
-    ff
-    popd > /dev/null
+    pushd "$XDG_CONFIG_HOME" > /dev/null || return
+    ff "$@"
+    popd > /dev/null || return
 }
 function floc {
     local output dir
     dir=""
     if [ $# -gt 0 ]; then
-        if [ -d $1 ]; then
-            pushd $1 > /dev/null
+        if [ -d "$1" ]; then
+            pushd "$1" > /dev/null || return
             dir="$(pwd)"
-            popd > /dev/null
+            popd > /dev/null || return
             shift
         fi
     fi
-    IFS=$'\n' output="$(locate -Ai '*' $dir $@ | FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"
+    IFS=$'\n' output="$(locate -Ai '*' "$dir" "$@" | FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"
     if [ $? -eq 0 ]; then
-        __handle_files $output
+        __handle_files "$output"
     fi
 }
 
 function __handle_fuzzy_grep {
-    local params resultlist
+    local params cmd resultlist
     if [ "$1" -eq "1" ]; then
         params=-uu
+        cmd=rga
     fi
     shift
-    resultlist=$(rg $params --vimgrep $@ | fzf -x -0 -1 -m | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1:\2/')
-    if [ $? -eq 0 ]; then
+    resultlist=$(${cmd:-rg} "$params" --vimgrep "$@" | fzf -x -0 -1 -m | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1:\2/')
+    if [ "$resultlist" != "" ]; then
         ${EDITOR:-vim} +"$(echo "$resultlist" | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
     fi
 }
 
 # fuzzy grep open via ag
 function fgra {
-    __handle_fuzzy_grep 1 $@
+    __handle_fuzzy_grep 1 "$@"
 }
 
 # fuzzy grep open via ag
 function fgr {
-    __handle_fuzzy_grep 0 $@
+    __handle_fuzzy_grep 0 "$@"
 }
 
 # fkill - kill process
@@ -122,7 +123,7 @@ function fkill {
 
     if [ "x$pid" != "x" ]
     then
-        echo $pid | xargs kill -${1:-9}
+        echo "$pid" | xargs kill -"${1:-9}"
     fi
 }
 
@@ -136,7 +137,7 @@ function fbr {
     #          fzf -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
     branch=$(echo "$branches" |
              fzf -d $(( 2 + $(echo "$branches" | wc -l) )) +m) &&
-    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    git checkout "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
 }
 
 # fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
@@ -152,7 +153,7 @@ sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
 (echo "$tags"; echo "$branches") |
     fzf --no-hscroll --no-multi --delimiter="\t" -n 2 \
         --preview="git log -200 --pretty=format:%s $(echo {+2..} |  sed 's/$/../' )" ) || return
-  git checkout $(echo "$target" | awk '{print $2}')
+  git checkout "$(echo "$target" | awk '{print $2}')"
 }
 
 # fcoc - checkout git commit
@@ -160,7 +161,7 @@ function fcoc {
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf -x --tac +s +m -e) &&
-  git checkout $(echo "$commit" | sed "s/ .*//")
+  git checkout "$(echo "$commit" | sed "s/ .*//")"
 }
 
 # fshow - git commit browser
@@ -291,7 +292,7 @@ function ftags {
 # lists tmuxinator sessions and open tmux sessions for selection
 function tx {
     local TMUXP_SESSIONS TMUX_SESSIONS SESSIONS SELECTED
-    TMUXP_SESSIONS="$(ls ${TMUXP_CONFIGDIR}/*.yaml | sed -e 's/.*\///;s/\.yaml//')"
+    TMUXP_SESSIONS="$(ls "${TMUXP_CONFIGDIR}"/*.yaml | sed -e 's/.*\///;s/\.yaml//')"
     TMUX_SESSIONS="$(tmux list-sessions 2>/dev/null | sed -e "s/\(:.*\)//")"
     SESSIONS="$((echo "$TMUXP_SESSIONS" && echo "$TMUX_SESSIONS" | grep -v "^$") | sort -u)"
     SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="-x " fzf --tac --cycle -0 -1)"
@@ -301,12 +302,12 @@ function tx {
     echo "$TMUX_SESSIONS" | grep "$SELECTED" > /dev/null
     if [ $? -eq 0 ]; then
         if [ -z "$TMUX" ]; then
-            tmux a -d -t $SELECTED
+            tmux a -d -t "$SELECTED"
         else
-            tmux switch -t $SELECTED
+            tmux switch -t "$SELECTED"
         fi
     else
-        tmuxp load $SELECTED
+        tmuxp load "$SELECTED"
     fi
 }
 
@@ -319,14 +320,14 @@ ftpane() {
 
   target=$(echo "$panes" | grep -v "$current_pane" | fzf -x +m --reverse) || return
 
-  target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
-  target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
+  target_window=$(echo "$target" | awk 'BEGIN{FS=":|-"} {print$1}')
+  target_pane=$(echo "$target" | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
 
-  if [[ $current_window -eq $target_window ]]; then
-    tmux select-pane -t ${target_window}.${target_pane}
+  if [[ "$current_window" -eq "$target_window" ]]; then
+    tmux select-pane -t "${target_window}.${target_pane}"
   else
-    tmux select-pane -t ${target_window}.${target_pane} &&
-    tmux select-window -t $target_window
+    tmux select-pane -t "${target_window}.${target_pane}" &&
+    tmux select-window -t "$target_window"
   fi
 }
 
@@ -356,18 +357,18 @@ function chromeh {
 }
 
 function fbhist {
-    links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
+    links="$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" 'select title,url from moz_places;' | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
     if [ "$links" != "" ] ; then
-        firefox --new-tab $links
+        firefox --new-tab "$links"
     fi
 }
 
 function fncbookm {
     local links
     $HOME/bin/get_nextcloud_bookmarks.sh
-    links="$(cat $HOME/.cache/nextcloud_bookmarks.txt | fzf -x -e -m | sed -e 's/.*http/http/')"
+    links="$(cat "$HOME/.cache/nextcloud_bookmarks.txt" | fzf -x -e -m | sed -e 's/.*http/http/')"
     if [ "$links" != "" ] ; then
-        firefox --new-tab $links
+        firefox --new-tab "$links"
     fi
 }
 
@@ -375,15 +376,15 @@ function fwiki {
     local files
     pushd ~/vimwiki > /dev/null # directories should all be defined once via ENV vars.
     IFS=$'\n' files=$(fzf -x -e -m)
-    vim $files
+    vim "$files"
     popd > /dev/null
 }
 
 function fbookm {
-    # links="$(sqlite3 $FIREFOX_PROFILE/places.sqlite 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
-    IFS=$'\n' links=$(sqlite3 $FIREFOX_PROFILE/places.sqlite "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
+    # links="$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
+    IFS=$'\n' links=$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
     if [ "$links" != "" ] ; then
-        firefox --new-tab $links
+        firefox --new-tab "$links"
     fi
 }
 
@@ -402,7 +403,7 @@ frga() {
 }
 
 fssh() {
-    $(grep -E ".*:[0-9];(auto)?ssh " $XDG_CACHE_HOME/zhistory| sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)
+    $(grep -E ".*:[0-9];(auto)?ssh " "$XDG_CACHE_HOME/zhistory" | sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)
 }
 
 get_recipe()
