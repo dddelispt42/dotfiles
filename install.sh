@@ -135,3 +135,6 @@ if command -v nvim > /dev/null; then
 else
     vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 fi
+
+# protect settings dir
+chmod 700 "$HOME/.cache" "$HOME/.config"
