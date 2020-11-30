@@ -853,7 +853,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     if (g:env =~# 'WINDOWS')
         let g:slumlord_plantuml_jar_path = 'c:\\Data\\pt103371\\bin\\plantuml.jar'
     endif
-    noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.zshrc; cd $HOME/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
+    noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.config/zsh/.zshrc; cd $HOME/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
 
 " go.vim
     " do not show warning for older releases
@@ -980,7 +980,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:pomoTimer = 0
     function! TogglePomodoroTimer()
         if g:pomoTimer == 0
-            silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.zshrc; cd ~/opt; gtd\""
+            silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.config/zsh/.zshrc; cd ~/opt; gtd\""
             let g:pomoTimer = 1
         else
             silent !pkill -u $USER gtd
@@ -1148,7 +1148,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
         nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
         nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
         nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
-        nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .zshrc; fj"<CR>
+        nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .config/zsh/.config/zsh/.zshrc; fj"<CR>
     endif
 
 " JIRA - editor in VIM ;-)

@@ -100,7 +100,7 @@ function __handle_fuzzy_grep {
         cmd=rga
     fi
     shift
-    resultlist=$(${cmd:-rg} "$params" --vimgrep "$@" | fzf -x -0 -1 -m | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1:\2/')
+    resultlist=$(${cmd:-rg} "$params" --vimgrep "$@" 2>/dev/null | fzf -x -0 -1 -m | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1:\2/')
     if [ "$resultlist" != "" ]; then
         ${EDITOR:-vim} +"$(echo "$resultlist" | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
     fi
