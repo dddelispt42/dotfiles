@@ -73,8 +73,8 @@ migrate_to_clean ~/.mypoint "$XDG_CONFIG_HOME"/mypoint
 migrate_to_clean ~/.newsbeuter "$XDG_CONFIG_HOME"/newsbeuter
 migrate_to_clean ~/.newsboat "$XDG_CONFIG_HOME"/newsboat
 migrate_to_clean ~/.pandoc "$XDG_CONFIG_HOME"/pandoc
-migrate_to_clean ~/.pylint.d "$XDG_DATA_HOME"/pylint
-migrate_to_clean ~/.pylintrc "$XDG_CACHE_HOME"/pylintrc
+migrate_to_clean ~/.pylint.d "$XDG_CONFIG_HOME"/pylint
+migrate_to_clean ~/.pylintrc "$XDG_CONFIG_HOME"/pylint/pylintrc
 migrate_to_clean ~/.rustup "$XDG_DATA_HOME"/rustup
 migrate_to_clean ~/.thumbnails "$XDG_CACHE_HOME"/thumbnails
 migrate_to_clean ~/.zhistory "$XDG_CACHE_HOME"/zhistory
@@ -121,6 +121,7 @@ stow -vS -t ~/ dunst
 stow -vS -t ~/ git
 stow -vS -t ~/ lf
 stow -vS -t ~/ polybar
+stow -vS -t ~/ pylint
 stow -vS -t ~/ sxhkd
 stow -vS -t ~/ tmux
 stow -vS -t ~/ nvim

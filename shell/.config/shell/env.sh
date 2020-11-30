@@ -108,7 +108,7 @@ export USER_LOGS_DIR="$XDG_CACHE_HOME"/logs
 mkdir -p "$USER_LOGS_DIR"
 
 # pylint
-export PYLINTHOME=${XDG_DATA_HOME:-$HOME/.local/share}/pylint
+export PYLINTHOME=${XDG_CONFIG_HOME:-$HOME/.config}/pylint
 
 # Fuzzy finder
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
