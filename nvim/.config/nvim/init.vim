@@ -966,6 +966,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:vimwiki_global_ext = 0
     let g:vimwiki_folding='expr'
     let g:vimwiki_table_auto_fmt=1
+    " let l:vimwiki_header_type = '#'     " set to '=' for wiki syntax
     " au FileType vimwiki set syntax=markdown
     map <silent> <leader>wf :FZF ~/vimwiki<cr>
     autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md set filetype=vimwiki
