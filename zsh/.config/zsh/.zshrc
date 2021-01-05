@@ -4,9 +4,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # some history related settings
 HISTFILE=${XDG_CACHE_HOME:-$HOME/.cache}/zhistory       # enable history saving on shell exit
@@ -39,7 +39,7 @@ zplug "MichaelAquilina/zsh-you-should-use", defer:2
 # use Alt-e to launch a finder
 zplug 'leophys/zsh-plugin-fzf-finder', defer:2
 # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-zplug "romkatv/powerlevel10k", as:theme, depth:1
+# zplug "romkatv/powerlevel10k", as:theme, depth:1
 # let zplug manage itself
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
@@ -56,7 +56,7 @@ fi
 zplug load
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
+# [[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
 
 # TODO: generate path name
 test -s ~/.config/shell/env.sh && source ~/.config/shell/env.sh || true
@@ -84,3 +84,4 @@ test -s ~/.zshrc.local && source ~/.zshrc.local || true
 test -s ~/.config/zshrc.local && source ~/.config/zshrc.local || true
 
 test -s /home/heiko/.config/broot/launcher/bash/br && source /home/heiko/.config/broot/launcher/bash/br || true
+eval "$(starship init zsh)"
