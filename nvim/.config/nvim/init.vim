@@ -92,7 +92,8 @@
     Plug 'racer-rust/vim-racer', { 'for': 'rust' }
     Plug 'rust-lang/rust.vim', { 'for': 'rust' }
     Plug 'timonv/vim-cargo', { 'for': 'rust' }
-    Plug 'vim-scripts/Conque-GDB', { 'for': ['c', 'cpp', 'rust'] }
+    " TODO: get debugger working <06-12-20, Heiko Riemer> "
+    " Plug 'vim-scripts/Conque-GDB', { 'for': ['c', 'cpp', 'rust'] }
     " see colorschemes http://bytefluent.com/vivify/
     Plug 'flazz/vim-colorschemes'
     Plug 'godlygeek/tabular'
@@ -467,8 +468,8 @@
     \   'markdown': ['languagetool', 'markdownlint', 'proselint', 'textlint', 'writegood'],
     \   'matlab': ['mlint'],
     \   'proto': ['proto_gen_lint'],
-    \   'python': ['bandit', 'flake8', 'mypy', 'pylint', 'pycodestyle','pydocstyle'],
-    \   'rust': ['cargo', 'rls', 'rustc'],
+    \   'python': ['pylint'],
+    \   'rust': ['cargo', 'rust-analyzer', 'rustc'],
     \   'sh': ['shellcheck', 'shell', 'language_server'],
     \   'sql': ['sqlint'],
     \   'tex': ['chktex', 'lacheck', 'proselint', 'texlab', 'texlint', 'writegood'],
@@ -482,6 +483,8 @@
     \   'yang': ['yang_lsp'],
     \}
     "   'python': ['bandit', 'flake8', 'mypy', 'pycodestyle', 'vulture', 'pydocstyle'],
+    " \   'python': ['bandit', 'flake8', 'mypy', 'pylint', 'pycodestyle','pydocstyle'],
+    " \   'rust': ['cargo', 'rls', 'rustc'],
     let g:ale_fixers = {
     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
     \   'css': ['prettier'],
@@ -778,21 +781,21 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 
 " Plugin Settings
     " Syntastic
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 1
+    " let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_auto_loc_list = 1
+    " let g:syntastic_check_on_open = 1
+    " let g:syntastic_check_on_wq = 1
 
     " let g:syntastic_python_checkers = ['pylint', 'flake8']
-    let g:syntastic_python_checkers = ['pylint']
+    " let g:syntastic_python_checkers = ['pylint']
     " let g:syntastic_python_flake8_args='--ignore=E501,E225'
-    let g:syntastic_python_flake8_args='--max-line-length=120'
-    let g:syntastic_python_pylint_post_args="--max-line-length=120"
-    let g:syntastic_aggregate_errors = 1
-    let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_python_flake8_args='--max-line-length=120'
+    " let g:syntastic_python_pylint_post_args="--max-line-length=120"
+    " let g:syntastic_aggregate_errors = 1
+    " let g:syntastic_always_populate_loc_list = 1
 
     " let g:syntastic_java_javac_config_file_enabled = 0
-    let g:loaded_syntastic_java_javac_checker = 1
+    " let g:loaded_syntastic_java_javac_checker = 1
 
     " Markdown
     " let g:vim_markdown_folding_style_pythonic = 1
@@ -1147,7 +1150,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
         nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
         nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
         nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
-        nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
+        " nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
         nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
         nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .config/zsh/.config/zsh/.zshrc; fj"<CR>
     endif
