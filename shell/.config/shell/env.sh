@@ -59,9 +59,12 @@ export AUTOSSH_LOGFILE="$HOME/autossh.log"
 # ZSH env
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
+# GIT root
+export GIT_ROOT=$HOME/git
+
 # Use nvim as manpager `:h Man`
-export MANPAGER='nvim +Man!'
-export MANWIDTH=999
+# export MANPAGER='nvim +Man!'
+# export MANWIDTH=999
 
 export RED='\033[0;31m'
 export YELLOW='\033[1;33m'
