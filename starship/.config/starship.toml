@@ -1,0 +1,85 @@
+#format = "$all"
+add_newline = false
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+[[battery.display]]
+threshold = 20
+style = "bold red"
+[[battery.display]]
+threshold = 35
+style = "bold yellow"
+
+[character]
+symbol = ""
+error_symbol = "✖"
+vicmd_symbol = ""
+use_symbol_for_status = true
+
+[cmd_duration]
+min_time = 400
+
+[directory]
+truncation_length = 8
+truncation_symbol = "…/"
+readonly = "🔒"
+
+[git_branch]
+symbol = ""
+truncation_length = "4"
+
+[git_state]
+progress_divider = " of "
+cherry_pick = "🍒 PICKING(bold red)"
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = "🔖"
+
+[git_status]
+conflicted = "🏳$count"
+ahead = "🏎💨$count"
+behind = "😰$count"
+diverged = "😵$count"
+untracked = "🤷$count"
+stashed = "📦$count"
+modified = "📝$count"
+staged = "➕$count"
+renamed = "👅$count"
+deleted = "🗑$count"
+
+[hostname]
+ssh_only = false
+format =  "@[$hostname](bold blue) "
+trim_at = ".companyname.com"
+#prefix = "⟪"
+#suffix = "⟫"
+
+[line_break]
+disabled = true
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "[$user]($style)"
+show_always = true
+disabled = false
+
+[package]
+symbol = "🎁"
+
+[rust]
+symbol = "⚙️ "
+
+[status]
+style = "bg:blue"
+disabled = false
+
+#[custom.foo]
+#command = "echo foo"  # shows output of command
+#files = ["foo"]       # can specify filters
+#when = """ test "$HOME" == "$PWD" """
+#format = " transcending [$output]($style)"
+#shell = ["pwsh.exe", "-NoProfile", "-Command", "-"]
