@@ -57,6 +57,7 @@ zplug load
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
+eval "$(starship init zsh)"
 
 # TODO: generate path name
 test -s ~/.config/shell/env.sh && source ~/.config/shell/env.sh || true
@@ -70,6 +71,7 @@ test -s ~/.fzf/shell/key-bindings.zsh && source ~/.fzf/shell/key-bindings.zsh ||
 test -s ~/.fzf/shell/completion.zsh && source ~/.fzf/shell/completion.zsh || true
 test -s /usr/share/fzf/key-bindings.zsh && source /usr/share/fzf/key-bindings.zsh || true
 test -s /usr/share/fzf/completion.zsh && source /usr/share/fzf/completion.zsh || true
+test -s /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/key-bindings.zsh || true
 
 # enable VI mode
 bindkey -v
@@ -84,4 +86,3 @@ test -s ~/.zshrc.local && source ~/.zshrc.local || true
 test -s ~/.config/zshrc.local && source ~/.config/zshrc.local || true
 
 test -s /home/heiko/.config/broot/launcher/bash/br && source /home/heiko/.config/broot/launcher/bash/br || true
-eval "$(starship init zsh)"
