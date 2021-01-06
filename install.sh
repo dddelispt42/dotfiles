@@ -113,33 +113,34 @@ migrate_to_clean ~/.crontab "$XDG_CONFIG_HOME"/crontab
 migrate_to_clean ~/.zshrc.local "$XDG_CONFIG_HOME"/zshrc.local
 migrate_to_clean ~/.sqlite_history "$XDG_DATA_HOME"/sqlite_history
 
-stow -vS -t ~/ shell
-stow -vS -t ~/ zsh
-stow -vS -t ~/ bat
-stow -vS -t ~/ bspwm
-stow -vS -t ~/ dunst
-stow -vS -t ~/ git
-stow -vS -t ~/ lf
-stow -vS -t ~/ polybar
-stow -vS -t ~/ pylint
-stow -vS -t ~/ sxhkd
-stow -vS -t ~/ tmux
-stow -vS -t ~/ nvim
 stow -vS -t ~/ X11
+stow -vS -t ~/ bat
 stow -vS -t ~/ bottom
 stow -vS -t ~/ broot
+stow -vS -t ~/ bspwm
+stow -vS -t ~/ dunst
 stow -vS -t ~/ dwm
+stow -vS -t ~/ flake8
+stow -vS -t ~/ git
 stow -vS -t ~/ htop
+stow -vS -t ~/ lf
 stow -vS -t ~/ mpv
 stow -vS -t ~/ neofetch
+stow -vS -t ~/ nvim
+stow -vS -t ~/ polybar
+stow -vS -t ~/ pycodestyle
 stow -vS -t ~/ pylint
 stow -vS -t ~/ ranger
 stow -vS -t ~/ rofi
-stow -vS -t ~/ zathura
-stow -vS -t ~/ flake8
-stow -vS -t ~/ pycodestyle
+stow -vS -t ~/ shell
 stow -vS -t ~/ starship
+stow -vS -t ~/ sxhkd
+stow -vS -t ~/ tmux
 stow -vS -t ~/ user-dirs
+stow -vS -t ~/ zathura
+stow -vS -t ~/ zsh
+xdg-mime default org.pwmt.zathura.desktop application/pdf
+
 # ln -sf "$XDG_CONFIG_HOME"/tmux/tmux.conf ~/.tmux.conf
 ln -sf "$XDG_DATA_HOME"/z ~/.z
 
