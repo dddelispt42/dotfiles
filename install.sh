@@ -1,42 +1,42 @@
 #!/bin/bash
 
 # clean up legacy manual links - pre stow
-[[ -L ~/.ignore ]] && trash ~/.ignore
-[[ -L ~/.agignore ]] && trash ~/.agignore
-[[ -L ~/.rgignore ]] && trash ~/.rgignore
-[[ -L ~/.gitignore ]] && trash ~/.gitignore
-[[ -L ~/.gitconfig ]] && trash ~/.gitconfig
-[[ -L ~/.profile ]] && trash ~/.profile
+# [[ -L ~/.ignore ]] && trash ~/.ignore
+# [[ -L ~/.agignore ]] && trash ~/.agignore
+# [[ -L ~/.rgignore ]] && trash ~/.rgignore
+# [[ -L ~/.gitignore ]] && trash ~/.gitignore
+# [[ -L ~/.gitconfig ]] && trash ~/.gitconfig
+# [[ -L ~/.profile ]] && trash ~/.profile
 # [[ -L ~/.bashrc ]] && trash ~/.bashrc
 # [[ -L ~/.bash_profile ]] && trash ~/.bash_profile
 # [[ -L ~/.bash_logout ]] && trash ~/.bash_logout
-[[ -f ~/.config/liquidpromptrc ]] && trash ~/.config/liquidpromptrc
-[[ -f ~/.agent.sh ]] && trash ~/.agent.sh
-[[ -d ~/.config/bat ]] && trash ~/.config/bat
-[[ -L ~/.config/bspwm ]] && trash ~/.config/bspwm
-[[ -L ~/.config/dunst ]] && trash ~/.config/dunst
-[[ -L ~/.config/lf ]] && trash ~/.config/lf
-[[ -L ~/.config/polybar ]] && trash ~/.config/polybar
-[[ -L ~/.config/sxhkd ]] && trash ~/.config/sxhkd
-[[ -L ~/.screenrc ]] && trash ~/.screenrc
+# [[ -f ~/.config/liquidpromptrc ]] && trash ~/.config/liquidpromptrc
+# [[ -f ~/.agent.sh ]] && trash ~/.agent.sh
+# [[ -d ~/.config/bat ]] && trash ~/.config/bat
+# [[ -L ~/.config/bspwm ]] && trash ~/.config/bspwm
+# [[ -L ~/.config/dunst ]] && trash ~/.config/dunst
+# [[ -L ~/.config/lf ]] && trash ~/.config/lf
+# [[ -L ~/.config/polybar ]] && trash ~/.config/polybar
+# [[ -L ~/.config/sxhkd ]] && trash ~/.config/sxhkd
+# [[ -L ~/.screenrc ]] && trash ~/.screenrc
 # [[ -L ~/.tmux.conf ]] && trash ~/.tmux.conf
-[[ -L ~/.tmuxinator ]] && trash ~/.tmuxinator
-[[ -L ~/.config/nvim ]] && trash ~/.config/nvim
-[[ -L ~/.config/nvim/UltiSnips ]] && trash ~/.config/nvim/UltiSnips
+# [[ -L ~/.tmuxinator ]] && trash ~/.tmuxinator
+# [[ -L ~/.config/nvim ]] && trash ~/.config/nvim
+# [[ -L ~/.config/nvim/UltiSnips ]] && trash ~/.config/nvim/UltiSnips
 # [[ -L ~/.vimrc ]] && trash ~/.vimrc
-[[ -L ~/.vim ]] && trash ~/.vim
-[[ -L ~/.nvim ]] && trash ~/.nvim
-[[ -L ~/.nvimrc ]] && trash ~/.nvimrc
-[[ -L ~/.vim/UltiSnips ]] && trash ~/.vim/UltiSnips
-[[ -L ~/.config/nvim/init.vim ]] && trash ~/.config/nvim/init.vim
-[[ -L ~/.config/nvim/local_bundles.vim ]] && trash ~/.config/nvim/local_bundles.vim
-[[ -L ~/.config/nvim/local_init.vim ]] && trash ~/.config/nvim/local_init.vim
-[[ -d ~/dotfiles/bash/liquidprompt ]] && trash ~/dotfiles/bash/liquidprompt
-[[ -d ~/dotfiles/zsh/oh-my-zsh ]] && trash ~/dotfiles/zsh/oh-my-zsh
-[[ -d ~/dotfiles/zsh/zplug ]] && trash ~/dotfiles/zsh/zplug
-[[ -L ~/.zshrc ]] && trash ~/.zshrc
-[[ -L ~/.zshenv ]] && trash ~/.zshenv
-[[ -L ~/.p10k.zsh ]] && trash ~/.p10k.zsh
+# [[ -L ~/.vim ]] && trash ~/.vim
+# [[ -L ~/.nvim ]] && trash ~/.nvim
+# [[ -L ~/.nvimrc ]] && trash ~/.nvimrc
+# [[ -L ~/.vim/UltiSnips ]] && trash ~/.vim/UltiSnips
+# [[ -L ~/.config/nvim/init.vim ]] && trash ~/.config/nvim/init.vim
+# [[ -L ~/.config/nvim/local_bundles.vim ]] && trash ~/.config/nvim/local_bundles.vim
+# [[ -L ~/.config/nvim/local_init.vim ]] && trash ~/.config/nvim/local_init.vim
+# [[ -d ~/dotfiles/bash/liquidprompt ]] && trash ~/dotfiles/bash/liquidprompt
+# [[ -d ~/dotfiles/zsh/oh-my-zsh ]] && trash ~/dotfiles/zsh/oh-my-zsh
+# [[ -d ~/dotfiles/zsh/zplug ]] && trash ~/dotfiles/zsh/zplug
+# [[ -L ~/.zshrc ]] && trash ~/.zshrc
+# [[ -L ~/.zshenv ]] && trash ~/.zshenv
+# [[ -L ~/.p10k.zsh ]] && trash ~/.p10k.zsh
 
 # move things to XDG directories
 function migrate_to_clean {
