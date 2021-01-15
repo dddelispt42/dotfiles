@@ -118,6 +118,7 @@ fi
 # git
 alias g='git'
 alias gs='git status -sb'
+alias ggs='git global scan && git global'
 # copy the current branch name
 alias gcb='git rev-parse --abbrev-ref HEAD | pbcopy'
 alias cal='ncal -w -M -A 6 -B 1'
