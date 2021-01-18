@@ -42,6 +42,7 @@ zplug 'leophys/zsh-plugin-fzf-finder', defer:2
 # zplug "romkatv/powerlevel10k", as:theme, depth:1
 # let zplug manage itself
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# zplug 'NullSense/fuzzy-sys'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

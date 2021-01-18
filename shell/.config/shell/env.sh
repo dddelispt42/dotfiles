@@ -28,7 +28,7 @@ export FIREFOX_PROFILE
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PATH=~/bin:~/opt/neovim/bin:~/opt:~/.local/bin:~/.local/bin/statusbar:$PATH
+PATH=~/bin:~/opt/neovim/bin:~/opt:~/.local/bin:~/.config/dwm:$PATH
 export PATH
 
 # use vivid for more colors
