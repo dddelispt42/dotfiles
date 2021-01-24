@@ -122,7 +122,7 @@ alias ggs='git global scan && git global'
 # copy the current branch name
 alias gcb='git rev-parse --abbrev-ref HEAD | pbcopy'
 alias cal='ncal -w -M -A 6 -B 1'
-alias weather='curl wttr.in/lisbon'
+alias wttr='curl wttr.in/lisbon'
 
 # lf - list files (if mc is not installed)
 command -v mc > /dev/null || alias mc='tmux split -h lf; lf'
@@ -139,7 +139,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ls_installed_debian_packages="aptitude search '~i!~M'"
 # hors - check stackoverflow and other stuff in terminal
 alias hors="hors -c -a"
-alias tray="trayer --edge top --align center --expand false --width 5"
+alias tray="trayer --edge top --align center --expand false --width 5 --distance 20 &"
 alias pacsize="pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
 pacbloat() {
     pacman -Qe | awk '{print $1;}' | while read -r line; do
