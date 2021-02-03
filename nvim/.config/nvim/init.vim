@@ -128,7 +128,7 @@
     " Plug 'vimwiki/vimwiki', { 'for': 'markdown' }
     Plug 'vimwiki/vimwiki'
     " Hardmode to learn mode vim
-    Plug 'wikitopian/hardmode'
+    " Plug 'wikitopian/hardmode'
     " Latex
     " Plug 'vim-latex/vim-latex', { 'for': 'tex' }
     " Plug 'lervag/vimtex'
