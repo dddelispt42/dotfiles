@@ -123,18 +123,18 @@ set info size:time
 set sortby natural
 set preview on
 
-map gC :cd '~/dotfiles/lf'
-map gD :cd '~/Docments'
+map gC :cd '~/.config/lf'
+map gD :cd '~/Documents'
 map gT :cd '/tmp'
 map gb :cd '~/bin'
 map gd :cd '~/dotfiles'
 map gh :cd '~'
-map gi :cd '~/git'
-map gl :cd '~/Downloads'
+map gi :cd '~/dev'
+map gl :cd '~/dl'
 map gk :cd '~/klaut'
 map go :cd '~/opt'
 map gr :cd '/'
-map gv :cd '~/klaut\vimwiki'
+map gv :cd '~/klaut/vimwiki'
 
 cmd usage !du -sk * | sort -n | bat
 map U usage
