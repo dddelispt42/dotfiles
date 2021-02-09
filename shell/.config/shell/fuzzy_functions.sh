@@ -21,7 +21,7 @@ __handle_jira_issues() {
 
 fja() {
     local output
-    output=$(cat ~/.config/JiraIssueCache*.issues |
+    output=$(cat ~/.cache/JiraIssueCache*.issues |
         FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
     if [ $? -eq 0 ]; then
         __handle_jira_issues "$output"
@@ -30,7 +30,7 @@ fja() {
 
 fj() {
     local output
-    output=$(cat ~/.config/JiraIssueCache*.issues |
+    output=$(cat ~/.cache/JiraIssueCache*.issues |
         grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" |
         FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
     if [ $? -eq 0 ]; then
