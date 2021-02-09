@@ -14,9 +14,10 @@ xrdb ~/.Xresources &
 ~/.config/dunst/launch.sh
 feh --bg-fill ~/.config/wall.png &
 udiskie -A -t &
-xfce4-power-manager &
+nohup xfce4-power-manager &
 nohup nextcloud &
 trayer --edge top --align center --expand false --width 5 --distance 20 &
+nohup clipmenud &
 
 while true; do
     # killall dwmblocks
