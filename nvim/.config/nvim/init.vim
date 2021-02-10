@@ -513,9 +513,9 @@
     let g:ale_set_loclist = 1
     let g:ale_set_quickfix = 0
     let g:ale_open_list = 1
-    nmap gd :ALEGoToDefinition<CR>
-    nmap gr :ALEFindReferences<CR>
-    nmap K :ALEHover<CR>
+    " nmap gd :ALEGoToDefinition<CR>
+    " nmap gr :ALEFindReferences<CR>
+    " nmap K :ALEHover<CR>
 
 " Tagbar
     " TODO better use <leader>T or something else
@@ -900,7 +900,9 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-x': 'split',
-      \ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-v': 'vsplit',
+      \ 'ctrl-o': ':r !echo',
+      \ }
 
     " Default fzf layout
     " - down / up / left / right
