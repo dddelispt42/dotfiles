@@ -112,6 +112,17 @@ migrate_to_clean ~/.fonts.conf "$XDG_CONFIG_HOME"/fontconfig/fonts.conf
 migrate_to_clean ~/.crontab "$XDG_CONFIG_HOME"/crontab
 migrate_to_clean ~/.zshrc.local "$XDG_CONFIG_HOME"/zshrc.local
 migrate_to_clean ~/.sqlite_history "$XDG_DATA_HOME"/sqlite_history
+mkdir -p "$XDG_CONFIG_HOME"
+mkdir -p "$XDG_CACHE_HOME"
+mkdir -p "$XDG_DATA_HOME"
+mkdir -p "$XDG_DESKTOP_DIR"
+mkdir -p "$XDG_DOWNLOAD_DIR"
+mkdir -p "$XDG_TEMPLATES_DIR"
+mkdir -p "$XDG_PUBLICSHARE_DIR"
+mkdir -p "$XDG_DOCUMENTS_DIR"
+mkdir -p "$XDG_MUSIC_DIR"
+mkdir -p "$XDG_PICTURES_DIR"
+mkdir -p "$XDG_VIDEOS_DIR"
 
 stow -vS -t ~/ X11
 stow -vS -t ~/ bat
