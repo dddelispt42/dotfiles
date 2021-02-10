@@ -9,6 +9,19 @@ export TERM="xterm-256color"
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
+# set XDG directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DESKTOP_DIR="$HOME/Desktop"
+export XDG_DOWNLOAD_DIR="$HOME/dl"
+export XDG_TEMPLATES_DIR="$HOME/media/temp"
+export XDG_PUBLICSHARE_DIR="$HOME/media/public"
+export XDG_DOCUMENTS_DIR="$HOME/docs"
+export XDG_MUSIC_DIR="$HOME/media/music"
+export XDG_PICTURES_DIR="$HOME/media/pix"
+export XDG_VIDEOS_DIR="$HOME/media/videos"
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 # HISTCONTROL=ignoreboth
@@ -28,20 +41,17 @@ export FIREFOX_PROFILE
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PATH=~/bin:~/opt/neovim/bin:~/opt:~/.local/bin:~/.config/dwm:$PATH
+PATH=~/bin:~/opt:~/.local/bin:~/.config/dwm:$PATH
 export PATH
-
-# use vivid for more colors
-if command -v vivid >/dev/null; then
-    LS_COLORS="$(vivid generate molokai)"
-    export LS_COLORS
-fi
 
 export NNTPSERVER=news.aioe.org
 export EDITOR="vim"
 command -v nvim > /dev/null && export EDITOR="nvim"
 export VISUAL=$EDITOR
 export BROWSER=elinks
+if [ -n "${DISPLAY+1}" ]; then
+    export BROWSER=brave
+fi
 export OPENER=xdg-open
 if command -v mimeopen >/dev/null; then
     export OPENER=mimeopen
@@ -51,16 +61,15 @@ if command -v bat >/dev/null; then
     export PAGER=bat
     export BAT_PAGER="less -RX"
 fi
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export AUTOSSH_LOGFILE="$HOME/autossh.log"
+
+# AUTOSSH
+export AUTOSSH_LOGFILE="$XDG_CACHE_HOME/autossh.log"
 
 # ZSH env
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
 # GIT root
-export GIT_ROOT=$HOME/git
+export GIT_ROOT=$HOME/dev
 
 # Use nvim as manpager `:h Man`
 # export MANPAGER='nvim +Man!'
@@ -71,8 +80,6 @@ export YELLOW='\033[1;33m'
 export GREEN='\033[0;32m'
 export RESET_COLOR='\033[0m'
 
-# TODO: should I use vim server??? <12-11-18, Heiko Riemer> #
-# alias vim="vim --servername a"
 export DISABLE_AUTO_TITLE='true'
 
 # TMUX
@@ -88,7 +95,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export TERMINAL=st
 
 # my BIB file
-# TODO: make this work on all computers  <11-04-20, Heiko Riemer> #
 export BIB=$HOME/Documents/uni.bib
 
 # MAVEN
@@ -113,9 +119,7 @@ mkdir -p "$USER_LOGS_DIR"
 # pylint
 export PYLINTHOME=${XDG_CONFIG_HOME:-$HOME/.config}/pylint
 
-# Fuzzy finder
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_OPTS="-x --multi --height 80% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
+# move dofiles to XDG dirs
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
@@ -128,7 +132,6 @@ export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
-export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export ANSIBLE_NOCOWS=1
@@ -147,21 +150,12 @@ export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
-export LESS=-R
-export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
+# export LESS=-R
+# export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+# export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export _Z_DATA="$XDG_DATA_HOME/z"
-
-# disable ansible cowsay
-export ANSIBLE_NOCOWS=1
-
-# VIM related
-# TODO:  <15-12-18, Heiko Riemer> #
-
-# vimwiki
-# TODO:  <15-12-18, Heiko Riemer> #
 
 # NNN related
 export NNN_BMS='d:~/git;D:~/Docs archive/'
@@ -175,10 +169,22 @@ export NNN_OPENER=$OPENER
 export NNN_TRASH=1
 
 # DBUS - this is only needed for DWM with f***** systemd crappiness!!!
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+# export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 #VIMWIKI
-export WIKI_PATH="$HOME/vimwiki/"
+export WIKI_PATH="$HOME/klaut/vimwiki/"
+
+# fuzzy finder variables
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_OPTS="-x --multi --height 80% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
+export SKIM_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow --glob \"!.git/*\" || git ls-tree -r --name-only HEAD || rg --files || find ."
+export LAUNCHER=sk
+export CM_LAUNCHER=fzf
+if [ -n "${DISPLAY+1}" ]; then
+    # export LAUNCHER="rofi -dmenu"
+    export LAUNCHER=dmenu
+    export CM_LAUNCHER=dmenu
+fi
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\

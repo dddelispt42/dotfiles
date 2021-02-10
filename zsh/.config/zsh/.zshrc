@@ -61,7 +61,7 @@ zplug load
 eval "$(starship init zsh)"
 
 # TODO: generate path name
-test -s ~/.config/shell/env.sh && source ~/.config/shell/env.sh || true
+# test -s ~/.config/shell/env.sh && source ~/.config/shell/env.sh || true
 test -s ~/.config/shell/functions.sh && source ~/.config/shell/functions.sh || true
 test -s ~/.config/shell/ssh_agent.sh && source ~/.config/shell/ssh_agent.sh || true
 test -s ~/.config/shell/alias.sh && source ~/.config/shell/alias.sh || true
