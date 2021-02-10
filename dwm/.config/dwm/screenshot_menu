@@ -3,12 +3,12 @@
 ## rofi-screenshot
 ## Author: ceuk @ github
 ## Licence: WTFPL
-## Usage: 
+## Usage:
 ##    show the menu with rofi-screenshot
 ##    stop recording with rofi-screenshot -s
 
 # Screenshot directory
-screenshot_directory="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshot"
+screenshot_directory="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots"
 
 # set ffmpeg defaults
 ffmpeg() {

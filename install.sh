@@ -123,6 +123,7 @@ mkdir -p "$XDG_DOCUMENTS_DIR"
 mkdir -p "$XDG_MUSIC_DIR"
 mkdir -p "$XDG_PICTURES_DIR"
 mkdir -p "$XDG_VIDEOS_DIR"
+mkdir -p "$XDG_PICTURES_DIR"/screenshots
 
 stow -vS -t ~/ X11
 stow -vS -t ~/ bat
