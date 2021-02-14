@@ -1,3 +1,6 @@
+if (has('nvim-0.5'))
+    lua require("lua/init")
+else
 " Function to set OS env - return WINDOWS or output of uname
     function! Config_setEnv() abort
         if exists('g:env')
@@ -1175,3 +1178,4 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     map <leader>jo :call OpenJiraIssue()<cr>
     let g:vira_browser = 'firefox'
     " TODO: run queries and open issues from there
+endif

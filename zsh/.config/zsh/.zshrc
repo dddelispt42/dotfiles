@@ -87,3 +87,5 @@ test -s ~/.zshrc.local && source ~/.zshrc.local || true
 test -s ~/.config/zshrc.local && source ~/.config/zshrc.local || true
 
 test -s /home/heiko/.config/broot/launcher/bash/br && source /home/heiko/.config/broot/launcher/bash/br || true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
