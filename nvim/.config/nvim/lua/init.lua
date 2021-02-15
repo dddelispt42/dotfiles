@@ -1,7 +1,7 @@
 vim.g.mapleader = ","
 
-require('plugins')
 require('general')
+require('plugins')
 require('utils')
 require('lsp')
 
