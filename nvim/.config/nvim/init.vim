@@ -1,5 +1,30 @@
 if (has('nvim-0.5'))
-    lua require("lua/init")
+    lua require("init")
+
+    let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
+    " Trigger completion with <tab>
+    " found in :help completion
+    " Use <Tab> and <S-Tab> to navigate through popup menu
+    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    " use <Tab> as trigger keys
+    imap <Tab> <Plug>(completion_smart_tab)
+    imap <S-Tab> <Plug>(completion_smart_s_tab)
+
+    " Show diagnostic popup on cursor hover
+    " autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+
+    " Goto previous/next diagnostic warning/error
+    " nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+    " nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+    set signcolumn=yes
+    set expandtab
+    set shiftwidth=4
+    " TODO: move
+    let g:completion_enable_snippet = 'UltiSnips'
 else
 " Function to set OS env - return WINDOWS or output of uname
     function! Config_setEnv() abort
@@ -955,6 +980,57 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     nnoremap <Leader>M :Maps<CR>
     nnoremap <Leader>s :Filetypes<CR>
 
+""" misc
+    let g:HardMode_level = 'wannabe'
+    " let g:HardMode_hardmodeMsg = 'Don't use this!'
+    autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+" Misc:
+    " visualize whitespaces
+    set list
+    set listchars=nbsp:¬,tab:»·,trail:·
+    " Breaking lines with \[enter] without having to go to insert mode (myself).
+    nmap <leader><cr> i\<cr><Esc>
+    " Reload changes to .vimrc automatically
+    autocmd BufWritePost ~/.vimrc source ~/.vimrc
+    " Show a max line indicator
+    set colorcolumn=100
+    " find long lines
+    " TODO: find better shortcut <17-09-18, Heiko Riemer> "
+    " map <F9> /\%>100v.\+
+    " Update term title but restore old title after leaving Vim
+    set title
+    set titleold=
+    set path+=**
+
+" splits:
+    set splitbelow
+    set splitright
+
+" clipboard:
+    " set clipboard=unnamedplus
+    " if has('win32')
+    "     set clipboard=unnamed
+    " endif
+    "
+    set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;
+
+" vim-auto-save:
+    " autocmd FileType vimwiki setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
+    " autocmd FileType markdown setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
+    let g:auto_save = 0  " enable AutoSave on Vim startup
+    " let g:auto_save_events = ["InsertLeave", "TextChanged"] " only save when leaving insert mode or changing things
+    let g:auto_save_write_all_buffers = 0  " write all open buffers as if you would use :wa
+    " let g:auto_save_no_updatetime = 0  " do not change the 'updatetime' option
+    let g:updatetime = 5000  "global updatetime set to 5sec
+    let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+    " let g:auto_save_silent = 1  " do not display the auto-save notification
+
+endif
+
+" ----------------------
+" TODO: move this to lua
+" ----------------------
 """ vimwiki
     " vimwiki with markdown support
     let wiki_1 = {}
@@ -1005,33 +1081,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     noremap <leader>T :call TogglePomodoroTimer()<cr>
     noremap <leader>D :VimwikiToggleListItem<cr>ddGp<c-o>
 
-""" misc
-    let g:HardMode_level = 'wannabe'
-    " let g:HardMode_hardmodeMsg = 'Don't use this!'
-    autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
-" Misc:
-    " visualize whitespaces
-    set list
-    set listchars=nbsp:¬,tab:»·,trail:·
-    " Breaking lines with \[enter] without having to go to insert mode (myself).
-    nmap <leader><cr> i\<cr><Esc>
-    " Reload changes to .vimrc automatically
-    autocmd BufWritePost ~/.vimrc source ~/.vimrc
-    " Show a max line indicator
-    set colorcolumn=100
-    " find long lines
-    " TODO: find better shortcut <17-09-18, Heiko Riemer> "
-    " map <F9> /\%>100v.\+
-    " Update term title but restore old title after leaving Vim
-    set title
-    set titleold=
-    set path+=**
-
-" splits:
-    set splitbelow
-    set splitright
-
 " vim-open-url
     function! HandleURL()
         let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*')
@@ -1043,7 +1092,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
         endif
     endfunction
     map <leader>u :call HandleURL()<cr>
-    function! GetMDWebLinkFromURL()
+    function! GetMDwebLinkFromURL()
         let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*')
         let s:title = system('get_webpage_title.sh '.shellescape(s:uri, 1))
         if s:uri != ""
@@ -1052,33 +1101,7 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
             echo "No URI found in line."
         endif
     endfunction
-    map <leader>U :call GetMDWebLinkFromURL()<cr>
-
-" clipboard:
-    " set clipboard=unnamedplus
-    " if has('win32')
-    "     set clipboard=unnamed
-    " endif
-    "
-    set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;
-
-" vim-auto-save:
-    " autocmd FileType vimwiki setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
-    " autocmd FileType markdown setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
-    let g:auto_save = 0  " enable AutoSave on Vim startup
-    " let g:auto_save_events = ["InsertLeave", "TextChanged"] " only save when leaving insert mode or changing things
-    let g:auto_save_write_all_buffers = 0  " write all open buffers as if you would use :wa
-    " let g:auto_save_no_updatetime = 0  " do not change the 'updatetime' option
-    let g:updatetime = 5000  "global updatetime set to 5sec
-    let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-    " let g:auto_save_silent = 1  " do not display the auto-save notification
-
-" eighties.vim:
-    " let g:eighties_enabled = 1
-    " let g:eighties_minimum_width = 80
-    " let g:eighties_extra_width = 20 " Increase this if you want some extra room
-    " let g:eighties_compute = 1 " Disable this if you just want the minimum + extra
-    " let g:eighties_bufname_additional_patterns = ['fugitiveblame'] " Defaults to [], 'fugitiveblame' is only an example. Takes a comma delimited list of bufnames as strings.
+    map <leader>U :call GetMDwebLinkFromURL()<cr>
 
 " vim-airline
     let g:airline_theme='molokai'
@@ -1178,4 +1201,3 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     map <leader>jo :call OpenJiraIssue()<cr>
     let g:vira_browser = 'firefox'
     " TODO: run queries and open issues from there
-endif

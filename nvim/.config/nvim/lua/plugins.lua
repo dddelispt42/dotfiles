@@ -48,7 +48,12 @@ return require('packer').startup {
       end
     end
 
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    }
     use 'nvim-telescope/telescope-frecency.nvim'
+
     use 'mhinz/vim-startify'
     use 'dstein64/vim-startuptime'
     use 'norcalli/nvim-colorizer.lua'
@@ -64,7 +69,6 @@ return require('packer').startup {
     use 'ryanoasis/vim-devicons'
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
-    use 'sjl/gundo.vim'
     use 'gyim/vim-boxdraw' -- Crazy good box drawing
     use 'junegunn/goyo.vim'
     use 'junegunn/limelight.vim'
@@ -74,9 +78,16 @@ return require('packer').startup {
     use 'cespare/vim-toml'
     use 'Glench/Vim-Jinja2-Syntax'
     use 'euclidianAce/BetterLua.vim'
+    --LSP
     use 'neovim/nvim-lspconfig'
+    use 'glepnir/lspsaga.nvim'
     use 'wbthomason/lsp-status.nvim'
-    use 'haorenW1025/completion-nvim'
+    -- use 'RishabhRD/popfix'
+    -- use 'RishabhRD/nvim-lsputils'
+    -- use 'anott03/nvim-lspinstall'
+    -- Extentions to built-in LSP, for example, providing type inlay hints
+    -- Autocompletion framework for built-in LSP
+    use 'nvim-lua/completion-nvim'
     use {
       'nvim-treesitter/nvim-treesitter',
       run = function() vim.cmd [[TSUpdate]] end
@@ -92,13 +103,14 @@ return require('packer').startup {
     -- use 'puremourning/vimspector'
     use 'mfussenegger/nvim-dap'
     use 'mfussenegger/nvim-dap-python'
-    use { 
+    use {
       'theHamsta/nvim-dap-virtual-text',
       run = function()
         vim.g.dap_virtual_text = true
       end
     }
     use 'nvim-treesitter/playground'
+    use 'mhartington/formatter.nvim'
     use 'justinmk/vim-dirvish'
     use 'godlygeek/tabular'        -- Quickly align text by pattern
     use 'tpope/vim-commentary'     -- Easily comment out lines or objects
@@ -114,17 +126,15 @@ return require('packer').startup {
         use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
         use {'junegunn/fzf.vim'}
     -- endif
-    -- use  'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-    -- use 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeToggle' }
-    -- use 'xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
     use 'vim-airline/vim-airline'
     use 'vim-airline/vim-airline-themes'
 
     use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'
     use 'tpope/vim-rhubarb' -- required by fugitive to :Gbrowse
-    use 'Raimondi/delimitMate'
-    use 'Yggdroot/indentLine'
+    -- use 'Raimondi/delimitMate'
+    use 'glepnir/indent-guides.nvim'
+    use 'p00f/nvim-ts-rainbow'
     -- Plug 'Shougo/vimproc.vim', {'do': g:make}
     -- Vim-Session
     -- Plug 'xolox/vim-misc'
@@ -156,9 +166,9 @@ return require('packer').startup {
     use 'aklt/plantuml-syntax'
     -- " Plug 'sjurgemeyer/vim-plantuml', { 'for': 'plantuml' }
     use 'nathanalderson/yang.vim'
-    -- " todo:slow Plug 'bling/vim-bufferline'
+    -- use 'bling/vim-bufferline'
+    use 'romgrk/barbar.nvim'
     -- " interesting but not yet configured
-    -- Plug 'sjl/gundo.vim', { 'on': [] }
     -- " Git commit browser (:GV)
     -- Plug 'junegunn/gv.vim'
     -- " works with tabular to format markdown tables when pressing "|"
@@ -176,7 +186,7 @@ return require('packer').startup {
     use 'tpope/vim-unimpaired'
     use 'tpope/vim-speeddating'
     use 'easymotion/vim-easymotion'
-    use 'vim-scripts/matchit.zip'
+    -- use 'vim-scripts/matchit.zip'
     -- " Plug 'rstacruz/sparkup'
     -- " Plug 'mjbrownie/hackertyper.vim'
     -- " Plug 'sirtaj/vim-openscad'
@@ -190,8 +200,6 @@ return require('packer').startup {
     -- Plug 'wsdjeg/vim-fetch'
     -- " Plug 'henrik/vim-open-url'
     use 'romainl/vim-cool'
-    -- " TODO: buggy
-    -- " Plug 'stsewd/gx-extended.vim'
     -- " better encryption plugin - requires: https://github.com/jedisct1/encpipe
     use 'hauleth/vim-encpipe'
     -- " floating windows
@@ -202,14 +210,6 @@ return require('packer').startup {
     -- use 'dddelispt42/vira', { 'do': './install.sh' }
     -- " automatically set the root directory
     use 'airblade/vim-rooter'
-
-    -- " TODO: test this alternative to Ale/Ycm  <02-05-20, Heiko Riemer> "
-    -- " Plug 'mattn/vim-lsp-settings'
-    -- " Plug 'prabirshrestha/async.vim'
-    -- " Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    -- " Plug 'prabirshrestha/asyncomplete.vim'
-    -- " Plug 'prabirshrestha/vim-lsp'
-    -- " Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 
     --" Plug 'CoatiSoftware/vim-sourcetrail'
 
