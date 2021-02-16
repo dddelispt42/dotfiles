@@ -132,6 +132,8 @@ map('n', 'k', 'gk', options)
 -- highlight last inserted text
 map('n', 'gV', '`[v`]', options)
 -- Open applications
+map('n', '<leader>s', ':Snippets<CR>', options)
+-- Open applications
 map('n', '<c-n>', ':NvimTreeToggle<CR>', options)
 -- Fuzzy
 map('n', '<Leader>f', ':GFiles<CR>', options)
@@ -150,7 +152,8 @@ map('n', '<Leader>C', ':Commands<CR>', options)
 map('n', '<Leader>:', ':History:<CR>', options)
 map('n', '<Leader>/', ':History/<CR>', options)
 map('n', '<Leader>M', ':Maps<CR>', options)
-map('n', '<Leader>s', ':Filetypes<CR>', options)
+map('n', '<Leader>S', ':Filetypes<CR>', options)
+
 -- LSP
 map('n', 'gh', ':Lspsaga lsp_finder<CR>', options)
 map('n', '<leader>ca', ':Lspsaga code_action<CR>', options)
@@ -167,6 +170,14 @@ map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', options)
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', options)
 -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', options)
 map('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', options)
+
+-- Completion (nvim-comple)
+map('i', '<expr> <C-Space>', 'compe#complete()', options)
+map('i', '<expr> <CR>', "compe#confirm('<CR>')", options)
+map('i', '<expr> <C-e>', "compe#close('<C-e>')", options)
+map('i', '<expr> <C-f>', "compe#scroll({ 'delta': +4 })", options)
+map('i', '<expr> <C-d>', "compe#scroll({ 'delta': -4 })", options)
+
 
 -- vim.cmd('command! FixWhitespace :%s/\s\+$//e')
 

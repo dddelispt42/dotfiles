@@ -77,17 +77,19 @@ return require('packer').startup {
     use 'pearofducks/ansible-vim'
     use 'cespare/vim-toml'
     use 'Glench/Vim-Jinja2-Syntax'
-    use 'euclidianAce/BetterLua.vim'
     --LSP
     use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
     use 'wbthomason/lsp-status.nvim'
+    use 'euclidianAce/BetterLua.vim'
     -- use 'RishabhRD/popfix'
     -- use 'RishabhRD/nvim-lsputils'
     -- use 'anott03/nvim-lspinstall'
     -- Extentions to built-in LSP, for example, providing type inlay hints
     -- Autocompletion framework for built-in LSP
-    use 'nvim-lua/completion-nvim'
+    -- use 'nvim-lua/completion-nvim'
+    use 'hrsh7th/nvim-compe'
+    -- use 'hrsh7th/vim-vsnip'
     use {
       'nvim-treesitter/nvim-treesitter',
       run = function() vim.cmd [[TSUpdate]] end
@@ -97,7 +99,7 @@ return require('packer').startup {
       run = function() vim.cmd [[TSUpdate]] end
     }
     use 'SirVer/ultisnips'
-    use 'norcalli/snippets.nvim'
+    -- use 'norcalli/snippets.nvim'
     use 'norcalli/ui.nvim'
     use 'liuchengxu/vista.vim'
     -- use 'puremourning/vimspector'
@@ -126,8 +128,38 @@ return require('packer').startup {
         use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
         use {'junegunn/fzf.vim'}
     -- endif
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
+    -- use 'vim-airline/vim-airline'
+    -- use 'vim-airline/vim-airline-themes'
+    use {
+        'hoob3rt/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        config = function()
+            local lualine = require('lualine')
+            lualine.options = {
+                theme = 'gruvbox',
+                separator = '|',
+                icons_enabled = true,
+            }
+            lualine.sections = {
+                lualine_a = { 'mode' },
+                lualine_b = { 'branch' },
+                lualine_c = { 'filename' },
+                lualine_x = { 'encoding', 'fileformat', 'filetype' },
+                lualine_y = { 'progress' },
+                lualine_z = { 'location'  },
+            }
+            lualine.inactive_sections = {
+                lualine_a = {  },
+                lualine_b = {  },
+                lualine_c = { 'filename' },
+                lualine_x = { 'location' },
+                lualine_y = {  },
+                lualine_z = {   }
+            }
+            lualine.extensions = { 'fzf' }
+            lualine.status()
+        end
+    }
 
     use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'

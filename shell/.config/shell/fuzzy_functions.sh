@@ -239,8 +239,6 @@ function fgst {
     # "Nothing to see here, move along"
     is_in_git_repo || return
 
-    # local cmd="${FZF_CTRL_T_COMMAND:-"command git status -s"}"
-
     # eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -x -m "$@" | while read -r item; do
     git status -su | cut -c 4- | sed -e 's/.*-> //' | FZF_DEFAULT_OPTS=" --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -x -m "$@" | while read -r item; do
       printf '%q ' "$item" | cut -d " " -f 2
