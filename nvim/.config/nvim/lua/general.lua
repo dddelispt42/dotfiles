@@ -169,7 +169,7 @@ map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', options)
 -- rust-analyzer does not yet support goto declaration - re-mapped `gd` to definition
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', options)
 -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', options)
-map('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', options)
+-- map('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', options)
 
 -- Completion (nvim-comple)
 map('i', '<expr> <C-Space>', 'compe#complete()', options)

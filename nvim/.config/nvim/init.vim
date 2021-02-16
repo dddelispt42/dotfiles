@@ -1,9 +1,9 @@
 if (has('nvim-0.5'))
     lua require("init")
+    " Enable type inlay hints
 
-    set signcolumn=yes
-    set expandtab
-    set shiftwidth=4
+    " Rust inline hints
+    autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true, prefix = '  » ', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"}}
 else
 " Function to set OS env - return WINDOWS or output of uname
     function! Config_setEnv() abort

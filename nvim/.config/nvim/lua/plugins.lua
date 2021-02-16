@@ -81,6 +81,7 @@ return require('packer').startup {
     use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
     use 'wbthomason/lsp-status.nvim'
+    use 'nvim-lua/lsp_extensions.nvim'
     use 'euclidianAce/BetterLua.vim'
     -- use 'RishabhRD/popfix'
     -- use 'RishabhRD/nvim-lsputils'
