@@ -1,30 +1,9 @@
 if (has('nvim-0.5'))
     lua require("init")
 
-    let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-
-    " Trigger completion with <tab>
-    " found in :help completion
-    " Use <Tab> and <S-Tab> to navigate through popup menu
-    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-    " use <Tab> as trigger keys
-    imap <Tab> <Plug>(completion_smart_tab)
-    imap <S-Tab> <Plug>(completion_smart_s_tab)
-
-    " Show diagnostic popup on cursor hover
-    " autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-
-    " Goto previous/next diagnostic warning/error
-    " nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-    " nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-
     set signcolumn=yes
     set expandtab
     set shiftwidth=4
-    " TODO: move
-    let g:completion_enable_snippet = 'UltiSnips'
 else
 " Function to set OS env - return WINDOWS or output of uname
     function! Config_setEnv() abort
@@ -698,16 +677,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
     let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" Snipplets:
-    let g:UltiSnipsSnippetsDir="~/dotfiles/vim/UltiSnips"
-    let g:UltiSnipsListSnippets="<s-tab>"
-    let g:UltiSnipsExpandTrigger = "<tab>"
-    let g:UltiSnipsJumpForwardTrigger = "<tab>"
-    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" PlantUML Syntax:
-    au BufNewFile,BufRead *.uml set filetype=plantuml
-
 " Key Mappings:
     " jump between buffers in normal mode
     nnoremap <c-h> <c-w>h
@@ -914,12 +883,12 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
 """ fzf.vim
     set wildmode=list:longest,list:full
     set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip
-    let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+    " let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
     " ripgrep
         if executable('rg')
-            let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --no-ignore --follow --glob "!.git/*"'
-            set grepprg=rg\ --vimgrep
-            command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+            " let $FZF_DEFAULT_COMMAND = 'rg --files -uu --follow'
+            set grepprg=rg\ --vimgrep\ -uu\ --follow
+            command! -bang -nargs=* Find call fzf#vim#grep('rg -uu --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
         endif
     cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
     "Recovery commands from history through FZF
@@ -1026,6 +995,59 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
     " let g:auto_save_silent = 1  " do not display the auto-save notification
 
+" vim-airline
+    let g:airline_theme='molokai'
+    " let g:airline_theme = 'powerlineish'
+    let g:airline#extensions#branch#enabled = 1
+    let g:airline#extensions#ale#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tagbar#enabled = 1
+    let g:airline_skip_empty_sections = 1
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    if !exists('g:airline_powerline_fonts')
+        let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+        let g:airline#extensions#linecolumn#prefix = '¶'
+        let g:airline#extensions#paste#symbol      = 'ρ'
+        let g:airline#extensions#readonly#symbol   = '⊘'
+        let g:airline#extensions#tabline#left_alt_sep = '|'
+        let g:airline#extensions#tabline#left_sep = ' '
+        let g:airline_left_alt_sep      = '»'
+        let g:airline_left_sep          = '▶'
+        let g:airline_right_alt_sep     = '«'
+        let g:airline_right_sep         = '◀'
+        let g:airline_symbols.branch    = '⎇'
+        let g:airline_symbols.linenr    = '␊'
+        let g:airline_symbols.paste     = 'Þ'
+        let g:airline_symbols.paste     = 'ρ'
+        let g:airline_symbols.paste     = '∥'
+        let g:airline_symbols.whitespace = 'Ξ'
+    else
+        let g:airline#extensions#tabline#left_sep = ''
+        let g:airline#extensions#tabline#left_alt_sep = ''
+        " powerline symbols
+        let g:airline_left_sep = ''
+        let g:airline_left_alt_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_right_alt_sep = ''
+        let g:airline_symbols.branch = ''
+        let g:airline_symbols.readonly = ''
+        let g:airline_symbols.linenr = ''
+    endif
+
+" Conque GDB (RUST/C/CPP debugging)
+    let g:ConqueTerm_StartMessages = 0
+    let g:ConqueTerm_Color = 0
+    let g:ConqueTerm_CloseOnEnd = 1
+    let g:ConqueTerm_Interrupt = '<C-g><C-c>'
+    let g:ConqueTerm_ReadUnfocused = 1
+
+" comments in italic
+    " highlight Comment gui=italic
+
 endif
 
 " ----------------------
@@ -1103,59 +1125,6 @@ endif
     endfunction
     map <leader>U :call GetMDwebLinkFromURL()<cr>
 
-" vim-airline
-    let g:airline_theme='molokai'
-    " let g:airline_theme = 'powerlineish'
-    let g:airline#extensions#branch#enabled = 1
-    let g:airline#extensions#ale#enabled = 1
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tagbar#enabled = 1
-    let g:airline_skip_empty_sections = 1
-    let g:airline_powerline_fonts = 1
-    let g:airline#extensions#tabline#enabled = 1
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-    if !exists('g:airline_powerline_fonts')
-        let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-        let g:airline#extensions#linecolumn#prefix = '¶'
-        let g:airline#extensions#paste#symbol      = 'ρ'
-        let g:airline#extensions#readonly#symbol   = '⊘'
-        let g:airline#extensions#tabline#left_alt_sep = '|'
-        let g:airline#extensions#tabline#left_sep = ' '
-        let g:airline_left_alt_sep      = '»'
-        let g:airline_left_sep          = '▶'
-        let g:airline_right_alt_sep     = '«'
-        let g:airline_right_sep         = '◀'
-        let g:airline_symbols.branch    = '⎇'
-        let g:airline_symbols.linenr    = '␊'
-        let g:airline_symbols.paste     = 'Þ'
-        let g:airline_symbols.paste     = 'ρ'
-        let g:airline_symbols.paste     = '∥'
-        let g:airline_symbols.whitespace = 'Ξ'
-    else
-        let g:airline#extensions#tabline#left_sep = ''
-        let g:airline#extensions#tabline#left_alt_sep = ''
-        " powerline symbols
-        let g:airline_left_sep = ''
-        let g:airline_left_alt_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
-        let g:airline_symbols.branch = ''
-        let g:airline_symbols.readonly = ''
-        let g:airline_symbols.linenr = ''
-    endif
-
-" Conque GDB (RUST/C/CPP debugging)
-    let g:ConqueTerm_StartMessages = 0
-    let g:ConqueTerm_Color = 0
-    let g:ConqueTerm_CloseOnEnd = 1
-    let g:ConqueTerm_Interrupt = '<C-g><C-c>'
-    let g:ConqueTerm_ReadUnfocused = 1
-
-" comments in italic
-    " highlight Comment gui=italic
-
 " machakann/vim-highlightedyank
     let g:highlightedyank_highlight_duration = 500
 
@@ -1178,7 +1147,6 @@ endif
         tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
         nnoremap   <silent>   <F12>   :FloatermToggle<CR>
         tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
-        command! FZF FloatermNew fzf
         nnoremap <silent> <leader>sh :terminal<CR>
         nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
         nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
@@ -1201,3 +1169,13 @@ endif
     map <leader>jo :call OpenJiraIssue()<cr>
     let g:vira_browser = 'firefox'
     " TODO: run queries and open issues from there
+
+" Snipplets:
+    let g:UltiSnipsSnippetsDir="~/dev/heiko/dotfiles/vim/UltiSnips"
+    let g:UltiSnipsListSnippets="<s-tab>"
+    let g:UltiSnipsExpandTrigger = "<tab>"
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" PlantUML Syntax:
+    au BufNewFile,BufRead *.uml set filetype=plantuml

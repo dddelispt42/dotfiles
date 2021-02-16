@@ -175,9 +175,11 @@ export NNN_TRASH=1
 export WIKI_PATH="$HOME/klaut/vimwiki/"
 
 # fuzzy finder variables
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_OPTS="-x --multi --height 80% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
-export SKIM_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow --glob \"!.git/*\" || git ls-tree -r --name-only HEAD || rg --files || find ."
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+# export FZF_DEFAULT_COMMAND='rg --files -uu'
+export FZF_DEFAULT_COMMAND='fd -HI --follow  --exclude "**/.git/**"'
+export FZF_DEFAULT_OPTS="-x --multi --height 50% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
+export SKIM_DEFAULT_COMMAND="rg --files -uu --follow || git ls-tree -r --name-only HEAD || rg --files || find ."
 export LAUNCHER=sk
 export CM_LAUNCHER=fzf
 if [ -n "${DISPLAY+1}" ]; then
