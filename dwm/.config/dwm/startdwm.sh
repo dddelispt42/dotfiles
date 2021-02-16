@@ -8,7 +8,7 @@ if [ "$HOST" == "manjaro" ]; then
     ~/.config/autostart/VBoxClient.sh
 fi
 # xrdb -merge ~/.Xresources &
-# xrdb ~/.Xresources
+xrdb ~/.Xresources
 # sxhkd -c ~/.config/sxhkd/sxhkdrc &
 # ~/.config/polybar/launch.sh "$HOST"
 # ~/.config/dunst/launch.sh
