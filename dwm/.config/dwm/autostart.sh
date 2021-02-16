@@ -7,11 +7,11 @@ if [ "$HOST" == "manjaro" ]; then
 #     xrandr --output $MONITOR --mode 1920x1080 --rate 60
     ~/.config/autostart/VBoxClient.sh
 fi
-xrdb -merge ~/.Xresources &
-xrdb ~/.Xresources &
+# xrdb -merge ~/.Xresources &
+xrdb ~/.Xresources
 # sxhkd -c ~/.config/sxhkd/sxhkdrc &
 # ~/.config/polybar/launch.sh "$HOST"
-~/.config/dunst/launch.sh
+~/.config/dunst/launch.sh &
 feh --bg-fill ~/.config/wall.png &
 udiskie -A -t &
 nohup xfce4-power-manager &

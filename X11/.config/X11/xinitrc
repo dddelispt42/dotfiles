@@ -22,9 +22,9 @@ if [ -f "$userresources" ]; then
     xrdb "$userresources"
 fi
 
-if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
-fi
+# if [ -f $sysresources ]; then
+#     xrdb -merge $sysresources
+# fi
 
 if [ -f $sysmodmap ]; then
     xmodmap $sysmodmap
