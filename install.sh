@@ -159,7 +159,7 @@ ln -sf "$XDG_DATA_HOME"/z ~/.z
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions}
 if command -v nvim > /dev/null; then
     # nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
-    nvim +PackerInstall +PlugSync +qall
+    nvim +PackerInstall +PackerSync +qall
 else
     vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 fi
