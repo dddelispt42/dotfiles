@@ -98,7 +98,7 @@ export TERMINAL=st
 export BIB=$HOME/Documents/uni.bib
 
 # MAVEN
-export MAVEN_HOME=~/opt/maven
+export MAVEN_HOME=$HOME/opt/maven
 export PATH=$PATH:$MAVEN_HOME/bin
 
 # CARGO and RUST
@@ -158,7 +158,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export _Z_DATA="$XDG_DATA_HOME/z"
 
 # NNN related
-export NNN_BMS='d:~/git;D:~/Docs archive/'
+export NNN_BMS='d:~/dev;D:~/Docs archive/'
 export NNN_PLUG='o:fzy-open;d:ndiff,p:mocplay;m:nmount;t:thumb'
 export NNN_USE_EDITOR=1
 export NNN_CONTEXT_COLORS='1234'
@@ -171,6 +171,9 @@ export NNN_TRASH=1
 # DBUS - this is only needed for DWM with f***** systemd crappiness!!!
 # export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
+#KLAUT_ROOT
+export KLAUT="$HOME/klaut/"
+
 #VIMWIKI
 export WIKI_PATH="$HOME/klaut/vimwiki/"
 
@@ -178,7 +181,7 @@ export WIKI_PATH="$HOME/klaut/vimwiki/"
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export FZF_DEFAULT_COMMAND='rg --files -uu'
 export FZF_DEFAULT_COMMAND='fd -HI --follow  --exclude "**/.git/**"'
-export FZF_DEFAULT_OPTS="-x --multi --height 50% --border --inline-info --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap"
+export FZF_DEFAULT_OPTS="-x --multi --height 50% --border --inline-info --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap"
 export SKIM_DEFAULT_COMMAND="rg --files -uu --follow || git ls-tree -r --name-only HEAD || rg --files || find ."
 export LAUNCHER=sk
 export CM_LAUNCHER=fzf

@@ -1,0 +1,80 @@
+# only if interactive shell
+[[ $- == *i* ]] && stty -ixon -ixoff # turns off CTRL-S
+
+# some history related settings
+HISTFILE=${XDG_CACHE_HOME:-$HOME/.cache}/zhistory       # enable history saving on shell exit
+setopt APPEND_HISTORY          # append rather than overwrite history file.
+setopt SHARE_HISTORY          # append rather than overwrite history file.
+HISTSIZE=12000                 # lines of history to maintain memory
+SAVEHIST=10000                 # lines of history to maintain in history file.
+setopt HIST_EXPIRE_DUPS_FIRST  # allow dups, but expire old ones when I hit HISTSIZE
+setopt EXTENDED_HISTORY        # save timestamp and runtime information
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# zplug
+# TODO: move to XDG...
+source ~/.zplug/init.zsh
+zplug "changyuheng/fz", defer:1
+zplug "rupa/z", use:z.sh
+zplug "ael-code/zsh-colored-man-pages", defer:2
+zplug "popstas/zsh-command-time", defer:2
+zplug "zdharma/fast-syntax-highlighting", defer:2
+# zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+zplug "seletskiy/zsh-fuzzy-search-and-edit"
+zplug "andrewferrier/fzf-z"
+# zplug "gerges/oh-my-zsh-jira-plus", defer:2
+# zplug "micrenda/zsh-nohup", defer:2
+zplug "b4b4r07/emoji-cli", defer:2
+# zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
+zplug 'wfxr/forgit', defer:2
+# zplug 'jedahan/ripz', defer:2
+zplug "MichaelAquilina/zsh-you-should-use", defer:2
+# use Alt-e to launch a finder
+zplug 'leophys/zsh-plugin-fzf-finder', defer:2
+# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+# zplug "romkatv/powerlevel10k", as:theme, depth:1
+# let zplug manage itself
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# zplug 'NullSense/fuzzy-sys'
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+# zplug load --verbose
+zplug load
+
+eval "$(starship init zsh)"
+
+# TODO: generate path name
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/fuzzy_functions.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/fuzzy_functions.sh || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/keybinding.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/keybinding.sh || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/svn_prompt.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/svn_prompt.sh || true
+# test -s $HOME/.fzf/shell/key-bindings.zsh && source $HOME/.fzf/shell/key-bindings.zsh || true
+# test -s $HOME/.fzf/shell/completion.zsh && source $HOME/.fzf/shell/completion.zsh || true
+test -s /usr/share/fzf/key-bindings.zsh && source /usr/share/fzf/key-bindings.zsh || true
+test -s /usr/share/fzf/completion.zsh && source /usr/share/fzf/completion.zsh || true
+test -s /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/key-bindings.zsh || true
+
+# enable VI mode
+bindkey -v
+export KEYTIMEOUT=1
+# edit line in vim buffer - ctrl-v
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^v' edit-command-line
+bindkey ' ^?' backward-delete-char
+
+# include host specific settings
+# TODO: remove next line after moveing that file
+test -s $HOME/.zshrc.local && source $HOME/.zshrc.local || true
+test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zshrc.local && source ${XDG_CONFIG_HOME:-$HOME/.config}/zshrc.local || true
+test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/broot/launcher/bash/br && source ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br || true

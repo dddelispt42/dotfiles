@@ -1,16 +1,6 @@
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    # test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    # alias ls='ls --color=auto'
-    # alias ls='ls --color=always'
-    # alias dir='dir --color=auto'
-    # alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    # alias grep='grep --color=always'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # some more ls aliases
 command -v lsd > /dev/null && alias ls="lsd --group-dirs first"
@@ -130,7 +120,7 @@ command -v mc > /dev/null || alias mc='tmux split -h lf; lf'
 # alias cp="rsync --archive --human-readable --progress --verbose --whole-file"
 # alias scp="rsync --archive --checksum --compress --human-readable --itemize-changes --rsh=ssh --stats --verbose"
 alias myip="curl http://myip.dnsomatic.com && echo ''"
-# alias pandoc="pandoc --latex-engine=lualatex -H $HOME/.config/pandoc/fonts.tex"
+# alias pandoc="pandoc --latex-engine=lualatex -H ${XDG_CONFIG_HOME:-$HOME/.config}/pandoc/fonts.tex"
 alias pretty-json="python -mjson.tool"
 alias music-dl='youtube-dl --audio-format=mp3 --extract-audio --metadata-from-title "%(artist)s - %(title)s"'
 alias clip='xclip -selection clipboard'
@@ -143,7 +133,7 @@ alias tray="trayer --edge top --align center --expand false --width 5 --distance
 alias pacsize="pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
 pacbloat() {
     pacman -Qe | awk '{print $1;}' | while read -r line; do
-        if ! grep "$line" ~/git/bootstrap/vars/*.pkgs > /dev/null; then
+        if ! grep "$line" $HOME/dev/heiko/bootstrap/vars/*.pkgs > /dev/null; then
             echo "$line"
         fi
     done
