@@ -5,7 +5,7 @@ local bo = vim.bo
 -- global options
 o.swapfile = true
 -- o.dir = '/tmp'
-o.dir = "~/.cache/vim/swap"
+o.dir = os.getenv("XDG_CACHE_HOME") .. "/vim/swap"
 o.textwidth = 119
 o.smartcase = true
 o.laststatus = 2
@@ -40,7 +40,7 @@ o.updatetime = 300
 -- window-local options
 wo.number = true
 wo.relativenumber = true
-wo.wrap = false
+wo.wrap = true
 -- wo.showmatch = true
 -- wo.colorcolumn = 100
 wo.cursorline = true

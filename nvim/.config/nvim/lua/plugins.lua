@@ -122,11 +122,6 @@ return require("packer").startup {
     -- Floating windows are awesome :)
     -- used <leader>gm to see the related git commit msg
     use "rhysd/git-messenger.vim"
-    -- if executable('sk')
-    --     Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
-    --     Plug 'lotabout/skim.vim'
-    --     command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
-    -- else
     use {"junegunn/fzf", run = "./install --all"} -- Fuzzy Searcher
     use {"junegunn/fzf.vim"}
     -- endif

@@ -21,7 +21,7 @@ __handle_jira_issues() {
 
 fja() {
     local output
-    output=$(cat ~/.cache/JiraIssueCache*.issues |
+    output=$(cat ${XDG_CACHE_HOME:-$HOME/.cache}/JiraIssueCache*.issues |
         FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
     if [ $? -eq 0 ]; then
         __handle_jira_issues "$output"
@@ -30,7 +30,7 @@ fja() {
 
 fj() {
     local output
-    output=$(cat ~/.cache/JiraIssueCache*.issues |
+    output=$(cat ${XDG_CACHE_HOME:-$HOME/.cache}/JiraIssueCache*.issues |
         grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" |
         FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
     if [ $? -eq 0 ]; then
@@ -51,7 +51,7 @@ __handle_files() {
             done
         elif [ "$key" = ctrl-p ]; then
             echo "$files" | while read -r line; do
-                ~/.config/lf/preview.sh "$line"
+                ${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh "$line"
             done
         elif [ "$key" = ctrl-e ]; then
             ${EDITOR:-vim} +"$(echo "$files" | awk '{print " e " $1 " | "}' && echo "bn")"
@@ -66,7 +66,7 @@ __handle_files() {
 #   - Exit if there's no match (--exit-0)
 ff() {
     local output
-    IFS=$'\n' output=$(FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf --query="$1" --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)
+    IFS=$'\n' output=$(FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf --query="$1" --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)
     if [ $? -eq 0 ]; then
         __handle_files "$output"
     fi
@@ -87,7 +87,7 @@ function floc {
             shift
         fi
     fi
-    IFS=$'\n' output="$(locate -Ai '*' "$dir" "$@" | FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='~/.config/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"
+    IFS=$'\n' output="$(locate -Ai '*' "$dir" "$@" | FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"
     if [ $? -eq 0 ]; then
         __handle_files "$output"
     fi
@@ -373,7 +373,7 @@ function fncbookm {
 
 function fwiki {
     local files
-    pushd ~/vimwiki > /dev/null # directories should all be defined once via ENV vars.
+    pushd $WIKI_PATH > /dev/null # directories should all be defined once via ENV vars.
     IFS=$'\n' files=$(fzf -x -e -m)
     vim "$files"
     popd > /dev/null
