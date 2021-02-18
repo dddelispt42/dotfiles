@@ -93,7 +93,6 @@ migrate_to_clean $HOME/.pip "$XDG_CACHE_HOME"/pip
 migrate_to_clean $HOME/.pulse "$XDG_CACHE_HOME"/pulse
 mkdir -p "$XDG_DATA_HOME"/tig
 migrate_to_clean $HOME/.tmuxp "$XDG_CONFIG_HOME"/tmuxp
-migrate_to_clean $HOME/.VirtualBox "$XDG_CONFIG_HOME"/VirtualBox
 mkdir -p "$XDG_CACHE_HOME"/wget
 migrate_to_clean $HOME/.wget-hsts "$XDG_CACHE_HOME"/wget/wget-hsts
 migrate_to_clean $HOME/.inputrc "$XDG_CACHE_HOME"/inputrc

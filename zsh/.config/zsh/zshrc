@@ -12,45 +12,47 @@ setopt EXTENDED_HISTORY        # save timestamp and runtime information
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# zplug
-# TODO: move to XDG...
-source ~/.zplug/init.zsh
-zplug "changyuheng/fz", defer:1
-zplug "rupa/z", use:z.sh
-zplug "ael-code/zsh-colored-man-pages", defer:2
-zplug "popstas/zsh-command-time", defer:2
-zplug "zdharma/fast-syntax-highlighting", defer:2
-# zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
-zplug "seletskiy/zsh-fuzzy-search-and-edit"
-zplug "andrewferrier/fzf-z"
-# zplug "gerges/oh-my-zsh-jira-plus", defer:2
-# zplug "micrenda/zsh-nohup", defer:2
-zplug "b4b4r07/emoji-cli", defer:2
-# zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
-zplug 'wfxr/forgit', defer:2
-# zplug 'jedahan/ripz', defer:2
-zplug "MichaelAquilina/zsh-you-should-use", defer:2
-# use Alt-e to launch a finder
-zplug 'leophys/zsh-plugin-fzf-finder', defer:2
-# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-# zplug "romkatv/powerlevel10k", as:theme, depth:1
-# let zplug manage itself
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-# zplug 'NullSense/fuzzy-sys'
+if [[ $OSTYPE == linux* ]]; then
+    # zplug
+    # TODO: move to XDG...
+    source ~/.zplug/init.zsh
+    zplug "changyuheng/fz", defer:1
+    zplug "rupa/z", use:z.sh
+    zplug "ael-code/zsh-colored-man-pages", defer:2
+    zplug "popstas/zsh-command-time", defer:2
+    zplug "zdharma/fast-syntax-highlighting", defer:2
+    # zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+    zplug "seletskiy/zsh-fuzzy-search-and-edit"
+    zplug "andrewferrier/fzf-z"
+    # zplug "gerges/oh-my-zsh-jira-plus", defer:2
+    # zplug "micrenda/zsh-nohup", defer:2
+    zplug "b4b4r07/emoji-cli", defer:2
+    # zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
+    zplug 'wfxr/forgit', defer:2
+    # zplug 'jedahan/ripz', defer:2
+    zplug "MichaelAquilina/zsh-you-should-use", defer:2
+    # use Alt-e to launch a finder
+    zplug 'leophys/zsh-plugin-fzf-finder', defer:2
+    # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+    # zplug "romkatv/powerlevel10k", as:theme, depth:1
+    # let zplug manage itself
+    zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+    # zplug 'NullSense/fuzzy-sys'
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
+    # Install plugins if there are plugins that have not been installed
+    if ! zplug check --verbose; then
+        printf "Install? [y/N]: "
+	if read -q; then
+            echo; zplug install
+    	fi
     fi
+
+    # Then, source plugins and add commands to $PATH
+    # zplug load --verbose
+    zplug load
+
+    eval "$(starship init zsh)"
 fi
-
-# Then, source plugins and add commands to $PATH
-# zplug load --verbose
-zplug load
-
-eval "$(starship init zsh)"
 
 # TODO: generate path name
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh || true
