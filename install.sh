@@ -85,7 +85,7 @@ migrate_to_clean $HOME/.tmuxp "$XDG_CONFIG_HOME"/tmuxp
 mkdir -p "$XDG_CACHE_HOME"/xsel
 migrate_to_clean $HOME/.xsel.log "$XDG_DATA_HOME"/xsel/log
 migrate_to_clean $HOME/.vlcrc "$XDG_CONFIG_HOME"/vlcrc
-migrate_to_clean $HOME/.VirtualBox "$XDG_CONFIG_HOME"/VirtualBox
+# migrate_to_clean $HOME/.VirtualBox "$XDG_CONFIG_HOME"/VirtualBox
 migrate_to_clean $HOME/.binwalk "$XDG_CONFIG_HOME"/binwalk
 migrate_to_clean $HOME/.blender "$XDG_CONFIG_HOME"/blender
 migrate_to_clean $HOME/.mc "$XDG_CONFIG_HOME"/mc
@@ -151,7 +151,9 @@ stow -vS -t $HOME/ tmux
 stow -vS -t $HOME/ user-dirs
 stow -vS -t $HOME/ zathura
 stow -vS -t $HOME/ zsh
-xdg-mime default org.pwmt.zathura.desktop application/pdf
+if command -v xdg-mime > /dev/null; then
+    xdg-mime default org.pwmt.zathura.desktop application/pdf
+fi
 
 # ln -sf "$XDG_CONFIG_HOME"/tmux/tmux.conf $HOME/.tmux.conf
 # TODO: remove once no longer needed
