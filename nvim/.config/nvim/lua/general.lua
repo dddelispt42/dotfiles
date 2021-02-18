@@ -5,7 +5,12 @@ local bo = vim.bo
 -- global options
 o.swapfile = true
 -- o.dir = '/tmp'
-o.dir = os.getenv("XDG_CACHE_HOME") .. "/vim/swap"
+if vim.loop.os_uname().sysname:find("Windows", 1, true) and true then
+  o.dir = os.getenv("LOCALAPPDATA") .. "\\vim\\swap"
+else
+  o.dir = os.getenv("XDG_CACHE_HOME") .. "/vim/swap"
+end
+
 o.textwidth = 119
 o.smartcase = true
 o.laststatus = 2
