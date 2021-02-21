@@ -41,7 +41,7 @@ export FIREFOX_PROFILE
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PATH=~/bin:~/opt:~/.local/bin:~/.config/dwm:$PATH
+PATH=$HOME/bin:$HOME/opt:$HOME/.local/bin:$HOME/.config/dwm:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
