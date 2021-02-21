@@ -55,6 +55,7 @@ if [[ $OSTYPE == linux* ]]; then
 fi
 
 # TODO: generate path name
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/env.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/env.sh || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh || true
