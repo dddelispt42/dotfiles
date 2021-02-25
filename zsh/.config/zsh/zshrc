@@ -81,3 +81,5 @@ bindkey ' ^?' backward-delete-char
 test -s $HOME/.zshrc.local && source $HOME/.zshrc.local || true
 test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zshrc.local && source ${XDG_CONFIG_HOME:-$HOME/.config}/zshrc.local || true
 test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/broot/launcher/bash/br && source ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br || true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

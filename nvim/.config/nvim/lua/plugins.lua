@@ -80,8 +80,9 @@ return require("packer").startup {
     use "nvim-lua/lsp_extensions.nvim"
     use "euclidianAce/BetterLua.vim"
     -- use 'RishabhRD/popfix'
-    -- use 'RishabhRD/nvim-lsputils'
-    -- use 'anott03/nvim-lspinstall'
+    use "RishabhRD/nvim-lsputils"
+    use "anott03/nvim-lspinstall"
+    -- use "kosayoda/nvim-lightbulb"
     -- Extentions to built-in LSP, for example, providing type inlay hints
     -- Autocompletion framework for built-in LSP
     -- use 'nvim-lua/completion-nvim'

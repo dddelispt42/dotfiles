@@ -13,7 +13,7 @@ if [ "$HOST" == "manjaro" ]; then
     # VBoxClient --vmsvga-x11
 fi
 
-# xrdb -merge ${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources
+xrdb -merge ${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources
 # sxhkd -c ${XDG_CONFIG_HOME:-$HOME/.config}/sxhkd/sxhkdrc &
 # ${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh "$HOST"

@@ -138,6 +138,7 @@ stow -vS -t $HOME/ lf
 stow -vS -t $HOME/ mpv
 stow -vS -t $HOME/ neofetch
 stow -vS -t $HOME/ nvim
+stow -vS -t $HOME/ paru
 stow -vS -t $HOME/ polybar
 stow -vS -t $HOME/ pycodestyle
 stow -vS -t $HOME/ pylint
@@ -164,6 +165,13 @@ if command -v nvim > /dev/null; then
     nvim +PackerInstall +PackerSync +qall
 else
     vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+fi
+
+# copy to Windows if exiting
+if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
+    cp $HOME/nvim/.config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
+    mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
+    cp $HOME/nvim/.config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
 fi
 
 # protect settings dir

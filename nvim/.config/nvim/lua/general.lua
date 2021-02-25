@@ -186,6 +186,7 @@ map("n", "<Leader>:", ":History:<CR>", options)
 map("n", "<Leader>/", ":History/<CR>", options)
 map("n", "<Leader>M", ":Maps<CR>", options)
 map("n", "<Leader>S", ":Filetypes<CR>", options)
+map("n", "<Leader>B", ":BufferPick<CR>", options)
 -- Telescope - new native lua style
 map("n", "<leader>fA", "<cmd>Telescope autocommands<cr>", options)
 map("n", "<leader>b", "<cmd>Telescope buffers<cr>", options)
@@ -326,6 +327,7 @@ require("formatter").setup(
     }
   }
 )
+
 vim.api.nvim_exec(
   [[
 augroup FormatAutogroup
@@ -335,3 +337,5 @@ augroup END
 ]],
   true
 )
+
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
