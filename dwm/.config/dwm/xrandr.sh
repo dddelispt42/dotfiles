@@ -18,4 +18,5 @@ else
 fi
 
 # update dwmblocks
-kill -44 "$(pidof dwmblocks)"
+# kill -44 "$(pidof dwmblocks)"
+killall -q dwmblocks;setsid dwmblocks &
