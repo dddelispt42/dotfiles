@@ -143,6 +143,8 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 export BOGOFILTER_DIR="$XDG_CACHE_HOME"/bogofilter
 export RANDFILE="$XDG_CACHE_HOME"/rnd
+export GRADLE_HOME="$XDG_CACHE_HOME"/gradle
+export IPYTHONDIR="$XDG_CACHE_HOME"/ipython
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 # export VIMINIT='source "$XDG_CONFIG_HOME/nvim/init.vim"'
@@ -173,6 +175,7 @@ export NNN_TRASH=1
 
 #KLAUT_ROOT
 export KLAUT="$HOME/klaut/"
+export TODOLIST="${KLAUT:-$HOME/klaut}/work/todo/todos.md"
 
 #VIMWIKI
 export WIKI_PATH="$HOME/klaut/vimwiki/"

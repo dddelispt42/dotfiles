@@ -405,6 +405,20 @@ fssh() {
     $(grep -E ".*:[0-9];(auto)?ssh " "$XDG_CACHE_HOME/zhistory" | sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)
 }
 
+function fdocker {
+  if [[ -n $1 ]]; then
+    docker exec -it $1 /bin/bash
+    return
+  fi
+  lst=`docker ps | grep -v IMAGE | awk '{printf "%s %-30s %s\n", $1, $2, $3}'`
+  choice=`echo $lst | fzf --height=40% --no-sort --tiebreak=begin,index`
+  if [[ -n $choice ]]; then
+    printf "\n → $choice\n"
+    choice=`echo $choice | awk '{print $1}'`
+    docker exec -it $choice /bin/bash
+  fi
+}
+
 get_recipe()
 {
     curl -sG "https://plainoldrecipe.com/recipe" -d "url=${1}" | pandoc -f html -t markdown
