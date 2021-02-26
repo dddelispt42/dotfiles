@@ -169,9 +169,9 @@ fi
 
 # copy to Windows if exiting
 if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
-    cp $HOME/nvim/.config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
+    cp $HOME/dev/heiko/dotfiles/nvim/.config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
     mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
-    cp $HOME/nvim/.config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
+    cp $HOME/dev/heiko/dotfiles/nvim/.config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
 fi
 
 # protect settings dir
