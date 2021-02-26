@@ -83,6 +83,7 @@ return require("packer").startup {
     use "RishabhRD/nvim-lsputils"
     use "anott03/nvim-lspinstall"
     -- use "kosayoda/nvim-lightbulb"
+    use "mfussenegger/nvim-jdtls"
     -- Extentions to built-in LSP, for example, providing type inlay hints
     -- Autocompletion framework for built-in LSP
     -- use 'nvim-lua/completion-nvim'

@@ -4,6 +4,20 @@ if (has('nvim-0.5'))
 
     " Rust inline hints
     autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true, prefix = '  » ', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"}}
+
+    " true colors - see :help xterm-true-color
+    let g:gruvbox_contrast_dark='hard'
+    if exists('+termguicolors')
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    endif
+    let g:gruvbox_invert_selection='0'
+    augroup lsp
+        au!
+        " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"gradle.build", "pom.xml"})})
+        au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"pom.xml"})})
+        " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}})
+    augroup end
 else
 " Function to set OS env - return WINDOWS or output of uname
     function! Config_setEnv() abort
@@ -1148,9 +1162,9 @@ endif
         nnoremap   <silent>   <F12>   :FloatermToggle<CR>
         tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
         nnoremap <silent> <leader>sh :terminal<CR>
-        nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
-        nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
-        nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
+        " nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
+        " nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
+        " nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
         " nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
         nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
         nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .config/zsh/.config/zsh/.zshrc; fj"<CR>
