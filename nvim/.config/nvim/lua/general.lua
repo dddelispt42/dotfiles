@@ -49,7 +49,7 @@ o.foldenable = true
 o.foldlevel = 99
 o.foldlevelstart = 99
 o.foldnestmax = 10
-o.undofile = 10
+o.undofile = true
 
 -- window-local options
 wo.number = true
