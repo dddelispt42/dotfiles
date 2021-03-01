@@ -11,6 +11,10 @@ else
   o.dir = os.getenv("XDG_CACHE_HOME") .. "/vim/swap"
 end
 
+o.expandtab = true
+o.tabstop = 4
+o.softtabstop = 4
+o.shiftwidth = 4
 o.textwidth = 119
 o.smartcase = true
 o.laststatus = 2
@@ -41,6 +45,11 @@ o.shortmess = o.shortmess .. "c"
 o.completeopt = "menuone,noinsert,noselect,preview"
 o.signcolumn = "yes"
 o.updatetime = 300
+o.foldenable = true
+o.foldlevel = 99
+o.foldlevelstart = 99
+o.foldnestmax = 10
+o.undofile = 10
 
 -- window-local options
 wo.number = true
@@ -236,35 +245,29 @@ vim.api.nvim_exec([[
 	set foldexpr=nvim_treesitter#foldexpr()
 ]], false)
 
-require('nvim-treesitter.configs').setup({
-	ensure_installed = "maintained",
-
-	highlight = {
-		enable = true,
-	},
-
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "gnn",
-			scope_incremental = "gnc",
-			node_decremental = "gnd",
-		},
-	},
-
-	indent = {
-		enable = true
-	},
-	rainbow = {
-		enable = true
-	}
-})
--- require "nvim-treesitter.configs".setup {
---   rainbow = {
---     enable = true
---   }
--- }
+require("nvim-treesitter.configs").setup(
+  {
+    ensure_installed = "maintained",
+    highlight = {
+      enable = true
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "gnn",
+        node_incremental = "gnn",
+        scope_incremental = "gnc",
+        node_decremental = "gnd"
+      }
+    },
+    indent = {
+      enable = true
+    },
+    rainbow = {
+      enable = true
+    }
+  }
+)
 
 -- telescope actions for dap
 require("telescope").load_extension("dap")

@@ -29,7 +29,8 @@ nvim_lsp.ccls.setup({on_attach = on_attach, capabilities = capabilities})
 
 -- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
 -- require("jdtls").start_or_attach(
---   {cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"gradle.build", "pom.xml"})}
+--   -- {cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"gradle.build", "pom.xml"})}
+--   {cmd = {"java-lsp.sh"}}
 -- )
 
 -- Enable diagnostics

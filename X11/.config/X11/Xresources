@@ -242,11 +242,12 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! st.font: Monospace-11; !
 ! st.font: Inconsolata for Powerline:pixelsize=14:antialias=true:autohint=true;
 ! st.font: NotoSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true;
-st.dmenu: Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true;
-st.dwmblocks: Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true;
 st.font: Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true;
 st.termname: st-256color
 st.borderpx: 2
+dwm.font: Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true;
+dmenu.font: Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true;
+dwmblocks.font: Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true;
 
 !! Set the background, foreground and cursor colors as below:
 /* *.background: #282828 */

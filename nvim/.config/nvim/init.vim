@@ -15,9 +15,11 @@ if (has('nvim-0.5'))
     augroup lsp
         au!
         " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"gradle.build", "pom.xml"})})
-        au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"pom.xml"})})
+        " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"pom.xml"})})
         " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}})
+        au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({".git"})})
     augroup end
+
 else
 " Function to set OS env - return WINDOWS or output of uname
     function! Config_setEnv() abort
@@ -549,6 +551,10 @@ else
     " For example:
     let g:vista_ctags_cmd = {
           \ 'haskell': 'hasktags -x -o - -c',
+          \ 'java': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'python': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'rust': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'sh': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
           \ }
     " To enable fzf's preview window set g:vista_fzf_preview.
     " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
@@ -1059,9 +1065,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     let g:ConqueTerm_Interrupt = '<C-g><C-c>'
     let g:ConqueTerm_ReadUnfocused = 1
 
-" comments in italic
-    " highlight Comment gui=italic
-
 endif
 
 " ----------------------
@@ -1193,3 +1196,6 @@ endif
 
 " PlantUML Syntax:
     au BufNewFile,BufRead *.uml set filetype=plantuml
+
+    " comments in italic
+    highlight Comment gui=italic
