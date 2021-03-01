@@ -40,9 +40,9 @@ if [ $? -ne 0 ]; then
     nohup st -c "st - heiko@localhost" -T "st - heiko@localhost" &
 fi
 if [ "$HOST" = "manjaro" ]; then
-    ps aux |grep -E "st - [h]eiko@ptlisvltnms027" > /dev/null
+    ps aux |grep -E "st - [h]eiko@lab" > /dev/null
     if [ $? -ne 0 ]; then
-        nohup st -c "st - heiko@ptlisvltnms027" -T "st - heiko@ptlisvltnms027" &
+        nohup st -c "st - heiko@lab" -T "st - heiko@lab" &
     fi
 fi
 ps aux | grep -E "[f]irefox" > /dev/null
