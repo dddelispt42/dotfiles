@@ -88,6 +88,7 @@ alias cp="cp -i"
 ########################################
 # alias vim="vimTabs"
 command -v nvim > /dev/null && alias vim="nvim"
+command -v nvim > /dev/null && alias vimdiff="nvim -d"
 alias vi="vim"
 alias v='$VISUAL'
 alias bim='$EDITOR'
