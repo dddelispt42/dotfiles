@@ -1,4 +1,4 @@
 [FORMAT]
-max-line-length=140
+max-line-length=120
 [MESSAGES CONTROL]
 disable=C0330

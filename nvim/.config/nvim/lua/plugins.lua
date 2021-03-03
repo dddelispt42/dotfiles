@@ -242,6 +242,8 @@ return require("packer").startup {
     -- " automatically set the root directory
     use "airblade/vim-rooter"
 
+    use 'beloglazov/vim-online-thesaurus'
+
     --" Plug 'CoatiSoftware/vim-sourcetrail'
   end,
   config = {
