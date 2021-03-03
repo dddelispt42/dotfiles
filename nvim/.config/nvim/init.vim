@@ -20,6 +20,10 @@ if (has('nvim-0.5'))
         " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"src"})})
     augroup end
 
+    " online thesaurus key mapping distinction
+    let g:online_thesaurus_map_keys = 0
+    nnoremap <leader>G :OnlineThesaurusCurrentWord<CR>
+
 else
 " Function to set OS env - return WINDOWS or output of uname
     function! Config_setEnv() abort
