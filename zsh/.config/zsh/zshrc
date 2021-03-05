@@ -55,18 +55,18 @@ if [[ $OSTYPE == linux* ]]; then
 fi
 
 # TODO: generate path name
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/env.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/env.sh || true
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh || true
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh || true
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh || true
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/fuzzy_functions.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/fuzzy_functions.sh || true
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/keybinding.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/keybinding.sh || true
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/svn_prompt.sh && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/svn_prompt.sh || true
-# test -s $HOME/.fzf/shell/key-bindings.zsh && source $HOME/.fzf/shell/key-bindings.zsh || true
-# test -s $HOME/.fzf/shell/completion.zsh && source $HOME/.fzf/shell/completion.zsh || true
-test -s /usr/share/fzf/key-bindings.zsh && source /usr/share/fzf/key-bindings.zsh || true
-test -s /usr/share/fzf/completion.zsh && source /usr/share/fzf/completion.zsh || true
-test -s /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/key-bindings.zsh || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/env.sh && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/fuzzy_functions.sh && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/keybinding.sh && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/svn_prompt.sh && source "$_" || true
+# test -s $HOME/.fzf/shell/key-bindings.zsh && source "$_" || true
+# test -s $HOME/.fzf/shell/completion.zsh && source "$_" || true
+test -s /usr/share/fzf/key-bindings.zsh && source "$_" || true
+test -s /usr/share/fzf/completion.zsh && source "$_" || true
+test -s /usr/share/doc/fzf/examples/key-bindings.zsh && source "$_" || true
 
 # enable VI mode
 bindkey -v
@@ -78,8 +78,8 @@ bindkey ' ^?' backward-delete-char
 
 # include host specific settings
 # TODO: remove next line after moveing that file
-test -s $HOME/.zshrc.local && source $HOME/.zshrc.local || true
-test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zshrc.local && source ${XDG_CONFIG_HOME:-$HOME/.config}/zshrc.local || true
-test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/broot/launcher/bash/br && source ${XDG_CONFIG_HOME:-$HOME/.config}/broot/launcher/bash/br || true
+test -s $HOME/.zshrc.local && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zshrc.local && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/broot/launcher/bash/br && source "$_" || true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
