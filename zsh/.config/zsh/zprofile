@@ -1,2 +1,2 @@
-test -s ~/.config/shell/env.sh && source ~/.config/shell/env.sh || true
-test -s $ZDOTDIR/zshrc && source $ZDOTDIR/zshrc || true
+test -s ~/.config/shell/env.sh && source "$_" || true
+test -s $ZDOTDIR/zshrc && source "$_" || true
