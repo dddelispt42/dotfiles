@@ -469,110 +469,6 @@ else
     let g:UltiSnipsJumpBackwardTrigger="<c-b>"
     let g:UltiSnipsEditSplit="vertical"
 
-" ale
-    let g:ale_linters = {
-    \   'ansible': ['ansible_lint'],
-    \   'asciidoc': ['textlint', 'writegood'],
-    \   'asm': ['cpp'],
-    \   'awk': ['gawk'],
-    \   'bib': ['bibclean'],
-    \   'c': ['clang', 'clangtidy', 'cppcheck', 'flawfinder', 'gcc'],
-    \   'chef': ['cookstyle', 'foodcritic'],
-    \   'cmake': ['cmakelint'],
-    \   'cpp': ['clang', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'flawfinder', 'gcc'],
-    \   'css': ['csslint', 'fecs', 'stylelint'],
-    \   'cucumber': ['cucumber'],
-    \   'dockerfile': ['dockerfile_lint', 'hadolint'],
-    \   'gitcommit': ['gitlint'],
-    \   'go': ['gobuilt', 'gofmt', 'golint', 'langserver', 'staticcheck'],
-    \   'help': ['proselint', 'writegood'],
-    \   'html': ['fecs', 'htmllint', 'proselint', 'stylelint', 'tidy', 'writegood'],
-    \   'java': ['checkstyle', 'javac'],
-    \   'javascript': ['eslint', 'fecs', 'jshint', 'tsserver', 'xo'],
-    \   'json': ['jsonlint'],
-    \   'kotlin': ['kotlinc', 'ktlint', 'languageserver'],
-    \   'less': ['stylelint'],
-    \   'lua': ['luac', 'luacheck'],
-    \   'make': ['checkmake'],
-    \   'markdown': ['languagetool', 'markdownlint', 'proselint', 'textlint', 'writegood'],
-    \   'matlab': ['mlint'],
-    \   'proto': ['proto_gen_lint'],
-    \   'python': ['pylint'],
-    \   'rust': ['cargo', 'rust-analyzer', 'rustc'],
-    \   'sh': ['shellcheck', 'shell', 'language_server'],
-    \   'sql': ['sqlint'],
-    \   'tex': ['chktex', 'lacheck', 'proselint', 'texlab', 'texlint', 'writegood'],
-    \   'texinfo': ['proselint', 'writegood'],
-    \   'text': ['languagetool', 'proselint', 'textlint', 'writegood'],
-    \   'typescript': ['eslint', 'tslint', 'typecheck', 'tsserver', 'xo'],
-    \   'vim': ['vint', 'ale_custom_linting_rules'],
-    \   'xhtml': ['proselint', 'writegood'],
-    \   'xml': ['xmllint'],
-    \   'yaml': ['swaglint', 'yamllint'],
-    \   'yang': ['yang_lsp'],
-    \}
-    "   'python': ['bandit', 'flake8', 'mypy', 'pycodestyle', 'vulture', 'pydocstyle'],
-    " \   'python': ['bandit', 'flake8', 'mypy', 'pylint', 'pycodestyle','pydocstyle'],
-    " \   'rust': ['cargo', 'rls', 'rustc'],
-    let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'css': ['prettier'],
-    \   'go': ['gofmt', 'goimports'],
-    \   'html': ['prettier'],
-    \   'javascript': ['prettier', 'eslint'],
-    \   'less': ['prettier'],
-    \   'python': ['black'],
-    \   'rust': ['rustfmt'],
-    \   'sh': ['shfmt'],
-    \   'sql': ['sqlfmt'],
-    \   'tex': ['latexindent'],
-    \   'yaml': ['prettier'],
-    \}
-    " 'python': ['black', 'isort', 'docformatter', 'pyment'],
-    let g:ale_linters_explicit = 1
-    let g:ale_fix_on_save = 1
-    let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
-    " vim ale
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_lint_on_enter = 1
-    let g:ale_completion_enabled = 1
-    let g:airline#extensions#ale#enabled = 1
-    let g:ale_set_loclist = 1
-    let g:ale_set_quickfix = 0
-    let g:ale_open_list = 1
-    " nmap gd :ALEGoToDefinition<CR>
-    " nmap gr :ALEFindReferences<CR>
-    " nmap K :ALEHover<CR>
-
-" Tagbar
-    " TODO better use <leader>T or something else
-    " nmap <silent> <F4> :TagbarToggle<CR>
-    " let g:tagbar_autofocus = 1
-
-" Vista
-    " Declare the command including the executable and options used to generate ctags output
-    " for some certain filetypes.The file path will be appened to your custom command.
-    " For example:
-    let g:vista_ctags_cmd = {
-          \ 'haskell': 'hasktags -x -o - -c',
-          \ 'java': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
-          \ 'python': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
-          \ 'rust': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
-          \ 'sh': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
-          \ }
-    " To enable fzf's preview window set g:vista_fzf_preview.
-    " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-    " For example:
-    let g:vista_fzf_preview = ['right:50%']
-    " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-    let g:vista#renderer#enable_icon = 1
-    " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-    let g:vista#renderer#icons = {
-    \   "function": "\uf794",
-    \   "variable": "\uf71b",
-    \  }
-    noremap <Leader>tb :Vista!!<CR>
-
 "" Copy/Paste/Cut - Share the VIM clipboard with the X11 clipboard
     if has("clipboard")
         set clipboard=unnamed " copy to the system clipboard
@@ -806,23 +702,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     endfunc
 
 " Plugin Settings
-    " Syntastic
-    " let g:syntastic_always_populate_loc_list = 1
-    " let g:syntastic_auto_loc_list = 1
-    " let g:syntastic_check_on_open = 1
-    " let g:syntastic_check_on_wq = 1
-
-    " let g:syntastic_python_checkers = ['pylint', 'flake8']
-    " let g:syntastic_python_checkers = ['pylint']
-    " let g:syntastic_python_flake8_args='--ignore=E501,E225'
-    " let g:syntastic_python_flake8_args='--max-line-length=120'
-    " let g:syntastic_python_pylint_post_args="--max-line-length=120"
-    " let g:syntastic_aggregate_errors = 1
-    " let g:syntastic_always_populate_loc_list = 1
-
-    " let g:syntastic_java_javac_config_file_enabled = 0
-    " let g:loaded_syntastic_java_javac_checker = 1
-
     " Markdown
     " let g:vim_markdown_folding_style_pythonic = 1
     let g:vim_markdown_new_list_item_indent = 2
@@ -1074,6 +953,107 @@ endif
 " ----------------------
 " TODO: move this to lua
 " ----------------------
+
+"" ale
+    let g:ale_linters = {
+    \   'ansible': ['ansible_lint'],
+    \   'asciidoc': ['textlint', 'writegood'],
+    \   'asm': ['cpp'],
+    \   'awk': ['gawk'],
+    \   'bib': ['bibclean'],
+    \   'c': ['clang', 'clangtidy', 'cppcheck', 'flawfinder', 'gcc'],
+    \   'chef': ['cookstyle', 'foodcritic'],
+    \   'cmake': ['cmakelint'],
+    \   'cpp': ['clang', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'flawfinder', 'gcc'],
+    \   'css': ['csslint', 'fecs', 'stylelint'],
+    \   'cucumber': ['cucumber'],
+    \   'dockerfile': ['dockerfile_lint', 'hadolint'],
+    \   'gitcommit': ['gitlint'],
+    \   'go': ['gobuilt', 'gofmt', 'golint', 'langserver', 'staticcheck'],
+    \   'help': ['proselint', 'writegood'],
+    \   'html': ['fecs', 'htmllint', 'proselint', 'stylelint', 'tidy', 'writegood'],
+    \   'java': ['checkstyle', 'javac'],
+    \   'javascript': ['eslint', 'fecs', 'jshint', 'tsserver', 'xo'],
+    \   'json': ['jsonlint'],
+    \   'kotlin': ['kotlinc', 'ktlint', 'languageserver'],
+    \   'less': ['stylelint'],
+    \   'lua': ['luac', 'luacheck'],
+    \   'make': ['checkmake'],
+    \   'markdown': ['languagetool', 'markdownlint', 'proselint', 'textlint', 'writegood'],
+    \   'matlab': ['mlint'],
+    \   'proto': ['proto_gen_lint'],
+    \   'python': ['flake8', 'pydocstyle', 'bandit'],
+    \   'rust': ['cargo', 'rust-analyzer', 'rustc'],
+    \   'sh': ['shellcheck', 'shell', 'language_server'],
+    \   'sql': ['sqlint'],
+    \   'tex': ['chktex', 'lacheck', 'proselint', 'texlab', 'texlint', 'writegood'],
+    \   'texinfo': ['proselint', 'writegood'],
+    \   'text': ['languagetool', 'proselint', 'textlint', 'writegood'],
+    \   'typescript': ['eslint', 'tslint', 'typecheck', 'tsserver', 'xo'],
+    \   'vim': ['vint', 'ale_custom_linting_rules'],
+    \   'xhtml': ['proselint', 'writegood'],
+    \   'xml': ['xmllint'],
+    \   'yaml': ['swaglint', 'yamllint'],
+    \   'yang': ['yang_lsp'],
+    \}
+    "   'python': ['bandit', 'flake8', 'mypy', 'pycodestyle', 'vulture', 'pydocstyle'],
+    " \   'python': ['bandit', 'flake8', 'mypy', 'pylint', 'pycodestyle','pydocstyle'],
+    " \   'rust': ['cargo', 'rls', 'rustc'],
+    let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \   'css': ['prettier'],
+    \   'go': ['gofmt', 'goimports'],
+    \   'html': ['prettier'],
+    \   'javascript': ['prettier', 'eslint'],
+    \   'less': ['prettier'],
+    \   'lua': ['luafmt'],
+    \   'python': ['black'],
+    \   'rust': ['rustfmt'],
+    \   'sh': ['shfmt'],
+    \   'sql': ['sqlfmt'],
+    \   'tex': ['latexindent'],
+    \   'yaml': ['ymlfmt'],
+    \}
+    " 'python': ['black', 'isort', 'docformatter', 'pyment'],
+    let g:ale_linters_explicit = 1
+    let g:ale_fix_on_save = 1
+    let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+    " vim ale
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_enter = 1
+    let g:ale_completion_enabled = 0
+    let g:airline#extensions#ale#enabled = 0
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
+    let g:ale_open_list = 1
+    " nmap gd :ALEGoToDefinition<CR>
+    " nmap gr :ALEFindReferences<CR>
+    " nmap K :ALEHover<CR>
+
+" Vista
+    " Declare the command including the executable and options used to generate ctags output
+    " for some certain filetypes.The file path will be appened to your custom command.
+    " For example:
+    let g:vista_ctags_cmd = {
+          \ 'haskell': 'hasktags -x -o - -c',
+          \ 'java': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'python': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'rust': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'sh': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ }
+    " To enable fzf's preview window set g:vista_fzf_preview.
+    " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+    " For example:
+    let g:vista_fzf_preview = ['right:50%']
+    " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+    let g:vista#renderer#enable_icon = 1
+    " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+    let g:vista#renderer#icons = {
+    \   "function": "\uf794",
+    \   "variable": "\uf71b",
+    \  }
+    noremap <Leader>tb :Vista!!<CR>
+
 """ vimwiki
     " vimwiki with markdown support
     let wiki_1 = {}

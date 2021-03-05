@@ -6,9 +6,9 @@ local bo = vim.bo
 o.swapfile = true
 -- o.dir = '/tmp'
 if vim.loop.os_uname().sysname:find("Windows", 1, true) and true then
-  o.dir = os.getenv("LOCALAPPDATA") .. "\\vim\\swap"
+    o.dir = os.getenv("LOCALAPPDATA") .. "\\vim\\swap"
 else
-  o.dir = os.getenv("XDG_CACHE_HOME") .. "/vim/swap"
+    o.dir = os.getenv("XDG_CACHE_HOME") .. "/vim/swap"
 end
 
 o.expandtab = true
@@ -32,15 +32,15 @@ o.path = o.path .. "**"
 o.splitbelow = true
 o.splitright = true
 o.tags =
-  "ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;"
+    "ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;"
 o.list = true
 o.listchars = "nbsp:¬,tab:»·,trail:·"
 o.wildignore = o.wildignore .. "*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite"
 o.wildignore =
-  o.wildignore ..
-  "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4 ,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip"
+    o.wildignore ..
+    "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4 ,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip"
 o.tags =
-  "tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,../../.git/tags,../../.svn/tags,../../../tags,../../../.git/tags,../../../.svn/tags;"
+    "tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,../../.git/tags,../../.svn/tags,../../../tags,../../../.git/tags,../../../.svn/tags;"
 o.shortmess = o.shortmess .. "c"
 o.completeopt = "menuone,noinsert,noselect,preview"
 o.signcolumn = "yes"
@@ -50,13 +50,15 @@ o.foldlevel = 99
 o.foldlevelstart = 99
 o.foldnestmax = 10
 o.undofile = true
+o.wrap = false
+o.number = true
+o.relativenumber = true
+o.cursorline = true
 
 -- window-local options
 wo.number = true
 wo.relativenumber = true
-wo.wrap = true
 -- wo.showmatch = true
--- wo.colorcolumn = 100
 wo.cursorline = true
 
 -- buffer-local options
@@ -246,128 +248,128 @@ vim.api.nvim_exec([[
 ]], false)
 
 require("nvim-treesitter.configs").setup(
-  {
-    ensure_installed = "maintained",
-    highlight = {
-      enable = true
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_incremental = "gnn",
-        scope_incremental = "gnc",
-        node_decremental = "gnd"
-      }
-    },
-    indent = {
-      enable = true
-    },
-    rainbow = {
-      enable = true
+    {
+        ensure_installed = "maintained",
+        highlight = {
+            enable = true
+        },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = "gnn",
+                node_incremental = "gnn",
+                scope_incremental = "gnc",
+                node_decremental = "gnd"
+            }
+        },
+        indent = {
+            enable = true
+        },
+        rainbow = {
+            enable = true
+        }
     }
-  }
 )
 
 -- telescope actions for dap
 require("telescope").load_extension("dap")
 
--- Formatter
-require("formatter").setup(
-  {
-    logging = false,
-    filetype = {
-      css = {
-        function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
-            stdin = true
-          }
-        end
-      },
-      html = {
-        function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
-            stdin = true
-          }
-        end
-      },
-      yaml = {
-        function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
-            stdin = true
-          }
-        end
-      },
-      javascript = {
-        function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
-            stdin = true
-          }
-        end
-      },
-      go = {
-        function()
-          return {
-            exe = "gofmt",
-            args = {""},
-            stdin = true
-          }
-        end
-      },
-      sh = {
-        function()
-          return {
-            exe = "shfmt",
-            stdin = true
-          }
-        end
-      },
-      python = {
-        function()
-          return {
-            exe = "black",
-            stdin = true
-          }
-        end
-      },
-      rust = {
-        function()
-          return {
-            exe = "rustfmt",
-            args = {"--emit=stdout"},
-            stdin = true
-          }
-        end
-      },
-      lua = {
-        function()
-          return {
-            exe = "luafmt",
-            args = {"--indent-count", 2, "--stdin"},
-            stdin = true
-          }
-        end
-      }
-    }
-  }
-)
+-- -- Formatter
+-- require("formatter").setup(
+--   {
+--     logging = false,
+--     filetype = {
+--       css = {
+--         function()
+--           return {
+--             exe = "prettier",
+--             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
+--             stdin = true
+--           }
+--         end
+--       },
+--       html = {
+--         function()
+--           return {
+--             exe = "prettier",
+--             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
+--             stdin = true
+--           }
+--         end
+--       },
+--       yaml = {
+--         function()
+--           return {
+--             exe = "prettier",
+--             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
+--             stdin = true
+--           }
+--         end
+--       },
+--       javascript = {
+--         function()
+--           return {
+--             exe = "prettier",
+--             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
+--             stdin = true
+--           }
+--         end
+--       },
+--       go = {
+--         function()
+--           return {
+--             exe = "gofmt",
+--             args = {""},
+--             stdin = true
+--           }
+--         end
+--       },
+--       sh = {
+--         function()
+--           return {
+--             exe = "shfmt",
+--             stdin = true
+--           }
+--         end
+--       },
+--       python = {
+--         function()
+--           return {
+--             exe = "black",
+--             stdin = true
+--           }
+--         end
+--       },
+--       rust = {
+--         function()
+--           return {
+--             exe = "rustfmt",
+--             args = {"--emit=stdout"},
+--             stdin = true
+--           }
+--         end
+--       },
+--       lua = {
+--         function()
+--           return {
+--             exe = "luafmt",
+--             args = {"--indent-count", 2, "--stdin"},
+--             stdin = true
+--           }
+--         end
+--       }
+--     }
+--   }
+-- )
 
 vim.api.nvim_exec(
-  [[
+    [[
 augroup FormatAutogroup
   autocmd!
   autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
 augroup END
 ]],
-  true
+    true
 )
 
 -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
