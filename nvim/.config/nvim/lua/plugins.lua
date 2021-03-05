@@ -84,6 +84,8 @@ return require("packer").startup {
     use "anott03/nvim-lspinstall"
     -- use "kosayoda/nvim-lightbulb"
     use "mfussenegger/nvim-jdtls"
+    use "kevinhwang91/nvim-bqf"
+    use "w0rp/ale"
     -- Extentions to built-in LSP, for example, providing type inlay hints
     -- Autocompletion framework for built-in LSP
     -- use 'nvim-lua/completion-nvim'
@@ -116,7 +118,7 @@ return require("packer").startup {
       end
     }
     use "nvim-treesitter/playground"
-    use "mhartington/formatter.nvim"
+    -- use "mhartington/formatter.nvim"
     use "justinmk/vim-dirvish"
     use "godlygeek/tabular" -- Quickly align text by pattern
     use "tpope/vim-commentary" -- Easily comment out lines or objects
@@ -163,7 +165,6 @@ return require("packer").startup {
     use "tpope/vim-fugitive"
     use "airblade/vim-gitgutter"
     use "tpope/vim-rhubarb" -- required by fugitive to :Gbrowse
-    -- use 'Raimondi/delimitMate'
     use "glepnir/indent-guides.nvim"
     use "p00f/nvim-ts-rainbow"
     -- Plug 'Shougo/vimproc.vim', {'do': g:make}
@@ -242,7 +243,7 @@ return require("packer").startup {
     -- " automatically set the root directory
     use "airblade/vim-rooter"
 
-    use 'beloglazov/vim-online-thesaurus'
+    use "beloglazov/vim-online-thesaurus"
 
     --" Plug 'CoatiSoftware/vim-sourcetrail'
   end,
