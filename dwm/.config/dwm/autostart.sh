@@ -2,7 +2,7 @@
 #this file is called by .xinitrc to start some nice apps for dwm
 HOST=$(hostname)
 
-if [ "$HOST" == "manjaro" ]; then
+if [ "$HOST" == "work" ]; then
     # MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
     # xrandr --output $MONITOR --mode 1920x1080 --rate 60
     VBoxClient --clipboard
@@ -39,7 +39,7 @@ ps aux |grep -E "st - [h]eiko@localhost" > /dev/null
 if [ $? -ne 0 ]; then
     nohup st -c "st - heiko@localhost" -T "st - heiko@localhost" &
 fi
-if [ "$HOST" = "manjaro" ]; then
+if [ "$HOST" = "work" ]; then
     ps aux |grep -E "st - [h]eiko@lab" > /dev/null
     if [ $? -ne 0 ]; then
         nohup st -c "st - heiko@lab" -T "st - heiko@lab" &
