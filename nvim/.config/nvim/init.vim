@@ -14,7 +14,7 @@ if (has('nvim-0.5'))
     let g:gruvbox_invert_selection='0'
     augroup lsp
         au!
-        au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"gradle.build", "pom.xml"})})
+        au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({".lsp_root_dir", "gradle.build", "pom.xml"})})
         " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"pom.xml"})})
         " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}})
         " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"src"})})

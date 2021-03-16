@@ -10,8 +10,8 @@ local nvim_lsp = require "lspconfig"
 
 -- function to attach completion when setting up lsp
 local on_attach = function(client)
-  -- was needed for completion-nvim
-  -- require'completion'.on_attach(client)
+    -- was needed for completion-nvim
+    -- require'completion'.on_attach(client)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -19,13 +19,17 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Enable rust_analyzer
 -- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.bashls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.ccls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.dockerls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.gopls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.html.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.jsonls.setup({on_attach = on_attach, capabilities = capabilities})
 nvim_lsp.pyright.setup({on_attach = on_attach, capabilities = capabilities})
 nvim_lsp.rust_analyzer.setup({on_attach = on_attach, capabilities = capabilities})
 nvim_lsp.tsserver.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.bashls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.vimls.setup({on_attach = on_attach, capabilities = capabilities})
 nvim_lsp.yamlls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.dockerls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.ccls.setup({on_attach = on_attach, capabilities = capabilities})
 
 -- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
 -- require("jdtls").start_or_attach(
@@ -87,69 +91,69 @@ local saga = require "lspsaga"
 saga.init_lsp_saga()
 
 require "compe".setup {
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 1,
-  preselect = "enable",
-  throttle_time = 80,
-  source_timeout = 200,
-  incomplete_delay = 400,
-  max_abbr_width = 100,
-  max_kind_width = 100,
-  max_menu_width = 100,
-  documentation = true,
-  source = {
-    path = true,
-    buffer = true,
-    calc = true,
-    vsnip = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    spell = true,
-    tags = true,
-    snippets_nvim = true,
-    treesitter = true
-  }
+    enabled = true,
+    autocomplete = true,
+    debug = false,
+    min_length = 1,
+    preselect = "enable",
+    throttle_time = 80,
+    source_timeout = 200,
+    incomplete_delay = 400,
+    max_abbr_width = 100,
+    max_kind_width = 100,
+    max_menu_width = 100,
+    documentation = true,
+    source = {
+        path = true,
+        buffer = true,
+        calc = true,
+        vsnip = true,
+        nvim_lsp = true,
+        nvim_lua = true,
+        spell = true,
+        tags = true,
+        snippets_nvim = true,
+        treesitter = true
+    }
 }
 
 require("telescope").setup {
-  defaults = {
-    vimgrep_arguments = {
-      "rg",
-      "-uu",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case"
-    },
-    prompt_position = "bottom",
-    prompt_prefix = ">",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_defaults = {},
-    file_sorter = require "telescope.sorters".get_fuzzy_file,
-    file_ignore_patterns = {},
-    generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
-    shorten_path = true,
-    winblend = 0,
-    width = 0.75,
-    preview_cutoff = 120,
-    results_height = 1,
-    results_width = 0.8,
-    border = {},
-    borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
-    color_devicons = true,
-    use_less = true,
-    set_env = {["COLORTERM"] = "truecolor"}, -- default = nil,
-    file_previewer = require "telescope.previewers".cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
-    grep_previewer = require "telescope.previewers".vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
-    qflist_previewer = require "telescope.previewers".qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require "telescope.previewers".buffer_previewer_maker
-  }
+    defaults = {
+        vimgrep_arguments = {
+            "rg",
+            "-uu",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case"
+        },
+        prompt_position = "bottom",
+        prompt_prefix = ">",
+        initial_mode = "insert",
+        selection_strategy = "reset",
+        sorting_strategy = "descending",
+        layout_strategy = "horizontal",
+        layout_defaults = {},
+        file_sorter = require "telescope.sorters".get_fuzzy_file,
+        file_ignore_patterns = {},
+        generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
+        shorten_path = true,
+        winblend = 0,
+        width = 0.75,
+        preview_cutoff = 120,
+        results_height = 1,
+        results_width = 0.8,
+        border = {},
+        borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
+        color_devicons = true,
+        use_less = true,
+        set_env = {["COLORTERM"] = "truecolor"}, -- default = nil,
+        file_previewer = require "telescope.previewers".cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
+        grep_previewer = require "telescope.previewers".vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
+        qflist_previewer = require "telescope.previewers".qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
+        -- Developer configurations: Not meant for general override
+        buffer_previewer_maker = require "telescope.previewers".buffer_previewer_maker
+    }
 }
