@@ -6,19 +6,19 @@ if (has('nvim-0.5'))
     autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true, prefix = '  » ', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"}}
 
     " true colors - see :help xterm-true-color
-    let g:gruvbox_contrast_dark='hard'
-    if exists('+termguicolors')
-        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    endif
-    let g:gruvbox_invert_selection='0'
-    augroup lsp
-        au!
-        au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({".lsp_root_dir", "gradle.build", "pom.xml"})})
-        " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"pom.xml"})})
-        " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}})
-        " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"src"})})
-    augroup end
+    " let g:gruvbox_contrast_dark='hard'
+    " if exists('+termguicolors')
+    "     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    "     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    " endif
+    " let g:gruvbox_invert_selection='0'
+    " augroup lsp
+    "     au!
+    "     au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({".lsp_root_dir", "gradle.build", "pom.xml"})})
+    "     " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"pom.xml"})})
+    "     " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}})
+    "     " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"src"})})
+    " augroup end
 
     " online thesaurus key mapping distinction
     let g:online_thesaurus_map_keys = 0
@@ -381,15 +381,6 @@ else
     " remove trailing whitespaces
     command! FixWhitespace :%s/\s\+$//e
 
-" Functions
-    if !exists('*s:setupWrapping')
-        function s:setupWrapping()
-            set wrap
-            set wm=2
-            set textwidth=79
-        endfunction
-    endif
-
 " Autocmd Rules
     " The PC is fast enough, do syntax highlight syncing from start unless 200 lines
     augroup vimrc-sync-fromstart
@@ -402,10 +393,6 @@ else
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
     augroup END
     " txt
-    augroup vimrc-wrapping
-        autocmd!
-        autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
-    augroup END
     " make/cmake
     augroup vimrc-make-cmake
         autocmd!

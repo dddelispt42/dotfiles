@@ -60,6 +60,7 @@ wo.number = true
 wo.relativenumber = true
 -- wo.showmatch = true
 wo.cursorline = true
+wo.wrap = false
 
 -- buffer-local options
 bo.expandtab = true
