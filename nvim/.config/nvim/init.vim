@@ -969,7 +969,7 @@ endif
     \   'markdown': ['languagetool', 'markdownlint', 'proselint', 'textlint', 'writegood'],
     \   'matlab': ['mlint'],
     \   'proto': ['proto_gen_lint'],
-    \   'python': ['flake8', 'pydocstyle', 'bandit'],
+    \   'python': ['pylint', 'flake8', 'pydocstyle', 'bandit'],
     \   'rust': ['cargo', 'rust-analyzer', 'rustc'],
     \   'sh': ['shellcheck', 'shell', 'language_server'],
     \   'sql': ['sqlint'],
