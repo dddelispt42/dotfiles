@@ -111,18 +111,18 @@ migrate_to_clean "$HOME"/.fonts.conf "$XDG_CONFIG_HOME"/fontconfig/fonts.conf
 migrate_to_clean "$HOME"/.crontab "$XDG_CONFIG_HOME"/crontab
 migrate_to_clean "$HOME"/.zshrc.local "$XDG_CONFIG_HOME"/zshrc.local
 migrate_to_clean "$HOME"/.sqlite_history "$XDG_DATA_HOME"/sqlite_history
-mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_CACHE_HOME"
+mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_DATA_HOME"
 mkdir -p "$XDG_DESKTOP_DIR"
-mkdir -p "$XDG_DOWNLOAD_DIR"
-mkdir -p "$XDG_TEMPLATES_DIR"
-mkdir -p "$XDG_PUBLICSHARE_DIR"
 mkdir -p "$XDG_DOCUMENTS_DIR"
+mkdir -p "$XDG_DOWNLOAD_DIR"
 mkdir -p "$XDG_MUSIC_DIR"
 mkdir -p "$XDG_PICTURES_DIR"
-mkdir -p "$XDG_VIDEOS_DIR"
 mkdir -p "$XDG_PICTURES_DIR"/screenshots
+mkdir -p "$XDG_PUBLICSHARE_DIR"
+mkdir -p "$XDG_TEMPLATES_DIR"
+mkdir -p "$XDG_VIDEOS_DIR"
 
 stow -vS -t "$HOME"/ X11
 stow -vS -t "$HOME"/ bat
@@ -148,7 +148,8 @@ stow -vS -t "$HOME"/ shell
 stow -vS -t "$HOME"/ starship
 stow -vS -t "$HOME"/ sxhkd
 stow -vS -t "$HOME"/ tmux
-stow -vS -t "$HOME"/ user-dirs
+# stow -vS -t "$HOME"/ user-dirs
+cp -f ./user-dirs/.config/* $XDG_CONFIG_HOME
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
 if command -v xdg-mime > /dev/null; then

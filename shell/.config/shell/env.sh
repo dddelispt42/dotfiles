@@ -10,16 +10,16 @@ export TERM="xterm-256color"
 export LANG=en_US.UTF-8
 
 # set XDG directories
-export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_DESKTOP_DIR="$HOME/Desktop"
-export XDG_DOWNLOAD_DIR="$HOME/dl"
-export XDG_TEMPLATES_DIR="$HOME/media/temp"
-export XDG_PUBLICSHARE_DIR="$HOME/media/public"
+export XDG_DESKTOP_DIR="$HOME/docs/desktop"
 export XDG_DOCUMENTS_DIR="$HOME/docs"
+export XDG_DOWNLOAD_DIR="$HOME/dl"
 export XDG_MUSIC_DIR="$HOME/media/music"
 export XDG_PICTURES_DIR="$HOME/media/pix"
+export XDG_PUBLICSHARE_DIR="$HOME/media/public"
+export XDG_TEMPLATES_DIR="$HOME/media/temp"
 export XDG_VIDEOS_DIR="$HOME/media/videos"
 
 # don't put duplicate lines or lines starting with space in the history.
