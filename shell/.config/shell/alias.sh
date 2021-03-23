@@ -16,12 +16,12 @@ if command -v exa > /dev/null; then
     # specialty views
     alias lS='exa -1'                                                              # one column, just names
     alias lt='exa --tree --level=2'                                         # tree
+    alias exa='exa --git --group-directories-first --classify'
 else
     alias l='ls -l'
     alias ll='l'
     alias lla='ls -la'
     alias la='ls -A'
-    alias exa='exa --git --group-directories-first --classify'
 fi
 
 ######################################
