@@ -83,7 +83,7 @@ return require("packer").startup {
         use "RishabhRD/nvim-lsputils"
         use "anott03/nvim-lspinstall"
         -- use "kosayoda/nvim-lightbulb"
-        -- use "mfussenegger/nvim-jdtls"
+        use "mfussenegger/nvim-jdtls"
         use "kevinhwang91/nvim-bqf"
         use "w0rp/ale"
         -- Extentions to built-in LSP, for example, providing type inlay hints
@@ -118,7 +118,6 @@ return require("packer").startup {
             end
         }
         use "nvim-treesitter/playground"
-        -- use "mhartington/formatter.nvim"
         use "justinmk/vim-dirvish"
         use "godlygeek/tabular" -- Quickly align text by pattern
         use "tpope/vim-commentary" -- Easily comment out lines or objects
@@ -128,9 +127,6 @@ return require("packer").startup {
         use "rhysd/git-messenger.vim"
         use {"junegunn/fzf", run = "./install --all"} -- Fuzzy Searcher
         use {"junegunn/fzf.vim"}
-        -- endif
-        -- use 'vim-airline/vim-airline'
-        -- use 'vim-airline/vim-airline-themes'
         use {
             "hoob3rt/lualine.nvim",
             requires = {"kyazdani42/nvim-web-devicons", opt = true},
