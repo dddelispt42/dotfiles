@@ -187,8 +187,6 @@ else
     " goyo distraction free mode
     Plug 'junegunn/goyo.vim'
     Plug 'romainl/vim-cool'
-    " TODO: buggy
-    " Plug 'stsewd/gx-extended.vim'
     " better encryption plugin - requires: https://github.com/jedisct1/encpipe
     Plug 'hauleth/vim-encpipe'
     " floating windows
@@ -199,40 +197,13 @@ else
         Plug 'voldikss/vim-floaterm'
         Plug 'stsewd/fzf-checkout.vim'
         " edit JIRA issues in vim
-        " Plug 'n0v1c3/vira', { 'do': './install.sh' }
-        Plug 'dddelispt42/vira', { 'do': './install.sh' }
+        Plug 'n0v1c3/vira', { 'do': './install.sh' }
+        " Plug 'dddelispt42/vira', { 'do': './install.sh' }
         " use nvim in firefox
         Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
     endif
     " automatically set the root directory
     Plug 'airblade/vim-rooter'
-
-    " TODO: test this alternative to Ale/Ycm  <02-05-20, Heiko Riemer> "
-    " Plug 'mattn/vim-lsp-settings'
-    " Plug 'prabirshrestha/async.vim'
-    " Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    " Plug 'prabirshrestha/asyncomplete.vim'
-    " Plug 'prabirshrestha/vim-lsp'
-    " Plug 'thomasfaingnaert/vim-lsp-ultisnips'
-
-    " Plug 'neomake/neomake'
-    " Plug 'CoatiSoftware/vim-sourcetrail'
-    " if has('nvim')
-    "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " else
-    "   Plug 'Shougo/deoplete.nvim'
-    "   Plug 'roxma/nvim-yarp'
-    "   Plug 'roxma/vim-hug-neovim-rpc'
-    " endif
-    " Plug 'ervandew/supertab'
-    " let g:deoplete#enable_at_startup = 1
-
-    " Plugins loaded when entering insert mode
-    augroup load_us_ycm
-        autocmd!
-        autocmd InsertEnter * call plug#load('gundo.vim', 'ultisnips', 'vim-snippets')
-                    \| autocmd! load_us_ycm
-    augroup END
 
     call plug#end()
 
@@ -970,7 +941,6 @@ endif
     \   'matlab': ['mlint'],
     \   'proto': ['proto_gen_lint'],
     \   'python': ['pylint', 'flake8', 'pydocstyle', 'bandit'],
-    \   'rust': ['cargo', 'rust-analyzer', 'rustc'],
     \   'sh': ['shellcheck', 'shell', 'language_server'],
     \   'sql': ['sqlint'],
     \   'tex': ['chktex', 'lacheck', 'proselint', 'texlab', 'texlint', 'writegood'],
@@ -980,12 +950,13 @@ endif
     \   'vim': ['vint', 'ale_custom_linting_rules'],
     \   'xhtml': ['proselint', 'writegood'],
     \   'xml': ['xmllint'],
-    \   'yaml': ['swaglint', 'yamllint'],
+    \   'yaml': ['yamllint'],
     \   'yang': ['yang_lsp'],
     \}
     "   'python': ['bandit', 'flake8', 'mypy', 'pycodestyle', 'vulture', 'pydocstyle'],
     " \   'python': ['bandit', 'flake8', 'mypy', 'pylint', 'pycodestyle','pydocstyle'],
     " \   'rust': ['cargo', 'rls', 'rustc'],
+    " \   'rust': ['cargo', 'rust-analyzer', 'rustc'],
     let g:ale_fixers = {
     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
     \   'css': ['prettier'],

@@ -157,3 +157,6 @@ require("telescope").setup {
         buffer_previewer_maker = require "telescope.previewers".buffer_previewer_maker
     }
 }
+
+require'lsp_signature'.on_attach()
+require'dependency_assist'.setup{}

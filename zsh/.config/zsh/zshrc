@@ -54,7 +54,6 @@ if [[ $OSTYPE == linux* ]]; then
     eval "$(starship init zsh)"
 fi
 
-# TODO: generate path name
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/env.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh && source "$_" || true
@@ -77,8 +76,6 @@ bindkey '^v' edit-command-line
 bindkey ' ^?' backward-delete-char
 
 # include host specific settings
-# TODO: remove next line after moveing that file
-test -s $HOME/.zshrc.local && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zshrc.local && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/broot/launcher/bash/br && source "$_" || true
 
