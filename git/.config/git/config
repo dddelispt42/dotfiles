@@ -99,7 +99,7 @@
     binary = true
     textconv = odt2txt
 [merge]
-    tool = vimdiff
+    tool = nvimdiff
 [include]
     path = ~/.config/gitconfig.local
 [color "diff"]

@@ -149,7 +149,7 @@ stow -vS -t "$HOME"/ starship
 stow -vS -t "$HOME"/ sxhkd
 stow -vS -t "$HOME"/ tmux
 # stow -vS -t "$HOME"/ user-dirs
-cp -f ./user-dirs/.config/* $XDG_CONFIG_HOME
+cp -f ./user-dirs/.config/* "$XDG_CONFIG_HOME"
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
 if command -v xdg-mime > /dev/null; then
