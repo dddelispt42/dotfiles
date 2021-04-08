@@ -1,13 +1,25 @@
+CACHEDIR="${XDG_CACHE_HOME:-$HOME/.cache}"
+SSHDIR="$HOME/.ssh"
 if [ "$(pgrep -u "$USER" ssh-agent)" = "" ]; then
-    test -e "$HOME/.cache/sshagent.sh" && rm -f "$HOME/.cache/sshagent.sh"
-    ssh-agent | grep -v echo > "$HOME/.cache/sshagent.sh"
+    test -e "$CACHEDIR/sshagent.sh" && rm -f "$CACHEDIR/sshagent.sh"
+    ssh-agent | grep -v echo > "$CACHEDIR/sshagent.sh"
+    # TODO: load non-password keys automatically and pw keys interactively
+    for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do
+        if \! ssh-add -L | grep "$(awk '{print $2};' "${key}.pub")" > /dev/null; then
+            ssh-add "$key"
+        fi
+    done
 fi
-if [ -e "$HOME/.cache/sshagent.sh" ]; then
-    source "$HOME/.cache/sshagent.sh"
+if [ -e "$CACHEDIR/sshagent.sh" ]; then
+    # shellcheck source=/home/heiko/.cache/sshagent.sh
+    source "$CACHEDIR/sshagent.sh"
 fi
 
 keyadd() {
-    ssh-add $(diff <(ssh-add -L | sed -e 's/.* //'|sort) <(\ls "$HOME"/.ssh/*id_* | grep -v "\.pub$"|sort) | grep --color=no -E "[<>] " | sed -e "s/[<>] //" | fzf -x)
+    local selected
+    if selected="$(for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do if ! ssh-add -L | grep "$(awk '{print $2};' "$key.pub")" > /dev/null; then echo "$key"; fi; done | fzf -x -0)"; then
+        ssh-add "$selected"
+    fi
 }
 keyremove() {
     ssh-add -d "$(ssh-add -L | sed -e 's/.* //' | fzf -x)"

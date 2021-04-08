@@ -194,6 +194,13 @@ if [ -n "${DISPLAY+1}" ]; then
     export CM_LAUNCHER=dmenu
 fi
 
+#FORGIT
+# open git log in vim
+export FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |vim -)" '
+# pop from stash
+# shellcheck disable=SC2016
+export FORGIT_STASH_FZF_OPTS=' --bind="del:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)" --bind="ctrl-space:reload(git stash pop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)" '
+
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
 fi=📃:\
