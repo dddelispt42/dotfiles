@@ -3,7 +3,8 @@ __handle_jira_issues() {
     key=$(echo "$1" | head -1)
     issues=$(echo "$1" | tail -n +2)
     urls=$(echo "$issues" | sed -e 's@\s*@https:\/\/jira.infinera.com\/browse\/@;s@\s.*@@')
-    ids=$(echo "$issues" | sed 's/\s*\([A-Z]\+-[0-9]\+\).*/\1/')
+    # shellcheck disable=SC2001
+    ids=$(echo "$issues" | sed -e 's@\s*\([A-Z]\+-[0-9]\+\).*@\1@')
     if [ "$key" = ctrl-o ]; then
         echo "$urls" | while read -r line; do
             xdg-open "$line"
@@ -21,19 +22,14 @@ __handle_jira_issues() {
 
 fja() {
     local output
-    output=$(cat ${XDG_CACHE_HOME:-$HOME/.cache}/JiraIssueCache*.issues |
-        FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
-    if [ $? -eq 0 ]; then
+    if output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y); then
         __handle_jira_issues "$output"
     fi
 }
 
 fj() {
     local output
-    output=$(cat ${XDG_CACHE_HOME:-$HOME/.cache}/JiraIssueCache*.issues |
-        grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" |
-        FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
-    if [ $? -eq 0 ]; then
+    if output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y); then
         __handle_jira_issues "$output"
     fi
 }
@@ -51,7 +47,7 @@ __handle_files() {
             done
         elif [ "$key" = ctrl-p ]; then
             echo "$files" | while read -r line; do
-                ${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh "$line"
+                "${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh" "$line"
             done
         elif [ "$key" = ctrl-e ]; then
             ${EDITOR:-vim} +"$(echo "$files" | awk '{print " e " $1 " | "}' && echo "bn")"
@@ -66,8 +62,7 @@ __handle_files() {
 #   - Exit if there's no match (--exit-0)
 ff() {
     local output
-    IFS=$'\n' output=$(FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf --query="$1" --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)
-    if [ $? -eq 0 ]; then
+    if IFS=$'\n' output=$(FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf --query="$1" --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p); then
         __handle_files "$output"
     fi
 }
@@ -87,8 +82,7 @@ function floc {
             shift
         fi
     fi
-    IFS=$'\n' output="$(locate -Ai '*' "$dir" "$@" | FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"
-    if [ $? -eq 0 ]; then
+    if IFS=$'\n' output="$(locate -Ai '*' "$dir" "$@" | FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"; then
         __handle_files "$output"
     fi
 }
@@ -103,7 +97,7 @@ function __handle_fuzzy_grep {
     shift
     resultlist=$(${cmd:-rg} "$params" --vimgrep "$@" 2>/dev/null | fzf -x -0 -1 -m | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1:\2/')
     if [ "$resultlist" != "" ]; then
-        echo ${EDITOR:-vim} +"$(echo "$resultlist" | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
+        echo "${EDITOR:-vim}" +"$(echo "$resultlist" | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
         ${EDITOR:-vim} +"$(echo "$resultlist" | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
     fi
 }
@@ -140,95 +134,6 @@ function fbr {
     branch=$(echo "$branches" |
              fzf -d $(( 2 + $(echo "$branches" | wc -l) )) +m) &&
     git checkout "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
-}
-
-# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
-function fco {
-  local tags branches target
-  tags=$(
-git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
-  branches=$(
-git branch --all | grep -v HEAD |
-sed "s/.* //" | sed "s#remotes/[^/]*/##" |
-sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
-  target=$(
-(echo "$tags"; echo "$branches") |
-    fzf --no-hscroll --no-multi --delimiter="\t" -n 2 \
-        --preview="git log -200 --pretty=format:%s $(echo {+2..} |  sed 's/$/../' )" ) || return
-  git checkout "$(echo "$target" | awk '{print $2}')"
-}
-
-# fcoc - checkout git commit
-function fcoc {
-  local commits commit
-  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
-  commit=$(echo "$commits" | fzf -x --tac +s +m -e) &&
-  git checkout "$(echo "$commit" | sed "s/ .*//")"
-}
-
-# fshow - git commit browser
-function fshow {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --no-sort --ansi --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-                {}
-FZF-EOF"
-}
-
-alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
-_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
-_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
-
-# fcoc_preview - checkout git commit with previews
-function fcoc_preview {
-  local commit
-  commit=$( glNoGraph |
-    fzf -x --no-sort --reverse --tiebreak=index --no-multi \
-        --ansi --preview="$_viewGitLogLine" ) &&
-  git checkout $(echo "$commit" | sed "s/ .*//")
-}
-
-# fshow_preview - git commit browser with previews
-function fshow_preview {
-    glNoGraph |
-        fzf --no-sort --reverse --tiebreak=index --ansi --no-multi \
-            --preview="$_viewGitLogLine" \
-                --header "enter to view, alt-y to copy hash" \
-                --bind "enter:execute:$_viewGitLogLine   | less -R" \
-                --bind "alt-y:execute:$_gitLogLineToHash | xclip"
-}
-
-# fstash - easier way to deal with stashes
-# type fstash to get a list of your stashes
-# enter shows you the contents of the stash
-# ctrl-d shows a diff of the stash against your current HEAD
-# ctrl-b checks the stash out as a branch, for easier merging
-function fstash {
-    local out q k sha
-    while out=$(
-        git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
-            fzf --ansi --no-sort --query="$q" --print-query \
-            --expect=ctrl-d,ctrl-b);
-    do
-        # mapfile -t out <<< "$out"
-        echo "$out" | mapfile -t out
-        q="${out[0]}"
-        k="${out[1]}"
-        sha="${out[-1]}"
-        sha="${sha%% *}"
-        [[ -z "$sha" ]] && continue
-        if [[ "$k" == 'ctrl-d' ]]; then
-            git diff $sha
-        elif [[ "$k" == 'ctrl-b' ]]; then
-            git stash branch "stash-$sha" $sha
-            break;
-        else
-            git stash show -p $sha
-        fi
-    done
 }
 
 # fgst - pick files from `git status -s`
@@ -282,9 +187,7 @@ function ftags {
     fi
     [ -e $tagfile ] || return
     tagfiledir=$(dirname $tagfile)
-    IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | awk -v tagpath="$tagfiledir/" '{print " e " tagpath $3 " | tag " $2 " | "}' && echo "bn")
-
-    if [ $? -eq 0 ]; then
+    if IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | awk -v tagpath="$tagfiledir/" '{print " e " tagpath $3 " | tag " $2 " | "}' && echo "bn"); then
         ${EDITOR:-vim} +"$fileparam"
     fi
 }
@@ -292,15 +195,13 @@ function ftags {
 # lists tmuxinator sessions and open tmux sessions for selection
 function tx {
     local TMUXP_SESSIONS TMUX_SESSIONS SESSIONS SELECTED
-    TMUXP_SESSIONS="$(ls "${TMUXP_CONFIGDIR}"/*.yaml | sed -e 's/.*\///;s/\.yaml//')"
+    TMUXP_SESSIONS="$(fd 'yaml' .config/tmuxp -x echo "{/.}")"
     TMUX_SESSIONS="$(tmux list-sessions 2>/dev/null | sed -e "s/\(:.*\)//")"
-    SESSIONS="$((echo "$TMUXP_SESSIONS" && echo "$TMUX_SESSIONS" | grep -v "^$") | sort -u)"
-    SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="-x " fzf --tac --cycle -0 -1)"
-    if [ $? -ne 0 ]; then
+    SESSIONS="$( (echo "$TMUXP_SESSIONS" && echo "$TMUX_SESSIONS" | grep -v "^$") | sort -u)"
+    if SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="-x " fzf --tac --cycle -0 -1)"; then
         return
     fi
-    echo "$TMUX_SESSIONS" | grep "$SELECTED" > /dev/null
-    if [ $? -eq 0 ]; then
+    if echo "$TMUX_SESSIONS" | grep "$SELECTED" > /dev/null; then
         if [ -z "$TMUX" ]; then
             tmux a -d -t "$SELECTED"
         else
@@ -365,8 +266,8 @@ function fbhist {
 
 function fncbookm {
     local links
-    $HOME/bin/get_nextcloud_bookmarks.sh
-    links="$(cat "$HOME/.cache/nextcloud_bookmarks.txt" | fzf -x -e -m | sed -e 's/.*http/http/')"
+    "$HOME/bin/get_nextcloud_bookmarks.sh"
+    links="$(fzf -x -e -m < "$HOME/.cache/nextcloud_bookmarks.txt" | sed -e 's/.*http/http/')"
     if [ "$links" != "" ] ; then
         firefox --new-tab "$links"
     fi
@@ -374,10 +275,10 @@ function fncbookm {
 
 function fwiki {
     local files
-    pushd $WIKI_PATH > /dev/null # directories should all be defined once via ENV vars.
+    pushd "$WIKI_PATH" > /dev/null || return # directories should all be defined once via ENV vars.
     IFS=$'\n' files=$(fzf -x -e -m)
     vim "$files"
-    popd > /dev/null
+    popd > /dev/null || return
 }
 
 function fbookm {
@@ -403,24 +304,24 @@ frga() {
 }
 
 fssh() {
-    $(grep -E ".*:[0-9];(auto)?ssh " "$XDG_CACHE_HOME/zhistory" | sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)
+    eval "$(grep -E ".*:[0-9];(auto)?ssh " "$XDG_CACHE_HOME/zhistory" | sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)"
 }
 
 function fdocker {
-  if [[ -n $1 ]]; then
-    docker exec -it $1 /bin/bash
+  if [[ -n "$1" ]]; then
+    docker exec -it "$1" /bin/bash
     return
   fi
-  lst=`docker ps | grep -v IMAGE | awk '{printf "%s %-30s %s\n", $1, $2, $3}'`
-  choice=`echo $lst | fzf --height=40% --no-sort --tiebreak=begin,index`
-  if [[ -n $choice ]]; then
-    printf "\n → $choice\n"
-    choice=`echo $choice | awk '{print $1}'`
-    docker exec -it $choice /bin/bash
+  lst=$(docker ps | grep -v IMAGE | awk '{printf "%s %-30s %s\n", $1, $2, $3}')
+  choice=$(echo "$lst" | fzf --height=40% --no-sort --tiebreak=begin,index)
+  if [[ -n "$choice" ]]; then
+    printf "\n → %s\n" "$choice"
+    choice=$(echo "$choice" | awk '{print $1}')
+    docker exec -it "$choice" /bin/bash
   fi
 }
 
-get_recipe()
+frecipe()
 {
     curl -sG "https://plainoldrecipe.com/recipe" -d "url=${1}" | pandoc -f html -t markdown
 }

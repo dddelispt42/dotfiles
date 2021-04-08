@@ -12,6 +12,7 @@ n()
     nnn "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
+        # shellcheck disable=SC1090
         . "$NNN_TMPFILE"
         rm "$NNN_TMPFILE"
     fi
@@ -124,8 +125,7 @@ explain_command() {
     while [[ $retval != 0 || $explanation == ""
         || $explanation == *"nothing appropriate"*
         || $explanation == *"unknown subject"* ]] ; do
-        # 2>&1 prevents errors from beeing printed
-        explanation="$(whatis "$(\ls /bin | shuf -n 1)" 2>&1)"
+        explanation="$(whatis "$(fd '.*' /bin --max-depth 1 -x echo "{/}" | shuf -n 1)" 2>&1)"
         retval=$?
     done
     printf "Did you know that:\n%s" "${explanation}"

@@ -134,7 +134,7 @@ alias tray="trayer --edge top --align center --expand false --width 5 --distance
 alias pacsize="pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
 pacbloat() {
     pacman -Qe | awk '{print $1;}' | while read -r line; do
-        if ! grep "$line" $HOME/dev/heiko/bootstrap/vars/*.pkgs > /dev/null; then
+        if ! grep "$line" "$HOME"/dev/heiko/bootstrap/vars/*.pkgs > /dev/null; then
             echo "$line"
         fi
     done
