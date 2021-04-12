@@ -27,7 +27,6 @@ fi
 ######################################
 # better use of changing directories #
 ######################################
-alias .="pwd"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../../"
