@@ -24,16 +24,18 @@ fja() {
     local output
     output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
     if [ -z ${output+x} ]; then
-        __handle_jira_issues "$output"
+        return
     fi
+    __handle_jira_issues "$output"
 }
 
 fj() {
     local output
     output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
     if [ -z ${output+x} ]; then
-        __handle_jira_issues "$output"
+        return
     fi
+    __handle_jira_issues "$output"
 }
 
 __handle_files() {
@@ -66,8 +68,9 @@ ff() {
     local output
     IFS=$'\n' output=$(FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf --query="$1" --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)
     if [ -z ${output+x} ]; then
-        __handle_files "$output"
+        return
     fi
+    __handle_files "$output"
 }
 fconf() {
     pushd "$XDG_CONFIG_HOME" > /dev/null || return
@@ -87,8 +90,9 @@ function floc {
     fi
     IFS=$'\n' output="$(locate -Ai '*' "$dir" "$@" | FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"
     if [ -z ${output+x} ]; then
-        __handle_files "$output"
+        return
     fi
+    __handle_files "$output"
 }
 
 function __handle_fuzzy_grep {
@@ -193,8 +197,9 @@ function ftags {
     tagfiledir=$(dirname $tagfile)
     IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | awk -v tagpath="$tagfiledir/" '{print " e " tagpath $3 " | tag " $2 " | "}' && echo "bn");
     if [ -z ${fileparam+x} ]; then
-        ${EDITOR:-vim} +"$fileparam"
+        return
     fi
+    ${EDITOR:-vim} +"$fileparam"
 }
 
 # lists tmuxinator sessions and open tmux sessions for selection
