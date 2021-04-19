@@ -706,8 +706,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
      let g:NERDTreeShowIgnoredStatus = 1
 
     " Rust.vim
-    let g:rustfmt_autosave = 1
-    let g:rust_clip_command = 'xclip -selection clipboard'
+    " let g:rustfmt_autosave = 1
+    " let g:rust_clip_command = 'xclip -selection clipboard'
 
     " vim-better-whitespace
     " let g:better_whitespace_verbosity=1
@@ -900,11 +900,11 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     endif
 
 " Conque GDB (RUST/C/CPP debugging)
-    let g:ConqueTerm_StartMessages = 0
-    let g:ConqueTerm_Color = 0
-    let g:ConqueTerm_CloseOnEnd = 1
-    let g:ConqueTerm_Interrupt = '<C-g><C-c>'
-    let g:ConqueTerm_ReadUnfocused = 1
+    " let g:ConqueTerm_StartMessages = 0
+    " let g:ConqueTerm_Color = 0
+    " let g:ConqueTerm_CloseOnEnd = 1
+    " let g:ConqueTerm_Interrupt = '<C-g><C-c>'
+    " let g:ConqueTerm_ReadUnfocused = 1
 
 endif
 

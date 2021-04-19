@@ -5,7 +5,7 @@
 [credential]
 [user]
     name = Riemer, Heiko
-    email = hriemer@infinera.com
+    email = heiko@eheiko.net
 [core]
     editor = vim
     autocrlf = false
@@ -91,7 +91,7 @@
 [difftool.latex]
     cmd = latexdiff "$LOCAL" "$REMOTE"
 [diff]
-    tool = vimdiff
+    tool = nvimdiff
 [diff "pdf"]
     binary = true
     textconv = ~/.config/lf/preview.sh
