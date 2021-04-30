@@ -159,6 +159,10 @@ export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export _Z_DATA="$XDG_DATA_HOME/z"
 
+# JAVA
+export PATH=/home/heiko/opt/java/bin:$PATH
+export JAVA_HOME=/home/heiko/opt/java
+
 # NNN related
 export NNN_BMS='d:~/dev;D:~/Docs archive/'
 export NNN_PLUG='o:fzy-open;d:ndiff,p:mocplay;m:nmount;t:thumb'
@@ -175,7 +179,7 @@ export NNN_TRASH=1
 
 #KLAUT_ROOT
 export KLAUT="$HOME/klaut/"
-export TODOLIST="${KLAUT:-$HOME/klaut}/work/todo/todos.md"
+export TODOLIST="${KLAUT:-$HOME/klaut}/vimwiki/private/todo/todos.md"
 
 #VIMWIKI
 export WIKI_PATH="$HOME/klaut/vimwiki/"
