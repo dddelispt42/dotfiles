@@ -1015,17 +1015,17 @@ endif
 """ vimwiki
     " vimwiki with markdown support
     let wiki_1 = {}
-    let wiki_1.path = '~/vimwiki/work/'
+    let wiki_1.path = '~/klaut/vimwiki/work/'
     let wiki_1.syntax = 'markdown'
     let wiki_1.ext = '.md'
 
     let wiki_2 = {}
-    let wiki_2.path = '~/vimwiki/personal/'
+    let wiki_2.path = '~/klaut/vimwiki/personal/'
     let wiki_2.syntax = 'markdown'
     let wiki_2.ext = '.md'
 
     let wiki_3 = {}
-    let wiki_3.path = '~/vimwiki/recipes/'
+    let wiki_3.path = '~/klaut/vimwiki/recipes/'
     let wiki_3.syntax = 'markdown'
     let wiki_3.ext = '.md'
 
@@ -1038,9 +1038,9 @@ endif
     let g:vimwiki_table_auto_fmt=1
     " let l:vimwiki_header_type = '#'     " set to '=' for wiki syntax
     " au FileType vimwiki set syntax=markdown
-    map <silent> <leader>wf :FZF ~/vimwiki<cr>
-    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md set filetype=vimwiki
-    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/vimwiki/*.md silent! cd ~/vimwiki
+    map <silent> <leader>wf :FZF ~/klaut/vimwiki<cr>
+    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md set filetype=vimwiki
+    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md silent! cd ~/klaut/vimwiki
     augroup VimWikiToDo
         autocmd!
         autocmd FileType vimwiki syntax match VimWikiToDoDone '^\v\s*-\s\[X\].*$'

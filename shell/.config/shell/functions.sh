@@ -135,6 +135,7 @@ supported_colors() {
     BLOCK=$(fill 5 "\u2588")
     for COLOR in {0..255}
     do
+        # shellcheck disable=SC2043
         for STYLE in "38;5"
         do
             TAG="\033[${STYLE};${COLOR}m"
@@ -227,9 +228,15 @@ desyno() {
     wget -q -O- https://www.openthesaurus.de/synonyme/search\?q="$*"\&format=text/xml | sed 's/>/>\n/g' | \
         grep "<term term=" | cut -d \' -f 2 | paste -s -d , | sed 's/,/, /g' | fold -s -w "$(tput cols)";
 }
+
 geo() {
     curl "https://geo.risk3sixty.com/$1"
 }
+
 keys() {
     xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+}
+
+randomSE() {
+     jq '..|.short?' dev/work/nms-se-tools/jira/config/seTeam.json | grep -v 'null' | sort -R | tail -"${1:-1}"
 }
