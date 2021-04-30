@@ -1,3 +1,4 @@
+*.orig
 *.srctrlbm
 *.egg-info
 *.srctrldb
