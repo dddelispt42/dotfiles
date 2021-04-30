@@ -13,10 +13,10 @@ threshold = 35
 style = "bold yellow"
 
 [character]
-symbol = ""
+success_symbol = ""
 error_symbol = "✖"
 vicmd_symbol = ""
-use_symbol_for_status = true
+# use_symbol_for_status = true
 
 [cmd_duration]
 min_time = 400
@@ -24,14 +24,14 @@ min_time = 400
 [directory]
 truncation_length = 8
 truncation_symbol = "…/"
-readonly = "🔒"
+read_only = "🔒"
 
 [git_branch]
 symbol = ""
 truncation_length = "4"
 
 [git_state]
-progress_divider = " of "
+# progress_divider = " of "
 cherry_pick = "🍒 PICKING(bold red)"
 
 [git_commit]
