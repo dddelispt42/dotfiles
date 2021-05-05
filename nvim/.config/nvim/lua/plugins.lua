@@ -106,6 +106,15 @@ return require("packer").startup {
                 vim.cmd [[TSUpdate]]
             end
         }
+        -- use {
+        --     "lewis6991/spellsitter.nvim",
+        --     config = function()
+        --         require("spellsitter").setup {
+        --             hl = "SpellBad",
+        --             captures = {} -- set to {} to spellcheck everything
+        --         }
+        --     end
+        -- }
         use "SirVer/ultisnips"
         -- use 'norcalli/snippets.nvim'
         use "norcalli/ui.nvim"
@@ -242,6 +251,7 @@ return require("packer").startup {
         -- use 'dddelispt42/vira', { 'do': './install.sh' }
         -- " automatically set the root directory
         use "airblade/vim-rooter"
+        -- use "fabi1cazenave/suckless.vim"
 
         -- use "beloglazov/vim-online-thesaurus"
 

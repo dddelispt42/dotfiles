@@ -166,7 +166,7 @@ map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
 -- rust-analyzer does not yet support goto declaration - re-mapped `gd` to definition
 map("n", "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
 -- map('n', '<leader>ld', '<cmd>lua vim.lsp.buf.declaration()<CR>', options)
-map('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', options)
+map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
 -- Completion (nvim-comple)
 map("i", "<expr> <C-Space>", "compe#complete()", options)
 map("i", "<expr> <CR>", "compe#confirm('<CR>')", options)
@@ -364,14 +364,14 @@ require("telescope").load_extension("dap")
 --   }
 -- )
 
-vim.api.nvim_exec(
-    [[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
-augroup END
-]],
-    true
-)
+-- vim.api.nvim_exec(
+--     [[
+-- augroup FormatAutogroup
+--   autocmd!
+--   autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
+-- augroup END
+-- ]],
+--     true
+-- )
 
 -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
