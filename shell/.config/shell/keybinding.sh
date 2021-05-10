@@ -6,4 +6,4 @@ bindkey '^[[A' fzf-history-widget # Ctrl-R to reverse search history w/ fzf
 # bindkey '^E' fzf-history-widget # Ctrl-A jump to end of line
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
-bindkey -s '^[.' 'fconf\n'
+bindkey -s '^[d' 'fconf\n'
