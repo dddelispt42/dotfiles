@@ -113,6 +113,7 @@ alias ggs='git global scan && git global | $PAGER'
 alias gcb='git rev-parse --abbrev-ref HEAD | pbcopy'
 alias cal='ncal -w -M -A 6 -B 1'
 alias wttr='curl wttr.in/lisbon'
+command -v eva > /dev/null && alias bc="eva"
 
 # lf - list files (if mc is not installed)
 command -v mc > /dev/null || alias mc='tmux split -h lf; lf'
