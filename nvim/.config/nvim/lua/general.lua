@@ -109,8 +109,8 @@ map("c", "Q", "Q", options)
 map("n", "<", "<gv", options)
 map("v", ">", ">gv", options)
 -- Move visual block
-map("v", "J", ":m >+1<CR>gv=gv", options)
-map("v", "K", ":m <-2<CR>gv=gv", options)
+map("v", "J", ":m +1<CR>gv=gv", options)
+map("v", "K", ":m -2<CR>gv=gv", options)
 -- jump between buffers in normal mode
 map("n", "<c-h>", "<c-w>h", options)
 map("n", "<c-j>", "<c-w>j", options)
