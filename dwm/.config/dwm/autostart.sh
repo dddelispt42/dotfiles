@@ -30,10 +30,10 @@ while true; do
     dwmblocks || exit
 done &
 
-while true; do
-    xrandr.sh
-    sleep 15
-done &
+# while true; do
+#     xrandr.sh
+#     sleep 15
+# done &
 
 ps aux |grep -E "st - [h]eiko@localhost" > /dev/null
 if [ $? -ne 0 ]; then
