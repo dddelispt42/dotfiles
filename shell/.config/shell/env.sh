@@ -158,6 +158,7 @@ export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export _Z_DATA="$XDG_DATA_HOME/z"
+export _ZO_FZF_OPTS="-x --multi --height 50% --border --inline-info --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap"
 
 # JAVA
 export PATH=/home/heiko/opt/java/bin:$PATH
