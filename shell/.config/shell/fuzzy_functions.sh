@@ -99,8 +99,8 @@ function __handle_fuzzy_grep {
     local params cmd resultlist
     if [ "$1" -eq "1" ]; then
         params=-uu
-        # cmd=rga
-        cmd=rg
+        cmd=rga
+        # cmd=rg
     fi
     shift
     resultlist=$(${cmd:-rg} "$params" --vimgrep "$@" 2>/dev/null | fzf -x -0 -1 -m | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1:\2/')

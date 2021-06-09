@@ -80,3 +80,5 @@ test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zshrc.local && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/broot/launcher/bash/br && source "$_" || true
 
 eval "$(zoxide init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
