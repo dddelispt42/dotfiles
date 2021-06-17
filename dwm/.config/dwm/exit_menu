@@ -21,6 +21,7 @@ declare -a MANAGERS=(
 "awesome"
 "bspwm"
 "dwm"
+"hwm"
 "spectrwm"
 "xmonad"
 "qtile"
@@ -62,21 +63,21 @@ case $choice in
         ;;
     'Reboot')
         if [[ $(yesno "Reboot?") == "Yes" ]]; then
-            systemctl reboot
+            loginctl reboot || systemctl reboot
         else
             ${OUTPUT} "User chose not to reboot." && exit 0
         fi
         ;;
     'Shutdown')
         if [[ $(yesno "Shutdown?") == "Yes" ]]; then
-            systemctl poweroff
+            loginctl poweroff || systemctl poweroff
         else
             ${OUTPUT} "User chose not to shutdown." && exit 0
         fi
         ;;
     'Suspend')
         if [[ $(yesno "Suspend?") == "Yes" ]]; then
-            systemctl suspend && ${LOCKER}
+            loginctl suspend || systemctl suspend && ${LOCKER}
         else
             ${OUTPUT} "User chose not to suspend." && exit 0
         fi

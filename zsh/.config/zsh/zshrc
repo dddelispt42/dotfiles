@@ -54,18 +54,16 @@ if [[ $OSTYPE == linux* ]]; then
     eval "$(starship init zsh)"
 fi
 
+test -s /usr/share/fzf/key-bindings.zsh && source "$_" || true
+test -s /usr/share/fzf/completion.zsh && source "$_" || true
+test -s /usr/share/doc/fzf/examples/key-bindings.zsh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/env.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh && source "$_" || true
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/fuzzy_functions.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/keybinding.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/svn_prompt.sh && source "$_" || true
-# test -s $HOME/.fzf/shell/key-bindings.zsh && source "$_" || true
-# test -s $HOME/.fzf/shell/completion.zsh && source "$_" || true
-test -s /usr/share/fzf/key-bindings.zsh && source "$_" || true
-test -s /usr/share/fzf/completion.zsh && source "$_" || true
-test -s /usr/share/doc/fzf/examples/key-bindings.zsh && source "$_" || true
+test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/fuzzy_functions.sh && source "$_" || true
 
 # enable VI mode
 bindkey -v
