@@ -194,9 +194,10 @@ export SKIM_DEFAULT_COMMAND="rg --files -uu --follow || git ls-tree -r --name-on
 export LAUNCHER=sk
 export CM_LAUNCHER=fzf
 if [ -n "${DISPLAY+1}" ]; then
-    # export LAUNCHER="rofi -dmenu"
-    export LAUNCHER=dmenu
-    export CM_LAUNCHER=dmenu
+    export LAUNCHER="rofi -dmenu"
+    # export LAUNCHER=dmenu
+    # export CM_LAUNCHER=dmenu
+    export CM_LAUNCHER=rofi
 fi
 
 #FORGIT
