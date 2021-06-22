@@ -82,7 +82,7 @@ inherit = bar/base
 
 [bar/work]
 inherit = bar/base
-modules-right = updates-arch fs_manjaro pulseaudio xkeyboard memory cpu eth battery date
+modules-right = updates-arch fs_manjaro memory cpu battery temperature date
 
 [module/weather]
 type = custom/script
@@ -166,8 +166,9 @@ click-left = ~/bin/scratchpad ncdu -x /
 
 [module/fs_manjaro]
 inherit = module/filesystem
-; mount-1 = /mnt/e
-; mount-2 = /mnt/data
+mount-1 = /home
+; mount-2 = /mnt/e
+; mount-3 = /mnt/data
 
 [module/ws]
 type = internal/xworkspaces

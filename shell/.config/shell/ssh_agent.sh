@@ -3,9 +3,10 @@ SSHDIR="$HOME/.ssh"
 if [ "$(pgrep -u "$USER" ssh-agent)" = "" ]; then
     test -e "$CACHEDIR/sshagent.sh" && rm -f "$CACHEDIR/sshagent.sh"
     ssh-agent | grep -v echo > "$CACHEDIR/sshagent.sh"
+    source "$CACHEDIR/sshagent.sh"
     # TODO: load non-password keys automatically and pw keys interactively
     for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do
-        if \! ssh-add -L | grep "$(awk '{print $2};' "${key}.pub")" > /dev/null; then
+        if ! ssh-add -L | grep "$(awk '{print $2};' "${key}.pub")" > /dev/null; then
             ssh-add "$key"
         fi
     done

@@ -36,25 +36,25 @@ nohup clipmenud &
 # done &
 # polybar "$(hostname)" > polybar.log 2>&1
 
-ps aux |grep -E "st - [h]eiko@localhost" > /dev/null
-if [ $? -ne 0 ]; then
-    nohup st -c "st - heiko@localhost" -T "st - heiko@localhost" &
-fi
-if [ "$HOST" = "work" ]; then
-    ps aux |grep -E "st - [h]eiko@lab" > /dev/null
-    if [ $? -ne 0 ]; then
-        nohup st -c "st - heiko@lab" -T "st - heiko@lab" &
-    fi
-fi
-ps aux | grep -E "[f]irefox" > /dev/null
-if [ $? -ne 0 ]; then
-    nohup firefox &
-fi
+# ps aux |grep -E "st - [h]eiko@localhost" > /dev/null
+# if [ $? -ne 0 ]; then
+#     nohup st -c "st - heiko@localhost" -T "st - heiko@localhost" &
+# fi
+# if [ "$HOST" = "work" ]; then
+#     ps aux |grep -E "st - [h]eiko@lab" > /dev/null
+#     if [ $? -ne 0 ]; then
+#         nohup st -c "st - heiko@lab" -T "st - heiko@lab" &
+#     fi
+# fi
+# ps aux | grep -E "[f]irefox" > /dev/null
+# if [ $? -ne 0 ]; then
+#     nohup firefox &
+# fi
 # ps aux | grep -E "[s]ignal-desktop" > /dev/null
 # if [ $? -ne 0 ]; then
 #     nohup signal-desktop &
 # fi
-ps aux |grep -E "st - [h]eiko@ed" > /dev/null
-if [ $? -ne 0 ]; then
-    nohup st -c "st - heiko@ed" -T "st - heiko@ed" &
-fi
+# ps aux |grep -E "st - [h]eiko@ed" > /dev/null
+# if [ $? -ne 0 ]; then
+#     nohup st -c "st - heiko@ed" -T "st - heiko@ed" &
+# fi
