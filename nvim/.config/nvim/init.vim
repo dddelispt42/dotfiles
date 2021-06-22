@@ -20,9 +20,10 @@ if (has('nvim-0.5'))
     "     " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"src"})})
     " augroup end
 
-    " online thesaurus key mapping distinction
-    let g:online_thesaurus_map_keys = 0
-    nnoremap <leader>G :OnlineThesaurusCurrentWord<CR>
+" Plantuml-syntax
+    let g:plantuml_executable_script = "~/bin/plantUML.sh"
+    let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
+    noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.config/zsh/.zshrc; cd $HOME/klaut/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
 
 else
 " Function to set OS env - return WINDOWS or output of uname
@@ -712,14 +713,6 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     " vim-better-whitespace
     " let g:better_whitespace_verbosity=1
     autocmd FileType *.py,*.sh,*.rs autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
-
-" Plantuml-syntax
-    let g:plantuml_executable_script = "~/bin/plantUML.sh"
-    let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
-    if (g:env =~# 'WINDOWS')
-        let g:slumlord_plantuml_jar_path = 'c:\\Data\\pt103371\\bin\\plantuml.jar'
-    endif
-    noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.config/zsh/.zshrc; cd $HOME/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
 
 " go.vim
     " do not show warning for older releases
