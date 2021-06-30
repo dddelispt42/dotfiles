@@ -45,7 +45,7 @@ map o &~/.config/lf/open.sh $fx
 
 # use enter for shell commands
 # map <enter> shell
-map <enter> &~/.config/lf/open.sh $f
+map <enter> &~/.config/lf/open.sh $fx
 
 # bulk rename
 map br $vimv $fx
