@@ -79,6 +79,7 @@ cursor-scroll = ns-resize
 
 [bar/artix]
 inherit = bar/base
+modules-right = system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio cpu eth temperature weather date
 
 [bar/work]
 inherit = bar/base
