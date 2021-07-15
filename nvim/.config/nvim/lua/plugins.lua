@@ -136,7 +136,9 @@ return require("packer").startup {
         use "tpope/vim-surround" -- Surround text objects easily
         -- Floating windows are awesome :)
         -- used <leader>gm to see the related git commit msg
+        use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
         use "rhysd/git-messenger.vim"
+        use 'sindrets/diffview.nvim'
         use {"junegunn/fzf", run = "./install --all"} -- Fuzzy Searcher
         use {"junegunn/fzf.vim"}
         use {
