@@ -1059,7 +1059,7 @@ endif
     function! HandleURL()
         let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*')
         if s:uri != ""
-            silent exec "!firefox ".shellescape(s:uri, 1)." &"
+            silent exec "!brave ".shellescape(s:uri, 1)." &"
             :redraw!
         else
             echo "No URI found in line."
@@ -1119,7 +1119,7 @@ endif
         endif
     endfunction
     map <leader>jo :call OpenJiraIssue()<cr>
-    let g:vira_browser = 'firefox'
+    let g:vira_browser = 'brave'
     " TODO: run queries and open issues from there
 
 " Snipplets:
