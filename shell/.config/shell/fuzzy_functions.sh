@@ -266,7 +266,7 @@ function chromeh {
 function fbhist {
     links="$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" 'select title,url from moz_places;' | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
     if [ "$links" != "" ] ; then
-        firefox --new-tab "$links"
+        ${BROWSER:-brave} --new-tab "$links"
     fi
 }
 
@@ -275,7 +275,7 @@ function fncbookm {
     "$HOME/bin/get_nextcloud_bookmarks.sh"
     links="$(fzf -x -e -m < "$HOME/.cache/nextcloud_bookmarks.txt" | sed -e 's/.*http/http/')"
     if [ "$links" != "" ] ; then
-        firefox --new-tab "$links"
+        ${BROWSER:-brave} --new-tab "$links"
     fi
 }
 
@@ -291,7 +291,7 @@ function fbookm {
     # links="$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
     IFS=$'\n' links=$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
     if [ "$links" != "" ] ; then
-        firefox --new-tab "$links"
+        ${BROWSER:-brave} --new-tab "$links"
     fi
 }
 
