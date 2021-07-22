@@ -1,1 +1,2 @@
 pylint/.config/pylint/*.stats
+nvim/.config/nvim/plugin/packer_compiled.lua
