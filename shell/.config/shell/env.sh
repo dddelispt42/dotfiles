@@ -84,6 +84,7 @@ export DISABLE_AUTO_TITLE='true'
 
 # TMUX
 export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp"
+export TMUXP_TMPDIR="${XDG_CACHE_HOME:-$HOME/.cache}/"
 
 # enable CLICOLORS
 export CLICOLORS=1
