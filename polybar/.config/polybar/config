@@ -59,7 +59,7 @@ modules-left = ws title
 ; modules-center = mpd
 ; modules-center = title
 ; modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date
-modules-right = system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio xkeyboard memory cpu eth temperature weather date
+modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio xkeyboard memory cpu eth temperature weather date
 tray-position = right
 tray-padding = 1
 tray-background = #0063ff
@@ -79,11 +79,11 @@ cursor-scroll = ns-resize
 
 [bar/artix]
 inherit = bar/base
-modules-right = system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio cpu eth temperature weather date
+modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio cpu eth temperature weather date
 
 [bar/work]
 inherit = bar/base
-modules-right = updates-arch fs_manjaro memory cpu battery temperature date
+modules-right = polypomo updates-arch fs_manjaro memory cpu battery temperature date
 
 [module/weather]
 type = custom/script
@@ -93,6 +93,24 @@ tail = true
 format-prefix = "摒 "
 format-prefix-foreground = ${colors.foreground-alt}
 ; click-left = ~/.config/polybar/
+
+[module/polypomo]
+type = custom/script
+
+exec = ~/.config/polybar/polypomo
+tail = true
+
+label = %output%
+click-left = ~/.config/polybar/polypomo toggle
+click-right = ~/.config/polybar/polypomo end
+click-middle = ~/.config/polybar/polypomo lock
+scroll-up = ~/.config/polybar/polypomo time +60
+scroll-down = ~/.config/polybar/polypomo time -60
+
+; font-0 = fixed:pixelsize=10;1
+; font-1 = Noto Emoji:scale=15:antialias=false;0
+; font-0 = Hack Nerd Font:pixelsize=12;1
+; font-1 = siji:pixelsize=15;1
 
 [module/system-bluetooth-bluetoothctl]
 type = custom/script
