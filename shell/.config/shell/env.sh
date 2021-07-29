@@ -85,7 +85,7 @@ export DISABLE_AUTO_TITLE='true'
 
 # TMUX
 export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp"
-export TMUXP_TMPDIR="${XDG_CACHE_HOME:-$HOME/.cache}/"
+export TMUX_TMPDIR="${XDG_CACHE_HOME:-$HOME/.cache}/"
 
 # enable CLICOLORS
 export CLICOLORS=1
@@ -132,7 +132,6 @@ export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
-export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
