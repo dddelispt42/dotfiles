@@ -1,6 +1,6 @@
 CACHEDIR="${XDG_CACHE_HOME:-$HOME/.cache}"
 SSHDIR="$HOME/.ssh"
-if [ "$(pgrep -u "$USER" ssh-agent)" = "" ]; then
+if [ "$(pgrep -u "${UID:-$USER}" ssh-agent)" = "" ]; then
     test -e "$CACHEDIR/sshagent.sh" && rm -f "$CACHEDIR/sshagent.sh"
     ssh-agent | grep -v echo > "$CACHEDIR/sshagent.sh"
     source "$CACHEDIR/sshagent.sh"

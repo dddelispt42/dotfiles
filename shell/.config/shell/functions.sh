@@ -224,10 +224,10 @@ cwdiff() {
     wdiff -n -w $'\033[1;31m' -x $'\033[0m' -y $'\033[1;32m' -z $'\033[0m' -s "$1" "$2"
 }
 
-desyno() {
-    wget -q -O- https://www.openthesaurus.de/synonyme/search\?q="$*"\&format=text/xml | sed 's/>/>\n/g' | \
-        grep "<term term=" | cut -d \' -f 2 | paste -s -d , | sed 's/,/, /g' | fold -s -w "$(tput cols)";
-}
+# desyno() {
+#     wget -q -O- https://www.openthesaurus.de/synonyme/search\?q="$*"\&format=text/xml | sed 's/>/>\n/g' | \
+#         grep "<term term=" | cut -d \' -f 2 | paste -s -d , | sed 's/,/, /g' | fold -s -w "$(tput cols)";
+# }
 
 geo() {
     curl "https://geo.risk3sixty.com/$1"
