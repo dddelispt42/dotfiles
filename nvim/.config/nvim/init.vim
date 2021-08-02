@@ -20,6 +20,30 @@ if (has('nvim-0.5'))
     "     " au FileType java lua require('jdtls').start_or_attach({cmd = {"java-lsp.sh"}, root_dir = require("jdtls.setup").find_root({"src"})})
     " augroup end
 
+    let g:firenvim_config = {
+        \ 'globalSettings': {
+            \ 'alt': 'all',
+        \  },
+        \ 'localSettings': {
+            \ '.*': {
+                \ 'cmdline': 'neovim',
+                \ 'content': 'text',
+                \ 'priority': 0,
+                \ 'selector': 'textarea',
+                \ 'takeover': 'always',
+            \ },
+        \ }
+    \ }
+    let fc = g:firenvim_config['localSettings']
+    " let fc['https?://[^/]+\.co\.uk/'] = { 'takeover': 'never', 'priority': 1 }
+    let fc['.*'] = { 'takeover': 'always' }
+
+    augroup heiko
+        au!
+        au BufEnter github.com_*.txt set filetype=markdown
+        au BufEnter jira.infi*.txt set filetype=markdown
+        au BufEnter www.plantuml.com*.txt set filetype=plantuml
+    augroup end
 " Plantuml-syntax
     let g:plantuml_executable_script = "~/bin/plantUML.sh"
     let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
