@@ -237,6 +237,21 @@ keys() {
     xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 }
 
+# Usage: randomSE [number]
 randomSE() {
      jq '..|.short?' dev/work/nms-se-tools/jira/config/seTeam.json | grep -v 'null' | sort -R | tail -"${1:-1}"
+}
+
+# Codi
+# Usage: codi [filetype] [filename]
+codi() {
+  local syntax="${1:-python}"
+  shift
+  nvim -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
 }
