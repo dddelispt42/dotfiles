@@ -89,6 +89,7 @@ return require("packer").startup {
         use "onsails/lspkind-nvim"
         use "ray-x/lsp_signature.nvim"
         use "akinsho/dependency-assist.nvim"
+        use "metakirby5/codi.vim"
         -- Extentions to built-in LSP, for example, providing type inlay hints
         -- Autocompletion framework for built-in LSP
         -- use 'nvim-lua/completion-nvim'
