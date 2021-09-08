@@ -49,9 +49,9 @@ module-margin-right = 2
 ; font-2 = siji:pixelsize=10;1
 ; font-0 = NotoSansMono Nerd Font:pixelsize=12;1
 ; font-1 = NotoSansMono Nerd Font:pixelsize=10;1
-font-0 = Hack Nerd Font:pixelsize=12;1
+font-0 = Hack Nerd Font:pixelsize=10;1
 font-1 = Hack Nerd Font:pixelsize=10;1
-font-2 = siji:pixelsize=12;1
+font-2 = siji:pixelsize=10;1
 
 ; modules-left = bspwm i3
 ; modules-left = bspwm title
@@ -79,7 +79,7 @@ cursor-scroll = ns-resize
 
 [bar/artix]
 inherit = bar/base
-modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio cpu eth temperature weather date
+modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio cpu temperature weather date
 
 [bar/work]
 inherit = bar/base
