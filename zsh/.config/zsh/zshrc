@@ -15,7 +15,9 @@ setopt EXTENDED_HISTORY        # save timestamp and runtime information
 if [[ $OSTYPE == linux* ]]; then
     # zplug
     # TODO: move to XDG...
-    source ~/.zplug/init.zsh
+    # source ~/.config/zplug/init.zsh
+    export ZPLUG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/zplug"
+    source $ZPLUG_HOME/init.zsh
     # zplug "changyuheng/fz", defer:1
     # zplug "rupa/z", use:z.sh
     zplug "ael-code/zsh-colored-man-pages", defer:2

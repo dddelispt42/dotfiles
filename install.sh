@@ -43,6 +43,18 @@ function migrate_to_clean {
     [[ -f "$1" ]] && [[ ! -f "$2" ]] && mv "$1" "$2" && return
     [[ -d "$1" ]] && [[ ! -d "$2" ]] && mv "$1" "$2"
 }
+mkdir -p "$XDG_CACHE_HOME"
+mkdir -p "$XDG_CONFIG_HOME"
+mkdir -p "$XDG_DATA_HOME"
+mkdir -p "$XDG_DESKTOP_DIR"
+mkdir -p "$XDG_DOCUMENTS_DIR"
+mkdir -p "$XDG_DOWNLOAD_DIR"
+mkdir -p "$XDG_MUSIC_DIR"
+mkdir -p "$XDG_PICTURES_DIR"
+mkdir -p "$XDG_PICTURES_DIR"/screenshots
+mkdir -p "$XDG_PUBLICSHARE_DIR"
+mkdir -p "$XDG_TEMPLATES_DIR"
+mkdir -p "$XDG_VIDEOS_DIR"
 # migrate_to_clean $HOME/.zplug "$XDG_CACHE_HOME"/zplug
 migrate_to_clean "$HOME"/.RFCs "$XDG_CACHE_HOME"/RFCs
 migrate_to_clean "$HOME"/.Skype "$XDG_CONFIG_HOME"/Skype
@@ -111,18 +123,6 @@ migrate_to_clean "$HOME"/.fonts.conf "$XDG_CONFIG_HOME"/fontconfig/fonts.conf
 migrate_to_clean "$HOME"/.crontab "$XDG_CONFIG_HOME"/crontab
 migrate_to_clean "$HOME"/.zshrc.local "$XDG_CONFIG_HOME"/zshrc.local
 migrate_to_clean "$HOME"/.sqlite_history "$XDG_DATA_HOME"/sqlite_history
-mkdir -p "$XDG_CACHE_HOME"
-mkdir -p "$XDG_CONFIG_HOME"
-mkdir -p "$XDG_DATA_HOME"
-mkdir -p "$XDG_DESKTOP_DIR"
-mkdir -p "$XDG_DOCUMENTS_DIR"
-mkdir -p "$XDG_DOWNLOAD_DIR"
-mkdir -p "$XDG_MUSIC_DIR"
-mkdir -p "$XDG_PICTURES_DIR"
-mkdir -p "$XDG_PICTURES_DIR"/screenshots
-mkdir -p "$XDG_PUBLICSHARE_DIR"
-mkdir -p "$XDG_TEMPLATES_DIR"
-mkdir -p "$XDG_VIDEOS_DIR"
 
 stow -vS -t "$HOME"/ X11
 stow -vS -t "$HOME"/ bat
@@ -152,13 +152,19 @@ stow -vS -t "$HOME"/ tmux
 cp -f ./user-dirs/.config/* "$XDG_CONFIG_HOME"
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
+
+ZPLUG_HOME="$HOME/.zplug"
+if [ -d "$ZPLUG_HOME" ]; then
+    trash "$ZPLUG_HOME"
+fi
+ZPLUG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/zplug"
+if ! [ -d "$ZPLUG_HOME" ]; then
+    git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
+fi
+
 if command -v xdg-mime > /dev/null; then
     xdg-mime default org.pwmt.zathura.desktop application/pdf
 fi
-
-# ln -sf "$XDG_CONFIG_HOME"/tmux/tmux.conf $HOME/.tmux.conf
-# TODO: remove once no longer needed
-ln -sf "$XDG_DATA_HOME"/z "$HOME"/.z
 
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions,spell}
 if command -v nvim > /dev/null; then
