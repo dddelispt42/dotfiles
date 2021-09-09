@@ -987,7 +987,7 @@ endif
     \   'sh': ['shfmt'],
     \   'sql': ['sqlfmt'],
     \   'tex': ['latexindent'],
-    \   'yaml': ['ymlfmt'],
+    \   'yaml': ['yamlfix'],
     \}
     " 'python': ['black', 'isort', 'docformatter', 'pyment'],
     let g:ale_linters_explicit = 1
