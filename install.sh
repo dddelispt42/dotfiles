@@ -154,6 +154,10 @@ stow -vS -t "$HOME"/ ytfzf
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
 
+if [ "$OSTYPE" = "linux-android" ]; then
+    stow -vS -t "$HOME"/ android  # Android
+fi
+
 ZPLUG_HOME="$HOME/.zplug"
 if [ -d "$ZPLUG_HOME" ]; then
     trash "$ZPLUG_HOME"
