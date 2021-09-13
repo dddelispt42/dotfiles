@@ -4,10 +4,13 @@ if [ "$(pgrep -u "${UID:-$USER}" ssh-agent)" = "" ]; then
     test -e "$CACHEDIR/sshagent.sh" && rm -f "$CACHEDIR/sshagent.sh"
     ssh-agent | grep -v echo > "$CACHEDIR/sshagent.sh"
     source "$CACHEDIR/sshagent.sh"
-    # TODO: load non-password keys automatically and pw keys interactively
     for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do
+	# already added?
         if ! ssh-add -L | grep "$(awk '{print $2};' "${key}.pub")" > /dev/null; then
-            ssh-add "$key"
+	    # only load unencrypted keys
+	    if ! cat "$key" | grep "ENCRYPTED$" > /dev/null; then
+                ssh-add "$key"
+            fi
         fi
     done
 fi
