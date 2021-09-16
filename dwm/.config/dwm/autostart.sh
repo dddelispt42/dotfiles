@@ -18,7 +18,7 @@ xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
 # sxhkd -c ${XDG_CONFIG_HOME:-$HOME/.config}/sxhkd/sxhkdrc &
 "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" "$HOST"
 "${XDG_CONFIG_HOME:-$HOME/.config}/dunst/launch.sh" &
-feh --bg-fill "${XDG_CONFIG_HOME:-$HOME/.config}/wall.png" &
+feh --bg-fill "${XDG_CONFIG_HOME:-$HOME/.config}/wp.jpg" &
 udiskie -A -t &
 nohup xfce4-power-manager &
 nohup nextcloud &
