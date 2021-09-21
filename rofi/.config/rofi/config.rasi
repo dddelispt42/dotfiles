@@ -1,8 +1,8 @@
 configuration {
 	modi: "combi,drun,run,window,ssh,calc,keys,filebrowser";
-	width: 70;
+	/* width: 70; */
 /*	lines: 15;*/
-	columns: 3;
+	/* columns: 3; */
 	font: "Hack Nerd Font Mono 12";
 /*	bw: 1;*/
 /*	location: 0;*/
@@ -44,7 +44,7 @@ configuration {
 /*	line-padding: 1;*/
 /*	filter: ;*/
 /*	separator-style: "dash";*/
-	hide-scrollbar: true;
+	/* hide-scrollbar: true; */
 /*	fullscreen: false;*/
 /*	fake-transparency: false;*/
 /*	dpi: -1;*/

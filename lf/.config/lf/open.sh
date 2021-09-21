@@ -39,8 +39,10 @@ _open() {
         text/*) $EDITOR "$1";;
         image/x-xcf|image/svg+xml) setsid gimp "$1" >/dev/null 2>&1 & ;;
         image/*) setsid sxiv -ai >/dev/null 2>&1 & ;;
-        audio/*) setsid umpv "$1" ;;
-        video/*) setsid umpv "$1" -quiet >/dev/null 2>&1 & ;;
+        # audio/*) setsid umpv "$1" ;;
+        # video/*) setsid umpv "$1" -quiet >/dev/null 2>&1 & ;;
+        audio/*) setsid vlc "$1" ;;
+        video/*) setsid vlc "$1" >/dev/null 2>&1 & ;;
         application/pdf) setsid zathura "$1" >/dev/null 2>&1 & ;;
         *) setsid "${OPENER:-xdf-open}" "$1" >/dev/null 2>&1 & ;;
     esac
