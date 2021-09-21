@@ -24,6 +24,14 @@ nohup xfce4-power-manager &
 nohup nextcloud &
 # trayer --edge top --align center --expand false --width 5 --distance 20 &
 nohup clipmenud &
+nohup brave &
+nohup st -c "st - heiko@localhost" -T "st - heiko@localhost" &
+nohup st -c "st - heiko@ed" -T "st - heiko@ed" &
+nohup st -c "st - heiko@ed2" -T "st - heiko@ed2" &
+nohup st -c "st - heiko@backup" -T "st - heiko@backup" &
+nohup anki &
+nohup tbb &
+nohup signal-desktop &
 
 # while true; do
 #     # killall dwmblocks
