@@ -127,6 +127,7 @@ alias pretty-json="python -mjson.tool"
 alias music-dl='youtube-dl --audio-format=mp3 --extract-audio --metadata-from-title "%(artist)s - %(title)s"'
 alias clip='xclip -selection clipboard'
 alias top='htop'
+alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
 alias path='echo -e ${PATH//:/\\n}'
 alias ls_installed_debian_packages="aptitude search '~i!~M'"
 # hors - check stackoverflow and other stuff in terminal
