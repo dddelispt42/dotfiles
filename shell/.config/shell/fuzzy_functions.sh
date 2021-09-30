@@ -166,30 +166,22 @@ function ftags {
     local tagfile tagfiledir fileparam
 
     tagfile=""
-    if [ -f ctags ]; then
-        tagfile="ctags"
-    elif [ -f ./.git/ctags ]; then
-        tagfile="./.git/ctags"
-    elif [ -f ./.svn/ctags ]; then
-        tagfile="./.svn/ctags"
-    elif [ -f ../ctags ]; then
-        tagfile="../ctags"
-    elif [ -f ../.git/ctags ]; then
-        tagfile="../.git/ctags"
-    elif [ -f ../.svn/ctags ]; then
-        tagfile="../.svn/ctags"
-    elif [ -f ../../ctags ]; then
-        tagfile="../../ctags"
-    elif [ -f ../../.git/ctags ]; then
-        tagfile="../../.git/ctags"
-    elif [ -f ../../.svn/ctags ]; then
-        tagfile="../../.svn/ctags"
-    elif [ -f ../../../ctags ]; then
-        tagfile="../../../ctags"
-    elif [ -f ../../../.git/ctags ]; then
-        tagfile="../../../.git/ctags"
-    elif [ -f ../../../.svn/ctags ]; then
-        tagfile="../../../.svn/ctags"
+    if [ -f tags ]; then
+        tagfile="tags"
+    elif [ -f ../tags ]; then
+        tagfile="../tags"
+    elif [ -f ../../tags ]; then
+        tagfile="../../tags"
+    elif [ -f ../../../tags ]; then
+        tagfile="../../../tags"
+    elif [ -f ../../../../tags ]; then
+        tagfile="../../../../tags"
+    elif [ -f ../../../../../tags ]; then
+        tagfile="../../../../../tags"
+    elif [ -f ../../../../../../tags ]; then
+        tagfile="../../../../../../tags"
+    elif [ -f ../../../../../../../tags ]; then
+        tagfile="../../../../../../../tags"
     else
         return
     fi

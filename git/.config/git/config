@@ -7,7 +7,7 @@
     name = Riemer, Heiko
     email = heiko@eheiko.net
 [core]
-    editor = vim
+    editor = nvim
     autocrlf = false
     ; autocrlf = false
     ; fileMode = false

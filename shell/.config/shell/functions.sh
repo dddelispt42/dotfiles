@@ -148,7 +148,7 @@ supported_colors() {
 }
 
 ctags4md() {
-    ctags -f ./ctags -R --langdef=markdown --langmap=markdown:.md --regex-markdown="/^# ([a-zA-Z0-9]+)/\1/" --tag-relative=yes .
+    ctags -f ./tags -R --langdef=markdown --langmap=markdown:.md --regex-markdown="/^# ([a-zA-Z0-9]+)/\1/" --tag-relative=yes .
 }
 
 # Create a temporary directory, with current time until minutes, and
