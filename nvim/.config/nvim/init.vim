@@ -551,9 +551,6 @@ set backupdir=~/.cache/vim/backup
 set dir=~/.cache/vim/swap
 set encoding=UTF-8
 
-" some settings regarding ctags
-set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,../../.git/tags,../../.svn/tags,../../../tags,../../../.git/tags,../../../.svn/tags;
-
 " Spaces Tabs:
     " Info: already in .vimrc
     " syntax enable           " enable syntax processing
@@ -860,7 +857,8 @@ set tags=tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,.
     "     set clipboard=unnamed
     " endif
     "
-    set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;
+    " set tags=ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;
+    set tags=tags,tags,../tags,../../tags,../../../tags;
 
 " vim-auto-save:
     " autocmd FileType vimwiki setlocal let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -1011,10 +1009,10 @@ endif
     " For example:
     let g:vista_ctags_cmd = {
           \ 'haskell': 'hasktags -x -o - -c',
-          \ 'java': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
-          \ 'python': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
-          \ 'rust': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
-          \ 'sh': 'ctags -f ./.git/ctags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'java': 'ctags -f ./tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'python': 'ctags -f ./tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'rust': 'ctags -f ./tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
+          \ 'sh': 'ctags -f ./tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
           \ }
     " To enable fzf's preview window set g:vista_fzf_preview.
     " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()

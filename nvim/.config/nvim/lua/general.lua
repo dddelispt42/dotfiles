@@ -31,16 +31,15 @@ o.termguicolors = true
 o.path = o.path .. "**"
 o.splitbelow = true
 o.splitright = true
-o.tags =
-    "ctags,.git/ctags,.svn/ctags,../ctags,../.git/ctags,../.svn/ctags,../../ctags,../../.git/ctags,../../.svn/ctags,../../../ctags,../../../.git/ctags,../../../.svn/ctags;"
+o.list = true
+o.listchars = "nbsp:¬,tab:»·,trail:·"
+o.tags = "tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../../tags,../../../../../../../tags,../../../../../../../../tags,../../../../../../../../../tags,../../../../../../../../../../tags"
 o.list = true
 o.listchars = "nbsp:¬,tab:»·,trail:·"
 o.wildignore = o.wildignore .. "*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite"
 o.wildignore =
     o.wildignore ..
     "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4 ,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip"
-o.tags =
-    "tags,.git/tags,.svn/tags,../tags,../.git/tags,../.svn/tags,../../tags,../../.git/tags,../../.svn/tags,../../../tags,../../../.git/tags,../../../.svn/tags;"
 o.shortmess = o.shortmess .. "c"
 o.completeopt = "menuone,noinsert,noselect,preview"
 o.signcolumn = "yes"
@@ -166,7 +165,7 @@ map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
 -- rust-analyzer does not yet support goto declaration - re-mapped `gd` to definition
 map("n", "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
 -- map('n', '<leader>ld', '<cmd>lua vim.lsp.buf.declaration()<CR>', options)
-map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
+-- map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
 -- Completion (nvim-comple)
 map("i", "<expr> <C-Space>", "compe#complete()", options)
 map("i", "<expr> <CR>", "compe#confirm('<CR>')", options)

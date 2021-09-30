@@ -63,6 +63,10 @@ if command -v bat >/dev/null; then
 fi
 
 # AUTOSSH
+export AUTOSSH_POLL=20
+export AUTOSSH_GATETIME=30
+export AUTOSSH_PORT=$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); printf("%d\n",r)  }' < /dev/null)
+export AUTOSSH_LOGLEVEL=0
 export AUTOSSH_LOGFILE="$XDG_CACHE_HOME/autossh.log"
 
 # ZSH env
