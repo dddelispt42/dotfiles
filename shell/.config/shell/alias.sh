@@ -104,6 +104,7 @@ if command -v bat >/dev/null; then
     alias more='bat'
     alias m='more'
 fi
+command -v tidy-viewer > /dev/null && alias tv="tidy-viewer"
 
 # git
 alias g='git'
