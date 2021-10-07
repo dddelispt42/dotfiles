@@ -1,48 +1,24 @@
 #!/bin/bash
 
-# clean up legacy manual links - pre stow
-# [[ -L ~/.ignore ]] && trash ~/.ignore
-# [[ -L ~/.agignore ]] && trash ~/.agignore
-# [[ -L ~/.rgignore ]] && trash ~/.rgignore
-# [[ -L ~/.gitignore ]] && trash ~/.gitignore
-# [[ -L ~/.gitconfig ]] && trash ~/.gitconfig
-# [[ -L ~/.profile ]] && trash ~/.profile
-# [[ -L ~/.bashrc ]] && trash ~/.bashrc
-# [[ -L ~/.bash_profile ]] && trash ~/.bash_profile
-# [[ -L ~/.bash_logout ]] && trash ~/.bash_logout
-# [[ -f ~/.config/liquidpromptrc ]] && trash ~/.config/liquidpromptrc
-# [[ -f ~/.agent.sh ]] && trash ~/.agent.sh
-# [[ -d ~/.config/bat ]] && trash ~/.config/bat
-# [[ -L ~/.config/bspwm ]] && trash ~/.config/bspwm
-# [[ -L ~/.config/dunst ]] && trash ~/.config/dunst
-# [[ -L ~/.config/lf ]] && trash ~/.config/lf
-# [[ -L ~/.config/polybar ]] && trash ~/.config/polybar
-# [[ -L ~/.config/sxhkd ]] && trash ~/.config/sxhkd
-# [[ -L ~/.screenrc ]] && trash ~/.screenrc
-# [[ -L ~/.tmux.conf ]] && trash ~/.tmux.conf
-# [[ -L ~/.tmuxinator ]] && trash ~/.tmuxinator
-# [[ -L ~/.config/nvim ]] && trash ~/.config/nvim
-# [[ -L ~/.config/nvim/UltiSnips ]] && trash ~/.config/nvim/UltiSnips
-# [[ -L ~/.vimrc ]] && trash ~/.vimrc
-# [[ -L ~/.vim ]] && trash ~/.vim
-# [[ -L ~/.nvim ]] && trash ~/.nvim
-# [[ -L ~/.nvimrc ]] && trash ~/.nvimrc
-# [[ -L ~/.vim/UltiSnips ]] && trash ~/.vim/UltiSnips
-# [[ -L ~/.config/nvim/init.vim ]] && trash ~/.config/nvim/init.vim
-# [[ -L ~/.config/nvim/local_bundles.vim ]] && trash ~/.config/nvim/local_bundles.vim
-# [[ -L ~/.config/nvim/local_init.vim ]] && trash ~/.config/nvim/local_init.vim
-# [[ -d ~/dotfiles/bash/liquidprompt ]] && trash ~/dotfiles/bash/liquidprompt
-# [[ -d ~/dotfiles/zsh/oh-my-zsh ]] && trash ~/dotfiles/zsh/oh-my-zsh
-# [[ -d ~/dotfiles/zsh/zplug ]] && trash ~/dotfiles/zsh/zplug
-# [[ -L ~/.zshrc ]] && trash ~/.zshrc
-# [[ -L ~/.zshenv ]] && trash ~/.zshenv
-# [[ -L ~/.p10k.zsh ]] && trash ~/.p10k.zsh
-
 # move things to XDG directories
 function migrate_to_clean {
     [[ -f "$1" ]] && [[ ! -f "$2" ]] && mv "$1" "$2" && return
     [[ -d "$1" ]] && [[ ! -d "$2" ]] && mv "$1" "$2"
 }
+
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+export XDG_DESKTOP_DIR=${XDG_DESKTOP_DIR:-$HOME/docs/desktop}
+export XDG_DOCUMENTS_DIR=${XDG_DOCUMENTS_DIR:-$HOME/docs}
+export XDG_DOWNLOAD_DIR=${XDG_DOWNLOAD_DIR:-$HOME/dl}
+export XDG_MUSIC_DIR=${XDG_MUSIC_DIR:-$HOME/media/music}
+export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:-$HOME/media/pix}
+export XDG_PUBLICSHARE_DIR=${XDG_PUBLICSHARE_DIR:-$HOME/media/public}
+export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/$UID}
+export XDG_TEMPLATES_DIR=${XDG_TEMPLATES_DIR:-$HOME/media/temp}
+export XDG_VIDEOS_DIR=${XDG_VIDEOS_DIR:-$HOME/media/videos}
+
 mkdir -p "$XDG_CACHE_HOME"
 mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_DATA_HOME"
@@ -55,7 +31,6 @@ mkdir -p "$XDG_PICTURES_DIR"/screenshots
 mkdir -p "$XDG_PUBLICSHARE_DIR"
 mkdir -p "$XDG_TEMPLATES_DIR"
 mkdir -p "$XDG_VIDEOS_DIR"
-# migrate_to_clean $HOME/.zplug "$XDG_CACHE_HOME"/zplug
 migrate_to_clean "$HOME"/.RFCs "$XDG_CACHE_HOME"/RFCs
 migrate_to_clean "$HOME"/.Skype "$XDG_CONFIG_HOME"/Skype
 migrate_to_clean "$HOME"/.aria2 "$XDG_CONFIG_HOME"/aria2
@@ -158,10 +133,6 @@ if [ "$OSTYPE" = "linux-android" ]; then
     stow -vS -t "$HOME"/ android  # Android
 fi
 
-ZPLUG_HOME="$HOME/.zplug"
-if [ -d "$ZPLUG_HOME" ]; then
-    trash "$ZPLUG_HOME"
-fi
 ZPLUG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/zplug"
 if ! [ -d "$ZPLUG_HOME" ]; then
     git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
