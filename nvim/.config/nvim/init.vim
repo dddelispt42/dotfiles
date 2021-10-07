@@ -30,13 +30,13 @@ if (has('nvim-0.5'))
                 \ 'content': 'text',
                 \ 'priority': 0,
                 \ 'selector': 'textarea',
-                \ 'takeover': 'always',
+                \ 'takeover': 'never',
             \ },
         \ }
     \ }
     let fc = g:firenvim_config['localSettings']
     " let fc['https?://[^/]+\.co\.uk/'] = { 'takeover': 'never', 'priority': 1 }
-    let fc['.*'] = { 'takeover': 'always' }
+    " let fc['.*'] = { 'takeover': 'never' }
 
     augroup heiko
         au!

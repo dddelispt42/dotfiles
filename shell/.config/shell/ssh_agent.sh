@@ -3,12 +3,13 @@ SSHDIR="$HOME/.ssh"
 if [ "$(pgrep -u "${UID:-$USER}" ssh-agent)" = "" ]; then
     test -e "$CACHEDIR/sshagent.sh" && rm -f "$CACHEDIR/sshagent.sh"
     ssh-agent | grep -v echo > "$CACHEDIR/sshagent.sh"
+    # shellcheck source=/home/heiko/.cache/sshagent.sh
     source "$CACHEDIR/sshagent.sh"
     for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do
 	# already added?
         if ! ssh-add -L | grep "$(awk '{print $2};' "${key}.pub")" > /dev/null; then
 	    # only load unencrypted keys
-	    if ! cat "$key" | grep "ENCRYPTED$" > /dev/null; then
+	    if ! grep "ENCRYPTED$" "$key" > /dev/null; then
                 ssh-add "$key"
             fi
         fi
@@ -29,7 +30,7 @@ keyremove() {
     ssh-add -d "$(ssh-add -L | sed -e 's/.* //' | fzf -x)"
 }
 keynew() {
-    ssh-keygen -C "$(whoami)@$(hostname)-$(date -I)"
+    ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)-$(date -I)"
 }
 alias keylist="ssh-add -L"
 
