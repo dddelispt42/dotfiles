@@ -83,7 +83,7 @@ modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem p
 
 [bar/work]
 inherit = bar/base
-modules-right = polypomo updates-arch fs_manjaro memory cpu battery temperature date
+modules-right = polypomo updates-arch fs_manjaro memory cpu battery date
 
 [module/weather]
 type = custom/script
