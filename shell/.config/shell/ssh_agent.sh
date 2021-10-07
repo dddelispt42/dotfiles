@@ -32,7 +32,7 @@ keyremove() {
     ssh-add -d "$(ssh-add -L | sed -e 's/.* //' | fzf -x)"
 }
 keynew() {
-    ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I) -a 100"
+    ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I)" -a 100
 }
 alias keylist="ssh-add -L"
 
