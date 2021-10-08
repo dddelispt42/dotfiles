@@ -13,6 +13,7 @@
 #dot_marker = false
 # The update rate of the application.
 #rate = 1000
+rate = 10000
 # Whether to put the CPU legend to the left.
 #left_legend = false
 # Whether to set CPU% on a process to be based on the total CPU or just current usage.
@@ -34,6 +35,7 @@
 #temperature_type = "celsius"
 # The default time interval (in milliseconds).
 #default_time_value = 60000
+default_time_value = 600000
 # The time delta on each zoom in/out action (in milliseconds).
 #time_delta = 15000
 # Override layout default widget
@@ -45,10 +47,12 @@
 #use_old_network_legend = false
 # Remove space in tables
 #hide_table_gap = false
+hide_table_gap = true
 # Disable mouse clicks
 #disable_click = false
 # Built-in themes.  Valid values are "default", "default-light", "gruvbox", "gruvbox-light"
 #color = "default"
+color = "gruvbox"
 # Show memory values in the processes widget as values by default
 #mem_as_value = false
 # Show tree mode by default in the processes widget.
@@ -97,7 +101,7 @@
 # [[row.child.child]] represents a widget.
 #
 # All widgets must have the type value set to one of ["cpu", "mem", "proc", "net", "temp", "disk", "empty"].
-# All layout components have a ratio value - if this is not set, then it defaults to 1. 
+# All layout components have a ratio value - if this is not set, then it defaults to 1.
 # The default widget layout:
 #[[row]]
 #  ratio=30
