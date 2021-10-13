@@ -31,6 +31,7 @@ mkdir -p "$XDG_PICTURES_DIR"/screenshots
 mkdir -p "$XDG_PUBLICSHARE_DIR"
 mkdir -p "$XDG_TEMPLATES_DIR"
 mkdir -p "$XDG_VIDEOS_DIR"
+mkdir -p "$HOME/.ssh"
 migrate_to_clean "$HOME"/.RFCs "$XDG_CACHE_HOME"/RFCs
 migrate_to_clean "$HOME"/.Skype "$XDG_CONFIG_HOME"/Skype
 migrate_to_clean "$HOME"/.aria2 "$XDG_CONFIG_HOME"/aria2
@@ -151,6 +152,16 @@ else
     vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 fi
 
+# TODO: check if key is too old
+test -s "$HOME/.ssh/id_ed25519" || ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I)"
+test -s "$HOME/.ssh/id_ed25519_sec" || ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I)-sec" -f "$HOME/.ssh/id_ed25519_sec"
+echo "Add public key to authorized_keys for git server:"
+cat "$HOME/.ssh/id_ed25519.pub"
+cat "$HOME/.ssh/id_ed25519_sec.pub"
+# TODO: only if new key was generated
+read -p "Add public key to git server..." yn
+mkdir -p "$HOME/dev/heiko"
+
 # copy to Windows if exiting
 if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
     cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
@@ -160,4 +171,4 @@ if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
 fi
 
 # protect settings dir
-chmod 700 "$HOME/.cache" "$HOME/.config"
+chmod 700 "$HOME/.cache" "$HOME/.config" "$HOME/.ssh"
