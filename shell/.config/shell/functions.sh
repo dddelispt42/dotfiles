@@ -250,3 +250,9 @@ codi() {
     hi NonText ctermfg=0 |\
     Codi $syntax" "$@"
 }
+ggs() {
+    git global scan
+    git global list | grep -v "/home/heiko/Nextcloud" | grep -v "pt-rdl4002-dev" | grep -v ".cache/paru" > "$HOME/.cache/git-global/repos_new.txt"
+    mv -f "$HOME/.cache/git-global/repos_new.txt" "$HOME/.cache/git-global/repos.txt"
+    git global | $PAGER
+}
