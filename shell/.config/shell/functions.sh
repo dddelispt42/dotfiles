@@ -252,7 +252,7 @@ codi() {
 }
 ggs() {
     git global scan
-    git global list | grep -v "/home/heiko/Nextcloud" | grep -v "pt-rdl4002-dev" | grep -v ".cache/paru" > "$HOME/.cache/git-global/repos_new.txt"
+    git global list | grep -v "/home/heiko/Nextcloud" | grep -v "pt-rdl4002-dev" | grep -v ".cache/paru" | grep -v "/home/heiko/.local/share/Trash" > "$HOME/.cache/git-global/repos_new.txt"
     mv -f "$HOME/.cache/git-global/repos_new.txt" "$HOME/.cache/git-global/repos.txt"
     git global | $PAGER
 }
