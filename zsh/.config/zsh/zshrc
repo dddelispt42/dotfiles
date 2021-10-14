@@ -12,10 +12,9 @@ setopt EXTENDED_HISTORY        # save timestamp and runtime information
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-if [[ $OSTYPE == linux* ]]; then
+# if [[ $OSTYPE == linux* ]]; then
+if tty -s; then
     # zplug
-    # TODO: move to XDG...
-    # source ~/.config/zplug/init.zsh
     export ZPLUG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/zplug"
     source $ZPLUG_HOME/init.zsh
     # zplug "changyuheng/fz", defer:1
@@ -50,12 +49,9 @@ if [[ $OSTYPE == linux* ]]; then
             echo; zplug install
         fi
     fi
-
     # Then, source plugins and add commands to $PATH
     # zplug load --verbose
     zplug load
-
-    eval "$(starship init zsh)"
 fi
 
 test -s /usr/share/fzf/key-bindings.zsh && source "$_" || true
@@ -81,6 +77,7 @@ bindkey ' ^?' backward-delete-char
 test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zshrc.local && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/broot/launcher/bash/br && source "$_" || true
 
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
