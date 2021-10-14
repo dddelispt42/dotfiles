@@ -162,3 +162,16 @@ tags
 tags-te
 target/
 ~$*
+doc/tags-te
+**/doc/tags-te
+ctags
+doc/ctags
+Cargo.lock
+.cargo-ok
+*.yang.uml
+*.yang.yin
+**/.project
+**/.classpath
+**/.settings
+.ccls-cache/
+>>>>>>> 4358af9 (clean up local repos)
