@@ -8,3 +8,4 @@ cd "$HOME/dev/heiko" || exit
 test -d dotfiles || git clone ssh://git@git/home/git/dotfiles.git
 test -d bootstrap || git clone ssh://git@git/home/git/bootstrap.git
 cd dotfiles || exit
+./install.sh
