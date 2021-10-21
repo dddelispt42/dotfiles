@@ -35,13 +35,16 @@ set scrolloff 10
     fi
 }}
 
+# Edit all files
+map E !nvim $fx
+
 # execute current file (must be executable)
 map x $$f
 map X !$f
 
 # dedicated keys for file opener actions
-map o &~/.config/lf/open.sh $fx
-# map O ~/.config/lf/open.sh $fx
+map o &~/.config/lf/open.sh $f
+map O &~/.config/lf/open.sh $fx
 
 # use enter for shell commands
 # map <enter> shell
@@ -140,5 +143,5 @@ cmd usage !du -sk * | sort -n | bat
 map U usage
 
 set previewer ~/.config/lf/preview.sh
-# map i $~/.config/lf/preview.sh $f | bat
-map i $~/.config/lf/preview.sh $f | less -R
+map i $~/.config/lf/preview.sh $f | bat
+# map i $~/.config/lf/preview.sh $f | less -R

@@ -1,6 +1,6 @@
 #!/bin/sh
 LINES=100
-LINESBEFORE=3
+LINESBEFORE=5
 
 # dia
 # docm
@@ -35,7 +35,7 @@ elif [ -f "$1" ]; then
         *.md|*.MD|*.markdown) mdcat "$1" || glow "$1" || bat "$1" || highlight -O ansi --force "$1" || cat "$1";;
         *.odt|*.ODT|*.ods|*.ODS|*.odp|*.ODP) odt2txt "$1";;
         *.ogv|*.OGV|*.mp4|*.MP4|*.mkv|*.MKV|*.avi|*.AVI|*.swf|*.SWF|*.flv|*.FLV|*.mov|*.MOV|*.mpg|*.MPG|*.webm|*.WEBM|*.m4v|*.M4V) mediainfo "$1";;
-        *.aac|*.AAC|*.mpa|*.mpa|*.mp3|*.MP3) mediainfo "$1";;
+        *.aac|*.AAC|*.mpa|*.MPA|*.mp3|*.MP3) mediainfo "$1";;
         *.pdf|*.PDF) pdftotext "$1" -;;
         *.rar|*.RAR) unrar l "$1";;
         *.smd|*.gliffy) bat -l json "$1" || cat "$1";;
@@ -50,8 +50,8 @@ else
     filename=$(echo "$1" | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1/')
     linenumber=$(echo "$1" | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\2/')
     if [ -f "$filename" ]; then
-        begin=$(expr $linenumber - 5)
-        end=$(expr $linenumber + $LINES)
+        begin=$((linenumber - LINESBEFORE))
+        end=$((linenumber + LINES))
         if [ $begin -lt 0 ]; then
             bat --color always -r 0:${end} "$filename"
         else
