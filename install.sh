@@ -159,7 +159,7 @@ echo "Add public key to authorized_keys for git server:"
 cat "$HOME/.ssh/id_ed25519.pub"
 cat "$HOME/.ssh/id_ed25519_sec.pub"
 # TODO: only if new key was generated
-read -p "Add public key to git server..." yn
+# read -p "Add public key to git server..." yn
 mkdir -p "$HOME/dev/heiko"
 
 # copy to Windows if exiting
