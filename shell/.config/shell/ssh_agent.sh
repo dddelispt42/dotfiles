@@ -8,10 +8,14 @@ if [ "$(pgrep -u "${UID:-$USER}" ssh-agent)" = "" ]; then
     for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do
 	# already added?
         if ! ssh-add -L | grep "$(awk '{print $2};' "${key}.pub")" > /dev/null; then
-	    # only load unencrypted keys
-	    if ! grep "ENCRYPTED$" "$key" > /dev/null; then
+            # only load unencrypted keys
+            if [ "$(wc -l ${key} | awk '{print $1;}')" -eq "8" ]; then
                 ssh-add "$key"
             fi
+            # only for RSA keys
+            # if ! grep "ENCRYPTED$" "$key" > /dev/null; then
+            #     ssh-add "$key"
+            # fi
         fi
     done
 fi
@@ -30,7 +34,7 @@ keyremove() {
     ssh-add -d "$(ssh-add -L | sed -e 's/.* //' | fzf -x)"
 }
 keynew() {
-    ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)-$(date -I)"
+    ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I) -a 100"
 }
 alias keylist="ssh-add -L"
 
