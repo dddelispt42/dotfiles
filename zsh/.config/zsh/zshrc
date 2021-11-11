@@ -11,6 +11,7 @@ setopt HIST_EXPIRE_DUPS_FIRST  # allow dups, but expire old ones when I hit HIST
 setopt EXTENDED_HISTORY        # save timestamp and runtime information
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+export ZLE_SPACE_SUFFIX_CHARS='&|'
 
 # if [[ $OSTYPE == linux* ]]; then
 if tty -s; then
