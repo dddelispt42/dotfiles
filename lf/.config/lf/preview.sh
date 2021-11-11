@@ -35,7 +35,7 @@ elif [ -f "$1" ]; then
         *.md|*.MD|*.markdown) mdcat "$1" || glow "$1" || bat "$1" || highlight -O ansi --force "$1" || cat "$1";;
         *.odt|*.ODT|*.ods|*.ODS|*.odp|*.ODP) odt2txt "$1";;
         *.ogv|*.OGV|*.mp4|*.MP4|*.mkv|*.MKV|*.avi|*.AVI|*.swf|*.SWF|*.flv|*.FLV|*.mov|*.MOV|*.mpg|*.MPG|*.webm|*.WEBM|*.m4v|*.M4V) mediainfo "$1";;
-        *.aac|*.AAC|*.mpa|*.MPA|*.mp3|*.MP3) mediainfo "$1";;
+        *.aac|*.AAC|*.mpa|*.MPA|*.m4a|*.M4A|*.mp3|*.MP3) mediainfo "$1";;
         *.pdf|*.PDF) pdftotext "$1" -;;
         *.rar|*.RAR) unrar l "$1";;
         *.smd|*.gliffy) bat -l json "$1" || cat "$1";;
