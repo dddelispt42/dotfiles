@@ -6,6 +6,7 @@
 [user]
     name = Riemer, Heiko
     email = heiko@eheiko.net
+    signingKey = BD17C64C7AC45CDE0488E137D20F481E76D74F78
 [core]
     editor = nvim
     autocrlf = false
@@ -14,7 +15,7 @@
     filemode = false
     ; pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
     pager = delta
-	excludesfile = ~/.config/git/ignore
+    excludesfile = ~/.config/git/ignore
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -29,13 +30,9 @@
     file-decoration-style = none
 [github]
     user = dddelispt42
-    ; token = ffe6534674500683267422160ecf0851813e
 [color]
     ui = auto
 [alias]
-    ; create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
-    ; delete-branch = !sh -c 'git push origin :refs/heads/$1 && git remote prune origin && git branch -D $1' -
-    ; merge-branch = !git checkout master && git merge @{-1}
     aa = add --all
     af = autofixup
     ap = add --patch
@@ -122,11 +119,13 @@
     added = green
     changed = yellow
     untracked = cyan
-[winUpdater]
-    recentlySeenVersion = 2.22.0.windows.1
 ; [sequence]
     ; editor = interactive-rebase-tool
 [pull]
-	ff = only
+    ff = only
 [status]
     submodulesummary = 1
+[gpg]
+    program = gpg
+[gpgv]
+    program = gpgv
