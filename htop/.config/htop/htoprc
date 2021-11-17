@@ -2,7 +2,7 @@
 # The parser is also very primitive, and not human-friendly.
 htop_version=3.1.1
 config_reader_min_version=2
-fields=0 48 17 18 20 6 38 39 40 2 46 47 49 20 50 111 1
+fields=0 48 17 18 20 38 39 40 2 46 47 49 20 1
 sort_key=46
 sort_direction=-1
 tree_sort_key=46
@@ -23,7 +23,7 @@ strip_exe_from_cmdline=1
 show_merged_command=1
 tree_view=1
 tree_view_always_by_pid=1
-all_branches_collapsed=1
+all_branches_collapsed=0
 header_margin=1
 detailed_cpu_time=1
 cpu_count_from_one=1

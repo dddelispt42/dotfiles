@@ -9,7 +9,7 @@ if [ "$(pgrep -u "${UID:-$USER}" ssh-agent)" = "" ]; then
 	# already added?
         if ! ssh-add -L | grep "$(awk '{print $2};' "${key}.pub")" > /dev/null; then
             # only load unencrypted keys
-            if [ "$(wc -l ${key} | awk '{print $1;}')" -eq "8" ]; then
+            if [ "$(wc -l ${key} | awk '{print $1;}')" -lt "8" ]; then
                 ssh-add "$key"
             fi
             # only for RSA keys
