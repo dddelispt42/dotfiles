@@ -1007,6 +1007,14 @@ endif
     " Declare the command including the executable and options used to generate ctags output
     " for some certain filetypes.The file path will be appened to your custom command.
     " For example:
+    let g:vista_executive_for = {
+        \ 'markdown': 'toc',
+        \ 'vimwiki': 'markdown',
+        \ 'python': 'lcn',
+        \ 'rust': 'lcn',
+        \ 'sh': 'lcn',
+        \ }
+
     let g:vista_ctags_cmd = {
           \ 'haskell': 'hasktags -x -o - -c',
           \ 'java': 'ctags -f ./tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .',
