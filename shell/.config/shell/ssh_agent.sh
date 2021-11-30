@@ -6,16 +6,12 @@ if [ "$(pgrep -u "${UID:-$USER}" ssh-agent)" = "" ]; then
     # shellcheck source=/home/heiko/.cache/sshagent.sh
     source "$CACHEDIR/sshagent.sh"
     for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do
-	# already added?
+    # already added?
         if ! ssh-add -L | grep "$(awk '{print $2};' "${key}.pub")" > /dev/null; then
             # only load unencrypted keys
-            if [ "$(wc -l ${key} | awk '{print $1;}')" -lt "8" ]; then
+            if [ "$(wc -l "${key}" | awk '{print $1;}')" -lt "8" ]; then
                 ssh-add "$key"
             fi
-            # only for RSA keys
-            # if ! grep "ENCRYPTED$" "$key" > /dev/null; then
-            #     ssh-add "$key"
-            # fi
         fi
     done
 fi
@@ -27,7 +23,9 @@ fi
 keyadd() {
     local selected
     if selected="$(for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do if ! ssh-add -L | grep "$(awk '{print $2};' "$key.pub")" > /dev/null; then echo "$key"; fi; done | fzf -x -0)"; then
-        ssh-add "$selected"
+        echo "$selected" | while read -r line; do
+                ssh-add "$line"
+        done
     fi
 }
 keyremove() {
