@@ -259,7 +259,7 @@ return require("packer").startup {
         -- use "beloglazov/vim-online-thesaurus"
 
         --" Plug 'CoatiSoftware/vim-sourcetrail'
-        use "github/copilot.vim"
+        -- use "github/copilot.vim"
     end,
     config = {
         _display = {
