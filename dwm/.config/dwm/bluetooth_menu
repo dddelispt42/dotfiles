@@ -11,5 +11,9 @@ do
 done | sort -u | rofi -dmenu | sed 's/\s*#.*//')
 if [[ -n "$selected" ]]; then
     echo "Run: $selected"
-    $selected
+    if $selected; then
+        notify-send -t 2000 -a "Bluetooth Menu" "SUCCESS" "$selected"
+    else
+        notify-send -t 2000 -a "Bluetooth Menu" "FAILURE" "$selected"
+    fi
 fi
