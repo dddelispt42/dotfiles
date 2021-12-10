@@ -1,6 +1,7 @@
 #!/bin/bash
 #this file is called by .xinitrc to start some nice apps for dwm
 HOST=$(hostname)
+TERM="${TERMINAL:-alacritty}"
 
 if [ "$HOST" == "work" ]; then
     # MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
@@ -25,44 +26,10 @@ nohup nextcloud &
 # trayer --edge top --align center --expand false --width 5 --distance 20 &
 nohup clipmenud &
 nohup brave &
-nohup st -c "st - heiko@localhost" -T "st - heiko@localhost" &
-nohup st -c "st - heiko@ed" -T "st - heiko@ed" &
-nohup st -c "st - heiko@ed2" -T "st - heiko@ed2" &
-nohup st -c "st - heiko@backup" -T "st - heiko@backup" &
+nohup "$TERM" -c "$TERM - heiko@localhost" -T "$TERM - heiko@localhost" &
+nohup "$TERM" -c "$TERM - heiko@ed" -T "$TERM - heiko@ed" &
+nohup "$TERM" -c "$TERM - heiko@ed2" -T "$TERM - heiko@ed2" &
+nohup "$TERM" -c "$TERM - heiko@backup" -T "$TERM - heiko@backup" &
 nohup anki &
 nohup tbb &
 nohup signal-desktop &
-
-# while true; do
-#     # killall dwmblocks
-#     dwmblocks || exit
-# done &
-
-# while true; do
-#     xrandr.sh
-#     sleep 15
-# done &
-# polybar "$(hostname)" > polybar.log 2>&1
-
-# ps aux |grep -E "st - [h]eiko@localhost" > /dev/null
-# if [ $? -ne 0 ]; then
-#     nohup st -c "st - heiko@localhost" -T "st - heiko@localhost" &
-# fi
-# if [ "$HOST" = "work" ]; then
-#     ps aux |grep -E "st - [h]eiko@lab" > /dev/null
-#     if [ $? -ne 0 ]; then
-#         nohup st -c "st - heiko@lab" -T "st - heiko@lab" &
-#     fi
-# fi
-# ps aux | grep -E "[f]irefox" > /dev/null
-# if [ $? -ne 0 ]; then
-#     nohup firefox &
-# fi
-# ps aux | grep -E "[s]ignal-desktop" > /dev/null
-# if [ $? -ne 0 ]; then
-#     nohup signal-desktop &
-# fi
-# ps aux |grep -E "st - [h]eiko@ed" > /dev/null
-# if [ $? -ne 0 ]; then
-#     nohup st -c "st - heiko@ed" -T "st - heiko@ed" &
-# fi

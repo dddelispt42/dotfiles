@@ -6,8 +6,8 @@ do
     dev_name="$(echo "$dev" | sed 's/Device\s[0-9A-F:]\+\s//')"
     cmd="$(bluetoothctl info "$dev_id" | grep "Connected: " | sed 's/\s*Connected: //;s/yes\s*$/disconnect/;s/no\s*$/connect/')"
     echo "bluetoothctl $cmd $dev_id # $dev_name"
-    echo "st -e bluetoothctl  # start bluetoothctl interactively"
-    echo "st -e sudo systemctl restart bluetooth.service  # RESTART bluetooth stack"
+    echo "${TERMINAL:-alacritty} -e bluetoothctl  # start bluetoothctl interactively"
+    echo "${TERMINAL:-alacritty} -e sudo systemctl restart bluetooth.service  # RESTART bluetooth stack"
 done | sort -u | rofi -dmenu | sed 's/\s*#.*//')
 if [[ -n "$selected" ]]; then
     echo "Run: $selected"

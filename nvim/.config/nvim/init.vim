@@ -222,10 +222,10 @@ else
         Plug 'voldikss/vim-floaterm'
         Plug 'stsewd/fzf-checkout.vim'
         " edit JIRA issues in vim
-        Plug 'n0v1c3/vira', { 'do': './install.sh' }
+        " Plug 'n0v1c3/vira', { 'do': './install.sh' }
         " Plug 'dddelispt42/vira', { 'do': './install.sh' }
         " use nvim in firefox
-        Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+        " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
     endif
     " automatically set the root directory
     Plug 'airblade/vim-rooter'
