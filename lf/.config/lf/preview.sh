@@ -47,15 +47,15 @@ elif [ -f "$1" ]; then
         *) bat --color always "$1" || highlight -O ansi --force "$1" || cat "$1";;
     esac
 else
-    filename=$(echo "$1" | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1/')
-    linenumber=$(echo "$1" | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\2/')
+    filename=$(echo "$1" | sed 's/\(.*\):\([0-9]\+\):.*$/\1/')
+    linenumber=$(echo "$1" | sed 's/\(.*\):\([0-9]\+\):.*$/\2/')
     if [ -f "$filename" ]; then
         begin=$((linenumber - LINESBEFORE))
         end=$((linenumber + LINES))
         if [ $begin -lt 0 ]; then
-            bat --color always -r 0:${end} "$filename"
+            bat -n --color always -r 0:${end} "$filename"
         else
-            bat --color always -r ${begin}:${end} "$filename"
+            bat -n --color always -r ${begin}:${end} "$filename"
         fi
     fi
 fi

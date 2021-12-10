@@ -50,7 +50,7 @@ return require("packer").startup {
         }
         use "nvim-telescope/telescope-frecency.nvim"
 
-        use "mhinz/vim-startify"
+        -- use "mhinz/vim-startify"
         use "dstein64/vim-startuptime"
         use "norcalli/nvim-colorizer.lua"
         use "norcalli/nvim-terminal.lua"
@@ -250,7 +250,7 @@ return require("packer").startup {
         use "voldikss/vim-floaterm"
         use "stsewd/fzf-checkout.vim"
         -- " edit JIRA issues in vim
-        use "n0v1c3/vira"
+        -- use "n0v1c3/vira"
         -- use 'dddelispt42/vira', { 'do': './install.sh' }
         -- " automatically set the root directory
         use "airblade/vim-rooter"
