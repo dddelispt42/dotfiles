@@ -40,7 +40,8 @@ declare -a options=(
 
 yesno(){
     # shellcheck disable=SC2005
-    echo "$(echo -e "No\nYes" | rofi -dmenu -i -p "${1}")"
+    # echo "$(echo -e "No\nYes" | rofi -dmenu -i -p "${1}")"
+    echo Yes
 }
 
 # Piping the above array into dmenu.
