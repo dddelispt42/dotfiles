@@ -17,14 +17,42 @@
 ;==========================================================
 
 [colors]
-background = ${xrdb:color0:#222}
-background-alt = #444
-foreground = ${xrdb:color7:#efefef}
+; background = ${xrdb:color0:#222}
+; background-alt = #444
+; foreground = ${xrdb:color7:#efefef}
 foreground-alt = #c9f14c
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+; primary = #ffb52a
+; secondary = #e60053
+; alert = #bd2c40
 grey = #555555
+
+; background = #282828
+black = #282828
+blue = #458588
+brightBlack = #928374
+brightBlue = #83A598
+brightCyan = #8EC07C
+brightGreen = #B8BB26
+brightPurple = #D3869B
+brightRed = #FB4934
+brightWhite = #EBDBB2
+brightYellow = #FABD2F
+cyan = #689D6A
+; foreground = #EBDBB2
+green = #98971A
+purple = #B16286
+red = #CC241D
+white = #A89984
+yellow = #D79921
+primary = #A89984
+; alert = #CC241D
+
+background="#282828"
+background-alt="#313131"
+foreground="#EBDBB2"
+; SEP="#505050"
+alert="#FB4934"
+secondary="#8EC07C"
 
 [bar/base]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -79,7 +107,7 @@ cursor-scroll = ns-resize
 
 [bar/artix]
 inherit = bar/base
-modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio cpu temperature weather date
+modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio cpu memory temperature weather date
 
 [bar/work]
 inherit = bar/base
@@ -90,7 +118,7 @@ type = custom/script
 exec = ~/.config/polybar/weather.sh
 interval = 3600
 tail = true
-format-prefix = "摒 "
+format-prefix = "摒"
 format-prefix-foreground = ${colors.foreground-alt}
 ; click-left = ~/.config/polybar/
 
@@ -141,8 +169,8 @@ type = internal/xwindow
 format = <label>
 ; format-background = #005500
 ; format-foreground = #ffffff
-format-underline = #00aa00
-format-padding = 4
+; format-underline = #00aa00
+; format-padding = 4
 label = %title%
 label-maxlen = 50
 
@@ -152,15 +180,15 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+; format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+; label-layout-underline = ${colors.secondary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+; label-indicator-underline = ${colors.secondary}
 
 [module/filesystem]
 type = internal/fs
@@ -172,7 +200,8 @@ mount-0 = /
 format-mounted-prefix = " "
 format-mounted-prefix-foreground = ${colors.foreground-alt}
 format-mounted = <label-mounted>
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%% of %total%
+; label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%% of %total%
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}:%percentage_used%%
 
 format-unmounted-prefix = ""
 format-unmounted-prefix-foreground = ${colors.foreground-alt}
@@ -209,13 +238,15 @@ format = <label-state>
 ; format = <label-state> <label-mode>
 
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-foreground = ${colors.red}
-label-focused-underline= ${colors.alert}
+; label-focused-background = ${colors.background-alt}
+; label-focused-background = ${colors.purple}
+label-focused-foreground = ${colors.alert}
+; label-focused-underline= ${colors.alert}
 label-focused-padding = 1
 
 label-occupied = %index%
 ; label-occupied-background = ${colors.lightgreen}
+label-occupied-background = ${colors.blue}
 label-occupied-padding = 1
 
 label-urgent = %index%!
@@ -223,6 +254,7 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
 label-empty = %index%
+label-empty-background = ${colors.brightBlue}
 ; label-empty-foreground = ${colors.foreground-alt}
 label-empty-foreground = ${colors.grey}
 label-empty-padding = 1
@@ -233,7 +265,7 @@ interval = 5
 format = <label> <ramp-coreload>
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+; format-underline = #f90000
 label = %percentage:2%%
 ramp-coreload-spacing = 1
 ramp-coreload-0 = ▁
@@ -251,9 +283,10 @@ type = internal/memory
 interval = 5
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+; format-underline = #4bffdc
 ; label = %percentage_used%%
-label = RAM %gb_used%/%gb_total% - SWAP %gb_swap_used%/%gb_swap_total%
+; label = RAM %gb_used%/%gb_total% - SWAP %gb_swap_used%/%gb_swap_total%
+label = %gb_used%|%gb_swap_used%
 click-left = scratchpad htop &
 
 [module/wlan]
@@ -262,7 +295,7 @@ interface = net1
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+; format-connected-underline = #9f78e1
 label-connected = %essid%
 
 format-disconnected =
@@ -286,7 +319,7 @@ interface = wlp4s0
 interval = 5.0
 accumulate-stats = true
 
-format-connected-underline = #55aa55
+; format-connected-underline = #55aa55
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%(%ifname%) - %linkspeed%
@@ -310,7 +343,7 @@ time-alt = %H:%M:%S
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+; format-underline = #0a6cf5
 
 label = %date% %time%
 
@@ -381,14 +414,14 @@ adapter = ADP1
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+; format-charging-underline = #ffb52a
 
 format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+; format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = ""
 format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+; format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -413,9 +446,9 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+; format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+; format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%

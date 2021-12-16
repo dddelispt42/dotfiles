@@ -14,9 +14,11 @@ bluetooth_print() {
         fi
     done
     if [ "$device_list" == "" ]; then
-        echo "%{B#f00}%{F#fff}NO DEVICE%{B- F-}"
+        # echo "%{B#f00}%{F#fff}NO DEVICE%{B- F-}"
+        echo "-"
     else
-        echo "%{B#0f0}%{F#000}${device_list}%{B- F-}"
+        # echo "%{B#0f0}%{F#000}${device_list}%{B- F-}"
+        echo "%{B#98971a}%{F#ebdbb2}${device_list}%{B- F-}"
     fi
 }
 
