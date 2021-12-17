@@ -24,6 +24,7 @@ o.ignorecase = true
 o.scrolloff = 12
 o.hidden = true
 o.scrolloff = 3
+o.formatoptions = "jroql"
 -- o.spell!
 o.smartcase = true
 o.inccommand = "nosplit"
