@@ -90,7 +90,8 @@ modules-left = ws title
 modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio xkeyboard memory cpu eth temperature weather date
 tray-position = right
 tray-padding = 1
-tray-background = #0063ff
+; tray-background = #0063ff
+tray-background = ${colors.background}
 
 ; wm-restack = bspwm
 ; wm-restack = i3
