@@ -93,7 +93,13 @@ return require("packer").startup {
         -- Extentions to built-in LSP, for example, providing type inlay hints
         -- Autocompletion framework for built-in LSP
         -- use 'nvim-lua/completion-nvim'
-        use "hrsh7th/nvim-compe"
+        use "hrsh7th/nvim-compe" -- deprecated
+        -- use "hrsh7th/nvim-cmp"
+        -- use "hrsh7th/cmp-buffer"
+        -- use "hrsh7th/cmp-path"
+        -- use "hrsh7th/cmp-nvim_lua"
+        -- use "hrsh7th/cmp-nvim_lsp"
+        -- use "saadparwaiz1/cmp-luasnip"
         -- use 'hrsh7th/vim-vsnip'
         use {
             "nvim-treesitter/nvim-treesitter",
@@ -133,7 +139,13 @@ return require("packer").startup {
         use "nvim-treesitter/playground"
         use "justinmk/vim-dirvish"
         use "godlygeek/tabular" -- Quickly align text by pattern
-        use "tpope/vim-commentary" -- Easily comment out lines or objects
+        -- use "tpope/vim-commentary" -- Easily comment out lines or objects
+        use {
+            'numToStr/Comment.nvim',
+            config = function()
+                require('Comment').setup()
+            end
+        }
         use "tpope/vim-surround" -- Surround text objects easily
         -- Floating windows are awesome :)
         -- used <leader>gm to see the related git commit msg
