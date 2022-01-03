@@ -119,12 +119,18 @@ cmd zip ${{
 set dircounts on
 set dirfirst on
 set icons on
-set hidden off
+set hidden on
 set relativenumber on
 set tabstop 4
 set info size:time
 set sortby natural
 set preview on
+set autoquit on
+set drawbox on
+set incsearch on
+set incfilter on
+set scrolloff 3
+set wrapscroll on
 
 map gC :cd '~/.config/lf'
 map gD :cd '~/Documents'
