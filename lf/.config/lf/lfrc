@@ -145,7 +145,7 @@ map go :cd '~/opt'
 map gr :cd '/'
 map gv :cd '~/klaut/vimwiki'
 
-cmd usage !du -sk * | sort -n | bat
+cmd usage !dua || du -sk * | sort -n
 map U usage
 
 set previewer ~/.config/lf/preview.sh
