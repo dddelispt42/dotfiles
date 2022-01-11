@@ -22,7 +22,7 @@ if tty -s; then
     # zplug "rupa/z", use:z.sh
     zplug "ael-code/zsh-colored-man-pages", defer:2
     zplug "popstas/zsh-command-time", defer:2
-    zplug "zdharma/fast-syntax-highlighting", defer:2
+    zplug "zdharma-continuum/fast-syntax-highlighting", defer:2
     # zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
     zplug "seletskiy/zsh-fuzzy-search-and-edit"
     # zplug "andrewferrier/fzf-z"
@@ -32,10 +32,10 @@ if tty -s; then
     # zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
     zplug 'wfxr/forgit', defer:2
     # zplug 'jedahan/ripz', defer:2
-    if [ "$OSTYPE" != "linux-android" ]; then
-        zplug "MichaelAquilina/zsh-you-should-use", defer:2
-    fi
-    # use Alt-e to launch a finder
+    # if [ "$OSTYPE" != "linux-android" ]; then
+    #     zplug "MichaelAquilina/zsh-you-should-use", defer:2
+    # fi
+    # # use Alt-e to launch a finder
     zplug 'leophys/zsh-plugin-fzf-finder', defer:2
     # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
     # zplug "romkatv/powerlevel10k", as:theme, depth:1
