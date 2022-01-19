@@ -118,6 +118,7 @@ stow -vS -t "$HOME"/ paru
 stow -vS -t "$HOME"/ polybar
 stow -vS -t "$HOME"/ pycodestyle
 stow -vS -t "$HOME"/ pylint
+stow -vS -t "$HOME"/ qutebrowser
 stow -vS -t "$HOME"/ ranger
 stow -vS -t "$HOME"/ rofi
 stow -vS -t "$HOME"/ shell
