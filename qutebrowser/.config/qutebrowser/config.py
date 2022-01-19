@@ -26,6 +26,8 @@ config.bind("V", "hint links spawn " + os.environ["BROWSER"] + ' "{hint-url}"')
 config.bind("v", 'hint links spawn funnel "{hint-url}"')
 config.bind("\\", 'spawn dmenuhandler "{url}"')
 config.bind(',v', 'spawn umpv {url}')
+config.bind(',V', 'hint links spawn umpv {hint-url}')
+config.bind(';V', 'hint links --rapid spawn umpv {hint-url}')
 # Awesome way to open vim from qutebrowser
 c.editor.command = [
     os.environ["TERMINAL"],
