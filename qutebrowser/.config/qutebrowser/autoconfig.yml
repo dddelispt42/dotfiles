@@ -12,7 +12,9 @@ settings:
     global: 0.0
   colors.webpage.darkmode.enabled:
     global: true
+  colors.webpage.preferred_color_scheme:
+    global: dark
   content.autoplay:
     global: false
   content.blocking.method:
-    global: auto
+    global: both
