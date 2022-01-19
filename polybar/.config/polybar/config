@@ -161,7 +161,7 @@ format-background = ${colors.alert}
 format-foreground = #ffffff
 format-padding = 2
 ; click-left = pamac-manager --updates
-click-left = scratchpad sudo pacman -Syu
+click-left = scratchpad topgrade
 
 
 [module/title]
@@ -359,8 +359,8 @@ label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 婢 muted
-label-muted-foreground = #ffffff
-label-muted-background = #ff0000
+label-muted-foreground = ${colors.foreground}
+label-muted-background = ${colors.brightRed}
 label-muted-font = 3
 
 bar-volume-width = 10

@@ -20,18 +20,39 @@ function gen_xrandr_only()
     echo $cmd
 }
 
+function rotate_primary()
+{
+    xrandr --output $PRIMARY --rotate "$1"
+    if [ "$1" = "left" ]; then
+        xinput set-prop 'Wacom Pen and multitouch sensor Finger' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
+        xinput set-prop 'Wacom Pen and multitouch sensor Pen' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
+        xinput set-prop 'Wacom Pen and multitouch sensor Pen Pen (0x98d0bcf6)' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
+    elif [ "$1" = "right" ]; then
+        xinput set-prop 'Wacom Pen and multitouch sensor Finger' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
+        xinput set-prop 'Wacom Pen and multitouch sensor Pen' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
+        xinput set-prop 'Wacom Pen and multitouch sensor Pen Pen (0x98d0bcf6)' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
+    else
+        xinput set-prop 'Wacom Pen and multitouch sensor Finger' 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 1
+        xinput set-prop 'Wacom Pen and multitouch sensor Pen' 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 1
+        xinput set-prop 'Wacom Pen and multitouch sensor Pen Pen (0x98d0bcf6)' 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 1
+    fi
+}
+
 declare -i index=0
 TITLES[$index]="Cancel"
 COMMANDS[$index]="true"
 index+=1
-TITLES[$index]="Primary - rotate reset"
-COMMANDS[$index]="xrandr --output $PRIMARY --rotate normal"
+TITLES[$index]="Primary - rotate normal"
+# COMMANDS[$index]="xrandr --output $PRIMARY --rotate normal"
+COMMANDS[$index]='rotate_primary normal'
 index+=1
 TITLES[$index]="Primary - rotate left"
-COMMANDS[$index]="xrandr --output $PRIMARY --rotate left"
+# COMMANDS[$index]="xrandr --output $PRIMARY --rotate left"
+COMMANDS[$index]='rotate_primary left'
 index+=1
 TITLES[$index]="Primary - rotate right"
-COMMANDS[$index]="xrandr --output $PRIMARY --rotate right"
+# COMMANDS[$index]="xrandr --output $PRIMARY --rotate right"
+COMMANDS[$index]='rotate_primary right'
 index+=1
 
 for entry in $(seq 0 $((${NUM_MONITORS}-1)))
