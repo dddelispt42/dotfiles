@@ -57,6 +57,8 @@ config.bind("<Ctrl-w>", "fake-key <Ctrl-Backspace>", "insert")
 config.bind("<Ctrl-u>", "fake-key <Shift-Home><Delete>", "insert")
 config.bind("<Ctrl-k>", "fake-key <Shift-End><Delete>", "insert")
 config.bind("<Ctrl-x><Ctrl-e>", "open-editor", "insert")
+config.bind("<Ctrl-+>", 'zoom-in')
+config.bind("<Ctrl-->", 'zoom-out')
 
 BASE00 = "#1d2021"
 BASE01 = "#3c3836"
@@ -356,6 +358,17 @@ c.colors.tabs.selected.even.bg = BASE02
 # Background color for webpages if unset (or empty to use the theme's
 # color).
 c.colors.webpage.bg = BASE00
+
+c.content.autoplay = False
+c.content.blocking.enabled = True
+c.content.blocking.method = 'both'
+c.content.default_encoding = 'utf-8'
+c.content.geolocation = False
+c.content.pdfjs = True
+c.scrolling.bar = 'always'
+c.zoom.default = '90%'
+c.downloads.location.directory = '~/dl/'
+c.downloads.position = 'bottom'
 
 config.load_autoconfig()
 
