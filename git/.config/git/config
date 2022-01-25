@@ -128,3 +128,6 @@
     program = gpg
 [gpgv]
     program = gpgv
+[filter "htop"]
+	smudge = sed \"s/^tree_view=0/tree_view=1/\"
+	clear = cat
