@@ -242,6 +242,13 @@ map("n", "<leader>ft", "<cmd>Telescope tags<cr>", options)
 map("n", "<leader>fk", "<cmd>Telescope treesitter<cr>", options)
 map("n", "<leader>fO", "<cmd>Telescope vim_options<cr>", options)
 
+-- map('n', '<space>f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+-- map('n', '<space>F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+-- map('o', '<space>f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
+-- map('o', '<space>F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
+-- map('', '<space>t', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+-- map('', '<space>T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+
 -- vim.cmd('command! FixWhitespace :%s/\s\+$//e')
 
 vim.api.nvim_exec([[

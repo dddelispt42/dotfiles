@@ -19,7 +19,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Enable rust_analyzer
 -- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.bashls.setup({on_attach = on_attach, capabilities = capabilities})
+-- nvim_lsp.bashls.setup({on_attach = on_attach, capabilities = capabilities})
 nvim_lsp.ccls.setup({on_attach = on_attach, capabilities = capabilities})
 nvim_lsp.dockerls.setup({on_attach = on_attach, capabilities = capabilities})
 nvim_lsp.gopls.setup({on_attach = on_attach, capabilities = capabilities})
@@ -162,6 +162,7 @@ require('telescope').setup{
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   }
 }
+-- require('telescope').load_extension('fzf')
 
 require'lsp_signature'.on_attach()
 require'dependency_assist'.setup{}

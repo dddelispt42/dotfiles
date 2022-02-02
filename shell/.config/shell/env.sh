@@ -191,6 +191,16 @@ export TODOLIST="${KLAUT:-$HOME/klaut}/vimwiki/private/todo/todos.md"
 #VIMWIKI
 export WIKI_PATH="$HOME/klaut/vimwiki/"
 
+# RSS FEEDS
+# export SFEED_AUTOCMD
+# export SFEED_PIPER
+# export SFEED_PIPER_INTERACTIVE
+# export SFEED_PLUMBER
+# export SFEED_PLUMBER_INTERACTIVE
+# export SFEED_YANKER
+# export SFEED_YANKER_INTERACTIVE
+export SFEED_URL_FILE="$HOME/klaut/_share/feeds/urls"
+
 # fuzzy finder variables
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export FZF_DEFAULT_COMMAND='rg --files -uu'

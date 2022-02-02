@@ -18,3 +18,5 @@ settings:
     global: false
   content.blocking.method:
     global: both
+  content.cookies.accept:
+    global: no-3rdparty

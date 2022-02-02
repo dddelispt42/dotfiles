@@ -113,6 +113,7 @@ return require("packer").startup {
                 vim.cmd [[TSUpdate]]
             end
         }
+        use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
         -- use {
         --     "lewis6991/spellsitter.nvim",
         --     config = function()
@@ -126,7 +127,6 @@ return require("packer").startup {
         -- use 'norcalli/snippets.nvim'
         use "norcalli/ui.nvim"
         use "liuchengxu/vista.vim"
-        -- use 'puremourning/vimspector'
         use "mfussenegger/nvim-dap"
         use "mfussenegger/nvim-dap-python"
         use "nvim-telescope/telescope-dap.nvim"
@@ -241,6 +241,14 @@ return require("packer").startup {
         use "tpope/vim-unimpaired"
         use "tpope/vim-speeddating"
         use "easymotion/vim-easymotion"
+        -- use {
+        --     'phaazon/hop.nvim',
+        --     branch = 'v1', -- optional but strongly recommended
+        --     config = function()
+        --         -- you can configure Hop the way you like here; see :h hop-config
+        --         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+        --     end
+        -- }
         -- use 'vim-scripts/matchit.zip'
         -- " Plug 'rstacruz/sparkup'
         -- " Plug 'mjbrownie/hackertyper.vim'
