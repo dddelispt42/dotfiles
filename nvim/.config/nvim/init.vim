@@ -198,7 +198,7 @@
     function! HandleURL()
         let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*')
         if s:uri != ""
-            silent exec "!brave ".shellescape(s:uri, 1)." &"
+            silent exec "!qutebrowser ".shellescape(s:uri, 1)." &"
             :redraw!
         else
             echo "No URI found in line."
@@ -258,7 +258,7 @@
         endif
     endfunction
     map <leader>jo :call OpenJiraIssue()<cr>
-    let g:vira_browser = 'brave'
+    let g:vira_browser = 'qutebrowser'
     " TODO: run queries and open issues from there
 
 " Snipplets:

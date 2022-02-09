@@ -1,7 +1,7 @@
 #!/bin/bash
 #this file is called by .xinitrc to start some nice apps for dwm
 HOST=$(hostname)
-TERM="${TERMINAL:-alacritty}"
+TERMI="${TERMINAL:-alacritty}"
 
 if [ "$HOST" == "work" ]; then
     # MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
@@ -19,17 +19,18 @@ xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
 # sxhkd -c ${XDG_CONFIG_HOME:-$HOME/.config}/sxhkd/sxhkdrc &
 "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" "$HOST"
 "${XDG_CONFIG_HOME:-$HOME/.config}/dunst/launch.sh" &
-feh --bg-fill "${XDG_CONFIG_HOME:-$HOME/.config}/wp.jpg" &
+# feh --bg-fill "${XDG_CONFIG_HOME:-$HOME/.config}/wp.jpg" &
 udiskie -A -t &
 nohup xfce4-power-manager &
 nohup nextcloud &
 # trayer --edge top --align center --expand false --width 5 --distance 20 &
 nohup clipmenud &
 nohup brave &
-nohup "$TERM" -c "$TERM - heiko@localhost" -T "$TERM - heiko@localhost" &
-nohup "$TERM" -c "$TERM - heiko@ed" -T "$TERM - heiko@ed" &
-nohup "$TERM" -c "$TERM - heiko@ed2" -T "$TERM - heiko@ed2" &
-nohup "$TERM" -c "$TERM - heiko@backup" -T "$TERM - heiko@backup" &
+nohup qutebrowser &
+nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
+nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
+nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
+nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
 nohup anki &
 nohup tbb &
 nohup signal-desktop &
