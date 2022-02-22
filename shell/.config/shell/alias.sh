@@ -89,6 +89,7 @@ alias cp="cp -i"
 # alias vim="vimTabs"
 command -v nvim > /dev/null && alias vim="nvim"
 command -v nvim > /dev/null && alias vimdiff="nvim -d"
+command -v hwatch > /dev/null && alias watch="hwatch"
 alias vi="vim"
 alias v='$VISUAL'
 alias bim='$EDITOR'
@@ -150,3 +151,8 @@ alias ytmu="youtube-dl --format bestaudio --extract-audio --no-playlist"
 fyt() {
     youtube-dl --format "$(youtube-dl --list-formats "$1" | grep -E "^[0-9]+ " | fzf -1 -0 | awk '{print $1;}')" "$1"
 }
+# superresolution in python
+# Usage:
+#    enhance --zoom=1 --model=repair images/broken.jpg
+#    enhance --zoom=2 "images/*.jpg"
+alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'

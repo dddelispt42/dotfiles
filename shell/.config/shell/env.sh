@@ -199,7 +199,9 @@ export WIKI_PATH="$HOME/klaut/vimwiki/"
 # export SFEED_PLUMBER_INTERACTIVE
 # export SFEED_YANKER
 # export SFEED_YANKER_INTERACTIVE
-export SFEED_URL_FILE="$HOME/klaut/_share/feeds/urls"
+export SFEED_URL_FILE="$HOME/klaut/.cache/sfeed_urls"
+export SFEED_CONFIG_FILE="${KLAUT:-$HOME/klaut}/_share/feeds/sfeedrc"
+export SFEED_CACHE_DIR="$XDG_CACHE_HOME/sfeed/cache/"
 
 # fuzzy finder variables
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
