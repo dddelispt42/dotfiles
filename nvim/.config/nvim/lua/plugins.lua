@@ -65,14 +65,24 @@ return require("packer").startup {
         use "ryanoasis/vim-devicons"
         use "kyazdani42/nvim-web-devicons"
         use "kyazdani42/nvim-tree.lua"
-        use "gyim/vim-boxdraw" -- Crazy good box drawing
-        use "junegunn/goyo.vim"
-        use "junegunn/limelight.vim"
-        use "justinmk/vim-syntax-extra"
-        use "elzr/vim-json"
-        use "pearofducks/ansible-vim"
-        use "cespare/vim-toml"
-        use "Glench/Vim-Jinja2-Syntax"
+        -- use "gyim/vim-boxdraw" -- Crazy good box drawing
+        -- use "junegunn/goyo.vim"
+        -- use "junegunn/limelight.vim"
+        use {
+            "folke/zen-mode.nvim",
+            config = function()
+                require("zen-mode").setup {
+                    -- your configuration comes here
+                    -- or leave it empty to use the default settings
+                    -- refer to the configuration section below
+                }
+            end
+        }
+        -- use "justinmk/vim-syntax-extra"
+        -- use "elzr/vim-json"
+        -- use "pearofducks/ansible-vim"
+        -- use "cespare/vim-toml"
+        -- use "Glench/Vim-Jinja2-Syntax"
         --LSP
         use "neovim/nvim-lspconfig"
         use "glepnir/lspsaga.nvim"
@@ -83,7 +93,7 @@ return require("packer").startup {
         use "RishabhRD/nvim-lsputils"
         use "anott03/nvim-lspinstall"
         -- use "kosayoda/nvim-lightbulb"
-        use "mfussenegger/nvim-jdtls"
+        -- use "mfussenegger/nvim-jdtls"
         use "kevinhwang91/nvim-bqf"
         use "w0rp/ale"
         use "onsails/lspkind-nvim"
@@ -93,6 +103,7 @@ return require("packer").startup {
         -- Extentions to built-in LSP, for example, providing type inlay hints
         -- Autocompletion framework for built-in LSP
         -- use 'nvim-lua/completion-nvim'
+        -- TODO:
         use "hrsh7th/nvim-compe" -- deprecated
         -- use "hrsh7th/nvim-cmp"
         -- use "hrsh7th/cmp-buffer"
@@ -137,8 +148,8 @@ return require("packer").startup {
             end
         }
         use "nvim-treesitter/playground"
-        use "justinmk/vim-dirvish"
-        use "godlygeek/tabular" -- Quickly align text by pattern
+        -- use "justinmk/vim-dirvish"
+        -- use "godlygeek/tabular" -- Quickly align text by pattern
         -- use "tpope/vim-commentary" -- Easily comment out lines or objects
         use {
             'numToStr/Comment.nvim',
@@ -152,8 +163,8 @@ return require("packer").startup {
         use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
         use "rhysd/git-messenger.vim"
         use 'sindrets/diffview.nvim'
-        use {"junegunn/fzf", run = "./install --all"} -- Fuzzy Searcher
-        use {"junegunn/fzf.vim"}
+        -- use {"junegunn/fzf", run = "./install --all"} -- Fuzzy Searcher
+        -- use {"junegunn/fzf.vim"}
         use {
             "hoob3rt/lualine.nvim",
             requires = {"kyazdani42/nvim-web-devicons", opt = true},
@@ -208,8 +219,8 @@ return require("packer").startup {
         -- Plug 'vim-scripts/Conque-GDB', { 'for': ['c', 'cpp', 'rust'] }
         -- see colorschemes http://bytefluent.com/vivify/
         use "flazz/vim-colorschemes"
-        use "plasticboy/vim-markdown"
-        use "mzlogin/vim-markdown-toc"
+        -- use "plasticboy/vim-markdown"
+        -- use "mzlogin/vim-markdown-toc"
         use "ntpeters/vim-better-whitespace"
         -- Plug 'davidhalter/jedi-vim', { 'for': 'python' }
         -- Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
@@ -240,15 +251,15 @@ return require("packer").startup {
         use "tpope/vim-repeat"
         use "tpope/vim-unimpaired"
         use "tpope/vim-speeddating"
-        use "easymotion/vim-easymotion"
-        -- use {
-        --     'phaazon/hop.nvim',
-        --     branch = 'v1', -- optional but strongly recommended
-        --     config = function()
-        --         -- you can configure Hop the way you like here; see :h hop-config
-        --         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-        --     end
-        -- }
+        -- use "easymotion/vim-easymotion"
+        use {
+            'phaazon/hop.nvim',
+            branch = 'v1', -- optional but strongly recommended
+            config = function()
+                -- you can configure Hop the way you like here; see :h hop-config
+                require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+            end
+        }
         -- use 'vim-scripts/matchit.zip'
         -- " Plug 'rstacruz/sparkup'
         -- " Plug 'mjbrownie/hackertyper.vim'
