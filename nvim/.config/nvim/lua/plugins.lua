@@ -62,22 +62,28 @@ return require("packer").startup {
             end
         }
         -- Pretty icons. Not necessarily required.
-        use "ryanoasis/vim-devicons"
-        use "kyazdani42/nvim-web-devicons"
-        use "kyazdani42/nvim-tree.lua"
+        -- use "ryanoasis/vim-devicons"
+        -- use "kyazdani42/nvim-web-devicons"
+        use {
+            'kyazdani42/nvim-tree.lua',
+            requires = {
+                'kyazdani42/nvim-web-devicons', -- optional, for file icon
+            },
+            config = function() require'nvim-tree'.setup {} end
+        }
         -- use "gyim/vim-boxdraw" -- Crazy good box drawing
         -- use "junegunn/goyo.vim"
         -- use "junegunn/limelight.vim"
-        use {
-            "folke/zen-mode.nvim",
-            config = function()
-                require("zen-mode").setup {
-                    -- your configuration comes here
-                    -- or leave it empty to use the default settings
-                    -- refer to the configuration section below
-                }
-            end
-        }
+        -- use {
+        --     "folke/zen-mode.nvim",
+        --     config = function()
+        --         require("zen-mode").setup {
+        --             -- your configuration comes here
+        --             -- or leave it empty to use the default settings
+        --             -- refer to the configuration section below
+        --         }
+        --     end
+        -- }
         -- use "justinmk/vim-syntax-extra"
         -- use "elzr/vim-json"
         -- use "pearofducks/ansible-vim"
@@ -95,6 +101,17 @@ return require("packer").startup {
         -- use "kosayoda/nvim-lightbulb"
         -- use "mfussenegger/nvim-jdtls"
         use "kevinhwang91/nvim-bqf"
+        use {
+            "folke/trouble.nvim",
+            requires = "kyazdani42/nvim-web-devicons",
+            config = function()
+                require("trouble").setup {
+                    -- your configuration comes here
+                    -- or leave it empty to use the default settings
+                    -- refer to the configuration section below
+                }
+            end
+        }
         use "w0rp/ale"
         use "onsails/lspkind-nvim"
         use "ray-x/lsp_signature.nvim"
@@ -137,7 +154,8 @@ return require("packer").startup {
         use "SirVer/ultisnips"
         -- use 'norcalli/snippets.nvim'
         use "norcalli/ui.nvim"
-        use "liuchengxu/vista.vim"
+        -- use "liuchengxu/vista.vim"
+        use 'sidebar-nvim/sidebar.nvim'
         use "mfussenegger/nvim-dap"
         use "mfussenegger/nvim-dap-python"
         use "nvim-telescope/telescope-dap.nvim"
@@ -157,6 +175,18 @@ return require("packer").startup {
                 require('Comment').setup()
             end
         }
+        use {
+            "lukas-reineke/indent-blankline.nvim",
+            config = function()
+                require('indent_blankline').setup {
+                    show_current_context = true,
+                    show_current_context_start = true,
+                    show_end_of_line = true,
+                    space_char_blankline = " ",
+                }
+            end
+        }
+        -- use "glepnir/indent-guides.nvim"
         use "tpope/vim-surround" -- Surround text objects easily
         -- Floating windows are awesome :)
         -- used <leader>gm to see the related git commit msg
@@ -199,8 +229,7 @@ return require("packer").startup {
         use "tpope/vim-fugitive"
         use "airblade/vim-gitgutter"
         use "tpope/vim-rhubarb" -- required by fugitive to :Gbrowse
-        use "glepnir/indent-guides.nvim"
-        use "p00f/nvim-ts-rainbow"
+        -- use "p00f/nvim-ts-rainbow"
         -- Plug 'Shougo/vimproc.vim', {'do': g:make}
         -- Vim-Session
         -- Plug 'xolox/vim-misc'
@@ -258,6 +287,16 @@ return require("packer").startup {
             config = function()
                 -- you can configure Hop the way you like here; see :h hop-config
                 require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+            end
+        }
+        use {
+            "folke/which-key.nvim",
+            config = function()
+                require("which-key").setup {
+                    -- your configuration comes here
+                    -- or leave it empty to use the default settings
+                    -- refer to the configuration section below
+                }
             end
         }
         -- use 'vim-scripts/matchit.zip'

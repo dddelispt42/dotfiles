@@ -33,10 +33,8 @@ o.path = o.path .. "**"
 o.splitbelow = true
 o.splitright = true
 o.list = true
-o.listchars = "nbsp:¬,tab:»·,trail:·"
+o.listchars = "nbsp:¬,tab:»·,trail:·,eol:↴"
 o.tags = "tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../../tags,../../../../../../../tags,../../../../../../../../tags,../../../../../../../../../tags,../../../../../../../../../../tags"
-o.list = true
-o.listchars = "nbsp:¬,tab:»·,trail:·"
 o.wildignore = o.wildignore .. "*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite"
 o.wildignore =
     o.wildignore ..
@@ -140,7 +138,8 @@ map("n", "<leader>ss", ":SaveSession<Space>", options)
 map("n", "<leader>sd", ":DeleteSession<CR>", options)
 map("n", "<leader>sc", ":CloseSession<CR>", options)
 -- Vista
-map("n", "<Leader>tb", ":Vista!!<CR>", options)
+-- map("n", "<Leader>tb", ":Vista!!<CR>", options)
+map("n", "<Leader>tb", ":SidebarNvimToggle<CR>", options)
 -- GIT
 -- map('n', '<Leader>gr', ':Gremove<CR>', options)
 map("n", "<Leader>gbr", ":GBranches<CR>", options)
@@ -274,9 +273,10 @@ require("nvim-treesitter.configs").setup(
         indent = {
             enable = true
         },
-        rainbow = {
-            enable = true
-        }
+        -- rainbow = {
+        --     enable = true,
+        --     extended_mode = true,
+        -- }
     }
 )
 
