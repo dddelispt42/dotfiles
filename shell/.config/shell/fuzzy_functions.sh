@@ -54,9 +54,11 @@ __handle_files() {
                 "${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh" "$line"
             done
         elif [ "$key" = ctrl-e ]; then
-            ${EDITOR:-vim} +"$(echo "$files" | awk '{print " e " $1 " | "}' && echo "bn")"
+            # shellcheck disable=SC2046
+            ${EDITOR:-vim} $(echo "$files" | while read -r line; do echo "$line"; done)
         else
-            ${EDITOR:-vim} +"$(echo "$files" | awk '{print " e " $1 " | "}' && echo "bn")"
+            # shellcheck disable=SC2046
+            ${EDITOR:-vim} $(echo "$files" | while read -r line; do echo "$line"; done)
         fi
     fi
 }
@@ -96,17 +98,19 @@ function floc {
 }
 
 function __handle_fuzzy_grep {
-    local params cmd resultlist
+    local cmd resultlist
     cmd=rg
-    if [ "$1" -eq "1" ]; then
-        params="-uu"
+    if [ "$1" -eq "0" ]; then
+        echo "${cmd:-rg} --vimgrep --line-number $2"
+        resultlist=$(${cmd:-rg} --vimgrep --line-number "$2" 2>/dev/null | fzf -x -0 -1 -m)
+    else
         command -v rga > /dev/null && cmd=rga
+        echo "${cmd:-rg} --vimgrep --line-number -uuu $2"
+        resultlist=$(${cmd:-rg} --vimgrep --line-number -uuu "$2" 2>/dev/null | fzf -x -0 -1 -m)
     fi
-    shift
-    resultlist=$(${cmd:-rg} "$params" --vimgrep "$@" 2>/dev/null | fzf -x -0 -1 -m | sed 's/\(.*\):\([0-9]\+\):[0-9]\+:.*$/\1:\2/')
     if [ "$resultlist" != "" ]; then
-        echo "${EDITOR:-vim}" +"$(echo "$resultlist" | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
-        ${EDITOR:-vim} +"$(echo "$resultlist" | awk -F: '{print "e +" $2 " " $1 " | "}') bn"
+        # shellcheck disable=SC2046
+        ${EDITOR:-vim} $(echo "$resultlist" | while read -r line; do echo "$line" | awk -F : '{print $1 ":" $2;}'; done)
     fi
 }
 
@@ -187,11 +191,12 @@ function ftags {
     fi
     [ -e $tagfile ] || return
     tagfiledir=$(dirname $tagfile)
-    IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | awk -v tagpath="$tagfiledir/" '{print " e " tagpath $3 " | tag " $2 " | "}' && echo "bn");
+    # IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | awk -v tagpath="$tagfiledir/" '{print " e " tagpath $3 " | tag " $2 " | "}' && echo "bn");
+    IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | while read -r line; do echo "$tagfiledir/$(echo "$line" | awk '{print $3;}')"; done)
     if [ -z ${fileparam+x} ]; then
         return
     fi
-    ${EDITOR:-vim} +"$fileparam"
+    ${EDITOR:-vim} $fileparam
 }
 
 # lists tmuxinator sessions and open tmux sessions for selection
