@@ -310,7 +310,7 @@ return require("packer").startup {
         use "christoomey/vim-tmux-navigator"
         use "brooth/far.vim"
         -- " allows opening files at specific location - e.g. /tmp/bal:10:2
-        -- Plug 'wsdjeg/vim-fetch'
+        use 'wsdjeg/vim-fetch'
         -- " Plug 'henrik/vim-open-url'
         use "romainl/vim-cool"
         -- " better encryption plugin - requires: https://github.com/jedisct1/encpipe
