@@ -174,9 +174,6 @@ fi
 
 # protect settings dir
 chmod 700 "$HOME/.cache" "$HOME/.config" "$HOME/.ssh"
-<<<<<<< HEAD
 
 # tmux tpm
 git submodule update --init tmux/.config/tmux/plugins/tpm
-=======
->>>>>>> 378ae52 (include default ssh key generation)
