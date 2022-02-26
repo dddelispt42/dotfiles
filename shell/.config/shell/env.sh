@@ -192,13 +192,13 @@ export TODOLIST="${KLAUT:-$HOME/klaut}/vimwiki/private/todo/todos.md"
 export WIKI_PATH="$HOME/klaut/vimwiki/"
 
 # RSS FEEDS
-# export SFEED_AUTOCMD
 # export SFEED_PIPER
 # export SFEED_PIPER_INTERACTIVE
 # export SFEED_PLUMBER
 # export SFEED_PLUMBER_INTERACTIVE
 # export SFEED_YANKER
 # export SFEED_YANKER_INTERACTIVE
+export SFEED_AUTOCMD="t3"
 export SFEED_URL_FILE="$HOME/klaut/.cache/sfeed_urls"
 export SFEED_CONFIG_FILE="${KLAUT:-$HOME/klaut}/_share/feeds/sfeedrc"
 export SFEED_CACHE_DIR="$XDG_CACHE_HOME/sfeed/cache/"
