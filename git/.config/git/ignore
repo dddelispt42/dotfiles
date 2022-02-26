@@ -144,6 +144,15 @@ VirtualBox VMs/
 [Tt]humbs.db
 _ReSharper*/
 __pycache__/
+**/.classpath
+**/.project
+**/.settings
+**/doc/tags-te
+*.yang.uml
+*.yang.yin
+.cargo-ok
+.ccls-cache/
+Cargo.lock
 bin/apps/
 bin/zeal-portable-0.5.0-windows-x64/
 cache/
@@ -162,16 +171,3 @@ tags
 tags-te
 target/
 ~$*
-doc/tags-te
-**/doc/tags-te
-ctags
-doc/ctags
-Cargo.lock
-.cargo-ok
-*.yang.uml
-*.yang.yin
-**/.project
-**/.classpath
-**/.settings
-.ccls-cache/
->>>>>>> 4358af9 (clean up local repos)
