@@ -28,7 +28,6 @@ o.formatoptions = "jroql"
 -- o.spell!
 o.smartcase = true
 o.inccommand = "nosplit"
-o.termguicolors = true
 o.path = o.path .. "**"
 o.splitbelow = true
 o.splitright = true
@@ -48,7 +47,7 @@ o.foldlevel = 99
 o.foldlevelstart = 99
 o.foldnestmax = 10
 o.undofile = true
-o.wrap = false
+o.wrap = true
 o.number = true
 o.relativenumber = true
 o.cursorline = true
@@ -58,7 +57,7 @@ wo.number = true
 wo.relativenumber = true
 -- wo.showmatch = true
 wo.cursorline = true
-wo.wrap = false
+wo.wrap = true
 
 -- buffer-local options
 bo.expandtab = true
@@ -70,17 +69,6 @@ bo.shiftwidth = 4
 TODO: setstatusline with fugitive
 TODO: clipboard
 ]]
-vim.cmd("colorscheme gruvbox")
--- vim.cmd('colorscheme molokai')
--- vim.cmd('colorscheme anotherdark')
--- vim.cmd('colorscheme zenburn')
--- vim.cmd('colorscheme wombat256')
--- vim.cmd('colorscheme whitedust')
--- vim.cmd('colorscheme tutticolori')
--- vim.cmd('colorscheme soso')
--- vim.cmd('colorscheme simpleandfriendly')
--- vim.cmd('colorscheme evening')
--- vim.cmd('colorscheme asmdev')
 vim.cmd("filetype plugin indent on")
 vim.cmd("set spell!")
 

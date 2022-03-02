@@ -48,22 +48,24 @@ return require("packer").startup {
             "nvim-telescope/telescope.nvim",
             requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}}
         }
-        use "nvim-telescope/telescope-frecency.nvim"
+        -- use {
+        --     "nvim-telescope/telescope-frecency.nvim",
+        --     config = function()
+        --         require"telescope".load_extension("frecency")
+        --     end,
+        --     requires = {"tami5/sqlite.lua"}
+        -- }
 
         -- use "mhinz/vim-startify"
         use "dstein64/vim-startuptime"
         use "norcalli/nvim-colorizer.lua"
-        use "norcalli/nvim-terminal.lua"
-        use "romainl/vim-qf"
+        -- use "norcalli/nvim-terminal.lua"
         use {
             "glacambre/firenvim",
             run = function()
                 vim.fn["firenvim#install"](0)
             end
         }
-        -- Pretty icons. Not necessarily required.
-        -- use "ryanoasis/vim-devicons"
-        -- use "kyazdani42/nvim-web-devicons"
         use {
             'kyazdani42/nvim-tree.lua',
             requires = {
@@ -71,35 +73,16 @@ return require("packer").startup {
             },
             config = function() require'nvim-tree'.setup {} end
         }
-        -- use "gyim/vim-boxdraw" -- Crazy good box drawing
-        -- use "junegunn/goyo.vim"
-        -- use "junegunn/limelight.vim"
-        -- use {
-        --     "folke/zen-mode.nvim",
-        --     config = function()
-        --         require("zen-mode").setup {
-        --             -- your configuration comes here
-        --             -- or leave it empty to use the default settings
-        --             -- refer to the configuration section below
-        --         }
-        --     end
-        -- }
-        -- use "justinmk/vim-syntax-extra"
-        -- use "elzr/vim-json"
-        -- use "pearofducks/ansible-vim"
-        -- use "cespare/vim-toml"
-        -- use "Glench/Vim-Jinja2-Syntax"
         --LSP
         use "neovim/nvim-lspconfig"
         use "glepnir/lspsaga.nvim"
         use "wbthomason/lsp-status.nvim"
         use "nvim-lua/lsp_extensions.nvim"
-        use "euclidianAce/BetterLua.vim"
-        -- use 'RishabhRD/popfix'
         use "RishabhRD/nvim-lsputils"
         use "anott03/nvim-lspinstall"
         -- use "kosayoda/nvim-lightbulb"
         -- use "mfussenegger/nvim-jdtls"
+        -- TODO: switch to trouble - only keep one
         use "kevinhwang91/nvim-bqf"
         use {
             "folke/trouble.nvim",
@@ -112,15 +95,15 @@ return require("packer").startup {
                 }
             end
         }
+        -- TODO: switch to nvim-ls
         use "w0rp/ale"
         use "onsails/lspkind-nvim"
         use "ray-x/lsp_signature.nvim"
-        use "akinsho/dependency-assist.nvim"
-        use "metakirby5/codi.vim"
+        -- use "metakirby5/codi.vim"
         -- Extentions to built-in LSP, for example, providing type inlay hints
         -- Autocompletion framework for built-in LSP
         -- use 'nvim-lua/completion-nvim'
-        -- TODO:
+        -- TODO: switch to cmp
         use "hrsh7th/nvim-compe" -- deprecated
         -- use "hrsh7th/nvim-cmp"
         -- use "hrsh7th/cmp-buffer"
@@ -153,7 +136,6 @@ return require("packer").startup {
         -- }
         use "SirVer/ultisnips"
         -- use 'norcalli/snippets.nvim'
-        use "norcalli/ui.nvim"
         -- use "liuchengxu/vista.vim"
         use 'sidebar-nvim/sidebar.nvim'
         use "mfussenegger/nvim-dap"
@@ -165,10 +147,7 @@ return require("packer").startup {
                 vim.g.dap_virtual_text = true
             end
         }
-        use "nvim-treesitter/playground"
-        -- use "justinmk/vim-dirvish"
-        -- use "godlygeek/tabular" -- Quickly align text by pattern
-        -- use "tpope/vim-commentary" -- Easily comment out lines or objects
+        -- use "nvim-treesitter/playground"
         use {
             'numToStr/Comment.nvim',
             config = function()
@@ -186,7 +165,6 @@ return require("packer").startup {
                 }
             end
         }
-        -- use "glepnir/indent-guides.nvim"
         use "tpope/vim-surround" -- Surround text objects easily
         -- Floating windows are awesome :)
         -- used <leader>gm to see the related git commit msg
@@ -226,38 +204,12 @@ return require("packer").startup {
                 }
             end
         }
+        -- TODO: substitute with gitsigns
         use "tpope/vim-fugitive"
         use "airblade/vim-gitgutter"
         use "tpope/vim-rhubarb" -- required by fugitive to :Gbrowse
-        -- use "p00f/nvim-ts-rainbow"
-        -- Plug 'Shougo/vimproc.vim', {'do': g:make}
-        -- Vim-Session
-        -- Plug 'xolox/vim-misc'
-        -- Plug 'xolox/vim-session'
-        -- c/c++
-        -- Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
-        -- Plug 'ludwig/split-manpage.vim'
-        -- html
-        -- Plug 'tpope/vim-haml'
-        -- " Plug 'mattn/emmet-vim'
-        -- rust
-        -- Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-        -- Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-        -- Plug 'timonv/vim-cargo', { 'for': 'rust' }
-        -- " TODO: get debugger working <06-12-20, Heiko Riemer> "
-        -- Plug 'vim-scripts/Conque-GDB', { 'for': ['c', 'cpp', 'rust'] }
-        -- see colorschemes http://bytefluent.com/vivify/
-        use "flazz/vim-colorschemes"
-        -- use "plasticboy/vim-markdown"
-        -- use "mzlogin/vim-markdown-toc"
+        use "ellisonleao/gruvbox.nvim"
         use "ntpeters/vim-better-whitespace"
-        -- Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-        -- Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
-        -- todo:slow Plug 'chrisbra/csv.vim'
-        -- Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-        -- Plug 'joonty/vdebug', { 'for': 'python' }
-        -- " todo:slow Plug 'ap/vim-css-color'
-        -- " syntax for plantuml and make command
         use "aklt/plantuml-syntax"
         -- " Plug 'sjurgemeyer/vim-plantuml', { 'for': 'plantuml' }
         use "nathanalderson/yang.vim"
@@ -280,7 +232,6 @@ return require("packer").startup {
         use "tpope/vim-repeat"
         use "tpope/vim-unimpaired"
         use "tpope/vim-speeddating"
-        -- use "easymotion/vim-easymotion"
         use {
             'phaazon/hop.nvim',
             branch = 'v1', -- optional but strongly recommended
@@ -299,11 +250,7 @@ return require("packer").startup {
                 }
             end
         }
-        -- use 'vim-scripts/matchit.zip'
-        -- " Plug 'rstacruz/sparkup'
         -- " Plug 'mjbrownie/hackertyper.vim'
-        -- " Plug 'sirtaj/vim-openscad'
-        -- Plug '907th/vim-auto-save'
         use "will133/vim-dirdiff"
         use "christoomey/vim-conflicted"
         use "christoomey/vim-sort-motion"
@@ -318,17 +265,11 @@ return require("packer").startup {
         -- " floating windows
         use "machakann/vim-highlightedyank"
         use "voldikss/vim-floaterm"
-        use "stsewd/fzf-checkout.vim"
-        -- " edit JIRA issues in vim
+        -- edit JIRA issues in vim
         -- use "n0v1c3/vira"
         -- use 'dddelispt42/vira', { 'do': './install.sh' }
         -- " automatically set the root directory
         use "airblade/vim-rooter"
-        -- use "fabi1cazenave/suckless.vim"
-
-        -- use "beloglazov/vim-online-thesaurus"
-
-        --" Plug 'CoatiSoftware/vim-sourcetrail'
         -- use "github/copilot.vim"
     end,
     config = {
