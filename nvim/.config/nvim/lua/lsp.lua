@@ -165,7 +165,6 @@ require('telescope').setup{
 -- require('telescope').load_extension('fzf')
 
 require'lsp_signature'.on_attach()
-require'dependency_assist'.setup{}
 
 local neogit = require('neogit')
 neogit.setup {}
