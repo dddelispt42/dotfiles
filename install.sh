@@ -177,3 +177,8 @@ chmod 700 "$HOME/.cache" "$HOME/.config" "$HOME/.ssh"
 
 # tmux tpm
 git submodule update --init tmux/.config/tmux/plugins/tpm
+./tmux/.config/tmux/plugins/tpm/bin/install_plugins
+./tmux/.config/tmux/plugins/tpm/bin/update_plugins all
+./tmux/.config/tmux/plugins/tpm/bin/clean_plugins
+
+
