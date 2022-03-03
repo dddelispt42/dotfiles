@@ -20,3 +20,5 @@ settings:
     global: both
   content.cookies.accept:
     global: no-3rdparty
+  tabs.close_mouse_button:
+    global: none
