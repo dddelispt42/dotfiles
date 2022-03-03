@@ -57,7 +57,7 @@ return require("packer").startup {
         -- }
 
         -- use "mhinz/vim-startify"
-        use "dstein64/vim-startuptime"
+        -- use "dstein64/vim-startuptime"
         use "norcalli/nvim-colorizer.lua"
         -- use "norcalli/nvim-terminal.lua"
         use {
@@ -80,6 +80,20 @@ return require("packer").startup {
         use "nvim-lua/lsp_extensions.nvim"
         use "RishabhRD/nvim-lsputils"
         use "anott03/nvim-lspinstall"
+        -- TODO: configure rust plugin
+        use {
+            'simrat39/rust-tools.nvim',
+            config = function() require("rust-tools").setup {} end
+        }
+        -- TODO: configure cargo plugin
+        use {
+            'saecki/crates.nvim',
+            requires = { 'nvim-lua/plenary.nvim' },
+            config = function()
+                require('crates').setup()
+            end,
+        }
+
         -- use "kosayoda/nvim-lightbulb"
         -- use "mfussenegger/nvim-jdtls"
         -- TODO: switch to trouble - only keep one
@@ -169,44 +183,25 @@ return require("packer").startup {
         -- Floating windows are awesome :)
         -- used <leader>gm to see the related git commit msg
         use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+        -- TODO: integrage with null-ls; learn to use
+        use {
+            'lewis6991/gitsigns.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim'
+            },
+            config = function()
+                require('gitsigns').setup()
+            end
+        }
         use "rhysd/git-messenger.vim"
         use 'sindrets/diffview.nvim'
-        -- use {"junegunn/fzf", run = "./install --all"} -- Fuzzy Searcher
-        -- use {"junegunn/fzf.vim"}
         use {
-            "hoob3rt/lualine.nvim",
-            requires = {"kyazdani42/nvim-web-devicons", opt = true},
-            config = function()
-                require("lualine").setup {
-                    options = {
-                        theme = "gruvbox",
-                        section_separators = {"", ""},
-                        component_separators = {"", ""},
-                        icons_enabled = true
-                    },
-                    sections = {
-                        lualine_a = {{"mode", upper = true}},
-                        lualine_b = {{"branch", icon = ""}},
-                        lualine_c = {{"filename", file_status = true}},
-                        lualine_x = {"encoding", "fileformat", "filetype"},
-                        lualine_y = {"progress"},
-                        lualine_z = {"location"}
-                    },
-                    inactive_sections = {
-                        lualine_a = {},
-                        lualine_b = {},
-                        lualine_c = {"filename"},
-                        lualine_x = {"location"},
-                        lualine_y = {},
-                        lualine_z = {}
-                    },
-                    extensions = {"fzf"}
-                }
-            end
+            'nvim-lualine/lualine.nvim',
+            requires = { 'kyazdani42/nvim-web-devicons', opt = true }
         }
         -- TODO: substitute with gitsigns
         use "tpope/vim-fugitive"
-        use "airblade/vim-gitgutter"
+        -- use "airblade/vim-gitgutter"
         use "tpope/vim-rhubarb" -- required by fugitive to :Gbrowse
         use "ellisonleao/gruvbox.nvim"
         use "ntpeters/vim-better-whitespace"

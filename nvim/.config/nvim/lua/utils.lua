@@ -18,3 +18,4 @@ require("sidebar-nvim").setup({
         initially_closed = false, -- whether the groups should be initially closed on start. You can manually open/close groups later.
     }
 })
+require('lualine').setup()
