@@ -1,3 +1,5 @@
+-- TODO: check Packer code against latest in github
+
 -- Only required if you have packer in your `opt` pack
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
@@ -22,6 +24,20 @@ if not packer_exists then
 
     return
 end
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
 
 return require("packer").startup {
     function(use)
@@ -103,14 +119,14 @@ return require("packer").startup {
             requires = "kyazdani42/nvim-web-devicons",
             config = function()
                 require("trouble").setup {
-                    -- your configuration comes here
-                    -- or leave it empty to use the default settings
-                    -- refer to the configuration section below
+                    auto_open = true, -- automatically open the list when you have diagnostics
+                    auto_close = true, -- automatically close the list when you have no diagnostics
+                    auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
                 }
             end
         }
         -- TODO: switch to nvim-ls
-        use "w0rp/ale"
+        -- use "w0rp/ale"
         use "onsails/lspkind-nvim"
         use "ray-x/lsp_signature.nvim"
         -- use "metakirby5/codi.vim"
@@ -180,25 +196,36 @@ return require("packer").startup {
             end
         }
         use "tpope/vim-surround" -- Surround text objects easily
-        -- Floating windows are awesome :)
-        -- used <leader>gm to see the related git commit msg
         use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+        use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+        -- use({
+        --     "jose-elias-alvarez/null-ls.nvim",
+        --     config = function()
+        --         require("null-ls").setup()
+        --     end,
+        --     requires = { "nvim-lua/plenary.nvim" },
+        -- })
         -- TODO: integrage with null-ls; learn to use
         use {
             'lewis6991/gitsigns.nvim',
             requires = {
                 'nvim-lua/plenary.nvim'
+            }
+        }
+        use {
+            "ThePrimeagen/refactoring.nvim",
+            requires = {
+                {"nvim-lua/plenary.nvim"},
+                {"nvim-treesitter/nvim-treesitter"}
             },
             config = function()
-                require('gitsigns').setup()
+                require('refactoring').setup()
             end
         }
+        -- used <leader>gm to see the related git commit msg
         use "rhysd/git-messenger.vim"
         use 'sindrets/diffview.nvim'
-        use {
-            'nvim-lualine/lualine.nvim',
-            requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-        }
+        use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
         -- TODO: substitute with gitsigns
         use "tpope/vim-fugitive"
         -- use "airblade/vim-gitgutter"
