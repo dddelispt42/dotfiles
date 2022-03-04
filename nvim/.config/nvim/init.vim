@@ -1,9 +1,5 @@
     lua require("init")
-    " Enable type inlay hints
-
-    " Rust inline hints
-    " autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true, prefix = '  » ', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"}}
-
+    "
 " configure Firenvim
     let g:firenvim_config = {
         \ 'globalSettings': {
@@ -34,86 +30,10 @@
     let g:plantuml_executable_script = "~/bin/plantUML.sh"
     let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
     noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.config/zsh/.zshrc; cd $HOME/klaut/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
+
 " ----------------------
 " TODO: move this to lua
 " ----------------------
-
-"" ale
-    let g:ale_linters = {
-    \   'ansible': ['ansible_lint'],
-    \   'asciidoc': ['textlint', 'writegood'],
-    \   'asm': ['cpp'],
-    \   'awk': ['gawk'],
-    \   'bib': ['bibclean'],
-    \   'c': ['clang', 'clangtidy', 'cppcheck', 'flawfinder', 'gcc'],
-    \   'chef': ['cookstyle', 'foodcritic'],
-    \   'cmake': ['cmakelint'],
-    \   'cpp': ['clang', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'flawfinder', 'gcc'],
-    \   'css': ['csslint', 'fecs', 'stylelint'],
-    \   'cucumber': ['cucumber'],
-    \   'dockerfile': ['dockerfile_lint', 'hadolint'],
-    \   'gitcommit': ['gitlint'],
-    \   'go': ['gobuilt', 'gofmt', 'golint', 'langserver', 'staticcheck'],
-    \   'help': ['proselint', 'writegood'],
-    \   'html': ['fecs', 'htmllint', 'proselint', 'stylelint', 'tidy', 'writegood'],
-    \   'java': ['checkstyle', 'javac'],
-    \   'javascript': ['eslint', 'fecs', 'jshint', 'tsserver', 'xo'],
-    \   'json': ['jsonlint'],
-    \   'kotlin': ['kotlinc', 'ktlint', 'languageserver'],
-    \   'less': ['stylelint'],
-    \   'lua': ['luac', 'luacheck'],
-    \   'make': ['checkmake'],
-    \   'markdown': ['languagetool', 'markdownlint', 'proselint', 'textlint', 'writegood'],
-    \   'matlab': ['mlint'],
-    \   'proto': ['proto_gen_lint'],
-    \   'python': ['pylint', 'flake8', 'pydocstyle', 'bandit'],
-    \   'sh': ['shellcheck', 'shell', 'language_server'],
-    \   'sql': ['sqlint'],
-    \   'tex': ['chktex', 'lacheck', 'proselint', 'texlab', 'texlint', 'writegood'],
-    \   'texinfo': ['proselint', 'writegood'],
-    \   'text': ['languagetool', 'proselint', 'textlint', 'writegood'],
-    \   'typescript': ['eslint', 'tslint', 'typecheck', 'tsserver', 'xo'],
-    \   'vim': ['vint', 'ale_custom_linting_rules'],
-    \   'xhtml': ['proselint', 'writegood'],
-    \   'xml': ['xmllint'],
-    \   'yaml': ['yamllint'],
-    \   'yang': ['yang_lsp'],
-    \}
-    "   'python': ['bandit', 'flake8', 'mypy', 'pycodestyle', 'vulture', 'pydocstyle'],
-    " \   'python': ['bandit', 'flake8', 'mypy', 'pylint', 'pycodestyle','pydocstyle'],
-    " \   'rust': ['cargo', 'rls', 'rustc'],
-    " \   'rust': ['cargo', 'rust-analyzer', 'rustc'],
-    let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'css': ['prettier'],
-    \   'go': ['gofmt', 'goimports'],
-    \   'html': ['prettier'],
-    \   'javascript': ['prettier', 'eslint'],
-    \   'less': ['prettier'],
-    \   'lua': ['luafmt'],
-    \   'python': ['black'],
-    \   'rust': ['rustfmt'],
-    \   'sh': ['shfmt'],
-    \   'sql': ['sqlfmt'],
-    \   'tex': ['latexindent'],
-    \   'yaml': ['yamlfix'],
-    \}
-    " 'python': ['black', 'isort', 'docformatter', 'pyment'],
-    let g:ale_linters_explicit = 1
-    let g:ale_fix_on_save = 1
-    let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
-    " vim ale
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_lint_on_enter = 1
-    let g:ale_completion_enabled = 0
-    let g:airline#extensions#ale#enabled = 0
-    let g:ale_set_loclist = 0
-    let g:ale_set_quickfix = 1
-    let g:ale_open_list = 1
-    " nmap gd :ALEGoToDefinition<CR>
-    " nmap gr :ALEFindReferences<CR>
-    " nmap K :ALEHover<CR>
-
 """ vimwiki
     " vimwiki with markdown support
     let wiki_1 = {}
