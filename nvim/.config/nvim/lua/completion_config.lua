@@ -94,6 +94,11 @@ cmp.setup({
 				ultisnips = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
+				crates = "[Crates]",
+				treesitter = "[Treesitter]",
+				spell = "[Spell]",
+				emoji = "[Emoji]",
+				emoji = "[Nvim lua]",
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -111,6 +116,7 @@ cmp.setup({
 		{ name = "spell" },
 		{ name = "emoji" },
 		{ name = "vimwiki-tags" },
+		{ name = "nvim_lua" },
 	}),
 })
 -- `/` cmdline setup.

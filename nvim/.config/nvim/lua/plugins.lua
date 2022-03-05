@@ -96,7 +96,8 @@ return require("packer").startup({
 		use("wbthomason/lsp-status.nvim")
 		-- use "nvim-lua/lsp_extensions.nvim"
 		-- use "RishabhRD/nvim-lsputils"
-		use("anott03/nvim-lspinstall")
+		-- use("anott03/nvim-lspinstall")
+		use("williamboman/nvim-lsp-installer")
 		-- TODO: configure rust plugin
 		use({
 			"simrat39/rust-tools.nvim",
@@ -135,6 +136,7 @@ return require("packer").startup({
 		-- use "metakirby5/codi.vim"
 		-- Extentions to built-in LSP, for example, providing type inlay hints
 		use("hrsh7th/cmp-nvim-lsp")
+		use("hrsh7th/cmp-nvim-lua")
 		use("hrsh7th/cmp-buffer")
 		use("hrsh7th/cmp-path")
 		use("hrsh7th/cmp-cmdline")
