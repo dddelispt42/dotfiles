@@ -1,4 +1,4 @@
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 -- Shorten function name
 local map = vim.api.nvim_set_keymap
@@ -48,10 +48,10 @@ map("x", "<c-j>", "<c-w>j", opts)
 map("x", "<c-k>", "<c-w>k", opts)
 map("x", "<c-l>", "<c-w>l", opts)
 -- Better terminal navigation
--- map("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- map("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- map("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- map("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+map("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+map("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+map("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+map("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<CR>", opts)
 map("n", "<C-Down>", ":resize -2<CR>", opts)
@@ -60,6 +60,7 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- remove ^M from dos files
 map("n", "<leader>m", ":e ++ff=dos<cr>", opts)
 -- move vertically by visual line
+-- TODO: make those a bit more intelligent - single step is j, move is gj
 map("n", "j", "gj", opts)
 map("n", "k", "gk", opts)
 -- highlight last inserted text
@@ -80,6 +81,37 @@ map("n", "<leader>sc", ":CloseSession<CR>", opts)
 -- Vista
 -- map("n", "<Leader>tb", ":Vista!!<CR>", opts)
 map("n", "<Leader>tb", ":SidebarNvimToggle<CR>", opts)
+
+-- LSP
+map("n", "<leader>lf", ":Lspsaga lsp_finder<CR>", opts)
+-- map("n", "<leader>la", ":Lspsaga code_action<CR>", opts)
+map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+map("v", "<leader>la", ":<C-U>Lspsaga range_code_action<CR>", opts)
+-- map("n", "K", ":Lspsaga hover_doc<CR>", opts)
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+map("n", "<leader>lS", ":Lspsaga signature_help<CR>", opts)
+-- map("n", "<leader>lR", ":Lspsaga rename<CR>", opts)
+map("n", "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+map("n", "<leader>lp", ":Lspsaga preview_definition<CR>", opts)
+-- map("n", "<leader>lD", ":Lspsaga show_line_diagnostics<CR>", opts)
+-- map("n", "e[", ":Lspsaga diagnostic_jump_next<CR>", opts)
+-- map("n", "e]", ":Lspsaga diagnostic_jump_prev<CR>", opts)
+map("n", "e[", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+map("n", "e]", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+-- rust-analyzer does not yet support goto declaration - re-mapped `gd` to definition
+map("n", "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+-- map('n', '<leader>ld', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+-- map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+-- Completion (nvim-comple)
+-- map("i", "<expr> <C-Space>", "compe#complete()", opts)
+-- map("i", "<expr> <CR>", "compe#confirm('<CR>')", opts)
+-- map("i", "<expr> <C-e>", "compe#close('<C-e>')", opts)
+-- map("i", "<expr> <C-f>", "compe#scroll({ 'delta': +4 })", opts)
+-- map("i", "<expr> <C-d>", "compe#scroll({ 'delta': -4 })", opts)
+
+-- TODO: this block no longer works (FZF based)
+-- TODO: get rid of fugitive and use gitsigns/Neogit/Telescope
 -- GIT
 -- map('n', '<Leader>gr', ':Gremove<CR>', opts)
 map("n", "<Leader>gbr", ":GBranches<CR>", opts)
@@ -90,29 +122,6 @@ map("n", "<Leader>o", ":.Gbrowse<CR>", opts)
 map("n", "<leader>s", ":Snippets<CR>", opts)
 -- Open applications
 map("n", "<c-n>", ":NvimTreeToggle<CR>", opts)
--- LSP
-map("n", "<leader>lf", ":Lspsaga lsp_finder<CR>", opts)
-map("n", "<leader>la", ":Lspsaga code_action<CR>", opts)
-map("v", "<leader>la", ":<C-U>Lspsaga range_code_action<CR>", opts)
-map("n", "K", ":Lspsaga hover_doc<CR>", opts)
-map("n", "<leader>lS", ":Lspsaga signature_help<CR>", opts)
-map("n", "<leader>lR", ":Lspsaga rename<CR>", opts)
-map("n", "<leader>lp", ":Lspsaga preview_definition<CR>", opts)
-map("n", "<leader>lD", ":Lspsaga show_line_diagnostics<CR>", opts)
-map("n", "e[", ":Lspsaga diagnostic_jump_next<CR>", opts)
-map("n", "e]", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
--- rust-analyzer does not yet support goto declaration - re-mapped `gd` to definition
-map("n", "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
--- map('n', '<leader>ld', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
--- map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
--- Completion (nvim-comple)
-map("i", "<expr> <C-Space>", "compe#complete()", opts)
-map("i", "<expr> <CR>", "compe#confirm('<CR>')", opts)
-map("i", "<expr> <C-e>", "compe#close('<C-e>')", opts)
-map("i", "<expr> <C-f>", "compe#scroll({ 'delta': +4 })", opts)
-map("i", "<expr> <C-d>", "compe#scroll({ 'delta': -4 })", opts)
--- GIT
 map("n", "<Leader>ga", ":Gwrite<CR>", opts)
 map("n", "<Leader>gc", ":Gcommit<CR>", opts)
 map("n", "<Leader>gsh", ":Gpush<CR>", opts)
@@ -139,6 +148,7 @@ map("n", "<Leader>/", ":History/<CR>", opts)
 map("n", "<Leader>M", ":Maps<CR>", opts)
 map("n", "<Leader>S", ":Filetypes<CR>", opts)
 map("n", "<Leader>B", ":BufferPick<CR>", opts)
+
 -- Telescope - new native lua style
 map("n", "<leader>fA", "<cmd>Telescope autocommands<cr>", opts)
 map("n", "<leader>b", "<cmd>Telescope buffers<cr>", opts)
@@ -181,17 +191,47 @@ map("n", "<leader>ft", "<cmd>Telescope tags<cr>", opts)
 map("n", "<leader>fk", "<cmd>Telescope treesitter<cr>", opts)
 map("n", "<leader>fO", "<cmd>Telescope vim_options<cr>", opts)
 
-map('n', '<space>f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>", {})
-map('n', '<space>F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>", {})
-map('o', '<space>f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, inclusive_jump = true })<cr>", {})
-map('o', '<space>F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, inclusive_jump = true })<cr>", {})
-map('', '<space>t', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>", {})
-map('', '<space>T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>", {})
+map(
+	"n",
+	"<space>f",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+	{}
+)
+map(
+	"n",
+	"<space>F",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+	{}
+)
+map(
+	"o",
+	"<space>f",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, inclusive_jump = true })<cr>",
+	{}
+)
+map(
+	"o",
+	"<space>F",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, inclusive_jump = true })<cr>",
+	{}
+)
+map(
+	"",
+	"<space>t",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+	{}
+)
+map(
+	"",
+	"<space>T",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+	{}
+)
 
 -- Trouble
-map("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})
-map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
-map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
-map("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+map("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true })
+map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", { silent = true, noremap = true })
+map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", { silent = true, noremap = true })
+map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", { silent = true, noremap = true })
+map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = true })
+map("n", "gR", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })

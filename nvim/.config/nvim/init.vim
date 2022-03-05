@@ -157,11 +157,6 @@
     let g:UltiSnipsExpandTrigger = "<tab>"
     let g:UltiSnipsJumpForwardTrigger = "<tab>"
     let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-    " TODO: remove once nvim understands 3.10 > 3.3 (Ultisnip)
-    if has('win64') || has('win32') || has('win16')
-        let g:env = 'WINDOWS'
-        let g:python3_host_prog = "C:\\Python39\\python.EXE"
-    endif
 
 " PlantUML Syntax:
     au BufNewFile,BufRead *.uml set filetype=plantuml
