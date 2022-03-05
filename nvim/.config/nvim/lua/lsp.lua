@@ -6,30 +6,34 @@
 -- lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
 
 -- nvim_lsp object
-local nvim_lsp = require "lspconfig"
+local nvim_lsp = require("lspconfig")
 
 -- function to attach completion when setting up lsp
 local on_attach = function(client)
-    -- was needed for completion-nvim
-    -- require'completion'.on_attach(client)
+	-- was needed for completion-nvim
+	-- require'completion'.on_attach(client)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- nvim_lsp.setup({
+--     capabilities = capabilities
+-- })
 
 -- Enable rust_analyzer
 -- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
 -- nvim_lsp.bashls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.ccls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.dockerls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.gopls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.html.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.jsonls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.pyright.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.rust_analyzer.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.tsserver.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.vimls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.yamlls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.dockerls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.html.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.jsonls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.rust_analyzer.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.yamlls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
 -- require("jdtls").start_or_attach(
@@ -38,15 +42,13 @@ nvim_lsp.yamlls.setup({on_attach = on_attach, capabilities = capabilities})
 -- )
 
 -- Enable diagnostics
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics, {
---     virtual_text = false,
---     signs = true,
---     update_in_insert = true,
---   }
--- )
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	virtual_text = false,
+	signs = true,
+	update_in_insert = true,
+})
 
-local saga = require "lspsaga"
+local saga = require("lspsaga")
 
 -- add your config value here
 -- default value
@@ -83,88 +85,59 @@ local saga = require "lspsaga"
 -- like server_filetype_map = {metals = {'sbt', 'scala'}}
 -- server_filetype_map = {}
 
--- saga.init_lsp_saga {
--- your custom option here
--- }
+saga.init_lsp_saga({})
 
 -- or --use default config
 saga.init_lsp_saga()
 
-require "compe".setup {
-    enabled = true,
-    autocomplete = true,
-    debug = false,
-    min_length = 1,
-    preselect = "enable",
-    throttle_time = 80,
-    source_timeout = 200,
-    incomplete_delay = 400,
-    max_abbr_width = 100,
-    max_kind_width = 100,
-    max_menu_width = 100,
-    documentation = true,
-    source = {
-        path = true,
-        buffer = true,
-        calc = true,
-        vsnip = true,
-        nvim_lsp = true,
-        nvim_lua = true,
-        spell = true,
-        tags = true,
-        snippets_nvim = true,
-        treesitter = true
-    }
-}
+require("telescope").setup({
+	defaults = {
+		vimgrep_arguments = {
+			"rg",
+			"-uu",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
+		prompt_prefix = "> ",
+		selection_caret = "> ",
+		entry_prefix = "  ",
+		initial_mode = "insert",
+		selection_strategy = "reset",
+		sorting_strategy = "descending",
+		layout_strategy = "horizontal",
+		layout_config = {
+			horizontal = {
+				mirror = false,
+			},
+			vertical = {
+				mirror = false,
+			},
+		},
+		file_sorter = require("telescope.sorters").get_fuzzy_file,
+		file_ignore_patterns = {},
+		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+		winblend = 0,
+		border = {},
+		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+		color_devicons = true,
+		use_less = true,
+		path_display = {},
+		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
-require('telescope').setup{
-  defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '-uu',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
-    },
-    prompt_prefix = "> ",
-    selection_caret = "> ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    winblend = 0,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    path_display = {},
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+		-- Developer configurations: Not meant for general override
+		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+	},
+})
+require("telescope").load_extension("fzf")
 
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-  }
-}
--- require('telescope').load_extension('fzf')
+-- require'lsp_signature'.on_attach()
 
-require'lsp_signature'.on_attach()
-
-local neogit = require('neogit')
-neogit.setup {}
+local neogit = require("neogit")
+neogit.setup({})
