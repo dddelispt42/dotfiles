@@ -262,7 +262,13 @@ return require("packer").startup({
 		use("aklt/plantuml-syntax")
 		-- " Plug 'sjurgemeyer/vim-plantuml', { 'for': 'plantuml' }
 		use("nathanalderson/yang.vim")
-		-- use 'bling/vim-bufferline'
+		-- use({
+		-- 	"akinsho/bufferline.nvim",
+		-- 	requires = "kyazdani42/nvim-web-devicons",
+		-- 	config = function()
+		-- 		require("bufferline").setup({})
+		-- 	end,
+		-- })
 		use("romgrk/barbar.nvim")
 		-- " interesting but not yet configured
 		-- " Git commit browser (:GV)
