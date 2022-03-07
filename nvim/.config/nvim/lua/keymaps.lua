@@ -114,8 +114,8 @@ map("n", "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 -- TODO: get rid of fugitive and use gitsigns/Neogit/Telescope
 -- GIT
 -- map('n', '<Leader>gr', ':Gremove<CR>', opts)
-map("n", "<Leader>gbr", ":GBranches<CR>", opts)
-map("n", "<Leader>gt", ":GTags<CR>", opts)
+-- map("n", "<Leader>gbr", ":GBranches<CR>", opts)
+-- map("n", "<Leader>gt", ":GTags<CR>", opts)
 -- Open current line on GitHub
 map("n", "<Leader>o", ":.Gbrowse<CR>", opts)
 -- Open applications
