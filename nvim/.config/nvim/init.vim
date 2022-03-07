@@ -60,7 +60,7 @@
     let g:vimwiki_table_auto_fmt=1
     " let l:vimwiki_header_type = '#'     " set to '=' for wiki syntax
     " au FileType vimwiki set syntax=markdown
-    map <silent> <leader>wf :FZF ~/klaut/vimwiki<cr>
+    " map <silent> <leader>wf :FZF ~/klaut/vimwiki<cr>
     autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md set filetype=vimwiki
     autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md silent! cd ~/klaut/vimwiki
     augroup VimWikiToDo

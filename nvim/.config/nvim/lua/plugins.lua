@@ -181,7 +181,7 @@ return require("packer").startup({
 				vim.cmd([[TSUpdate]])
 			end,
 		})
-		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+		-- use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 		-- use {
 		--     "lewis6991/spellsitter.nvim",
 		--     config = function()
