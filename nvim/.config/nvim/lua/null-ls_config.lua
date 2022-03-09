@@ -48,7 +48,7 @@ null_ls.setup({
 		-- formatting.protolint,
 		formatting.rustfmt,
 		formatting.shfmt,
-		formatting.shellharden,
+		-- formatting.shellharden,
 		formatting.sqlformat,
 		formatting.stylelint,
 		formatting.trim_whitespace,

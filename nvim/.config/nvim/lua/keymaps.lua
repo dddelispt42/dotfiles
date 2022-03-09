@@ -235,3 +235,9 @@ map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", { silent = true,
 map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", { silent = true, noremap = true })
 map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = true })
 map("n", "gR", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
+
+-- GUI mode - zooms
+-- map("n", "<C-ScrollWheelUp>", "<cmd>AdjustFontSize(1)<CR>", { silent = true, noremap = true })
+-- map("n", "<C-ScrollWheelDown>", "<cmd>AdjustFontSize(-1)<CR>", { silent = true, noremap = true })
+-- map("i", "<C-ScrollWheelUp>", "<Esc><cmd>AdjustFontSize(1)<CR>a", { silent = true, noremap = true })
+-- map("i", "<C-ScrollWheelDown>", "<Esc><cmd>AdjustFontSize(-1)<CR>a", { silent = true, noremap = true })

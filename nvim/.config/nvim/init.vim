@@ -151,15 +151,33 @@
     let g:vira_browser = 'qutebrowser'
     " TODO: run queries and open issues from there
 
-" Snipplets:
-    let g:UltiSnipsSnippetsDir="~/dev/heiko/dotfiles/vim/UltiSnips"
-    let g:UltiSnipsListSnippets="<s-tab>"
-    let g:UltiSnipsExpandTrigger = "<tab>"
-    let g:UltiSnipsJumpForwardTrigger = "<tab>"
-    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" " Snipplets:
+    " let g:UltiSnipsSnippetsDir="~/dev/heiko/dotfiles/vim/UltiSnips"
+    " let g:UltiSnipsListSnippets="<s-tab>"
+    " let g:UltiSnipsExpandTrigger = "<tab>"
+    " let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " PlantUML Syntax:
     au BufNewFile,BufRead *.uml set filetype=plantuml
 
-    " comments in italic
-    highlight Comment gui=italic
+" Configure font size in GUI mode
+let s:fontsize = 8
+function! AdjustFontSize(amount)
+  let s:fontsize = s:fontsize+a:amount
+  :execute "GuiFont! Hack NF:h" . s:fontsize
+  " :execute "Consolas:h" . s:fontsize
+endfunction
+
+" noremap <C-ScrollWheelUp> :call AdjustFontSize(1)<CR>
+" noremap <C-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
+" inoremap <C-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
+" inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
+" noremap <S-ScrollWheelUp> :call AdjustFontSize(1)<CR>
+" noremap <S-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
+" inoremap <S-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
+" inoremap <S-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
+noremap <C-.> :call AdjustFontSize(1)<CR>
+noremap <C-,> :call AdjustFontSize(-1)<CR>
+inoremap <C-.> <Esc>:call AdjustFontSize(1)<CR>a
+inoremap <C-,> <Esc>:call AdjustFontSize(-1)<CR>a
