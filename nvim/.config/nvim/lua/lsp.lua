@@ -34,6 +34,7 @@ nvim_lsp.rust_analyzer.setup({ on_attach = on_attach, capabilities = capabilitie
 nvim_lsp.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
 nvim_lsp.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
 nvim_lsp.yamlls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.jdtls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
 -- require("jdtls").start_or_attach(

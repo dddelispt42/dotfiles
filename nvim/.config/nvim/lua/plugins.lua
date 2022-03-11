@@ -115,9 +115,9 @@ return require("packer").startup({
 		})
 
 		-- use "kosayoda/nvim-lightbulb"
-		-- use "mfussenegger/nvim-jdtls"
+		use("mfussenegger/nvim-jdtls")
 		-- TODO: switch to trouble - only keep one
-		use("kevinhwang91/nvim-bqf")
+		-- use("kevinhwang91/nvim-bqf")
 		use({
 			"folke/trouble.nvim",
 			requires = "kyazdani42/nvim-web-devicons",

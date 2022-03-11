@@ -4,14 +4,14 @@ HOST=$(hostname)
 TERMI="${TERMINAL:-alacritty}"
 
 if [ "$HOST" == "work" ]; then
-    # MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
-    # xrandr --output $MONITOR --mode 1920x1080 --rate 60
-    VBoxClient --vmsvga
-    VBoxClient --clipboard
-    VBoxClient --draganddrop
-    VBoxClient --seamless
-    # VBoxClient --display
-    VBoxClient --checkhostversion
+	# MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
+	# xrandr --output $MONITOR --mode 1920x1080 --rate 60
+	VBoxClient --vmsvga
+	VBoxClient --clipboard
+	VBoxClient --draganddrop
+	VBoxClient --seamless
+	# VBoxClient --display
+	VBoxClient --checkhostversion
 fi
 
 xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
@@ -34,3 +34,4 @@ nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
 nohup anki &
 nohup tbb &
 nohup signal-desktop &
+nohup onboard &
