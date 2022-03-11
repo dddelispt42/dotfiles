@@ -48,6 +48,7 @@ null_ls.setup({
 		-- formatting.protolint,
 		formatting.rustfmt,
 		formatting.shfmt,
+		-- INFO: this is too aggressive and often breaks scripts
 		-- formatting.shellharden,
 		formatting.sqlformat,
 		formatting.stylelint,
