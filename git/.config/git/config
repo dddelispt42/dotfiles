@@ -20,7 +20,7 @@
 [delta]
     ; plus-color = syntax "#012800"
     ; minus-color = normal "#340001"
-    syntax-theme = gruvbox
+    syntax-theme = gruvbox-dark
     features = side-by-side line-numbers decorations
     whitespace-error-style = 22 reverse
 [delta "decorations"]
