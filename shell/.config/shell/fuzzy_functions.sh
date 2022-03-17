@@ -309,7 +309,10 @@ frga() {
 }
 
 fssh() {
-	eval "$(grep -E ".*:[0-9];(auto)?ssh " "$XDG_CACHE_HOME/zhistory" | sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)"
+	local cmd
+	cmd="$(grep -E ".*:[0-9];(auto)?ssh " "$XDG_CACHE_HOME/zhistory" | sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)"
+	print -s -- "$cmd"
+	eval "$cmd"
 }
 
 function fdocker {
