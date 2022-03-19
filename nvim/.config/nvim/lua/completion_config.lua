@@ -1,4 +1,7 @@
-local cmp = require("cmp")
+local cmp_ok, cmp = pcall(require, "cmp")
+if not cmp_ok then
+	return
+end
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
