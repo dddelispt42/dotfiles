@@ -5,7 +5,11 @@
 -- to the string you want to display as a label
 -- lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
 
-local lsp_installer = require("nvim-lsp-installer")
+local lsp_installer_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+if not lsp_installer_ok then
+	return
+end
+-- local lsp_installer = require("nvim-lsp-installer")
 local nvim_lsp = require("lspconfig")
 
 -- function to attach completion when setting up lsp
