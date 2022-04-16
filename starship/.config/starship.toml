@@ -28,7 +28,7 @@ read_only = "🔒"
 
 [git_branch]
 symbol = ""
-truncation_length = "4"
+# truncation_length = 4
 
 [git_state]
 # progress_divider = " of "

@@ -1,6 +1,7 @@
 # import subprocess
 """Heiko's qutebrowser settings."""
 import os
+
 from qutebrowser.api import interceptor
 
 # pylint: disable=C0111
@@ -22,16 +23,20 @@ def filter_yt(info: interceptor.Request):
 interceptor.register(filter_yt)
 
 config.bind("<y><o>", "yank inline [[{url}][{title}]]")
-notecmd = "yank inline [[{url}][{title}]];; spawn " +\
-        os.environ["TERMINAL"] + " -e " + os.environ["EDITOR"] + \
-        " -c 'call CreateCapture(\"e\" , \"qutebrowser\")'"
+notecmd = (
+    "yank inline [[{url}][{title}]];; spawn "
+    + os.environ["TERMINAL"]
+    + " -e "
+    + os.environ["EDITOR"]
+    + ' -c \'call CreateCapture("e" , "qutebrowser")\''
+)
 config.bind("gn", notecmd)
 config.bind("V", "hint links spawn " + os.environ["BROWSER"] + ' "{hint-url}"')
 config.bind("v", 'hint links spawn funnel "{hint-url}"')
 config.bind("\\", 'spawn dmenuhandler "{url}"')
-config.bind(',v', 'spawn umpv {url}')
-config.bind(',V', 'hint links spawn umpv {hint-url}')
-config.bind(';V', 'hint links --rapid spawn umpv {hint-url}')
+config.bind(",v", "spawn umpv {url}")
+config.bind(",V", "hint links spawn umpv {hint-url}")
+config.bind(";V", "hint links --rapid spawn umpv {hint-url}")
 # Awesome way to open vim from qutebrowser
 c.editor.command = [
     os.environ["TERMINAL"],
@@ -57,8 +62,8 @@ config.bind("<Ctrl-n>", "fake-key <Down>", "insert")
 config.bind("<Ctrl-u>", "fake-key <Shift-Home><Delete>", "insert")
 config.bind("<Ctrl-k>", "fake-key <Shift-End><Delete>", "insert")
 config.bind("<Ctrl-x><Ctrl-e>", "open-editor", "insert")
-config.bind("<Ctrl-+>", 'zoom-in')
-config.bind("<Ctrl-->", 'zoom-out')
+config.bind("<Ctrl-+>", "zoom-in")
+config.bind("<Ctrl-->", "zoom-out")
 config.bind("<Ctrl-e>", "edit-text", "insert")
 
 BASE00 = "#1d2021"
@@ -362,14 +367,15 @@ c.colors.webpage.bg = BASE00
 
 c.content.autoplay = False
 c.content.blocking.enabled = True
-c.content.blocking.method = 'both'
-c.content.default_encoding = 'utf-8'
+c.content.blocking.method = "both"
+c.content.default_encoding = "utf-8"
 c.content.geolocation = False
 c.content.pdfjs = True
-c.scrolling.bar = 'always'
-c.zoom.default = '90%'
-c.downloads.location.directory = '~/dl/'
-c.downloads.position = 'bottom'
+c.scrolling.bar = "always"
+c.zoom.default = "90%"
+c.downloads.location.directory = "~/dl/"
+c.downloads.position = "bottom"
+# c.content.host_blocking.lists.append(str(c.configdir) + "/blocked-hosts")
 
 config.load_autoconfig()
 
