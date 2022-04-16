@@ -1,19 +1,25 @@
 #!/bin/bash
 
-selected=$(bluetoothctl paired-devices | while IFS= read -r dev
-do
-    dev_id="$(echo "$dev" | sed 's/Device //;s/\s.*//')"
-    dev_name="$(echo "$dev" | sed 's/Device\s[0-9A-F:]\+\s//')"
-    cmd="$(bluetoothctl info "$dev_id" | grep "Connected: " | sed 's/\s*Connected: //;s/yes\s*$/disconnect/;s/no\s*$/connect/')"
-    echo "bluetoothctl $cmd $dev_id # $dev_name"
-    echo "${TERMINAL:-alacritty} -e bluetoothctl  # start bluetoothctl interactively"
-    echo "${TERMINAL:-alacritty} -e sudo systemctl restart bluetooth.service  # RESTART bluetooth stack"
+predefined_devs="
+Device E6:02:25:27:3F:DD HeiCorne
+"
+
+selected=$(bluetoothctl paired-devices | while IFS= read -r dev; do
+	dev_id="$(echo "$dev" | sed 's/Device //;s/\s.*//')"
+	dev_name="$(echo "$dev" | sed 's/Device\s[0-9A-F:]\+\s//')"
+	cmd="$(bluetoothctl info "$dev_id" | grep "Connected: " | sed 's/\s*Connected: //;s/yes\s*$/disconnect/;s/no\s*$/connect/')"
+	# if bluetoothctl info "$dev_id" | grep "Paired: no" >/dev/null; then
+	# 	cmd="pair"
+	# fi
+	echo "bluetoothctl $cmd $dev_id # $dev_name"
+	echo "${TERMINAL:-alacritty} -e bluetoothctl  # start bluetoothctl interactively"
+	echo "${TERMINAL:-alacritty} -e sudo systemctl restart bluetooth.service  # RESTART bluetooth stack"
 done | sort -u | rofi -dmenu | sed 's/\s*#.*//')
 if [[ -n "$selected" ]]; then
-    echo "Run: $selected"
-    if $selected; then
-        notify-send -t 2000 -a "Bluetooth Menu" "SUCCESS" "$selected"
-    else
-        notify-send -t 2000 -a "Bluetooth Menu" "FAILURE" "$selected"
-    fi
+	echo "Run: $selected"
+	if $selected; then
+		notify-send -t 2000 -a "Bluetooth Menu" "SUCCESS" "$selected"
+	else
+		notify-send -t 2000 -a "Bluetooth Menu" "FAILURE" "$selected"
+	fi
 fi

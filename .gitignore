@@ -3,3 +3,5 @@ nvim/.config/nvim/plugin/packer_compiled.lua
 tmux/.config/tmux/plugins
 qutebrowser/.config/qutebrowser/bookmarks/
 qutebrowser/.config/qutebrowser/quickmarks
+qutebrowser/.config/qutebrowser/blocked-hosts
+qutebrowser/.config/qutebrowser/qsettings/

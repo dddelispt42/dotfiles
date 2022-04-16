@@ -82,4 +82,8 @@ test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/broot/launcher/bash/br && source "$_
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval $(thefuck --alias)
+# You can use whatever you want as an alias, like for Mondays:
+eval $(thefuck --alias FUCK)

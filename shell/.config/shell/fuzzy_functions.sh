@@ -310,6 +310,9 @@ frga() {
 
 fssh() {
 	local cmd
+	while ss -tl | grep $AUTOSSH_PORT >/dev/null; do
+		export AUTOSSH_PORT=$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); printf("%d\n",r)  }' </dev/null)
+	done
 	cmd="$(grep -E ".*:[0-9];(auto)?ssh " "$XDG_CACHE_HOME/zhistory" | sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf)"
 	print -s -- "$cmd"
 	eval "$cmd"
