@@ -84,6 +84,8 @@ eval "$(zoxide init zsh --cmd cd)"
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval $(thefuck --alias)
-# You can use whatever you want as an alias, like for Mondays:
-eval $(thefuck --alias FUCK)
+if command -v fuck >/dev/null; then
+    eval $(thefuck --alias)
+    # You can use whatever you want as an alias, like for Mondays:
+    eval $(thefuck --alias FUCK)
+fi
