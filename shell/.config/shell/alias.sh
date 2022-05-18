@@ -3,25 +3,25 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # some more ls aliases
-command -v lsd > /dev/null && alias ls="lsd --group-dirs first"
-command -v lsd > /dev/null && alias lt='ls --tree'
-if command -v exa > /dev/null; then
-    # general use
-    alias ls='exa'                                                          # ls
-    alias l='exa -lbF --git'                                                # list, size, type, git
-    alias ll='exa -lbGF --git'                                             # long list
-    alias llm='exa -lbG --git --sort=modified'                            # long list, modified date sort
-    alias la='exa -lbhHigmuSaa --time-style=long-iso --git --color-scale'  # all list
-    alias lx='exa -lbhHigmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
-    # specialty views
-    alias lS='exa -1'                                                              # one column, just names
-    alias lt='exa --tree --level=2'                                         # tree
-    alias exa='exa --git --group-directories-first --classify'
+command -v lsd >/dev/null && alias ls="lsd --group-dirs first"
+command -v lsd >/dev/null && alias lt='ls --tree'
+if command -v exa >/dev/null; then
+	# general use
+	alias ls='exa'                                                        # ls
+	alias l='exa -lbF --git'                                              # list, size, type, git
+	alias ll='exa -lbGF --git'                                            # long list
+	alias llm='exa -lbG --git --sort=modified'                            # long list, modified date sort
+	alias la='exa -lbhHigmuSaa --time-style=long-iso --git --color-scale' # all list
+	alias lx='exa -lbhHigmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+	# specialty views
+	alias lS='exa -1'               # one column, just names
+	alias lt='exa --tree --level=2' # tree
+	alias exa='exa --git --group-directories-first --classify'
 else
-    alias l='ls -l'
-    alias ll='l'
-    alias lla='ls -la'
-    alias la='ls -A'
+	alias l='ls -l'
+	alias ll='l'
+	alias lla='ls -la'
+	alias la='ls -A'
 fi
 
 ######################################
@@ -62,7 +62,6 @@ alias lsblk="lsblk -a -o 'NAME,MAJ:MIN,RM,RO,TYPE,SIZE,FSUSED,FSUSE%,LABEL,UUID,
 # alias xterm='xterm -name $(hostname) -ls -sb -sl 1500 -bg $XTERM_COLOR -font fixed'
 # alias clip="xterm -fn fixed -title Clipboard -e tcsh -c 'cat > /dev/null' &"
 
-
 ######
 # ps #
 ######
@@ -87,9 +86,9 @@ alias cp="cp -i"
 # edit resource or configuration files #
 ########################################
 # alias vim="vimTabs"
-command -v nvim > /dev/null && alias vim="nvim"
-command -v nvim > /dev/null && alias vimdiff="nvim -d"
-command -v hwatch > /dev/null && alias watch='hwatch -c -d'
+command -v nvim >/dev/null && alias vim="nvim"
+command -v nvim >/dev/null && alias vimdiff="nvim -d"
+command -v hwatch >/dev/null && alias watch='hwatch -c -d'
 alias vi="vim"
 alias v='$VISUAL'
 alias bim='$EDITOR'
@@ -103,10 +102,10 @@ alias getclip='xclip -selection clipboard -o'
 
 #PAGER
 if command -v bat >/dev/null; then
-    alias more='bat'
-    alias m='more'
+	alias more='bat'
+	alias m='more'
 fi
-command -v tidy-viewer > /dev/null && alias tv="tidy-viewer"
+command -v tidy-viewer >/dev/null && alias tv="tidy-viewer"
 
 # git
 alias g='git'
@@ -115,10 +114,10 @@ alias gs='git status -sb'
 alias gcb='git rev-parse --abbrev-ref HEAD | pbcopy'
 alias cal='ncal -w -M -A 6 -B 1'
 alias wttr='curl wttr.in/lisbon'
-command -v eva > /dev/null && alias bc="eva"
+command -v eva >/dev/null && alias bc="eva"
 
 # lf - list files (if mc is not installed)
-command -v mc > /dev/null || alias mc='tmux split -h lf; lf'
+command -v mc >/dev/null || alias mc='tmux split -h lf; lf'
 
 # alias cp="rsync --archive --human-readable --progress --verbose --whole-file"
 # alias scp="rsync --archive --checksum --compress --human-readable --itemize-changes --rsh=ssh --stats --verbose"
@@ -136,11 +135,11 @@ alias hors="hors -c -a"
 alias tray="trayer --edge top --align center --expand false --width 5 --distance 20 &"
 alias pacsize="pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
 pacbloat() {
-    pacman -Qe | awk '{print $1;}' | while read -r line; do
-        if ! grep "$line" "$HOME"/dev/heiko/bootstrap/vars/*.pkgs > /dev/null; then
-            echo "$line"
-        fi
-    done
+	pacman -Qe | awk '{print $1;}' | while read -r line; do
+		if ! grep "$line" "$HOME"/dev/heiko/bootstrap/vars/*.pkgs >/dev/null; then
+			echo "$line"
+		fi
+	done
 }
 
 # For spoken audio
@@ -149,10 +148,11 @@ alias yta="youtube-dl --format worstaudio --extract-audio --no-playlist"
 alias ytmu="youtube-dl --format bestaudio --extract-audio --no-playlist"
 # List formats & prompt for one
 fyt() {
-    youtube-dl --format "$(youtube-dl --list-formats "$1" | grep -E "^[0-9]+ " | fzf -1 -0 | awk '{print $1;}')" "$1"
+	youtube-dl --format "$(youtube-dl --list-formats "$1" | grep -E "^[0-9]+ " | fzf -1 -0 | awk '{print $1;}')" "$1"
 }
 # superresolution in python
 # Usage:
 #    enhance --zoom=1 --model=repair images/broken.jpg
 #    enhance --zoom=2 "images/*.jpg"
-alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
+# alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
+alias thokr='thokr -w 200 -l english10k'
