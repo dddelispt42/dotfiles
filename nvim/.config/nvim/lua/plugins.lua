@@ -126,7 +126,9 @@ return packer.startup({
 				require("trouble").setup({
 					auto_open = true, -- automatically open the list when you have diagnostics
 					auto_close = true, -- automatically close the list when you have no diagnostics
-					auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+					-- automatically preview the location of the diagnostic.
+					-- <esc> to close preview and go back to last window
+					auto_preview = true,
 				})
 			end,
 		})
@@ -324,6 +326,7 @@ return packer.startup({
 		-- edit JIRA issues in vim
 		-- use "n0v1c3/vira"
 		-- use 'dddelispt42/vira', { 'do': './install.sh' }
+		use("n0v1c3/vira")
 		-- " automatically set the root directory
 		use("airblade/vim-rooter")
 		-- use "github/copilot.vim"
