@@ -1,3 +1,5 @@
+-- luacheck: globals vim
+
 require("sidebar-nvim").setup({
 	disable_default_keybindings = 0,
 	bindings = nil,

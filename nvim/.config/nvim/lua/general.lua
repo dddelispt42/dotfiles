@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 local o = vim.o
 local wo = vim.wo
 local bo = vim.bo
@@ -52,17 +53,26 @@ o.splitbelow = true -- force all horizontal splits to go below current window
 o.splitright = true -- force all vertical splits to go to the right of current window
 o.swapfile = true -- creates a swapfile
 o.tabstop = 4 -- insert 2 spaces for a tab
-o.tags =
-	"tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../../tags,../../../../../../../tags,../../../../../../../../tags,../../../../../../../../../tags,../../../../../../../../../../tags"
+o.tags = "tags,../tags,../../tags,../../../tags,../../../../tags,"
+o.tags = o.tags .. "../../../../../tags,../../../../../../tags,"
+o.tags = o.tags .. "../../../../../../../tags,../../../../../../../../tags,"
+o.tags = o.tags .. "../../../../../../../../../tags,../../../../../../../../../../tags"
 o.textwidth = 119
 o.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
 o.undofile = true -- enable persistent undo
 o.updatetime = 300 -- faster completion (4000ms default)
-o.wildignore = o.wildignore
-	.. "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,*.mkv,*.mp4 ,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip"
+o.wildignore = o.wildignore .. "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.jar,*.png,"
+o.wildignore = o.wildignore .. "*.class,*.jpg,*.pdf,*.pst,*.ppt,*.doc,*.xls,*.pptx,"
+o.wildignore = o.wildignore .. "*.docx,*.xlsx,*.ico,*.bmp,*.gif,*.7z,*.deb,*.rpm,"
+o.wildignore = o.wildignore .. "*.dot,*.exe,*.dll,*.aps,*.chm,*.dat,*.dump,*.mp3,"
+o.wildignore = o.wildignore .. "*.mkv,*.mp4 ,*.m4a,*.gz,*.tar,*.tgz,*.mdb,*.msg,"
+o.wildignore = o.wildignore .. "*.odt,*.oft,*.pdb,*.ppm,*.pps,*.pub,*.mobi,*.rtf,"
+o.wildignore = o.wildignore .. "*.stackdump,*.dump,*.ttf,*.otf,*.tmp,*.temp,*.zip"
 o.wildignore = o.wildignore .. "*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite"
 o.wrap = true -- display lines as one long line
-o.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+-- if a file is being edited by another program (or was written to file while editing
+-- with another program), it is not allowed to be edited
+o.writebackup = false
 
 -- window-local options
 wo.number = true
@@ -90,24 +100,24 @@ vim.api.nvim_exec(
 	false
 )
 
-require("nvim-treesitter.configs").setup({
-	ensure_installed = "maintained",
-	highlight = {
-		enable = true,
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "gnn",
-			scope_incremental = "gnc",
-			node_decremental = "gnd",
-		},
-	},
-	indent = {
-		enable = true,
-	},
-})
+-- require("nvim-treesitter.configs").setup({
+-- 	ensure_installed = "maintained",
+-- 	highlight = {
+-- 		enable = true,
+-- 	},
+-- 	incremental_selection = {
+-- 		enable = true,
+-- 		keymaps = {
+-- 			init_selection = "gnn",
+-- 			node_incremental = "gnn",
+-- 			scope_incremental = "gnc",
+-- 			node_decremental = "gnd",
+-- 		},
+-- 	},
+-- 	indent = {
+-- 		enable = true,
+-- 	},
+-- })
 
 -- telescope actions for dap
 require("telescope").load_extension("dap")
