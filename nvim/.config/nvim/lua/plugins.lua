@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 -- TODO: check Packer code against latest in github
 
 -- Only required if you have packer in your `opt` pack
@@ -38,7 +39,7 @@ vim.cmd([[
   augroup end
 ]])
 
-return require("packer").startup({
+return packer.startup({
 	function(use)
 		use("wbthomason/packer.nvim")
 

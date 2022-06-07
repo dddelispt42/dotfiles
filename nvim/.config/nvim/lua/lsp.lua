@@ -1,3 +1,5 @@
+-- luacheck: globals vim
+
 -- local lsp_status = require("lsp-status")
 -- completion_customize_lsp_label as used in completion-nvim
 -- Optional: customize the kind labels used in identifying the current function.
@@ -5,7 +7,7 @@
 -- to the string you want to display as a label
 -- lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
 
-local lsp_installer_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local lsp_installer_ok, _ = pcall(require, "nvim-lsp-installer")
 if not lsp_installer_ok then
 	return
 end
