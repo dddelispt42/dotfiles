@@ -144,6 +144,7 @@ return packer.startup({
 		use("hrsh7th/cmp-path")
 		use("hrsh7th/cmp-cmdline")
 		use("hrsh7th/cmp-emoji")
+		use("rcarriga/cmp-dap")
 		use("ray-x/cmp-treesitter")
 		use("f3fora/cmp-spell")
 		use("pontusk/cmp-vimwiki-tags")
@@ -199,6 +200,7 @@ return packer.startup({
 		-- use "liuchengxu/vista.vim"
 		use("sidebar-nvim/sidebar.nvim")
 		use("mfussenegger/nvim-dap")
+		use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 		use("mfussenegger/nvim-dap-python")
 		use("nvim-telescope/telescope-dap.nvim")
 		use({
