@@ -30,7 +30,8 @@ map("t", "jk", "<c-\\><c-n>", opts)
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
 map("n", "Q", "@@", opts)
-map("c", "W!", "w!", opts)
+-- map("c", "W!", "w!", opts)
+map("c", "W!", "w !sudo tee %", opts) -- write as root
 map("c", "Q!", "q!", opts)
 map("c", "Qa!", "qa!", opts)
 -- Vmap for maintain Visual Mode after shifting > and <

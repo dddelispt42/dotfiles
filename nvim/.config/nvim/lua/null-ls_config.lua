@@ -25,9 +25,10 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-		formatting.black.with({ extra_args = { "--fast" } }),
+		-- formatting.black.with({ extra_args = { "--fast" } }),
+		formatting.black,
 		-- formatting.asmfmt,
-		formatting.autopep8,
+		-- formatting.autopep8,
 		-- formatting.brittany,
 		formatting.clang_format,
 		-- formatting.cljstyle,
