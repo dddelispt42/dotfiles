@@ -2,8 +2,8 @@
 
 # move things to XDG directories
 function migrate_to_clean {
-    [[ -f "$1" ]] && [[ ! -f "$2" ]] && mv "$1" "$2" && return
-    [[ -d "$1" ]] && [[ ! -d "$2" ]] && mv "$1" "$2"
+	[[ -f "$1" ]] && [[ ! -f "$2" ]] && mv "$1" "$2" && return
+	[[ -d "$1" ]] && [[ ! -d "$2" ]] && mv "$1" "$2"
 }
 
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
@@ -101,6 +101,7 @@ migrate_to_clean "$HOME"/.zshrc.local "$XDG_CONFIG_HOME"/zshrc.local
 migrate_to_clean "$HOME"/.sqlite_history "$XDG_DATA_HOME"/sqlite_history
 
 stow -vS -t "$HOME"/ X11
+stow -vS -t "$HOME"/ alacritty
 stow -vS -t "$HOME"/ bat
 stow -vS -t "$HOME"/ bottom
 stow -vS -t "$HOME"/ broot
@@ -133,25 +134,25 @@ stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
 
 if [ "$OSTYPE" = "linux-android" ]; then
-    stow -vS -t "$HOME"/ android  # Android
+	stow -vS -t "$HOME"/ android # Android
 fi
 
 ZPLUG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/zplug"
 if ! [ -d "$ZPLUG_HOME" ]; then
-    git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
+	git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
 fi
 
-if command -v xdg-mime > /dev/null; then
-    xdg-mime default org.pwmt.zathura.desktop application/pdf
+if command -v xdg-mime >/dev/null; then
+	xdg-mime default org.pwmt.zathura.desktop application/pdf
 fi
 
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions,spell}
-if command -v nvim > /dev/null; then
-    # nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
-    # nvim +PackerInstall +PackerSync +qall --headless
-    nvim +PackerInstall +qall --headless
+if command -v nvim >/dev/null; then
+	# nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+	# nvim +PackerInstall +PackerSync +qall --headless
+	nvim +PackerInstall +qall --headless
 else
-    vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+	vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
 fi
 
 # TODO: check if key is too old
@@ -166,10 +167,10 @@ mkdir -p "$HOME/dev/heiko"
 
 # copy to Windows if exiting
 if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
-    cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
-    mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
-    cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
-    cp "${XDG_CONFIG_HOME:-$HOME/.config}"/git/* /mnt/users/hriemer/.config/git/
+	cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
+	mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
+	cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
+	cp "${XDG_CONFIG_HOME:-$HOME/.config}"/git/* /mnt/users/hriemer/.config/git/
 fi
 
 # protect settings dir
@@ -180,5 +181,3 @@ git submodule update --init tmux/.config/tmux/plugins/tpm
 ./tmux/.config/tmux/plugins/tpm/bin/install_plugins
 ./tmux/.config/tmux/plugins/tpm/bin/update_plugins all
 ./tmux/.config/tmux/plugins/tpm/bin/clean_plugins
-
-
