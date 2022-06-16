@@ -79,7 +79,7 @@ module-margin-right = 2
 ; font-1 = NotoSansMono Nerd Font:pixelsize=10;1
 font-0 = Hack Nerd Font:pixelsize=8;1
 font-1 = Hack Nerd Font:pixelsize=8;1
-font-2 = siji:pixelsize=8;1
+font-2 = Hack Nerd Font:pixelsize=8;1
 
 ; modules-left = bspwm i3
 ; modules-left = bspwm title
@@ -89,8 +89,7 @@ modules-left = ws title
 ; modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date
 modules-right = polypomo system-bluetooth-bluetoothctl updates-arch filesystem pulseaudio xkeyboard memory cpu eth temperature weather date
 tray-position = right
-tray-padding = 1
-; tray-background = #0063ff
+tray-padding = 3
 tray-background = ${colors.background}
 
 ; wm-restack = bspwm
@@ -329,13 +328,13 @@ label-disconnected-foreground = ${colors.foreground-alt}
 [module/date]
 type = internal/date
 interval = 5
-click-right = notify-send -t 0 "Calendar" "$(\cal -m -w)"
+click-right = notify-send -t 0 "Calendar" "$(cal -m -w)"
 
 date =
 date-alt = " %Y-%m-%d"
 
-time = %H:%M
-time-alt = %H:%M:%S
+time = "%H:%M  "
+time-alt = "%H:%M:%S  "
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
