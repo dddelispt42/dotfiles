@@ -78,7 +78,7 @@ null_ls.setup({
 		-- diagnostics.selene,
 		diagnostics.shellcheck,
 		diagnostics.vint,
-		diagnostics.vulture,
+		-- diagnostics.vulture,
 		-- diagnostics.xo,
 		diagnostics.yamllint,
 		diagnostics.flake8,
