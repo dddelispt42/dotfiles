@@ -1,6 +1,6 @@
 # Beware! This file is rewritten by htop when settings are changed in the interface.
 # The parser is also very primitive, and not human-friendly.
-htop_version=3.2.0
+htop_version=3.2.1
 config_reader_min_version=3
 fields=0 48 17 18 20 38 39 40 2 46 47 49 20 1
 hide_kernel_threads=1
@@ -38,28 +38,17 @@ column_meters_1=Tasks LoadAverage Uptime Battery Hostname
 column_meter_modes_1=2 2 2 2 2
 column_meters_2=DateTime System Systemd DiskIO NetworkIO
 column_meter_modes_2=2 2 2 2 2
-<<<<<<< HEAD
-tree_view=1
-sort_key=47
-=======
 tree_view=1
 sort_key=46
->>>>>>> b46bcb5 (add thokr alias and update htop settings)
 tree_sort_key=46
 sort_direction=-1
 tree_sort_direction=1
 tree_view_always_by_pid=1
 all_branches_collapsed=0
 screen:Main=PID USER PRIORITY NICE STARTTIME M_VIRT M_RESIDENT M_SHARE STATE PERCENT_CPU PERCENT_MEM TIME STARTTIME Command
-<<<<<<< HEAD
-.sort_key=PERCENT_MEM
-.tree_sort_key=PERCENT_CPU
-.tree_view=0
-=======
 .sort_key=PERCENT_CPU
 .tree_sort_key=PERCENT_CPU
 .tree_view=1
->>>>>>> b46bcb5 (add thokr alias and update htop settings)
 .tree_view_always_by_pid=1
 .sort_direction=-1
 .tree_sort_direction=1
