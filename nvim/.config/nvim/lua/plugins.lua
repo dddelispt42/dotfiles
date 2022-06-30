@@ -129,6 +129,7 @@ return packer.startup({
 					-- automatically preview the location of the diagnostic.
 					-- <esc> to close preview and go back to last window
 					auto_preview = true,
+					-- mode = "document_diagnostics",
 				})
 			end,
 		})
