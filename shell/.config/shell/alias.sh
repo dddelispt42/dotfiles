@@ -95,6 +95,8 @@ alias bim='$EDITOR'
 alias ivm='$EDITOR'
 alias :w="echo this is not vim 🌟"
 alias :q='exit'
+alias weechat=weechat -d "${XDG_CONFIG_HOME}/weechat"
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 # Clipboard
 alias setclip='xclip -selection c'

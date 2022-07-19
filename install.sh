@@ -32,7 +32,9 @@ mkdir -p "$XDG_PUBLICSHARE_DIR"
 mkdir -p "$XDG_TEMPLATES_DIR"
 mkdir -p "$XDG_VIDEOS_DIR"
 mkdir -p "$HOME/.ssh"
+migrate_to_clean "$HOME"/.ansible "$XDG_CONFIG_HOME"/ansible
 migrate_to_clean "$HOME"/.RFCs "$XDG_CACHE_HOME"/RFCs
+migrate_to_clean "$HOME"/.surf "$XDG_CACHE_HOME"/surf
 migrate_to_clean "$HOME"/.Skype "$XDG_CONFIG_HOME"/Skype
 migrate_to_clean "$HOME"/.aria2 "$XDG_CONFIG_HOME"/aria2
 migrate_to_clean "$HOME"/.asoundrc "$XDG_CONFIG_HOME"/asoundrc
@@ -41,6 +43,11 @@ migrate_to_clean "$HOME"/.calibre "$XDG_CONFIG_HOME"/calibre
 migrate_to_clean "$HOME"/.cargo "$XDG_DATA_HOME"/cargo
 migrate_to_clean "$HOME"/.cht.sh "$XDG_CONFIG_HOME"/cht.sh
 migrate_to_clean "$HOME"/.cmus "$XDG_CONFIG_HOME"/cmus
+migrate_to_clean "$HOME"/.kde "$XDG_CONFIG_HOME"/kde
+migrate_to_clean "$HOME"/.gnupg "$XDG_CONFIG_HOME"/gnupg
+migrate_to_clean "$HOME"/.gradle "$XDG_DATA_HOME"/gradle
+mkdir -p "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+migrate_to_clean "$HOME"/.gtkrc-2.0 "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 migrate_to_clean "$HOME"/.gimp-2.0 "$XDG_CONFIG_HOME"/gimp-2.0
 migrate_to_clean "$HOME"/.gimp-2.10 "$XDG_CONFIG_HOME"/gimp-2.10
 migrate_to_clean "$HOME"/.gimp-2.2 "$XDG_CONFIG_HOME"/gimp-2.2
@@ -59,11 +66,15 @@ migrate_to_clean "$HOME"/.mpv "$XDG_CONFIG_HOME"/mpv
 migrate_to_clean "$HOME"/.mutt "$XDG_CONFIG_HOME"/mutt
 migrate_to_clean "$HOME"/.mypoint "$XDG_CONFIG_HOME"/mypoint
 migrate_to_clean "$HOME"/.newsbeuter "$XDG_CONFIG_HOME"/newsbeuter
+migrate_to_clean "$HOME"/.weechat "$XDG_CONFIG_HOME"/weechat
 migrate_to_clean "$HOME"/.newsboat "$XDG_CONFIG_HOME"/newsboat
 migrate_to_clean "$HOME"/.pandoc "$XDG_CONFIG_HOME"/pandoc
 migrate_to_clean "$HOME"/.pylint.d "$XDG_CONFIG_HOME"/pylint
 migrate_to_clean "$HOME"/.pylintrc "$XDG_CONFIG_HOME"/pylint/pylintrc
 migrate_to_clean "$HOME"/.rustup "$XDG_DATA_HOME"/rustup
+migrate_to_clean "$HOME"/.minikube "$XDG_DATA_HOME"/minikube
+migrate_to_clean "$HOME"/.wget-hsts "$XDG_DATA_HOME"/wget-hsts
+migrate_to_clean "$HOME"/.terminfo "$XDG_DATA_HOME"/terminfo
 migrate_to_clean "$HOME"/.thumbnails "$XDG_CACHE_HOME"/thumbnails
 migrate_to_clean "$HOME"/.zhistory "$XDG_CACHE_HOME"/zhistory
 migrate_to_clean "$HOME"/vimfiles "$XDG_CACHE_HOME"/nvim

@@ -13,6 +13,7 @@ export LANG=en_US.UTF-8
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DESKTOP_DIR="$HOME/docs/desktop"
 export XDG_DOCUMENTS_DIR="$HOME/docs"
 export XDG_DOWNLOAD_DIR="$HOME/dl"
@@ -27,8 +28,9 @@ export XDG_VIDEOS_DIR="$HOME/media/videos"
 # HISTCONTROL=ignoreboth
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-# HISTSIZE=1000
-# HISTFILESIZE=2000
+HISTSIZE=5000
+HISTFILESIZE=5000
+export HISTFILE="${XDG_CACHE_HOME}"/history
 
 # firefox profile
 FIREFOX_PROFILE="$(test -d .mozilla/firefox && (find .mozilla/firefox/ -iname '*.default' | tail -1))"
@@ -46,26 +48,26 @@ export PATH
 
 export NNTPSERVER=news.aioe.org
 export EDITOR="vim"
-command -v nvim > /dev/null && export EDITOR="nvim"
+command -v nvim >/dev/null && export EDITOR="nvim"
 export VISUAL=$EDITOR
 export BROWSER=elinks
 if [ -n "${DISPLAY+1}" ]; then
-    export BROWSER=brave
+	export BROWSER=brave
 fi
 export OPENER=xdg-open
 if command -v mimeopen >/dev/null; then
-    export OPENER=mimeopen
+	export OPENER=mimeopen
 fi
 export PAGER=less
 if command -v bat >/dev/null; then
-    export PAGER=bat
-    export BAT_PAGER="less -RX"
+	export PAGER=bat
+	export BAT_PAGER="less -RX"
 fi
 
 # AUTOSSH
 export AUTOSSH_POLL=20
 export AUTOSSH_GATETIME=30
-export AUTOSSH_PORT=$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); printf("%d\n",r)  }' < /dev/null)
+export AUTOSSH_PORT=$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); printf("%d\n",r)  }' </dev/null)
 export AUTOSSH_LOGLEVEL=0
 export AUTOSSH_LOGFILE="$XDG_CACHE_HOME/autossh.log"
 
@@ -99,7 +101,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # default terminal emulator
 export TERMINAL=st
-command -v alacritty > /dev/null && export TERMINAL="alacritty"
+command -v alacritty >/dev/null && export TERMINAL="alacritty"
 
 # my BIB file
 export BIB=$HOME/Documents/uni.bib
@@ -133,12 +135,21 @@ export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/inputrc"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
+export KDEHOME="${XDG_CONFIG_HOME:-$HOME/.config}/kde"
+export ICEAUTHORITY="{$XDG_CACHE_HOME:-$HOME/.cache}"/ICEauthority
+export MINIKUBE_HOME="{$XDG_DATA_HOME:-$HOME/.local/share}"/minikube
+export TERMINFO="{$XDG_DATA_HOME:-$HOME/.local/share}"/terminfo
+export TERMINFO_DIRS="{$XDG_DATA_HOME:-$HOME/.local/share}"/terminfo:/usr/share/terminfo
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
+export GRADLE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gradle"
 #export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export ANSIBLE_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/ansible"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export ANSIBLE_NOCOWS=1
 export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
@@ -161,8 +172,8 @@ export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 # export LESS=-R
 # export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 # export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
-export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
-export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+export MOZ_USE_XINPUT2="1"           # Mozilla smooth scrolling/touchpads.
+export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications in dwm
 export _Z_DATA="$XDG_DATA_HOME/z"
 export _ZO_FZF_OPTS="-x --multi --height 50% --border --inline-info --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap"
 
@@ -212,10 +223,10 @@ export SKIM_DEFAULT_COMMAND="rg --files -uu --follow || git ls-tree -r --name-on
 export LAUNCHER=sk
 export CM_LAUNCHER=fzf
 if [ -n "${DISPLAY+1}" ]; then
-    export LAUNCHER="rofi -dmenu"
-    # export LAUNCHER=dmenu
-    # export CM_LAUNCHER=dmenu
-    export CM_LAUNCHER=rofi
+	export LAUNCHER="rofi -dmenu"
+	# export LAUNCHER=dmenu
+	# export CM_LAUNCHER=dmenu
+	export CM_LAUNCHER=rofi
 fi
 
 #FORGIT
