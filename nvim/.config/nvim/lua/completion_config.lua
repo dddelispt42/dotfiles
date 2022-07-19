@@ -1,3 +1,5 @@
+-- luacheck: globals vim
+
 local cmp_ok, cmp = pcall(require, "cmp")
 if not cmp_ok then
 	return
@@ -91,7 +93,8 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- Kind icons
 			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+			-- This concatonates the icons with the name of the item kind
 			vim_item.menu = ({
 				-- luasnip = "[Snippet]",
 				ultisnips = "[Snippet]",
@@ -101,7 +104,7 @@ cmp.setup({
 				treesitter = "[Treesitter]",
 				spell = "[Spell]",
 				emoji = "[Emoji]",
-				emoji = "[Nvim lua]",
+				-- emoji = "[Nvim lua]",
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -115,12 +118,17 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "crates" },
+		{ name = "dap" },
 		{ name = "treesitter" },
 		{ name = "spell" },
 		{ name = "emoji" },
-		{ name = "vimwiki-tags" },
+		-- { name = "vimwiki-tags" },
 		{ name = "nvim_lua" },
 	}),
+	-- nvim-cmp by defaults disables autocomplete for prompt buffers
+	enabled = function()
+		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+	end,
 })
 -- `/` cmdline setup.
 cmp.setup.cmdline("/", {
