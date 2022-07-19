@@ -93,16 +93,16 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- Kind icons
 			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
 			-- This concatonates the icons with the name of the item kind
+			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
 			vim_item.menu = ({
 				-- luasnip = "[Snippet]",
 				ultisnips = "[Snippet]",
-				buffer = "[Buffer]",
+				-- treesitter = "[Treesitter]",
+				-- buffer = "[Buffer]",
 				path = "[Path]",
 				crates = "[Crates]",
-				treesitter = "[Treesitter]",
-				spell = "[Spell]",
+				-- spell = "[Spell]",
 				emoji = "[Emoji]",
 				-- emoji = "[Nvim lua]",
 			})[entry.source.name]
@@ -115,12 +115,12 @@ cmp.setup({
 		-- { name = 'luasnip' }, -- For luasnip users.
 		-- { name = 'snippy' }, -- For snippy users.
 		{ name = "ultisnips" }, -- For ultisnips users.
-		{ name = "buffer" },
+		-- { name = "treesitter" },
+		-- { name = "buffer" },
 		{ name = "path" },
 		{ name = "crates" },
 		{ name = "dap" },
-		{ name = "treesitter" },
-		{ name = "spell" },
+		-- { name = "spell" },
 		{ name = "emoji" },
 		-- { name = "vimwiki-tags" },
 		{ name = "nvim_lua" },
