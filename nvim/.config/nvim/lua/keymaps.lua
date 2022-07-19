@@ -31,7 +31,7 @@ map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
 map("n", "Q", "@@", opts)
 -- map("c", "W!", "w!", opts)
-map("c", "W!", "w !sudo tee %", opts) -- write as root
+map("c", "W!", "w !doas tee %", opts) -- write as root
 map("c", "Q!", "q!", opts)
 map("c", "Qa!", "qa!", opts)
 -- Vmap for maintain Visual Mode after shifting > and <
@@ -99,58 +99,17 @@ map("n", "<leader>lp", ":Lspsaga preview_definition<CR>", opts)
 -- map("n", "<leader>lD", ":Lspsaga show_line_diagnostics<CR>", opts)
 -- map("n", "e[", ":Lspsaga diagnostic_jump_next<CR>", opts)
 -- map("n", "e]", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-map("n", "e[", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-map("n", "e]", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+map("n", "e[", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+map("n", "e]", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 -- rust-analyzer does not yet support goto declaration - re-mapped `gd` to definition
 map("n", "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 -- map('n', '<leader>ld', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 -- map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
--- Completion (nvim-comple)
--- map("i", "<expr> <C-Space>", "compe#complete()", opts)
--- map("i", "<expr> <CR>", "compe#confirm('<CR>')", opts)
--- map("i", "<expr> <C-e>", "compe#close('<C-e>')", opts)
--- map("i", "<expr> <C-f>", "compe#scroll({ 'delta': +4 })", opts)
--- map("i", "<expr> <C-d>", "compe#scroll({ 'delta': -4 })", opts)
 
--- TODO: this block no longer works (FZF based)
--- TODO: get rid of fugitive and use gitsigns/Neogit/Telescope
--- GIT
--- map('n', '<Leader>gr', ':Gremove<CR>', opts)
--- map("n", "<Leader>gbr", ":GBranches<CR>", opts)
--- map("n", "<Leader>gt", ":GTags<CR>", opts)
--- Open current line on GitHub
--- map("n", "<Leader>o", ":.Gbrowse<CR>", opts)
--- Open applications
--- map("n", "<leader>s", ":Snippets<CR>", opts)
 -- Open applications
 map("n", "<c-n>", ":NvimTreeToggle<CR>", opts)
--- map("n", "<Leader>ga", ":Gwrite<CR>", opts)
--- map("n", "<Leader>gc", ":Gcommit<CR>", opts)
--- map("n", "<Leader>gsh", ":Gpush<CR>", opts)
--- map("n", "<Leader>gll", ":Gpull<CR>", opts)
--- map("n", "<Leader>gs", ":Gstatus<CR>", opts)
--- map("n", "<Leader>gbl", ":Gblame<CR>", opts)
 map("n", "<Leader>gd", ":Gvdiff<CR>", opts)
--- Fuzzy - old fzf.vim style
--- map("n", "<Leader>f", ":GFiles<CR>", opts)
--- map("n", "<Leader>F", ":Files<CR>", opts)
--- map("n", "<leader>e", ":FZF -m<CR>", opts)
--- map("n", "<Leader>b", ":Buffers<CR>", opts)
--- map("n", "<Leader>y", ":History<CR>", opts)
--- map("n", "<Leader>t", ":BTags<CR>", opts)
--- map("n", "<Leader>T", ":Tags<CR>", opts)
--- map("n", "<Leader>l", ":BLines<CR>", opts)
--- map("n", "<Leader>L", ":Lines<CR>", opts)
--- map("n", "<Leader>'", "Marks<CR>", opts)
--- map("n", "<Leader>a", ":Rg<Space><CR>", opts)
--- map("n", "<Leader>H", ":Helptags!<CR>", opts)
--- map("n", "<Leader>C", ":Commands<CR>", opts)
--- map("n", "<Leader>:", ":History:<CR>", opts)
--- map("n", "<Leader>/", ":History/<CR>", opts)
--- map("n", "<Leader>M", ":Maps<CR>", opts)
--- map("n", "<Leader>S", ":Filetypes<CR>", opts)
--- map("n", "<Leader>B", ":BufferPick<CR>", opts)
 
 -- Telescope - new native lua style
 map("n", "<leader>fA", "<cmd>Telescope autocommands<cr>", opts)
@@ -197,37 +156,43 @@ map("n", "<leader>fO", "<cmd>Telescope vim_options<cr>", opts)
 map(
 	"n",
 	"<space>f",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, "
+		.. "current_line_only = false })<cr>",
 	{}
 )
 map(
 	"n",
 	"<space>F",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, "
+		.. "current_line_only = false })<cr>",
 	{}
 )
 map(
 	"o",
 	"<space>f",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, inclusive_jump = true })<cr>",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, "
+		.. "current_line_only = false, inclusive_jump = true })<cr>",
 	{}
 )
 map(
 	"o",
 	"<space>F",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, inclusive_jump = true })<cr>",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, "
+		.. "current_line_only = false, inclusive_jump = true })<cr>",
 	{}
 )
 map(
 	"",
 	"<space>t",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, "
+		.. "current_line_only = false })<cr>",
 	{}
 )
 map(
 	"",
 	"<space>T",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, "
+		.. "current_line_only = false })<cr>",
 	{}
 )
 
@@ -240,7 +205,15 @@ map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = t
 map("n", "gR", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
 
 -- GUI mode - zooms
--- map("n", "<C-ScrollWheelUp>", "<cmd>AdjustFontSize(1)<CR>", { silent = true, noremap = true })
--- map("n", "<C-ScrollWheelDown>", "<cmd>AdjustFontSize(-1)<CR>", { silent = true, noremap = true })
--- map("i", "<C-ScrollWheelUp>", "<Esc><cmd>AdjustFontSize(1)<CR>a", { silent = true, noremap = true })
--- map("i", "<C-ScrollWheelDown>", "<Esc><cmd>AdjustFontSize(-1)<CR>a", { silent = true, noremap = true })
+map("n", "<C-ScrollWheelUp>", "<cmd>AdjustFontSize(1)<CR>", { silent = true, noremap = true })
+map("n", "<C-ScrollWheelDown>", "<cmd>AdjustFontSize(-1)<CR>", { silent = true, noremap = true })
+map("i", "<C-ScrollWheelUp>", "<Esc><cmd>AdjustFontSize(1)<CR>a", { silent = true, noremap = true })
+map("i", "<C-ScrollWheelDown>", "<Esc><cmd>AdjustFontSize(-1)<CR>a", { silent = true, noremap = true })
+
+-- Debugging
+map("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", opts)
+map("n", "<leader>dc", "<cmd>DapContinue<cr>", opts)
+map("n", "<leader>di", "<cmd>DapStepInto<cr>", opts)
+map("n", "<leader>do", "<cmd>DapStepOver<cr>", opts)
+map("n", "<leader>du", "<cmd>DapStepOut<cr>", opts)
+map("n", "<leader>dr", "<cmd>DapToggleRepl<cr>", opts)

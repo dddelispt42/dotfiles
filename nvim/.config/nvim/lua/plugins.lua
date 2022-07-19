@@ -95,7 +95,7 @@ return packer.startup({
 		use("neovim/nvim-lspconfig")
 		use("glepnir/lspsaga.nvim")
 		use("wbthomason/lsp-status.nvim")
-		-- use "nvim-lua/lsp_extensions.nvim"
+		use("nvim-lua/lsp_extensions.nvim")
 		-- use "RishabhRD/nvim-lsputils"
 		-- use("anott03/nvim-lspinstall")
 		use("williamboman/nvim-lsp-installer")
@@ -148,7 +148,7 @@ return packer.startup({
 		use("rcarriga/cmp-dap")
 		use("ray-x/cmp-treesitter")
 		use("f3fora/cmp-spell")
-		use("pontusk/cmp-vimwiki-tags")
+		-- use("pontusk/cmp-vimwiki-tags")
 		use("hrsh7th/nvim-cmp")
 		-- For vsnip users.
 		-- use 'hrsh7th/cmp-vsnip'
