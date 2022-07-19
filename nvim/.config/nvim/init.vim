@@ -27,7 +27,7 @@
     augroup end
 
 " Plantuml-syntax
-    let g:plantuml_executable_script = "~/bin/plantUML.sh"
+    let g:plantuml_executable_script = '~/bin/plantUML.sh'
     let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
     noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.config/zsh/.zshrc; cd $HOME/klaut/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
 
@@ -61,12 +61,12 @@
     " let l:vimwiki_header_type = '#'     " set to '=' for wiki syntax
     " au FileType vimwiki set syntax=markdown
     " map <silent> <leader>wf :FZF ~/klaut/vimwiki<cr>
-    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md set filetype=vimwiki
-    autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md silent! cd ~/klaut/vimwiki
     augroup VimWikiToDo
         autocmd!
         autocmd FileType vimwiki syntax match VimWikiToDoDone '^\v\s*-\s\[X\].*$'
         autocmd FileType vimwiki highlight link VimWikiToDoDone Comment
+        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md set filetype=vimwiki
+        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md silent! cd ~/klaut/vimwiki
     augroup END
 
 " start a pomodoro timer
@@ -86,22 +86,22 @@
 
 " vim-open-url
     function! HandleURL()
-        let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*')
-        if s:uri != ""
-            silent exec "!qutebrowser ".shellescape(s:uri, 1)." &"
+        let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*')
+        if s:uri != ''
+            silent exec '!qutebrowser '.shellescape(s:uri, 1).' &'
             :redraw!
         else
-            echo "No URI found in line."
+            echo 'No URI found in line.'
         endif
     endfunction
     map <leader>u :call HandleURL()<cr>
     function! GetMDwebLinkFromURL()
-        let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*')
+        let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*')
         let s:title = system('get_webpage_title.sh '.shellescape(s:uri, 1))
-        if s:uri != ""
-            silent call setline(".", substitute(getline("."), '[a-z]*:\/\/[^ >,;\(\)]*', "[".s:title[:-2]."]"."(".s:uri.")", ""))
+        if s:uri != ''
+            silent call setline('.', substitute(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*', '['.s:title[:-2].']'.'('.s:uri.')', ''))
         else
-            echo "No URI found in line."
+            echo 'No URI found in line.'
         endif
     endfunction
     map <leader>U :call GetMDwebLinkFromURL()<cr>
@@ -116,7 +116,7 @@
     let g:neotex_delay = 500
 
 " terminal config
-    if has("nvim")
+    if has('nvim')
         let g:floaterm_height = 0.8
         let g:floaterm_width = 0.8
         let g:floaterm_autoclose = 1
@@ -139,11 +139,11 @@
 
 " JIRA - editor in VIM ;-)
     function! OpenJiraIssue()
-        if !exists("g:vira_serv")
+        if !exists('g:vira_serv')
             call vira#_menu('servers')
-            echo "Connecting to a JIRA server first..."
+            echo 'Connecting to a JIRA server first...'
         else
-            let g:vira_active_issue = input("Enter issue.key: ")
+            let g:vira_active_issue = input('Enter issue.key: ')
             call vira#_menu('report')
         endif
     endfunction
@@ -159,13 +159,16 @@
     " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " PlantUML Syntax:
-    au BufNewFile,BufRead *.uml set filetype=plantuml
+    augroup plantuml
+        au!
+        au BufNewFile,BufRead *.uml set filetype=plantuml
+    augroup end
 
 " Configure font size in GUI mode
 let s:fontsize = 8
 function! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
-  :execute "GuiFont! Hack NF:h" . s:fontsize
+  :execute 'GuiFont! Hack NF:h' . s:fontsize
   " :execute "Consolas:h" . s:fontsize
 endfunction
 

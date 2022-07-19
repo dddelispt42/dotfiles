@@ -88,8 +88,8 @@ null_ls.setup({
 		code_actions.shellcheck,
 		-- code_actions.xo,
 		hover.dictionary,
-		completions.spell,
-		completions.tags,
+		-- completions.spell,
+		-- completions.tags,
 	},
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then

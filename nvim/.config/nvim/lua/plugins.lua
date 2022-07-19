@@ -161,7 +161,7 @@ return packer.startup({
 			"SirVer/ultisnips",
 			requires = { { "honza/vim-snippets", rtp = "." } },
 			config = function()
-				vim.g.UltiSnipsSnippetsDir = "~/dev/heiko/dotfiles/vim/UltiSnips"
+				-- vim.g.UltiSnipsSnippetsDir = "~/dev/heiko/dotfiles/vim/UltiSnips"
 				vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
 				vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
 				vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)"
