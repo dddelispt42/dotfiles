@@ -22,7 +22,7 @@ xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
 # feh --bg-fill "${XDG_CONFIG_HOME:-$HOME/.config}/wp.jpg" &
 udiskie -A -t &
 nohup xfce4-power-manager &
-nohup nextcloud &
+# nohup nextcloud &
 # trayer --edge top --align center --expand false --width 5 --distance 20 &
 nohup clipmenud &
 nohup brave &
