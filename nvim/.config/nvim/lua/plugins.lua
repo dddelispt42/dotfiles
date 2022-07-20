@@ -200,6 +200,7 @@ return packer.startup({
 		-- use 'norcalli/snippets.nvim'
 		-- use "liuchengxu/vista.vim"
 		use("sidebar-nvim/sidebar.nvim")
+		use("sidebar-nvim/sections-dap")
 		use("mfussenegger/nvim-dap")
 		use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 		use("mfussenegger/nvim-dap-python")
