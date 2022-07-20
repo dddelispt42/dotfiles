@@ -8,7 +8,15 @@ require("sidebar-nvim").setup({
 	initial_width = 35,
 	hide_statusline = false,
 	update_interval = 1000,
-	sections = { "datetime", "git", "symbols", "todos", "diagnostics", "buffers" },
+	sections = {
+		"datetime",
+		"git",
+		"symbols",
+		"todos",
+		"diagnostics",
+		require("dap-sidebar-nvim.breakpoints"),
+		"buffers",
+	},
 	section_separator = { "", "-----", "" },
 	containers = {
 		attach_shell = "/bin/sh",
@@ -22,6 +30,11 @@ require("sidebar-nvim").setup({
 		ignored_paths = { "~" },
 		-- whether the groups should be initially closed on start. You can manually open/close groups later.
 		initially_closed = false,
+	},
+	dap = {
+		breakpoints = {
+			icon = "🔍",
+		},
 	},
 })
 local lualine_ok, lualine = pcall(require, "lualine")
