@@ -196,11 +196,11 @@ export NNN_TRASH=1
 # export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 #KLAUT_ROOT
-export KLAUT="$HOME/klaut/"
-export TODOLIST="${KLAUT:-$HOME/klaut}/vimwiki/private/todo/todos.md"
+export KLAUT="$HOME/Sync/work/"
+export TODOLIST="${KLAUT:-$HOME/Sync/work}/vimwiki/private/todo/todos.md"
 
 #VIMWIKI
-export WIKI_PATH="$HOME/klaut/vimwiki/"
+export WIKI_PATH="$HOME/Sync/work/vimwiki/"
 
 # RSS FEEDS
 # export SFEED_PIPER
@@ -210,8 +210,8 @@ export WIKI_PATH="$HOME/klaut/vimwiki/"
 # export SFEED_YANKER
 # export SFEED_YANKER_INTERACTIVE
 export SFEED_AUTOCMD="t3"
-export SFEED_URL_FILE="$HOME/klaut/.cache/sfeed_urls"
-export SFEED_CONFIG_FILE="${KLAUT:-$HOME/klaut}/_share/feeds/sfeedrc"
+export SFEED_URL_FILE="$HOME/Sync/work/.cache/sfeed_urls"
+export SFEED_CONFIG_FILE="${KLAUT:-$HOME/Sync/work}/_share/feeds/sfeedrc"
 export SFEED_CACHE_DIR="$XDG_CACHE_HOME/sfeed/cache/"
 
 # fuzzy finder variables
