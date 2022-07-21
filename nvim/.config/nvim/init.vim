@@ -29,7 +29,7 @@
 " Plantuml-syntax
     let g:plantuml_executable_script = '~/bin/plantUML.sh'
     let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
-    noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.config/zsh/.zshrc; cd $HOME/klaut/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
+    noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.config/zsh/.zshrc; cd $HOME/Sync/work/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
 
 " ----------------------
 " TODO: move this to lua
@@ -37,17 +37,17 @@
 """ vimwiki
     " vimwiki with markdown support
     let wiki_1 = {}
-    let wiki_1.path = '~/klaut/vimwiki/work/'
+    let wiki_1.path = '~/Sync/work/vimwiki/work/'
     let wiki_1.syntax = 'markdown'
     let wiki_1.ext = '.md'
 
     let wiki_2 = {}
-    let wiki_2.path = '~/klaut/vimwiki/personal/'
+    let wiki_2.path = '~/Sync/work/vimwiki/personal/'
     let wiki_2.syntax = 'markdown'
     let wiki_2.ext = '.md'
 
     let wiki_3 = {}
-    let wiki_3.path = '~/klaut/vimwiki/recipes/'
+    let wiki_3.path = '~/Sync/work/vimwiki/recipes/'
     let wiki_3.syntax = 'markdown'
     let wiki_3.ext = '.md'
 
@@ -60,13 +60,13 @@
     let g:vimwiki_table_auto_fmt=1
     " let l:vimwiki_header_type = '#'     " set to '=' for wiki syntax
     " au FileType vimwiki set syntax=markdown
-    " map <silent> <leader>wf :FZF ~/klaut/vimwiki<cr>
+    " map <silent> <leader>wf :FZF ~/Sync/work/vimwiki<cr>
     augroup VimWikiToDo
         autocmd!
         autocmd FileType vimwiki syntax match VimWikiToDoDone '^\v\s*-\s\[X\].*$'
         autocmd FileType vimwiki highlight link VimWikiToDoDone Comment
-        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md set filetype=vimwiki
-        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/klaut/vimwiki/*.md silent! cd ~/klaut/vimwiki
+        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/Sync/work/vimwiki/*.md set filetype=vimwiki
+        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/Sync/work/vimwiki/*.md silent! cd ~/Sync/work/vimwiki
     augroup END
 
 " start a pomodoro timer

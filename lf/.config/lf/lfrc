@@ -143,7 +143,7 @@ map gl :cd '~/dl'
 map gk :cd '~/klaut'
 map go :cd '~/opt'
 map gr :cd '/'
-map gv :cd '~/klaut/vimwiki'
+map gv :cd '~/Sync/work/vimwiki'
 
 cmd usage !dua || du -sk * | sort -n
 map U usage
