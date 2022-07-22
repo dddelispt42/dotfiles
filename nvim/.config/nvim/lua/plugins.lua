@@ -91,32 +91,34 @@ return packer.startup({
 				require("nvim-tree").setup({})
 			end,
 		})
-		--LSP
-		use("neovim/nvim-lspconfig")
-		use("glepnir/lspsaga.nvim")
-		use("wbthomason/lsp-status.nvim")
-		use("nvim-lua/lsp_extensions.nvim")
-		-- use "RishabhRD/nvim-lsputils"
-		-- use("anott03/nvim-lspinstall")
-		use("williamboman/nvim-lsp-installer")
-		-- TODO: configure rust plugin
-		use({
-			"simrat39/rust-tools.nvim",
-			config = function()
-				require("rust-tools").setup({})
-			end,
-		})
-		-- TODO: configure cargo plugin
-		use({
-			"saecki/crates.nvim",
-			requires = { "nvim-lua/plenary.nvim" },
-			config = function()
-				require("crates").setup()
-			end,
-		})
+		if os.getenv("OS") ~= "Windows_NT" then
+			--LSP
+			use("neovim/nvim-lspconfig")
+			use("glepnir/lspsaga.nvim")
+			use("wbthomason/lsp-status.nvim")
+			use("nvim-lua/lsp_extensions.nvim")
+			-- use "RishabhRD/nvim-lsputils"
+			-- use("anott03/nvim-lspinstall")
+			use("williamboman/nvim-lsp-installer")
+			-- TODO: configure rust plugin
+			use({
+				"simrat39/rust-tools.nvim",
+				config = function()
+					require("rust-tools").setup({})
+				end,
+			})
+			-- TODO: configure cargo plugin
+			use({
+				"saecki/crates.nvim",
+				requires = { "nvim-lua/plenary.nvim" },
+				config = function()
+					require("crates").setup()
+				end,
+			})
+			-- use "kosayoda/nvim-lightbulb"
+			use("mfussenegger/nvim-jdtls")
+        end
 
-		-- use "kosayoda/nvim-lightbulb"
-		use("mfussenegger/nvim-jdtls")
 		-- TODO: switch to trouble - only keep one
 		-- use("kevinhwang91/nvim-bqf")
 		use({
@@ -133,12 +135,6 @@ return packer.startup({
 				})
 			end,
 		})
-		-- TODO: switch to nvim-ls
-		-- use "w0rp/ale"
-		-- use "onsails/lspkind-nvim"
-		-- use "ray-x/lsp_signature.nvim"
-		-- use "metakirby5/codi.vim"
-		-- Extentions to built-in LSP, for example, providing type inlay hints
 		use("hrsh7th/cmp-nvim-lsp")
 		use("hrsh7th/cmp-nvim-lua")
 		use("hrsh7th/cmp-buffer")
