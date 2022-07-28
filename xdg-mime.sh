@@ -197,7 +197,8 @@ xdg-mime default vim.desktop text/x-csrc
 xdg-mime default vim.desktop text/x-java
 xdg-mime default vim.desktop text/x-makefile
 xdg-mime default vim.desktop text/x-tex
-xdg-mime default vlc.desktop audio/mpeg
+# xdg-mime default vlc.desktop audio/mpeg
+xdg-mime default mpc.desktop audio/mpeg
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/mpeg
 xdg-mime default vlc.desktop video/webm
