@@ -75,10 +75,10 @@
     stat = status
     su = status -u
     uncommit = reset HEAD~1 --mixed
-    up = !git fetch origin && git rebase origin/master
-    upgh = !git fetch github && git rebase github/master
-    upus = !git fetch upstream && git rebase upstream/master
-    upuus = !git fetch upupstream && git rebase upupstream/master
+    up = !git fetch --recurse-submodules origin && git rebase origin/master
+    upgh = !git fetch --recurse-submodules github && git rebase github/master
+    upus = !git fetch --recurse-submodules upstream && git rebase upstream/master
+    upuus = !git fetch --recurse-submodules upupstream && git rebase upupstream/master
     ; wd = diff --word-diff=color --ignore-all-space
     ; wds = diff --staged --word-diff --ignore-all-space
     ws = show --minimal --word-diff=color --ignore-all-space
