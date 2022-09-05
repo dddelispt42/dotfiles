@@ -92,10 +92,8 @@ local saga = require("lspsaga")
 -- like server_filetype_map = {metals = {'sbt', 'scala'}}
 -- server_filetype_map = {}
 
-saga.init_lsp_saga({})
-
 -- or --use default config
-saga.init_lsp_saga()
+saga.init_lsp_saga({})
 
 require("telescope").setup({
 	defaults = {

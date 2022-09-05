@@ -117,7 +117,7 @@ return packer.startup({
 			})
 			-- use "kosayoda/nvim-lightbulb"
 			use("mfussenegger/nvim-jdtls")
-        end
+		end
 
 		-- TODO: switch to trouble - only keep one
 		-- use("kevinhwang91/nvim-bqf")
@@ -159,7 +159,8 @@ return packer.startup({
 			config = function()
 				-- vim.g.UltiSnipsSnippetsDir = "~/dev/heiko/dotfiles/vim/UltiSnips"
 				vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-				vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
+				-- vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
+				vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 				vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)"
 				vim.g.UltiSnipsListSnippets = "<c-x><c-s>"
 				vim.g.UltiSnipsRemoveSelectModeMappings = 0
@@ -249,7 +250,7 @@ return packer.startup({
 				{ "nvim-treesitter/nvim-treesitter" },
 			},
 			config = function()
-				require("refactoring").setup()
+				require("refactoring").setup({})
 			end,
 		})
 		-- used <leader>gm to see the related git commit msg
