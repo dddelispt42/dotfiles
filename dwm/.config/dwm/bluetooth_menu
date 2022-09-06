@@ -4,7 +4,7 @@ predefined_devs="
 Device E6:02:25:27:3F:DD HeiCorne
 "
 
-selected=$(bluetoothctl paired-devices | while IFS= read -r dev; do
+selected=$(bluetoothctl devices Paired | while IFS= read -r dev; do
 	dev_id="$(echo "$dev" | sed 's/Device //;s/\s.*//')"
 	dev_name="$(echo "$dev" | sed 's/Device\s[0-9A-F:]\+\s//')"
 	cmd="$(bluetoothctl info "$dev_id" | grep "Connected: " | sed 's/\s*Connected: //;s/yes\s*$/disconnect/;s/no\s*$/connect/')"

@@ -255,3 +255,4 @@ ggs() {
 	git global | $PAGER
 }
 function dy { dig +noall +answer +additional "$1" @dns.toys; }
+function deredirct_url { curl --silent -I -L "$1" | grep -i location; }
