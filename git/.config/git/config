@@ -50,6 +50,7 @@
     di = diff --minimal
     dc = diff --cached
     difftex = difftool -y -t latex
+    dft = difftool
     dls = diff-tree --no-commit-id --name-status -r
     ds = diff --minimal --staged
     ff = merge --ff-only
@@ -82,12 +83,17 @@
     ; wd = diff --word-diff=color --ignore-all-space
     ; wds = diff --staged --word-diff --ignore-all-space
     ws = show --minimal --word-diff=color --ignore-all-space
+[diff]
+    ; tool = nvimdiff
+    tool = difftastic
+[difftool]
+        prompt = false
+[difftool "difftastic"]
+        cmd = difft --color always "$LOCAL" "$REMOTE"
 [difftool.json]
     cmd = jsondiff "$LOCAL" "$REMOTE"
 [difftool.latex]
     cmd = latexdiff "$LOCAL" "$REMOTE"
-[diff]
-    tool = nvimdiff
 [diff "pdf"]
     binary = true
     textconv = ~/.config/lf/preview.sh
