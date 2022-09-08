@@ -218,3 +218,44 @@ map("n", "<leader>di", "<cmd>DapStepInto<cr>", opts)
 map("n", "<leader>do", "<cmd>DapStepOver<cr>", opts)
 map("n", "<leader>du", "<cmd>DapStepOut<cr>", opts)
 map("n", "<leader>dr", "<cmd>DapToggleRepl<cr>", opts)
+
+map(
+	"v",
+	"<Leader>re",
+	[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
+	{ noremap = true, silent = true, expr = false }
+)
+map(
+	"v",
+	"<Leader>rf",
+	[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]],
+	{ noremap = true, silent = true, expr = false }
+)
+map(
+	"v",
+	"<Leader>rv",
+	[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
+	{ noremap = true, silent = true, expr = false }
+)
+map(
+	"v",
+	"<Leader>ri",
+	[[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+	{ noremap = true, silent = true, expr = false }
+)
+map(
+	"n",
+	"<Leader>ri",
+	[[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+	{ noremap = true, silent = true, expr = false }
+)
+
+-- remap to open the Telescope refactoring menu in visual mode
+map("v", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", { noremap = true })
+-- remap to open the Telescope refactoring menu in visual mode
+-- vim.api.nvim_set_keymap(
+-- 	"v",
+-- 	"<leader>rr",
+-- 	"<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+-- 	{ noremap = true }
+-- )
