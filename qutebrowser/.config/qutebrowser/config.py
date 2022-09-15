@@ -4,9 +4,8 @@ import os
 
 from qutebrowser.api import interceptor
 
-# pylint: disable=C0111
-c = c  # noqa: F821 pylint: disable=E0602,C0103
-config = config  # noqa: F821 pylint: disable=E0602,C0103
+c = c  # pyright: ignore  # noqa: F821
+config = config  # pyright: ignore  # noqa: F821
 
 
 def filter_yt(info: interceptor.Request):
@@ -65,6 +64,16 @@ config.bind("<Ctrl-x><Ctrl-e>", "open-editor", "insert")
 config.bind("<Ctrl-+>", "zoom-in")
 config.bind("<Ctrl-->", "zoom-out")
 config.bind("<Ctrl-e>", "edit-text", "insert")
+
+# user scripts
+config.bind(";t", "hint userscript link translate")
+config.bind(";T", "hint userscript all translate --text")
+config.bind("<Ctrl+T>", "spawn --userscript translate")
+config.bind("<Ctrl+Shift+T>", "spawn --userscript translate --text")
+config.bind(",u", "hint links spawn -u untrack-url -O {hint-url}")
+config.bind(",U", "spawn -u untrack-url -p {clipboard}")
+config.bind("X", "hint links userscript add-nextcloud-bookmarks")
+config.bind("X", "spawn --userscript add-nextcloud-bookmarks")
 
 BASE00 = "#1d2021"
 BASE01 = "#3c3836"
