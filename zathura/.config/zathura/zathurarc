@@ -40,7 +40,7 @@ set scroll-page-aware true
 set scroll-full-overlap 0.01
 set scroll-step 50
 set incremental-search true
-set guioptions ""
+set guioptions "s"
 map b toggle_statusbar
 
 map [normal] ZZ quit
