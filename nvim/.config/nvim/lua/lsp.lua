@@ -29,17 +29,17 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 
 -- Enable rust_analyzer
 -- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
--- nvim_lsp.bashls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.bashls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.dockerls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
--- nvim_lsp.html.setup({ on_attach = on_attach, capabilities = capabilities })
--- nvim_lsp.jsonls.setup({ on_attach = on_attach, capabilities = capabilities })
--- nvim_lsp.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
--- nvim_lsp.rust_analyzer.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.html.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.jsonls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.rust_analyzer.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
--- nvim_lsp.yamlls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.yamlls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.jdtls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
