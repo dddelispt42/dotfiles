@@ -253,6 +253,15 @@ return packer.startup({
 				require("refactoring").setup({})
 			end,
 		})
+		use({
+			"nvim-treesitter/nvim-treesitter-context",
+			requires = {
+				{ "nvim-treesitter/nvim-treesitter" },
+			},
+			config = function()
+				require("treesitter-context").setup({})
+			end,
+		})
 		-- used <leader>gm to see the related git commit msg
 		use("rhysd/git-messenger.vim")
 		use("sindrets/diffview.nvim")
