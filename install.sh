@@ -117,6 +117,7 @@ stow -vS -t "$HOME"/ bat
 stow -vS -t "$HOME"/ bottom
 stow -vS -t "$HOME"/ broot
 stow -vS -t "$HOME"/ bspwm
+stow -vS -t "$HOME"/ btop
 stow -vS -t "$HOME"/ dunst
 stow -vS -t "$HOME"/ dwm
 stow -vS -t "$HOME"/ flake8
@@ -141,6 +142,7 @@ stow -vS -t "$HOME"/ topgrade
 # stow -vS -t "$HOME"/ user-dirs
 cp -f ./user-dirs/.config/* "$XDG_CONFIG_HOME"
 stow -vS -t "$HOME"/ ytfzf
+stow -vS -t "$HOME"/ xplr
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
 
