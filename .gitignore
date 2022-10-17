@@ -6,3 +6,4 @@ qutebrowser/.config/qutebrowser/quickmarks
 qutebrowser/.config/qutebrowser/blocked-hosts
 qutebrowser/.config/qutebrowser/qsettings/
 broot/.config/broot/launcher/
+btop/.config/btop/btop.log
