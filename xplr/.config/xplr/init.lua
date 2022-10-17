@@ -42,8 +42,8 @@ require("xpm").setup({
     -- 'sayanarijit/regex-search.xplr',
     'sayanarijit/tri-pane.xplr',
     'sayanarijit/dua-cli.xplr',
-    'sayanarijit/map.xplr',
-    'sayanarijit/command-mode.xplr',
+    -- 'sayanarijit/map.xplr',
+    -- 'sayanarijit/command-mode.xplr',
   },
   auto_install = true,
   auto_cleanup = true,
@@ -145,65 +145,65 @@ require("dua-cli").setup{
   key = "D",
 }
 
--- Type `M` to switch to single map mode.
--- Then press `tab` to switch between single and multi map modes.
--- Press `ctrl-o` to edit the command using your editor.
-require("map").setup{
-  mode = "default"  -- or `xplr.config.modes.builtin.default`,
-  key = "M",
-  editor = os.getenv("EDITOR") or "vim",
-  editor_key = "ctrl-o",
-  prefer_multi_map = false,
-  placeholder = "{}",
-  custom_placeholders = {
-    ["{ext}"] = function(node)
-      -- See https://xplr.dev/en/lua-function-calls#node
-      return node.extension
-    end,
-
-    ["{name}"] = map.placeholders["{name}"]
-  },
-}
-
--- TODO: move command into own lua file
--- Type `:` to enter command mode
-local m = require("command-mode")
-m.setup{
-  mode = "default",
-  key = ":",
-  remap_action_mode_to = {
-    mode = "default",
-    key = ";",
-  }
-}
--- Type `:hello-lua` and press enter to know your location
-local hello_lua = m.cmd("hello-lua", "Enter name and know location")(function(app)
-  print("What's your name?")
-
-  local name = io.read()
-  local greeting = "Hello " .. name .. "!"
-  local message = greeting .. " You are inside " .. app.pwd
-
-  return {
-    { LogSuccess = message },
-  }
-end)
-
--- Type `:hello-bash` and press enter to know your location
-local hello_bash = m.silent_cmd("hello-bash", "Enter name and know location")(
-  m.BashExec [===[
-    echo "What's your name?"
-
-    read name
-    greeting="Hello $name!"
-    message="$greeting You are inside $PWD"
-
-    echo LogSuccess: '"'$message'"' >> "${XPLR_PIPE_MSG_IN:?}"
-  ]===]
-)
-
--- Bind `:hello-lua` to key `h`
-hello_lua.bind("default", "h")
-
--- Bind `:hello-bash` to key `H`
-hello_bash.bind(xplr.config.modes.builtin.default, "H")
+-- -- Type `M` to switch to single map mode.
+-- -- Then press `tab` to switch between single and multi map modes.
+-- -- Press `ctrl-o` to edit the command using your editor.
+-- require("map").setup{
+--   mode = "default"  -- or `xplr.config.modes.builtin.default`,
+--   key = "M",
+--   editor = os.getenv("EDITOR") or "vim",
+--   editor_key = "ctrl-o",
+--   prefer_multi_map = false,
+--   placeholder = "{}",
+--   custom_placeholders = {
+--     ["{ext}"] = function(node)
+--       -- See https://xplr.dev/en/lua-function-calls#node
+--       return node.extension
+--     end,
+--
+--     ["{name}"] = map.placeholders["{name}"]
+--   },
+-- }
+--
+-- -- TODO: move command into own lua file
+-- -- Type `:` to enter command mode
+-- local m = require("command-mode")
+-- m.setup{
+--   mode = "default",
+--   key = ":",
+--   remap_action_mode_to = {
+--     mode = "default",
+--     key = ";",
+--   }
+-- }
+-- -- Type `:hello-lua` and press enter to know your location
+-- local hello_lua = m.cmd("hello-lua", "Enter name and know location")(function(app)
+--   print("What's your name?")
+--
+--   local name = io.read()
+--   local greeting = "Hello " .. name .. "!"
+--   local message = greeting .. " You are inside " .. app.pwd
+--
+--   return {
+--     { LogSuccess = message },
+--   }
+-- end)
+--
+-- -- Type `:hello-bash` and press enter to know your location
+-- local hello_bash = m.silent_cmd("hello-bash", "Enter name and know location")(
+--   m.BashExec [===[
+--     echo "What's your name?"
+--
+--     read name
+--     greeting="Hello $name!"
+--     message="$greeting You are inside $PWD"
+--
+--     echo LogSuccess: '"'$message'"' >> "${XPLR_PIPE_MSG_IN:?}"
+--   ]===]
+-- )
+--
+-- -- Bind `:hello-lua` to key `h`
+-- hello_lua.bind("default", "h")
+--
+-- -- Bind `:hello-bash` to key `H`
+-- hello_bash.bind(xplr.config.modes.builtin.default, "H")
