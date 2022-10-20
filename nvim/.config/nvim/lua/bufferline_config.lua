@@ -1,9 +1,9 @@
-local status_ok, bufferline = pcall(require, "bufferline")
-if not status_ok then
-	return
-end
+-- local status_ok, bufferline = pcall(require, "bufferline")
+-- if not status_ok then
+-- 	return
+-- end
 
-bufferline.setup({})
+-- bufferline.setup({})
 -- bufferline.setup({
 -- 	-- require("bufferline").setup({
 -- 	options = {
