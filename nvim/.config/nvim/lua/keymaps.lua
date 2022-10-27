@@ -153,6 +153,9 @@ map("n", "<leader>fk", "<cmd>Telescope symbols<cr>", opts)
 map("n", "<leader>ft", "<cmd>Telescope tags<cr>", opts)
 map("n", "<leader>fk", "<cmd>Telescope treesitter<cr>", opts)
 map("n", "<leader>fO", "<cmd>Telescope vim_options<cr>", opts)
+map("n", "<leader>gm", "<cmd>Gitsign blame_line<cr>", opts)
+map("n", "[g", "<cmd>Gitsign prev_hunk<cr>", opts)
+map("n", "]g", "<cmd>Gitsign next_hunk<cr>", opts)
 
 map(
 	"n",

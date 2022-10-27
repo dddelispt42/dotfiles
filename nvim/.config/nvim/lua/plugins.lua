@@ -262,8 +262,6 @@ return packer.startup({
 				require("treesitter-context").setup({})
 			end,
 		})
-		-- used <leader>gm to see the related git commit msg
-		use("rhysd/git-messenger.vim")
 		use("sindrets/diffview.nvim")
 		use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 		-- TODO: substitute with gitsigns
