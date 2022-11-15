@@ -34,6 +34,7 @@ o.laststatus = 2
 o.list = true
 o.listchars = "nbsp:¬,tab:»·,trail:·,eol:↴"
 -- o.mouse = "a" -- allow the mouse to be used in neovim
+o.mouse = "" -- disable mouse
 o.number = true -- set numbered lines
 o.numberwidth = 4 -- set number column width to 2 {default 4}
 o.path = o.path .. "**"
