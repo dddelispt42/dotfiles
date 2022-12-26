@@ -1,0 +1,14 @@
+#!/bin/bash
+hosts=("ed2" "media" "server" "server2" "work" "artix" "tejo")
+
+selected="$(for host in "${hosts[@]}"; do
+    echo "$host"
+done | rofi -dmenu)"
+if [[ -n "$selected" ]]; then
+    session="$(ssh "$selected" -- tmux ls | rofi -dmenu)"
+    if [[ -n "$selected" ]]; then
+        "${TERMINAL:-alacritty}" -e ssh -t "$selected" tmux a -d -t "${session//: */}" &
+    else
+        "${TERMINAL:-alacritty}" -e ssh -t "$selected" tmux &
+    fi
+fi
