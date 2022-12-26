@@ -117,6 +117,7 @@ cmp.setup({
 		{ name = "ultisnips" }, -- For ultisnips users.
 		-- { name = "treesitter" },
 		-- { name = "buffer" },
+		{ name = "neorg" },
 		{ name = "path" },
 		{ name = "crates" },
 		{ name = "dap" },

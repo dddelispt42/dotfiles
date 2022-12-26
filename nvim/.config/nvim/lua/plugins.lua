@@ -75,6 +75,7 @@ return packer.startup({
 		-- use "mhinz/vim-startify"
 		-- use "dstein64/vim-startuptime"
 		use("norcalli/nvim-colorizer.lua")
+        use("folke/zen-mode.nvim")
 		-- use "norcalli/nvim-terminal.lua"
 		use({
 			"glacambre/firenvim",
@@ -97,9 +98,11 @@ return packer.startup({
 			use("glepnir/lspsaga.nvim")
 			use("wbthomason/lsp-status.nvim")
 			use("nvim-lua/lsp_extensions.nvim")
-			-- use "RishabhRD/nvim-lsputils"
-			-- use("anott03/nvim-lspinstall")
-			use("williamboman/nvim-lsp-installer")
+            use {
+                "williamboman/mason.nvim",
+                "jose-elias-alvarez/null-ls.nvim",
+                "jayp0521/mason-null-ls.nvim",
+            }
 			-- TODO: configure rust plugin
 			use({
 				"simrat39/rust-tools.nvim",
@@ -167,9 +170,6 @@ return packer.startup({
 			end,
 		})
 		use("quangnguyen30192/cmp-nvim-ultisnips")
-		-- For snippy users.
-		-- use 'dcampos/nvim-snippy'
-		-- use 'dcampos/cmp-snippy'
 
 		use({
 			"nvim-treesitter/nvim-treesitter",
@@ -177,6 +177,7 @@ return packer.startup({
 				vim.cmd([[TSUpdate]])
 			end,
 		})
+        use("p00f/nvim-ts-rainbow")
 		use({
 			"nvim-treesitter/completion-treesitter",
 			run = function()
@@ -208,7 +209,7 @@ return packer.startup({
 				vim.g.dap_virtual_text = true
 			end,
 		})
-		-- use "nvim-treesitter/playground"
+		use "nvim-treesitter/playground"
 		use({
 			"numToStr/Comment.nvim",
 			config = function()
@@ -228,15 +229,6 @@ return packer.startup({
 		})
 		use("tpope/vim-surround") -- Surround text objects easily
 		use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
-		use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-		-- use({
-		--     "jose-elias-alvarez/null-ls.nvim",
-		--     config = function()
-		--         require("null-ls").setup()
-		--     end,
-		--     requires = { "nvim-lua/plenary.nvim" },
-		-- })
-		-- TODO: integrage with null-ls; learn to use
 		use({
 			"lewis6991/gitsigns.nvim",
 			requires = {
@@ -289,7 +281,7 @@ return packer.startup({
 		-- " immediate preview
 		-- " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
 		-- " Plug 'vimwiki/vimwiki', { 'for': 'markdown' }
-		use("vimwiki/vimwiki")
+		-- use("vimwiki/vimwiki")
 		-- " Latex
 		-- " Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 		-- " Plug 'lervag/vimtex'
@@ -338,6 +330,26 @@ return packer.startup({
 		-- " automatically set the root directory
 		use("airblade/vim-rooter")
 		-- use "github/copilot.vim"
+        use {
+            "nvim-neorg/neorg",
+            run = ":Neorg sync-parsers", -- This is the important bit!
+            -- after = "nvim-treesitter", -- You may want to specify Telescope here as well
+            requires = "nvim-lua/plenary.nvim",
+            -- ft = 'norg',
+        }
+        -- use {'nvim-orgmode/orgmode', config = function()
+        --     require('orgmode').setup{}
+        --     end
+        -- }
+        use('akinsho/org-bullets.nvim')
+        use { 'michaelb/sniprun', run = 'bash ./install.sh'}
+        use('dhruvasagar/vim-table-mode')
+        use {
+            'lukas-reineke/headlines.nvim',
+            config = function()
+                require('headlines').setup()
+            end,
+        }
 	end,
 	config = {
 		_display = {
