@@ -92,38 +92,46 @@ return packer.startup({
 				require("nvim-tree").setup({})
 			end,
 		})
-		if os.getenv("OS") ~= "Windows_NT" then
-			--LSP
-			use("neovim/nvim-lspconfig")
-			use("glepnir/lspsaga.nvim")
-			use("wbthomason/lsp-status.nvim")
-			use("nvim-lua/lsp_extensions.nvim")
-            use {
-                "williamboman/mason.nvim",
-                "jose-elias-alvarez/null-ls.nvim",
-                "jayp0521/mason-null-ls.nvim",
-            }
-			-- TODO: configure rust plugin
-			use({
-				"simrat39/rust-tools.nvim",
-				config = function()
-					require("rust-tools").setup({})
-				end,
-			})
-			-- TODO: configure cargo plugin
-			use({
-				"saecki/crates.nvim",
-				requires = { "nvim-lua/plenary.nvim" },
-				config = function()
-					require("crates").setup()
-				end,
-			})
-			-- use "kosayoda/nvim-lightbulb"
-			use("mfussenegger/nvim-jdtls")
-		end
+        --LSP
+          use { -- LSP Configuration & Plugins
+            'neovim/nvim-lspconfig',
+            requires = {
+                -- Automatically install LSPs to stdpath for neovim
+                'williamboman/mason.nvim',
+                'williamboman/mason-lspconfig.nvim',
 
-		-- TODO: switch to trouble - only keep one
-		-- use("kevinhwang91/nvim-bqf")
+                -- Useful status updates for LSP
+                'j-hui/fidget.nvim',
+
+                -- Additional lua configuration, makes nvim stuff amazing
+                'folke/neodev.nvim',
+            },
+        }
+        use("jose-elias-alvarez/null-ls.nvim")
+        use("jayp0521/mason-null-ls.nvim")
+        use({ "LostNeophyte/null-ls-embedded" })
+
+        use("glepnir/lspsaga.nvim")
+        use("wbthomason/lsp-status.nvim")
+        use("nvim-lua/lsp_extensions.nvim")
+        -- TODO: configure rust plugin
+        -- use({
+        --     "simrat39/rust-tools.nvim",
+        --     config = function()
+        --         require("rust-tools").setup({})
+        --     end,
+        -- })
+        -- TODO: configure cargo plugin
+        use({
+            "saecki/crates.nvim",
+            requires = { "nvim-lua/plenary.nvim" },
+            config = function()
+                require("crates").setup()
+            end,
+        })
+        -- use "kosayoda/nvim-lightbulb"
+        use("mfussenegger/nvim-jdtls")
+
 		use({
 			"folke/trouble.nvim",
 			requires = "kyazdani42/nvim-web-devicons",
@@ -256,6 +264,7 @@ return packer.startup({
 		})
 		use("sindrets/diffview.nvim")
 		use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
+        use("yamatsum/nvim-cursorline")
 		-- TODO: substitute with gitsigns
 		use("tpope/vim-fugitive")
 		-- use "airblade/vim-gitgutter"
@@ -281,7 +290,7 @@ return packer.startup({
 		-- " immediate preview
 		-- " Vimwiki - http://thedarnedestthing.com/vimwiki%20cheatsheet
 		-- " Plug 'vimwiki/vimwiki', { 'for': 'markdown' }
-		-- use("vimwiki/vimwiki")
+		use("vimwiki/vimwiki")
 		-- " Latex
 		-- " Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 		-- " Plug 'lervag/vimtex'

@@ -1,110 +1,84 @@
 -- luacheck: globals vim
-
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
 	return
 end
--- local null_ls = require("null-ls")
-
--- code action sources
-local code_actions = null_ls.builtins.code_actions
--- diagnostic sources
-local diagnostics = null_ls.builtins.diagnostics
--- formatting sources
-local formatting = null_ls.builtins.formatting
--- hover sources
-local hover = null_ls.builtins.hover
--- completion sources
-local completions = null_ls.builtins.completion
-
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
--- local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
--- local diagnostics = null_ls.builtins.diagnostics
-
-if os.getenv("OS") ~= "Windows_NT" then
-	-- null_ls.setup({
-	null_ls.setup({
-		debug = false,
-		sources = {
-			formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-			-- formatting.black.with({ extra_args = { "--fast" } }),
-			-- formatting.black,
-			formatting.ruff,
-			-- formatting.asmfmt,
-			-- formatting.autopep8,
-			-- formatting.brittany,
-			formatting.clang_format,
-			-- formatting.cljstyle,
-			-- formatting.cmake_format,
-			-- formatting.dart_format,
-			-- formatting.deno_fmt,
-			-- formatting.fixjson,
-			-- formatting.format_r,
-			formatting.gofmt,
-			-- formatting.goimports,
-			formatting.isort,
-			-- formatting.lua_format,
-			-- formatting.latexindent,
-			-- formatting.nginx_beautifier,
-			-- formatting.nixfmt,
-			-- formatting.pg_format,
-			-- formatting.phpcbf,
-			-- formatting.protolint,
-			-- using rust-analyzer already
-			-- formatting.rustfmt,
-			formatting.shfmt,
-			-- INFO: this is too aggressive and often breaks scripts
-			-- formatting.shellharden,
-			formatting.sqlformat,
-			formatting.stylelint,
-			formatting.trim_whitespace,
-			formatting.xmllint,
-			-- formatting.zigfmt,
-			-- formatting.nimpretty,
-			formatting.stylua,
-			-- diagnostics.flake8,
-			diagnostics.ruff,
-			-- diagnostics.mypy,
-			-- diagnostics.php,
-			diagnostics.ansiblelint,
-			-- diagnostics.checkmake,
-			-- diagnostics.codespell,
-			diagnostics.cppcheck,
-			diagnostics.gitlint,
-			-- diagnostics.pylama,
-			-- diagnostics.hadolint,
-			-- diagnostics.jsonlint,
-			diagnostics.luacheck,
-			-- diagnostics.markdownlint,
-			-- diagnostics.mdl,
-			-- diagnostics.protolint,
-			-- diagnostics.pydocstyle,
-			-- diagnostics.pylint,
-			-- diagnostics.selene,
-			diagnostics.shellcheck,
-			diagnostics.vint,
-			-- diagnostics.vulture,
-			-- diagnostics.xo,
-			diagnostics.yamllint,
-			code_actions.gitsigns,
-			code_actions.refactoring,
-			code_actions.gitrebase,
-			code_actions.shellcheck,
-			-- code_actions.xo,
-			hover.dictionary,
-			-- completions.spell,
-			-- completions.tags,
-		},
-		on_attach = function(client)
-			if client.server_capabilities.document_formatting then
-				vim.cmd([[
-                augroup LspFormatting
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-                augroup END
-                ]])
-			end
-		end,
-	})
+local mason_null_ls_status_ok, mason_null_ls = pcall(require, "mason-null-ls")
+if not mason_null_ls_status_ok then
+	return
 end
+-- local null_ls = require("null-ls")
+mason_null_ls.setup({
+    -- A list of sources to install if they're not already installed.
+    -- This setting has no relation with the `automatic_installation` setting.
+    ensure_installed = { "ansiblelint", "fixjson", "gitrebase", "gitsign",
+        "gofmt", "goimports", "jq", "luacheck", "markdownlint", "prettier",
+        "protolint", "refactoring", "shellcheck",
+        "ruff",  "clang_format", "shfmt", "sqlformat",
+        "stylelint", "stylua", "stylua", "vint", "yamllint"},
+    -- Run `require("null-ls").setup`.
+    -- Will automatically install masons tools based on selected sources in `null-ls`.
+    -- Can also be an exclusion list.
+    -- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }`
+    automatic_installation = true,
+	-- Whether sources that are installed in mason should be automatically set up in null-ls.
+	-- Removes the need to set up null-ls manually.
+	-- Can either be:
+	-- 	- false: Null-ls is not automatically registered.
+	-- 	- true: Null-ls is automatically registered.
+	-- 	- { types = { SOURCE_NAME = {TYPES} } }. Allows overriding default configuration.
+	-- 	Ex: { types = { eslint_d = {'formatting'} } }
+	automatic_setup = false,
+
+})
+
+-- If `automatic_setup` is false.
+null_ls.setup({
+    debug = false,
+    sources = {
+        null_ls.builtins.formatting.prettier.with({
+            extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" }
+        }),
+        null_ls.builtins.formatting.ruff,
+        null_ls.builtins.formatting.clang_format,
+        null_ls.builtins.formatting.gofmt,
+        null_ls.builtins.formatting.shfmt,
+        null_ls.builtins.formatting.sqlformat,
+        null_ls.builtins.formatting.stylelint,
+        null_ls.builtins.formatting.trim_whitespace,
+        null_ls.builtins.formatting.xmllint,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.ruff,
+        null_ls.builtins.diagnostics.ansiblelint,
+        null_ls.builtins.diagnostics.cppcheck,
+        null_ls.builtins.diagnostics.gitlint,
+        null_ls.builtins.diagnostics.luacheck,
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.diagnostics.vint,
+        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.code_actions.refactoring,
+        null_ls.builtins.code_actions.gitrebase,
+        null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.hover.dictionary,
+        require("null-ls-embedded").nls_source,
+    },
+    -- you can reuse a shared lspconfig on_attach callback here
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                    -- vim.lsp.buf.formatting_sync()
+                    vim.lsp.buf.format({ bufnr = bufnr })
+                    -- lsp_formatting(bufnr)
+                end,
+            })
+        end
+    end,
+})
+-- If `automatic_setup` is true.
+-- mason_null_ls.setup_handlers()

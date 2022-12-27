@@ -1,17 +1,19 @@
 -- luacheck: globals vim
-
--- local lsp_status = require("lsp-status")
--- completion_customize_lsp_label as used in completion-nvim
--- Optional: customize the kind labels used in identifying the current function.
--- g:completion_customize_lsp_label is a dict mapping from LSP symbol kind
--- to the string you want to display as a label
--- lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
-
-local lsp_installer_ok, _ = pcall(require, "nvim-lsp-installer")
-if not lsp_installer_ok then
+local mason_ok, mason= pcall(require, "mason")
+if not mason_ok then
 	return
 end
--- local lsp_installer = require("nvim-lsp-installer")
+
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
 local nvim_lsp = require("lspconfig")
 
 -- function to attach completion when setting up lsp
@@ -36,6 +38,7 @@ nvim_lsp.bashls.setup({ on_attach = on_attach, capabilities = capabilities })
 nvim_lsp.html.setup({ on_attach = on_attach, capabilities = capabilities })
 nvim_lsp.jsonls.setup({ on_attach = on_attach, capabilities = capabilities })
 nvim_lsp.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.ruff_lsp.setup({ on_attach = on_attach, capabilities = capabilities })
 nvim_lsp.rust_analyzer.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
@@ -95,54 +98,5 @@ local saga = require("lspsaga")
 -- or --use default config
 saga.init_lsp_saga({})
 
-require("telescope").setup({
-	defaults = {
-		vimgrep_arguments = {
-			"rg",
-			"-uu",
-			"--color=never",
-			"--no-heading",
-			"--with-filename",
-			"--line-number",
-			"--column",
-			"--smart-case",
-		},
-		prompt_prefix = "> ",
-		selection_caret = "> ",
-		entry_prefix = "  ",
-		initial_mode = "insert",
-		selection_strategy = "reset",
-		sorting_strategy = "descending",
-		layout_strategy = "horizontal",
-		layout_config = {
-			horizontal = {
-				mirror = false,
-			},
-			vertical = {
-				mirror = false,
-			},
-		},
-		file_sorter = require("telescope.sorters").get_fuzzy_file,
-		file_ignore_patterns = {},
-		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-		winblend = 0,
-		border = {},
-		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-		color_devicons = true,
-		use_less = true,
-		path_display = {},
-		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-
-		-- Developer configurations: Not meant for general override
-		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-	},
-})
--- require("telescope").load_extension("fzf")
 
 -- require'lsp_signature'.on_attach()
-
-local neogit = require("neogit")
-neogit.setup({})
