@@ -134,6 +134,7 @@ stow -vS -t "$HOME"/ pylint
 stow -vS -t "$HOME"/ qutebrowser
 stow -vS -t "$HOME"/ ranger
 stow -vS -t "$HOME"/ rofi
+stow -vS -t "$HOME"/ sheldon
 stow -vS -t "$HOME"/ shell
 stow -vS -t "$HOME"/ starship
 stow -vS -t "$HOME"/ sxhkd
@@ -150,23 +151,23 @@ if [ "$OSTYPE" = "linux-android" ]; then
 	stow -vS -t "$HOME"/ android # Android
 fi
 
-ZPLUG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/zplug"
-if ! [ -d "$ZPLUG_HOME" ]; then
-	git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
-fi
+# ZPLUG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/zplug"
+# if ! [ -d "$ZPLUG_HOME" ]; then
+# 	git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
+# fi
 
 if command -v xdg-mime >/dev/null; then
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
 fi
 
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions,spell}
-if command -v nvim >/dev/null; then
-	# nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
-	# nvim +PackerInstall +PackerSync +qall --headless
-	nvim +PackerInstall +qall --headless
-else
-	vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
-fi
+# if command -v nvim >/dev/null; then
+# 	# nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+# 	# nvim +PackerInstall +PackerSync +qall --headless
+# 	nvim +PackerSync +qall --headless
+# else
+# 	vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
+# fi
 
 # TODO: check if key is too old
 test -s "$HOME/.ssh/id_ed25519" || ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I)" -a 100
