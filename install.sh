@@ -151,10 +151,7 @@ if [ "$OSTYPE" = "linux-android" ]; then
 	stow -vS -t "$HOME"/ android # Android
 fi
 
-# ZPLUG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/zplug"
-# if ! [ -d "$ZPLUG_HOME" ]; then
-# 	git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
-# fi
+sheldon lock --update
 
 if command -v xdg-mime >/dev/null; then
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
