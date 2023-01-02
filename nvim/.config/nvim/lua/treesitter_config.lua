@@ -4,13 +4,12 @@ if not ts_ok then
   return
 end
 
--- vim.api.nvim_exec(
---     [[
---     set foldmethod=expr
---     set foldexpr=nvim_treesitter#foldexpr()
---     ]],
---     false
--- )
+vim.api.nvim_exec(
+  [[    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
+    ]],
+  false
+)
 
 ts.setup {
   -- A list of parser names, or "all"
@@ -39,9 +38,9 @@ ts.setup {
       node_decremental = 'gnd',
     },
   },
-  -- indent = {
-  --   enable = true,
-  -- },
+  indent = {
+    enable = true,
+  },
   rainbow = {
     enable = true,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
