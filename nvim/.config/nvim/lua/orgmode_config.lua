@@ -35,12 +35,12 @@ orgmode.setup {
     m = {
       description = 'Meeting',
       template = '* MEETING %?\n %U',
-      target = '~/notes/work/journal.org',
+      target = '~/notes/meetings.org',
     },
     j = {
       description = 'Journal',
       template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
-      target = '~/notes/work/journal.org',
+      target = '~/notes/journal.org',
     },
   },
   mappings = {
