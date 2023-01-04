@@ -111,13 +111,7 @@ return packer.startup {
     use 'glepnir/lspsaga.nvim'
     use 'wbthomason/lsp-status.nvim'
     use 'nvim-lua/lsp_extensions.nvim'
-    -- TODO: configure rust plugin
-    -- use({
-    --     "simrat39/rust-tools.nvim",
-    --     config = function()
-    --         require("rust-tools").setup({})
-    --     end,
-    -- })
+    use 'simrat39/rust-tools.nvim'
     -- TODO: configure cargo plugin
     use {
       'saecki/crates.nvim',
