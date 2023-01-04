@@ -313,7 +313,12 @@ return packer.startup {
     use 'will133/vim-dirdiff'
     use 'christoomey/vim-conflicted'
     use 'christoomey/vim-sort-motion'
-    use 'christoomey/vim-tmux-navigator'
+    use {
+      'aserowy/tmux.nvim',
+      config = function()
+        require('tmux').setup()
+      end,
+    }
     use 'brooth/far.vim'
     -- " allows opening files at specific location - e.g. /tmp/bal:10:2
     use 'wsdjeg/vim-fetch'
@@ -339,14 +344,18 @@ return packer.startup {
       -- ft = 'norg',
     }
     use 'nvim-orgmode/orgmode'
-    -- use 'akinsho/org-bullets.nvim'
+    use 'akinsho/org-bullets.nvim'
     use { 'michaelb/sniprun', run = 'bash ./install.sh' }
     use 'dhruvasagar/vim-table-mode'
+    use {
+      'lukas-reineke/headlines.nvim',
+      config = function()
+        require('headlines').setup()
+      end,
+    }
     -- use {
-    --   'lukas-reineke/headlines.nvim',
-    --   config = function()
-    --     require('headlines').setup()
-    --   end,
+    --   'rest-nvim/rest.nvim',
+    --   requires = { 'nvim-lua/plenary.nvim' },
     -- }
   end,
   config = {
