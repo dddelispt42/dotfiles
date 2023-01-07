@@ -37,17 +37,17 @@
 """ vimwiki
     " vimwiki with markdown support
     let wiki_1 = {}
-    let wiki_1.path = '~/Sync/work/vimwiki/work/'
+    let wiki_1.path = '~/Sync/work/notes/work/'
     let wiki_1.syntax = 'markdown'
     let wiki_1.ext = '.md'
 
     let wiki_2 = {}
-    let wiki_2.path = '~/Sync/work/vimwiki/personal/'
+    let wiki_2.path = '~/Sync/work/notes/personal/'
     let wiki_2.syntax = 'markdown'
     let wiki_2.ext = '.md'
 
     let wiki_3 = {}
-    let wiki_3.path = '~/Sync/work/vimwiki/recipes/'
+    let wiki_3.path = '~/Sync/work/notes/recipes/'
     let wiki_3.syntax = 'markdown'
     let wiki_3.ext = '.md'
 
@@ -65,8 +65,8 @@
         autocmd!
         autocmd FileType vimwiki syntax match VimWikiToDoDone '^\v\s*-\s\[X\].*$'
         autocmd FileType vimwiki highlight link VimWikiToDoDone Comment
-        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/Sync/work/vimwiki/*.md set filetype=vimwiki
-        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/Sync/work/vimwiki/*.md silent! cd ~/Sync/work/vimwiki
+        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/Sync/work/notes/*.md set filetype=vimwiki
+        autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/Sync/work/notes/*.md silent! cd ~/Sync/work/notes
     augroup END
 
 " start a pomodoro timer
