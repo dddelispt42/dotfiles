@@ -67,7 +67,7 @@ fi
 # AUTOSSH
 export AUTOSSH_POLL=20
 export AUTOSSH_GATETIME=30
-export AUTOSSH_PORT=$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); printf("%d\n",r)  }' </dev/null)
+export AUTOSSH_PORT="$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); printf("%d\n",r)  }' </dev/null)"
 export AUTOSSH_LOGLEVEL=0
 export AUTOSSH_LOGFILE="$XDG_CACHE_HOME/autossh.log"
 
@@ -197,10 +197,10 @@ export NNN_TRASH=1
 
 #KLAUT_ROOT
 export KLAUT="$HOME/Sync/work/"
-export TODOLIST="${KLAUT:-$HOME/Sync/work}/vimwiki/private/todo/todos.md"
+export TODOLIST="${KLAUT:-$HOME/Sync/work}/notes/tasks_work.org"
 
-#VIMWIKI
-export WIKI_PATH="$HOME/Sync/work/vimwiki/"
+#WIKI
+export WIKI_PATH="$HOME/Sync/work/notes/"
 
 # RSS FEEDS
 # export SFEED_PIPER
