@@ -1,7 +1,7 @@
 -- luacheck: globals vim
-local cursorline_ok, cursorline = pcall(require, "nvim-cursorline")
+local cursorline_ok, cursorline = pcall(require, 'nvim-cursorline')
 if not cursorline_ok then
-    return
+  return
 end
 
 cursorline.setup {
@@ -14,5 +14,5 @@ cursorline.setup {
     enable = true,
     min_length = 3,
     hl = { underline = true },
-  }
+  },
 }
