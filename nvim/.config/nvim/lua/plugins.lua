@@ -13,15 +13,12 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-
   -- use "mhinz/vim-startify"
   -- use "dstein64/vim-startuptime"
   use 'norcalli/nvim-colorizer.lua'
   use 'folke/zen-mode.nvim'
-  -- use "norcalli/nvim-terminal.lua"
   use {
     'glacambre/firenvim',
     run = function()
@@ -30,24 +27,18 @@ require('packer').startup(function(use)
   }
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    },
     config = function()
       require('nvim-tree').setup {}
     end,
   }
-  --LSP
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-
       -- Useful status updates for LSP
       'j-hui/fidget.nvim',
-
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
@@ -55,12 +46,11 @@ require('packer').startup(function(use)
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jayp0521/mason-null-ls.nvim'
   use { 'LostNeophyte/null-ls-embedded' }
-
-  use 'glepnir/lspsaga.nvim'
-  use 'wbthomason/lsp-status.nvim'
-  use 'nvim-lua/lsp_extensions.nvim'
+  use 'jayp0521/mason-nvim-dap.nvim'
+  -- use 'glepnir/lspsaga.nvim'
+  -- use 'wbthomason/lsp-status.nvim'
+  -- use 'nvim-lua/lsp_extensions.nvim'
   use 'simrat39/rust-tools.nvim'
-  -- TODO: configure cargo plugin
   use {
     'saecki/crates.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -68,9 +58,6 @@ require('packer').startup(function(use)
       require('crates').setup()
     end,
   }
-  -- use "kosayoda/nvim-lightbulb"
-  use 'mfussenegger/nvim-jdtls'
-
   use {
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
@@ -85,46 +72,34 @@ require('packer').startup(function(use)
       }
     end,
   }
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-emoji'
-  use 'rcarriga/cmp-dap'
-  use 'ray-x/cmp-treesitter'
-  use 'f3fora/cmp-spell'
-  -- use("pontusk/cmp-vimwiki-tags")
-  use 'hrsh7th/nvim-cmp'
-  -- For vsnip users.
-  -- use 'hrsh7th/cmp-vsnip'
-  -- use 'hrsh7th/vim-vsnip'
-  -- For luasnip users.
-  -- use 'L3MON4D3/LuaSnip'
-  -- use 'saadparwaiz1/cmp_luasnip'
-  -- For ultisnips users.
-  use {
-    'SirVer/ultisnips',
-    requires = { { 'honza/vim-snippets', rtp = '.' } },
-    config = function()
-      -- vim.g.UltiSnipsSnippetsDir = "~/dev/heiko/dotfiles/vim/UltiSnips"
-      vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
-      -- vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
-      vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
-      vim.g.UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
-      vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
-      vim.g.UltiSnipsRemoveSelectModeMappings = 0
-    end,
+  use { -- Autocompletion
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'L3MON4D3/LuaSnip',
+      'f3fora/cmp-spell',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-emoji',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-path',
+      'ray-x/cmp-treesitter',
+      'rcarriga/cmp-dap',
+      'saadparwaiz1/cmp_luasnip',
+      -- "pontusk/cmp-vimwiki-tags"
+    },
   }
-  use 'quangnguyen30192/cmp-nvim-ultisnips'
-
-  use {
+  use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
-      vim.cmd [[TSUpdate]]
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
-
+  use { -- Additional text objects via treesitter
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
+  use 'nvim-treesitter/playground'
   use 'p00f/nvim-ts-rainbow'
   use {
     'nvim-treesitter/completion-treesitter',
@@ -138,14 +113,12 @@ require('packer').startup(function(use)
   use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
   use 'mfussenegger/nvim-dap-python'
   use 'nvim-telescope/telescope-dap.nvim'
-
   use {
     'theHamsta/nvim-dap-virtual-text',
     run = function()
       vim.g.dap_virtual_text = true
     end,
   }
-  use 'nvim-treesitter/playground'
   use {
     'numToStr/Comment.nvim',
     config = function()
@@ -160,48 +133,29 @@ require('packer').startup(function(use)
         show_current_context_start = true,
         show_end_of_line = true,
         space_char_blankline = ' ',
+        show_trailing_blankline_indent = true,
       }
     end,
   }
   use 'tpope/vim-surround' -- Surround text objects easily
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-    },
-  }
+  use 'TimUntersberger/neogit'
+  use 'lewis6991/gitsigns.nvim'
+  use 'akinsho/git-conflict.nvim'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb' -- required by fugitive to :Gbrowse
   use {
     'ThePrimeagen/refactoring.nvim',
-    requires = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'nvim-treesitter/nvim-treesitter' },
-    },
     config = function()
       require('refactoring').setup {}
     end,
   }
-  use {
-    'nvim-treesitter/nvim-treesitter-context',
-    requires = {
-      { 'nvim-treesitter/nvim-treesitter' },
-    },
-    config = function()
-      require('treesitter-context').setup {}
-    end,
-  }
   use 'sindrets/diffview.nvim'
-  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+  }
   use 'yamatsum/nvim-cursorline'
-  -- TODO: substitute with gitsigns
-  use 'tpope/vim-fugitive'
-  -- use "airblade/vim-gitgutter"
-  use 'tpope/vim-rhubarb' -- required by fugitive to :Gbrowse
   use 'ellisonleao/gruvbox.nvim'
-  use 'ntpeters/vim-better-whitespace'
-  use 'aklt/plantuml-syntax'
-  -- " Plug 'sjurgemeyer/vim-plantuml', { 'for': 'plantuml' }
-  use 'nathanalderson/yang.vim'
   -- use({
   -- 	"akinsho/bufferline.nvim",
   -- 	requires = "kyazdani42/nvim-web-devicons",
@@ -222,8 +176,8 @@ require('packer').startup(function(use)
   -- " Latex
   -- " Plug 'vim-latex/vim-latex', { 'for': 'tex' }
   -- " Plug 'lervag/vimtex'
-  use 'donRaphaco/neotex'
-  use 'benmills/vimux'
+  -- use 'donRaphaco/neotex'
+  -- use 'benmills/vimux'
   use 'tpope/vim-repeat'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-speeddating'
@@ -259,11 +213,11 @@ require('packer').startup(function(use)
   -- " allows opening files at specific location - e.g. /tmp/bal:10:2
   use 'wsdjeg/vim-fetch'
   -- " Plug 'henrik/vim-open-url'
-  use 'romainl/vim-cool'
+  -- use 'romainl/vim-cool'
   -- " better encryption plugin - requires: https://github.com/jedisct1/encpipe
   use 'hauleth/vim-encpipe'
   -- " floating windows
-  use 'machakann/vim-highlightedyank'
+  -- use 'machakann/vim-highlightedyank'
   use 'voldikss/vim-floaterm'
   -- edit JIRA issues in vim
   -- use "n0v1c3/vira"
@@ -289,10 +243,7 @@ require('packer').startup(function(use)
       require('headlines').setup()
     end,
   }
-  -- use {
-  --   'rest-nvim/rest.nvim',
-  --   requires = { 'nvim-lua/plenary.nvim' },
-  -- }
+  use 'rest-nvim/rest.nvim'
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')

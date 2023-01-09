@@ -58,7 +58,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = true,
 })
 
-local saga = require 'lspsaga'
+-- local saga = require 'lspsaga'
 
 -- add your config value here
 -- default value
@@ -96,7 +96,7 @@ local saga = require 'lspsaga'
 -- server_filetype_map = {}
 
 -- or --use default config
-saga.init_lsp_saga {}
+-- saga.init_lsp_saga {}
 
 -- require'lsp_signature'.on_attach()
 
@@ -114,3 +114,9 @@ rusttools.setup {
     end,
   },
 }
+
+-- Setup neovim lua configuration
+require('neodev').setup()
+
+-- Turn on lsp status information
+require('fidget').setup()
