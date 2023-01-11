@@ -3,15 +3,16 @@ line-length = 120
 # cache-dir = "~/.cache/ruff"
 
 # On top of the defaults (`E`, `F`), enable flake8-bugbear (`B`) and flake8-quotes (`Q`).
-select = ["E", "F", "B", "Q", "W", "C90", "I", "D", "UP", "N", "YTT", "ANN", "S", "BLE", "FBT", "A", "C4", "T10", "EM", "ICN", "T20", "RET", "SIM", "TID", "ARG", "DTZ", "ERA", "PD", "PGH", "PLC", "PLE", "PLR", "PLW", "RUF"]
+# select = ["E", "F", "B", "Q", "W", "C90", "I", "D", "UP", "N", "YTT", "ANN", "S", "BLE", "FBT", "A", "C4", "T10", "EM", "ICN", "T20", "RET", "SIM", "TID", "ARG", "DTZ", "ERA", "PD", "PGH", "PLC", "PLE", "PLR", "PLW", "RUF"]
+select = ["E", "F", "B", "W", "C90", "I", "D", "UP", "N", "YTT", "ANN", "S", "BLE", "FBT", "A", "C4", "T10", "EM", "ICN", "T20", "RET", "SIM", "TID", "ARG", "DTZ", "ERA", "PD", "PGH", "PLC", "PLE", "PLR", "PLW", "RUF"]
 
 # Never enforce `E501` (line length violations).
-# ignore = ["E501"]
+ignore = ["D213"]
 
 # Always autofix, but never try to fix `F401` (unused imports).
-# fix = true
-# unfixable = ["F401"]
-fixable = ["E", "F"]
+fix = true
+fixable = ["E", "I", "D", "UP", "I001"]
+unfixable = ["F401", "D211"]
 
 # Group violations by containing file.
 format = "grouped"
