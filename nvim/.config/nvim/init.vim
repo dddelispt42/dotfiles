@@ -26,11 +26,6 @@
         au BufEnter www.plantuml.com*.txt set filetype=plantuml
     augroup end
 
-" Plantuml-syntax
-    let g:plantuml_executable_script = '~/bin/plantUML.sh'
-    let g:slumlord_plantuml_jar_path = '~/bin/plantuml.jar'
-    noremap <leader>V :silent! !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source $HOME/.config/zsh/.zshrc; cd $HOME/Sync/work/PlantUML; ls *.uml \| entr -p ~/bin/plantUML.sh /_\""<CR>
-
 " ----------------------
 " TODO: move this to lua
 " ----------------------
@@ -87,7 +82,7 @@
 " vim-open-url
     function! HandleURL()
         let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*')
-        if s:uri != ''
+        if s:uri !=# ''
             silent exec '!qutebrowser '.shellescape(s:uri, 1).' &'
             :redraw!
         else
@@ -98,22 +93,13 @@
     function! GetMDwebLinkFromURL()
         let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*')
         let s:title = system('get_webpage_title.sh '.shellescape(s:uri, 1))
-        if s:uri != ''
+        if s:uri !=# ''
             silent call setline('.', substitute(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*', '['.s:title[:-2].']'.'('.s:uri.')', ''))
         else
             echo 'No URI found in line.'
         endif
     endfunction
     map <leader>U :call GetMDwebLinkFromURL()<cr>
-
-" machakann/vim-highlightedyank
-    let g:highlightedyank_highlight_duration = 500
-
-" neotex
-    let g:neotex_enabled = 1
-    let g:neotex_latexdiff = 1
-    let g:tex_flavor = 'pdflatex'
-    let g:neotex_delay = 500
 
 " terminal config
     if has('nvim')
@@ -151,19 +137,6 @@
     let g:vira_browser = 'qutebrowser'
     " TODO: run queries and open issues from there
 
-" " Snipplets:
-    " let g:UltiSnipsSnippetsDir="~/dev/heiko/dotfiles/vim/UltiSnips"
-    " let g:UltiSnipsListSnippets="<s-tab>"
-    " let g:UltiSnipsExpandTrigger = "<tab>"
-    " let g:UltiSnipsJumpForwardTrigger = "<tab>"
-    " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" PlantUML Syntax:
-    augroup plantuml
-        au!
-        au BufNewFile,BufRead *.uml set filetype=plantuml
-    augroup end
-
 " Configure font size in GUI mode
 let s:fontsize = 8
 function! AdjustFontSize(amount)
@@ -172,14 +145,6 @@ function! AdjustFontSize(amount)
   " :execute "Consolas:h" . s:fontsize
 endfunction
 
-" noremap <C-ScrollWheelUp> :call AdjustFontSize(1)<CR>
-" noremap <C-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
-" inoremap <C-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
-" inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
-" noremap <S-ScrollWheelUp> :call AdjustFontSize(1)<CR>
-" noremap <S-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
-" inoremap <S-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
-" inoremap <S-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
 noremap <C-.> :call AdjustFontSize(1)<CR>
 noremap <C-,> :call AdjustFontSize(-1)<CR>
 inoremap <C-.> <Esc>:call AdjustFontSize(1)<CR>a
