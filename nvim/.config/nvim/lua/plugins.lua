@@ -68,7 +68,7 @@ require("packer").startup(function(use)
 				-- automatically preview the location of the diagnostic.
 				-- <esc> to close preview and go back to last window
 				auto_preview = true,
-				-- mode = "document_diagnostics",
+				mode = "document_diagnostics",
 			})
 		end,
 	})
@@ -89,6 +89,7 @@ require("packer").startup(function(use)
 			-- "pontusk/cmp-vimwiki-tags"
 		},
 	})
+	use("rafamadriz/friendly-snippets")
 	use({ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
@@ -106,6 +107,8 @@ require("packer").startup(function(use)
 			vim.cmd([[TSUpdate]])
 		end,
 	})
+	use("aklt/plantuml-syntax")
+	-- use("Sol-Ponz/plantuml-previewer.nvim")
 	use("sidebar-nvim/sidebar.nvim")
 	use("sidebar-nvim/sections-dap")
 	use("mfussenegger/nvim-dap")
