@@ -27,8 +27,6 @@ github = "popstas/zsh-command-time"
 github = "zdharma-continuum/fast-syntax-highlighting"
 # [plugins.zsh-fuzzy-search-and-edit]
 # github = "seletskiy/zsh-fuzzy-search-and-edit"
-[plugins.fzf-z]
-github = "andrewferrier/fzf-z"
 [plugins.emoji-cli]
 github = "b4b4r07/emoji-cli"
 [plugins.forgit]
@@ -37,3 +35,7 @@ github = 'wfxr/forgit'
 github = 'leophys/zsh-plugin-fzf-finder'
 [plugins.alias-tips]
 github = 'djui/alias-tips'
+[plugins.zsh-interactive-cd]
+github = 'changyuheng/zsh-interactive-cd'
+[plugins.fzf-zsh-completions]
+github = 'chitoku-k/fzf-zsh-completions'
