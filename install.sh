@@ -134,6 +134,7 @@ stow -vS -t "$HOME"/ pylint
 stow -vS -t "$HOME"/ qutebrowser
 stow -vS -t "$HOME"/ ranger
 stow -vS -t "$HOME"/ rofi
+stow -vS -t "$HOME"/ ruff
 stow -vS -t "$HOME"/ sheldon
 stow -vS -t "$HOME"/ shell
 stow -vS -t "$HOME"/ starship
