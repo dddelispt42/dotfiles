@@ -5,9 +5,9 @@ local bo = vim.bo
 
 o.swapfile = true
 if vim.loop.os_uname().sysname:find('Windows', 1, true) and true then
-  o.dir = os.getenv 'LOCALAPPDATA' .. '\\vim\\swap'
+    o.dir = os.getenv 'LOCALAPPDATA' .. '\\vim\\swap'
 else
-  o.dir = os.getenv 'XDG_CACHE_HOME' .. '/vim/swap'
+    o.dir = os.getenv 'XDG_CACHE_HOME' .. '/vim/swap'
 end
 
 o.backup = false -- creates a backup file
@@ -95,30 +95,15 @@ vim.cmd 'set spell!'
 -- vim.cmd('command! FixWhitespace :%s/\s\+$//e')
 
 vim.api.nvim_exec(
-  [[    set foldmethod=expr
+    [[    set foldmethod=expr
     set foldexpr=nvim_treesitter#foldexpr()
 ]],
-  false
+    false
 )
 
--- require("nvim-treesitter.configs").setup({
--- 	ensure_installed = "maintained",
--- 	highlight = {
--- 		enable = true,
--- 	},
--- 	incremental_selection = {
--- 		enable = true,
--- 		keymaps = {
--- 			init_selection = "gnn",
--- 			node_incremental = "gnn",
--- 			scope_incremental = "gnc",
--- 			node_decremental = "gnd",
--- 		},
--- 	},
--- 	indent = {
--- 		enable = true,
--- 	},
--- })
-
 -- telescope actions for dap
-require('telescope').load_extension 'dap'
+local tele_ok, tele = pcall(require, 'telescope')
+if not tele_ok then
+    return
+end
+tele.load_extension 'dap'

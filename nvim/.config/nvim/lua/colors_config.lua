@@ -5,8 +5,12 @@ vim.o.background = 'dark' -- or "light" for light mode
 local colorscheme = 'gruvbox'
 local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
 if not status_ok then
-  vim.notify('colorscheme ' .. colorscheme .. ' not found!')
-  return
+    vim.notify('colorscheme ' .. colorscheme .. ' not found!')
+    return
 end
 
-require('colorizer').setup()
+local colorizer_ok, colorizer = pcall(require, 'colorizer')
+if not colorizer_ok then
+    return
+end
+colorizer.setup()
