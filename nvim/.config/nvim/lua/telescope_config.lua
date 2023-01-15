@@ -1,24 +1,26 @@
 -- luacheck: globals vim
 local tele_ok, tele = pcall(require, 'telescope')
 if not tele_ok then
-  return
+    return
 end
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 tele.setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
+    defaults = {
+        mappings = {
+            i = {
+                ['<C-u>'] = false,
+                ['<C-d>'] = false,
+            },
+        },
     },
-  },
 }
 
 -- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
+pcall(tele.load_extension, 'fzf')
+-- load refactoring Telescope extension
+pcall(tele.load_extension, 'refactoring')
 
 -- tele.setup({
 -- 	defaults = {
@@ -65,4 +67,3 @@ pcall(require('telescope').load_extension, 'fzf')
 -- 		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 -- 	},
 -- })
--- require("telescope").load_extension("fzf")
