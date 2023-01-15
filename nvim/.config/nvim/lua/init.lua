@@ -1,20 +1,21 @@
 -- luacheck: globals vim
-vim.g.mapleader = ","
+vim.g.mapleader = ','
 
-require("general_config")
-require("keymaps_config")
-require("plugins_config")
-require("utils_config")
-require("treesitter_config")
-require("gitsigns_config")
-require("completion_config")
-require("colors_config")
-require("bufferline_config")
-require("cursorline_config")
-require("orgmode_config")
-require("null-ls_config")
-require("lsp_config")
-require("git_config")
-require("debug_config")
-require("rest_config")
-require("plantuml_config")
+require 'general_config'
+require 'keymaps_config'
+require 'plugins_config'
+require 'utils_config'
+require 'treesitter_config'
+require 'gitsigns_config'
+require 'completion_config'
+require 'colors_config'
+require 'bufferline_config'
+require 'cursorline_config'
+require 'orgmode_config'
+require 'null-ls_config'
+require 'lsp_config'
+require 'git_config'
+require 'debug_config'
+require 'rest_config'
+require 'plantuml_config'
+require 'refactoring_config'
