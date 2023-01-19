@@ -232,15 +232,8 @@ require('packer').startup(function(use)
         -- ft = 'norg',
     }
     use 'nvim-orgmode/orgmode'
-    -- use 'akinsho/org-bullets.nvim'
     use { 'michaelb/sniprun', run = 'bash ./install.sh' }
     use 'dhruvasagar/vim-table-mode'
-    -- use {
-    --     'lukas-reineke/headlines.nvim',
-    --     config = function()
-    --         require('headlines').setup()
-    --     end,
-    -- }
     use 'rest-nvim/rest.nvim'
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
