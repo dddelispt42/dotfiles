@@ -193,3 +193,11 @@ map('n', '<leader>di', '<cmd>DapStepInto<cr>', { noremap = true, silent = true }
 map('n', '<leader>do', '<cmd>DapStepOver<cr>', { noremap = true, silent = true })
 map('n', '<leader>du', '<cmd>DapStepOut<cr>', { noremap = true, silent = true })
 map('n', '<leader>dr', '<cmd>DapToggleRepl<cr>', { noremap = true, silent = true })
+
+-- Codeium
+-- map('i', '<C-G>', vim.fn['codeium#Accept'](), { noremap = true, silent = true })
+-- config = function()
+--     vim.keymap.set('i', '<C-G>', function()
+--         vim.fn['codeium#Accept']()
+--     end)
+-- end,

@@ -235,6 +235,16 @@ require('packer').startup(function(use)
     use { 'michaelb/sniprun', run = 'bash ./install.sh' }
     use 'dhruvasagar/vim-table-mode'
     use 'rest-nvim/rest.nvim'
+    -- Remove the `use` here if you're using folke/lazy.nvim.
+    use {
+        'Exafunction/codeium.vim',
+        config = function()
+            -- Change '<C-g>' here to any keycode you like.
+            vim.keymap.set('i', '<C-g>', function()
+                return vim.fn['codeium#Accept']()
+            end, { expr = true })
+        end,
+    }
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')
