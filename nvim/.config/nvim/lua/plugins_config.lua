@@ -16,13 +16,16 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ',' -- 'vim.g' sets global variables
 vim.g.maplocalleader = ','
 
-require('lazy').setup {
+require('lazy').setup({
     -- Fuzzy Finder (files, lsp, etc)
     { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
     'norcalli/nvim-colorizer.lua',
-    'folke/zen-mode.nvim',
+    {
+        'folke/zen-mode.nvim',
+        cmd = 'ZenMode',
+    },
     {
         'glacambre/firenvim',
         build = function()
@@ -31,9 +34,8 @@ require('lazy').setup {
     },
     {
         'kyazdani42/nvim-tree.lua',
-        config = function()
-            require('nvim-tree').setup {}
-        end,
+        cmd = 'NvimTreeToggle',
+        config = true,
     },
     { -- LSP Configuration & Plugins
         'neovim/nvim-lspconfig',
@@ -51,16 +53,11 @@ require('lazy').setup {
     'jayp0521/mason-null-ls.nvim',
     'LostNeophyte/null-ls-embedded',
     'jayp0521/mason-nvim-dap.nvim',
-    -- 'glepnir/lspsaga.nvim',
-    -- 'wbthomason/lsp-status.nvim',
-    -- 'nvim-lua/lsp_extensions.nvim',
     'simrat39/rust-tools.nvim',
     {
         'saecki/crates.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('crates').setup()
-        end,
+        config = true,
     },
     {
         'folke/trouble.nvim',
@@ -92,11 +89,14 @@ require('lazy').setup {
             'rcarriga/cmp-dap',
             'saadparwaiz1/cmp_luasnip',
             -- "pontusk/cmp-vimwiki-tags"
+            -- 'nyngwang/cmp-codeium',
         },
     },
     'rafamadriz/friendly-snippets',
     { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        event = 'VimEnter',
         build = function()
             pcall(require('nvim-treesitter.install').update { with_sync = true })
         end,
@@ -104,7 +104,10 @@ require('lazy').setup {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
     },
-    'nvim-treesitter/playground',
+    {
+        'nvim-treesitter/playground',
+        cmd = 'TSPlaygroundToggle',
+    },
     {
         'nvim-treesitter/completion-treesitter',
         build = function()
@@ -113,9 +116,13 @@ require('lazy').setup {
     },
     'aklt/plantuml-syntax',
     -- 'Sol-Ponz/plantuml-previewer.nvim',
-    'sidebar-nvim/sidebar.nvim',
-    'sidebar-nvim/sections-dap',
-    'mfussenegger/nvim-dap',
+    {
+        'sidebar-nvim/sections-dap',
+        -- lazy = true,
+        dependencies = {
+            'sidebar-nvim/sidebar.nvim',
+        },
+    },
     { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
     'mfussenegger/nvim-dap-python',
     'nvim-telescope/telescope-dap.nvim',
@@ -127,9 +134,7 @@ require('lazy').setup {
     },
     {
         'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end,
+        config = true,
     },
     'tpope/vim-sleuth',
     {
@@ -154,7 +159,7 @@ require('lazy').setup {
     'sindrets/diffview.nvim',
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
+        dependencies = { 'kyazdani42/nvim-web-devicons' },
     },
     'yamatsum/nvim-cursorline',
     {
@@ -165,13 +170,13 @@ require('lazy').setup {
             vim.cmd [[colorscheme gruvbox]]
         end,
     },
-    -- {
-    -- 	"akinsho/bufferline.nvim",
-    -- 	dependencies = "kyazdani42/nvim-web-devicons",
-    -- 	config = function()
-    -- 		require("bufferline").setup({})
-    -- 	end,
-    -- },
+    {
+        'akinsho/bufferline.nvim',
+        dependencies = 'kyazdani42/nvim-web-devicons',
+        config = function()
+            require('bufferline').setup {}
+        end,
+    },
     'romgrk/barbar.nvim',
     {
         'vimwiki/vimwiki',
@@ -190,13 +195,7 @@ require('lazy').setup {
     },
     {
         'folke/which-key.nvim',
-        config = function()
-            require('which-key').setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end,
+        config = true,
     },
     -- " Plug 'mjbrownie/hackertyper.vim'
     'will133/vim-dirdiff',
@@ -204,8 +203,9 @@ require('lazy').setup {
     'christoomey/vim-sort-motion',
     {
         'aserowy/tmux.nvim',
+        event = 'VimEnter',
         config = function()
-            require('tmux').setup()
+            return require('tmux').setup()
         end,
     },
     'brooth/far.vim',
@@ -233,7 +233,7 @@ require('lazy').setup {
     },
     {
         'nvim-orgmode/orgmode',
-        ft = 'org',
+        event = 'VimEnter',
     },
     { 'michaelb/sniprun', build = 'bash ./install.sh' },
     'dhruvasagar/vim-table-mode',
@@ -241,11 +241,14 @@ require('lazy').setup {
     -- Remove the `use` here if you're using folke/lazy.nvim.
     {
         'Exafunction/codeium.vim',
-        config = function()
-            -- Change '<C-g>' here to any keycode you like.
-            vim.keymap.set('i', '<C-g>', function()
-                return vim.fn['codeium#Accept']()
-            end, { expr = true })
-        end,
+        event = 'VimEnter',
+        -- config = function()
+        --     -- Change '<C-g>' here to any keycode you like.
+        --     vim.keymap.set('i', '<C-g>', function()
+        --         return vim.fn['codeium#Accept']()
+        --     end, { expr = true })
+        -- end,
     },
-}
+}, {
+    defaults = { lazy = false },
+})
