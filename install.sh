@@ -160,13 +160,9 @@ if command -v xdg-mime >/dev/null; then
 fi
 
 mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions,spell}
-# if command -v nvim >/dev/null; then
-# 	# nvim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
-# 	# nvim +PackerInstall +PackerSync +qall --headless
-# 	nvim +PackerSync +qall --headless
-# else
-# 	vim +PlugInstall +PlugUpgrade +PlugUpdate +PlugClean +qall
-# fi
+if command -v nvim >/dev/null; then
+	nvim --headless "+Lazy! sync" +qa
+fi
 
 # TODO: check if key is too old
 test -s "$HOME/.ssh/id_ed25519" || ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I)" -a 100
