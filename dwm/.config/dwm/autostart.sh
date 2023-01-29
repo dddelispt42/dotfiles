@@ -30,7 +30,7 @@ fi
 "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" "$HOST"
 "${XDG_CONFIG_HOME:-$HOME/.config}/dunst/launch.sh" &
 # feh --bg-fill "${XDG_CONFIG_HOME:-$HOME/.config}/wp.jpg" &
-udiskie -A -t &
+# udiskie -A -t &
 nohup xfce4-power-manager &
 # nohup nextcloud &
 # trayer --edge top --align center --expand false --width 5 --distance 20 &
