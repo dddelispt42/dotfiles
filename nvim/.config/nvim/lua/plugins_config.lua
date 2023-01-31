@@ -177,7 +177,7 @@ require('lazy').setup({
             require('bufferline').setup {}
         end,
     },
-    'romgrk/barbar.nvim',
+    -- 'romgrk/barbar.nvim',
     {
         'vimwiki/vimwiki',
         ft = 'vimwiki',
