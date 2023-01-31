@@ -7,7 +7,7 @@ line-length = 120
 select = ["E", "F", "B", "W", "C90", "I", "D", "UP", "N", "YTT", "ANN", "S", "BLE", "FBT", "A", "C4", "T10", "EM", "ICN", "T20", "RET", "SIM", "TID", "ARG", "DTZ", "ERA", "PD", "PGH", "PLC", "PLE", "PLR", "PLW", "RUF"]
 
 # Never enforce `E501` (line length violations).
-ignore = ["D213"]
+ignore = ["D211", "D213"]
 
 # Always autofix, but never try to fix `F401` (unused imports).
 fix = true
