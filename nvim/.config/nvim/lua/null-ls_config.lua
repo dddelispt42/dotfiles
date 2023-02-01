@@ -12,7 +12,7 @@ mason_null_ls.setup {
     -- A list of sources to install if they're not already installed.
     -- This setting has no relation with the `automatic_installation` setting.
     ensure_installed = {
-        'ansiblelint',
+        -- 'ansiblelint',
         -- 'fixjson',
         'gitrebase',
         'gitsign',
@@ -66,7 +66,7 @@ null_ls.setup {
         null_ls.builtins.formatting.xmllint,
         null_ls.builtins.formatting.stylua,
         -- null_ls.builtins.diagnostics.ruff,
-        null_ls.builtins.diagnostics.ansiblelint,
+        -- null_ls.builtins.diagnostics.ansiblelint,
         null_ls.builtins.diagnostics.cppcheck,
         null_ls.builtins.diagnostics.gitlint,
         null_ls.builtins.diagnostics.luacheck,
