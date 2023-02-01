@@ -128,6 +128,8 @@ mkdir -p "$USER_LOGS_DIR"
 # pylint
 export PYLINTHOME=${XDG_CONFIG_HOME:-$HOME/.config}/pylint
 
+export _ZO_ECHO=1
+
 # move dofiles to XDG dirs
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
