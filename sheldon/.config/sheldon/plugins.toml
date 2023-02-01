@@ -39,3 +39,7 @@ github = 'djui/alias-tips'
 github = 'changyuheng/zsh-interactive-cd'
 [plugins.fzf-zsh-completions]
 github = 'chitoku-k/fzf-zsh-completions'
+# [plugins.zsh-zoxide]
+# github = 'z-shell/zsh-zoxide'
+[plugins.zsh-autocomplete]
+github = 'marlonrichert/zsh-autocomplete.git'

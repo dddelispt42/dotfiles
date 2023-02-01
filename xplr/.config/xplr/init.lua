@@ -9,67 +9,67 @@ package.path = package.path .. ';' .. xpm_path .. '/?.lua;' .. xpm_path .. '/?/i
 os.execute(string.format("[ -e '%s' ] || git clone '%s' '%s'", xpm_path, xpm_url, xpm_path))
 
 require('xpm').setup {
-  plugins = {
-    -- Let xpm manage itself
-    'dtomvan/xpm.xplr',
-    'sayanarijit/fzf.xplr',
-    'prncss-xyz/icons.xplr',
-    'sayanarijit/zoxide.xplr',
-    -- 'sayanarijit/xargs.xplr',
-    'sayanarijit/dual-pane.xplr',
-    'sayanarijit/trash-cli.xplr',
-    -- 'sayanarijit/preview-tabbed.xplr',
-    'sayanarijit/dragon.xplr',
-    'sayanarijit/scp.xplr',
-    'sayanarijit/xclip.xplr',
-    {
-      'dtomvan/extra-icons.xplr',
-      after = function()
-        xplr.config.general.table.row.cols[2] = { format = 'custom.icons_dtomvan_col_1' }
-      end,
+    plugins = {
+        -- Let xpm manage itself
+        'dtomvan/xpm.xplr',
+        'sayanarijit/fzf.xplr',
+        'prncss-xyz/icons.xplr',
+        'sayanarijit/zoxide.xplr',
+        'sayanarijit/xargs.xplr',
+        'sayanarijit/dual-pane.xplr',
+        'sayanarijit/trash-cli.xplr',
+        -- 'sayanarijit/preview-tabbed.xplr',
+        'sayanarijit/dragon.xplr',
+        'sayanarijit/scp.xplr',
+        'sayanarijit/xclip.xplr',
+        {
+            'dtomvan/extra-icons.xplr',
+            after = function()
+                xplr.config.general.table.row.cols[2] = { format = 'custom.icons_dtomvan_col_1' }
+            end,
+        },
+        -- 'sayanarijit/regex-search.xplr',
+        'sayanarijit/tri-pane.xplr',
+        'sayanarijit/dua-cli.xplr',
+        -- 'sayanarijit/map.xplr',
+        -- 'sayanarijit/command-mode.xplr',
     },
-    -- 'sayanarijit/regex-search.xplr',
-    'sayanarijit/tri-pane.xplr',
-    'sayanarijit/dua-cli.xplr',
-    -- 'sayanarijit/map.xplr',
-    -- 'sayanarijit/command-mode.xplr',
-  },
-  auto_install = true,
-  auto_cleanup = true,
+    auto_install = true,
+    auto_cleanup = true,
 }
 
 require('fzf').setup {
-  mode = 'default',
-  key = 'ctrl-f',
-  -- args = "--preview 'pistol {}'"
+    mode = 'default',
+    key = 'ctrl-f',
+    -- args = "--preview 'pistol {}'"
 }
 
 require('icons').setup()
 
 require('zoxide').setup {
-  mode = 'default',
-  key = 'Z',
+    mode = 'default',
+    key = 'Z',
 }
 
 require('xargs').setup {
-  mode = 'default',
-  key = 'X',
-  placeholder = '{}',
-  shell = 'bash',
+    mode = 'default',
+    key = 'X',
+    placeholder = '{}',
+    shell = 'bash',
 }
 
 require('dual-pane').setup {
-  active_pane_width = { Percentage = 70 },
-  inactive_pane_width = { Percentage = 30 },
+    active_pane_width = { Percentage = 70 },
+    inactive_pane_width = { Percentage = 30 },
 }
 
 -- Type `dd` to trash, `dr` to restore.
 require('trash-cli').setup {
-  trash_mode = 'delete',
-  trash_key = 'd',
-  restore_mode = 'delete',
-  restore_key = 'r',
-  trash_list_selector = "fzf -m | cut -d' ' -f3-",
+    trash_mode = 'delete',
+    trash_key = 'd',
+    restore_mode = 'delete',
+    restore_key = 'r',
+    trash_list_selector = "fzf -m | cut -d' ' -f3-",
 }
 
 -- Type `:p` to toggle preview mode.
@@ -83,33 +83,33 @@ require('trash-cli').setup {
 -- Select files and type `:sD` to drag
 -- Type `:sD` without selecting anything to drop
 require('dragon').setup {
-  mode = 'selection_ops',
-  key = 'D',
-  drag_args = '',
-  drop_args = '',
-  keep_selection = false,
-  bin = 'dragon',
+    mode = 'selection_ops',
+    key = 'D',
+    drag_args = '',
+    drop_args = '',
+    keep_selection = false,
+    bin = 'dragon',
 }
 
 -- Type `:sS` and send the selected files.
 -- Make sure `~/.ssh/config` or `/etc/ssh/ssh_config` is updated.
 -- Else you'll need to enter each host manually.
 require('scp').setup {
-  mode = 'selection_ops', -- or `xplr.config.modes.builtin.selection_ops`
-  key = 'S',
-  scp_command = 'scp -r',
-  non_interactive = false,
-  keep_selection = false,
+    mode = 'selection_ops', -- or `xplr.config.modes.builtin.selection_ops`
+    key = 'S',
+    scp_command = 'scp -r',
+    non_interactive = false,
+    keep_selection = false,
 }
 
 -- Type `yy` to copy and `p` to paste whole files.
 -- Type `yp` to copy the paths of focused or selected files.
 -- Type `yP` to copy the parent directory path.
 require('xclip').setup {
-  copy_command = 'xclip-copyfile',
-  copy_paths_command = 'xclip -sel clip',
-  paste_command = 'xclip-pastefile',
-  keep_selection = false,
+    copy_command = 'xclip-copyfile',
+    copy_paths_command = 'xclip -sel clip',
+    paste_command = 'xclip-pastefile',
+    keep_selection = false,
 }
 
 -- -- Type `/` and then the pattern to match
@@ -121,17 +121,17 @@ require('xclip').setup {
 -- }
 
 require('tri-pane').setup {
-  layout_key = 'T', -- In switch_layout mode
-  as_default_layout = true,
-  left_pane_width = { Percentage = 20 },
-  middle_pane_width = { Percentage = 50 },
-  right_pane_width = { Percentage = 30 },
+    layout_key = 'T', -- In switch_layout mode
+    as_default_layout = true,
+    left_pane_width = { Percentage = 20 },
+    middle_pane_width = { Percentage = 50 },
+    right_pane_width = { Percentage = 30 },
 }
 
 -- Type `:D` to spawn dua-cli in $PWD
 require('dua-cli').setup {
-  mode = 'action',
-  key = 'D',
+    mode = 'action',
+    key = 'D',
 }
 
 -- -- Type `M` to switch to single map mode.
