@@ -158,3 +158,5 @@ fyt() {
 #    enhance --zoom=2 "images/*.jpg"
 # alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 alias thokr='thokr -w 200 -l english10k'
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias xbindkeys=xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config
