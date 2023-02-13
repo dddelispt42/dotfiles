@@ -46,14 +46,20 @@ migrate_to_clean "$HOME"/.cmus "$XDG_CONFIG_HOME"/cmus
 migrate_to_clean "$HOME"/.kde "$XDG_CONFIG_HOME"/kde
 migrate_to_clean "$HOME"/.gnupg "$XDG_CONFIG_HOME"/gnupg
 migrate_to_clean "$HOME"/.gradle "$XDG_DATA_HOME"/gradle
+migrate_to_clean "$HOME"/.wget-hsts "$XDG_DATA_HOME"/wget-hsts
+migrate_to_clean "$HOME"/.ICEauthority "$XDG_CACHE_HOME"/ICEauthority
+migrate_to_clean "$HOME"/.dvdcss "$XDG_DATA_HOME"/dvdcss
 mkdir -p "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 migrate_to_clean "$HOME"/.gtkrc-2.0 "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 migrate_to_clean "$HOME"/.gimp-2.0 "$XDG_CONFIG_HOME"/gimp-2.0
 migrate_to_clean "$HOME"/.gimp-2.10 "$XDG_CONFIG_HOME"/gimp-2.10
+migrate_to_clean "$HOME"/.xbindkeysrc "$XDG_CONFIG_HOME"/xbindkeysrc
 migrate_to_clean "$HOME"/.gimp-2.2 "$XDG_CONFIG_HOME"/gimp-2.2
 migrate_to_clean "$HOME"/.gimp-2.4 "$XDG_CONFIG_HOME"/gimp-2.4
 migrate_to_clean "$HOME"/.gimp-2.6 "$XDG_CONFIG_HOME"/gimp-2.6
 migrate_to_clean "$HOME"/.gimp-2.8 "$XDG_CONFIG_HOME"/gimp-2.8
+# TODO: works only with xinit not startx
+# migrate_to_clean "$HOME"/.xinitrc "$XDG_CONFIG_HOME"/X11/xinitrc
 migrate_to_clean "$HOME"/.htoprc "$XDG_CONFIG_HOME"/htoprc
 migrate_to_clean "$HOME"/.httpie "$XDG_CONFIG_HOME"/httpie
 migrate_to_clean "$HOME"/.i3 "$XDG_CONFIG_HOME"/i3

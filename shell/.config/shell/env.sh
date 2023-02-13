@@ -163,9 +163,14 @@ export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 export BOGOFILTER_DIR="$XDG_CACHE_HOME"/bogofilter
 export RANDFILE="$XDG_CACHE_HOME"/rnd
 export GRADLE_HOME="$XDG_CACHE_HOME"/gradle
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export IPYTHONDIR="$XDG_CACHE_HOME"/ipython
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+# TODO: works only with xinit not startx
+# export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+export DVDCSS_CACHE="$XDG_DATA_HOME"/dvdcss
 # export VIMINIT='source "$XDG_CONFIG_HOME/nvim/init.vim"'
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 # Other program settings:
