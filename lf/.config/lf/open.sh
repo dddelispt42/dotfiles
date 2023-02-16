@@ -26,7 +26,7 @@ _open() {
 		[ ! -d "$mntdir" ] && {
 			mkdir "$mntdir"
 			archivemount "$1" "$mntdir"
-			# TODO: get the lf id  <03-05-20, Heiko Riemer> #
+			# shellcheck disable=SC2154
 			echo "$mntdir" >>"/tmp/__lf_archivemount_$id"
 		}
 		lf -remote "send $id cd \"$mntdir\""
@@ -41,8 +41,6 @@ _open() {
 	image/*) setsid sxiv -ai >/dev/null 2>&1 & ;;
 	audio/*) setsid umpv "$1" ;;
 	video/*) setsid umpv "$1" -quiet >/dev/null 2>&1 & ;;
-	# audio/*) setsid vlc "$1" ;;
-	# video/*) setsid vlc "$1" >/dev/null 2>&1 & ;;
 	application/pdf) setsid zathura "$1" >/dev/null 2>&1 & ;;
 	*) setsid "${OPENER:-xdf-open}" "$1" >/dev/null 2>&1 & ;;
 	esac
