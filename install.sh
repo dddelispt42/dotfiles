@@ -122,7 +122,6 @@ stow -vS -t "$HOME"/ alacritty
 stow -vS -t "$HOME"/ bat
 stow -vS -t "$HOME"/ bottom
 stow -vS -t "$HOME"/ broot
-stow -vS -t "$HOME"/ bspwm
 stow -vS -t "$HOME"/ btop
 stow -vS -t "$HOME"/ dunst
 stow -vS -t "$HOME"/ dwm
@@ -145,7 +144,6 @@ stow -vS -t "$HOME"/ sheldon
 stow -vS -t "$HOME"/ shell
 stow -vS -t "$HOME"/ starship
 stow -vS -t "$HOME"/ stylua
-stow -vS -t "$HOME"/ sxhkd
 stow -vS -t "$HOME"/ tmux
 stow -vS -t "$HOME"/ topgrade
 # stow -vS -t "$HOME"/ user-dirs

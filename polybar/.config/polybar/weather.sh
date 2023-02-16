@@ -1,4 +1,4 @@
 #!/bin/sh
 CACHEFILE="$HOME/.cache/wttr.$USER"
-# curl 'wttr.in/Lisbon?format=%l+%c+%t+%h+%p+%o+%w+%m'
-curl -s 'wttr.in/Lisbon?format=%c+%t+%h+%p+%o+%w' | sed 's/  / /g' | tee "$CACHEFILE" || cat "$CACHEFILE" || echo "???"
+find "$CACHEFILE" -mmin -120 >/dev/null || curl -s 'wttr.in/Lisbon?format=%c+%t+%h+%p+%o+%w' | sed 's/  / /g' >"$CACHEFILE"
+cat "$CACHEFILE"
