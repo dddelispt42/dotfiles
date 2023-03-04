@@ -221,6 +221,12 @@ export SFEED_URL_FILE="$HOME/.cache/sfeed_urls"
 export SFEED_CONFIG_FILE="${KLAUT:-$HOME/Sync/work}/_share/feeds/sfeedrc"
 export SFEED_CACHE_DIR="$XDG_CACHE_HOME/sfeed/cache/"
 
+# PROOTs on Android
+if [[ "$ANDROID_ROOT" == "/system" ]]; then
+	export PROOT_GENTOO="$HOME/proots/gentoo"
+	export PATH=$HOME/.shortcuts:$PATH
+fi
+
 # fuzzy finder variables
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export FZF_DEFAULT_COMMAND='rg --files -uu'
