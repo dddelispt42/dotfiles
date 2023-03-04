@@ -16,14 +16,14 @@ if [ "$HOST" == "work" ]; then
 	# VBoxClient --display
 	VBoxClient --checkhostversion
 	nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
-	nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
-	nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
-	nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
+	# nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
+	# nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
+	# nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
 else
 	nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
-	nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
-	nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
-	nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
+	# nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
+	# nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
+	# nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
 fi
 
 # sxhkd -c ${XDG_CONFIG_HOME:-$HOME/.config}/sxhkd/sxhkdrc &
@@ -40,21 +40,21 @@ fi
 if command -v brave >/dev/null; then
 	nohup brave &
 fi
-if command -v qutebrowser >/dev/null; then
-	nohup qutebrowser &
-fi
-if command -v anki >/dev/null; then
-	nohup anki &
-fi
-if command -v tbb >/dev/null; then
-	nohup tbb &
-fi
+# if command -v qutebrowser >/dev/null; then
+# 	nohup qutebrowser &
+# fi
+# if command -v anki >/dev/null; then
+# 	nohup anki &
+# fi
+# if command -v tbb >/dev/null; then
+# 	nohup tbb &
+# fi
 if command -v signal-desktop >/dev/null; then
 	nohup signal-desktop &
 fi
 if command -v onboard >/dev/null; then
 	nohup onboard &
 fi
-if command -v xsuspender >/dev/null; then
-	nohup xsuspender &
-fi
+# if command -v xsuspender >/dev/null; then
+# 	nohup xsuspender &
+# fi
