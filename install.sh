@@ -153,9 +153,9 @@ stow -vS -t "$HOME"/ xplr
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
 
-if [ "$OSTYPE" = "linux-android" ]; then
-	stow -vS -t "$HOME"/ android # Android
-fi
+# if [ "$OSTYPE" = "linux-android" ]; then
+# 	stow -vS -t "$HOME"/ android # Android
+# fi
 
 sheldon lock --update
 
