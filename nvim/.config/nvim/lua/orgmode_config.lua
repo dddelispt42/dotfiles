@@ -19,18 +19,41 @@ orgmode.setup_ts_grammar()
 -- orgbullets.setup()
 
 orgmode.setup {
-    org_todo_keywords = { 'TODO(t)', 'WAITING(w)', 'DELEGATED(s)', '|', 'DONE(d)', 'REJECTED(r)' },
+    org_todo_keywords = { 'TODO(t)', 'NEXT(n)', 'WAITING(w)', 'DELEGATED(s)', '|', 'DONE(d)', 'REJECTED(r)' },
+    org_todo_keyword_faces = {
+        TODO = ':background #000000 :foreground red :weight bold', -- overrides builtin color for `TODO` keyword
+        NEXT = ':background red :foreground white : weight bold',
+        WAITING = ':foreground lightblue :weight bold',
+        DELEGATED = ':background #FFFFFF :slant italic :underline on',
+    },
     -- org_agenda_files = { '~/Sync/work/notes/*', '~/Sync/work/notes/**/*.org' },
     org_agenda_files = { '~/Sync/work/notes/**/*.org' },
     org_default_notes_file = '~/notes/capture.org',
+    org_hide_emphasis_markers = true,
+    org_indent_mode = 'noindent',
+    org_deadline_warning_days = 3,
+    org_agenda_span = 'day',
+    org_agenda_start_day = '-1d',
+    org_priority_highest = 1,
+    org_priority_default = 5,
+    org_priority_lowest = 9,
+    org_agenda_skip_scheduled_if_done = true,
+    org_agenda_skip_deadline_if_done = true,
     org_capture_templates = {
-        t = {
-            description = 'Todo',
-            template = '* TODO %? :%n:\n %U',
+        {
+            t = 'TODO',
+            tw = {
+                description = 'Todo - WORK',
+                template = '* [#5] TODO %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :END:',
+            },
+            th = {
+                description = 'Todo - HOME',
+                template = '* [#5] TODO %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n   :END:',
+            },
         },
         d = {
             description = 'Delegated task',
-            template = '* DELEGATED %? :who:\n %U',
+            template = '* [#5] DELEGATED %? :who:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :END:',
         },
         m = {
             description = 'Meeting',
