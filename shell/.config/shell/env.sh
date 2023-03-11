@@ -1,3 +1,4 @@
+# shellcheck disable=SC2148
 # PS1='[\u@\h \W]\$ '
 
 # If you come from bash you might have to change your $PATH.
@@ -67,7 +68,7 @@ fi
 # AUTOSSH
 export AUTOSSH_POLL=20
 export AUTOSSH_GATETIME=30
-export AUTOSSH_PORT="$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); printf("%d\n",r)  }' </dev/null)"
+export AUTOSSH_PORT="$((20000 + RANDOM % 10000))"
 export AUTOSSH_LOGLEVEL=0
 export AUTOSSH_LOGFILE="$XDG_CACHE_HOME/autossh.log"
 
@@ -230,9 +231,17 @@ fi
 # fuzzy finder variables
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export FZF_DEFAULT_COMMAND='rg --files -uu'
+export FZF_COLORSCHEMA='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
 export FZF_DEFAULT_COMMAND='fd -HI --follow  --exclude "**/.git/**"'
-export FZF_DEFAULT_OPTS="-x --multi --height 50% --border --inline-info --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap"
+export FZF_DEFAULT_OPTS="-x --multi --height 50% --border --inline-info --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap $FZF_COLORSCHEMA"
 export SKIM_DEFAULT_COMMAND="rg --files -uu --follow || git ls-tree -r --name-only HEAD || rg --files || find ."
+export FZF_CTRL_T_OPTS="--height 60% \
+	--border sharp \
+	--layout reverse \
+	--prompt '∷ ' \
+	--pointer ▶ \
+	--marker ⇒"
+export FZF_TMUX_OPTS="-d 40% -p"
 export LAUNCHER=sk
 export CM_LAUNCHER=fzf
 if [ -n "${DISPLAY+1}" ]; then
