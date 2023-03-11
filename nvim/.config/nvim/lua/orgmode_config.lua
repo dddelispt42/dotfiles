@@ -40,20 +40,18 @@ orgmode.setup {
     org_agenda_skip_scheduled_if_done = true,
     org_agenda_skip_deadline_if_done = true,
     org_capture_templates = {
-        {
-            t = 'TODO',
-            tw = {
-                description = 'Todo - WORK',
-                template = '* [#5] TODO %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :END:',
-            },
-            th = {
-                description = 'Todo - HOME',
-                template = '* [#5] TODO %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n   :END:',
-            },
+        t = 'TODO',
+        tw = {
+            description = 'Todo - WORK',
+            template = '* TODO [#5] %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :END:',
+        },
+        th = {
+            description = 'Todo - HOME',
+            template = '* TODO [#5] %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n   :END:',
         },
         d = {
             description = 'Delegated task',
-            template = '* [#5] DELEGATED %? :who:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :END:',
+            template = '* DELEGATED [#5] %? :who:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :END:',
         },
         m = {
             description = 'Meeting',
