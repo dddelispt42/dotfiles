@@ -193,6 +193,17 @@ map('n', '<leader>di', '<cmd>DapStepInto<cr>', { noremap = true, silent = true }
 map('n', '<leader>do', '<cmd>DapStepOver<cr>', { noremap = true, silent = true })
 map('n', '<leader>du', '<cmd>DapStepOut<cr>', { noremap = true, silent = true })
 map('n', '<leader>dr', '<cmd>DapToggleRepl<cr>', { noremap = true, silent = true })
+map('n', '<leader>dl', '<cmd>DapShowLog<cr>', { noremap = true, silent = true })
+map('n', '<leader>dt', '<cmd>DapTerminate<cr>', { noremap = true, silent = true })
+map('n', '<leader>dB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))', { noremap = true, silent = true })
+map('n', '<leader>dm', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))', { noremap = true, silent = true })
+map('n', '<leader>dR', 'run_last()', { noremap = true, silent = true })
+map('n', '<leader>dC', '<cmd>lua require("telescope").extensions.dap.commands{}', { noremap = true, silent = true })
+map('n', '<leader>dF', '<cmd>lua require("telescope").extensions.dap.configurations{}', { noremap = true, silent = true })
+map('n', '<leader>dL', '<cmd>lua require("telescope").extensions.dap.list_breakpoints{}', { noremap = true, silent = true })
+map('n', '<leader>dV', '<cmd>lua require("telescope").extensions.dap.list_variables{}', { noremap = true, silent = true })
+
+-- TODO: check neotest and use leader-t etc
 
 -- Codeium
 -- map('i', '<C-G>', vim.fn['codeium#Accept'](), { noremap = true, silent = true })
