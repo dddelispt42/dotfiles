@@ -14,9 +14,6 @@
 --   s...session
 --   t...terminal
 
--- Define leader key
-vim.g.mapleader = ',' -- 'vim.g' sets global variables
-vim.g.maplocalleader = ','
 -- Shorten function name
 local map = vim.keymap.set
 -- Keymaps for better default experience See `:help vim.keymap.set()`

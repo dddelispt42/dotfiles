@@ -11,10 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
     }
 end
 vim.opt.rtp:prepend(lazypath)
---
--- Define leader key
-vim.g.mapleader = ',' -- 'vim.g' sets global variables
-vim.g.maplocalleader = ','
 
 require('lazy').setup({
     -- Fuzzy Finder (files, lsp, etc)
