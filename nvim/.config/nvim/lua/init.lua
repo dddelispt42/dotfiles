@@ -1,5 +1,7 @@
 -- luacheck: globals vim
-vim.g.mapleader = ','
+-- Define leader key
+vim.g.mapleader = ' ' -- 'vim.g' sets global variables
+vim.g.maplocalleader = ' '
 
 require 'general_config'
 require 'plugins_config'
