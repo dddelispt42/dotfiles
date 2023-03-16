@@ -110,7 +110,7 @@ require('lazy').setup({
             vim.cmd [[TSUpdate]]
         end,
     },
-    'aklt/plantuml-syntax',
+    'aklt/plantuml-syntax', -- TODO: check if TS syntax exists
     -- 'Sol-Ponz/plantuml-previewer.nvim',
     {
         'sidebar-nvim/sections-dap',
@@ -132,7 +132,7 @@ require('lazy').setup({
         'numToStr/Comment.nvim',
         config = true,
     },
-    'tpope/vim-sleuth',
+    'tpope/vim-sleuth', -- TODO: is there a lua substitute?
     {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
@@ -149,7 +149,7 @@ require('lazy').setup({
     'TimUntersberger/neogit',
     'lewis6991/gitsigns.nvim',
     'akinsho/git-conflict.nvim',
-    'tpope/vim-fugitive',
+    'tpope/vim-fugitive', -- TODO: is there a lua substitute?
     'tpope/vim-rhubarb', -- required by fugitive to :Gbrowse
     'ThePrimeagen/refactoring.nvim',
     'sindrets/diffview.nvim',
@@ -175,12 +175,12 @@ require('lazy').setup({
     },
     -- 'romgrk/barbar.nvim',
     {
-        'vimwiki/vimwiki',
+        'vimwiki/vimwiki', -- TODO: is there a lua substitute?
         ft = 'vimwiki',
     },
-    'tpope/vim-repeat',
-    'tpope/vim-unimpaired',
-    'tpope/vim-speeddating',
+    'tpope/vim-repeat', -- TODO: is there a lua substitute?
+    'tpope/vim-unimpaired', -- TODO: is there a lua substitute?
+    'tpope/vim-speeddating', -- TODO: is there a lua substitute?
     {
         'phaazon/hop.nvim',
         branch = 'v1', -- optional but strongly recommended
@@ -194,9 +194,9 @@ require('lazy').setup({
         config = true,
     },
     -- " Plug 'mjbrownie/hackertyper.vim'
-    'will133/vim-dirdiff',
-    'christoomey/vim-conflicted',
-    'christoomey/vim-sort-motion',
+    'will133/vim-dirdiff', -- TODO: is there a lua substitute?
+    'christoomey/vim-conflicted', -- TODO: is there a lua substitute?
+    'christoomey/vim-sort-motion', -- TODO: is there a lua substitute?
     {
         'aserowy/tmux.nvim',
         event = 'VimEnter',
@@ -204,22 +204,22 @@ require('lazy').setup({
             return require('tmux').setup()
         end,
     },
-    'brooth/far.vim',
+    'brooth/far.vim', -- TODO: is there a lua substitute?
     -- " allows opening files at specific location - e.g. /tmp/bal:10:2
-    'wsdjeg/vim-fetch',
+    'wsdjeg/vim-fetch', -- TODO: is there a lua substitute?
     -- " Plug 'henrik/vim-open-url'
     -- 'romainl/vim-cool',
     -- " better encryption plugin - dependencies: https://github.com/jedisct1/encpipe
-    'hauleth/vim-encpipe',
+    'hauleth/vim-encpipe', -- TODO: is there a lua substitute?
     -- " floating windows
     -- 'machakann/vim-highlightedyank',
-    'voldikss/vim-floaterm',
+    'voldikss/vim-floaterm', -- TODO: is there a lua substitute?
     -- edit JIRA issues in vim
     -- 'n0v1c3/vira0,
     -- 'dddelispt42/vira', { 'do': './install.sh', }
     -- 'n0v1c3/vira',
     -- " automatically set the root directory
-    'airblade/vim-rooter',
+    'airblade/vim-rooter', -- TODO: is there a lua substitute?
     -- 'github/copilot.vim',
     {
         'nvim-neorg/neorg',
@@ -232,7 +232,7 @@ require('lazy').setup({
         event = 'VimEnter',
     },
     { 'michaelb/sniprun', build = 'bash ./install.sh' },
-    'dhruvasagar/vim-table-mode',
+    'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
     'rest-nvim/rest.nvim',
     -- Remove the `use` here if you're using folke/lazy.nvim.
     -- {
