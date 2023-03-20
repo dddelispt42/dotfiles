@@ -77,6 +77,7 @@ null_ls.setup {
         null_ls.builtins.code_actions.refactoring,
         null_ls.builtins.code_actions.gitrebase,
         null_ls.builtins.code_actions.shellcheck,
+        -- null_ls.builtins.code_actions.ruff,
         null_ls.builtins.hover.dictionary,
         require('null-ls-embedded').nls_source,
     },

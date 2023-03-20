@@ -11,7 +11,7 @@ ignore = ["D211", "D213"]
 
 # Always autofix, but never try to fix `F401` (unused imports).
 fix = true
-fixable = ["E", "I", "D", "UP", "I001"]
+fixable = ["E", "I", "D", "UP", "I001", "SIM"]
 unfixable = ["F401", "D211"]
 
 # Group violations by containing file.
