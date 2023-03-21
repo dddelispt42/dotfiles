@@ -5,7 +5,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
 # TERM
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
