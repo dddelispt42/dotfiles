@@ -1,0 +1,42 @@
+[
+ {
+  "Description": "Generic API Key",
+  "StartLine": 9,
+  "EndLine": 9,
+  "StartColumn": 12,
+  "EndColumn": 0,
+  "Match": "Key = BD17C64C7AC45CDE0488E137D20F481E76D74F78",
+  "Secret": "BD17C64C7AC45CDE0488E137D20F481E76D74F78",
+  "File": "git/.config/git/config",
+  "SymlinkFile": "",
+  "Commit": "b6d618d4125993906c6cebceab624ee88a2aba78",
+  "Entropy": 3.6561983,
+  "Author": "Riemer, Heiko",
+  "Email": "heiko@eheiko.net",
+  "Date": "2021-11-15T19:33:51Z",
+  "Message": "add signing key to git config",
+  "Tags": [],
+  "RuleID": "generic-api-key",
+  "Fingerprint": "b6d618d4125993906c6cebceab624ee88a2aba78:git/.config/git/config:generic-api-key:9"
+ },
+ {
+  "Description": "Generic API Key",
+  "StartLine": 11,
+  "EndLine": 12,
+  "StartColumn": 8,
+  "EndColumn": 1,
+  "Match": "token = ffe6534674500683267422160ecf0851813e",
+  "Secret": "ffe6534674500683267422160ecf0851813e",
+  "File": "git/gitconfig",
+  "SymlinkFile": "",
+  "Commit": "26efc7e4db66dbefd63170b72c8e2d6b1b4966e5",
+  "Entropy": 3.5130155,
+  "Author": "U-CO-INT\\pt103371",
+  "Email": "pt103371@FGFT4S1.co-int.net",
+  "Date": "2018-03-16T11:03:29Z",
+  "Message": "add git and ag (silver searcher) settings",
+  "Tags": [],
+  "RuleID": "generic-api-key",
+  "Fingerprint": "26efc7e4db66dbefd63170b72c8e2d6b1b4966e5:git/gitconfig:generic-api-key:11"
+ }
+]

@@ -31,7 +31,7 @@
 *.egg-info
 *.exe
 *.gif
-*.gz
+# *.gz
 *.ico
 *.ilk
 *.jar
@@ -76,7 +76,7 @@
 *.suo
 *.tar
 *.temp
-*.tgz
+# *.tgz
 *.tlb
 *.tlh
 *.tmp
@@ -158,7 +158,7 @@ bin/zeal-portable-0.5.0-windows-x64/
 cache/
 cargo-timing*.html
 ctags
-dist/
+# dist/
 doc/ctags
 doc/tags
 doc/tags-te
@@ -171,3 +171,4 @@ tags
 tags-te
 target/
 ~$*
+*.egg

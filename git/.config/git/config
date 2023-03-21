@@ -6,7 +6,6 @@
 [user]
     name = Riemer, Heiko
     email = heiko@eheiko.net
-    signingKey = BD17C64C7AC45CDE0488E137D20F481E76D74F78
 [core]
     editor = nvim
     autocrlf = false
@@ -144,8 +143,8 @@
 [tag]
     forceSignAnnotated = true
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
