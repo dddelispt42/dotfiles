@@ -55,6 +55,7 @@ fi
 if command -v onboard >/dev/null; then
 	nohup onboard &
 fi
-# if command -v xsuspender >/dev/null; then
-# 	nohup xsuspender &
-# fi
+if command -v xsuspender >/dev/null; then
+	G_MESSAGES_DEBUG=xsuspender nohup xsuspender >/tmp/xsuspender.log &
+	disown
+fi
