@@ -28,6 +28,8 @@ map('n', 'Q', '@@', { noremap = true, silent = true })
 map('c', 'W!', 'w !doas tee %', { noremap = true, silent = true }) -- write as root
 map('c', 'Q!', 'q!', { noremap = true, silent = true })
 map('c', 'Qa!', 'qa!', { noremap = true, silent = true })
+map('i', '<c-bs>', '<c-w>', { noremap = true, silent = true }) -- ctrl-backspace to delete previous word
+map('i', '<c-h>', '<c-w>', { noremap = true, silent = true }) -- ctrl-backspace to delete previous word
 -- Move visual block
 map('v', 'J', ':m +1<CR>gv=gv', { noremap = true, silent = true })
 map('v', 'K', ':m -2<CR>gv=gv', { noremap = true, silent = true })

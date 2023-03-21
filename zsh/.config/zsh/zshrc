@@ -1,5 +1,7 @@
 # only if interactive shell
 [[ $- == *i* ]] && stty -ixon -ixoff # turns off CTRL-S
+# stty erase ""
+# stty ek
 
 # some history related settings
 HISTFILE=${XDG_CACHE_HOME:-$HOME/.cache}/zhistory       # enable history saving on shell exit
