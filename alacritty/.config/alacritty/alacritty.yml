@@ -1,3 +1,4 @@
+---
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Import additional configuration files
@@ -10,6 +11,8 @@
 # to the user's home directory starting with `~/`.
 #import:
 #  - /path/to/alacritty.yml
+import:
+  - ./gruvbox_dark_theme.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables

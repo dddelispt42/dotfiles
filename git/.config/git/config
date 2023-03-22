@@ -42,6 +42,7 @@
     cds = diff --staged --word-diff=color --word-diff-regex=. --ignore-all-space
     chp = cherry-pick
     ci = commit -v
+    cam = commit -a -m
     cim = commit -v -m
     co = checkout
     cb = checkout -b
@@ -57,7 +58,6 @@
     ign = ls-files -o -i --exclude-standard
     noff = merge --no-ff
     gr = log --all --graph --decorate --oneline
-    graph = log --all --graph --decorate --oneline
     l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an>%Creset\\ %C(red)%d%Creset\\ %s\\ %C(blue)%G?"
     lg = log --oneline --reverse
     kill-branches = "!f() { git branch | awk '!/^*|master/ {print $1 }' | xargs git branch ${1--d};}; f"
