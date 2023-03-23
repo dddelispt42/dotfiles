@@ -1,5 +1,6 @@
 -- luacheck: globals vim
 -- TODO: move all dependent keymaps to its dependency
+-- TODO: define a useful description for all maps
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -133,43 +134,11 @@ map('n', '<leader>gm', '<cmd>Gitsign blame_line<cr>', {
 map('n', '[g', '<cmd>Gitsign prev_hunk<cr>', { noremap = true, silent = true, desc = '[[g]it - previous hunk' })
 map('n', ']g', '<cmd>Gitsign next_hunk<cr>', { noremap = true, silent = true, desc = '[]g]it - next hunk' })
 
-map(
-    'n',
-    '<space>f',
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, " .. 'current_line_only = false })<cr>',
-    { noremap = true, silent = true, desc = 'hop forward' }
-)
-map(
-    'n',
-    '<space>F',
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, " .. 'current_line_only = false })<cr>',
-    { noremap = true, silent = true, desc = 'hop backward' }
-)
-map(
-    'o',
-    '<space>f',
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, " .. 'current_line_only = false, inclusive_jump = true })<cr>',
-    { noremap = true, silent = true, desc = 'hop forward' }
-)
-map(
-    'o',
-    '<space>F',
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, "
-        .. 'current_line_only = false, inclusive_jump = true })<cr>',
-    { noremap = true, silent = true, desc = 'hop backward' }
-)
-map(
-    '',
-    '<space>t',
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, " .. 'current_line_only = false })<cr>',
-    { noremap = true, silent = true, desc = 'hop forward' }
-)
-map(
-    '',
-    '<space>T',
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, " .. 'current_line_only = false })<cr>',
-    { noremap = true, silent = true, desc = 'hop backward' }
-)
+-- Hop
+map('n', '<leader><space>', '<cmd>HopChar1MW<cr>', { noremap = true, silent = true, desc = '[ ] hop to char' })
+map('v', '<leader><space>', '<cmd>HopChar1MW<cr>', { noremap = true, silent = true, desc = '[ ] hop to char' })
+map('n', '<leader>k', '<cmd>HopLineStartMW<cr>', { noremap = true, silent = true, desc = '[ ] hop to start of line' })
+map('v', '<leader>k', '<cmd>HopLineStartMW<cr>', { noremap = true, silent = true, desc = '[ ] hop to start of line' })
 
 -- Trouble
 map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true })
@@ -197,10 +166,10 @@ map('n', '<leader>dt', '<cmd>DapTerminate<cr>', { noremap = true, silent = true 
 map('n', '<leader>dB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>', { noremap = true, silent = true })
 map('n', '<leader>dm', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>', { noremap = true, silent = true })
 map('n', '<leader>dR', 'run_last()<cr>', { noremap = true, silent = true })
-map('n', '<leader>dC', '<cmd>lua require("telescope").extensions.dap.commands{}<cr>', { noremap = true, silent = true })
-map('n', '<leader>dF', '<cmd>lua require("telescope").extensions.dap.configurations{}<cr>', { noremap = true, silent = true })
-map('n', '<leader>dL', '<cmd>lua require("telescope").extensions.dap.list_breakpoints{}<cr>', { noremap = true, silent = true })
-map('n', '<leader>dV', '<cmd>lua require("telescope").extensions.dap.variables{}<cr>', { noremap = true, silent = true })
+map('n', '<leader>dC', '<cmd>Telescope dap commands<cr>', { noremap = true, silent = true })
+map('n', '<leader>dF', '<cmd>Telescope dap configurations<cr>', { noremap = true, silent = true })
+map('n', '<leader>dL', '<cmd>Telescope dap list_breakpoints<cr>', { noremap = true, silent = true })
+map('n', '<leader>dV', '<cmd>Telescope dap variables<cr>', { noremap = true, silent = true })
 
 -- TODO: check neotest and use leader-t etc
 
