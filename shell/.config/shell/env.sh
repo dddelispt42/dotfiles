@@ -241,7 +241,8 @@ export FZF_CTRL_T_OPTS="--height 60% \
 	--prompt '∷ ' \
 	--pointer ▶ \
 	--marker ⇒"
-export FZF_TMUX_OPTS="-d 40% -p"
+# export FZF_TMUX_OPTS="-d 40% -p"
+export FZF_TMUX_OPTS="-d 40%"
 export LAUNCHER=sk
 export CM_LAUNCHER=fzf
 if [ -n "${DISPLAY+1}" ]; then

@@ -183,10 +183,13 @@ require('lazy').setup({
     'tpope/vim-speeddating', -- TODO: is there a lua substitute?
     {
         'phaazon/hop.nvim',
-        branch = 'v1', -- optional but strongly recommended
+        branch = 'v2', -- optional but strongly recommended
         config = function()
             -- you can configure Hop the way you like here; see :h hop-config
-            require('hop').setup { keys = 'etovxqpdygfblzhckisuran' }
+            require('hop').setup {
+                keys = 'etovxqpdygfblzhckisuran',
+                -- multi_window = true,
+            }
         end,
     },
     {
