@@ -4,10 +4,10 @@ if not neorg_ok then
     return
 end
 
--- local orgbullets_ok, orgbullets = pcall(require, 'org-bullets')
--- if not orgbullets_ok then
---   return
--- end
+local orgbullets_ok, orgbullets = pcall(require, 'org-bullets')
+if not orgbullets_ok then
+    return
+end
 
 local orgmode_ok, orgmode = pcall(require, 'orgmode')
 if not orgmode_ok then
@@ -16,7 +16,7 @@ end
 
 orgmode.setup_ts_grammar()
 
--- orgbullets.setup()
+orgbullets.setup()
 
 orgmode.setup {
     org_todo_keywords = { 'TODO(t)', 'NEXT(n)', 'WAITING(w)', 'DELEGATED(s)', '|', 'DONE(d)', 'REJECTED(r)' },

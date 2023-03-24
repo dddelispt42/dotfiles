@@ -9,6 +9,7 @@ function migrate_to_clean {
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+export XDG_STATE_HOME=${XDG_DATA_HOME:-$HOME/.local/state}
 export XDG_DESKTOP_DIR=${XDG_DESKTOP_DIR:-$HOME/docs/desktop}
 export XDG_DOCUMENTS_DIR=${XDG_DOCUMENTS_DIR:-$HOME/docs}
 export XDG_DOWNLOAD_DIR=${XDG_DOWNLOAD_DIR:-$HOME/dl}
@@ -22,6 +23,7 @@ export XDG_VIDEOS_DIR=${XDG_VIDEOS_DIR:-$HOME/media/videos}
 mkdir -p "$XDG_CACHE_HOME"
 mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_DATA_HOME"
+mkdir -p "$XDG_STATE_HOME"
 mkdir -p "$XDG_DESKTOP_DIR"
 mkdir -p "$XDG_DOCUMENTS_DIR"
 mkdir -p "$XDG_DOWNLOAD_DIR"
@@ -122,20 +124,15 @@ stow -vS -t "$HOME"/ alacritty
 stow -vS -t "$HOME"/ bat
 stow -vS -t "$HOME"/ bottom
 stow -vS -t "$HOME"/ broot
-stow -vS -t "$HOME"/ btop
 stow -vS -t "$HOME"/ dunst
 stow -vS -t "$HOME"/ dwm
-stow -vS -t "$HOME"/ flake8
 stow -vS -t "$HOME"/ git
-stow -vS -t "$HOME"/ htop
 stow -vS -t "$HOME"/ lf
 stow -vS -t "$HOME"/ mpv
 stow -vS -t "$HOME"/ neofetch
 stow -vS -t "$HOME"/ nvim
 stow -vS -t "$HOME"/ paru
 stow -vS -t "$HOME"/ polybar
-stow -vS -t "$HOME"/ pycodestyle
-stow -vS -t "$HOME"/ pylint
 stow -vS -t "$HOME"/ qutebrowser
 stow -vS -t "$HOME"/ ranger
 stow -vS -t "$HOME"/ rofi
@@ -146,12 +143,26 @@ stow -vS -t "$HOME"/ starship
 stow -vS -t "$HOME"/ stylua
 stow -vS -t "$HOME"/ tmux
 stow -vS -t "$HOME"/ topgrade
-# stow -vS -t "$HOME"/ user-dirs
-cp -f ./user-dirs/.config/* "$XDG_CONFIG_HOME"
 stow -vS -t "$HOME"/ ytfzf
 stow -vS -t "$HOME"/ xplr
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
+
+# copy vs. stow
+cp -f ./user-dirs/.config/* "$XDG_CONFIG_HOME"
+
+stow -vD -t "$HOME"/ btop >&/dev/null
+mkdir -p "$XDG_CONFIG_HOME"/btop
+cp ./btop/.config/btop/btop.conf "$XDG_CONFIG_HOME"/btop
+
+stow -vD -t "$HOME"/ htop >&/dev/null
+mkdir -p "$XDG_CONFIG_HOME"/htop
+cp ./htop/.config/htop/htoprc "$XDG_CONFIG_HOME"/htop
+
+# no longer used
+stow -vD -t "$HOME"/ flake8 >&/dev/null
+stow -vD -t "$HOME"/ pycodestyle >&/dev/null
+stow -vD -t "$HOME"/ pylint >&/dev/null
 
 # if [ "$OSTYPE" = "linux-android" ]; then
 # 	stow -vS -t "$HOME"/ android # Android
@@ -163,7 +174,7 @@ if command -v xdg-mime >/dev/null; then
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
 fi
 
-mkdir -p "$XDG_CACHE_HOME"/vim/{undo,backup,swap,sessions,spell}
+mkdir -p "$XDG_STATE_HOME"/nvim/{undo,backup,swap,sessions,spell}
 if command -v nvim >/dev/null; then
 	nvim --headless "+Lazy! sync" +qa
 fi
