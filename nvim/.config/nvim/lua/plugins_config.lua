@@ -91,8 +91,9 @@ require('lazy').setup({
     'rafamadriz/friendly-snippets',
     { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
-        lazy = false,
-        event = 'VimEnter',
+        -- lazy = false,
+        -- event = 'VimEnter',
+        event = 'VeryLazy',
         build = function()
             pcall(require('nvim-treesitter.install').update { with_sync = true })
         end,
@@ -232,7 +233,15 @@ require('lazy').setup({
     },
     {
         'nvim-orgmode/orgmode',
-        event = 'VimEnter',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        },
+        config = function()
+            require('orgmode').setup_ts_grammar()
+            require('orgmode').setup()
+        end,
+        -- event = 'BufEnter *.org',
+        -- event = 'VimEnter',
     },
     { 'michaelb/sniprun', build = 'bash ./install.sh' },
     'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
