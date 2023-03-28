@@ -136,9 +136,9 @@ map('n', ']g', '<cmd>Gitsign next_hunk<cr>', { noremap = true, silent = true, de
 
 -- Hop
 map('n', '<leader><space>', '<cmd>HopChar1MW<cr>', { noremap = true, silent = true, desc = '[ ] hop to char' })
-map('v', '<leader><space>', '<cmd>HopChar1MW<cr>', { noremap = true, silent = true, desc = '[ ] hop to char' })
-map('n', '<leader>k', '<cmd>HopLineStartMW<cr>', { noremap = true, silent = true, desc = '[ ] hop to start of line' })
-map('v', '<leader>k', '<cmd>HopLineStartMW<cr>', { noremap = true, silent = true, desc = '[ ] hop to start of line' })
+map('v', '<leader><space>', '<cmd>HopChar1<cr>', { noremap = true, silent = true, desc = '[ ] hop to char' })
+map('n', '<leader>k', '<cmd>HopLineStart<cr>', { noremap = true, silent = true, desc = '[ ] hop to start of line' })
+map('v', '<leader>k', '<cmd>HopLineStart<cr>', { noremap = true, silent = true, desc = '[ ] hop to start of line' })
 
 -- Trouble
 map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true })
