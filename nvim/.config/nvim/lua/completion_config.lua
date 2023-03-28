@@ -51,7 +51,6 @@ cmp.setup {
         { name = 'buffer' },
         -- { name = "neorg" },
         { name = 'orgmode' },
-        -- { name = 'cmp-codeium' },
         { name = 'path' },
         { name = 'crates' },
         { name = 'dap' },

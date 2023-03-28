@@ -85,7 +85,6 @@ require('lazy').setup({
             'rcarriga/cmp-dap',
             'saadparwaiz1/cmp_luasnip',
             -- "pontusk/cmp-vimwiki-tags"
-            -- 'nyngwang/cmp-codeium',
         },
     },
     'rafamadriz/friendly-snippets',
@@ -246,17 +245,16 @@ require('lazy').setup({
     { 'michaelb/sniprun', build = 'bash ./install.sh' },
     'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
     'rest-nvim/rest.nvim',
-    -- Remove the `use` here if you're using folke/lazy.nvim.
-    -- {
-    --     'Exafunction/codeium.vim',
-    --     event = 'VimEnter',
-    --     -- config = function()
-    --     --     -- Change '<C-g>' here to any keycode you like.
-    --     --     vim.keymap.set('i', '<C-g>', function()
-    --     --         return vim.fn['codeium#Accept']()
-    --     --     end, { expr = true })
-    --     -- end,
-    -- },
+    {
+        'Exafunction/codeium.vim',
+        event = 'VimEnter',
+        config = function()
+            -- Change '<C-g>' here to any keycode you like.
+            vim.keymap.set('i', '<C-g>', function()
+                return vim.fn['codeium#Accept']()
+            end, { expr = true })
+        end,
+    },
 }, {
     defaults = { lazy = false },
 })
