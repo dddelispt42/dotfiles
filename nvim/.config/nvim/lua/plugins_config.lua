@@ -245,15 +245,43 @@ require('lazy').setup({
     { 'michaelb/sniprun', build = 'bash ./install.sh' },
     'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
     'rest-nvim/rest.nvim',
+    -- {
+    --     'Exafunction/codeium.vim',
+    --     event = 'VimEnter',
+    --     config = function()
+    --         -- Change '<C-g>' here to any keycode you like.
+    --         vim.keymap.set('i', '<C-g>', function()
+    --             return vim.fn['codeium#Accept']()
+    --         end, { expr = true })
+    --     end,
+    -- },
     {
-        'Exafunction/codeium.vim',
-        event = 'VimEnter',
+        'jackMort/ChatGPT.nvim',
         config = function()
-            -- Change '<C-g>' here to any keycode you like.
-            vim.keymap.set('i', '<C-g>', function()
-                return vim.fn['codeium#Accept']()
-            end, { expr = true })
+            require('chatgpt').setup {
+                -- optional configuration
+                keymaps = {
+                    close = { '<C-c>' },
+                    submit = '<M-Enter>',
+                    yank_last = '<C-y>',
+                    yank_last_code = '<C-k>',
+                    scroll_up = '<C-u>',
+                    scroll_down = '<C-d>',
+                    toggle_settings = '<C-o>',
+                    new_session = '<C-n>',
+                    cycle_windows = '<Tab>',
+                    -- in the Sessions pane
+                    select_session = '<Space>',
+                    rename_session = 'r',
+                    delete_session = 'd',
+                },
+            }
         end,
+        dependencies = {
+            'MunifTanjim/nui.nvim',
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
     },
 }, {
     defaults = { lazy = false },
