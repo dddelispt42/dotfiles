@@ -172,11 +172,3 @@ map('n', '<leader>dL', '<cmd>Telescope dap list_breakpoints<cr>', { noremap = tr
 map('n', '<leader>dV', '<cmd>Telescope dap variables<cr>', { noremap = true, silent = true })
 
 -- TODO: check neotest and use leader-t etc
-
--- Codeium
--- map('i', '<C-G>', vim.fn['codeium#Accept'](), { noremap = true, silent = true })
--- config = function()
---     vim.keymap.set('i', '<C-G>', function()
---         vim.fn['codeium#Accept']()
---     end)
--- end,
