@@ -15,12 +15,12 @@ if [ "$HOST" == "work" ]; then
 	VBoxClient --seamless
 	# VBoxClient --display
 	VBoxClient --checkhostversion
-	nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
+	# nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
 	# nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
 	# nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
 	# nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
-else
-	nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
+	# else
+	# nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
 	# nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
 	# nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
 	# nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
@@ -31,6 +31,7 @@ fi
 "${XDG_CONFIG_HOME:-$HOME/.config}/dunst/launch.sh" &
 # feh --bg-fill "${XDG_CONFIG_HOME:-$HOME/.config}/wp.jpg" &
 # udiskie -A -t &
+# TODO: substitute by circadian
 nohup xfce4-power-manager &
 # nohup nextcloud &
 # trayer --edge top --align center --expand false --width 5 --distance 20 &

@@ -41,5 +41,5 @@ github = 'changyuheng/zsh-interactive-cd'
 github = 'chitoku-k/fzf-zsh-completions'
 # [plugins.zsh-zoxide]
 # github = 'z-shell/zsh-zoxide'
-# [plugins.zsh-autocomplete]
-# github = 'marlonrichert/zsh-autocomplete.git'
+[plugins.zsh-autocomplete]
+github = 'marlonrichert/zsh-autocomplete.git'
