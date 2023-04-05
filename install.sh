@@ -145,6 +145,7 @@ stow -vS -t "$HOME"/ tmux
 stow -vS -t "$HOME"/ topgrade
 stow -vS -t "$HOME"/ ytfzf
 stow -vS -t "$HOME"/ xplr
+stow -vS -t "$HOME"/ xsuspender
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
 
