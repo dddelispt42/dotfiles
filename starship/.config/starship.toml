@@ -13,10 +13,9 @@ add_newline = false
 # style = "bold yellow"
 
 [character]
-success_symbol = ""
-error_symbol = "✖"
-vicmd_symbol = ""
-# use_symbol_for_status = true
+success_symbol = " "
+error_symbol = "✖ "
+vicmd_symbol = " "
 
 [cmd_duration]
 min_time = 400
@@ -50,6 +49,19 @@ staged = "➕$count"
 renamed = "👅$count"
 deleted = "🗑$count"
 
+[git_metrics]
+added_style = 'bold blue'
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+
+[jobs]
+symbol = '+ '
+number_threshold = 4
+symbol_threshold = 1
+
+[julia]
+symbol = '∴ '
+
 [hostname]
 ssh_only = false
 format =  "@[$hostname](bold blue) "
@@ -58,7 +70,7 @@ trim_at = ".companyname.com"
 #suffix = "⟫"
 
 [line_break]
-disabled = true
+disabled = false
 
 [username]
 style_user = "white bold"
@@ -73,8 +85,17 @@ symbol = "🎁"
 [rust]
 symbol = "⚙️ "
 
-[status]
-style = "bg:blue"
+# [status]
+# style = 'bg:blue'
+# symbol = '🔴 '
+# success_symbol = '🟢 SUCCESS'
+# format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+# map_symbol = true
+# disabled = false
+
+[sudo]
+style = 'bold green'
+symbol = '🧙'
 disabled = false
 
 #[custom.foo]
