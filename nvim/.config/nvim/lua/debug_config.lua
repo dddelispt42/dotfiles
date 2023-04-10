@@ -32,135 +32,135 @@ masondap.setup {
     -- 	- true: Dap is automatically configured.
     -- 	- {adapters: {ADAPTER: {}, }, configurations: {ADAPTER: {}, }}. Allows overriding default configuration.
     automatic_setup = true,
-}
-masondap.setup_handlers {
-    function(source_name)
-        -- all sources with no handler get passed here
+    handlers = {
+        function(config)
+            -- all sources with no handler get passed here
 
-        -- Keep original functionality of `automatic_setup = true`
-        require 'mason-nvim-dap.automatic_setup'(source_name)
-    end,
-    python = function(source_name)
-        nvimdap.adapters.python = {
-            type = 'executable',
-            command = '/usr/bin/python3',
-            args = {
-                '-m',
-                'debugpy.adapter',
-            },
-        }
+            -- Keep original functionality of `automatic_setup = true`
+            require 'mason-nvim-dap.automatic_setup'(config)
+        end,
+        python = function(config)
+            nvimdap.adapters.python = {
+                type = 'executable',
+                command = '/usr/bin/python3',
+                args = {
+                    '-m',
+                    'debugpy.adapter',
+                },
+            }
 
-        nvimdap.adapters.lldb = {
-            type = 'executable',
-            command = '/usr/bin/lldb-vscode', -- adjust as needed
-            name = 'lldb',
-        }
+            nvimdap.adapters.lldb = {
+                type = 'executable',
+                command = '/usr/bin/lldb-vscode', -- adjust as needed
+                name = 'lldb',
+            }
 
-        nvimdap.configurations.python = {
-            {
-                type = 'python',
-                request = 'launch',
-                name = 'Launch file',
-                program = '${file}', -- This configuration will launch the current file if used.
-            },
-        }
-        nvimdap.configurations.cpp = {
-            {
-                type = 'lldb',
-                request = 'launch',
-                name = 'Launch lldb',
-                program = function()
-                    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-                end,
-                cwd = '${workspaceFolder}',
-                stopOnEntry = false,
-                args = {},
+            nvimdap.configurations.python = {
+                {
+                    type = 'python',
+                    request = 'launch',
+                    name = 'Launch file',
+                    program = '${file}', -- This configuration will launch the current file if used.
+                },
+            }
+            nvimdap.configurations.cpp = {
+                {
+                    type = 'lldb',
+                    request = 'launch',
+                    name = 'Launch lldb',
+                    program = function()
+                        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                    end,
+                    cwd = '${workspaceFolder}',
+                    stopOnEntry = false,
+                    args = {},
 
-                -- 💀
-                -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-                --
-                --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-                --
-                -- Otherwise you might get the following error:
-                --
-                --    Error on launch: Failed to attach to the target process
-                --
-                -- But you should be aware of the implications:
-                -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-                runInTerminal = false,
-            },
-            {
-                -- If you get an "Operation not permitted" error using this, try disabling YAMA:
-                --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-                name = 'Attach to process',
-                type = 'cpp', -- Adjust this to match your adapter name (`dap.adapters.<name>`)
-                request = 'attach',
-                pid = require('dap.utils').pick_process,
-                args = {},
-            },
-        }
-        nvimdap.configurations.c = nvimdap.configurations.cpp
-        nvimdap.configurations.rust = nvimdap.configurations.cpp
-        nvimdap.adapters.delve = {
-            type = 'server',
-            port = '${port}',
-            executable = {
-                command = 'dlv',
-                args = { 'dap', '-l', '127.0.0.1:${port}' },
-            },
-        }
-        nvimdap.adapters.bashdb = {
-            type = 'executable',
-            command = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
-            name = 'bashdb',
-        }
-        nvimdap.configurations.sh = {
-            {
-                type = 'bashdb',
-                request = 'launch',
-                name = 'Launch file',
-                showDebugOutput = true,
-                pathBashdb = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
-                pathBashdbLib = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
-                trace = true,
-                file = '${file}',
-                program = '${file}',
-                cwd = '${workspaceFolder}',
-                pathCat = 'cat',
-                pathBash = '/bin/bash',
-                pathMkfifo = 'mkfifo',
-                pathPkill = 'pkill',
-                args = {},
-                env = {},
-                terminalKind = 'integrated',
-            },
-        }
+                    -- 💀
+                    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+                    --
+                    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+                    --
+                    -- Otherwise you might get the following error:
+                    --
+                    --    Error on launch: Failed to attach to the target process
+                    --
+                    -- But you should be aware of the implications:
+                    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+                    runInTerminal = false,
+                },
+                {
+                    -- If you get an "Operation not permitted" error using this, try disabling YAMA:
+                    --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+                    name = 'Attach to process',
+                    type = 'cpp', -- Adjust this to match your adapter name (`dap.adapters.<name>`)
+                    request = 'attach',
+                    pid = require('dap.utils').pick_process,
+                    args = {},
+                },
+            }
+            nvimdap.configurations.c = nvimdap.configurations.cpp
+            nvimdap.configurations.rust = nvimdap.configurations.cpp
+            nvimdap.adapters.delve = {
+                type = 'server',
+                port = '${port}',
+                executable = {
+                    command = 'dlv',
+                    args = { 'dap', '-l', '127.0.0.1:${port}' },
+                },
+            }
+            nvimdap.adapters.bashdb = {
+                type = 'executable',
+                command = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
+                name = 'bashdb',
+            }
+            nvimdap.configurations.sh = {
+                {
+                    type = 'bashdb',
+                    request = 'launch',
+                    name = 'Launch file',
+                    showDebugOutput = true,
+                    pathBashdb = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+                    pathBashdbLib = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
+                    trace = true,
+                    file = '${file}',
+                    program = '${file}',
+                    cwd = '${workspaceFolder}',
+                    pathCat = 'cat',
+                    pathBash = '/bin/bash',
+                    pathMkfifo = 'mkfifo',
+                    pathPkill = 'pkill',
+                    args = {},
+                    env = {},
+                    terminalKind = 'integrated',
+                },
+            }
 
-        -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
-        nvimdap.configurations.go = {
-            {
-                type = 'delve',
-                name = 'Debug',
-                request = 'launch',
-                program = '${file}',
-            },
-            {
-                type = 'delve',
-                name = 'Debug test', -- configuration for debugging test files
-                request = 'launch',
-                mode = 'test',
-                program = '${file}',
-            },
-            -- works with go.mod packages and sub packages
-            {
-                type = 'delve',
-                name = 'Debug test (go.mod)',
-                request = 'launch',
-                mode = 'test',
-                program = './${relativeFileDirname}',
-            },
-        }
-    end,
+            -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
+            nvimdap.configurations.go = {
+                {
+                    type = 'delve',
+                    name = 'Debug',
+                    request = 'launch',
+                    program = '${file}',
+                },
+                {
+                    type = 'delve',
+                    name = 'Debug test', -- configuration for debugging test files
+                    request = 'launch',
+                    mode = 'test',
+                    program = '${file}',
+                },
+                -- works with go.mod packages and sub packages
+                {
+                    type = 'delve',
+                    name = 'Debug test (go.mod)',
+                    request = 'launch',
+                    mode = 'test',
+                    program = './${relativeFileDirname}',
+                },
+            }
+        end,
+    },
 }
 
 local dapui_ok, dapui = pcall(require, 'dapui')
