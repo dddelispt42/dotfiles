@@ -160,3 +160,4 @@ fyt() {
 # alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 alias thokr='thokr -w 200 -l english10k'
 alias xbindkeys=xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config
+alias svn=svn --config-dir "$XDG_CONFIG_HOME/subversion"

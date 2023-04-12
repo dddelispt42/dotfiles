@@ -118,6 +118,8 @@ migrate_to_clean "$HOME"/.fonts.conf "$XDG_CONFIG_HOME"/fontconfig/fonts.conf
 migrate_to_clean "$HOME"/.crontab "$XDG_CONFIG_HOME"/crontab
 migrate_to_clean "$HOME"/.zshrc.local "$XDG_CONFIG_HOME"/zshrc.local
 migrate_to_clean "$HOME"/.sqlite_history "$XDG_DATA_HOME"/sqlite_history
+migrate_to_clean "$HOME"/.icons "${XDG_DATA_HOME}"/icons
+migrate_to_clean "$HOME"/.myclirc "${XDG_CONFIG_HOME}"/myclirc
 
 stow -vS -t "$HOME"/ X11
 stow -vS -t "$HOME"/ alacritty
