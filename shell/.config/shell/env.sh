@@ -129,6 +129,8 @@ mkdir -p "$USER_LOGS_DIR"
 # pylint
 export PYLINTHOME=${XDG_CONFIG_HOME:-$HOME/.config}/pylint
 
+export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
+
 export _ZO_ECHO=1
 
 # move dofiles to XDG dirs
@@ -185,9 +187,12 @@ export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications in dwm
 export _Z_DATA="$XDG_DATA_HOME/z"
 export _ZO_FZF_OPTS="-x --multi --height 50% --border --inline-info --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap"
 
+export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
+
 # JAVA
 export PATH=/home/heiko/opt/java/bin:$PATH
 export JAVA_HOME=/home/heiko/opt/java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
 # NNN related
 export NNN_BMS='d:~/dev;D:~/Docs archive/'
