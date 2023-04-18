@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 map('n', '<Leader>tb', ':SidebarNvimToggle<CR>', { noremap = true, silent = true, desc = '[t]ag[b]ar' })
 -- LSP
 map('n', '<leader>la', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
-map('v', '<leader>la', vim.lsp.buf.range_code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
+-- map('v', '<leader>la', vim.lsp.buf.range_code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
 map('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, desc = '[K] ... hover' })
 map('n', '<leader>lS', vim.lsp.buf.signature_help, { noremap = true, silent = true, desc = '[l]sp [S]ignature help' })
 map('n', '<leader>lR', vim.lsp.buf.rename, { noremap = true, silent = true, desc = '[l]sp [R]ename' })
