@@ -224,12 +224,12 @@ require('lazy').setup({
     -- " automatically set the root directory
     'airblade/vim-rooter', -- TODO: is there a lua substitute?
     -- 'github/copilot.vim',
-    {
-        'nvim-neorg/neorg',
-        ft = 'norg',
-        build = ':Neorg sync-parsers', -- This is the important bit!
-        dependencies = 'nvim-lua/plenary.nvim',
-    },
+    -- {
+    --     'nvim-neorg/neorg',
+    --     ft = 'norg',
+    --     build = ':Neorg sync-parsers', -- This is the important bit!
+    --     dependencies = 'nvim-lua/plenary.nvim',
+    -- },
     {
         'nvim-orgmode/orgmode',
         -- dependencies = {

@@ -192,7 +192,7 @@ export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 # JAVA
 export PATH=/home/heiko/opt/java/bin:$PATH
 export JAVA_HOME=/home/heiko/opt/java
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+# export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
 # NNN related
 export NNN_BMS='d:~/dev;D:~/Docs archive/'
