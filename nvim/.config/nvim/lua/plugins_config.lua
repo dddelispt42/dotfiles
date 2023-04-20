@@ -231,16 +231,10 @@ require('lazy').setup({
     --     dependencies = 'nvim-lua/plenary.nvim',
     -- },
     {
+        'rcarriga/nvim-notify',
+    },
+    {
         'nvim-orgmode/orgmode',
-        -- dependencies = {
-        --     'nvim-treesitter/nvim-treesitter',
-        -- },
-        -- config = function()
-        --     require('orgmode').setup_ts_grammar()
-        --     require('orgmode').setup()
-        -- end,
-        -- event = 'BufEnter *.org',
-        -- event = 'VimEnter',
     },
     { 'michaelb/sniprun', build = 'bash ./install.sh' },
     'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
@@ -257,23 +251,12 @@ require('lazy').setup({
     -- },
     {
         'jackMort/ChatGPT.nvim',
+        event = 'VeryLazy',
         config = function()
             require('chatgpt').setup {
                 -- optional configuration
-                keymaps = {
-                    close = { '<C-c>' },
+                popup_input = {
                     submit = '<M-Enter>',
-                    yank_last = '<C-y>',
-                    yank_last_code = '<C-k>',
-                    scroll_up = '<C-u>',
-                    scroll_down = '<C-d>',
-                    toggle_settings = '<C-o>',
-                    new_session = '<C-n>',
-                    cycle_windows = '<Tab>',
-                    -- in the Sessions pane
-                    select_session = '<Space>',
-                    rename_session = 'r',
-                    delete_session = 'd',
                 },
             }
         end,

@@ -53,7 +53,8 @@ command -v nvim >/dev/null && export EDITOR="nvim"
 export VISUAL=$EDITOR
 export BROWSER=elinks
 if [ -n "${DISPLAY+1}" ]; then
-	export BROWSER=brave
+	# export BROWSER=brave
+	export BROWSER=qutebrowser
 fi
 export OPENER=xdg-open
 if command -v mimeopen >/dev/null; then
