@@ -106,6 +106,7 @@ map('n', '<leader>flw', '<cmd>Telescope lsp_workspace_symbols<cr>', {
     desc = '[f]ind [l]sp [w]orkspace symbols',
 })
 map('n', '<leader>fm', '<cmd>Telescope man_pages<cr>', { noremap = true, silent = true, desc = '[f]ind [m]an pages' })
+map('n', '<leader>fn', '<cmd>Telescope notify<cr>', { noremap = true, silent = true, desc = '[f]ind [n]otify' })
 map('n', "<leader>f'", '<cmd>Telescope marks<cr>', { noremap = true, silent = true, desc = "[f]ind ['] marks" })
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[f]ind recently [o]pened files' })
 -- map('n', '<leader>fp', '<cmd>Telescope planets<cr>', { noremap = true, silent = true, desc = '[f]ind [p]lanets' })
