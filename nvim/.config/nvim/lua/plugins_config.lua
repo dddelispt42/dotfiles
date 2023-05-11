@@ -100,10 +100,10 @@ require('lazy').setup({
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
     },
-    {
-        'nvim-treesitter/playground',
-        cmd = 'TSPlaygroundToggle',
-    },
+    -- {
+    --     'nvim-treesitter/playground',
+    --     cmd = 'TSPlaygroundToggle',
+    -- },
     {
         'nvim-treesitter/completion-treesitter',
         build = function()

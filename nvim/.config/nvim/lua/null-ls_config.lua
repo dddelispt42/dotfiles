@@ -15,6 +15,7 @@ mason_null_ls.setup {
         -- 'ansiblelint',
         -- 'fixjson',
         'gitrebase',
+        'black',
         'gitsign',
         'gofmt',
         -- 'goimports',
@@ -25,7 +26,7 @@ mason_null_ls.setup {
         'protolint',
         'refactoring',
         'shellcheck',
-        'ruff',
+        -- 'ruff',
         'clang_format',
         'shfmt',
         'sqlformat',
@@ -56,7 +57,8 @@ null_ls.setup {
         -- null_ls.builtins.formatting.prettier.with {
         --   extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' },
         -- },
-        null_ls.builtins.formatting.ruff,
+        -- null_ls.builtins.formatting.ruff, TODO: switch to ruff when better than black
+        null_ls.builtins.formatting.black.with { timeout = 10000, extra_args = { '--fast', '-l', '120' } },
         null_ls.builtins.formatting.clang_format,
         null_ls.builtins.formatting.gofmt,
         null_ls.builtins.formatting.shfmt,
