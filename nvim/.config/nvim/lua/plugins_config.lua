@@ -236,7 +236,7 @@ require('lazy').setup({
     {
         'nvim-orgmode/orgmode',
     },
-    { 'michaelb/sniprun', build = 'bash ./install.sh' },
+    -- { 'michaelb/sniprun', build = 'bash ./install.sh' },
     'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
     'rest-nvim/rest.nvim',
     -- {
