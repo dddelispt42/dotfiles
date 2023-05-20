@@ -132,6 +132,13 @@ require('lazy').setup({
         'numToStr/Comment.nvim',
         config = true,
     },
+    {
+        'folke/todo-comments.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+        },
+        config = true,
+    },
     'tpope/vim-sleuth', -- TODO: is there a lua substitute?
     {
         'lukas-reineke/indent-blankline.nvim',

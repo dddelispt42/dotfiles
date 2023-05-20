@@ -119,11 +119,12 @@ map('n', '<leader>fr', '<cmd>Telescope registers<cr>', { noremap = true, silent 
 -- map('n', '<leader>fR', '<cmd>Telescope reloader<cr>', { noremap = true, silent = true, desc = '[f]ind [R]eloader' })
 map('n', '<leader>fs', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true, desc = '[f]ind [s]pell' })
 map('n', '<leader>fk', '<cmd>Telescope symbols<cr>', { noremap = true, silent = true, desc = '[f]ind [k] symbols' })
-map('n', '<leader>fT', '<cmd>Telescope current_buffer_tags<cr>', {
-    noremap = true,
-    silent = true,
-    desc = '[f]ind [T]ags in current buffer',
-})
+-- map('n', '<leader>fT', '<cmd>Telescope current_buffer_tags<cr>', {
+--     noremap = true,
+--     silent = true,
+--     desc = '[f]ind [T]ags in current buffer',
+-- })
+map('n', '<leader>fT', '<cmd>TodoTelescope<cr>', { noremap = true, silent = true, desc = '[f]ind [T]ODOs globally' })
 map('n', '<leader>ft', '<cmd>Telescope tags<cr>', { noremap = true, silent = true, desc = '[f]ind [t]ags globally' })
 map('n', '<leader>fk', '<cmd>Telescope treesitter<cr>', {
     noremap = true,
