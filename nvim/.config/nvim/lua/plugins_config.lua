@@ -133,6 +133,17 @@ require('lazy').setup({
         config = true,
     },
     {
+        'nvim-neotest/neotest',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-treesitter/nvim-treesitter',
+            'antoinemadec/FixCursorHold.nvim',
+            'nvim-neotest/neotest-python',
+            'nvim-neotest/neotest-plenary',
+            'rouge8/neotest-rust',
+        },
+    },
+    {
         'folke/todo-comments.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim',
