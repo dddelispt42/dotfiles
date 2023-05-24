@@ -128,6 +128,7 @@ stow -vS -t "$HOME"/ bottom
 stow -vS -t "$HOME"/ broot
 stow -vS -t "$HOME"/ dunst
 stow -vS -t "$HOME"/ dwm
+stow -vS -t "$HOME"/ foot
 stow -vS -t "$HOME"/ git
 stow -vS -t "$HOME"/ lf
 stow -vS -t "$HOME"/ hyprland
@@ -151,6 +152,18 @@ stow -vS -t "$HOME"/ xplr
 stow -vS -t "$HOME"/ xsuspender
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
+
+# add links
+cd ~/opt || echo "Missing ~/opt directory"
+test -s ../dev/heiko/backmatic/target/release/backmatic && ln -s "$_" backmatic
+test -s ../dev/security/gitleaks/gitleaks && ln -s "$_" gitleaks
+test -s ../dev/heiko/gtd/target/release/gtd && ln -s "$_" gtd
+test -s ../dev/heiko/hwm/target/release/hwm && ln -s "$_" hwm
+test -s ../dev/base/quite-intriguing/quite-intriguing && ln -s "$_" qi
+test -s ../dev/base/quite-intriguing/quite-intriguing-preview && ln -s "$_" quite-intriguing-preview
+test -s ../dev/cli/sc-im/src/sc-im && ln -s "$_" sc-im
+test -s ../dev/rice/theme.sh/bin/theme.sh && ln -s "$_" theme.sh
+cd - || echo "Missing previous directory"
 
 # copy vs. stow
 cp -f ./user-dirs/.config/* "$XDG_CONFIG_HOME"
