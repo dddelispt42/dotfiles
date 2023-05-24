@@ -109,7 +109,7 @@ command -v alacritty >/dev/null && export TERMINAL="alacritty"
 export BIB=$HOME/Documents/uni.bib
 
 # MAVEN
-export MAVEN_HOME=$HOME/opt/maven
+export MAVEN_HOME=/opt/maven
 export PATH=$PATH:$MAVEN_HOME/bin
 
 # CARGO and RUST
@@ -192,7 +192,7 @@ export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 
 # JAVA
 export PATH=/home/heiko/opt/java/bin:$PATH
-export JAVA_HOME=/home/heiko/opt/java
+export JAVA_HOME=/opt/java
 # export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
 # NNN related
