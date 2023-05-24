@@ -130,6 +130,7 @@ stow -vS -t "$HOME"/ dunst
 stow -vS -t "$HOME"/ dwm
 stow -vS -t "$HOME"/ git
 stow -vS -t "$HOME"/ lf
+stow -vS -t "$HOME"/ hyprland
 stow -vS -t "$HOME"/ mpv
 stow -vS -t "$HOME"/ neofetch
 stow -vS -t "$HOME"/ nvim
