@@ -28,18 +28,11 @@ fi
 
 "${XDG_CONFIG_HOME:-$HOME/.config}/dunst/launch.sh" &
 udiskie -A -t &
-if [[ -z "${WAYLAND_DISPLAY}" ]]; then
-	if command -v waybar >/dev/null; then
-		nohup waybar &
-	fi
-	if command -v hyprpaper >/dev/null; then
-		nohup hyprpaper &
-	fi
-	swayidle -w timeout 1800 'swaylock -f'
-elif [[ -z "${DISPLAY}" ]]; then
+if [[ -z "${DISPLAY}" ]]; then
 	"${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" "$HOST"
 	# TODO: substitute by circadian
 	nohup xfce4-power-manager &
+	nohup "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" &
 	# trayer --edge top --align center --expand false --width 5 --distance 20 &
 	if command -v clipmenud >/dev/null; then
 		nohup clipmenud &
