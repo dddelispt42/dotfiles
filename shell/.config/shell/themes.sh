@@ -1,5 +1,5 @@
 if command -v theme.sh >/dev/null; then
-	[ -e ~/.theme_history ] && theme.sh "$(theme.sh -l | tail -n1)"
+	[ -e "${XDG_CONFIG_HOME}/.theme_history" ] && theme.sh "$(theme.sh -l | tail -n1)"
 
 	# Optional
 
@@ -7,6 +7,7 @@ if command -v theme.sh >/dev/null; then
 	last_theme() {
 		theme.sh "$(theme.sh -l | tail -n2 | head -n1)"
 	}
+	# last_theme
 
 	zle -N last_theme
 	bindkey '^O' last_theme
