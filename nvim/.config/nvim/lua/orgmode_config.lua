@@ -35,7 +35,7 @@ orgmode.setup {
         },
         th = {
             description = 'Todo - HOME',
-            template = '* TODO [#5] %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n   :END:',
+            template = '* TODO [#5] %? :%n:home:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n   :END:',
         },
         d = {
             description = 'Delegated task',
