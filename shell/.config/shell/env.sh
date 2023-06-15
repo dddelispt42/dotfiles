@@ -191,7 +191,7 @@ export _ZO_FZF_OPTS="-x --multi --height 50% --border --inline-info --preview='$
 export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 
 # JAVA
-export PATH=/home/heiko/opt/java/bin:$PATH
+export PATH=/opt/java/bin:$PATH
 export JAVA_HOME=/opt/java
 # export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
