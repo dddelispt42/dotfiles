@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 pwgen() {
 	strings /dev/urandom | grep -o '[[:alnum:]]' | head -n "${1:-20}" | tr -d '\n'
 	echo
@@ -270,50 +272,52 @@ su() {
 	)
 }
 
-sudo() {
-	(
-		pid=$(exec sh -c 'echo "$PPID"')
-
-		# If the command takes less than .2s, don't change the theme.
-		# We could also just match on 'su' and ignore everything else,
-		# but this also accomodates other long running commands
-		# like 'sudo sleep 5s'. Modify to taste.
-
+if command -v theme.sh >/dev/null; then
+	sudo() {
 		(
-			sleep .2s
-			ps -p "$pid" >/dev/null && INHIBIT_THEME_HIST=1 theme.sh red-alert
-		) &
+			pid=$(exec sh -c 'echo "$PPID"')
 
+			# If the command takes less than .2s, don't change the theme.
+			# We could also just match on 'su' and ignore everything else,
+			# but this also accomodates other long running commands
+			# like 'sudo sleep 5s'. Modify to taste.
+
+			(
+				sleep .2s
+				ps -p "$pid" >/dev/null && INHIBIT_THEME_HIST=1 theme.sh red-alert
+			) &
+
+			trap 'theme.sh "$(theme.sh -l|tail -n1)"' INT
+			env sudo "$@"
+			theme.sh "$(theme.sh -l | tail -n1)"
+		)
+	}
+
+	ssh() {
+		# A tiny ssh wrapper which extracts a theme from ~/.config/ssh_themes
+		# and applies it for the duration of the current ssh command.
+		# Each line in ~/.config/ssh_themes has the format:
+		#     <hostname>: <theme>.
+
+		# Restoration relies on the fact that you are using theme.sh to manage
+		# the current theme.  (that is, you set the theme in your bashrc.)
+
+		# This can probably be made more robust. It is just a small demo
+		# of what is possible.
+
+		touch ~/.config/ssh_themes
+
+		host="$(echo "$@" | awk '{gsub(".*@","",$NF);print $NF}')"
+		theme="$(awk -vhost="$host" -F': *' 'index($0, host":") == 1 {print $2}' <~/.config/ssh_themes)"
+
+		if [ -z "$theme" ]; then
+			env ssh "$@"
+			return
+		fi
+
+		INHIBIT_THEME_HIST=1 theme.sh "$theme"
 		trap 'theme.sh "$(theme.sh -l|tail -n1)"' INT
-		env sudo "$@"
-		theme.sh "$(theme.sh -l | tail -n1)"
-	)
-}
-
-ssh() {
-	# A tiny ssh wrapper which extracts a theme from ~/.config/ssh_themes
-	# and applies it for the duration of the current ssh command.
-	# Each line in ~/.config/ssh_themes has the format:
-	#     <hostname>: <theme>.
-
-	# Restoration relies on the fact that you are using theme.sh to manage
-	# the current theme.  (that is, you set the theme in your bashrc.)
-
-	# This can probably be made more robust. It is just a small demo
-	# of what is possible.
-
-	touch ~/.config/ssh_themes
-
-	host="$(echo "$@" | awk '{gsub(".*@","",$NF);print $NF}')"
-	theme="$(awk -vhost="$host" -F': *' 'index($0, host":") == 1 {print $2}' <~/.config/ssh_themes)"
-
-	if [ -z "$theme" ]; then
 		env ssh "$@"
-		return
-	fi
-
-	INHIBIT_THEME_HIST=1 theme.sh "$theme"
-	trap 'theme.sh "$(theme.sh -l|tail -n1)"' INT
-	env ssh "$@"
-	theme.sh "$(theme.sh -l | tail -n1)"
-}
+		theme.sh "$(theme.sh -l | tail -n1)"
+	}
+fi
