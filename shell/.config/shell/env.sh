@@ -210,8 +210,8 @@ export NNN_TRASH=1
 # export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 #KLAUT_ROOT
-export KLAUT="$HOME/Sync/work/"
-export TODOLIST="${KLAUT:-$HOME/Sync/work}/notes/tasks_work.org"
+export KLAUT="$HOME/Sync/share/"
+export TODOLIST="${KLAUT:-$HOME/Sync/share}/notes/work.org"
 
 #WIKI
 export WIKI_PATH="$HOME/Sync/work/notes/"
