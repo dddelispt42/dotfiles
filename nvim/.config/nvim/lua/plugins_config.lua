@@ -166,7 +166,7 @@ require('lazy').setup({
         end,
     },
     'tpope/vim-surround', -- Surround text objects easily
-    'TimUntersberger/neogit',
+    'NeogitOrg/neogit',
     'lewis6991/gitsigns.nvim',
     'akinsho/git-conflict.nvim',
     'tpope/vim-fugitive', -- TODO: is there a lua substitute?
