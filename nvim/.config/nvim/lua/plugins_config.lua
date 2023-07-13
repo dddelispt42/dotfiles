@@ -202,15 +202,24 @@ require('lazy').setup({
     'tpope/vim-unimpaired', -- TODO: is there a lua substitute?
     'tpope/vim-speeddating', -- TODO: is there a lua substitute?
     {
-        'phaazon/hop.nvim',
-        branch = 'v2', -- optional but strongly recommended
-        config = function()
-            -- you can configure Hop the way you like here; see :h hop-config
-            require('hop').setup {
-                keys = 'etovxqpdygfblzhckisuran',
-                -- multi_window = true,
-            }
-        end,
+        'folke/flash.nvim',
+        event = 'VeryLazy',
+        ---@type Flash.Config
+        opts = {
+            search = {
+                mode = function(str)
+                    return '\\<' .. str
+                end,
+            },
+        },
+        -- stylua: ignore
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+            { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        },
     },
     {
         'folke/which-key.nvim',
