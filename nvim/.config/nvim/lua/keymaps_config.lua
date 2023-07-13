@@ -134,12 +134,6 @@ map('n', '<leader>gm', '<cmd>Gitsign blame_line<cr>', {
 map('n', '[g', '<cmd>Gitsign prev_hunk<cr>', { noremap = true, silent = true, desc = '[[g]it - previous hunk' })
 map('n', ']g', '<cmd>Gitsign next_hunk<cr>', { noremap = true, silent = true, desc = '[]g]it - next hunk' })
 
--- Hop
-map('n', '<leader><space>', '<cmd>HopChar1MW<cr>', { noremap = true, silent = true, desc = '[ ] hop to char' })
-map('v', '<leader><space>', '<cmd>HopChar1<cr>', { noremap = true, silent = true, desc = '[ ] hop to char' })
-map('n', '<leader>k', '<cmd>HopLineStart<cr>', { noremap = true, silent = true, desc = '[ ] hop to start of line' })
-map('v', '<leader>k', '<cmd>HopLineStart<cr>', { noremap = true, silent = true, desc = '[ ] hop to start of line' })
-
 -- Trouble
 map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true })
 map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true })
