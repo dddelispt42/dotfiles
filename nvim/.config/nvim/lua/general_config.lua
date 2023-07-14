@@ -2,6 +2,7 @@
 local o = vim.o
 local wo = vim.wo
 local bo = vim.bo
+local g = vim.g
 
 o.swapfile = true
 if vim.loop.os_uname().sysname:find('Windows', 1, true) and true then
@@ -91,6 +92,8 @@ bo.expandtab = true
 bo.tabstop = 4
 bo.softtabstop = 4
 bo.shiftwidth = 4
+
+g.loaded_perl_provider = 0
 
 vim.cmd 'filetype plugin indent on'
 vim.cmd 'set spell!'
