@@ -72,7 +72,7 @@ ts.setup {
         'make',
         'markdown',
         'markdown_inline',
-        'matlab',
+        -- 'matlab',
         'mermaid',
         'nix',
         'norg',
