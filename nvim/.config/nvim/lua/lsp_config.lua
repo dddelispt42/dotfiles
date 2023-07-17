@@ -36,13 +36,62 @@ nvim_lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.dockerls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
 nvim_lsp.html.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.jsonls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.jsonls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        yaml = {
+            schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+            },
+            schemas = require('schemastore').yaml.schemas {
+                ignore = {
+                    '.eslintrc',
+                },
+            },
+            -- TODO: add schema for mappings
+            extra = {
+                {
+                    description = 'My custom JSON schema',
+                    fileMatch = 'foo.json',
+                    name = 'foo.json',
+                    url = 'https://example.com/schema/foo.json',
+                },
+                {
+                    description = 'My other custom JSON schema',
+                    fileMatch = { 'bar.json', '.baar.json' },
+                    name = 'bar.json',
+                    url = 'https://example.com/schema/bar.json',
+                },
+            },
+        },
+    },
+}
 nvim_lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ruff_lsp.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.rust_analyzer.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
-nvim_lsp.yamlls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.yamlls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        yaml = {
+            schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+            },
+            schemas = require('schemastore').yaml.schemas {
+                ignore = {
+                    '.eslintrc',
+                },
+            },
+        },
+    },
+}
 nvim_lsp.jdtls.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
