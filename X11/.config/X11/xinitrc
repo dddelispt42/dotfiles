@@ -10,9 +10,9 @@ usermodmap=$HOME/.Xmodmap
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # DEFAULT_SESSION='i3 --shmlog-size 0'
-# DEFAULT_SESSION='startdwm.sh'
+DEFAULT_SESSION='startdwm.sh'
 # DEFAULT_SESSION='dwm'
-DEFAULT_SESSION='hwm'
+# DEFAULT_SESSION='hwm'
 
 xset +fp "$HOME/.local/share/fonts"
 xset fp rehash
