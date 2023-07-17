@@ -55,6 +55,7 @@ require('lazy').setup({
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = true,
     },
+    'b0o/schemastore.nvim',
     {
         'folke/trouble.nvim',
         dependencies = 'kyazdani42/nvim-web-devicons',
