@@ -89,7 +89,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 map('n', '<Leader>tb', ':SidebarNvimToggle<CR>', { noremap = true, silent = true, desc = '[t]ag[b]ar' })
 -- LSP
 map('n', '<leader>la', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
--- map('v', '<leader>la', vim.lsp.buf.range_code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
 map('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, desc = '[K] ... hover' })
 map('n', '<leader>lS', vim.lsp.buf.signature_help, { noremap = true, silent = true, desc = '[l]sp [S]ignature help' })
 map('n', '<leader>lR', vim.lsp.buf.rename, { noremap = true, silent = true, desc = '[l]sp [R]ename' })
@@ -157,12 +156,23 @@ map('n', '<leader>du', '<cmd>DapStepOut<cr>', { noremap = true, silent = true })
 map('n', '<leader>dr', '<cmd>DapToggleRepl<cr>', { noremap = true, silent = true })
 map('n', '<leader>dl', '<cmd>DapShowLog<cr>', { noremap = true, silent = true })
 map('n', '<leader>dt', '<cmd>DapTerminate<cr>', { noremap = true, silent = true })
-map('n', '<leader>dB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>', { noremap = true, silent = true })
-map('n', '<leader>dm', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>', { noremap = true, silent = true })
+map('n', '<leader>dB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>', {
+    noremap = true,
+    silent = true,
+})
+map('n', '<leader>dm', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>', {
+    noremap = true,
+    silent = true,
+})
 map('n', '<leader>dR', 'run_last()<cr>', { noremap = true, silent = true })
 map('n', '<leader>dC', '<cmd>Telescope dap commands<cr>', { noremap = true, silent = true })
 map('n', '<leader>dF', '<cmd>Telescope dap configurations<cr>', { noremap = true, silent = true })
 map('n', '<leader>dL', '<cmd>Telescope dap list_breakpoints<cr>', { noremap = true, silent = true })
 map('n', '<leader>dV', '<cmd>Telescope dap variables<cr>', { noremap = true, silent = true })
+
+-- Tree SJ
+map('n', '<leader>J', function()
+    require('treesj').toggle { split = { recursive = true } }
+end, { noremap = true, silent = true, desc = '[J]oin line toggle - syntax aware' })
 
 -- TODO: check neotest and use leader-t etc
