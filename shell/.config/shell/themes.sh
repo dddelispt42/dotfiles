@@ -1,3 +1,4 @@
+# shellcheck disable=2148
 if command -v theme.sh >/dev/null; then
 	[ -e "${XDG_CONFIG_HOME}/.theme_history" ] && theme.sh "$(theme.sh -l | tail -n1)"
 
