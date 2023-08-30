@@ -216,8 +216,10 @@ if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
 	cp "${XDG_CONFIG_HOME:-$HOME/.config}"/git/* /mnt/users/hriemer/.config/git/
 fi
 if test -d /mnt/users/hriemer/.config/vifm/; then
-	rsync -av --delete vifm/.config/vifm/ /mnt/users/hriemer/.config/vifm/
+	rsync -av --delete vifm/.config/vifm/ /mnt/users/hriemer/AppData/Roaming/Vifm/
 fi
+
+git submodule update --init vifm/.config/vifm/colors/
 
 # protect settings dir
 chmod 700 "$HOME/.cache" "$HOME/.config" "$HOME/.ssh"

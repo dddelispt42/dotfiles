@@ -102,7 +102,8 @@ endif
 set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 " List of color schemes to try (picks the first one supported by the terminal)
-colorscheme Default-256 Default
+" colorscheme Default-256 Default
+colorscheme gruvbox
 
 " ------------------------------------------------------------------------------
 " Bookmarks
@@ -564,3 +565,26 @@ nnoremap <c-u> <c-w>x
 " ------------------------------------------------------------------------------
 
 " https://github.com/cirala/vifm_devicons
+
+command! FZFfind : set noquickview
+                \| let $FZF_PICK = term('find | fzf-tmux -p 80% 2>/dev/tty')
+                \| if $FZF_PICK != ''
+                \|     execute 'goto' fnameescape($FZF_PICK)
+                \| endif
+command! FZFlocate : set noquickview
+                  \| let $FZF_PICK = term('locate $HOME | fzf-tmux -p 80% 2>/dev/tty')
+                  \| if $FZF_PICK != ''
+                  \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+                  \| endif
+nnoremap <c-g> :FZFlocate<cr>
+nnoremap <c-f> :FZFfind<cr>
+
+" navigation via vim/tmux/vifm
+nnoremap <silent> <c-h> :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
+nnoremap <silent> <c-j> :if paneisat('bottom') | execute '!tmux select-pane -D %i' | else | execute 'wincmd j' | endif<cr>
+nnoremap <silent> <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
+nnoremap <silent> <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
+" account for <c-h>/<bs> conflict
+nnoremap <silent> <bs>  :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
+
+set dotfiles

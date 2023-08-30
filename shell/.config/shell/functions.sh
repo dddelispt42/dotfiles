@@ -321,3 +321,13 @@ if command -v theme.sh >/dev/null; then
 		theme.sh "$(theme.sh -l | tail -n1)"
 	}
 fi
+
+vicd() {
+	local dst
+	dst="$(command vifm --choose-dir - "$@")"
+	if [ -z "$dst" ]; then
+		echo 'Directory picking cancelled/failed'
+		return 1
+	fi
+	cd "$dst" || true
+}
