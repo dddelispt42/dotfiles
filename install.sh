@@ -147,6 +147,7 @@ stow -vS -t "$HOME"/ starship
 stow -vS -t "$HOME"/ stylua
 stow -vS -t "$HOME"/ tmux
 stow -vS -t "$HOME"/ topgrade
+stow -vS -t "$HOME"/ vifm
 stow -vS -t "$HOME"/ ytfzf
 stow -vS -t "$HOME"/ xplr
 stow -vS -t "$HOME"/ xsuspender
@@ -163,6 +164,7 @@ test -s ../dev/base/quite-intriguing/quite-intriguing && ln -s "$_" qi
 test -s ../dev/base/quite-intriguing/quite-intriguing-preview && ln -s "$_" quite-intriguing-preview
 test -s ../dev/cli/sc-im/src/sc-im && ln -s "$_" sc-im
 test -s ../dev/rice/theme.sh/bin/theme.sh && ln -s "$_" theme.sh
+test -s ../dev/heiko/dotfiles/lf/.config/lf/preview.sh && ln -s "$_" preview.sh
 cd - || echo "Missing previous directory"
 
 # copy vs. stow
@@ -212,6 +214,9 @@ if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
 	mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
 	cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
 	cp "${XDG_CONFIG_HOME:-$HOME/.config}"/git/* /mnt/users/hriemer/.config/git/
+fi
+if test -d /mnt/users/hriemer/.config/vifm/; then
+	rsync -av --delete vifm/.config/vifm/ /mnt/users/hriemer/.config/vifm/
 fi
 
 # protect settings dir
