@@ -5,3 +5,5 @@ qutebrowser/.config/qutebrowser/quickmarks
 qutebrowser/.config/qutebrowser/blocked-hosts
 qutebrowser/.config/qutebrowser/qsettings/
 broot/.config/broot/launcher/
+vifm/.config/vifm/vifminfo.json
+vifm/.config/vifm/vifm-help.txt

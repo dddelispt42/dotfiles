@@ -22,7 +22,11 @@ LINESBEFORE=5
 # MS Office docs
 
 if [ -d "$1" ]; then
-	ls -la "$1"
+	if command -v exa >/dev/null; then
+		exa -bF --git --tree --level=2
+	else
+		ls -la "$1"
+	fi
 	exit
 elif [ -f "$1" ]; then
 	case "$1" in
