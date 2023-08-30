@@ -98,6 +98,13 @@ style = 'bold green'
 symbol = '🧙'
 disabled = false
 
+[custom.vifm]
+command = "echo vifm"  # shows output of command
+#files = ["foo"]       # can specify filters
+when = """ test x"${VIFM}" != "x" """
+format = "[$output](bg:red) "
+#shell = ["pwsh.exe", "-NoProfile", "-Command", "-"]
+
 #[custom.foo]
 #command = "echo foo"  # shows output of command
 #files = ["foo"]       # can specify filters

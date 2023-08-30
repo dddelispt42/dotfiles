@@ -588,3 +588,5 @@ nnoremap <silent> <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %
 nnoremap <silent> <bs>  :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
 
 set dotfiles
+
+filextype *.rclone FUSE_MOUNT2|rclone %PARAM %DESTINATION_DIR
