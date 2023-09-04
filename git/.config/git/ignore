@@ -26,7 +26,6 @@
 *.dll
 *.doc
 *.docx
-*.dot
 *.dump
 *.egg-info
 *.exe
