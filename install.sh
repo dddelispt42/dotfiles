@@ -1,4 +1,5 @@
 #!/bin/bash
+ROOTDIR="$(realpath "$(dirname "$0")")"
 
 # move things to XDG directories
 function migrate_to_clean {
@@ -195,7 +196,15 @@ fi
 
 mkdir -p "$XDG_STATE_HOME"/nvim/{undo,backup,swap,sessions,spell}
 if command -v nvim >/dev/null; then
+	cd "$XDG_DATA_HOME/nvim/lazy/neogit" || echo "Neogit dir not found"
+	git co -- doc/tags 2>/dev/null
+	cd "$XDG_DATA_HOME/nvim/lazy/rest.nvim" || echo "rest.nvim dir not found"
+	git co -- doc/tags 2>/dev/null
+	cd "$ROOTDIR" || true
 	nvim --headless "+Lazy! sync" +qa
+	nvim --headless "+Lazy! sync" +qa
+	nvim --headless "+Lazy! sync" +qa
+	nvim --headless "+MasonUpdate" +qa
 fi
 
 # TODO: check if key is too old
@@ -219,7 +228,7 @@ if test -d /mnt/users/hriemer/.config/vifm/; then
 	rsync -av --delete vifm/.config/vifm/ /mnt/users/hriemer/AppData/Roaming/Vifm/
 fi
 if test -d /mnt/users/hriemer/AppData/Roaming/yazi/config; then
-	rsync -av --delete yazi/.config/yazi/ /mnt/users/hriemer/AppData/Roaming/yazi/config
+	rsync -av --delete "$ROOTDIR/yazi/.config/yazi/" /mnt/users/hriemer/AppData/Roaming/yazi/config
 fi
 
 git submodule update --init vifm/.config/vifm/colors/
@@ -229,6 +238,6 @@ chmod 700 "$HOME/.cache" "$HOME/.config" "$HOME/.ssh"
 
 # tmux tpm
 git submodule update --init tmux/.config/tmux/plugins/tpm
-./tmux/.config/tmux/plugins/tpm/bin/install_plugins
-./tmux/.config/tmux/plugins/tpm/bin/update_plugins all
-./tmux/.config/tmux/plugins/tpm/bin/clean_plugins
+"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/install_plugins
+"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/update_plugins all
+"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/clean_plugins
