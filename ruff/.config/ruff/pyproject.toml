@@ -1,4 +1,6 @@
 [tool.ruff]
+preview = true
+unsafe-fixes = true
 line-length = 120
 # cache-dir = "~/.cache/ruff"
 
