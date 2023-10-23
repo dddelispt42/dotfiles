@@ -166,6 +166,7 @@ test -s ../dev/base/quite-intriguing/quite-intriguing-preview && ln -sf "$_" qui
 test -s ../dev/cli/sc-im/src/sc-im && ln -sf "$_" sc-im
 test -s ../dev/rice/theme.sh/bin/theme.sh && ln -sf "$_" theme.sh
 test -s ../dev/heiko/dotfiles/lf/.config/lf/preview.sh && ln -sf "$_" preview.sh
+test -s ../dev/heiko/dotfiles/lf/.config/lf/open.sh && ln -sf "$_" open.sh
 cd - || echo "Missing previous directory"
 
 # copy vs. stow
