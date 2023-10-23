@@ -4,6 +4,11 @@ if not tele_ok then
     return
 end
 
+local actions = require 'telescope.actions'
+
+-- Enable telescope fzf native, if installed
+pcall(tele.load_extension, 'fzf')
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 tele.setup {
@@ -12,6 +17,7 @@ tele.setup {
             i = {
                 ['<C-u>'] = false,
                 ['<C-d>'] = false,
+                ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
             },
         },
     },
@@ -25,9 +31,6 @@ tele.setup {
         },
     },
 }
-
--- Enable telescope fzf native, if installed
-pcall(tele.load_extension, 'fzf')
 
 local map = vim.keymap.set
 -- Telescope - new native lua style
