@@ -30,12 +30,40 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- })
 
 -- Enable rust_analyzer
--- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
--- nvim_lsp.dockerls.setup({ on_attach = on_attach, capabilities = capabilities })
--- nvim_lsp.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
+-- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
+-- nvim_lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.angularls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.bufls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.cssls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.diagnosticls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.dockerls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.gopls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.gradle_ls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.groovyls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.helm_ls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.html.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.jdtls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.jsonls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.julials.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.lemminx.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.lua_ls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.mutt_ls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.nil_ls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.nimls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.openscad_lsp.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.ruff_lsp.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.rust_analyzer.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.sqlls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.taplo.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.vimls.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.zls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.jsonls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -69,11 +97,6 @@ nvim_lsp.jsonls.setup {
         },
     },
 }
-nvim_lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.ruff_lsp.setup { on_attach = on_attach, capabilities = capabilities }
--- nvim_lsp.rust_analyzer.setup { on_attach = on_attach, capabilities = capabilities }
--- nvim_lsp.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
--- nvim_lsp.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
 nvim_lsp.yamlls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -92,7 +115,6 @@ nvim_lsp.yamlls.setup {
         },
     },
 }
-nvim_lsp.jdtls.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
 -- require("jdtls").start_or_attach(
