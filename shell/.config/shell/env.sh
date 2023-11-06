@@ -196,6 +196,9 @@ export PATH=/opt/java/bin:$PATH
 export JAVA_HOME=/opt/java
 # export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
+# Python - disable keyring
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+
 # NNN related
 export NNN_BMS='d:~/dev;D:~/Docs archive/'
 export NNN_PLUG='o:fzy-open;d:ndiff,p:mocplay;m:nmount;t:thumb'
