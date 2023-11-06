@@ -58,7 +58,7 @@ nvim_lsp.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.openscad_lsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ruff_lsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.rust_analyzer.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.sqlls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.taplo.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
