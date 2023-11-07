@@ -32,7 +32,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- Enable rust_analyzer
 -- nvim_lsp.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
--- nvim_lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.angularls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
@@ -56,9 +56,9 @@ nvim_lsp.nil_ls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.nimls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.openscad_lsp.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ruff_lsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.rust_analyzer.setup { on_attach = on_attach, capabilities = capabilities }
--- nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.sqlls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.taplo.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
