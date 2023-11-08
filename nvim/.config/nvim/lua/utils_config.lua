@@ -1,4 +1,5 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
 
 require('sidebar-nvim').setup {
   disable_default_keybindings = 0,

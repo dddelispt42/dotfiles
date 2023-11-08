@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 vim.opt.termguicolors = true
 vim.o.background = 'dark' -- or "light" for light mode
 

@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 vim.g.codeium_enabled = true
 vim.g.codeium_disable_bindings = 1
 vim.g.codeium_no_map_tab = 1

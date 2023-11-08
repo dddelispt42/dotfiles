@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system {
@@ -14,9 +16,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make',   cond = vim.fn.executable 'make' == 1 },
     'norcalli/nvim-colorizer.lua',
     {
         'folke/zen-mode.nvim',
@@ -61,7 +63,7 @@ require('lazy').setup({
         dependencies = 'kyazdani42/nvim-web-devicons',
         config = function()
             require('trouble').setup {
-                auto_open = true, -- automatically open the list when you have diagnostics
+                auto_open = true,  -- automatically open the list when you have diagnostics
                 auto_close = true, -- automatically close the list when you have no diagnostics
                 -- automatically preview the location of the diagnostic.
                 -- <esc> to close preview and go back to last window
@@ -114,7 +116,7 @@ require('lazy').setup({
     },
     'aklt/plantuml-syntax', -- TODO: check if TS syntax exists
     -- 'Sol-Ponz/plantuml-previewer.nvim',
-    { 'javiorfo/nvim-soil', ft = 'plantuml' },
+    { 'javiorfo/nvim-soil',   ft = 'plantuml' },
     {
         'sidebar-nvim/sections-dap',
         -- lazy = true,
@@ -145,6 +147,7 @@ require('lazy').setup({
             'nvim-neotest/neotest-plenary',
             'rouge8/neotest-rust',
         },
+        event = 'VeryLazy',
     },
     {
         'folke/todo-comments.nvim',
@@ -174,6 +177,7 @@ require('lazy').setup({
     {
         'Wansmer/treesj',
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        event = 'VeryLazy',
         config = function()
             require('treesj').setup {
                 -- Use default keymaps
@@ -206,7 +210,7 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     'akinsho/git-conflict.nvim',
     'tpope/vim-fugitive', -- TODO: is there a lua substitute?
-    'tpope/vim-rhubarb', -- required by fugitive to :Gbrowse
+    'tpope/vim-rhubarb',  -- required by fugitive to :Gbrowse
     'ThePrimeagen/refactoring.nvim',
     'sindrets/diffview.nvim',
     {
@@ -226,7 +230,17 @@ require('lazy').setup({
         'akinsho/bufferline.nvim',
         dependencies = 'kyazdani42/nvim-web-devicons',
         config = function()
-            require('bufferline').setup {}
+            require('bufferline').setup {
+                --- count is an integer representing total count of errors
+                --- level is a string "error" | "warning"
+                --- diagnostics_dict is a dictionary from error level ("error", "warning" or "info")to number of errors for each level.
+                --- this should return a string
+                --- Don't get too fancy as this function will be executed a lot
+                diagnostics_indicator = function(count, level, diagnostics_dict, context)
+                    local icon = level:match 'error' and ' ' or ' '
+                    return ' ' .. icon .. count
+                end,
+            }
         end,
     },
     -- 'romgrk/barbar.nvim',
@@ -234,13 +248,12 @@ require('lazy').setup({
         'vimwiki/vimwiki', -- TODO: is there a lua substitute?
         ft = 'vimwiki',
     },
-    'tpope/vim-repeat', -- TODO: is there a lua substitute?
-    'tpope/vim-unimpaired', -- TODO: is there a lua substitute?
+    'tpope/vim-repeat',      -- TODO: is there a lua substitute?
+    'tpope/vim-unimpaired',  -- TODO: is there a lua substitute?
     'tpope/vim-speeddating', -- TODO: is there a lua substitute?
     {
         'folke/flash.nvim',
         event = 'VeryLazy',
-        ---@type Flash.Config
         opts = {
             search = {
                 mode = function(str)
@@ -248,13 +261,47 @@ require('lazy').setup({
                 end,
             },
         },
-        -- stylua: ignore
         keys = {
-            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-            { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-            { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "TS Search" },
-            { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+            {
+                's',
+                mode = { 'n', 'x', 'o' },
+                function()
+                    require('flash').jump()
+                end,
+                desc = 'Flash',
+            },
+            {
+                'S',
+                mode = { 'n', 'o', 'x' },
+                function()
+                    require('flash').treesitter()
+                end,
+                desc = 'Flash Treesitter',
+            },
+            {
+                'r',
+                mode = 'o',
+                function()
+                    require('flash').remote()
+                end,
+                desc = 'Remote Flash',
+            },
+            {
+                'R',
+                mode = { 'o', 'x' },
+                function()
+                    require('flash').treesitter_search()
+                end,
+                desc = 'TS Search',
+            },
+            {
+                '<c-s>',
+                mode = { 'c' },
+                function()
+                    require('flash').toggle()
+                end,
+                desc = 'Toggle Flash Search',
+            },
         },
     },
     {
@@ -262,8 +309,8 @@ require('lazy').setup({
         config = true,
     },
     -- " Plug 'mjbrownie/hackertyper.vim'
-    'will133/vim-dirdiff', -- TODO: is there a lua substitute?
-    'christoomey/vim-conflicted', -- TODO: is there a lua substitute?
+    'will133/vim-dirdiff',         -- TODO: is there a lua substitute?
+    'christoomey/vim-conflicted',  -- TODO: is there a lua substitute?
     'christoomey/vim-sort-motion', -- TODO: is there a lua substitute?
     {
         'aserowy/tmux.nvim',
@@ -272,7 +319,7 @@ require('lazy').setup({
             return require('tmux').setup()
         end,
     },
-    'brooth/far.vim', -- TODO: is there a lua substitute?
+    'brooth/far.vim',   -- TODO: is there a lua substitute?
     -- " allows opening files at specific location - e.g. /tmp/bal:10:2
     'wsdjeg/vim-fetch', -- TODO: is there a lua substitute?
     -- " Plug 'henrik/vim-open-url'
@@ -295,6 +342,14 @@ require('lazy').setup({
     --     build = ':Neorg sync-parsers', -- This is the important bit!
     --     dependencies = 'nvim-lua/plenary.nvim',
     -- },
+    {
+        'tversteeg/registers.nvim',
+        event = 'VeryLazy',
+        config = function()
+            local registers = require 'registers'
+            registers.setup {}
+        end,
+    },
     {
         'rcarriga/nvim-notify',
     },

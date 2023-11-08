@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local status_ok, _ = pcall(require, 'gitsigns')
 if not status_ok then
     return
@@ -18,8 +20,8 @@ require('gitsigns').setup {
         },
     },
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+    numhl = true,      -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
     word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
     watch_gitdir = {
         interval = 1000,
