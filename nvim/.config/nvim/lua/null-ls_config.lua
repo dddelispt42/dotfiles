@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local null_ls_status_ok, null_ls = pcall(require, 'null-ls')
 if not null_ls_status_ok then
     return
@@ -38,7 +40,7 @@ mason_null_ls.setup {
     -- Run `require("null-ls").setup`.
     -- Will automatically install masons tools based on selected sources in `null-ls`.
     -- Can also be an exclusion list.
-    -- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }`
+    -- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraih" } }`
     automatic_installation = true,
     -- Whether sources that are installed in mason should be automatically set up in null-ls.
     -- Removes the need to set up null-ls manually.

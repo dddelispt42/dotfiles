@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local rest_ok, rest = pcall(require, 'rest-nvim')
 if not rest_ok then
   return

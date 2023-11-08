@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local ts_ok, ts = pcall(require, 'nvim-treesitter.configs')
 if not ts_ok then
     return

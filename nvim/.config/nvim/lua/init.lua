@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 -- Define leader key
 vim.g.mapleader = ' ' -- 'vim.g' sets global variables
 vim.g.maplocalleader = ' '

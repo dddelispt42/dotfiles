@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local orgmode_ok, orgmode = pcall(require, 'orgmode')
 if not orgmode_ok then
     return

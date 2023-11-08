@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local cursorline_ok, cursorline = pcall(require, 'nvim-cursorline')
 if not cursorline_ok then
   return

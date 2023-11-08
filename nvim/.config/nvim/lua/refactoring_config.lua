@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local refact_ok, refact = pcall(require, 'refactoring')
 if not refact_ok then
     return

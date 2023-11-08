@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 -- local pumlpreview_ok, pumlpreview = pcall(require, 'plantuml-previewer')
 -- if not pumlpreview_ok then
 --     return
@@ -23,6 +25,6 @@ soil.setup {
     -- If you want to customize the image showed when running this plugin
     image = {
         darkmode = false, -- Enable or disable darkmode
-        format = 'png', -- Choose between png or svg
+        format = 'png',   -- Choose between png or svg
     },
 }

@@ -1,4 +1,6 @@
 -- luacheck: globals vim
+---@diagnostic disable: undefined-global
+
 local masondap_ok, masondap = pcall(require, 'mason-nvim-dap')
 if not masondap_ok then
     return
@@ -37,7 +39,7 @@ masondap.setup {
             -- all sources with no handler get passed here
 
             -- Keep original functionality of `automatic_setup = true`
-            require 'mason-nvim-dap.automatic_setup'(config)
+            require 'mason-nvim-dap.automatic_setup' (config)
         end,
         python = function(config)
             nvimdap.adapters.python = {
@@ -119,7 +121,8 @@ masondap.setup {
                     request = 'launch',
                     name = 'Launch file',
                     showDebugOutput = true,
-                    pathBashdb = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+                    pathBashdb = vim.fn.stdpath 'data' ..
+                    '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
                     pathBashdbLib = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
                     trace = true,
                     file = '${file}',
@@ -210,8 +213,8 @@ dapui.setup {
         },
     },
     floating = {
-        max_height = nil, -- These can be integers or a float between 0 and 1.
-        max_width = nil, -- Floats will be treated as percentage of your screen.
+        max_height = nil,  -- These can be integers or a float between 0 and 1.
+        max_width = nil,   -- Floats will be treated as percentage of your screen.
         border = 'single', -- Border style. Can be "single", "double" or "rounded"
         mappings = {
             close = { 'q', '<Esc>' },
