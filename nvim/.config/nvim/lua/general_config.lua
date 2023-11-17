@@ -28,8 +28,9 @@ o.foldnestmax = 10
 o.formatoptions = 'jroql'
 o.cpoptions = o.cpoptions .. '>'
 -- o.guifont = "monospace:h17" -- the font used in graphical neovim applications
-o.guifont = 'Hack NF:h10' -- the font used in graphical neovim applications
--- vim.cmd 'execute GuiFont! Hack NF:h10'
+-- o.guifont = 'Hack NF:h10' -- the font used in graphical neovim applications
+o.guifont = 'Hack:h10' -- the font used in graphical neovim applications
+-- vim.cmd 'set "guifont! Hack NF:h10"'
 o.equalalways = true
 o.hidden = true
 o.hlsearch = true   -- highlight all matches on previous search pattern
