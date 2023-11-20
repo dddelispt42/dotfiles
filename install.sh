@@ -1,5 +1,9 @@
 #!/bin/bash
 ROOTDIR="$(realpath "$(dirname "$0")")"
+# FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/VictorMono.zip"
+FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip"
+# FONT="VictorMono"
+FONT="FiraCode"
 
 # move things to XDG directories
 function migrate_to_clean {
@@ -193,6 +197,17 @@ sheldon lock --update
 
 if command -v xdg-mime >/dev/null; then
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
+fi
+
+if [ ! -f "${XDG_DATA_HOME}/fonts/${FONT}NerdFont-Regular.ttf" ]; then
+	echo "Installing ${FONT}..."
+	if cd "$(mktemp -d)"; then
+		wget "$FONTURL"
+		unzip "${FONT}.zip"
+		mv ./*.ttf "${XDG_DATA_HOME}/fonts"
+		fc-cache -fv
+		cd - || true
+	fi
 fi
 
 mkdir -p "$XDG_STATE_HOME"/nvim/{undo,backup,swap,sessions,spell}
