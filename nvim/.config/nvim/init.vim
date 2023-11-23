@@ -141,7 +141,8 @@
 let s:fontsize = 8
 function! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
-  :set 'GuiFont! Hack:h' . s:fontsize
+  " :set 'GuiFont! Hack:h' . s:fontsize
+  :set guifont='FiraCode Nerd Font Mono:h' . s:fontsize
   " :execute "Consolas:h" . s:fontsize
 endfunction
 

@@ -29,7 +29,8 @@ o.formatoptions = 'jroql'
 o.cpoptions = o.cpoptions .. '>'
 -- o.guifont = "monospace:h17" -- the font used in graphical neovim applications
 -- o.guifont = 'Hack NF:h10' -- the font used in graphical neovim applications
-o.guifont = 'Hack:h10' -- the font used in graphical neovim applications
+-- o.guifont = 'Hack:h10' -- the font used in graphical neovim applications
+o.guifont = 'FiraCode Nerd Font Mono:h10' -- the font used in graphical neovim applications
 -- vim.cmd 'set "guifont! Hack NF:h10"'
 o.equalalways = true
 o.hidden = true
