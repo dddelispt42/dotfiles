@@ -34,24 +34,28 @@ orgmode.setup {
         tw = {
             description = 'Todo - WORK',
             template = '* TODO [#5] %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :END:',
+            target = '~/notes/capture.org',
         },
         th = {
             description = 'Todo - HOME',
             template = '* TODO [#5] %? :%n:home:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n   :END:',
+            target = '~/notes/capture.org',
         },
         d = {
             description = 'Delegated task',
             template = '* DELEGATED [#5] %? :who:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :END:',
+            target = '~/notes/capture.org',
         },
         m = {
             description = 'Meeting',
             template = '** MEETING %u %? :%n:\n %U\n*** Participants: \n*** Agenda:\n   - \n*** Notes:\n   - \n',
             -- target = "~/notes/meetings.org",
+            target = '~/notes/capture.org',
         },
         j = {
             description = 'Journal',
             template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
-            -- target = "~/notes/journal.org",
+            target = '~/notes/journal.org',
         },
     },
     mappings = {
