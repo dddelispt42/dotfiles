@@ -245,11 +245,11 @@ require('lazy').setup({
         'folke/flash.nvim',
         event = 'VeryLazy',
         opts = {
-            search = {
-                mode = function(str)
-                    return '\\<' .. str
-                end,
-            },
+            -- search = {
+            --     mode = function(str)
+            --         return '\\<' .. str
+            --     end,
+            -- },
         },
         keys = {
             {
