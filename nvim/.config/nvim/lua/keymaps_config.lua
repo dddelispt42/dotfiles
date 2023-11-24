@@ -108,6 +108,8 @@ map('n', '<leader>li', vim.lsp.buf.implementation, { noremap = true, silent = tr
 map('n', '<leader>lI', vim.lsp.buf.incoming_calls, { noremap = true, silent = true, desc = '[l]sp [I]ncoming calls' })
 map('n', '<leader>lO', vim.lsp.buf.outgoing_calls, { noremap = true, silent = true, desc = '[l]sp [O]outgoing calls' })
 map('n', '<leader>lt', vim.lsp.buf.type_definition, { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
+map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { timeout_ms = 10000 }<cr>',
+    { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
 map('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, {
     noremap = true,
     silent = true,
