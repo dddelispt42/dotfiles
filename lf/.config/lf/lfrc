@@ -46,6 +46,9 @@ map X !$f
 map o &~/.config/lf/open.sh $f
 map O &~/.config/lf/open.sh $fx
 
+# recurse vimv
+map V !vimv **/*
+
 # use enter for shell commands
 # map <enter> shell
 map <enter> &~/.config/lf/open.sh $fx
