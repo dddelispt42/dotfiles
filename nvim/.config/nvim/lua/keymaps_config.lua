@@ -12,10 +12,12 @@
 --   command_mode = "c",
 -- Convention:
 --   g...git
+--   d...debug
 --   f...find
 --   l...LSP stuff
 --   s...session
 --   t...terminal
+--   c...merge conflicts
 
 -- Shorten function name
 local map = vim.keymap.set
@@ -141,6 +143,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- map('n', '<leader>sd', ':DeleteSession<CR>', { noremap = true, silent = true, desc = '[s]ession [d]elete' })
 -- Tagbar
 map('n', '<Leader>tb', ':SidebarNvimToggle<CR>', { noremap = true, silent = true, desc = '[t]ag[b]ar' })
+-- Merge conflicts
+map('n', '<leader>cr', ':diffg RE<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [r]emote' })
+map('n', '<leader>cb', ':diffg BA<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [r]emote' })
+map('n', '<leader>cl', ':diffg LO<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [b]ase' })
+
 -- LSP
 map('n', '<leader>la', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
 map('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, desc = '[K] ... hover' })
