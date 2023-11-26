@@ -16,9 +16,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    -- { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make',   cond = vim.fn.executable 'make' == 1 },
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = vim.fn.executable 'make' == 1,
+    },
     'norcalli/nvim-colorizer.lua',
     {
         'folke/zen-mode.nvim',
@@ -42,7 +47,7 @@ require('lazy').setup({
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
             -- Useful status updates for LSP
-            { 'j-hui/fidget.nvim', tag = 'legacy' },
+            'j-hui/fidget.nvim',
             -- Additional lua configuration, makes nvim stuff amazing
             'folke/neodev.nvim',
         },
@@ -116,7 +121,7 @@ require('lazy').setup({
     },
     'aklt/plantuml-syntax', -- TODO: check if TS syntax exists
     -- 'Sol-Ponz/plantuml-previewer.nvim',
-    { 'javiorfo/nvim-soil',   ft = 'plantuml' },
+    { 'javiorfo/nvim-soil',            ft = 'plantuml' },
     {
         'sidebar-nvim/sections-dap',
         -- lazy = true,
@@ -239,7 +244,6 @@ require('lazy').setup({
         ft = 'vimwiki',
     },
     'tpope/vim-repeat',      -- TODO: is there a lua substitute?
-    'tpope/vim-unimpaired',  -- TODO: is there a lua substitute?
     'tpope/vim-speeddating', -- TODO: is there a lua substitute?
     {
         'folke/flash.nvim',
