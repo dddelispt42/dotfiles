@@ -44,7 +44,8 @@ masondap.setup {
         python = function(config)
             nvimdap.adapters.python = {
                 type = 'executable',
-                command = '/usr/bin/python3',
+                -- command = '/usr/bin/python3',
+                command = 'jira/.venv/bin/python3',
                 args = {
                     '-m',
                     'debugpy.adapter',
