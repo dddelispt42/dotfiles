@@ -56,6 +56,7 @@ require('lazy').setup({
     'jayp0521/mason-null-ls.nvim',
     'LostNeophyte/null-ls-embedded',
     'jayp0521/mason-nvim-dap.nvim',
+    'Weissle/persistent-breakpoints.nvim',
     'simrat39/rust-tools.nvim',
     {
         'saecki/crates.nvim',

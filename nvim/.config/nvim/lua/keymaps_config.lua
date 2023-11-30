@@ -211,27 +211,33 @@ map('i', '<C-ScrollWheelUp>', '<Esc><cmd>AdjustFontSize(1)<CR>a', { silent = tru
 map('i', '<C-ScrollWheelDown>', '<Esc><cmd>AdjustFontSize(-1)<CR>a', { silent = true, noremap = true })
 
 -- Debugging
-map('n', '<leader>db', '<cmd>DapToggleBreakpoint<cr>', { noremap = true, silent = true })
-map('n', '<leader>dc', '<cmd>DapContinue<cr>', { noremap = true, silent = true })
-map('n', '<leader>di', '<cmd>DapStepInto<cr>', { noremap = true, silent = true })
-map('n', '<leader>do', '<cmd>DapStepOver<cr>', { noremap = true, silent = true })
-map('n', '<leader>du', '<cmd>DapStepOut<cr>', { noremap = true, silent = true })
-map('n', '<leader>dr', '<cmd>DapToggleRepl<cr>', { noremap = true, silent = true })
-map('n', '<leader>dl', '<cmd>DapShowLog<cr>', { noremap = true, silent = true })
-map('n', '<leader>dt', '<cmd>DapTerminate<cr>', { noremap = true, silent = true })
-map('n', '<leader>dB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>', {
-    noremap = true,
-    silent = true,
-})
+-- Commented shortcuts are in debug config file
+-- map('n', '<leader>db', '<cmd>DapToggleBreakpoint<cr>', { noremap = true, silent = true, desc = '[d]AP [b]reakpoint' })
+map('n', '<leader>dc', '<cmd>DapContinue<cr>', { noremap = true, silent = true, desc = '[d]AP [c]ontinue' })
+map('n', '<leader>di', '<cmd>DapStepInto<cr>', { noremap = true, silent = true, desc = '[d]AP step [i]nto' })
+map('n', '<leader>do', '<cmd>DapStepOver<cr>', { noremap = true, silent = true, desc = '[d]AP step [o]ver' })
+map('n', '<leader>du', '<cmd>DapStepOut<cr>', { noremap = true, silent = true, desc = '[d]AP step o[u]t' })
+map('n', '<leader>dr', '<cmd>DapToggleRepl<cr>', { noremap = true, silent = true, desc = '[d]AP toggle [r]epl' })
+map('n', '<leader>dl', '<cmd>DapShowLog<cr>', { noremap = true, silent = true, desc = '[d]AP show [l]og' })
+map('n', '<leader>dt', '<cmd>DapTerminate<cr>', { noremap = true, silent = true, desc = '[d]AP [t]erminate' })
+-- map('n', '<leader>dB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>', {
+--     noremap = true,
+--     silent = true,
+--     desc = '[d]AP set [B]reakpoint w/ condition',
+-- })
 map('n', '<leader>dm', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>', {
     noremap = true,
     silent = true,
+    desc = '[d]AP set log point [m]essage',
 })
-map('n', '<leader>dR', 'run_last()<cr>', { noremap = true, silent = true })
-map('n', '<leader>dC', '<cmd>Telescope dap commands<cr>', { noremap = true, silent = true })
-map('n', '<leader>dF', '<cmd>Telescope dap configurations<cr>', { noremap = true, silent = true })
-map('n', '<leader>dL', '<cmd>Telescope dap list_breakpoints<cr>', { noremap = true, silent = true })
-map('n', '<leader>dV', '<cmd>Telescope dap variables<cr>', { noremap = true, silent = true })
+map('n', '<leader>dR', 'run_last()<cr>', { noremap = true, silent = true, desc = '[d]AP [R]un last' })
+map('n', '<leader>dC', '<cmd>Telescope dap commands<cr>', { noremap = true, silent = true, desc = '[d]AP [C]ommands' })
+map('n', '<leader>dF', '<cmd>Telescope dap configurations<cr>',
+    { noremap = true, silent = true, desc = '[d]AP con[F]iguration' })
+map('n', '<leader>dL', '<cmd>Telescope dap list_breakpoints<cr>',
+    { noremap = true, silent = true, desc = '[d]AP [L]ist breakpoints' })
+map('n', '<leader>dV', '<cmd>Telescope dap variables<cr>',
+    { noremap = true, silent = true, desc = '[d]AP list [v]ariables' })
 
 -- Tree SJ
 map('n', '<leader>J', function()
