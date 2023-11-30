@@ -9,6 +9,10 @@ local nvimdap_ok, nvimdap = pcall(require, 'dap')
 if not nvimdap_ok then
     return
 end
+local persi_bp_ok, persi_bp = pcall(require, 'persistent-breakpoints')
+if not persi_bp_ok then
+    return
+end
 masondap.setup {
     -- A list of adapters to install if they're not already installed.
     -- This setting has no relation with the `automatic_installation` setting.
@@ -279,3 +283,22 @@ dapvtext.setup {
     -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
     virt_text_win_col = nil,
 }
+
+persi_bp.setup {
+    save_dir = vim.fn.stdpath 'data' .. '/nvim_checkpoints',
+    -- when to load the breakpoints? "BufReadPost" is recommanded.
+    load_breakpoints_event = { "BufReadPost" },
+    -- record the performance of different function.
+    -- run :lua require('persistent-breakpoints.api').print_perf_data() to see the result.
+    perf_record = false,
+    -- perform callback when loading a persisted breakpoint
+    on_load_breakpoint = nil,
+}
+
+local map = vim.keymap.set
+-- Save breakpoints to file automatically.
+map('n', '<leader>db', '<cmd>PBToggleBreakpoint<cr>', { noremap = true, silent = true, desc = '[d]AP [b]reakpoint' })
+map('n', '<leader>dB', '<cmd>PBSetConditionalBreakpoint<cr>',
+    { noremap = true, silent = true, desc = '[d]AP set [B]reakpoint w/ condition' })
+map('n', '<leader>dx', '<cmd>PBClearAllBreakpoints<cr>',
+    { noremap = true, silent = true, desc = '[d]AP clear [x] all breakpoints' })
