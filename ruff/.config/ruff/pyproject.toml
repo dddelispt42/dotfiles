@@ -17,7 +17,7 @@ fixable = ["E", "I", "D", "UP", "I001", "SIM"]
 unfixable = ["F401", "D211"]
 
 # Group violations by containing file.
-format = "grouped"
+# format = "grouped"
 
 [tool.ruff.flake8-import-conventions.aliases]
 altair = "alt"

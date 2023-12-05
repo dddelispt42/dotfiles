@@ -28,7 +28,7 @@ mason_null_ls.setup {
         'protolint',
         'refactoring',
         'shellcheck',
-        'ruff',
+        'ruff-lsp',
         'clang_format',
         'shfmt',
         'sqlformat',
@@ -54,7 +54,7 @@ mason_null_ls.setup {
 
 -- If `automatic_setup` is false.
 null_ls.setup {
-    debug = false,
+    debug = true,
     sources = {
         -- null_ls.builtins.formatting.prettier.with {
         --   extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' },
