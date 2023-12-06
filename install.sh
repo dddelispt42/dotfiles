@@ -254,6 +254,6 @@ chmod 700 "$HOME/.cache" "$HOME/.config" "$HOME/.ssh"
 
 # tmux tpm
 git submodule update --init tmux/.config/tmux/plugins/tpm
-"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/install_plugins
-"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/update_plugins all
+"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/install_plugins | grep -vE "^Already installed"
+"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/update_plugins all | grep -vE "(update success|Already up to date)"
 "$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/clean_plugins
