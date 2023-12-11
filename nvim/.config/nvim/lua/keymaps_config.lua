@@ -91,10 +91,16 @@ map('n', '[Q', ':cfirst<CR>', { noremap = true, silent = true, desc = 'first [q]
 map('n', ']Q', ':clast<CR>', { noremap = true, silent = true, desc = 'last [q]uick list item' })
 map('n', '[<C-Q>', ':cpfile<CR>', { noremap = true, silent = true, desc = 'first [q]uick error' })
 map('n', ']<C-Q>', ':cnfile<CR>', { noremap = true, silent = true, desc = 'next [q]uick error' })
-map('n', '[t', ':tprev<CR>', { noremap = true, silent = true, desc = 'previous [t]ab' })
-map('n', ']t', ':tnext<CR>', { noremap = true, silent = true, desc = 'next [t]ag' })
-map('n', '[T', ':tabprev<CR>', { noremap = true, silent = true, desc = 'previous [t]ab' })
-map('n', ']T', ':tabnext<CR>', { noremap = true, silent = true, desc = 'next [t]ab' })
+map('n', '[T', ':tprev<CR>', { noremap = true, silent = true, desc = 'previous [t]ab' })
+map('n', ']T', ':tnext<CR>', { noremap = true, silent = true, desc = 'next [t]ag' })
+-- map('n', '[T', ':tabprev<CR>', { noremap = true, silent = true, desc = 'previous [t]ab' })
+-- map('n', ']T', ':tabnext<CR>', { noremap = true, silent = true, desc = 'next [t]ab' })
+map('n', '[t', function()
+    require('todo-comments').jump_prev()
+end, { noremap = true, silent = true, desc = 'prev [t]todo' })
+map('n', ']t', function()
+    require('todo-comments').jump_next()
+end, { noremap = true, silent = true, desc = 'next [t]todo' })
 map('n', '[ob', ':set background=dark<CR>', { noremap = true, silent = true, desc = '[o]ption [b]ackground dark' })
 map('n', ']ob', ':set background=light<CR>', { noremap = true, silent = true, desc = '[o]ption [b]ackground light' })
 map('n', '[oc', ':set nocursorline<CR>', { noremap = true, silent = true, desc = '[o]ption no [c]ursorline' })
@@ -125,6 +131,20 @@ map('n', '[ox', ':set nocursorline nocursorcolumn<CR>',
     { noremap = true, silent = true, desc = '[o]ption no [x]=cursor(line,column)' })
 map('n', ']ox', ':set cursorline cursorcolumn<CR>',
     { noremap = true, silent = true, desc = '[o]ption [x]=cursor(line,column)' })
+
+local diagnostic_goto = function(next, severity)
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+        go { severity = severity }
+    end
+end
+map('n', '[d', diagnostic_goto(false), { desc = 'Prev [D]iagnostic' })
+map('n', ']d', diagnostic_goto(true), { desc = 'Next [D]iagnostic' })
+map('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev [E]rror' })
+map('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next [E]rror' })
+map('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev [W]arning' })
+map('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next [W]arning' })
 
 -- Yank Highlight
 -- See `:help vim.highlight.on_yank()`
@@ -212,7 +232,6 @@ map('i', '<C-ScrollWheelDown>', '<Esc><cmd>AdjustFontSize(-1)<CR>a', { silent = 
 
 -- Debugging
 -- Commented shortcuts are in debug config file
--- map('n', '<leader>db', '<cmd>DapToggleBreakpoint<cr>', { noremap = true, silent = true, desc = '[d]AP [b]reakpoint' })
 map('n', '<leader>dc', '<cmd>DapContinue<cr>', { noremap = true, silent = true, desc = '[d]AP [c]ontinue' })
 map('n', '<leader>di', '<cmd>DapStepInto<cr>', { noremap = true, silent = true, desc = '[d]AP step [i]nto' })
 map('n', '<leader>do', '<cmd>DapStepOver<cr>', { noremap = true, silent = true, desc = '[d]AP step [o]ver' })
@@ -220,11 +239,6 @@ map('n', '<leader>du', '<cmd>DapStepOut<cr>', { noremap = true, silent = true, d
 map('n', '<leader>dr', '<cmd>DapToggleRepl<cr>', { noremap = true, silent = true, desc = '[d]AP toggle [r]epl' })
 map('n', '<leader>dl', '<cmd>DapShowLog<cr>', { noremap = true, silent = true, desc = '[d]AP show [l]og' })
 map('n', '<leader>dt', '<cmd>DapTerminate<cr>', { noremap = true, silent = true, desc = '[d]AP [t]erminate' })
--- map('n', '<leader>dB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>', {
---     noremap = true,
---     silent = true,
---     desc = '[d]AP set [B]reakpoint w/ condition',
--- })
 map('n', '<leader>dm', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<cr>', {
     noremap = true,
     silent = true,
