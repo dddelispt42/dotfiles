@@ -165,6 +165,8 @@ ts.setup {
                 ['if'] = { query = '@function.inner', desc = 'Select inner part of function' },
                 ['aC'] = { query = '@class.outer', desc = 'Select outer part of class' },
                 ['iC'] = { query = '@class.inner', desc = 'Select inner part of class' },
+                ['ak'] = { query = '@comment.outer', desc = 'Select outer part of comment' },
+                ['ik'] = { query = '@comment.inner', desc = 'Select inner part of comment' },
                 ['as'] = { query = '@scope', query_group = 'locals', desc = 'Select language scope' },
                 ['a='] = { query = '@assignment.outer', desc = 'Select outer part of an assignment' },
                 ['i='] = { query = '@assignment.inner', desc = 'Select inner part of an assignment' },
@@ -185,25 +187,34 @@ ts.setup {
             goto_next_end = {
                 [']M'] = { query = '@function.outer', desc = 'Goto end of next function' },
                 [']['] = { query = '@class.outer', desc = 'Goto end of next class' },
+                [']O'] = '@loop.*',
+                [']S'] = { query = '@scope', query_group = 'locals', desc = 'Next scope' },
+                [']Z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
             },
             goto_previous_start = {
                 ['[m'] = { query = '@function.outer', desc = 'Goto of previous function' },
                 ['[['] = { query = '@class.outer', desc = 'Goto of previous class' },
+                ['[o'] = '@loop.*',
+                ['[s'] = { query = '@scope', query_group = 'locals', desc = 'Previous scope' },
+                ['[z'] = { query = '@fold', query_group = 'folds', desc = 'Previous fold' },
             },
             goto_previous_end = {
                 ['[M'] = { query = '@function.outer', desc = 'Goto end of previous function' },
                 ['[]'] = { query = '@class.outer', desc = 'Goto end of previous class' },
+                ['[='] = '@loop.*',
+                ['[S'] = { query = '@scope', query_group = 'locals', desc = 'Previous scope' },
+                ['[Z'] = { query = '@fold', query_group = 'folds', desc = 'Previous fold' },
             },
         },
         swap = {
             enable = true,
             swap_next = {
                 ['<leader>sa'] = { query = '@parameter.inner', desc = 'Swap arg with next' },
-                ['<leader>sf'] = { query = '@funtion.outer', desc = 'Swap arg with next' },
+                ['<leader>sf'] = { query = '@funtion.outer', desc = 'Swap function with next' },
             },
             swap_previous = {
                 ['<leader>sA'] = { query = '@parameter.inner', desc = ' arg with previous' },
-                ['<leader>sF'] = { query = '@funtion.outer', desc = 'Swap arg with next' },
+                ['<leader>sF'] = { query = '@funtion.outer', desc = 'Swap function with next' },
             },
         },
         lsp_interop = {
