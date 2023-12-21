@@ -158,6 +158,7 @@ stow -vS -t "$HOME"/ xplr
 stow -vS -t "$HOME"/ xsuspender
 stow -vS -t "$HOME"/ zathura
 stow -vS -t "$HOME"/ zsh
+stow -vS -t "$HOME"/ waybar
 
 # add links
 cd ~/opt || echo "Missing ~/opt directory"

@@ -15,6 +15,147 @@ mason.setup {
         },
     },
 }
+require('mason-lspconfig').setup {
+    ensure_installed = {
+        'angularls',
+        'ansiblels',
+        'arduino_language_server',
+        'asm_lsp',
+        -- 'autotools-language-server',
+        -- 'awk_ls',
+        'azure_pipelines_ls',
+        'bashls',
+        'biome',
+        'bufls',
+        'clangd',
+        -- 'clarity_lsp',
+        'clojure_lsp',
+        'codeqlls',
+        'crystalline',
+        -- 'csharp_ls',
+        'cssls',
+        'cssmodules_ls',
+        'cucumber_language_server',
+        'custom_elements_ls',
+        'cypher_ls',
+        'diagnosticls',
+        'docker_compose_language_service',
+        'dockerls',
+        'dotls',
+        'efm',
+        'elixirls',
+        'elmls',
+        'erg_language_server',
+        -- 'erlangls',
+        'fortls',
+        'gleam',
+        'glint',
+        'golangci_lint_ls',
+        'gopls',
+        'gradle_ls',
+        'grammarly',
+        'graphql',
+        -- 'groovyls',
+        'haxe_language_server',
+        'hdl_checker',
+        'helm_ls',
+        -- 'hls',
+        'hoon_ls',
+        'html',
+        'htmx',
+        'hydra_lsp',
+        -- 'java_language_server',
+        'jdtls',
+        'jqls',
+        'jsonls',
+        'jsonnet_ls',
+        'julials',
+        'kotlin_language_server',
+        'lelwel_ls',
+        'lemminx',
+        'ltex',
+        'lua_ls',
+        'luau_lsp',
+        'marksman',
+        'matlab_ls',
+        'mdx_analyzer',
+        'mm0_ls',
+        -- 'move_analyzer',
+        'mutt_ls',
+        'neocmake',
+        -- 'nimls',
+        -- 'ocamllsp',
+        'ols',
+        'omnisharp',
+        'omnisharp_mono',
+        'opencl_ls',
+        'openscad_lsp',
+        -- 'pkgbuild_language_server',
+        'powershell_es',
+        'prosemd_lsp',
+        'pylsp',
+        'pylyzer',
+        'pyright',
+        'quick_lint_js',
+        -- 'r_language_server',
+        'raku_navigator',
+        'reason_ls',
+        'remark_ls',
+        'rescriptls',
+        'robotframework_ls',
+        'ruff_lsp',
+        'rust_analyzer',
+        'slint_lsp',
+        'smithy_ls',
+        'sourcery',
+        'spectral',
+        'sqls',
+        'stimulus_ls',
+        'stylelint_lsp',
+        'svelte',
+        'swift_mesonls',
+        'tailwindcss',
+        'taplo',
+        'teal_ls',
+        'terraformls',
+        'texlab',
+        'tflint',
+        'thriftls',
+        'tsserver',
+        'typos_lsp',
+        'typst_lsp',
+        'unocss',
+        'v_analyzer',
+        -- 'vala_ls',
+        'vale_ls',
+        'veryl_ls',
+        'vimls',
+        'visualforce_ls',
+        -- 'vls',
+        'vtsls',
+        'yamlls',
+        'zk',
+        'zls',
+        -- 'bash-debug-adapter', -- check
+        -- 'codelldb',           -- check
+        -- 'cpplint',            -- check
+        -- 'debugpy',            -- check
+        -- 'fixjson',            -- check
+        -- 'gitlint',            -- check
+        -- 'jsonlint',           -- check
+        -- 'markdownlint',       -- check
+        -- 'prettier',           -- check
+        -- 'protolint',          -- check
+        -- 'shellcheck',         -- check
+        -- 'shfmt',              -- check
+        -- 'stylelit',           -- check
+        -- 'stylua',             -- check
+        -- 'texlab',             -- check
+        -- 'yamlfmt',            -- check
+        -- 'yamllint',           -- check
+    },
+    automatic_installation = true,
+}
 
 local nvim_lsp = require 'lspconfig'
 
@@ -32,9 +173,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- })
 
 -- Enable rust_analyzer
--- nvim_lsp.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
--- nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.angularls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
@@ -45,7 +186,7 @@ nvim_lsp.diagnosticls.setup { on_attach = on_attach, capabilities = capabilities
 nvim_lsp.dockerls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.gopls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.gradle_ls.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.groovyls.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.groovyls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.helm_ls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.html.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.jdtls.setup { on_attach = on_attach, capabilities = capabilities }
@@ -54,9 +195,9 @@ nvim_lsp.julials.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.lemminx.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.lua_ls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.mutt_ls.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.nil_ls.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.nimls.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.nil_ls.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.nimls.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.openscad_lsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ruff_lsp.setup { on_attach = on_attach, capabilities = capabilities }
