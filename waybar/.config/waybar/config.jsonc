@@ -1,0 +1,136 @@
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
+    "width": 1920, // Waybar width
+    "spacing": 2, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window", "hyprland/submap"],
+    "modules-right": ["tray", "idle_inhibitor", "bluetooth", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "clock"],
+    // Modules configuration
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+        "urgent": "",
+        "active": "",
+        "default": ""
+      },
+      "on-scroll-up": "hyprctl dispatch workspace e+1",
+      "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "sort-by-number": true
+    },
+    "hyprland/window": {
+      "format": "👉 {}",
+      "max-length": 200,
+      "separate-outputs": true
+    },
+    "hyprland/submap": {
+      "format": "✌️ {}",
+      "max-length": 8,
+      "tooltip": false
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "bluetooth": {
+      "format": " {status}",
+      "format-connected": " {device_alias}",
+      "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+      // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 2,
+        "show-passive-items": true
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false,
+        "on-click": "st -e btop"
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "light -T 1.1",
+        "on-scroll-down": "light -T 0.9"
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "scroll-step": 1,
+        "on-click": "pavucontrol",
+        "ignored-sinks": ["Easy Effects Sink"]
+    }
+}
