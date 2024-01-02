@@ -6,18 +6,18 @@ alias egrep='egrep --color=auto'
 # some more ls aliases
 command -v lsd >/dev/null && alias ls="lsd --group-dirs first"
 command -v lsd >/dev/null && alias lt='ls --tree'
-if command -v exa >/dev/null; then
+if command -v eza >/dev/null; then
 	# general use
-	alias ls='exa'                                                        # ls
-	alias l='exa -lbF --git'                                              # list, size, type, git
-	alias ll='exa -lbGF --git'                                            # long list
-	alias llm='exa -lbG --git --sort=modified'                            # long list, modified date sort
-	alias la='exa -lbhHigmuSaa --time-style=long-iso --git --color-scale' # all list
-	alias lx='exa -lbhHigmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+	alias ls='eza'                                                        # ls
+	alias l='eza -lbF --git'                                              # list, size, type, git
+	alias ll='eza -lbGF --git'                                            # long list
+	alias llm='eza -lbG --git --sort=modified'                            # long list, modified date sort
+	alias la='eza -lbhHigmuSaa --time-style=long-iso --git --color-scale' # all list
+	alias lx='eza -lbhHigmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
 	# specialty views
-	alias lS='exa -1'               # one column, just names
-	alias lt='exa --tree --level=2' # tree
-	alias exa='exa --git --group-directories-first --classify'
+	alias lS='eza -1'               # one column, just names
+	alias lt='eza --tree --level=2' # tree
+	alias eza='eza --git --group-directories-first --classify'
 else
 	alias l='ls -l'
 	alias ll='l'

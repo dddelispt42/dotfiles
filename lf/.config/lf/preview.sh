@@ -22,8 +22,8 @@ LINESBEFORE=5
 # MS Office docs
 
 if [ -d "$1" ]; then
-	if command -v exa >/dev/null; then
-		exa -bF --git --tree --level=2
+	if command -v eza >/dev/null; then
+		eza -bF --git --tree --level=2
 	else
 		ls -la "$1"
 	fi
