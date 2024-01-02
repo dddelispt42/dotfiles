@@ -20,18 +20,18 @@ require('mason-lspconfig').setup {
         'angularls',
         'ansiblels',
         'arduino_language_server',
-        'asm_lsp',
+        -- 'asm_lsp',
         -- 'autotools-language-server',
         -- 'awk_ls',
         'azure_pipelines_ls',
         'bashls',
         'biome',
-        'bufls',
+        -- 'bufls',
         'clangd',
         -- 'clarity_lsp',
         'clojure_lsp',
-        'codeqlls',
-        'crystalline',
+        -- 'codeqlls',
+        -- 'crystalline',
         -- 'csharp_ls',
         'cssls',
         'cssmodules_ls',
@@ -50,28 +50,28 @@ require('mason-lspconfig').setup {
         'fortls',
         'gleam',
         'glint',
-        'golangci_lint_ls',
-        'gopls',
+        -- 'golangci_lint_ls',
+        -- 'gopls',
         'gradle_ls',
         'grammarly',
-        'graphql',
+        -- 'graphql',
         -- 'groovyls',
-        'haxe_language_server',
-        'hdl_checker',
+        -- 'haxe_language_server',
+        -- 'hdl_checker',
         'helm_ls',
         -- 'hls',
         'hoon_ls',
         'html',
-        'htmx',
+        -- 'htmx',
         'hydra_lsp',
         -- 'java_language_server',
         'jdtls',
-        'jqls',
+        -- 'jqls',
         'jsonls',
-        'jsonnet_ls',
+        -- 'jsonnet_ls',
         'julials',
-        'kotlin_language_server',
-        'lelwel_ls',
+        -- 'kotlin_language_server',
+        -- 'lelwel_ls',
         'lemminx',
         'ltex',
         'lua_ls',
@@ -79,22 +79,22 @@ require('mason-lspconfig').setup {
         'marksman',
         'matlab_ls',
         'mdx_analyzer',
-        'mm0_ls',
+        -- 'mm0_ls',
         -- 'move_analyzer',
         'mutt_ls',
-        'neocmake',
+        -- 'neocmake',
         -- 'nimls',
         -- 'ocamllsp',
         'ols',
-        'omnisharp',
-        'omnisharp_mono',
+        -- 'omnisharp',
+        -- 'omnisharp_mono',
         'opencl_ls',
-        'openscad_lsp',
+        -- 'openscad_lsp',
         -- 'pkgbuild_language_server',
-        'powershell_es',
+        -- 'powershell_es',
         'prosemd_lsp',
-        'pylsp',
-        'pylyzer',
+        -- 'pylsp',
+        -- 'pylyzer',
         'pyright',
         'quick_lint_js',
         -- 'r_language_server',
@@ -108,15 +108,15 @@ require('mason-lspconfig').setup {
         'slint_lsp',
         'smithy_ls',
         'sourcery',
-        'spectral',
-        'sqls',
+        -- 'spectral',
+        -- 'sqls',
         'stimulus_ls',
         'stylelint_lsp',
-        'svelte',
-        'swift_mesonls',
+        -- 'svelte',
+        -- 'swift_mesonls',
         'tailwindcss',
         'taplo',
-        'teal_ls',
+        -- 'teal_ls',
         'terraformls',
         'texlab',
         'tflint',
@@ -134,7 +134,7 @@ require('mason-lspconfig').setup {
         -- 'vls',
         'vtsls',
         'yamlls',
-        'zk',
+        -- 'zk',
         'zls',
         -- 'bash-debug-adapter', -- check
         -- 'codelldb',           -- check
@@ -175,16 +175,16 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- Enable rust_analyzer
 nvim_lsp.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.angularls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.bufls.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.bufls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.cssls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.diagnosticls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.dockerls.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.gopls.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.gopls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.gradle_ls.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.groovyls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.helm_ls.setup { on_attach = on_attach, capabilities = capabilities }
@@ -198,11 +198,11 @@ nvim_lsp.mutt_ls.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.nil_ls.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.nimls.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.openscad_lsp.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.openscad_lsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.ruff_lsp.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.rust_analyzer.setup { on_attach = on_attach, capabilities = capabilities }
-nvim_lsp.sqlls.setup { on_attach = on_attach, capabilities = capabilities }
+-- nvim_lsp.sqlls.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.taplo.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.vimls.setup { on_attach = on_attach, capabilities = capabilities }
