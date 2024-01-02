@@ -147,7 +147,7 @@ map gk :cd '~/Sync/work'
 map go :cd '~/opt'
 map gr :cd '/'
 map gn :cd '~/Sync/work/notes'
-map gp :cd '~/Sync/phone_heiko/Podcasts'
+map gp :cd '~/Sync/podcasts'
 
 cmd usage !dua || du -sk * | sort -n
 map U usage
