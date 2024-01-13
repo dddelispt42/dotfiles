@@ -16,19 +16,35 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
     -- Fuzzy Finder (files, lsp, etc)
-    -- { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
-    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-    -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+    -- Telescope
     {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
-        cond = vim.fn.executable 'make' == 1,
+        'nvim-telescope/telescope.nvim',
+        -- branch = '0.1.x',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make',
+            },
+            'nvim-telescope/telescope-symbols.nvim',
+            'molecule-man/telescope-menufacture',
+            'debugloop/telescope-undo.nvim',
+            'ThePrimeagen/harpoon',
+            'nvim-telescope/telescope-dap.nvim',
+        },
+        cmd = 'Telescope',
     },
-    'norcalli/nvim-colorizer.lua',
     {
-        'folke/zen-mode.nvim',
-        cmd = 'ZenMode',
+        'norcalli/nvim-colorizer.lua',
+        event = "VeryLazy",
     },
+    -- {
+    --     'folke/zen-mode.nvim',
+    --     dependencies = {
+    --         'folke/twilight.nvim',
+    --     },
+    --     cmd = { 'ZenMode', 'Twilight' },
+    -- },
     {
         'glacambre/firenvim',
         build = function()
@@ -50,21 +66,32 @@ require('lazy').setup({
             'j-hui/fidget.nvim',
             -- Additional lua configuration, makes nvim stuff amazing
             'folke/neodev.nvim',
+            'jayp0521/mason-nvim-dap.nvim',
+            'simrat39/rust-tools.nvim',
         },
+        event = { 'BufReadPre', 'BufNewFile' },
     },
-    -- 'jose-elias-alvarez/null-ls.nvim',
-    -- 'jayp0521/mason-null-ls.nvim',
-    'nvimtools/none-ls.nvim',
-    'LostNeophyte/null-ls-embedded',
-    'jayp0521/mason-nvim-dap.nvim',
-    'Weissle/persistent-breakpoints.nvim',
-    'simrat39/rust-tools.nvim',
+    {
+        'nvimtools/none-ls.nvim',
+        dependencies = {
+            'LostNeophyte/null-ls-embedded',
+        },
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
+    {
+        'Weissle/persistent-breakpoints.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
     {
         'saecki/crates.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = true,
+        event = { "BufRead Cargo.toml" },
     },
-    'b0o/schemastore.nvim',
+    {
+        'b0o/schemastore.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
     {
         'folke/trouble.nvim',
         dependencies = 'kyazdani42/nvim-web-devicons',
@@ -78,12 +105,12 @@ require('lazy').setup({
                 mode = 'document_diagnostics',
             }
         end,
+        event = { 'BufReadPre', 'BufNewFile' },
     },
     { -- Autocompletion
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
         dependencies = {
-            'L3MON4D3/LuaSnip',
             'f3fora/cmp-spell',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-cmdline',
@@ -98,51 +125,68 @@ require('lazy').setup({
             -- "pontusk/cmp-vimwiki-tags"
         },
     },
-    'rafamadriz/friendly-snippets',
+    {
+        "L3MON4D3/LuaSnip",
+        dependencies = { 'rafamadriz/friendly-snippets', },
+        build = "make install_jsregexp",
+        event = 'InsertEnter'
+    },
     { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
-        lazy = false,
-        event = 'VimEnter',
-        -- event = 'VeryLazy',
-        build = function()
-            pcall(require('nvim-treesitter.install').update { with_sync = true })
-        end,
+        build = ":TSUpdate",
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
+            'nvim-treesitter/nvim-treesitter-refactor',
             'nvim-treesitter/nvim-treesitter-textobjects',
+            'RRethy/nvim-treesitter-endwise',
+            'RRethy/nvim-treesitter-textsubjects',
+            'windwp/nvim-ts-autotag',
         },
     },
-    -- {
-    --     'nvim-treesitter/playground',
-    --     cmd = 'TSPlaygroundToggle',
-    -- },
     {
         'nvim-treesitter/completion-treesitter',
         build = function()
             vim.cmd [[TSUpdate]]
         end,
+        event = { 'BufReadPre', 'BufNewFile' },
     },
-    'aklt/plantuml-syntax', -- TODO: check if TS syntax exists
+    {
+        'aklt/plantuml-syntax', -- TODO: check if TS syntax exists
+        ft = "plantuml",
+    },
     -- 'Sol-Ponz/plantuml-previewer.nvim',
-    { 'javiorfo/nvim-soil',            ft = 'plantuml' },
+    {
+        'javiorfo/nvim-soil',
+        ft = 'plantuml',
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
     {
         'sidebar-nvim/sections-dap',
         -- lazy = true,
         dependencies = {
             'sidebar-nvim/sidebar.nvim',
         },
+        event = { 'BufReadPre', 'BufNewFile' },
     },
-    { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
-    'mfussenegger/nvim-dap-python',
-    'nvim-telescope/telescope-dap.nvim',
     {
         'theHamsta/nvim-dap-virtual-text',
         build = function()
             vim.g.dap_virtual_text = true
         end,
+        dependencies = {
+            'mfussenegger/nvim-dap',
+            'rcarriga/nvim-dap-ui',
+            'mfussenegger/nvim-dap-python',
+        },
+        cmd = { 'DapUIToggle', 'DapToggleRepl', 'DapToggleBreakpoint' },
     },
     {
         'numToStr/Comment.nvim',
         config = true,
+        keys = {
+            { 'gcc', mode = { 'n', }, function() require('Comment').toggle() end, desc = "Comment" },
+            { 'gc',  mode = { 'v' },  function() require('Comment').toggle() end, desc = "Comment" },
+        },
     },
     {
         'nvim-neotest/neotest',
@@ -154,7 +198,7 @@ require('lazy').setup({
             'nvim-neotest/neotest-plenary',
             'rouge8/neotest-rust',
         },
-        event = 'VeryLazy',
+        cmd = 'Neotest',
     },
     {
         'folke/todo-comments.nvim',
@@ -162,29 +206,57 @@ require('lazy').setup({
             'nvim-lua/plenary.nvim',
         },
         config = true,
+        event = { 'BufReadPre', 'BufNewFile' },
     },
-    'tpope/vim-sleuth', -- TODO: is there a lua substitute?
     {
-        {
-            'lukas-reineke/indent-blankline.nvim',
-            main = 'ibl',
-            opts = {},
-        },
+        'tpope/vim-sleuth', -- TODO: is there a lua substitute?
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        main = 'ibl',
+        opts = {},
+        event = { "BufReadPre", "BufNewFile" },
     },
     {
         'kylechui/nvim-surround',
-        version = '*', -- Use for stability; omit to use `main` branch for the latest features
-        event = 'VeryLazy',
+        -- version = '*', -- Use for stability; omit to use `main` branch for the latest features
+        -- event = 'VeryLazy',
+        keys = { 'cs', 'ds', 'ys' },
         config = function()
             require('nvim-surround').setup {
-                -- Configuration here, or leave empty to use defaults
+                keymaps = { -- vim-surround style keymaps
+                    -- insert = "ys",
+                    -- insert_line = "yss",
+                    visual = 'S',
+                    delete = 'ds',
+                    change = 'cs',
+                },
+                surrounds = {
+                    HTML = {
+                        ['t'] = 'type',  -- Change just the tag type
+                        ['T'] = 'whole', -- Change the whole tag contents
+                    },
+                    aliases = {
+                        ['a'] = '>', -- Single character aliases apply everywhere
+                        ['b'] = ')',
+                        ['B'] = '}',
+                        ['r'] = ']',
+                        -- Table aliases only apply for changes/deletions
+                        ['q'] = { '"', "'", '`' },                     -- Any quote character
+                        ['s'] = { ')', ']', '}', '>', "'", '"', '`' }, -- Any surrounding delimiter
+                    },
+                },
+                highlight = { -- Highlight before inserting/changing surrounds
+                    duration = 2,
+                },
             }
         end,
     },
     {
         'Wansmer/treesj',
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
-        event = 'VeryLazy',
+        keys = { '<space>m', '<space>J', '<space>s' },
         config = function()
             require('treesj').setup {
                 -- Use default keymaps
@@ -213,18 +285,37 @@ require('lazy').setup({
             }
         end,
     },
-    'NeogitOrg/neogit',
-    'lewis6991/gitsigns.nvim',
-    'akinsho/git-conflict.nvim',
-    'tpope/vim-fugitive', -- TODO: is there a lua substitute?
-    'tpope/vim-rhubarb',  -- required by fugitive to :Gbrowse
-    'ThePrimeagen/refactoring.nvim',
-    'sindrets/diffview.nvim',
+    {
+        'NeogitOrg/neogit',
+        event = { "BufReadPre", "BufNewFile" },
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        event = { "BufReadPre", "BufNewFile" },
+    },
+    { 'akinsho/git-conflict.nvim', event = { "BufReadPre", "BufNewFile" } },
+    {
+        'tpope/vim-fugitive', -- TODO: is there a lua substitute?
+        cmd = 'Git',
+    },
+    -- 'tpope/vim-rhubarb', -- required by fugitive to :Gbrowse
+    {
+        'ThePrimeagen/refactoring.nvim',
+        event = 'LspAttach',
+    },
+    {
+        'sindrets/diffview.nvim',
+        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh", "DiffviewFileHistory" },
+    },
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'kyazdani42/nvim-web-devicons' },
+        event = { "BufReadPre", "BufNewFile" },
     },
-    'yamatsum/nvim-cursorline',
+    {
+        'yamatsum/nvim-cursorline',
+        event = 'VeryLazy',
+    },
     {
         'ellisonleao/gruvbox.nvim',
         lazy = false,
@@ -239,14 +330,17 @@ require('lazy').setup({
         config = function()
             require('bufferline').setup {}
         end,
+        event = 'VeryLazy',
     },
-    -- 'romgrk/barbar.nvim',
     {
         'vimwiki/vimwiki', -- TODO: is there a lua substitute?
         ft = 'vimwiki',
     },
-    'tpope/vim-repeat',      -- TODO: is there a lua substitute?
-    'tpope/vim-speeddating', -- TODO: is there a lua substitute?
+    -- 'tpope/vim-repeat',      -- TODO: is there a lua substitute?
+    {
+        'tpope/vim-speeddating', -- TODO: is there a lua substitute?
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
     {
         'folke/flash.nvim',
         event = 'VeryLazy',
@@ -303,34 +397,50 @@ require('lazy').setup({
     {
         'folke/which-key.nvim',
         config = true,
+        event = 'VeryLazy',
     },
-    -- " Plug 'mjbrownie/hackertyper.vim'
-    'will133/vim-dirdiff',         -- TODO: is there a lua substitute?
-    'christoomey/vim-conflicted',  -- TODO: is there a lua substitute?
-    'christoomey/vim-sort-motion', -- TODO: is there a lua substitute?
+    {
+        'will133/vim-dirdiff', -- TODO: is there a lua substitute?
+        cmd = "DirDiff",
+    },
+    -- 'christoomey/vim-conflicted',  -- TODO: is there a lua substitute?
+    {
+        'christoomey/vim-sort-motion', -- TODO: is there a lua substitute?
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
     {
         'aserowy/tmux.nvim',
-        event = 'VimEnter',
+        event = function()
+            if vim.fn.exists('$TMUX') == 1 then
+                return 'VeryLazy'
+            end
+        end,
         config = function()
             return require('tmux').setup()
         end,
     },
-    'brooth/far.vim',   -- TODO: is there a lua substitute?
+    -- 'brooth/far.vim',   -- TODO: is there a lua substitute?
     -- " allows opening files at specific location - e.g. /tmp/bal:10:2
     'wsdjeg/vim-fetch', -- TODO: is there a lua substitute?
     -- " Plug 'henrik/vim-open-url'
     -- 'romainl/vim-cool',
     -- " better encryption plugin - dependencies: https://github.com/jedisct1/encpipe
-    'hauleth/vim-encpipe', -- TODO: is there a lua substitute?
+    -- 'hauleth/vim-encpipe', -- TODO: is there a lua substitute?
     -- " floating windows
     -- 'machakann/vim-highlightedyank',
-    'voldikss/vim-floaterm', -- TODO: is there a lua substitute?
+    {
+        'voldikss/vim-floaterm', -- TODO: is there a lua substitute?
+        event = "VeryLazy",
+    },
     -- edit JIRA issues in vim
     -- 'n0v1c3/vira0,
     -- 'dddelispt42/vira', { 'do': './install.sh', }
     -- 'n0v1c3/vira',
     -- " automatically set the root directory
-    'airblade/vim-rooter', -- TODO: is there a lua substitute?
+    {
+        'airblade/vim-rooter', -- TODO: is there a lua substitute?
+        event = "VeryLazy",
+    },
     -- 'github/copilot.vim',
     -- {
     --     'nvim-neorg/neorg',
@@ -348,13 +458,22 @@ require('lazy').setup({
     },
     {
         'rcarriga/nvim-notify',
+        event = 'VeryLazy',
+        cmd = 'Notificaitons'
     },
     {
         'nvim-orgmode/orgmode',
+        event = { 'BufReadPre', 'BufNewFile' },
     },
     -- { 'michaelb/sniprun', build = 'bash ./install.sh' },
-    'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
-    'rest-nvim/rest.nvim',
+    {
+        'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
+    {
+        'rest-nvim/rest.nvim',
+        cmd = { "RestNvim", "RestNvimPreview", "RestNvimLast" },
+    },
     -- {
     --     'Exafunction/codeium.vim',
     --     event = 'VimEnter',
@@ -383,5 +502,5 @@ require('lazy').setup({
         },
     },
 }, {
-    defaults = { lazy = false },
+    -- defaults = { lazy = false },
 })
