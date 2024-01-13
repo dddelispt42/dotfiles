@@ -25,6 +25,7 @@ local map = vim.keymap.set
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 map({ 'n', 'v' }, ',', '<Nop>', { silent = true })
 -- General
+map('n', '<esc>', ':nohlsearch<cr>', { noremap = true, silent = true })
 map('i', 'jk', '<esc>', { noremap = true, silent = true })
 map('t', 'jk', '<c-\\><c-n>', { noremap = true, silent = true })
 map('n', 'n', 'nzzzv', { noremap = true, silent = true })
@@ -218,12 +219,13 @@ map('n', '[g', '<cmd>Gitsign prev_hunk<cr>', { noremap = true, silent = true, de
 map('n', ']g', '<cmd>Gitsign next_hunk<cr>', { noremap = true, silent = true, desc = '[]g]it - next hunk' })
 
 -- Trouble
-map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true })
-map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true })
-map('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', { silent = true, noremap = true })
-map('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true })
-map('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true })
-map('n', 'gR', '<cmd>Trouble lsp_references<cr>', { silent = true, noremap = true })
+map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [x]toggle' })
+map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true, desc = '[x]Trouble [w]orkspace' })
+map('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', { silent = true, noremap = true, desc = '[x]Trouble [d]ocument' })
+map('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true, desc = '[x]Trouble [l]ocation list' })
+map('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true, desc = '[x]Trouble [q]uicklist' })
+map('n', '<leader>xt', '<cmd>TodoTrouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [t]odos' })
+map('n', 'gR', '<cmd>Trouble lsp_references<cr>', { silent = true, noremap = true, desc = '[x]Trouble [R]references' })
 
 -- GUI mode - zooms
 map('n', '<C-ScrollWheelUp>', '<cmd>AdjustFontSize(1)<CR>', { silent = true, noremap = true })
