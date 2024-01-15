@@ -199,6 +199,9 @@ export JAVA_HOME=/opt/java
 # Python - disable keyring
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
+# Poetry
+export POETRY_VIRTUALENVS_IN_PROJECT=1
+
 # NNN related
 export NNN_BMS='d:~/dev;D:~/Docs archive/'
 export NNN_PLUG='o:fzy-open;d:ndiff,p:mocplay;m:nmount;t:thumb'
@@ -218,7 +221,7 @@ export KLAUT="$HOME/Sync/share/"
 export TODOLIST="${KLAUT:-$HOME/Sync/share}/notes/work.org"
 
 #WIKI
-export WIKI_PATH="$HOME/Sync/work/notes/"
+export WIKI_PATH="$HOME/Sync/share/notes/"
 
 # RSS FEEDS
 # export SFEED_PIPER
@@ -229,7 +232,7 @@ export WIKI_PATH="$HOME/Sync/work/notes/"
 # export SFEED_YANKER_INTERACTIVE
 export SFEED_AUTOCMD="t3"
 export SFEED_URL_FILE="$HOME/.cache/sfeed_urls"
-export SFEED_CONFIG_FILE="${KLAUT:-$HOME/Sync/work}/_share/feeds/sfeedrc"
+export SFEED_CONFIG_FILE="${KLAUT:-$HOME/Sync/share}/_share/feeds/sfeedrc"
 export SFEED_CACHE_DIR="$XDG_CACHE_HOME/sfeed/cache/"
 
 # PROOTs on Android
