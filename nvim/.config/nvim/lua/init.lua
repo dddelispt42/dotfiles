@@ -3,7 +3,7 @@
 
 -- Define leader key
 vim.g.mapleader = ' ' -- 'vim.g' sets global variables
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = '\\'
 
 require 'general_config'
 require 'plugins_config'
@@ -26,4 +26,5 @@ require 'plantuml_config'
 require 'refactoring_config'
 require 'notify_config'
 require 'test_config'
+require 'noice_config'
 -- require 'codeium_config'

@@ -25,7 +25,7 @@ local map = vim.keymap.set
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 map({ 'n', 'v' }, ',', '<Nop>', { silent = true })
 -- General
-map('n', '<esc>', ':nohlsearch<cr>', { noremap = true, silent = true })
+map('n', '<esc>', ':nohlsearch<cr><esc>', { noremap = true, silent = true })
 map('i', 'jk', '<esc>', { noremap = true, silent = true })
 map('t', 'jk', '<c-\\><c-n>', { noremap = true, silent = true })
 map('n', 'n', 'nzzzv', { noremap = true, silent = true })
@@ -38,8 +38,8 @@ map('c', 'Qa!', 'qa!', { noremap = true, silent = true })
 map('i', '<c-bs>', '<c-w>', { noremap = true, silent = true }) -- ctrl-backspace to delete previous word
 map('i', '<c-h>', '<c-w>', { noremap = true, silent = true })  -- ctrl-backspace to delete previous word
 -- Move visual block
-map('v', 'J', ':m +1<CR>gv=gv', { noremap = true, silent = true })
-map('v', 'K', ':m -2<CR>gv=gv', { noremap = true, silent = true })
+map({ 'n', 'v' }, 'J', ':m +1<CR>gv=gv', { noremap = true, silent = true })
+map({ 'n', 'v' }, 'K', ':m -2<CR>gv=gv', { noremap = true, silent = true })
 -- jump between buffers in normal mode
 map('n', '<c-h>', '<c-w>h', { noremap = true, silent = true })
 map('n', '<c-j>', '<c-w>j', { noremap = true, silent = true })
@@ -60,12 +60,29 @@ map('n', '<C-Up>', ':resize +2<CR>', { noremap = true, silent = true })
 map('n', '<C-Down>', ':resize -2<CR>', { noremap = true, silent = true })
 map('n', '<C-Left>', ':vertical resize -2<CR>', { noremap = true, silent = true })
 map('n', '<C-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })
+map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+    { desc = "Redraw / clear hlsearch / diff update" })
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+-- map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
+-- map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+-- map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+-- map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev search result" })
+-- map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+-- map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+
+-- better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
 -- remove ^M from dos files
 -- map("n", "<leader>m", ":e ++ff=dos<cr>", { noremap = true, silent = true })
 -- move vertically by visual line
 -- Remap for dealing with word wrap
-map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map({ 'n', 'x' }, '<down>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map({ 'n', 'x' }, '<up>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- highlight last inserted text
 map('n', 'gV', '`[v`]', { noremap = true, silent = true })
 -- Buffer
@@ -220,8 +237,10 @@ map('n', ']g', '<cmd>Gitsign next_hunk<cr>', { noremap = true, silent = true, de
 
 -- Trouble
 map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [x]toggle' })
-map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true, desc = '[x]Trouble [w]orkspace' })
-map('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', { silent = true, noremap = true, desc = '[x]Trouble [d]ocument' })
+map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>',
+    { silent = true, noremap = true, desc = '[x]Trouble [w]orkspace' })
+map('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>',
+    { silent = true, noremap = true, desc = '[x]Trouble [d]ocument' })
 map('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true, desc = '[x]Trouble [l]ocation list' })
 map('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true, desc = '[x]Trouble [q]uicklist' })
 map('n', '<leader>xt', '<cmd>TodoTrouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [t]odos' })

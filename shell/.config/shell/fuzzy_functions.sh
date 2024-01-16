@@ -24,7 +24,7 @@ __handle_jira_issues() {
 
 fja() {
 	local output
-	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
+	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
 	if [ -z ${output+x} ]; then
 		return
 	fi
@@ -33,7 +33,7 @@ fja() {
 
 fj() {
 	local output
-	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | FZF_DEFAULT_OPTS="-x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
+	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y)
 	if [ -z ${output+x} ]; then
 		return
 	fi
@@ -76,7 +76,7 @@ __handle_files() {
 #   - Exit if there's no match (--exit-0)
 ff() {
 	local output
-	IFS=$'\n' output=$(FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf --query="$1" --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)
+	IFS=$'\n' output=$(FZF_DEFAULT_OPTS="--reverse -x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf --query="$1" --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)
 	if [ -z ${output+x} ]; then
 		return
 	fi
@@ -98,7 +98,7 @@ function floc {
 			shift
 		fi
 	fi
-	IFS=$'\n' output="$(locate -Ai '*' "$dir" "$@" | FZF_DEFAULT_OPTS="-x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"
+	IFS=$'\n' output="$(locate -Ai '*' "$dir" "$@" | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100% --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap" fzf -x -0 -m --prompt="Select file(s) [Ctrl-Edit/Open/Preview]> " --expect=ctrl-o,ctrl-e,ctrl-p)"
 	if [ -z ${output+x} ]; then
 		return
 	fi
@@ -137,7 +137,7 @@ function fgr {
 # fkill - kill process
 function fkill {
 	local pid
-	pid=$(ps -ef | sed 1d | FZF_DEFAULT_OPTS="" fzf -x -m | awk '{print $2}')
+	pid=$(ps -ef | sed 1d | FZF_DEFAULT_OPTS="--reverse" fzf -x -m | awk '{print $2}')
 
 	if [ "x$pid" != "x" ]; then
 		echo "$pid" | xargs kill -"${1:-9}"
@@ -206,7 +206,7 @@ function tx {
 	TMUXP_SESSIONS="$(fd 'yaml' .config/tmuxp -x echo "{/.}")"
 	TMUX_SESSIONS="$(tmux list-sessions 2>/dev/null | sed -e "s/\(:.*\)//")"
 	SESSIONS="$( (echo "$TMUXP_SESSIONS" && echo "$TMUX_SESSIONS" | grep -v "^$") | sort -u)"
-	SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="-x " fzf --tac --cycle -0 -1)"
+	SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="--reverse -x " fzf --tac --cycle -0 -1)"
 	if [ -z ${SELECTED+x} ]; then
 		return
 	fi

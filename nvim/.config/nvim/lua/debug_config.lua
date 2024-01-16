@@ -13,6 +13,7 @@ local persi_bp_ok, persi_bp = pcall(require, 'persistent-breakpoints')
 if not persi_bp_ok then
     return
 end
+
 masondap.setup {
     -- A list of adapters to install if they're not already installed.
     -- This setting has no relation with the `automatic_installation` setting.
@@ -127,7 +128,7 @@ masondap.setup {
                     name = 'Launch file',
                     showDebugOutput = true,
                     pathBashdb = vim.fn.stdpath 'data' ..
-                    '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+                        '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
                     pathBashdbLib = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
                     trace = true,
                     file = '${file}',
