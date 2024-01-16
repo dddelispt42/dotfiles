@@ -294,7 +294,11 @@ require('lazy').setup({
         'lewis6991/gitsigns.nvim',
         event = { "BufReadPre", "BufNewFile" },
     },
-    { 'akinsho/git-conflict.nvim', event = { "BufReadPre", "BufNewFile" } },
+    {
+        'akinsho/git-conflict.nvim',
+        config = true,
+        event = { "BufReadPre", "BufNewFile" }
+    },
     {
         'tpope/vim-fugitive', -- TODO: is there a lua substitute?
         cmd = 'Git',

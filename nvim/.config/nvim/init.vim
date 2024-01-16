@@ -64,78 +64,78 @@
         autocmd BufNewFile,BufReadPost,BufWritePost,BufEnter ~/Sync/work/notes/*.md silent! cd ~/Sync/work/notes
     augroup END
 
-" start a pomodoro timer
-    let g:pomoTimer = 0
-    function! TogglePomodoroTimer()
-        if g:pomoTimer == 0
-            silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.config/zsh/.zshrc; cd ~/opt; gtd\""
-            let g:pomoTimer = 1
-        else
-            silent !pkill -u $USER gtd
-            let g:pomoTimer = 0
-        endif
-
-    endfunction
-    noremap <leader>T :call TogglePomodoroTimer()<cr>
-    noremap <leader>D :VimwikiToggleListItem<cr>ddGp<c-o>
-
-" vim-open-url
-    function! HandleURL()
-        let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*')
-        if s:uri !=# ''
-            silent exec '!qutebrowser '.shellescape(s:uri, 1).' &'
-            :redraw!
-        else
-            echo 'No URI found in line.'
-        endif
-    endfunction
-    map <leader>u :call HandleURL()<cr>
-    function! GetMDwebLinkFromURL()
-        let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*')
-        let s:title = system('get_webpage_title.sh '.shellescape(s:uri, 1))
-        if s:uri !=# ''
-            silent call setline('.', substitute(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*', '['.s:title[:-2].']'.'('.s:uri.')', ''))
-        else
-            echo 'No URI found in line.'
-        endif
-    endfunction
-    map <leader>U :call GetMDwebLinkFromURL()<cr>
-
-" terminal config
-    if has('nvim')
-        let g:floaterm_height = 0.8
-        let g:floaterm_width = 0.8
-        let g:floaterm_autoclose = 1
-        nnoremap   <silent>   <F7>    :FloatermNew<CR>
-        tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
-        nnoremap   <silent>   <F8>    :FloatermPrev<CR>
-        tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
-        nnoremap   <silent>   <F9>    :FloatermNext<CR>
-        tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
-        nnoremap   <silent>   <F12>   :FloatermToggle<CR>
-        tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
-        nnoremap <silent> <leader>sh :terminal<CR>
-        " nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
-        " nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
-        " nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
-        " nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
-        nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
-        nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .config/zsh/.config/zsh/.zshrc; fj"<CR>
-    endif
+" " start a pomodoro timer
+"     let g:pomoTimer = 0
+"     function! TogglePomodoroTimer()
+"         if g:pomoTimer == 0
+"             silent !tmux split-window "/usr/bin/env zsh -c \"tmux resize-pane -y 3;source ~/.config/zsh/.zshrc; cd ~/opt; gtd\""
+"             let g:pomoTimer = 1
+"         else
+"             silent !pkill -u $USER gtd
+"             let g:pomoTimer = 0
+"         endif
+"
+"     endfunction
+"     noremap <leader>T :call TogglePomodoroTimer()<cr>
+"     noremap <leader>D :VimwikiToggleListItem<cr>ddGp<c-o>
+"
+" " vim-open-url
+"     function! HandleURL()
+"         let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*')
+"         if s:uri !=# ''
+"             silent exec '!qutebrowser '.shellescape(s:uri, 1).' &'
+"             :redraw!
+"         else
+"             echo 'No URI found in line.'
+"         endif
+"     endfunction
+"     map <leader>u :call HandleURL()<cr>
+"     function! GetMDwebLinkFromURL()
+"         let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*')
+"         let s:title = system('get_webpage_title.sh '.shellescape(s:uri, 1))
+"         if s:uri !=# ''
+"             silent call setline('.', substitute(getline('.'), '[a-z]*:\/\/[^ >,;\(\)]*', '['.s:title[:-2].']'.'('.s:uri.')', ''))
+"         else
+"             echo 'No URI found in line.'
+"         endif
+"     endfunction
+"     map <leader>U :call GetMDwebLinkFromURL()<cr>
+"
+" " terminal config
+"     if has('nvim')
+"         let g:floaterm_height = 0.8
+"         let g:floaterm_width = 0.8
+"         let g:floaterm_autoclose = 1
+"         nnoremap   <silent>   <F7>    :FloatermNew<CR>
+"         tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
+"         nnoremap   <silent>   <F8>    :FloatermPrev<CR>
+"         tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
+"         nnoremap   <silent>   <F9>    :FloatermNext<CR>
+"         tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
+"         nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+"         tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+"         nnoremap <silent> <leader>sh :terminal<CR>
+"         " nnoremap <silent> <Leader>ld :FloatermNew lazydocker<CR>
+"         " nnoremap <silent> <Leader>lg :FloatermNew lazygit<CR>
+"         " nnoremap <silent> <Leader>lf :FloatermNew lf<CR>
+"         " nnoremap <silent> <Leader>bt :FloatermNew bashtop<CR>
+"         nnoremap <silent> <Leader>hc :FloatermNew habitctl<CR>
+"         nnoremap <silent> <Leader>js :FloatermNew zsh -c "source .config/zsh/.config/zsh/.zshrc; fj"<CR>
+"     endif
 
 " JIRA - editor in VIM ;-)
-    function! OpenJiraIssue()
-        if !exists('g:vira_serv')
-            call vira#_menu('servers')
-            echo 'Connecting to a JIRA server first...'
-        else
-            let g:vira_active_issue = input('Enter issue.key: ')
-            call vira#_menu('report')
-        endif
-    endfunction
-    map <leader>jo :call OpenJiraIssue()<cr>
-    let g:vira_browser = 'qutebrowser'
-    " TODO: run queries and open issues from there
+    " function! OpenJiraIssue()
+    "     if !exists('g:vira_serv')
+    "         call vira#_menu('servers')
+    "         echo 'Connecting to a JIRA server first...'
+    "     else
+    "         let g:vira_active_issue = input('Enter issue.key: ')
+    "         call vira#_menu('report')
+    "     endif
+    " endfunction
+    " map <leader>jo :call OpenJiraIssue()<cr>
+    " let g:vira_browser = 'qutebrowser'
+    " " TODO: run queries and open issues from there
 
 " TODO: port to lua
 " Configure font size in GUI mode

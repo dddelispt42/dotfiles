@@ -8,6 +8,7 @@ end
 
 local actions = require 'telescope.actions'
 local telescopeConfig = require 'telescope.config'
+local action_layout = require 'telescope.actions.layout'
 
 -- Clone the default Telescope configuration
 local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
@@ -27,11 +28,30 @@ tele.setup {
     defaults = {
         -- `hidden = true` is not supported in text grep commands.
         vimgrep_arguments = vimgrep_arguments,
+        layout_strategy = "cursor",
+        layout_config = {
+            horizontal = {
+                size = {
+                    width = "90%",
+                    height = "90%",
+                },
+            },
+            vertical = {
+                size = {
+                    width = "90%",
+                    height = "90%",
+                },
+            },
+        },
         mappings = {
+            n = {
+                ["<M-p>"] = action_layout.toggle_preview,
+            },
             i = {
                 ['<C-u>'] = false,
                 ['<C-d>'] = false,
                 ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<M-p>"] = action_layout.toggle_preview,
             },
         },
     },
