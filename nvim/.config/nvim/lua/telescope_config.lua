@@ -7,7 +7,17 @@ if not tele_ok then
 end
 
 local actions = require 'telescope.actions'
+local telescopeConfig = require 'telescope.config'
 
+-- Clone the default Telescope configuration
+local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+-- I want to search in hidden/dot files.
+table.insert(vimgrep_arguments, "--hidden")
+-- I don't want to /earch in the `.git` directory.
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
+--
 -- Enable telescope fzf native, if installed
 pcall(tele.load_extension, 'fzf')
 
@@ -15,12 +25,23 @@ pcall(tele.load_extension, 'fzf')
 -- See `:help telescope` and `:help telescope.setup()`
 tele.setup {
     defaults = {
+        -- `hidden = true` is not supported in text grep commands.
+        vimgrep_arguments = vimgrep_arguments,
         mappings = {
             i = {
                 ['<C-u>'] = false,
                 ['<C-d>'] = false,
                 ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
             },
+        },
+    },
+    pickers = {
+        find_files = {
+            -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+        },
+        git_files = {
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
         },
     },
     extensions = {
@@ -57,37 +78,36 @@ map('n', '<leader>f:', '<cmd>Telescope command_history<cr>', {
     silent = true,
     desc = '[f]ind [:] commands',
 })
+map('n', '<leader>fS', '<cmd>Telescope symbols<cr>', { noremap = true, silent = true, desc = '[f]ind [S]ymbols' })
 map('n', '<leader>:', '<cmd>Telescope commands<cr>', {
     noremap = true,
     silent = true,
     desc = 'find [:] neovim commands',
 })
-vim.keymap.set('n', '<leader>/', function()
+map('n', '<leader>/', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
     require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         winblend = 10,
         previewer = false,
     })
 end, { desc = '[/] Fuzzily search in current buffer]' })
-map('n', '<leader>f-', '<cmd>Telescope filetypes<cr>', {
-    noremap = true,
-    silent = true,
-    desc = '[f]ind [-] file types',
-})
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[f]ind [f]iles' })
--- map('n', '<leader>f.', '<cmd>Telescope find_files cwd="/home/heiko/.config"<cr>', { noremap = true, silent = true })
+map('n', '<leader>f-', '<cmd>Telescope filetypes<cr>', { noremap = true, silent = true, desc = '[f]ind [-] file types', })
+map('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[f]ind [f]iles' })
+map('n', '<leader>f.', '<cmd>Telescope find_files cwd="/home/heiko/.config"<cr>', { noremap = true, silent = true })
 map('n', '<leader>gB', '<cmd>Telescope git_bcommits<cr>', { noremap = true, silent = true, desc = '[f]ind [B]commits' })
 map('n', '<leader>gb', '<cmd>Telescope git_branches<cr>', { noremap = true, silent = true, desc = '[f]ind [b]ranches' })
 map('n', '<leader>gC', '<cmd>Telescope git_commits<cr>', { noremap = true, silent = true, desc = '[f]ind [C]ommits' })
-map('n', '<leader>gf', '<cmd>Telescope git_files<cr>', { noremap = true, silent = true, desc = '[g]it [f]ile finder' })
+-- map('n', '<leader>gf', '<cmd>Telescope git_files<cr>', { noremap = true, silent = true, desc = '[g]it [f]ile finder' })
+map('n', '<leader>gf', "<CMD>lua require'telescope_findfiles_config'.project_files()<CR>",
+    { noremap = true, silent = true, desc = '[g]it [f]ile finder' })
 map('n', '<leader>gS', '<cmd>Telescope git_status<cr>', { noremap = true, silent = true, desc = '[g]it [S]tatus' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[f]ind current [w]ord' })
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[f]ind [h]elp' })
+map('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[f]ind current [w]ord' })
+map('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[f]ind [h]elp' })
 map('n', '<leader>fH', '<cmd>Telescope highlights<cr>', { noremap = true, silent = true, desc = '[f]ind [H]ighlights' })
 map('n', '<leader>fK', '<cmd>Telescope keymaps<cr>', { noremap = true, silent = true, desc = '[f]ind [K]eymaps' })
 map('n', '<leader>fj', '<cmd>Telescope jumplist<cr>', { noremap = true, silent = true, desc = '[f]ind [j]umplist' })
-vim.keymap.set('n', '<leader>a', require('telescope.builtin').live_grep, { desc = 'Find by live grep [a]' })
-vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[f]ind [d]iagnostics' })
+map('n', '<leader>a', require('telescope.builtin').live_grep, { desc = 'Find by live grep [a]' })
+map('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[f]ind [d]iagnostics' })
 map('n', '<leader>fll', '<cmd>Telescope loclist<cr>', { noremap = true, silent = true, desc = '[f]ind [l]oclist' })
 map('n', '<leader>fla', '<cmd>Telescope lsp_code_actions<cr>', {
     noremap = true,
@@ -122,7 +142,7 @@ map('n', '<leader>flw', '<cmd>Telescope lsp_workspace_symbols<cr>', {
 map('n', '<leader>fm', '<cmd>Telescope man_pages<cr>', { noremap = true, silent = true, desc = '[f]ind [m]an pages' })
 map('n', '<leader>fn', '<cmd>Telescope notify<cr>', { noremap = true, silent = true, desc = '[f]ind [n]otify' })
 map('n', "<leader>f'", '<cmd>Telescope marks<cr>', { noremap = true, silent = true, desc = "[f]ind ['] marks" })
-vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[f]ind recently [o]pened files' })
+map('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[f]ind recently [o]pened files' })
 -- map('n', '<leader>fp', '<cmd>Telescope planets<cr>', { noremap = true, silent = true, desc = '[f]ind [p]lanets' })
 map('n', '<leader>fq', '<cmd>Telescope quickfix<cr>', {
     noremap = true,
@@ -132,7 +152,6 @@ map('n', '<leader>fq', '<cmd>Telescope quickfix<cr>', {
 map('n', '<leader>fr', '<cmd>Telescope registers<cr>', { noremap = true, silent = true, desc = '[f]ind [r]egisters' })
 -- map('n', '<leader>fR', '<cmd>Telescope reloader<cr>', { noremap = true, silent = true, desc = '[f]ind [R]eloader' })
 map('n', '<leader>fs', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true, desc = '[f]ind [s]pell' })
-map('n', '<leader>fk', '<cmd>Telescope symbols<cr>', { noremap = true, silent = true, desc = '[f]ind [k] symbols' })
 -- map('n', '<leader>fT', '<cmd>Telescope current_buffer_tags<cr>', {
 --     noremap = true,
 --     silent = true,
