@@ -11,13 +11,16 @@
 --   term_mode = "t",
 --   command_mode = "c",
 -- Convention:
---   g...git
+--   b...buffer
+--   c...merge conflicts
 --   d...debug
---   f...find
+--   f...find (Telescope)
+--   g...git
+--   h...hunk
 --   l...LSP stuff
 --   s...session
---   t...terminal
---   c...merge conflicts
+--   t...terminal/test
+--   w...window
 
 -- Shorten function name
 local map = vim.keymap.set
@@ -86,8 +89,8 @@ map({ 'n', 'x' }, '<up>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = t
 -- highlight last inserted text
 map('n', 'gV', '`[v`]', { noremap = true, silent = true })
 -- Buffer
--- map('n', '<Leader>h', ':<C-u>split<CR>', { noremap = true, silent = true })
--- map('n', '<Leader>v', ':<C-u>vsplit<CR>', { noremap = true, silent = true })
+-- map('n', '<leader>h', ':<C-u>split<CR>', { noremap = true, silent = true })
+-- map('n', '<leader>v', ':<C-u>vsplit<CR>', { noremap = true, silent = true })
 map('n', '<S-l>', ':bnext<CR>', { noremap = true, silent = true })
 map('n', '<S-h>', ':bprevious<CR>', { noremap = true, silent = true })
 
@@ -181,11 +184,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- map('n', '<leader>sc', ':CloseSession<CR>', { noremap = true, silent = true, desc = '[s]ession [c]reate' })
 -- map('n', '<leader>sd', ':DeleteSession<CR>', { noremap = true, silent = true, desc = '[s]ession [d]elete' })
 -- Tagbar
-map('n', '<Leader>tb', ':SidebarNvimToggle<CR>', { noremap = true, silent = true, desc = '[t]ag[b]ar' })
+map('n', '<leader>tb', ':SidebarNvimToggle<CR>', { noremap = true, silent = true, desc = '[t]ag[b]ar' })
 -- Merge conflicts
 map('n', '<leader>cr', ':diffg RE<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [r]emote' })
-map('n', '<leader>cb', ':diffg BA<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [r]emote' })
-map('n', '<leader>cl', ':diffg LO<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [b]ase' })
+map('n', '<leader>cb', ':diffg BA<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [b]ase' })
+map('n', '<leader>cl', ':diffg LO<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [l]ocal' })
 
 -- LSP
 map('n', '<leader>la', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
@@ -225,15 +228,37 @@ end, { noremap = true, silent = true, desc = '[l]sp [w]orkspace folder [l]ist' }
 map('n', '<c-]>', vim.lsp.buf.definition, { noremap = true, silent = true, desc = '[c-]] ... tags basd on lsp' })
 -- Open applications
 map('n', '<c-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = '[c-n]vim tree toggle' })
-map('n', '<Leader>gd', ':Gvdiff<CR>', { noremap = true, silent = true, desc = '[g]it [d]iff' })
+map('n', '<leader>gd', ':DiffviewOpen<CR>', { noremap = true, silent = true, desc = '[g]it [d]iff' })
+map('n', '<leader>gh', ':DiffviewFileHistory<CR>', { noremap = true, silent = true, desc = '[g]it [h]istory diff' })
+map('n', '<leader>gc', ':DiffviewClose<CR>', { noremap = true, silent = true, desc = '[g]it [c]lose diff view' })
 
-map('n', '<leader>gm', '<cmd>Gitsign blame_line<cr>', {
+map('n', '<leader>gm', '<cmd>Gitsign blame_line(full=true)<cr>', {
     noremap = true,
     silent = true,
     desc = '[g]it [m]essage from git blame',
 })
+
+-- Hunks
+-- Navigation
 map('n', '[g', '<cmd>Gitsign prev_hunk<cr>', { noremap = true, silent = true, desc = '[[g]it - previous hunk' })
 map('n', ']g', '<cmd>Gitsign next_hunk<cr>', { noremap = true, silent = true, desc = '[]g]it - next hunk' })
+-- Actions
+map('n', '<leader>hs', ':Gitsigns stage_hunk<CR>')
+map('v', '<leader>hs', ':Gitsigns stage_hunk<CR>')
+map('n', '<leader>hr', ':Gitsigns reset_hunk<CR>')
+map('v', '<leader>hr', ':Gitsigns reset_hunk<CR>')
+map('n', '<leader>hS', '<cmd>Gitsigns stage_buffer<CR>')
+map('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<CR>')
+map('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<CR>')
+map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>')
+map('n', '<leader>hb', '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
+map('n', '<leader>hB', '<cmd>Gitsigns toggle_current_line_blame<CR>')
+map('n', '<leader>hd', '<cmd>Gitsigns diffthis<CR>')
+map('n', '<leader>hD', '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+map('n', '<leader>h-', '<cmd>Gitsigns toggle_deleted<CR>')
+-- Text object
+map('o', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+map('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 
 -- Trouble
 map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [x]toggle' })
