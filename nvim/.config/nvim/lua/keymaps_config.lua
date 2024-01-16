@@ -38,8 +38,8 @@ map('c', 'Qa!', 'qa!', { noremap = true, silent = true })
 map('i', '<c-bs>', '<c-w>', { noremap = true, silent = true }) -- ctrl-backspace to delete previous word
 map('i', '<c-h>', '<c-w>', { noremap = true, silent = true })  -- ctrl-backspace to delete previous word
 -- Move visual block
-map({ 'n', 'v' }, 'J', ':m +1<CR>gv=gv', { noremap = true, silent = true })
-map({ 'n', 'v' }, 'K', ':m -2<CR>gv=gv', { noremap = true, silent = true })
+map({ 'n', 'v' }, '<A-j>', ':m +1<CR>gv=gv', { noremap = true, silent = true })
+map({ 'n', 'v' }, '<A-k>', ':m -2<CR>gv=gv', { noremap = true, silent = true })
 -- jump between buffers in normal mode
 map('n', '<c-h>', '<c-w>h', { noremap = true, silent = true })
 map('n', '<c-j>', '<c-w>j', { noremap = true, silent = true })

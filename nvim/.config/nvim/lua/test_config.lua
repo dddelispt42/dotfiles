@@ -26,13 +26,33 @@ map('n', '<leader>tn', '<cmd>require("neotest").run.run()<cr>', {
     silent = true,
     desc = '[t]est [n]nearest',
 })
-map('n', '<leader>tc', '<cmd>require("neotest").run.run(vim.fm.expand("&"))<cr>', {
+map('n', '<leader>tb', '<cmd>require("neotest").run.run(vim.fn.expand("%"))<cr>', {
     noremap = true,
     silent = true,
-    desc = '[t]est [n]nearest',
+    desc = '[t]est [b]uffer',
 })
 map('n', '<leader>td', '<cmd>require("neotest").run.run({strategy = "dap"})<cr>', {
     noremap = true,
     silent = true,
     desc = '[t]est [d]ebug nearest test',
+})
+map('n', '<leader>tw', '<cmd>Neotest watch', {
+    noremap = true,
+    silent = true,
+    desc = '[t]est [w]atch',
+})
+map('n', '<leader>to', '<cmd>Neotest output', {
+    noremap = true,
+    silent = true,
+    desc = '[t]est [o]utput',
+})
+map('n', '<leader>ts', '<cmd>Neotest summary', {
+    noremap = true,
+    silent = true,
+    desc = '[t]est [s]ummary',
+})
+map('n', '<leader>tD', '<cmd>Neotest diagnostic', {
+    noremap = true,
+    silent = true,
+    desc = '[t]est [D]iagnostic',
 })
