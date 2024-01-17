@@ -17,7 +17,7 @@ local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
 table.insert(vimgrep_arguments, "--hidden")
 -- I don't want to /earch in the `.git` directory.
 table.insert(vimgrep_arguments, "--glob")
-table.insert(vimgrep_arguments, "!**/.git/*")
+table.insert(vimgrep_arguments, "!**/{.venv,.git}/*")
 --
 -- Enable telescope fzf native, if installed
 pcall(tele.load_extension, 'fzf')
@@ -28,20 +28,15 @@ tele.setup {
     defaults = {
         -- `hidden = true` is not supported in text grep commands.
         vimgrep_arguments = vimgrep_arguments,
-        layout_strategy = "cursor",
+
+        layout_strategy = "horizontal",
         layout_config = {
-            horizontal = {
-                size = {
-                    width = "90%",
-                    height = "90%",
-                },
-            },
-            vertical = {
-                size = {
-                    width = "90%",
-                    height = "90%",
-                },
-            },
+          horizontal = {
+            prompt_position = "top",
+            width = { padding = 0.1 },
+            height = { padding = 0.1 },
+            preview_width = 0.5,
+          },
         },
         mappings = {
             n = {
@@ -58,10 +53,10 @@ tele.setup {
     pickers = {
         find_files = {
             -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/{.venv,.git}/*" },
         },
         git_files = {
-            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/{.venv,.git}/*" },
         },
     },
     extensions = {
