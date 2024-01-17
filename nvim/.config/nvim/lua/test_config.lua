@@ -26,10 +26,10 @@ map('n', '<leader>tn', '<cmd>require("neotest").run.run()<cr>', {
     silent = true,
     desc = '[t]est [n]nearest',
 })
-map('n', '<leader>tb', '<cmd>require("neotest").run.run(vim.fn.expand("%"))<cr>', {
+map('n', '<leader>ta', '<cmd>require("neotest").run.run(vim.fn.expand("%"))<cr>', {
     noremap = true,
     silent = true,
-    desc = '[t]est [b]uffer',
+    desc = '[t]est [a]ll tests in buffer',
 })
 map('n', '<leader>td', '<cmd>require("neotest").run.run({strategy = "dap"})<cr>', {
     noremap = true,

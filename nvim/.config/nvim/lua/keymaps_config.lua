@@ -84,8 +84,8 @@ map("v", ">", ">gv")
 -- Remap for dealing with word wrap
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ 'n', 'x' }, '<down>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map({ 'n', 'x' }, '<up>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map({ 'n', 'x' }, '<up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map({ 'n', 'x' }, '<down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- highlight last inserted text
 map('n', 'gV', '`[v`]', { noremap = true, silent = true })
 -- Buffer
@@ -183,8 +183,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- map('n', '<leader>ss', ':SaveSession<Space>', { noremap = true, silent = true, desc = '[s]ession [s]ave' })
 -- map('n', '<leader>sc', ':CloseSession<CR>', { noremap = true, silent = true, desc = '[s]ession [c]reate' })
 -- map('n', '<leader>sd', ':DeleteSession<CR>', { noremap = true, silent = true, desc = '[s]ession [d]elete' })
--- Tagbar
-map('n', '<leader>tb', ':SidebarNvimToggle<CR>', { noremap = true, silent = true, desc = '[t]ag[b]ar' })
+-- Tagbar/Aerial
+map('n', '<leader>tb', ':AerialToggle!<CR>', { noremap = true, silent = true, desc = '[t]ag [b]ar' })
+map('n', '<leader>tB', ':AerialNavToggle<CR>', { noremap = true, silent = true, desc = '[t]ag [b]ar navigation' })
 -- Merge conflicts
 map('n', '<leader>cr', ':diffg RE<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [r]emote' })
 map('n', '<leader>cb', ':diffg BA<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [b]ase' })
