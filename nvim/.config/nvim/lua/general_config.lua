@@ -84,6 +84,7 @@ o.wrap = true -- display lines as one long line
 -- if a file is being edited by another program (or was written to file while editing
 -- with another program), it is not allowed to be edited
 o.writebackup = false
+o.shellslash = true
 
 -- window-local options
 wo.number = true
@@ -98,8 +99,13 @@ bo.tabstop = 4
 bo.softtabstop = 4
 bo.shiftwidth = 4
 
+-- orgmode link concealing
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = 'nc'
+
 g.loaded_perl_provider = 0
 
+vim.cmd('language en_US.utf8')
 vim.cmd 'filetype plugin indent on'
 vim.cmd 'set spell!'
 

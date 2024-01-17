@@ -255,7 +255,9 @@ export FZF_CTRL_T_OPTS="--height 60% \
 	--pointer ▶ \
 	--marker ⇒"
 # export FZF_TMUX_OPTS="-d 40% -p"
-export FZF_TMUX_OPTS="-d 40%"
+# export FZF_TMUX_OPTS="-d 40%"
+export FZF_TMUX_OPTS="-p 80%,80%"
+export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export LAUNCHER=sk
 export CM_LAUNCHER=fzf
 if [ -n "${DISPLAY+1}" ]; then
