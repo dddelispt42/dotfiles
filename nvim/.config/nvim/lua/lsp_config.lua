@@ -334,3 +334,199 @@ require('neodev').setup()
 
 -- Turn on lsp status information
 require('fidget').setup()
+
+require('mason-tool-installer').setup {
+
+    -- a list of all tools you want to ensure are installed upon
+    -- start
+    ensure_installed = {
+
+        -- you can pin a tool to a particular version
+        { 'golangci-lint',        version = 'v1.47.0' },
+
+        -- you can turn off/on auto_update per tool
+        { 'bash-language-server', auto_update = true },
+
+        -- 'lua-language-server',
+        -- 'vim-language-server',
+        -- 'gopls',
+        -- 'stylua',
+        -- 'shellcheck',
+        -- 'editorconfig-checker',
+        -- 'gofumpt',
+        -- 'golines',
+        -- 'gomodifytags',
+        -- 'gotests',
+        -- 'impl',
+        -- 'json-to-struct',
+        -- 'luacheck',
+        -- 'misspell',
+        -- 'revive',
+        -- 'shellcheck',
+        -- 'shfmt',
+        -- 'staticcheck',
+        -- 'vint',
+        'angularls',
+        'ansiblels',
+        'arduino_language_server',
+        -- 'asm_lsp',
+        -- 'autotools-language-server',
+        -- 'awk_ls',
+        'azure_pipelines_ls',
+        'bashls',
+        'biome',
+        -- 'bufls',
+        'clangd',
+        -- 'clarity_lsp',
+        'clojure_lsp',
+        -- 'codeqlls',
+        -- 'crystalline',
+        -- 'csharp_ls',
+        'cssls',
+        'cssmodules_ls',
+        'cucumber_language_server',
+        'custom_elements_ls',
+        'cypher_ls',
+        'diagnosticls',
+        'docker_compose_language_service',
+        'dockerls',
+        'dotls',
+        'efm',
+        'elixirls',
+        'elmls',
+        'erg_language_server',
+        -- 'erlangls',
+        'fortls',
+        'gleam',
+        'glint',
+        -- 'golangci_lint_ls',
+        -- 'gopls',
+        'gradle_ls',
+        'grammarly',
+        -- 'graphql',
+        -- 'groovyls',
+        -- 'haxe_language_server',
+        -- 'hdl_checker',
+        'helm_ls',
+        -- 'hls',
+        'hoon_ls',
+        'html',
+        -- 'htmx',
+        'hydra_lsp',
+        -- 'java_language_server',
+        'jdtls',
+        -- 'jqls',
+        'jsonls',
+        -- 'jsonnet_ls',
+        'julials',
+        -- 'kotlin_language_server',
+        -- 'lelwel_ls',
+        'lemminx',
+        'ltex',
+        'lua_ls',
+        'luau_lsp',
+        'marksman',
+        'matlab_ls',
+        'mdx_analyzer',
+        -- 'mm0_ls',
+        -- 'move_analyzer',
+        'mutt_ls',
+        -- 'neocmake',
+        -- 'nimls',
+        -- 'ocamllsp',
+        'ols',
+        -- 'omnisharp',
+        -- 'omnisharp_mono',
+        'opencl_ls',
+        -- 'openscad_lsp',
+        -- 'pkgbuild_language_server',
+        -- 'powershell_es',
+        'prosemd_lsp',
+        -- 'pylsp',
+        -- 'pylyzer',
+        'pyright',
+        'quick_lint_js',
+        -- 'r_language_server',
+        'raku_navigator',
+        'reason_ls',
+        'remark_ls',
+        'rescriptls',
+        'robotframework_ls',
+        'ruff_lsp',
+        'rust_analyzer',
+        'slint_lsp',
+        'smithy_ls',
+        'sourcery',
+        -- 'spectral',
+        -- 'sqls',
+        'stimulus_ls',
+        'stylelint_lsp',
+        -- 'svelte',
+        -- 'swift_mesonls',
+        'tailwindcss',
+        'taplo',
+        -- 'teal_ls',
+        'terraformls',
+        'texlab',
+        'tflint',
+        'thriftls',
+        'tsserver',
+        'typos_lsp',
+        'typst_lsp',
+        'unocss',
+        'v_analyzer',
+        -- 'vala_ls',
+        'vale_ls',
+        'veryl_ls',
+        'vimls',
+        'visualforce_ls',
+        -- 'vls',
+        'vtsls',
+        'yamlls',
+        -- 'zk',
+        'zls',
+        -- 'bash-debug-adapter', -- check
+        -- 'codelldb',           -- check
+        -- 'cpplint',            -- check
+        -- 'debugpy',            -- check
+        -- 'fixjson',            -- check
+        -- 'gitlint',            -- check
+        -- 'jsonlint',           -- check
+        -- 'markdownlint',       -- check
+        -- 'prettier',           -- check
+        -- 'protolint',          -- check
+        -- 'shellcheck',         -- check
+        -- 'shfmt',              -- check
+        -- 'stylelit',           -- check
+        -- 'stylua',             -- check
+        -- 'texlab',             -- check
+        -- 'yamlfmt',            -- check
+        -- 'yamllint',           -- check
+    },
+
+    -- if set to true this will check each tool for updates. If updates
+    -- are available the tool will be updated. This setting does not
+    -- affect :MasonToolsUpdate or :MasonToolsInstall.
+    -- Default: false
+    auto_update = true,
+
+    -- automatically install / update on startup. If set to false nothing
+    -- will happen on startup. You can use :MasonToolsInstall or
+    -- :MasonToolsUpdate to install tools and check for updates.
+    -- Default: true
+    run_on_start = true,
+
+    -- set a delay (in ms) before the installation starts. This is only
+    -- effective if run_on_start is set to true.
+    -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
+    -- Default: 0
+    start_delay = 3000, -- 3 second delay
+
+    -- Only attempt to install if 'debounce_hours' number of hours has
+    -- elapsed since the last time Neovim was started. This stores a
+    -- timestamp in a file named stdpath('data')/mason-tool-installer-debounce.
+    -- This is only relevant when you are using 'run_on_start'. It has no
+    -- effect when running manually via ':MasonToolsInstall' etc....
+    -- Default: nil
+    debounce_hours = 5, -- at least 5 hours between attempts to install/update
+}
