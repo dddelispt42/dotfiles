@@ -550,6 +550,14 @@ require('lazy').setup({
             'nvim-telescope/telescope.nvim',
         },
     },
+    {
+        "Pocco81/auto-save.nvim",
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = function()
+            require("auto-save").setup {
+            }
+        end,
+    },
 }, {
     -- defaults = { lazy = false },
 })
