@@ -221,7 +221,9 @@ export KLAUT="$HOME/Sync/share/"
 export TODOLIST="${KLAUT:-$HOME/Sync/share}/notes/work.org"
 
 #WIKI
-export WIKI_PATH="$HOME/Sync/share/notes/"
+export WIKI_PATH="${HOME}/Sync/share/notes/"
+#Dotfiles
+export DOTFILES="${HOME}/dev/${USER}/dotfiles/"
 
 # RSS FEEDS
 # export SFEED_PIPER
@@ -242,28 +244,30 @@ if [[ "$ANDROID_ROOT" == "/system" ]]; then
 fi
 
 # fuzzy finder variables
-# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-# export FZF_DEFAULT_COMMAND='rg --files -uu'
+# fzf --preview command for file and directory
+export FZF_PREVIEW_CMD="${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}"
+# export FZF_DEFAULT_COMMAND="rg --files -uu --follow || git ls-tree -r --name-only HEAD || rg --files || find ."
+export FZF_DEFAULT_COMMAND='git ls-files 2>/dev/null || fd -t f --follow --color always || rg --file --follow --color always || find . -type f'
+export FZF_DEFAULT_COMMAND_HIDDEN='fd -t f -HI --follow  --exclude ".git"'
+export FZF_DEFAULT_COMMAND_DIR='fd -t d -HI --follow  --exclude ".git"'
 export FZF_COLORSCHEMA='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
-export FZF_DEFAULT_COMMAND='fd -HI --follow  --exclude "**/.git/**"'
-export FZF_DEFAULT_OPTS="--reverse -x --multi --height 50% --border --inline-info --preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' --preview-window=right:50%:wrap $FZF_COLORSCHEMA"
-export SKIM_DEFAULT_COMMAND="rg --files -uu --follow || git ls-tree -r --name-only HEAD || rg --files || find ."
+export FZF_DEFAULT_OPTS="--reverse -x -m --height 50% --border --ansi --inline-info \
+	--preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' \
+	--preview-window=right:50%:wrap $FZF_COLORSCHEMA \
+	--prompt='▶' --pointer='→' --marker='✅'"
+export SKIM_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height 60% \
 	--border sharp \
 	--layout reverse \
 	--prompt '∷ ' \
 	--pointer ▶ \
 	--marker ⇒"
-# export FZF_TMUX_OPTS="-d 40% -p"
-# export FZF_TMUX_OPTS="-d 40%"
-export FZF_TMUX_OPTS="-p 80%,80%"
+export FZF_TMUX_OPTS="-p90%,90%"
 export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-export LAUNCHER=sk
-export CM_LAUNCHER=fzf
+export LAUNCHER=fzf-tmux
+export CM_LAUNCHER=fzf-tmux
 if [ -n "${DISPLAY+1}" ]; then
 	export LAUNCHER="rofi -dmenu"
-	# export LAUNCHER=dmenu
-	# export CM_LAUNCHER=dmenu
 	export CM_LAUNCHER=rofi
 fi
 

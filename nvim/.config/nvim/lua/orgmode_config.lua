@@ -20,7 +20,7 @@ orgmode.setup {
     org_agenda_files = { '~/notes/**/*.org' },
     org_default_notes_file = '~/notes/capture.org',
     org_hide_emphasis_markers = true,
-    org_indent_mode = 'noindent',
+    -- org_indent_mode = 'noindent',
     org_deadline_warning_days = 3,
     org_agenda_span = 'day',
     -- org_agenda_start_day = '-1d',
