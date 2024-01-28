@@ -3,10 +3,12 @@
 
 local cmp_ok, cmp = pcall(require, 'cmp')
 if not cmp_ok then
+    vim.notify("cmp plugin not loaded!")
     return
 end
 local luasnip_ok, luasnip = pcall(require, 'luasnip')
 if not luasnip_ok then
+    vim.notify("luasnip plugin not loaded!")
     return
 end
 
@@ -90,6 +92,7 @@ require('luasnip.loaders.from_lua').lazy_load()
 
 local cmplsp_ok, cmplsp = pcall(require, 'cmp_nvim_lsp')
 if not cmplsp_ok then
+    vim.notify("cmp_nvim_lsp plugin not loaded!")
     return
 end
 local capabilities = vim.lsp.protocol.make_client_capabilities()

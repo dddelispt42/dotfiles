@@ -13,6 +13,7 @@ end
 
 local colorizer_ok, colorizer = pcall(require, 'colorizer')
 if not colorizer_ok then
+    vim.notify("colorizer plugin not loaded!")
     return
 end
 colorizer.setup()

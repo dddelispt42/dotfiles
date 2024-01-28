@@ -3,6 +3,7 @@
 
 local orgmode_ok, orgmode = pcall(require, 'orgmode')
 if not orgmode_ok then
+    vim.notify("orgmode plugin not loaded!")
     return
 end
 
@@ -68,6 +69,7 @@ orgmode.setup {
 
 local neorg_ok, neorg = pcall(require, 'neorg')
 if not neorg_ok then
+    vim.notify("neorg plugin not loaded!")
     return
 end
 
@@ -107,6 +109,7 @@ neorg.setup {
 
 -- local orgbullets_ok, orgbullets = pcall(require, 'org-bullets')
 -- if not orgbullets_ok then
+--     vim.notify("org-bullets plugin not loaded!")
 --     return
 -- end
 -- orgbullets.setup()

@@ -3,6 +3,7 @@
 
 local neotest_ok, neotest = pcall(require, 'neotest')
 if not neotest_ok then
+    vim.notify("neotest plugin not loaded!")
     return
 end
 neotest.setup {

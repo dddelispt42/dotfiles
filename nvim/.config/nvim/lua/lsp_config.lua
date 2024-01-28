@@ -3,6 +3,7 @@
 
 local mason_ok, mason = pcall(require, 'mason')
 if not mason_ok then
+    vim.notify("mason plugin not loaded!")
     return
 end
 
@@ -316,6 +317,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 
 local rusttools_ok, rusttools = pcall(require, 'rust-tools')
 if not rusttools_ok then
+    vim.notify("rust-tools plugin not loaded!")
     return
 end
 rusttools.setup {

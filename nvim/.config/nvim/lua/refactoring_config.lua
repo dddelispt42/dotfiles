@@ -3,6 +3,7 @@
 
 local refact_ok, refact = pcall(require, 'refactoring')
 if not refact_ok then
+    vim.notify("refactoring plugin not loaded!")
     return
 end
 refact.setup {}
@@ -42,6 +43,7 @@ vim.api.nvim_set_keymap(
 -- load refactoring Telescope extension
 local tele_ok, tele = pcall(require, 'telescope')
 if not tele_ok then
+    vim.notify("telescope plugin not loaded!")
     return
 end
 tele.load_extension 'refactoring'
