@@ -43,3 +43,5 @@ github = 'chitoku-k/fzf-zsh-completions'
 github = 'z-shell/zsh-zoxide'
 [plugins.zsh-autocomplete]
 github = 'marlonrichert/zsh-autocomplete.git'
+[plugins.fzf-tab]
+github = 'Aloxaf/fzf-tab.git'
