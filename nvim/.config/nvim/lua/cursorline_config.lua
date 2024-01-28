@@ -3,6 +3,7 @@
 
 local cursorline_ok, cursorline = pcall(require, 'nvim-cursorline')
 if not cursorline_ok then
+    vim.notify("nvim-cursorline plugin not loaded!")
   return
 end
 

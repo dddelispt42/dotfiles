@@ -3,10 +3,12 @@
 
 -- local pumlpreview_ok, pumlpreview = pcall(require, 'plantuml-previewer')
 -- if not pumlpreview_ok then
+--     vim.notify("orgmode plugin not loaded!")
 --     return
 -- end
 local soil_ok, soil = pcall(require, 'soil')
 if not soil_ok then
+    vim.notify("soil plugin not loaded!")
     return
 end
 

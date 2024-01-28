@@ -1,12 +1,13 @@
 -- luacheck: globals vim
 ---@diagnostic disable: undefined-global
 
-local status_ok, _ = pcall(require, 'gitsigns')
+local status_ok, gitsigns = pcall(require, 'gitsigns')
 if not status_ok then
+    vim.notify("gitsigns plugin not loaded!")
     return
 end
 
-require('gitsigns').setup {
+gitsigns.setup {
     signs = {
         add = { hl = 'GitSignsAdd', text = '▎', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
         change = { hl = 'GitSignsChange', text = '▎', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },

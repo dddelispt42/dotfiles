@@ -3,6 +3,7 @@
 
 local noice_ok, noice = pcall(require, 'noice')
 if not noice_ok then
+    vim.notify("noice plugin not loaded!")
   return
 end
 
@@ -22,6 +23,12 @@ noice.setup({
     long_message_to_split = true, -- long messages will be sent to a split
     inc_rename = false,           -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = false,       -- add a border to hover docs and signature help
+  },
+  routes = {
+    {
+      view = "notify",
+      filter = { event = "msg_showmode" },
+    },
   },
   views = {
     cmdline_popup = {

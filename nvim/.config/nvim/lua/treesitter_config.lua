@@ -3,6 +3,7 @@
 
 local ts_ok, ts = pcall(require, 'nvim-treesitter.configs')
 if not ts_ok then
+    vim.notify("nvim-treesitter.configs plugin not loaded!")
     return
 end
 

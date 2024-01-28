@@ -3,14 +3,17 @@
 
 local masondap_ok, masondap = pcall(require, 'mason-nvim-dap')
 if not masondap_ok then
+    vim.notify("mason-nvim-dap plugin not loaded!")
     return
 end
 local nvimdap_ok, nvimdap = pcall(require, 'dap')
 if not nvimdap_ok then
+    vim.notify("dap plugin not loaded!")
     return
 end
 local persi_bp_ok, persi_bp = pcall(require, 'persistent-breakpoints')
 if not persi_bp_ok then
+    vim.notify("persistent-breakpoints plugin not loaded!")
     return
 end
 
@@ -174,6 +177,7 @@ masondap.setup {
 
 local dapui_ok, dapui = pcall(require, 'dapui')
 if not dapui_ok then
+    vim.notify("dapui plugin not loaded!")
     return
 end
 dapui.setup {
@@ -244,6 +248,7 @@ end
 
 local dapvtext_ok, dapvtext = pcall(require, 'nvim-dap-virtual-text')
 if not dapvtext_ok then
+    vim.notify("nvim-dap-virtual-text plugin not loaded!")
     return
 end
 dapvtext.setup {

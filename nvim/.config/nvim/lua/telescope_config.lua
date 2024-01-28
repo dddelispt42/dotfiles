@@ -3,6 +3,7 @@
 
 local tele_ok, tele = pcall(require, 'telescope')
 if not tele_ok then
+    vim.notify("telescope plugin not loaded!")
     return
 end
 
