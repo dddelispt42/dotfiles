@@ -71,6 +71,15 @@ tele.setup {
     },
 }
 
+-- telescope actions for dap
+local tele_ok, tele = pcall(require, 'telescope')
+if not tele_ok then
+    vim.notify("telescope plugin not loaded!")
+    return
+end
+tele.load_extension 'dap'
+
+-- telescope related keymappings
 local map = vim.keymap.set
 -- Telescope - new native lua style
 map('n', '<leader>fA', '<cmd>Telescope autocommands<cr>', {
