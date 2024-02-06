@@ -11,7 +11,7 @@ if not mason_null_ls_status_ok then
     vim.notify("mason-null-ls plugin not loaded!")
     return
 end
--- local null_ls = require("null-ls")
+
 mason_null_ls.setup {
     -- A list of sources to install if they're not already installed.
     -- This setting has no relation with the `automatic_installation` setting.
