@@ -248,8 +248,8 @@ fi
 export FZF_PREVIEW_CMD="${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}"
 # export FZF_DEFAULT_COMMAND="rg --files -uu --follow || git ls-tree -r --name-only HEAD || rg --files || find ."
 export FZF_DEFAULT_COMMAND='git ls-files 2>/dev/null || fd -t f --follow --color always || rg --file --follow --color always || find . -type f'
-export FZF_DEFAULT_COMMAND_HIDDEN='fd -t f -HI --follow  --exclude ".git"'
-export FZF_DEFAULT_COMMAND_DIR='fd -t d -HI --follow  --exclude ".git"'
+export FZF_DEFAULT_COMMAND_HIDDEN='fd -t f -HI --follow  --exclude "{.git,.venv}"'
+export FZF_DEFAULT_COMMAND_DIR='fd -t d -HI --follow  --exclude "{.git,.venv}"'
 export FZF_COLORSCHEMA='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
 export FZF_DEFAULT_OPTS="--reverse -x -m --height 50% --border --ansi --inline-info \
 	--preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' \
