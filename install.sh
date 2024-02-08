@@ -241,6 +241,9 @@ if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
 	mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
 	cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
 	cp "${XDG_CONFIG_HOME:-$HOME/.config}"/git/* /mnt/users/hriemer/.config/git/
+
+	# TODO - plenary bug - remove once fixed
+	sed -i -e 's/\(string\.match(filename.*%a\]:\)\\\\/\1[\\\\\/]/' /mnt/users/hriemer/AppData/Local/nvim-data/lazy/plenary.nvim/lua/plenary/path.lua
 fi
 if test -d /mnt/users/hriemer/.config/vifm/; then
 	rsync -av --delete vifm/.config/vifm/ /mnt/users/hriemer/AppData/Roaming/Vifm/
