@@ -36,7 +36,7 @@ require('lazy').setup({
     },
     {
         'norcalli/nvim-colorizer.lua',
-        event = "VeryLazy",
+        event = 'VeryLazy',
     },
     -- {
     --     'folke/zen-mode.nvim',
@@ -51,8 +51,8 @@ require('lazy').setup({
         -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
         lazy = not vim.g.started_by_firenvim,
         build = function()
-            vim.fn["firenvim#install"](0)
-        end
+            vim.fn['firenvim#install'](0)
+        end,
     },
     {
         'kyazdani42/nvim-tree.lua',
@@ -83,11 +83,11 @@ require('lazy').setup({
         event = { 'BufReadPre', 'BufNewFile' },
     },
     {
-        "jay-babu/mason-null-ls.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        'jay-babu/mason-null-ls.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            "williamboman/mason.nvim",
-            "nvimtools/none-ls.nvim",
+            'williamboman/mason.nvim',
+            'nvimtools/none-ls.nvim',
         },
         -- config = function()
         --     require("your.null-ls.config") -- require your null-ls config here (example below)
@@ -101,7 +101,7 @@ require('lazy').setup({
         'saecki/crates.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = true,
-        event = { "BufRead Cargo.toml" },
+        event = { 'BufRead Cargo.toml' },
     },
     {
         'b0o/schemastore.nvim',
@@ -109,10 +109,10 @@ require('lazy').setup({
     },
     {
         'folke/trouble.nvim',
-        dependencies = 'kyazdani42/nvim-web-devicons',
+        dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('trouble').setup {
-                auto_open = true,  -- automatically open the list when you have diagnostics
+                auto_open = true, -- automatically open the list when you have diagnostics
                 auto_close = true, -- automatically close the list when you have no diagnostics
                 -- automatically preview the location of the diagnostic.
                 -- <esc> to close preview and go back to last window
@@ -141,14 +141,14 @@ require('lazy').setup({
         },
     },
     {
-        "L3MON4D3/LuaSnip",
-        dependencies = { 'rafamadriz/friendly-snippets', },
-        build = "make install_jsregexp",
-        event = 'InsertEnter'
+        'L3MON4D3/LuaSnip',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+        build = 'make install_jsregexp',
+        event = 'InsertEnter',
     },
     { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
-        build = ":TSUpdate",
+        build = ':TSUpdate',
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'nvim-treesitter/nvim-treesitter-refactor',
@@ -168,7 +168,7 @@ require('lazy').setup({
     },
     {
         'aklt/plantuml-syntax', -- TODO: check if TS syntax exists
-        ft = "plantuml",
+        ft = 'plantuml',
     },
     -- 'Sol-Ponz/plantuml-previewer.nvim',
     {
@@ -182,36 +182,36 @@ require('lazy').setup({
             filter_kind = {
                 -- "Array",
                 -- "Boolean",
-                "Class",
-                "Constant",
-                "Constructor",
-                "Enum",
+                'Class',
+                'Constant',
+                'Constructor',
+                'Enum',
                 -- "EnumMember",
-                "Event",
-                "Field",
-                "File",
-                "Function",
-                "Interface",
+                'Event',
+                'Field',
+                'File',
+                'Function',
+                'Interface',
                 -- "Key",
-                "Method",
-                "Module",
-                "Namespace",
+                'Method',
+                'Module',
+                'Namespace',
                 -- "Null",
                 -- "Number",
-                "Object",
+                'Object',
                 -- "Operator",
-                "Package",
-                "Property",
+                'Package',
+                'Property',
                 -- "String",
-                "Struct",
+                'Struct',
                 -- "TypeParameter",
                 -- "Variable",
             },
         },
         -- Optional dependencies
         dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons"
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons',
         },
     },
     {
@@ -230,8 +230,22 @@ require('lazy').setup({
         'numToStr/Comment.nvim',
         config = true,
         keys = {
-            { 'gcc', mode = { 'n', }, function() require('Comment').toggle() end, desc = "Comment" },
-            { 'gc',  mode = { 'v' },  function() require('Comment').toggle() end, desc = "Comment" },
+            {
+                'gcc',
+                mode = { 'n' },
+                function()
+                    require('Comment').toggle()
+                end,
+                desc = 'Comment',
+            },
+            {
+                'gc',
+                mode = { 'v' },
+                function()
+                    require('Comment').toggle()
+                end,
+                desc = 'Comment',
+            },
         },
     },
     {
@@ -262,7 +276,7 @@ require('lazy').setup({
         'lukas-reineke/indent-blankline.nvim',
         main = 'ibl',
         opts = {},
-        event = { "BufReadPre", "BufNewFile" },
+        event = { 'BufReadPre', 'BufNewFile' },
     },
     {
         'kylechui/nvim-surround',
@@ -280,7 +294,7 @@ require('lazy').setup({
                 },
                 surrounds = {
                     HTML = {
-                        ['t'] = 'type',  -- Change just the tag type
+                        ['t'] = 'type', -- Change just the tag type
                         ['T'] = 'whole', -- Change the whole tag contents
                     },
                     aliases = {
@@ -289,7 +303,7 @@ require('lazy').setup({
                         ['B'] = '}',
                         ['r'] = ']',
                         -- Table aliases only apply for changes/deletions
-                        ['q'] = { '"', "'", '`' },                     -- Any quote character
+                        ['q'] = { '"', "'", '`' }, -- Any quote character
                         ['s'] = { ')', ']', '}', '>', "'", '"', '`' }, -- Any surrounding delimiter
                     },
                 },
@@ -333,16 +347,16 @@ require('lazy').setup({
     },
     {
         'NeogitOrg/neogit',
-        event = { "BufReadPre", "BufNewFile" },
+        event = { 'BufReadPre', 'BufNewFile' },
     },
     {
         'lewis6991/gitsigns.nvim',
-        event = { "BufReadPre", "BufNewFile" },
+        event = { 'BufReadPre', 'BufNewFile' },
     },
     {
         'akinsho/git-conflict.nvim',
         config = true,
-        event = { "BufReadPre", "BufNewFile" }
+        event = { 'BufReadPre', 'BufNewFile' },
     },
     {
         'tpope/vim-fugitive', -- TODO: is there a lua substitute?
@@ -355,12 +369,19 @@ require('lazy').setup({
     },
     {
         'sindrets/diffview.nvim',
-        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh", "DiffviewFileHistory" },
+        cmd = {
+            'DiffviewOpen',
+            'DiffviewClose',
+            'DiffviewToggleFiles',
+            'DiffviewFocusFiles',
+            'DiffviewRefresh',
+            'DiffviewFileHistory',
+        },
     },
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'kyazdani42/nvim-web-devicons' },
-        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        event = { 'BufReadPre', 'BufNewFile' },
     },
     {
         'yamatsum/nvim-cursorline',
@@ -376,7 +397,7 @@ require('lazy').setup({
     },
     {
         'akinsho/bufferline.nvim',
-        dependencies = 'kyazdani42/nvim-web-devicons',
+        dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('bufferline').setup {}
         end,
@@ -451,7 +472,7 @@ require('lazy').setup({
     },
     {
         'will133/vim-dirdiff', -- TODO: is there a lua substitute?
-        cmd = "DirDiff",
+        cmd = 'DirDiff',
     },
     -- 'christoomey/vim-conflicted',  -- TODO: is there a lua substitute?
     {
@@ -461,7 +482,7 @@ require('lazy').setup({
     {
         'aserowy/tmux.nvim',
         event = function()
-            if vim.fn.exists('$TMUX') == 1 then
+            if vim.fn.exists '$TMUX' == 1 then
                 return 'VeryLazy'
             end
         end,
@@ -480,7 +501,7 @@ require('lazy').setup({
     -- 'machakann/vim-highlightedyank',
     {
         'voldikss/vim-floaterm', -- TODO: is there a lua substitute?
-        event = "VeryLazy",
+        event = 'VeryLazy',
     },
     -- edit JIRA issues in vim
     -- 'n0v1c3/vira0,
@@ -489,7 +510,7 @@ require('lazy').setup({
     -- " automatically set the root directory
     {
         'airblade/vim-rooter', -- TODO: is there a lua substitute?
-        event = "VeryLazy",
+        event = 'VeryLazy',
     },
     -- 'github/copilot.vim',
     -- {
@@ -509,7 +530,7 @@ require('lazy').setup({
     {
         'rcarriga/nvim-notify',
         event = 'VeryLazy',
-        cmd = 'Notificaitons'
+        cmd = 'Notificaitons',
     },
     {
         'nvim-orgmode/orgmode',
@@ -522,20 +543,20 @@ require('lazy').setup({
     },
     {
         'rest-nvim/rest.nvim',
-        cmd = { "RestNvim", "RestNvimPreview", "RestNvimLast" },
+        cmd = { 'RestNvim', 'RestNvimPreview', 'RestNvimLast' },
     },
     {
-        "folke/noice.nvim",
-        event = "VeryLazy",
+        'folke/noice.nvim',
+        event = 'VeryLazy',
         opts = {},
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
+            'MunifTanjim/nui.nvim',
             -- OPTIONAL:
             --   `nvim-notify` is only needed, if you want to use the notification view.
             --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
-        }
+            'rcarriga/nvim-notify',
+        },
     },
     -- {
     --     'Exafunction/codeium.vim',
@@ -565,11 +586,10 @@ require('lazy').setup({
         },
     },
     {
-        "Pocco81/auto-save.nvim",
+        'Pocco81/auto-save.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()
-            require("auto-save").setup {
-            }
+            require('auto-save').setup {}
         end,
     },
 }, {
