@@ -45,3 +45,5 @@ github = 'z-shell/zsh-zoxide'
 github = 'marlonrichert/zsh-autocomplete.git'
 [plugins.fzf-tab]
 github = 'Aloxaf/fzf-tab.git'
+[plugins.ugit]
+github = 'Bhupesh-V/ugit'
