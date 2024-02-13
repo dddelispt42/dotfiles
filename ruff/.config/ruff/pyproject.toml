@@ -132,7 +132,7 @@ ban-relative-imports = "all"
 # keep-runtime-typing = true
 
 [tool.ruff.format]
-quote-style = "double"
+quote-style = "single"
 indent-style = "space"
 line-ending = "auto"
 docstring-code-format = true
