@@ -3,12 +3,12 @@
 
 local null_ls_status_ok, null_ls = pcall(require, 'null-ls')
 if not null_ls_status_ok then
-    vim.notify("none-ls plugin not loaded!")
+    vim.notify 'none-ls plugin not loaded!'
     return
 end
 local mason_null_ls_status_ok, mason_null_ls = pcall(require, 'mason-null-ls')
 if not mason_null_ls_status_ok then
-    vim.notify("mason-null-ls plugin not loaded!")
+    vim.notify 'mason-null-ls plugin not loaded!'
     return
 end
 
@@ -31,6 +31,7 @@ mason_null_ls.setup {
         'refactoring',
         'shellcheck',
         'ruff-lsp',
+        -- 'ruff',
         'clang_format',
         'shfmt',
         'sqlformat',
@@ -72,7 +73,7 @@ null_ls.setup {
         null_ls.builtins.formatting.xmllint,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.ruff,
-        null_ls.builtins.diagnostics.ruff,
+        -- null_ls.builtins.diagnostics.ruff,
         -- null_ls.builtins.diagnostics.ansiblelint,
         null_ls.builtins.diagnostics.cppcheck,
         null_ls.builtins.diagnostics.gitlint,
