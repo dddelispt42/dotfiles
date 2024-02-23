@@ -61,12 +61,18 @@ Xcursor.size:                     0
 ! st.alpha: 0.92
 
 !! Set a default font and font size as below:
-st.font: Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
+! st.font: Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
+! st.termname: st-256color
+! st.borderpx: 2
+! dwm.font: Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
+! dmenu.font: Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
+! dwmblocks.font: Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
+st.font: FiraCode Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
 st.termname: st-256color
 st.borderpx: 2
-dwm.font: Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
-dmenu.font: Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
-dwmblocks.font: Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
+dwm.font: FiraCode Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
+dmenu.font: FiraCode Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
+dwmblocks.font: FiraCode Nerd Font Mono:pixelsize=12:antialias=true:autohint=true;
 
 !! Set the background, foreground and cursor colors as below:
 *.background: #282828
