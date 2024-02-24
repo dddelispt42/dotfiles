@@ -142,7 +142,7 @@
 let s:fontsize = 8
 function! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
-  let s:fontconfig = "FiraCode Nerd Font Mono:h" . s:fontsize
+  let s:fontconfig = 'FiraCode Nerd Font Mono:h' . s:fontsize
   " :set guifont="FiraCode Nerd Font Mono:h" . s:fontsize
   :lua vim.o.guifont=s:fontconfig
   " :execute "Consolas:h" . s:fontsize

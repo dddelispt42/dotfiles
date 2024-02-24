@@ -1,3 +1,4 @@
+# shellcheck disable=2148
 # TODO: fix JIRA fuzzy search
 # TODO: fix fgr fuzzy search - just one function (see ff)
 # TODO: merge __handlexxx with caller
@@ -12,7 +13,9 @@
 # f 'echo Selected music:' --extension mp3
 # fm rm # To rm files in current directory
 f() {
+    # shellcheck disable=2296
     sels=( "${(@f)$(fd "${fd_default[@]}" "${@:2}"| fzf)}" )
+    # shellcheck disable=2128,2145
     test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
 }
 # Like f, but not recursive.
@@ -299,7 +302,7 @@ function ftags {
 # lists tmuxinator sessions and open tmux sessions for selection
 function tx {
 	local TMUXP_SESSIONS TMUX_SESSIONS SESSIONS SELECTED
-	TMUXP_SESSIONS="$(fd 'yaml' .config/tmuxp -x echo "{/.}")"
+	TMUXP_SESSIONS="$(fd 'yaml' "${XDG_CONFIG_HOME:-$HOME/.config}"/tmuxp -x echo "{/.}")"
 	TMUX_SESSIONS="$(tmux list-sessions 2>/dev/null | sed -e "s/\(:.*\)//")"
 	SESSIONS="$( (echo "$TMUXP_SESSIONS" && echo "$TMUX_SESSIONS" | grep -v "^$") | sort -u)"
 	SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="--reverse -x " fzf-tmux --tac --cycle -0 -1)"

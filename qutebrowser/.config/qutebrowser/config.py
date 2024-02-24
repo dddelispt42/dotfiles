@@ -4,47 +4,43 @@ import os
 
 from qutebrowser.api import interceptor
 
-c = c  # pyright: ignore  # noqa: F821
-config = config  # pyright: ignore  # noqa: F821
+c = c  # noqa: PLW0127, F821  # pyright: ignore[reportUndefinedVariable]
+config = config  # noqa: PLW0127, F821  # pyright: ignore[reportUndefinedVariable]
 
 
 def filter_yt(info: interceptor.Request):
     """Block the given request if necessary."""
     url = info.request_url
-    if (
-        url.host() == "www.youtube.com"
-        and url.path() == "/get_video_info"
-        and "&adformat=" in url.query()
-    ):
+    if url.host() == 'www.youtube.com' and url.path() == '/get_video_info' and '&adformat=' in url.query():
         info.block()
 
 
 interceptor.register(filter_yt)
 
-config.bind("<y><o>", "yank inline [[{url}][{title}]]")
+config.bind('<y><o>', 'yank inline [[{url}][{title}]]')
 notecmd = (
-    "yank inline [[{url}][{title}]];; spawn "
-    + os.environ["TERMINAL"]
-    + " -e "
-    + os.environ["EDITOR"]
+    'yank inline [[{url}][{title}]];; spawn '
+    + os.environ['TERMINAL']
+    + ' -e '
+    + os.environ['EDITOR']
     + ' -c \'call CreateCapture("e" , "qutebrowser")\''
 )
-config.bind("gn", notecmd)
-config.bind("V", "hint links spawn " + os.environ["BROWSER"] + ' "{hint-url}"')
-config.bind("v", 'hint links spawn funnel "{hint-url}"')
-config.bind("\\", 'spawn dmenuhandler "{url}"')
-config.bind(",v", "spawn umpv {url}")
-config.bind(",V", "hint links spawn umpv {hint-url}")
-config.bind(";V", "hint links --rapid spawn umpv {hint-url}")
+config.bind('gn', notecmd)
+config.bind('V', 'hint links spawn ' + os.environ['BROWSER'] + ' "{hint-url}"')
+config.bind('v', 'hint links spawn funnel "{hint-url}"')
+config.bind('\\', 'spawn dmenuhandler "{url}"')
+config.bind(',v', 'spawn umpv {url}')
+config.bind(',V', 'hint links spawn umpv {hint-url}')
+config.bind(';V', 'hint links --rapid spawn umpv {hint-url}')
 # Awesome way to open vim from qutebrowser
 c.editor.command = [
-    os.environ["TERMINAL"],
-    "-e",
-    os.environ["EDITOR"],
-    "-f",
-    "{file}",
-    "-c",
-    "normal {line}G{column0}1",
+    os.environ['TERMINAL'],
+    '-e',
+    os.environ['EDITOR'],
+    '-f',
+    '{file}',
+    '-c',
+    'normal {line}G{column0}1',
 ]
 # config.bind("<Ctrl-h>", "fake-key <Backspace>", "insert")
 # config.bind("<Ctrl-a>", "fake-key <Home>", "insert")
@@ -53,44 +49,44 @@ c.editor.command = [
 # config.bind("<Mod1-b>", "fake-key <Ctrl-Left>", "insert")
 # config.bind("<Ctrl-f>", "fake-key <Right>", "insert")
 # config.bind("<Mod1-f>", "fake-key <Ctrl-Right>", "insert")
-config.bind("<Ctrl-p>", "fake-key <Up>", "insert")
-config.bind("<Ctrl-n>", "fake-key <Down>", "insert")
+config.bind('<Ctrl-p>', 'fake-key <Up>', 'insert')
+config.bind('<Ctrl-n>', 'fake-key <Down>', 'insert')
 # config.bind("<Mod1-d>", "fake-key <Ctrl-Delete>", "insert")
 # config.bind("<Ctrl-d>", "fake-key <Delete>", "insert")
 # config.bind("<Ctrl-w>", "fake-key <Ctrl-Backspace>", "insert")
-config.bind("<Ctrl-u>", "fake-key <Shift-Home><Delete>", "insert")
-config.bind("<Ctrl-k>", "fake-key <Shift-End><Delete>", "insert")
-config.bind("<Ctrl-x><Ctrl-e>", "open-editor", "insert")
-config.bind("<Ctrl-+>", "zoom-in")
-config.bind("<Ctrl-->", "zoom-out")
-config.bind("<Ctrl-e>", "edit-text", "insert")
+config.bind('<Ctrl-u>', 'fake-key <Shift-Home><Delete>', 'insert')
+config.bind('<Ctrl-k>', 'fake-key <Shift-End><Delete>', 'insert')
+config.bind('<Ctrl-x><Ctrl-e>', 'open-editor', 'insert')
+config.bind('<Ctrl-+>', 'zoom-in')
+config.bind('<Ctrl-->', 'zoom-out')
+config.bind('<Ctrl-e>', 'edit-text', 'insert')
 
 # user scripts
-config.bind(";t", "hint userscript link translate")
-config.bind(";T", "hint userscript all translate --text")
-config.bind("<Ctrl+T>", "spawn --userscript translate")
-config.bind("<Ctrl+Shift+T>", "spawn --userscript translate --text")
-config.bind(",u", "hint links spawn -u untrack-url -O {hint-url}")
-config.bind(",U", "spawn -u untrack-url -p {clipboard}")
-config.bind("X", "hint links userscript add-nextcloud-bookmarks")
-config.bind("X", "spawn --userscript add-nextcloud-bookmarks")
+config.bind(';t', 'hint userscript link translate')
+config.bind(';T', 'hint userscript all translate --text')
+config.bind('<Ctrl+T>', 'spawn --userscript translate')
+config.bind('<Ctrl+Shift+T>', 'spawn --userscript translate --text')
+config.bind(',u', 'hint links spawn -u untrack-url -O {hint-url}')
+config.bind(',U', 'spawn -u untrack-url -p {clipboard}')
+config.bind('X', 'hint links userscript add-nextcloud-bookmarks')
+config.bind('X', 'spawn --userscript add-nextcloud-bookmarks')
 
-BASE00 = "#1d2021"
-BASE01 = "#3c3836"
-BASE02 = "#504945"
-BASE03 = "#665c54"
-BASE04 = "#bdae93"
-BASE05 = "#d5c4a1"
-BASE06 = "#ebdbb2"
-BASE07 = "#fbf1c7"
-BASE08 = "#fb4934"
-BASE09 = "#fe8019"
-BASE0A = "#fabd2f"
-BASE0B = "#b8bb26"
-BASE0C = "#8ec07c"
-BASE0D = "#83a598"
-BASE0E = "#d3869b"
-BASE0F = "#d65d0e"
+BASE00 = '#1d2021'
+BASE01 = '#3c3836'
+BASE02 = '#504945'
+BASE03 = '#665c54'
+BASE04 = '#bdae93'
+BASE05 = '#d5c4a1'
+BASE06 = '#ebdbb2'
+BASE07 = '#fbf1c7'
+BASE08 = '#fb4934'
+BASE09 = '#fe8019'
+BASE0A = '#fabd2f'
+BASE0B = '#b8bb26'
+BASE0C = '#8ec07c'
+BASE0D = '#83a598'
+BASE0E = '#d3869b'
+BASE0F = '#d65d0e'
 
 # set qutebrowser colors
 
@@ -152,11 +148,11 @@ c.colors.contextmenu.menu.bg = BASE00
 # Foreground color of the context menu. If set to null, the Qt default is used.
 c.colors.contextmenu.menu.fg = BASE05
 
-# Background color of the context menu’s selected item.
+# Background color of the context menus selected item.
 # If set to null, the Qt default is used.
 c.colors.contextmenu.selected.bg = BASE02
 
-# Foreground color of the context menu’s selected item.
+# Foreground color of the context menus selected item.
 # If set to null, the Qt default is used.
 c.colors.contextmenu.selected.fg = BASE05
 
@@ -376,14 +372,14 @@ c.colors.webpage.bg = BASE00
 
 c.content.autoplay = False
 c.content.blocking.enabled = True
-c.content.blocking.method = "both"
-c.content.default_encoding = "utf-8"
+c.content.blocking.method = 'both'
+c.content.default_encoding = 'utf-8'
 c.content.geolocation = False
 c.content.pdfjs = True
-c.scrolling.bar = "always"
-c.zoom.default = "90%"
-c.downloads.location.directory = "~/dl/"
-c.downloads.position = "bottom"
+c.scrolling.bar = 'always'
+c.zoom.default = '90%'
+c.downloads.location.directory = '~/dl/'
+c.downloads.position = 'bottom'
 # c.content.host_blocking.lists.append(str(c.configdir) + "/blocked-hosts")
 
 config.load_autoconfig()

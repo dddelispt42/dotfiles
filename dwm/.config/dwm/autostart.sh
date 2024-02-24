@@ -1,7 +1,7 @@
 #!/bin/bash
 #this file is called by .xinitrc to start some nice apps for dwm
 HOST=$(hostname)
-TERMI="${TERMINAL:-alacritty}"
+# TERMI="${TERMINAL:-alacritty}"
 
 xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
 xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"

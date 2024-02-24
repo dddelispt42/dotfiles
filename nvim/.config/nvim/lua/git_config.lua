@@ -3,7 +3,7 @@
 
 local neogit_ok, neogit = pcall(require, 'neogit')
 if not neogit_ok then
-    vim.notify("neogit plugin not loaded!")
+  vim.notify 'neogit plugin not loaded!'
   return
 end
 
@@ -11,7 +11,7 @@ neogit.setup {}
 
 local gitconflict_ok, gitconflict = pcall(require, 'git-conflict')
 if not gitconflict_ok then
-    vim.notify("git-conflict plugin not loaded!")
+  vim.notify 'git-conflict plugin not loaded!'
   return
 end
 

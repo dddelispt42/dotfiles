@@ -1,15 +1,17 @@
 from ranger.api.commands import Command
 
+
 class paste_as_root(Command):
-	def execute(self):
-		if self.fm.do_cut:
-			self.fm.execute_console('shell sudo mv %c .')
-		else:
-			self.fm.execute_console('shell sudo cp -r %c .')
+    def execute(self):
+        if self.fm.do_cut:
+            self.fm.execute_console('shell sudo mv %c .')
+        else:
+            self.fm.execute_console('shell sudo cp -r %c .')
+
 
 class fzf_select(Command):
-    """
-    :fzf_select
+
+    """:fzf_select
 
     Find a file using fzf.
 
@@ -17,16 +19,18 @@ class fzf_select(Command):
 
     See: https://github.com/junegunn/fzf
     """
+
     def execute(self):
-        import subprocess
         import os.path
+        import subprocess
+
         if self.quantifier:
             # match only directories
-            command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            command = r"find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
             -o -type d -print 2> /dev/null | sed 1d | cut -b3- | fzf +m --reverse --header='Jump to file'"
         else:
             # match files and directories
-            command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            command = r"find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
             -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m --reverse --header='Jump to filemap <C-f> fzf_select'"
         fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()

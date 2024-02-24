@@ -105,7 +105,7 @@ vim.opt.concealcursor = 'nc'
 
 g.loaded_perl_provider = 0
 
-vim.cmd('language en_US.utf8')
+vim.cmd 'language en_US.utf8'
 vim.cmd 'filetype plugin indent on'
 vim.cmd 'set spell!'
 
