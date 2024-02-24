@@ -20,7 +20,7 @@ SCROTDIR="$HOME/Screenshots"
 mkdir -p "${SCROTDIR}"
 
 getStamp() {
-  date '+%Y%m%d-%H%M%S'
+	date '+%Y%m%d-%H%M%S'
 }
 
 MAIM_ARGS=""
@@ -31,61 +31,60 @@ DISPLAYS=$(xrandr --listactivemonitors | grep '+' | awk '{print $4, $3}' | awk -
 
 # What modes do we have
 declare -a modes=(
-"Fullscreen"
-"Active window"
-"Selected region"
+	"Fullscreen"
+	"Active window"
+	"Selected region"
 )
 
 # Add monitor data
 IFS=$'\n'
 declare -A DISPLAY_MODE
 for i in ${DISPLAYS}; do
-  name=$(echo "${i}" | awk '{print $1}')
-  rest="$(echo "${i}" | awk '{print $2}')"
-  modes[${#modes[@]}]="${name}"
-  DISPLAY_MODE[${name}]="${rest}"
+	name=$(echo "${i}" | awk '{print $1}')
+	rest="$(echo "${i}" | awk '{print $2}')"
+	modes[${#modes[@]}]="${name}"
+	DISPLAY_MODE[${name}]="${rest}"
 done
 unset IFS
 
 target=$(printf '%s\n' "${modes[@]}" | dmenu -i -l 20 -p 'Take screenshot of:') || exit 1
 case "$target" in
-  'Fullscreen')
-    FILE_TYPE="full"
-  ;;
-  'Active window')
-    active_window=$(xdotool getactivewindow)
-    MAIM_ARGS="-i ${active_window}"
-    FILE_TYPE="window"
-  ;;
-  'Selected region')
-    MAIM_ARGS="-s"
-    FILE_TYPE="region"
-  ;;
-  *)
-    MAIM_ARGS="-g ${DISPLAY_MODE[${target}]}"
-    FILE_TYPE="${target}"
-  ;;
+'Fullscreen')
+	FILE_TYPE="full"
+	;;
+'Active window')
+	active_window=$(xdotool getactivewindow)
+	MAIM_ARGS="-i ${active_window}"
+	FILE_TYPE="window"
+	;;
+'Selected region')
+	MAIM_ARGS="-s"
+	FILE_TYPE="region"
+	;;
+*)
+	MAIM_ARGS="-g ${DISPLAY_MODE[${target}]}"
+	FILE_TYPE="${target}"
+	;;
 esac
 
-declare -a destination=( "File" "Clipboard" "Both" )
+declare -a destination=("File" "Clipboard" "Both")
 dest=$(printf '%s\n' "${destination[@]}" | dmenu -i -l 20 -p 'Destination:') || exit 1
 case "$dest" in
-  'File')
-    # shellcheck disable=SC2086
-    maim ${MAIM_ARGS} "${SCROTDIR}/scrot-${FILE_TYPE}-$(getStamp).png"
-  ;;
-  'Clipboard')
-    # shellcheck disable=SC2086
-    maim ${MAIM_ARGS} | xclip -selection clipboard -t image/png
-  ;;
-  'Both')
-    # shellcheck disable=SC2086
-    maim ${MAIM_ARGS} | tee "${SCROTDIR}/scrot-${FILE_TYPE}-$(getStamp).png" | xclip -selection clipboard -t image/png
-  ;;
-  *)
-    exit 1
-  ;;
+'File')
+	# shellcheck disable=SC2086
+	maim ${MAIM_ARGS} "${SCROTDIR}/scrot-${FILE_TYPE}-$(getStamp).png"
+	;;
+'Clipboard')
+	# shellcheck disable=SC2086
+	maim ${MAIM_ARGS} | xclip -selection clipboard -t image/png
+	;;
+'Both')
+	# shellcheck disable=SC2086
+	maim ${MAIM_ARGS} | tee "${SCROTDIR}/scrot-${FILE_TYPE}-$(getStamp).png" | xclip -selection clipboard -t image/png
+	;;
+*)
+	exit 1
+	;;
 esac
 
 exit 0
-

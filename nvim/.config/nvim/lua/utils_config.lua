@@ -3,7 +3,7 @@
 
 local lualine_ok, lualine = pcall(require, 'lualine')
 if not lualine_ok then
-  vim.notify("lualine plugin not loaded!")
+  vim.notify 'lualine plugin not loaded!'
   return
 end
 lualine.setup {

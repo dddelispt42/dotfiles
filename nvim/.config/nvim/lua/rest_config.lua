@@ -3,7 +3,7 @@
 
 local rest_ok, rest = pcall(require, 'rest-nvim')
 if not rest_ok then
-    vim.notify("rest-nvim plugin not loaded!")
+  vim.notify 'rest-nvim plugin not loaded!'
   return
 end
 

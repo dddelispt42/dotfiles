@@ -8,7 +8,7 @@
 -- end
 local soil_ok, soil = pcall(require, 'soil')
 if not soil_ok then
-    vim.notify("soil plugin not loaded!")
+    vim.notify 'soil plugin not loaded!'
     return
 end
 

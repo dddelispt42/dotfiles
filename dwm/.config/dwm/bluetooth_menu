@@ -1,8 +1,8 @@
 #!/bin/bash
 
-predefined_devs="
-Device E6:02:25:27:3F:DD HeiCorne
-"
+# predefined_devs="
+# Device E6:02:25:27:3F:DD HeiCorne
+# "
 
 selected=$(bluetoothctl devices Paired | while IFS= read -r dev; do
 	dev_id="$(echo "$dev" | sed 's/Device //;s/\s.*//')"

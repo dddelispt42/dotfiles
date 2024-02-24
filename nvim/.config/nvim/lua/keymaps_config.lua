@@ -63,8 +63,8 @@ map('n', '<C-Up>', ':resize +2<CR>', { noremap = true, silent = true })
 map('n', '<C-Down>', ':resize -2<CR>', { noremap = true, silent = true })
 map('n', '<C-Left>', ':vertical resize -2<CR>', { noremap = true, silent = true })
 map('n', '<C-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })
-map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-    { desc = "Redraw / clear hlsearch / diff update" })
+map('n', '<leader>ur', '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
+    { desc = 'Redraw / clear hlsearch / diff update' })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 -- map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
@@ -75,8 +75,8 @@ map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
 -- map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map('v', '<', '<gv')
+map('v', '>', '>gv')
 
 -- remove ^M from dos files
 -- map("n", "<leader>m", ":e ++ff=dos<cr>", { noremap = true, silent = true })

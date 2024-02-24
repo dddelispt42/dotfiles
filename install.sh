@@ -1,7 +1,7 @@
 #!/bin/bash
 ROOTDIR="$(realpath "$(dirname "$0")")"
-# FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/VictorMono.zip"
-FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip"
+# FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/VictorMono.zip"
+FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip"
 # FONT="VictorMono"
 FONT="FiraCode"
 
@@ -212,17 +212,17 @@ if [ ! -f "${XDG_DATA_HOME}/fonts/${FONT}NerdFont-Regular.ttf" ]; then
 	fi
 fi
 
-mkdir -p "$XDG_STATE_HOME"/nvim/{undo,backup,swap,sessions,spell} &> /dev/null
+mkdir -p "$XDG_STATE_HOME"/nvim/{undo,backup,swap,sessions,spell} &>/dev/null
 if command -v nvim >/dev/null; then
 	cd "$XDG_DATA_HOME/nvim/lazy/neogit" || echo "Neogit dir not found"
 	git co -- doc/tags 2>/dev/null
 	cd "$XDG_DATA_HOME/nvim/lazy/rest.nvim" || echo "rest.nvim dir not found"
 	git co -- doc/tags 2>/dev/null
 	cd "$ROOTDIR" || true
-	nvim --headless "+Lazy! sync" +qa &> /dev/null
-	nvim --headless "+Lazy! sync" +qa &> /dev/null
-	nvim --headless "+Lazy! sync" +qa &> /dev/null
-	nvim --headless "+MasonUpdate" +qa &> /dev/null
+	nvim --headless "+Lazy! sync" +qa &>/dev/null
+	nvim --headless "+Lazy! sync" +qa &>/dev/null
+	nvim --headless "+Lazy! sync" +qa &>/dev/null
+	nvim --headless "+MasonUpdate" +qa &>/dev/null
 fi
 
 # TODO: check if key is too old
@@ -233,7 +233,7 @@ cat "$HOME/.ssh/id_ed25519.pub"
 cat "$HOME/.ssh/id_ed25519_sec.pub"
 # TODO: only if new key was generated
 # read -p "Add public key to git server..." yn
-mkdir -p "$HOME/dev/heiko" &> /dev/null
+mkdir -p "$HOME/dev/heiko" &>/dev/null
 
 # copy to Windows if exiting
 if test -d /mnt/users/hriemer/AppData/Local/nvim/; then

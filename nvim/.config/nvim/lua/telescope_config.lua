@@ -3,7 +3,7 @@
 
 local tele_ok, tele = pcall(require, 'telescope')
 if not tele_ok then
-    vim.notify("telescope plugin not loaded!")
+    vim.notify 'telescope plugin not loaded!'
     return
 end
 
@@ -15,10 +15,10 @@ local action_layout = require 'telescope.actions.layout'
 local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
 
 -- I want to search in hidden/dot files.
-table.insert(vimgrep_arguments, "--hidden")
+table.insert(vimgrep_arguments, '--hidden')
 -- I don't want to /earch in the `.git` directory.
-table.insert(vimgrep_arguments, "--glob")
-table.insert(vimgrep_arguments, "!**/{.venv,.git}/*")
+table.insert(vimgrep_arguments, '--glob')
+table.insert(vimgrep_arguments, '!**/{.venv,.git}/*')
 --
 -- Enable telescope fzf native, if installed
 pcall(tele.load_extension, 'fzf')
@@ -30,34 +30,34 @@ tele.setup {
         -- `hidden = true` is not supported in text grep commands.
         vimgrep_arguments = vimgrep_arguments,
 
-        layout_strategy = "horizontal",
+        layout_strategy = 'horizontal',
         layout_config = {
-          horizontal = {
-            prompt_position = "top",
-            width = { padding = 0.1 },
-            height = { padding = 0.1 },
-            preview_width = 0.5,
-          },
+            horizontal = {
+                prompt_position = 'top',
+                width = { padding = 0.1 },
+                height = { padding = 0.1 },
+                preview_width = 0.5,
+            },
         },
         mappings = {
             n = {
-                ["<M-p>"] = action_layout.toggle_preview,
+                ['<M-p>'] = action_layout.toggle_preview,
             },
             i = {
                 ['<C-u>'] = false,
                 ['<C-d>'] = false,
                 ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
-                ["<M-p>"] = action_layout.toggle_preview,
+                ['<M-p>'] = action_layout.toggle_preview,
             },
         },
     },
     pickers = {
         find_files = {
             -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-            find_command = { "rg", "--files", "--hidden", "--glob", "!**/{.venv,.git}/*" },
+            find_command = { 'rg', '--files', '--hidden', '--glob', '!**/{.venv,.git}/*' },
         },
         git_files = {
-            find_command = { "rg", "--files", "--hidden", "--glob", "!**/{.venv,.git}/*" },
+            find_command = { 'rg', '--files', '--hidden', '--glob', '!**/{.venv,.git}/*' },
         },
     },
     extensions = {
@@ -72,11 +72,6 @@ tele.setup {
 }
 
 -- telescope actions for dap
-local tele_ok, tele = pcall(require, 'telescope')
-if not tele_ok then
-    vim.notify("telescope plugin not loaded!")
-    return
-end
 tele.load_extension 'dap'
 
 -- telescope related keymappings
@@ -116,13 +111,16 @@ map('n', '<leader>/', function()
         previewer = false,
     })
 end, { desc = '[/] Fuzzily search in current buffer]' })
-map('n', '<leader>f-', '<cmd>Telescope filetypes<cr>', { noremap = true, silent = true, desc = '[f]ind [-] file types', })
+map('n', '<leader>f-', '<cmd>Telescope filetypes<cr>', {
+    noremap = true,
+    silent = true,
+    desc = '[f]ind [-] file types',
+})
 map('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[f]ind [f]iles' })
 map('n', '<leader>f.', '<cmd>Telescope find_files cwd="/home/heiko/.config"<cr>', { noremap = true, silent = true })
 map('n', '<leader>gB', '<cmd>Telescope git_bcommits<cr>', { noremap = true, silent = true, desc = '[f]ind [B]commits' })
 map('n', '<leader>gb', '<cmd>Telescope git_branches<cr>', { noremap = true, silent = true, desc = '[f]ind [b]ranches' })
 map('n', '<leader>gC', '<cmd>Telescope git_commits<cr>', { noremap = true, silent = true, desc = '[f]ind [C]ommits' })
--- map('n', '<leader>gf', '<cmd>Telescope git_files<cr>', { noremap = true, silent = true, desc = '[g]it [f]ile finder' })
 map('n', '<leader>gf', "<CMD>lua require'telescope_findfiles_config'.project_files()<CR>",
     { noremap = true, silent = true, desc = '[g]it [f]ile finder' })
 map('n', '<leader>gS', '<cmd>Telescope git_status<cr>', { noremap = true, silent = true, desc = '[g]it [S]tatus' })

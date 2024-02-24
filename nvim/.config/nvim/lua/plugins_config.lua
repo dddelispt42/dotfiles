@@ -112,7 +112,7 @@ require('lazy').setup({
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('trouble').setup {
-                auto_open = true, -- automatically open the list when you have diagnostics
+                auto_open = true,  -- automatically open the list when you have diagnostics
                 auto_close = true, -- automatically close the list when you have no diagnostics
                 -- automatically preview the location of the diagnostic.
                 -- <esc> to close preview and go back to last window
@@ -294,7 +294,7 @@ require('lazy').setup({
                 },
                 surrounds = {
                     HTML = {
-                        ['t'] = 'type', -- Change just the tag type
+                        ['t'] = 'type',  -- Change just the tag type
                         ['T'] = 'whole', -- Change the whole tag contents
                     },
                     aliases = {
@@ -303,7 +303,7 @@ require('lazy').setup({
                         ['B'] = '}',
                         ['r'] = ']',
                         -- Table aliases only apply for changes/deletions
-                        ['q'] = { '"', "'", '`' }, -- Any quote character
+                        ['q'] = { '"', "'", '`' },                     -- Any quote character
                         ['s'] = { ')', ']', '}', '>', "'", '"', '`' }, -- Any surrounding delimiter
                     },
                 },

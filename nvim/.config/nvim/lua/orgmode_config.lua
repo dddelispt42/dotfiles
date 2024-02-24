@@ -3,7 +3,7 @@
 
 local orgmode_ok, orgmode = pcall(require, 'orgmode')
 if not orgmode_ok then
-    vim.notify("orgmode plugin not loaded!")
+    vim.notify 'orgmode plugin not loaded!'
     return
 end
 

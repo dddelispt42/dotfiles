@@ -3,7 +3,7 @@
 
 local mason_ok, mason = pcall(require, 'mason')
 if not mason_ok then
-    vim.notify("mason plugin not loaded!")
+    vim.notify 'mason plugin not loaded!'
     return
 end
 
@@ -174,7 +174,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- })
 
 -- Enable rust_analyzer
-nvim_lsp.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
+nvim_lsp.ccls.setup { on_attach = on_attach, capabilities = capabilities }
 -- nvim_lsp.pyls.setup({on_attach = on_attach, capabilities = capabilities})
 -- nvim_lsp.spectral.setup { on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.angularls.setup { on_attach = on_attach, capabilities = capabilities }
@@ -317,7 +317,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 
 local rusttools_ok, rusttools = pcall(require, 'rust-tools')
 if not rusttools_ok then
-    vim.notify("rust-tools plugin not loaded!")
+    vim.notify 'rust-tools plugin not loaded!'
     return
 end
 rusttools.setup {
