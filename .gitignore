@@ -1,5 +1,5 @@
 nvim/.config/nvim/lazy-lock.json
-tmux/.config/tmux/plugins
+# tmux/.config/tmux/plugins
 qutebrowser/.config/qutebrowser/bookmarks/
 qutebrowser/.config/qutebrowser/quickmarks
 qutebrowser/.config/qutebrowser/blocked-hosts
