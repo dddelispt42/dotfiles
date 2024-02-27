@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local masondap_ok, masondap = pcall(require, 'mason-nvim-dap')
 if not masondap_ok then
@@ -20,7 +20,7 @@ end
 masondap.setup {
     -- A list of adapters to install if they're not already installed.
     -- This setting has no relation with the `automatic_installation` setting.
-    ensure_installed = { 'bash', 'codelldb', 'python' },
+    ensure_installed = { 'bash', 'codelldb', 'javadbg', 'javatest', 'js', 'python' },
 
     -- NOTE: this is left here for future porting in case needed
     -- Whether adapters that are set up (via dap) should be automatically installed if they're not already installed.
@@ -292,7 +292,7 @@ dapvtext.setup {
 
 persi_bp.setup {
     save_dir = vim.fn.stdpath 'data' .. '/nvim_checkpoints',
-    -- when to load the breakpoints? "BufReadPost" is recommanded.
+    -- when to load the breakpoints? "BufReadPost" is recommended.
     load_breakpoints_event = { 'BufReadPost' },
     -- record the performance of different function.
     -- run :lua require('persistent-breakpoints.api').print_perf_data() to see the result.

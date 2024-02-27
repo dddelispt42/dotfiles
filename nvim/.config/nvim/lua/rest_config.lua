@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local rest_ok, rest = pcall(require, 'rest-nvim')
 if not rest_ok then

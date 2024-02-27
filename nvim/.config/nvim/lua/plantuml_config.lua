@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 -- local pumlpreview_ok, pumlpreview = pcall(require, 'plantuml-previewer')
 -- if not pumlpreview_ok then

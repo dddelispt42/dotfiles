@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 -- TODO: move all dependent keymaps to its dependency
 -- TODO: define a useful description for all maps

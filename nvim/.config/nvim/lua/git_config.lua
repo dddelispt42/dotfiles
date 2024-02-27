@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local neogit_ok, neogit = pcall(require, 'neogit')
 if not neogit_ok then

@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local ts_ok, ts = pcall(require, 'nvim-treesitter.configs')
 if not ts_ok then

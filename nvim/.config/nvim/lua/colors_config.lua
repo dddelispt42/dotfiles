@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 vim.opt.termguicolors = true -- enable true-color support
 vim.o.background = 'dark'    -- or "light" for light mode
