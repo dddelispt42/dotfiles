@@ -12,7 +12,7 @@ orgmode.setup_ts_grammar()
 orgmode.setup {
     org_todo_keywords = { 'TODO(t)', 'NEXT(n)', 'WAITING(w)', 'DELEGATED(s)', '|', 'DONE(d)', 'REJECTED(r)' },
     org_todo_keyword_faces = {
-        TODO = ':background #000000 :foreground red :weight bold', -- overrides builtin color for `TODO` keyword
+        TODO = ':background #000000 :foreground red :weight bold', -- overrides builtin color for keyword
         NEXT = ':background red :foreground white : weight bold',
         WAITING = ':foreground lightblue :weight bold',
         DELEGATED = ':background #FFFFFF :slant italic :underline on',

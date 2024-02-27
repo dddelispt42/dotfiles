@@ -27,7 +27,7 @@ local my_lsps = {
     'golangci_lint_ls',
     'gopls',
     'gradle_ls',
-    'groovyls',
+    -- 'groovyls',
     'helm_ls',
     'html',
     'htmx',

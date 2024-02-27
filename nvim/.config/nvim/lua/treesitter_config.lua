@@ -209,11 +209,11 @@ ts.setup {
             enable = true,
             swap_next = {
                 ['<leader>sa'] = { query = '@parameter.inner', desc = 'Swap arg with next' },
-                ['<leader>sf'] = { query = '@funtion.outer', desc = 'Swap function with next' },
+                ['<leader>sf'] = { query = '@function.outer', desc = 'Swap function with next' },
             },
             swap_previous = {
                 ['<leader>sA'] = { query = '@parameter.inner', desc = ' arg with previous' },
-                ['<leader>sF'] = { query = '@funtion.outer', desc = 'Swap function with next' },
+                ['<leader>sF'] = { query = '@function.outer', desc = 'Swap function with next' },
             },
         },
         lsp_interop = {
