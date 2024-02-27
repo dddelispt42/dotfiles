@@ -73,6 +73,7 @@ tele.setup {
 
 -- telescope actions for dap
 tele.load_extension 'dap'
+tele.load_extension 'undo'
 
 -- telescope related keymappings
 local map = vim.keymap.set
@@ -175,6 +176,7 @@ map('n', '<leader>fq', '<cmd>Telescope quickfix<cr>', {
 map('n', '<leader>fr', '<cmd>Telescope registers<cr>', { noremap = true, silent = true, desc = '[f]ind [r]egisters' })
 -- map('n', '<leader>fR', '<cmd>Telescope reloader<cr>', { noremap = true, silent = true, desc = '[f]ind [R]eloader' })
 map('n', '<leader>fs', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true, desc = '[f]ind [s]pell' })
+map('n', '<leader>fu', '<cmd>Telescope undo<cr>', { noremap = true, silent = true, desc = '[f]ind [u]ndos' })
 -- map('n', '<leader>fT', '<cmd>Telescope current_buffer_tags<cr>', {
 --     noremap = true,
 --     silent = true,
