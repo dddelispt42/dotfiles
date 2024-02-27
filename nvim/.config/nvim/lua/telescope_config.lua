@@ -16,7 +16,7 @@ local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
 
 -- I want to search in hidden/dot files.
 table.insert(vimgrep_arguments, '--hidden')
--- I don't want to /earch in the `.git` directory.
+-- I don't want to search in the `.git` directory.
 table.insert(vimgrep_arguments, '--glob')
 table.insert(vimgrep_arguments, '!**/{.venv,.git}/*')
 --
@@ -62,11 +62,28 @@ tele.setup {
     },
     extensions = {
         fzf = {
-            fuzzy = true,                   -- false will only do exact matching
+            fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true,    -- override the file sorter
-            case_mode = 'smart_case',       -- or "ignore_case" or "respect_case"
+            override_file_sorter = true, -- override the file sorter
+            case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
+        },
+        undo = {
+            mappings = {
+                i = {
+                    ['<cr>'] = require('telescope-undo.actions').yank_additions,
+                    ['<S-cr>'] = require('telescope-undo.actions').yank_deletions,
+                    ['<C-cr>'] = require('telescope-undo.actions').restore,
+                    -- alternative defaults, for users whose terminals do questionable things with modified <cr>
+                    ['<C-y>'] = require('telescope-undo.actions').yank_deletions,
+                    ['<C-r>'] = require('telescope-undo.actions').restore,
+                },
+                n = {
+                    ['y'] = require('telescope-undo.actions').yank_additions,
+                    ['Y'] = require('telescope-undo.actions').yank_deletions,
+                    ['u'] = require('telescope-undo.actions').restore,
+                },
+            },
         },
     },
 }
@@ -122,8 +139,7 @@ map('n', '<leader>f.', '<cmd>Telescope find_files cwd="/home/heiko/.config"<cr>'
 map('n', '<leader>gB', '<cmd>Telescope git_bcommits<cr>', { noremap = true, silent = true, desc = '[f]ind [B]commits' })
 map('n', '<leader>gb', '<cmd>Telescope git_branches<cr>', { noremap = true, silent = true, desc = '[f]ind [b]ranches' })
 map('n', '<leader>gC', '<cmd>Telescope git_commits<cr>', { noremap = true, silent = true, desc = '[f]ind [C]ommits' })
-map('n', '<leader>gf', "<CMD>lua require'telescope_findfiles_config'.project_files()<CR>",
-    { noremap = true, silent = true, desc = '[g]it [f]ile finder' })
+map('n', '<leader>gf', "<CMD>lua require'telescope_findfiles_config'.project_files()<CR>", { noremap = true, silent = true, desc = '[g]it [f]ile finder' })
 map('n', '<leader>gS', '<cmd>Telescope git_status<cr>', { noremap = true, silent = true, desc = '[g]it [S]tatus' })
 map('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[f]ind current [w]ord' })
 map('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[f]ind [h]elp' })
