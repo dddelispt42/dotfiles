@@ -531,7 +531,7 @@ require('lazy').setup({
     {
         'rcarriga/nvim-notify',
         event = 'VeryLazy',
-        cmd = 'Notificaitons',
+        cmd = 'Notifications',
     },
     {
         'nvim-orgmode/orgmode',
