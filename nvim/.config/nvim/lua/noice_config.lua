@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local noice_ok, noice = pcall(require, 'noice')
 if not noice_ok then

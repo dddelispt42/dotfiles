@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local cursorline_ok, cursorline = pcall(require, 'nvim-cursorline')
 if not cursorline_ok then

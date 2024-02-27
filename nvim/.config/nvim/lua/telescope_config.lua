@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local tele_ok, tele = pcall(require, 'telescope')
 if not tele_ok then

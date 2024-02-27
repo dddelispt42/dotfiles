@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 vim.g.codeium_enabled = true
 vim.g.codeium_disable_bindings = 1

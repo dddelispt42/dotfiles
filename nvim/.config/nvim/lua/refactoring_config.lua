@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local refact_ok, refact = pcall(require, 'refactoring')
 if not refact_ok then

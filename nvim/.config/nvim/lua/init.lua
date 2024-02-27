@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 -- Define leader key
 vim.g.mapleader = ' ' -- 'vim.g' sets global variables

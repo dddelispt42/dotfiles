@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local status_ok, gitsigns = pcall(require, 'gitsigns')
 if not status_ok then

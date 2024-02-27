@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local lualine_ok, lualine = pcall(require, 'lualine')
 if not lualine_ok then

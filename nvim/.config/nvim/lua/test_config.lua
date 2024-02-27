@@ -1,5 +1,5 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
+--# selene: allow(undefined_variable, unscoped_variables)
 
 local neotest_ok, neotest = pcall(require, 'neotest')
 if not neotest_ok then
