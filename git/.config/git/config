@@ -4,7 +4,7 @@
     sslverify = true
 [credential]
 [user]
-    name = Riemer, Heiko
+    name = Heiko Riemer
     email = heiko@eheiko.net
 [core]
     editor = nvim
@@ -51,6 +51,7 @@
     dc = diff --cached
     difftex = difftool -y -t latex
     dft = difftool
+    dfst = diff --stat
     dls = diff-tree --no-commit-id --name-status -r
     ds = diff --minimal --staged
     ff = merge --ff-only
@@ -68,13 +69,17 @@
     pgm = push github master
     rb = rebase
     rbc = rebase --continue
-    rbi = rebase -i
+    rbi = rebase -i --keep-base
     s = status
     slog = log --pretty=oneline --abbrev-commit
     st = status
     stat = status
     su = status -u
     uncommit = reset HEAD~1 --mixed
+    f = fetch
+    fa = fetch --all
+    r = reset
+    rh = reset --hard
     up = !git fetch --recurse-submodules origin && git rebase origin/master
     upgh = !git fetch --recurse-submodules github && git rebase github/master
     upus = !git fetch --recurse-submodules upstream && git rebase upstream/master
@@ -101,8 +106,6 @@
     textconv = odt2txt
 [merge]
     tool = nvimdiff
-[include]
-    path = ~/.config/gitconfig.local
 [color "diff"]
     meta = yellow
     commit = yellow
@@ -130,15 +133,22 @@
 [status]
     submodulesummary = 1
 [gpg]
-    program = gpg
+    ; program = gpg
+    format =ssh
 [gpgv]
     program = gpgv
 [gpg "ssh"]
     allowedSignersFile = ~/.ssh/allowed_signers
+    defaultKeyCommand = ssh-add -L
 [commit]
     gpgsign = true
+    verbose = true
+[init]
+    defaultBranch = main
 [tag]
+    gpgsign = true
     forceSignAnnotated = true
+    sort = version:refname
 [credential "https://github.com"]
     helper =
     helper = !/usr/bin/gh auth git-credential
@@ -149,3 +159,9 @@
     enabled = true
 [branch]
     sort = -committerday
+[log]
+    date = local
+[include]
+    path = ~/.config/gitconfig.local
+; [includeIf "hasconfig:remote.*.url:git@github.com:<organisation>/**"]
+; 	path = work.local
