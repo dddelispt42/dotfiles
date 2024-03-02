@@ -16,17 +16,29 @@ mason_null_ls.setup {
     -- A list of sources to install if they're not already installed.
     -- This setting has no relation with the `automatic_installation` setting.
     ensure_installed = {
+        'alejandra',
+        'ansiblelint',
+        'asmfmt',
+        'bibclean',
+        'nginx_beautifier',
+        'nixfmt',
+        'nixpkg_fmt',
         'biome',
+        'buf',
         'cbfmt',
         'commitlint',
         'cppcheck',
+        'deadnix',
+        'dotenv_linter',
         'editorconfig-checker',
+        'format_r',
         'gitlint',
         'gitrebase',
-        'gitsign',
+        'gitsigns',  -- TODO: check
         'gofmt',
         'hadolint',
         'jq',
+        'just',
         'leptosfmt',
         'markdownlint',
         'proselint',
@@ -35,10 +47,12 @@ mason_null_ls.setup {
         'selene',
         'shfmt',
         'sqlfmt',
+        'statix',
         'stylua',
         'tflint',
         'vacuum',
         'vint',
+        'yamllint',
     },
     -- Run `require("null-ls").setup`.
     -- Will automatically install masons tools based on selected sources in `null-ls`.
