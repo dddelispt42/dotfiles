@@ -76,6 +76,17 @@ require('lazy').setup({
         event = { 'BufReadPre', 'BufNewFile' },
     },
     {
+        'nvimdev/lspsaga.nvim',
+        event = 'LspAttach',
+        config = function()
+            require('lspsaga').setup({})
+        end,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter', -- optional
+            'nvim-tree/nvim-web-devicons',     -- optional
+        }
+    },
+    {
         'nvimtools/none-ls.nvim',
         dependencies = {
             'LostNeophyte/null-ls-embedded',
