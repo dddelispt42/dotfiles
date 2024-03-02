@@ -14,10 +14,9 @@ local my_lsps = {
     'asm_lsp',
     'autotools_ls',
     'bashls',
-    'bufls',
     'biome',
+    'bufls',
     'clangd',
-    -- 'clojure_lsp',
     'cssls',
     'cssmodules_ls',
     'docker_compose_language_service',
@@ -27,7 +26,6 @@ local my_lsps = {
     'golangci_lint_ls',
     'gopls',
     'gradle_ls',
-    -- 'groovyls',
     'helm_ls',
     'html',
     'htmx',
@@ -35,27 +33,23 @@ local my_lsps = {
     'jsonls',
     'julials',
     'lemminx',
-    -- 'ltex',
     'lua_ls',
     'marksman',
     'matlab_ls',
-    -- 'mdx_analyzer',
     'mutt_ls',
-    'openscad_lsp',
-    'rnix',
     'ols',
     'opencl_ls',
-    -- 'prosemd_lsp',
+    'openscad_lsp',
     'pyright',
-    'stylelint_lsp',
     'quick_lint_js',
     'reason_ls',
     'remark_ls',
     'rescriptls',
-    -- 'robotframework_ls',
+    'rnix',
     'ruff_lsp',
     'rust_analyzer',
     'slint_lsp',
+    'spectral',
     'stylelint_lsp',
     'tailwindcss',
     'taplo',
@@ -64,10 +58,16 @@ local my_lsps = {
     'thriftls',
     'tsserver',
     'typos_lsp',
-    -- 'unocss',
     'vimls',
     'yamlls',
     'zls',
+    -- 'clojure_lsp',
+    -- 'groovyls',
+    -- 'ltex',
+    -- 'mdx_analyzer',
+    -- 'prosemd_lsp',
+    -- 'robotframework_ls',
+    -- 'unocss',
 }
 
 if vim.loop.os_uname().sysname == 'Windows_NT' then
@@ -103,7 +103,7 @@ require('mason-lspconfig').setup {
 
 local nvim_lsp = require 'lspconfig'
 
-if not vim.loop.os_uname().sysname == 'Windows_NT' then
+if vim.loop.os_uname().sysname == 'Linux' then
     -- nvim_lsp.yang_lsp.setup {}
     nvim_lsp.angularls.setup {}
     nvim_lsp.ansiblels.setup {}
@@ -151,7 +151,15 @@ nvim_lsp.jdtls.setup {}
 nvim_lsp.lemminx.setup {}
 nvim_lsp.ruff_lsp.setup {}
 nvim_lsp.taplo.setup {}
-nvim_lsp.typos_lsp.setup {}
+nvim_lsp.typos_lsp.setup {
+    init_options = {
+        -- Custom config. Used together with any workspace config files, taking precedence for
+        -- settings declared in both. Equivalent to the typos `--config` cli argument.
+        config = '~/.config/typos.toml',
+        -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
+        -- Defaults to error.
+        diagnosticSeverity = "information"
+    }}
 
 nvim_lsp.jsonls.setup {
     settings = {

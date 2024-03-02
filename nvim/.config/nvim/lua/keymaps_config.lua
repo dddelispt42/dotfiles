@@ -192,10 +192,13 @@ map('n', '<leader>cb', ':diffg BA<CR>', { noremap = true, silent = true, desc = 
 map('n', '<leader>cl', ':diffg LO<CR>', { noremap = true, silent = true, desc = '[m]erge selecting [l]ocal' })
 
 -- LSP
-map('n', '<leader>la', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
-map('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, desc = '[K] ... hover' })
+-- map('n', '<leader>la', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
+map('n', '<leader>la', "<cmd>Lspsaga code_action<cr>", { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
+-- map('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, desc = '[K] ... hover' })
+map('n', 'K', '<cmd>Lspsaga hover_doc<cr>', { noremap = true, silent = true, desc = '[K] ... hover' })
 map('n', '<leader>lS', vim.lsp.buf.signature_help, { noremap = true, silent = true, desc = '[l]sp [S]ignature help' })
-map('n', '<leader>lR', vim.lsp.buf.rename, { noremap = true, silent = true, desc = '[l]sp [R]ename' })
+-- map('n', '<leader>lR', vim.lsp.buf.rename, { noremap = true, silent = true, desc = '[l]sp [R]ename' })
+map('n', '<cmd>Lspsaga rename<cr>', vim.lsp.buf.rename, { noremap = true, silent = true, desc = '[l]sp [R]ename' })
 map('n', '<leader>le', vim.lsp.diagnostic.get_line_diagnostics, {
     noremap = true,
     silent = true,
@@ -204,14 +207,21 @@ map('n', '<leader>le', vim.lsp.diagnostic.get_line_diagnostics, {
 map('n', '[e', vim.diagnostic.goto_prev, { noremap = true, silent = true })
 map('n', ']e', vim.diagnostic.goto_next, { noremap = true, silent = true })
 map('n', '<leader>lr', vim.lsp.buf.references, { noremap = true, silent = true, desc = '[l]sp [r]eferences' })
-map('n', '<leader>ld', vim.lsp.buf.definition, { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
+-- map('n', '<leader>ld', vim.lsp.buf.definition, { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
+map('n', '<leader>ld', "<cmd>Lspsaga peek_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 map('n', '<leader>lD', vim.lsp.buf.declaration, { noremap = true, silent = true, desc = '[l]sp [D]eclaration' })
 map('n', '<leader>li', vim.lsp.buf.implementation, { noremap = true, silent = true, desc = '[l]sp [i]implementation' })
-map('n', '<leader>lI', vim.lsp.buf.incoming_calls, { noremap = true, silent = true, desc = '[l]sp [I]ncoming calls' })
-map('n', '<leader>lO', vim.lsp.buf.outgoing_calls, { noremap = true, silent = true, desc = '[l]sp [O]outgoing calls' })
-map('n', '<leader>lt', vim.lsp.buf.type_definition, { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
+-- map('n', '<leader>lI', vim.lsp.buf.incoming_calls, { noremap = true, silent = true, desc = '[l]sp [I]ncoming calls' })
+map('n', '<leader>lI', "<cmd>Lspsaga incoming_calls<cr>", { noremap = true, silent = true, desc = '[l]sp [I]ncoming calls' })
+-- map('n', '<leader>lO', vim.lsp.buf.outgoing_calls, { noremap = true, silent = true, desc = '[l]sp [O]outgoing calls' })
+map('n', '<leader>lO', "<cmd>Lspsaga outgoing_calls<cr>", { noremap = true, silent = true, desc = '[l]sp [O]outgoing calls' })
+-- map('n', '<leader>lt', vim.lsp.buf.type_definition, { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
+map('n', '<leader>lt', "<cmd>Lsapsaga peek_type_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
+map('n', '<leader>lF', '<cmd>Lspsaga finder tyd+def+ref+imp<cr>', { noremap = true, silent = true, desc = '[l]sp [F]inder' })
+map('n', '<leader>lB', '<cmd>Lspsaga outline<cr>', { noremap = true, silent = true, desc = '[l]sp [B]ar w/ infos' })
+map({'n', 't'}, '<A-t>', '<cmd>Lspsaga term_toggle<cr>', { noremap = true, silent = true, desc = '[l]sp [F]inder' })
 map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { timeout_ms = 10000 }<cr>',
-    { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
+    { noremap = true, silent = true, desc = '[l]sp [f]ormat' })
 map('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, {
     noremap = true,
     silent = true,

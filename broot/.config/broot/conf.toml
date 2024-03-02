@@ -44,7 +44,7 @@ execution = "$PAGER {file}"
 # If you want to change the colors of broot,
 # uncomment the following bloc and start messing
 # with the various values
-# Note that some of those colors might not correcly
+# Note that some of those colors might not correctly
 # render on terminals with low capabilities
 #
 # [skin]
