@@ -2,7 +2,7 @@
 # TODO: fix JIRA fuzzy search
 # TODO: fix fgr fuzzy search - just one function (see ff)
 # TODO: merge __handlexxx with caller
-# TODO: fix file/path yank
+# TODO: fix file/path yank (on X only - Wayland works)
 # TODO: check TODOs in file
 
 # Use fd and fzf to get the args to a command.
@@ -47,7 +47,7 @@ __handle_jira_issues() {
 
 fja() {
 	local output
-	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100%" fzf-tmux --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank1]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y) || return
+	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100%" fzf-tmux --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y) || return
 	__handle_jira_issues "$output"
 }
 
@@ -96,8 +96,9 @@ __handle_files() {
 				echo "$files" | while read -r line; do echo "$line"; done | wl-copy
 			elif [[ -n "${DISPLAY}" ]]; then
 				echo "$files" | while read -r line; do echo "$line"; done | xclip
+			else
+				echo "$files" | while read -r line; do echo "$line"; done
 			fi
-			echo "$files" | while read -r line; do echo "$line"; done
 		else
 			first_entry="$(echo "$files" | head -1)"
 			if [ -d "$first_entry" ]; then
@@ -150,6 +151,33 @@ fgr() {
 		--expect="ctrl-o,ctrl-e,ctrl-p,ctrl-y") || return
 	# shellcheck disable=SC2046
 	__run_with_history "${EDITOR:-vim}" $(echo "$output" | while read -r line; do echo "$line" | sed -e 's/\x1b\[[0-9;]*m//g' | sed -e 's/\(.*\):\([0-9]\+\):[0-9]\+.*/\1:\2/'; done)
+}
+
+fgi() {
+	# Switch between Ripgrep launcher mode (CTRL-R) and fzf filtering mode (CTRL-F)
+	rm -f /tmp/rg-fzf-{r,f}
+	RG_PREFIX="rg -uuu --column --line-number --no-heading --color=always --smart-case "
+	INITIAL_QUERY="${*:-}"
+	: | fzf --ansi --disabled --query "$INITIAL_QUERY" \
+		--header="Ctrl-[R]g/[F]zf/[s]elect/[u]nselect/[t]oggle/Pre[v]iew- [E]DIT/[o]pen/[p]ager/[x]sort/[y]ank/[h]idden/[d]irOnly/[r]eset" \
+		--bind='ctrl-s:select-all' \
+		--bind='ctrl-u:deselect-all' \
+		--bind='ctrl-t:toggle-all' \
+		--bind='ctrl-v:toggle-preview' \
+		--bind='ctrl-x:toggle-sort' \
+		--bind "start:reload($RG_PREFIX {q})+unbind(ctrl-r)" \
+		--bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
+		--bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(2. fzf> )+enable-search+rebind(ctrl-r)+transform-query(echo {q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f)" \
+		--bind "ctrl-r:unbind(ctrl-r)+change-prompt(1. rg> )+disable-search+reload($RG_PREFIX {q} || true)+rebind(change,ctrl-f)+transform-query(echo {q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r)" \
+		--color "hl:-1:underline,hl+:-1:underline:reverse" \
+		--prompt '1. rg> ' \
+		--delimiter : \
+		--preview 'bat --color=always {1} --highlight-line {2}' \
+		--preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+		--expect="ctrl-o,ctrl-e,ctrl-p,ctrl-y" \
+		--bind 'enter:become(nvim {1} +{2})' || return
+
+	# TODO: allow multiselection (see fgra)
 }
 
 function __handle_fuzzy_grep {
@@ -431,7 +459,7 @@ function fbookm {
 # 	fi
 # }
 
-# TODO: add all possible opertions to FZF
+# TODO: add all possible operations to FZF
 fdc () {
 	local cid
 	cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
@@ -440,8 +468,4 @@ fdc () {
 }
 fdi() {
 	docker images | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $3 }' | xargs -r docker rmi
-}
-
-frecipe() {
-	curl -sG "https://plainoldrecipe.com/recipe" -d "url=${1}" | pandoc -f html -t markdown
 }

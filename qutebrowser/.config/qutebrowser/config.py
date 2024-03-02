@@ -13,6 +13,8 @@ def filter_yt(info: interceptor.Request):
     url = info.request_url
     if url.host() == 'www.youtube.com' and url.path() == '/get_video_info' and '&adformat=' in url.query():
         info.block()
+    if url.host() == 'www.youtube.com':
+        info.block()
 
 
 interceptor.register(filter_yt)
@@ -29,7 +31,7 @@ config.bind('gn', notecmd)
 config.bind('V', 'hint links spawn ' + os.environ['BROWSER'] + ' "{hint-url}"')
 config.bind('v', 'hint links spawn funnel "{hint-url}"')
 config.bind('\\', 'spawn dmenuhandler "{url}"')
-config.bind(',v', 'spawn umpv {url}')
+config.bind(' v', 'spawn umpv {url}')
 config.bind(',V', 'hint links spawn umpv {hint-url}')
 config.bind(';V', 'hint links --rapid spawn umpv {hint-url}')
 # Awesome way to open vim from qutebrowser
@@ -387,7 +389,7 @@ config.load_autoconfig()
 # USERSCRIPTS
 #
 # personally I use
-# - for password managment
+# - for password management
 #   - qute-pass
 # - for chrome casting I use
 #   - cast
