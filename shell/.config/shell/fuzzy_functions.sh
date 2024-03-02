@@ -39,9 +39,9 @@ __handle_jira_issues() {
 	elif [ "$key" = ctrl-p ]; then
 		echo "$ids"
 	elif [ "$key" = ctrl-y ]; then
-		echo "$ids" | head -1 | xclip -selection c
+		echo "$ids" | head -1 | xclip
 	else
-		echo "$ids" | head -1 | xclip -selection c
+		echo "$ids" | head -1 | xclip
 	fi
 }
 
