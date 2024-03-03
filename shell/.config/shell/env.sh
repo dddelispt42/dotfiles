@@ -159,6 +159,8 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/ansible"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export ANSIBLE_NOCOWS=1
+export W3M_DIR="$XDG_DATA_HOME"/w3m
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
 export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
@@ -194,7 +196,7 @@ export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 # JAVA
 export PATH=/opt/java/bin:$PATH
 export JAVA_HOME=/opt/java
-# export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
 # Python - disable keyring
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
