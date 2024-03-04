@@ -219,7 +219,7 @@ map('n', '<leader>lO', "<cmd>Lspsaga outgoing_calls<cr>", { noremap = true, sile
 map('n', '<leader>lt', "<cmd>Lsapsaga peek_type_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
 map('n', '<leader>lF', '<cmd>Lspsaga finder tyd+def+ref+imp<cr>', { noremap = true, silent = true, desc = '[l]sp [F]inder' })
 map('n', '<leader>lB', '<cmd>Lspsaga outline<cr>', { noremap = true, silent = true, desc = '[l]sp [B]ar w/ infos' })
-map({'n', 't'}, '<A-t>', '<cmd>Lspsaga term_toggle<cr>', { noremap = true, silent = true, desc = '[l]sp [F]inder' })
+map({'n', 't'}, '<A-t>', '<cmd>Lspsaga term_toggle<cr>', { noremap = true, silent = true, desc = '[l]sp [t]erminal toggle' })
 map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { timeout_ms = 10000 }<cr>',
     { noremap = true, silent = true, desc = '[l]sp [f]ormat' })
 map('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, {
