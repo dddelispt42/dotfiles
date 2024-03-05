@@ -35,7 +35,7 @@ local my_lsps = {
     'lemminx',
     'lua_ls',
     'marksman',
-    'matlab_ls',
+    -- 'matlab_ls',
     'mutt_ls',
     'ols',
     'opencl_ls',
