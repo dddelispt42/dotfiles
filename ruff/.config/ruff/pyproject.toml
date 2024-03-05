@@ -87,7 +87,7 @@ extend-select = [
 ]
 
 # Never enforce `E501` (line length violations).
-ignore = ["D211", "D213", "TD003", "G004", "FIX002", "COM812", "ISC001"]
+ignore = ["D203", "D211", "D213", "TD003", "G004", "FIX002", "COM812", "ISC001"]
 
 # Always autofix, but never try to fix `F401` (unused imports).
 # fix = true

@@ -26,7 +26,7 @@ cmp.setup {
         ['<C-j>'] = cmp.mapping.select_next_item(),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm {
+        ['<C-y>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
