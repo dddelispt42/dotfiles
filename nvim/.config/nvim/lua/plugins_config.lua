@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-global
---# selene: allow(undefined_variable, unscoped_variables)
+--# selene: allow(undefined_variable, unscoped_variables, mixed_table)
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -79,12 +79,12 @@ require('lazy').setup({
         'nvimdev/lspsaga.nvim',
         event = 'LspAttach',
         config = function()
-            require('lspsaga').setup({})
+            require('lspsaga').setup {}
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- optional
-            'nvim-tree/nvim-web-devicons',     -- optional
-        }
+            'nvim-tree/nvim-web-devicons', -- optional
+        },
     },
     {
         'nvimtools/none-ls.nvim',
@@ -601,7 +601,18 @@ require('lazy').setup({
         'Pocco81/auto-save.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()
-            require('auto-save').setup {}
+            require('auto-save').setup {
+                enabled = true,
+                -- execution_message = {
+                --     -- message = function() -- message to print on save
+                --     --     return ('AutoSave: saved at ' .. vim.fn.strftime '%H:%M:%S')
+                --     -- end,
+                --     message = "",
+                --     dim = 0.18, -- dim the color of `message`
+                --     cleaning_interval = 250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+                -- },
+                debounce_delay = 1000,
+            }
         end,
     },
 }, {
