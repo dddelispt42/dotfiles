@@ -198,7 +198,7 @@ map('n', '<leader>la', "<cmd>Lspsaga code_action<cr>", { noremap = true, silent 
 map('n', 'K', '<cmd>Lspsaga hover_doc<cr>', { noremap = true, silent = true, desc = '[K] ... hover' })
 map('n', '<leader>lS', vim.lsp.buf.signature_help, { noremap = true, silent = true, desc = '[l]sp [S]ignature help' })
 -- map('n', '<leader>lR', vim.lsp.buf.rename, { noremap = true, silent = true, desc = '[l]sp [R]ename' })
-map('n', '<cmd>Lspsaga rename<cr>', vim.lsp.buf.rename, { noremap = true, silent = true, desc = '[l]sp [R]ename' })
+map('n', '<leader>lR', '<cmd>Lspsaga rename<cr>', { noremap = true, silent = true, desc = '[l]sp [R]ename' })
 map('n', '<leader>le', vim.lsp.diagnostic.get_line_diagnostics, {
     noremap = true,
     silent = true,
