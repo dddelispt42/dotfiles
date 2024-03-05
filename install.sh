@@ -201,14 +201,16 @@ if command -v xdg-mime >/dev/null; then
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
 fi
 
-if [ ! -f "${XDG_DATA_HOME}/fonts/${FONT}NerdFont-Regular.ttf" ]; then
-	echo "Installing ${FONT}..."
-	if cd "$(mktemp -d)"; then
-		wget "$FONTURL"
-		unzip "${FONT}.zip"
-		mv ./*.ttf "${XDG_DATA_HOME}/fonts"
-		fc-cache -fv
-		cd - || true
+if command -v fc-cache >/dev/null; then
+	if [ ! -f "${XDG_DATA_HOME}/fonts/${FONT}NerdFont-Regular.ttf" ]; then
+		echo "Installing ${FONT}..."
+		if cd "$(mktemp -d)"; then
+			wget "$FONTURL"
+			unzip "${FONT}.zip"
+			mv ./*.ttf "${XDG_DATA_HOME}/fonts"
+			fc-cache -fv
+			cd - || true
+		fi
 	fi
 fi
 
