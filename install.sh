@@ -131,6 +131,7 @@ stow -vS -t "$HOME"/ alacritty
 stow -vS -t "$HOME"/ bat
 stow -vS -t "$HOME"/ bottom
 stow -vS -t "$HOME"/ broot
+stow -vS -t "$HOME"/ direnv
 stow -vS -t "$HOME"/ dunst
 stow -vS -t "$HOME"/ dwm
 stow -vS -t "$HOME"/ foot

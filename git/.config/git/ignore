@@ -4,6 +4,7 @@
 **/.settings
 **/doc/tags
 **/doc/tags-te
+.envrc
 *.7z
 *.DOC
 *.DOCX
