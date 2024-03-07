@@ -5,6 +5,7 @@
 **/doc/tags
 **/doc/tags-te
 .envrc
+*.spec
 *.7z
 *.DOC
 *.DOCX
