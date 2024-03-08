@@ -241,7 +241,14 @@ rusttools.setup {
 require('neodev').setup()
 
 -- Turn on lsp status information
-require('fidget').setup()
+require('fidget').setup({
+    display = {
+        render_limit = 3,
+    },
+    lsp = {
+        progress_ringbuf_size = 3,
+    }
+})
 
 require('mason-tool-installer').setup {
 
