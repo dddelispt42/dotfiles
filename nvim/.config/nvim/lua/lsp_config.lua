@@ -158,8 +158,9 @@ nvim_lsp.typos_lsp.setup {
         config = '~/.config/typos.toml',
         -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
         -- Defaults to error.
-        diagnosticSeverity = "information"
-    }}
+        diagnosticSeverity = 'information',
+    },
+}
 
 nvim_lsp.jsonls.setup {
     settings = {
@@ -241,14 +242,25 @@ rusttools.setup {
 require('neodev').setup()
 
 -- Turn on lsp status information
-require('fidget').setup({
-    display = {
-        render_limit = 3,
+require('fidget').setup {
+    progress = {
+        poll_rate = 1, -- How and when to poll for progress messages
+        suppress_on_insert = true, -- Suppress new messages while in insert mode
+        ignore_done_already = true, -- Ignore new tasks that are already complete
+        ignore_empty_message = true, -- Ignore new tasks that don't contain a message
+
+        display = {
+            render_limit = 3,
+        },
+        lsp = {
+            progress_ringbuf_size = 3,
+        },
     },
-    lsp = {
-        progress_ringbuf_size = 3,
-    }
-})
+    notification = {
+        poll_rate = 10, -- How frequently to update and render notifications
+        filter = vim.log.levels.INFO, -- Minimum notifications level
+    },
+}
 
 require('mason-tool-installer').setup {
 
