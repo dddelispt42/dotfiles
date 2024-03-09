@@ -13,8 +13,8 @@ def filter_yt(info: interceptor.Request):
     url = info.request_url
     if url.host() == 'www.youtube.com' and url.path() == '/get_video_info' and '&adformat=' in url.query():
         info.block()
-    # if url.host() == 'www.youtube.com':
-    #     info.block()
+    if url.host() == 'www.youtube.com':
+        info.block()
 
 
 interceptor.register(filter_yt)

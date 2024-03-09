@@ -71,7 +71,8 @@ mason_null_ls.setup {
 
 -- If `automatic_setup` is false.
 none_ls.setup {
-    debug = true,
+    debug = false,
+    -- debounce = 500,
     sources = {
         none_ls.builtins.code_actions.gitrebase,
         none_ls.builtins.code_actions.gitsigns,
