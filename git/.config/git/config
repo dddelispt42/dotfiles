@@ -80,10 +80,10 @@
     fa = fetch --all
     r = reset
     rh = reset --hard
-    up = !git fetch --recurse-submodules origin && git rebase origin/master
-    upgh = !git fetch --recurse-submodules github && git rebase github/master
-    upus = !git fetch --recurse-submodules upstream && git rebase upstream/master
-    upuus = !git fetch --recurse-submodules upupstream && git rebase upupstream/master
+    up = !git fetch --recurse-submodules origin && git rebase origin/master || git rebase origin/main
+    upgh = !git fetch --recurse-submodules github && git rebase github/master || git rebase github/main
+    upus = !git fetch --recurse-submodules upstream && git rebase upstream/master || git rebase upstream/main
+    upuus = !git fetch --recurse-submodules upupstream && git rebase upupstream/master || git rebase upupstream/main
     ; wd = diff --word-diff=color --ignore-all-space
     ; wds = diff --staged --word-diff --ignore-all-space
     ws = show --minimal --word-diff=color --ignore-all-space
@@ -158,7 +158,7 @@
 [rerere]
     enabled = true
 [branch]
-    sort = -committerday
+    sort = -committerdate
 [log]
     date = local
 [include]
