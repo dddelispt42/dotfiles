@@ -5,7 +5,6 @@
 **/doc/tags
 **/doc/tags-te
 .envrc
-dist/
 *.spec
 *.7z
 *.DOC

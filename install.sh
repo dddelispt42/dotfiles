@@ -163,6 +163,7 @@ stow -vS -t "$HOME"/ waybar
 stow -vS -t "$HOME"/ yazi
 
 # add links
+test -d "${HOME}/opt" || mkdir -p "$_"
 cd ~/opt || echo "Missing ~/opt directory"
 test -s ../dev/heiko/backmatic/target/release/backmatic && ln -sf "$_" backmatic
 test -s ../dev/security/gitleaks/gitleaks && ln -sf "$_" gitleaks
@@ -202,6 +203,7 @@ if command -v xdg-mime >/dev/null; then
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
 fi
 
+test -d "${XDG_DATA_HOME}/fonts" || mkdir -p "$_"
 if command -v fc-cache >/dev/null; then
 	if [ ! -f "${XDG_DATA_HOME}/fonts/${FONT}NerdFont-Regular.ttf" ]; then
 		echo "Installing ${FONT}..."

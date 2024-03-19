@@ -71,7 +71,7 @@ fpun() {
 }
 
 __run_with_history() {
-	print -s -- "$@"
+	print -s -- "$1 $(for item in "${@:2}"; do printf "%s\t" "$(realpath "$item")"; done)"
 	"$@"
 }
 __handle_files() {

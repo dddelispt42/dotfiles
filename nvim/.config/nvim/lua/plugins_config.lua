@@ -83,7 +83,7 @@ require('lazy').setup({
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- optional
-            'nvim-tree/nvim-web-devicons', -- optional
+            'nvim-tree/nvim-web-devicons',     -- optional
         },
     },
     {
@@ -124,7 +124,7 @@ require('lazy').setup({
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('trouble').setup {
-                auto_open = true, -- automatically open the list when you have diagnostics
+                auto_open = true,  -- automatically open the list when you have diagnostics
                 auto_close = true, -- automatically close the list when you have no diagnostics
                 -- automatically preview the location of the diagnostic.
                 -- <esc> to close preview and go back to last window
@@ -261,11 +261,12 @@ require('lazy').setup({
         },
     },
     {
-        'nvim-neotest/neotest',
+        "nvim-neotest/neotest",
         dependencies = {
-            'nvim-lua/plenary.nvim',
-            'nvim-treesitter/nvim-treesitter',
-            'antoinemadec/FixCursorHold.nvim',
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
             'nvim-neotest/neotest-python',
             'nvim-neotest/neotest-plenary',
             'rouge8/neotest-rust',
@@ -306,7 +307,7 @@ require('lazy').setup({
                 },
                 surrounds = {
                     HTML = {
-                        ['t'] = 'type', -- Change just the tag type
+                        ['t'] = 'type',  -- Change just the tag type
                         ['T'] = 'whole', -- Change the whole tag contents
                     },
                     aliases = {
@@ -315,7 +316,7 @@ require('lazy').setup({
                         ['B'] = '}',
                         ['r'] = ']',
                         -- Table aliases only apply for changes/deletions
-                        ['q'] = { '"', "'", '`' }, -- Any quote character
+                        ['q'] = { '"', "'", '`' },                     -- Any quote character
                         ['s'] = { ')', ']', '}', '>', "'", '"', '`' }, -- Any surrounding delimiter
                     },
                 },
@@ -553,10 +554,21 @@ require('lazy').setup({
         'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
         event = { 'BufReadPre', 'BufNewFile' },
     },
-    {
-        'rest-nvim/rest.nvim',
-        cmd = { 'RestNvim', 'RestNvimPreview', 'RestNvimLast' },
-    },
+    -- {
+    --     "vhyrro/luarocks.nvim",
+    --     config = function()
+    --         require("luarocks").setup({})
+    --     end,
+    -- },
+    -- {
+    --     "rest-nvim/rest.nvim",
+    --     ft = "http",
+    --     dependencies = { "luarocks.nvim" },
+    --     -- config = function()
+    --     --     require("rest-nvim").setup()
+    --     -- end,
+    --     cmd = { 'RestNvim', 'RestNvimPreview', 'RestNvimLast' },
+    -- },
     {
         'folke/noice.nvim',
         event = 'VeryLazy',
@@ -634,7 +646,7 @@ require('lazy').setup({
         rtp = {
             reset = false, -- reset the runtime path to $VIMRUNTIME and your config directory
             ---@type string[]
-            paths = {}, -- add any custom paths here that you want to includes in the rtp
+            paths = {},    -- add any custom paths here that you want to includes in the rtp
             ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
                 '2html_plugin',
