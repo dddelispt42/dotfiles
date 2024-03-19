@@ -219,13 +219,11 @@ fi
 
 mkdir -p "$XDG_STATE_HOME"/nvim/{undo,backup,swap,sessions,spell} &>/dev/null
 if command -v nvim >/dev/null; then
-	cd "$XDG_DATA_HOME/nvim/lazy/neogit" || echo "Neogit dir not found"
-	git co -- doc/tags 2>/dev/null
-	cd "$XDG_DATA_HOME/nvim/lazy/rest.nvim" || echo "rest.nvim dir not found"
-	git co -- doc/tags 2>/dev/null
+	# cd "$XDG_DATA_HOME/nvim/lazy/neogit" || echo "Neogit dir not found"
+	# git co -- doc/tags 2>/dev/null
+	# cd "$XDG_DATA_HOME/nvim/lazy/rest.nvim" || echo "rest.nvim dir not found"
+	# git co -- doc/tags 2>/dev/null
 	cd "$ROOTDIR" || true
-	nvim --headless "+Lazy! sync" +qa &>/dev/null
-	nvim --headless "+Lazy! sync" +qa &>/dev/null
 	nvim --headless "+Lazy! sync" +qa &>/dev/null
 	nvim --headless "+MasonUpdate" +qa &>/dev/null
 fi
