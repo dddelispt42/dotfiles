@@ -23,7 +23,7 @@ orgmode.setup {
     org_hide_emphasis_markers = true,
     -- org_indent_mode = 'noindent',
     org_deadline_warning_days = 3,
-    org_agenda_span = 'day',
+    org_agenda_span = 'week',
     -- org_agenda_start_day = '-1d',
     org_priority_highest = 1,
     org_priority_default = 7,
