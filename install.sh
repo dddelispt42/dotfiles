@@ -226,6 +226,7 @@ if command -v nvim >/dev/null; then
 	cd "$ROOTDIR" || true
 	nvim --headless "+Lazy! sync" +qa &>/dev/null
 	nvim --headless "+MasonUpdate" +qa &>/dev/null
+	nvim --headless "+TSUpdate" +qa &>/dev/null
 fi
 
 # TODO: check if key is too old

@@ -57,3 +57,6 @@ fi
 if command -v signal-desktop >/dev/null; then
 	nohup signal-desktop &
 fi
+if command -v ntfy >/dev/null; then
+	nohup ntfy subscribe --from-config &
+fi
