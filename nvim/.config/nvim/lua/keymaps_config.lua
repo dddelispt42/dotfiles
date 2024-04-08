@@ -283,10 +283,10 @@ map('n', '<leader>xt', '<cmd>TodoTrouble<cr>', { silent = true, noremap = true, 
 map('n', 'gR', '<cmd>Trouble lsp_references<cr>', { silent = true, noremap = true, desc = '[x]Trouble [R]references' })
 
 -- GUI mode - zooms
-map('n', '<C-ScrollWheelUp>', '<cmd>AdjustFontSize(1)<CR>', { silent = true, noremap = true })
-map('n', '<C-ScrollWheelDown>', '<cmd>AdjustFontSize(-1)<CR>', { silent = true, noremap = true })
-map('i', '<C-ScrollWheelUp>', '<Esc><cmd>AdjustFontSize(1)<CR>a', { silent = true, noremap = true })
-map('i', '<C-ScrollWheelDown>', '<Esc><cmd>AdjustFontSize(-1)<CR>a', { silent = true, noremap = true })
+map('n', '<C-ScrollWheelUp>', '<cmd>GUIFontSizeUp<CR>', { silent = true, noremap = true })
+map('n', '<C-ScrollWheelDown>', '<cmd>GUIFontSizeDown<CR>', { silent = true, noremap = true })
+map('i', '<C-ScrollWheelUp>', '<cmd>GUIFontSizeUp<CR>', { silent = true, noremap = true })
+map('i', '<C-ScrollWheelDown>', '<cmd>GUIFontSizeDown<CR>', { silent = true, noremap = true })
 
 -- Debugging
 -- Commented shortcuts are in debug config file

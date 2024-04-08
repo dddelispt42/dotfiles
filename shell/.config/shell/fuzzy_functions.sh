@@ -13,10 +13,10 @@
 # f 'echo Selected music:' --extension mp3
 # fm rm # To rm files in current directory
 f() {
-    # shellcheck disable=2296
-    sels=( "${(@f)$(fd "${fd_default[@]}" "${@:2}"| fzf)}" )
-    # shellcheck disable=2128,2145
-    test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
+	# shellcheck disable=2296
+	sels=( "${(@f)$(fd "${fd_default[@]}" "${@:2}"| fzf)}" )
+	# shellcheck disable=2128,2145
+	test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
 }
 # Like f, but not recursive.
 fm() {
@@ -59,15 +59,21 @@ fj() {
 
 # See man pages
 fman() {
-    man -k . | fzf -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
+	man -k . | fzf -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
 }
 # Install packages using yay (change to pacman/AUR helper of your choice)
 fpin() {
-    paru -Slq | fzf -q "$1" -m --preview 'paru -Si {1}'| xargs -ro sudo paru -S
+	local cmd
+	cmd=pacman
+	if paru --version >/dev/null; then cmd=paru; fi
+	$cmd -Sql | fzf -q "$1" -m --preview "$cmd -Si {1}" | xargs -ro sudo $cmd -S
 }
 # Remove installed packages (change to pacman/AUR helper of your choice)
 fpun() {
-    paru -Qq | fzf -q "$1" -m --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns
+	local cmd
+	cmd=pacman
+	if paru --version >/dev/null; then cmd=paru; fi
+	$cmd -Qq | fzf -q "$1" -m --preview "$cmd -Qi {1}" | xargs -ro sudo $cmd -Rns
 }
 
 __run_with_history() {
@@ -462,7 +468,7 @@ function fbookm {
 # TODO: add all possible operations to FZF
 fdc () {
 	local cid
-	cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+	cid=$(docker ps --all | sed 1d | fzf -q "$1" | awk '{print $1}')
 
 	[ -n "$cid" ] && docker stop "$cid"
 }

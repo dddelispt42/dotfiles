@@ -35,7 +35,6 @@ local my_lsps = {
     'lemminx',
     'lua_ls',
     'marksman',
-    -- 'matlab_ls',
     'mutt_ls',
     'ols',
     'opencl_ls',
@@ -49,6 +48,7 @@ local my_lsps = {
     'ruff_lsp',
     'rust_analyzer',
     'slint_lsp',
+    -- 'sonarlint-language-server',
     'spectral',
     'stylelint_lsp',
     'tailwindcss',
@@ -64,6 +64,7 @@ local my_lsps = {
     -- 'clojure_lsp',
     -- 'groovyls',
     -- 'ltex',
+    -- 'matlab_ls',
     -- 'mdx_analyzer',
     -- 'prosemd_lsp',
     -- 'robotframework_ls',
@@ -132,6 +133,7 @@ if vim.loop.os_uname().sysname == 'Linux' then
     nvim_lsp.pyright.setup {}
     nvim_lsp.rnix.setup {}
     nvim_lsp.rust_analyzer.setup {}
+    -- nvim_lsp.sonarlint.setup {}
     nvim_lsp.spectral.setup {}
     nvim_lsp.stylelint_lsp.setup {}
     nvim_lsp.tailwindcss.setup {}
