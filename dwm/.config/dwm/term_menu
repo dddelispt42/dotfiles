@@ -1,5 +1,5 @@
 #!/bin/bash
-hosts=("ed2" "media" "server" "server2" "work" "artix" "tejo")
+hosts=("eins" "ed2" "media" "server" "server2" "work" "artix" "tejo")
 
 selected="$(for host in "${hosts[@]}"; do
 	echo "$host"
