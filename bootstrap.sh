@@ -1,7 +1,7 @@
 #!/bin/bash
 
 doas pacman -Syu
-doas pacman -S stow zsh git openssh starship trash-cli zoxide fzf neovim
+doas pacman -S stow zsh git openssh starship trash-cli zoxide fzf neovim fd bat sheldon eza
 [[ -n ${LANG+z} ]] || (
 	doas nvim /etc/locale.gen
 	doas locale-gen
