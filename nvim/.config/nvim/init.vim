@@ -137,18 +137,17 @@
     " let g:vira_browser = 'qutebrowser'
     " " TODO: run queries and open issues from there
 
-" TODO: port to lua
-" Configure font size in GUI mode
-let s:fontsize = 8
-function! AdjustFontSize(amount)
-  let s:fontsize = s:fontsize+a:amount
-  let s:fontconfig = 'FiraCode Nerd Font Mono:h' . s:fontsize
-  " :set guifont="FiraCode Nerd Font Mono:h" . s:fontsize
-  :lua vim.o.guifont=s:fontconfig
-  " :execute "Consolas:h" . s:fontsize
-endfunction
-
-noremap <C-.> :call AdjustFontSize(1)<CR>
-noremap <C-,> :call AdjustFontSize(-1)<CR>
-inoremap <C-.> <Esc>:call AdjustFontSize(1)<CR>a
-inoremap <C-,> <Esc>:call AdjustFontSize(-1)<CR>a
+" " Configure font size in GUI mode
+" let s:fontsize = 8
+" function! AdjustFontSize(amount)
+"   let s:fontsize = s:fontsize+a:amount
+"   let s:fontconfig = 'FiraCode Nerd Font Mono:h' . s:fontsize
+"   " :set guifont="FiraCode Nerd Font Mono:h" . s:fontsize
+"   :lua vim.o.guifont=s:fontconfig
+"   " :execute "Consolas:h" . s:fontsize
+" endfunction
+"
+" noremap <C-.> :call AdjustFontSize(1)<CR>
+" noremap <C-,> :call AdjustFontSize(-1)<CR>
+" inoremap <C-.> <Esc>:call AdjustFontSize(1)<CR>a
+" inoremap <C-,> <Esc>:call AdjustFontSize(-1)<CR>a

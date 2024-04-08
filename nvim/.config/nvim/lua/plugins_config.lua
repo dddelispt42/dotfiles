@@ -83,7 +83,7 @@ require('lazy').setup({
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- optional
-            'nvim-tree/nvim-web-devicons',     -- optional
+            'nvim-tree/nvim-web-devicons', -- optional
         },
     },
     {
@@ -124,7 +124,7 @@ require('lazy').setup({
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('trouble').setup {
-                auto_open = true,  -- automatically open the list when you have diagnostics
+                auto_open = true, -- automatically open the list when you have diagnostics
                 auto_close = true, -- automatically close the list when you have no diagnostics
                 -- automatically preview the location of the diagnostic.
                 -- <esc> to close preview and go back to last window
@@ -182,6 +182,7 @@ require('lazy').setup({
         'aklt/plantuml-syntax', -- TODO: check if TS syntax exists
         ft = 'plantuml',
     },
+    'MTDL9/vim-log-highlighting', -- TODO: is there a lua substitute?
     -- 'Sol-Ponz/plantuml-previewer.nvim',
     {
         'javiorfo/nvim-soil',
@@ -261,12 +262,12 @@ require('lazy').setup({
         },
     },
     {
-        "nvim-neotest/neotest",
+        'nvim-neotest/neotest',
         dependencies = {
-            "nvim-neotest/nvim-nio",
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter",
+            'nvim-neotest/nvim-nio',
+            'nvim-lua/plenary.nvim',
+            'antoinemadec/FixCursorHold.nvim',
+            'nvim-treesitter/nvim-treesitter',
             'nvim-neotest/neotest-python',
             'nvim-neotest/neotest-plenary',
             'rouge8/neotest-rust',
@@ -307,7 +308,7 @@ require('lazy').setup({
                 },
                 surrounds = {
                     HTML = {
-                        ['t'] = 'type',  -- Change just the tag type
+                        ['t'] = 'type', -- Change just the tag type
                         ['T'] = 'whole', -- Change the whole tag contents
                     },
                     aliases = {
@@ -316,7 +317,7 @@ require('lazy').setup({
                         ['B'] = '}',
                         ['r'] = ']',
                         -- Table aliases only apply for changes/deletions
-                        ['q'] = { '"', "'", '`' },                     -- Any quote character
+                        ['q'] = { '"', "'", '`' }, -- Any quote character
                         ['s'] = { ')', ']', '}', '>', "'", '"', '`' }, -- Any surrounding delimiter
                     },
                 },
@@ -516,6 +517,12 @@ require('lazy').setup({
         'voldikss/vim-floaterm', -- TODO: is there a lua substitute?
         event = 'VeryLazy',
     },
+    {
+        'dddelispt42/gui-font-resize.nvim',
+        config = function()
+            return require('gui-font-resize').setup { default_size = 10, change_by = 1, bounds = { maximum = 20 } }
+        end,
+    },
     -- edit JIRA issues in vim
     -- 'n0v1c3/vira0,
     -- 'dddelispt42/vira', { 'do': './install.sh', }
@@ -646,7 +653,7 @@ require('lazy').setup({
         rtp = {
             reset = false, -- reset the runtime path to $VIMRUNTIME and your config directory
             ---@type string[]
-            paths = {},    -- add any custom paths here that you want to includes in the rtp
+            paths = {}, -- add any custom paths here that you want to includes in the rtp
             ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
                 '2html_plugin',

@@ -27,7 +27,7 @@ if [ "$HOST" == "work" ]; then
 fi
 
 "${XDG_CONFIG_HOME:-$HOME/.config}/dunst/launch.sh" &
-udiskie -A -t &
+# udiskie -A -t &
 if [[ -z "${DISPLAY}" ]]; then
 	"${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" "$HOST"
 	# TODO: substitute by circadian
@@ -45,18 +45,18 @@ if [[ -z "${DISPLAY}" ]]; then
 		disown
 	fi
 fi
-if command -v brave >/dev/null; then
-	nohup brave &
-fi
-if command -v qutebrowser >/dev/null; then
-	nohup qutebrowser &
-fi
+# if command -v brave >/dev/null; then
+# 	nohup brave &
+# fi
+# if command -v qutebrowser >/dev/null; then
+# 	nohup qutebrowser &
+# fi
 if command -v thunderbird >/dev/null; then
 	nohup thunderbird &
 fi
-if command -v signal-desktop >/dev/null; then
-	nohup signal-desktop &
-fi
+# if command -v signal-desktop >/dev/null; then
+# 	nohup signal-desktop &
+# fi
 if command -v ntfy >/dev/null; then
 	nohup ntfy subscribe --from-config &
 fi

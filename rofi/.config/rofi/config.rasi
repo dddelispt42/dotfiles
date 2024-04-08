@@ -1,5 +1,6 @@
 configuration {
 	modi: "run,combi,drun,window,ssh,calc,keys,filebrowser";
+    color-enabled: true;
 	/* width: 70; */
 /*	lines: 15;*/
 	/* columns: 3; */

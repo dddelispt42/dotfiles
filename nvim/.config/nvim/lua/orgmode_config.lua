@@ -7,7 +7,7 @@ if not orgmode_ok then
     return
 end
 
-orgmode.setup_ts_grammar()
+-- orgmode.setup_ts_grammar()
 
 orgmode.setup {
     org_todo_keywords = { 'TODO(t)', 'NEXT(n)', 'WAITING(w)', 'DELEGATED(s)', '|', 'DONE(d)', 'REJECTED(r)' },
