@@ -5,6 +5,7 @@ HOST=$(hostname)
 
 xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
 xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
+xset fp+ "${HOME}/.local/share/fonts"
 
 if [ "$HOST" == "work" ]; then
 	# MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
