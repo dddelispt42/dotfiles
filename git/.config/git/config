@@ -144,7 +144,7 @@
     gpgsign = true
     verbose = true
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [tag]
     gpgsign = true
     forceSignAnnotated = true
