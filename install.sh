@@ -249,9 +249,9 @@ fi
 if test -d /mnt/users/hriemer/.config/vifm/; then
 	rsync -av --delete vifm/.config/vifm/ /mnt/users/hriemer/AppData/Roaming/Vifm/ || true
 fi
-if test -d /mnt/users/hriemer/AppData/Roaming/yazi/config; then
-	rsync -av --delete "$ROOTDIR/yazi/.config/yazi/" /mnt/users/hriemer/AppData/Roaming/yazi/config || true
-fi
+# if test -d /mnt/users/hriemer/AppData/Roaming/yazi/config; then
+# 	rsync -av --delete "$ROOTDIR/yazi/.config/yazi/" /mnt/users/hriemer/AppData/Roaming/yazi/config || true
+# fi
 
 git submodule update --init vifm/.config/vifm/colors/
 
