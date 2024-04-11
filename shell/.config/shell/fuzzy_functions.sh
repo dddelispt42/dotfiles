@@ -47,13 +47,13 @@ __handle_jira_issues() {
 
 fja() {
 	local output
-	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100%" fzf-tmux --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y) || return
+	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Urls/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y) || return
 	__handle_jira_issues "$output"
 }
 
 fj() {
 	local output
-	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100%" fzf-tmux --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y) || return
+	output=$(cat "${XDG_CACHE_HOME:-$HOME/.cache}"/JiraIssueCache*.issues | grep -vE "( Closed| Done| Descope| Resolve| Rejecte)" | FZF_DEFAULT_OPTS="--reverse -x --multi --height 100%" fzf --prompt="Select issue(s) [C-brOwser/Url/Print/Yank]> " -x -0 -m --expect=ctrl-o,ctrl-u,ctrl-p,ctrl-y) || return
 	__handle_jira_issues "$output"
 }
 
@@ -118,12 +118,12 @@ __handle_files() {
 }
 ff() {
 	local output
-	IFS=$'\n' output=$(fzf-tmux --query="$1" --ansi \
+	IFS=$'\n' output=$(fzf --query="$1" --ansi \
 		--header="Ctrl-[s]elect/[u]nselect/[t]oggle/Pre[v]iew- [E]DIT/[o]pen/[p]ager/[x]sort/[y]ank/[h]idden/[d]irOnly/[r]eset" \
 		--bind='ctrl-s:select-all' \
 		--bind='ctrl-u:deselect-all' \
 		--bind='ctrl-t:toggle-all' \
-		--bind="ctrl-h:change-prompt((Hidden]▶)+reload(eval $FZF_DEFAULT_COMMAND_HIDDEN)" \
+		--bind="ctrl-h:change-prompt([Hidden]▶)+reload(eval $FZF_DEFAULT_COMMAND_HIDDEN)" \
 		--bind="ctrl-d:change-prompt([Directories]▶)+reload(eval $FZF_DEFAULT_COMMAND_DIR)" \
 		--bind="ctrl-f:change-prompt([Files]▶)+reload(eval $FZF_DEFAULT_COMMAND)" \
 		--bind='ctrl-v:toggle-preview' \
@@ -147,7 +147,7 @@ floc() {
 }
 fgr() {
 	local output
-	IFS=$'\n' output=$(rg --color=always --vimgrep --line-number --no-heading --smart-case "${*:-}" | fzf-tmux --query "${*:-}" --ansi \
+	IFS=$'\n' output=$(rg --color=always --vimgrep --line-number --no-heading --smart-case "${*:-}" | fzf --query "${*:-}" --ansi \
 		--header="Ctrl-[s]elect/[u]nselect/[t]oggle/Pre[v]iew- [E]DIT/[o]pen/[p]ager/[x]sort/[y]ank/[h]idden/[d]irOnly/[r]eset" \
 		--bind='ctrl-s:select-all' \
 		--bind='ctrl-u:deselect-all' \
@@ -191,11 +191,11 @@ function __handle_fuzzy_grep {
 	cmd=rg
 	if [ "$1" -eq "0" ]; then
 		# echo "${cmd:-rg} --vimgrep --line-number $2"
-		resultlist=$(${cmd:-rg} --vimgrep --line-number "$2" 2>/dev/null | fzf-tmux -x -0 -1 -m)
+		resultlist=$(${cmd:-rg} --vimgrep --line-number "$2" 2>/dev/null | fzf -x -0 -1 -m)
 	else
 		command -v rga >/dev/null && cmd=rga
 		# echo "${cmd:-rg} --vimgrep --line-number -uuu $2"
-		resultlist=$(${cmd:-rg} --vimgrep --line-number -uuu "$2" 2>/dev/null | fzf-tmux -x -0 -1 -m)
+		resultlist=$(${cmd:-rg} --vimgrep --line-number -uuu "$2" 2>/dev/null | fzf -x -0 -1 -m)
 	fi
 	if [ "$resultlist" != "" ]; then
 		# shellcheck disable=SC2046
@@ -218,7 +218,7 @@ function fgra {
 # fkill - kill process
 function fkill {
 	local pid
-	pid=$(ps -ef | sed 1d | FZF_DEFAULT_OPTS="--reverse" fzf-tmux -x -m | awk '{print $2}')
+	pid=$(ps -ef | sed 1d | FZF_DEFAULT_OPTS="--reverse" fzf -x -m | awk '{print $2}')
 
 	if [ "x$pid" != "x" ]; then
 		echo "$pid" | xargs kill -"${1:-9}"
@@ -246,7 +246,7 @@ fbr() {
 
   branch="$(
     echo "$branches" \
-      | fzf-tmux -d "$((2 + "$num_branches"))" +m
+      | fzf -d "$((2 + "$num_branches"))" +m
   )" || return
 
   target="$(
@@ -323,7 +323,7 @@ function ftags {
 	[ -e $tagfile ] || return
 	tagfiledir=$(dirname $tagfile)
 	# IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | awk -v tagpath="$tagfiledir/" '{print " e " tagpath $3 " | tag " $2 " | "}' && echo "bn");
-	IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf-tmux -x -m -0 -1 | while read -r line; do echo "$tagfiledir/$(echo "$line" | awk '{print $3;}')"; done)
+	IFS=$'\n' fileparam=$(awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' $tagfile | awk '{print $1 "|" $2 "|" $3;}' | sed -e 's/\(.*\)|\(.*\)|\(.*\)/\1  \|\2                                       \|\3/' | sed -e 's/\(.*\)|\(.\{0,40\}\).*|\(.*\)/\1\2\3/' | fzf -x -m -0 -1 | while read -r line; do echo "$tagfiledir/$(echo "$line" | awk '{print $3;}')"; done)
 	if [ -z ${fileparam+x} ]; then
 		return
 	fi
@@ -339,7 +339,7 @@ function tx {
 	TMUXP_SESSIONS="$(fd 'yaml' "${XDG_CONFIG_HOME:-$HOME/.config}"/tmuxp -x echo "{/.}")"
 	TMUX_SESSIONS="$(tmux list-sessions 2>/dev/null | sed -e "s/\(:.*\)//")"
 	SESSIONS="$( (echo "$TMUXP_SESSIONS" && echo "$TMUX_SESSIONS" | grep -v "^$") | sort -u)"
-	SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="--reverse -x " fzf-tmux --tac --cycle -0 -1)"
+	SELECTED="$(echo "$SESSIONS" | FZF_DEFAULT_OPTS="--reverse -x " fzf --tac --cycle -0 -1)"
 	if [ -z ${SELECTED+x} ]; then
 		return
 	fi
@@ -361,7 +361,7 @@ ftpane() {
 	current_pane=$(tmux display-message -p '#I:#P')
 	current_window=$(tmux display-message -p '#I')
 
-	target=$(echo "$panes" | grep -v "$current_pane" | fzf-tmux -x +m --reverse) || return
+	target=$(echo "$panes" | grep -v "$current_pane" | fzf -x +m --reverse) || return
 
 	target_window=$(echo "$target" | awk 'BEGIN{FS=":|-"} {print$1}')
 	target_pane=$(echo "$target" | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
@@ -391,11 +391,11 @@ function chromeh {
      from urls order by last_visit_time desc" |
 		awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
 		# fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
-		fzf-tmux -x --multi | sed 's#.*\(https*://\)#\1#' | xargs $open >/dev/null 2>/dev/null
+		fzf -x --multi | sed 's#.*\(https*://\)#\1#' | xargs $open >/dev/null 2>/dev/null
 }
 
 function fbhist {
-	links="$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" 'select title,url from moz_places;' | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
+	links="$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" 'select title,url from moz_places;' | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
 	if [ "$links" != "" ]; then
 		${BROWSER:-brave} --new-tab "$links"
 	fi
@@ -404,7 +404,7 @@ function fbhist {
 function fncbookm {
 	local links
 	"$HOME/bin/get_nextcloud_bookmarks.sh"
-	links="$(fzf-tmux -x -e -m <"$HOME/.cache/nextcloud_bookmarks.txt" | sed -e 's/.*http/http/')"
+	links="$(fzf -x -e -m <"$HOME/.cache/nextcloud_bookmarks.txt" | sed -e 's/.*http/http/')"
 	if [ "$links" != "" ]; then
 		${BROWSER:-brave} --new-tab "$links"
 	fi
@@ -413,65 +413,98 @@ function fncbookm {
 function fwiki {
 	local files
 	pushd "$WIKI_PATH" >/dev/null || return # directories should all be defined once via ENV vars.
-	IFS=$'\n' files=$(fzf-tmux -x -e -m)
+	IFS=$'\n' files=$(fzf -x -e -m)
 	vim "$files"
 	popd >/dev/null || return
 }
 
 function fbookm {
 	# links="$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" 'select title,url from moz_places;' | fzf -e -0 -1 --no-sort --multi | sed -e 's/.*|//')"
-	IFS=$'\n' links=$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf-tmux -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
+	IFS=$'\n' links=$(sqlite3 "$FIREFOX_PROFILE/places.sqlite" "select '<a href=''' || url || '''>' || moz_bookmarks.title || '</a><br/>' as ahref from moz_bookmarks left join moz_places on fk=moz_places.id where url<>'' and moz_bookmarks.title<>''" | sed -e "s/^<a href='\(.*\)'>\(.*\)<\/a><br\/>/\2  |||  \1/" | fzf -x -e -0 -1 --no-sort --multi | sed -e 's/.*|||  //')
 	if [ "$links" != "" ]; then
 		${BROWSER:-brave} --new-tab "$links"
 	fi
 }
 
-# frga() {
-# 	RG_PREFIX="rga --files-with-matches"
-# 	local file
-# 	file="$(
-# 		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
-# 			fzf-tmux --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
-# 			--phony -q "$1" \
-# 			--bind "change:reload:$RG_PREFIX {q}" \
-# 			--preview-window="70%:wrap"
-# 	)" &&
-# 		echo "opening $file" &&
-# 		print -s -- xdg-open "$file"
-# 	xdg-open "$file"
-# }
-
-# fssh() {
-# 	local cmd
-# 	while ss -tl | grep "$AUTOSSH_PORT" >/dev/null; do
-# 		export AUTOSSH_PORT="$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); printf("%d\n",r)  }')"
-# 	done
-# 	cmd="$(grep -E ".*:[0-9];(auto)?ssh " "$XDG_CACHE_HOME/history" | sed -e 's/.*:[0-9];\(auto\)\?ssh /\1ssh /;s/"/\"/g' | sort -u | fzf-tmux)"
-# 	print -s -- "$cmd"
-# 	eval "$cmd"
-# }
-
-# function fdocker {
-# 	if [[ -n "$1" ]]; then
-# 		docker exec -it "$1" /bin/bash
-# 		return
-# 	fi
-# 	lst=$(docker ps | grep -v IMAGE | awk '{printf "%s %-30s %s\n", $1, $2, $3}')
-# 	choice=$(echo "$lst" | fzf-tmux --height=40% --no-sort --tiebreak=begin,index)
-# 	if [[ -n "$choice" ]]; then
-# 		printf "\n → %s\n" "$choice"
-# 		choice=$(echo "$choice" | awk '{print $1}')
-# 		docker exec -it "$choice" /bin/bash
-# 	fi
-# }
-
 # TODO: add all possible operations to FZF
 fdc () {
-	local cid
-	cid=$(docker ps --all | sed 1d | fzf -q "$1" | awk '{print $1}')
-
-	[ -n "$cid" ] && docker stop "$cid"
+	local cid key images
+	cid=$(docker ps | sed 1d | fzf -q "$1" --preview "docker inspect {1}"\
+		--header="Ctrl-[s]elect/[u]nselect/[t]oggle/Pre[v]iew- sta[r]t/st[o]p/e[x]ec/[l]og/[d]elete/[y]ank/[h]idden" \
+		--bind='ctrl-s:select-all' \
+		--bind='ctrl-u:deselect-all' \
+		--bind='ctrl-t:toggle-all' \
+		--bind="ctrl-h:change-prompt([Hidden]▶)+reload(docker ps --all | sed 1d)" \
+		--bind='ctrl-v:toggle-preview' \
+		--expect='ctrl-r,ctrl-o,ctrl-x,ctrl-l,ctrl-d,ctrl-y,ctrl-p' \
+		| awk '{print $1}') || return
+	key=$(echo "$cid" | head -1)
+	containers=$(echo "$cid" | tail -n +2)
+	if [[ -n $containers ]]; then
+		if [ "$key" = ctrl-r ]; then
+			echo "$containers" | while read -r line; do
+				docker start "$line"
+			done
+		elif [ "$key" = ctrl-o ]; then
+			echo "$containers" | while read -r line; do
+				docker stop "$line"
+			done
+		elif [ "$key" = ctrl-i ]; then
+			echo "$containers" | while read -r line; do
+				docker inspect "$line"
+			done
+		elif [ "$key" = ctrl-l ]; then
+			echo "$containers" | while read -r line; do
+				docker logs "$line"
+			done
+		elif [ "$key" = ctrl-d ]; then
+			echo "$containers" | while read -r line; do
+				docker rm "$line"
+			done
+		elif [ "$key" = ctrl-p ]; then
+			docker container prune
+		elif [ "$key" = ctrl-y ]; then
+			if [[ -n "${WAYLAND_DISPLAY}" ]]; then
+				echo "$containers" | while read -r line; do echo "$line"; done | wl-copy
+			elif [[ -n "${DISPLAY}" ]]; then
+				echo "$containers" | while read -r line; do echo "$line"; done | xclip
+			else
+				echo "$containers" | while read -r line; do echo "$line"; done
+			fi
+		else
+			docker exec -it "$(echo "$containers" | head -1)" /bin/bash
+		fi
+	fi
 }
 fdi() {
-	docker images | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $3 }' | xargs -r docker rmi
+	local iid key images
+	iid=$(docker images | sed 1d | fzf -q "$1" --preview ""\
+		--header="Ctrl-[s]elect/[u]nselect/[t]oggle/Pre[v]iew- [d]elete/[p]rune/[y]ank/[d]dangling/[h]idden" \
+		--bind='ctrl-s:select-all' \
+		--bind='ctrl-u:deselect-all' \
+		--bind='ctrl-t:toggle-all' \
+		--bind="ctrl-h:change-prompt([Hidden]▶)+reload(docker images --all | sed 1d)" \
+		--bind="ctrl-d:change-prompt([Dangling]▶)+reload(docker images --filter dangling=true | sed 1d)" \
+		--bind='ctrl-v:toggle-preview' \
+		--expect='ctrl-d,ctrl-y,ctrl-p' \
+		| awk '{print $1}') || return
+	key=$(echo "$iid" | head -1)
+	images=$(echo "$iid" | tail -n +2)
+	if [[ -n $images ]]; then
+		if [ "$key" = ctrl-d ]; then
+			echo "$images" | while read -r line; do
+				docker rmi "$line"
+			done
+		elif [ "$key" = ctrl-p ]; then
+			docker image prune
+		elif [ "$key" = ctrl-y ]; then
+			if [[ -n "${WAYLAND_DISPLAY}" ]]; then
+				echo "$images" | while read -r line; do echo "$line"; done | wl-copy
+			elif [[ -n "${DISPLAY}" ]]; then
+				echo "$images" | while read -r line; do echo "$line"; done | xclip
+			else
+				echo "$images" | while read -r line; do echo "$line"; done
+			fi
+		fi
+	fi
 }

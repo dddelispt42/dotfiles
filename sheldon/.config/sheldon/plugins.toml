@@ -31,19 +31,21 @@ github = "zdharma-continuum/fast-syntax-highlighting"
 github = "b4b4r07/emoji-cli"
 [plugins.forgit]
 github = 'wfxr/forgit'
-[plugins.zsh-plugin-fzf-finder]
-github = 'leophys/zsh-plugin-fzf-finder'
+# [plugins.zsh-plugin-fzf-finder]
+# github = 'leophys/zsh-plugin-fzf-finder'
 [plugins.alias-tips]
 github = 'djui/alias-tips'
-[plugins.zsh-interactive-cd]
-github = 'changyuheng/zsh-interactive-cd'
+# [plugins.zsh-interactive-cd]
+# github = 'changyuheng/zsh-interactive-cd'
 [plugins.fzf-zsh-completions]
 github = 'chitoku-k/fzf-zsh-completions'
-[plugins.zsh-zoxide]
-github = 'z-shell/zsh-zoxide'
+# [plugins.zsh-zoxide]
+# github = 'z-shell/zsh-zoxide'
 [plugins.zsh-autocomplete]
 github = 'marlonrichert/zsh-autocomplete.git'
 [plugins.fzf-tab]
 github = 'Aloxaf/fzf-tab.git'
 [plugins.ugit]
 github = 'Bhupesh-V/ugit'
+[plugins.fzf-docker]
+github = 'pierpo/fzf-docker'
