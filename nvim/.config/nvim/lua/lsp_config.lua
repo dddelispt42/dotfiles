@@ -40,6 +40,7 @@ local my_lsps = {
     'opencl_ls',
     'openscad_lsp',
     'pyright',
+    'pylyzer',
     'quick_lint_js',
     'reason_ls',
     'remark_ls',
@@ -138,6 +139,7 @@ if vim.loop.os_uname().sysname == 'Linux' then
     nvim_lsp.nginx_language_server.setup {}
     nvim_lsp.openscad_lsp.setup {}
     nvim_lsp.pyright.setup {}
+    nvim_lsp.pylyzer.setup {}
     nvim_lsp.rnix.setup {}
     nvim_lsp.rust_analyzer.setup {}
     -- nvim_lsp.sonarlint.setup {}
