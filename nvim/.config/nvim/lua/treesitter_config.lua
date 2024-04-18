@@ -152,8 +152,8 @@ ts.setup {
             lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
                 -- You can use the capture groups defined in textobjects.scm
-                ['aa'] = { query = '@parameter.outer', desc = 'Select outer part of parameter' },
-                ['ia'] = { query = '@parameter.inner', desc = 'Select inner part of parameter' },
+                ['ap'] = { query = '@parameter.outer', desc = 'Select outer part of parameter' },
+                ['ip'] = { query = '@parameter.inner', desc = 'Select inner part of parameter' },
                 ['ai'] = { query = '@conditional.outer', desc = 'Select outer part of conditional' },
                 ['ii'] = { query = '@conditional.inner', desc = 'Select inner part of conditional' },
                 ['al'] = { query = '@loop.outer', desc = 'Select outer part of loop' },
@@ -177,6 +177,7 @@ ts.setup {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
+                [']p'] = { query = '@parameter.inner', desc = 'Goto next parameter' },
                 [']m'] = { query = '@function.outer', desc = 'Goto next function' },
                 [']]'] = { query = '@class.outer', desc = 'Goto next class' },
                 [']o'] = '@loop.*',
@@ -184,6 +185,7 @@ ts.setup {
                 [']z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
             },
             goto_next_end = {
+                [']P'] = { query = '@parameter.outer', desc = 'Goto end of next parameter' },
                 [']M'] = { query = '@function.outer', desc = 'Goto end of next function' },
                 [']['] = { query = '@class.outer', desc = 'Goto end of next class' },
                 [']O'] = '@loop.*',
@@ -191,6 +193,7 @@ ts.setup {
                 [']Z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
             },
             goto_previous_start = {
+                ['[p'] = { query = '@parameter.inner', desc = 'Goto of previous parameter' },
                 ['[m'] = { query = '@function.outer', desc = 'Goto of previous function' },
                 ['[['] = { query = '@class.outer', desc = 'Goto of previous class' },
                 ['[o'] = '@loop.*',
@@ -198,6 +201,7 @@ ts.setup {
                 ['[z'] = { query = '@fold', query_group = 'folds', desc = 'Previous fold' },
             },
             goto_previous_end = {
+                ['[P'] = { query = '@parameter.outer', desc = 'Goto end of previous parameter' },
                 ['[M'] = { query = '@function.outer', desc = 'Goto end of previous function' },
                 ['[]'] = { query = '@class.outer', desc = 'Goto end of previous class' },
                 ['[='] = '@loop.*',
@@ -208,12 +212,12 @@ ts.setup {
         swap = {
             enable = true,
             swap_next = {
-                ['<leader>sa'] = { query = '@parameter.inner', desc = 'Swap arg with next' },
+                ['<leader>sp'] = { query = '@parameter.inner', desc = 'Swap arg with next' },
                 ['<leader>sf'] = { query = '@function.outer', desc = 'Swap function with next' },
             },
             swap_previous = {
-                ['<leader>sA'] = { query = '@parameter.inner', desc = ' arg with previous' },
-                ['<leader>sF'] = { query = '@function.outer', desc = 'Swap function with next' },
+                ['<leader>sP'] = { query = '@parameter.inner', desc = ' arg with previous' },
+                ['<leader>sF'] = { query = '@function.outer', desc = 'Swap function with previous' },
             },
         },
         lsp_interop = {
