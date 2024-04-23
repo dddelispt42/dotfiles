@@ -1,7 +1,7 @@
 [https]
     sslverify = true
-[http]
-    sslverify = true
+; [http]
+;     sslverify = true
 [credential]
 [user]
     name = Heiko Riemer
@@ -19,8 +19,9 @@
 [delta]
     ; plus-color = syntax "#012800"
     ; minus-color = normal "#340001"
-    syntax-theme = gruvbox-dark
-    features = side-by-side line-numbers decorations
+    ; syntax-theme = gruvbox-dark
+    features = catppuccin-frappe side-by-side line-numbers decorations
+    ; features = catppuccin-frappe side-by-side line-numbers
     whitespace-error-style = 22 reverse
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
@@ -90,10 +91,11 @@
 [diff]
     ; tool = nvimdiff
     tool = difftastic
+    ; tool = delta
 [difftool]
         prompt = false
-[difftool "difftastic"]
-        cmd = difft --color always "$LOCAL" "$REMOTE"
+; [difftool "difftastic"]
+;         cmd = difft --color always "$LOCAL" "$REMOTE"
 [difftool.json]
     cmd = jsondiff "$LOCAL" "$REMOTE"
 [difftool.latex]
@@ -126,8 +128,8 @@
     added = green
     changed = yellow
     untracked = cyan
-; [sequence]
-    ; editor = interactive-rebase-tool
+[sequence]
+    editor = interactive-rebase-tool
 [pull]
     ff = only
 [status]
@@ -163,5 +165,6 @@
     date = local
 [include]
     path = ~/.config/gitconfig.local
+    path = ~/.config/git/catppuccin.gitconfig
 ; [includeIf "hasconfig:remote.*.url:git@github.com:<organisation>/**"]
 ; 	path = work.local

@@ -112,6 +112,7 @@ command -v tidy-viewer >/dev/null && alias tv="tidy-viewer"
 
 # git
 alias g='git'
+alias gitui='gitui -t mocha.ron'
 alias gs='git status -sb'
 # copy the current branch name
 alias gcb='git rev-parse --abbrev-ref HEAD | pbcopy'
