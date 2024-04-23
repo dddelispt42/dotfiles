@@ -129,7 +129,9 @@ migrate_to_clean "$HOME"/.myclirc "${XDG_CONFIG_HOME}"/myclirc
 stow -vS -t "$HOME"/ X11
 stow -vS -t "$HOME"/ alacritty
 stow -vS -t "$HOME"/ bat
+stow -vS -t "$HOME"/ imv
 stow -vS -t "$HOME"/ bottom
+stow -vS -t "$HOME"/ gitui
 stow -vS -t "$HOME"/ broot
 stow -vS -t "$HOME"/ direnv
 stow -vS -t "$HOME"/ dunst
@@ -141,6 +143,7 @@ stow -vS -t "$HOME"/ hyprland
 stow -vS -t "$HOME"/ mpv
 stow -vS -t "$HOME"/ neofetch
 stow -vS -t "$HOME"/ nvim
+stow -vS -t "$HOME"/ zellij
 stow -vS -t "$HOME"/ paru
 stow -vS -t "$HOME"/ polybar
 stow -vS -t "$HOME"/ qutebrowser

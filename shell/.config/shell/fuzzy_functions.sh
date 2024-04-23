@@ -5,6 +5,13 @@
 # TODO: fix file/path yank (on X only - Wayland works)
 # TODO: check TODOs in file
 
+_fzf_compgen_path() {
+	fd --hidden --exclude .git . "$1"
+}
+_fzf_compgen_dir() {
+	fd --type d --hidden --exclude .git . "$1"
+}
+
 # Use fd and fzf to get the args to a command.
 # Works only with zsh
 # Examples:

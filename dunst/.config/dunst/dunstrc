@@ -12,7 +12,8 @@
     horizontal_padding = 8
     frame_width = 3
     # frame_color = "#282828"
-    frame_color = "#aaaaaa"
+    # frame_color = "#aaaaaa"
+    frame_color = "#89b4fa"
 
     # Define a color for the separator.
     # possible values are:
@@ -21,7 +22,8 @@
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
     # separator_color = frame
-    separator_color = auto
+    # separator_color = auto
+    separator_color= frame
 
     # Sort messages by urgency.
     sort = yes
@@ -83,31 +85,47 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    # background = "#282828"
-    # foreground = "#928374"
-    background = "#2b2b2b"
-    foreground = "#ffffff"
-    timeout = 5
-    # Icon for notifications with low urgency, uncomment to enable
-    #icon = /path/to/icon
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+timeout = 0
 
 [urgency_normal]
-    # background = "#458588"
-    # foreground = "#ebdbb2"
-    background = "#2b2b2b"
-    foreground = "#ffffff"
-    timeout = 5
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+timeout = 0
 
 [urgency_critical]
-    # background = "#cc2421"
-    # foreground = "#ebdbb2"
-    # frame_color = "#fabd2f"
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
-    timeout = 0
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+frame_color = "#fab387"
+timeout = 0
+
+# [urgency_low]
+#     # IMPORTANT: colors have to be defined in quotation marks.
+#     # Otherwise the "#" and following would be interpreted as a comment.
+#     # background = "#282828"
+#     # foreground = "#928374"
+#     background = "#2b2b2b"
+#     foreground = "#ffffff"
+#     timeout = 5
+#     # Icon for notifications with low urgency, uncomment to enable
+#     #icon = /path/to/icon
+#
+# [urgency_normal]
+#     # background = "#458588"
+#     # foreground = "#ebdbb2"
+#     background = "#2b2b2b"
+#     foreground = "#ffffff"
+#     timeout = 5
+#
+# [urgency_critical]
+#     # background = "#cc2421"
+#     # foreground = "#ebdbb2"
+#     # frame_color = "#fabd2f"
+#     background = "#900000"
+#     foreground = "#ffffff"
+#     frame_color = "#ff0000"
+#     timeout = 0
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

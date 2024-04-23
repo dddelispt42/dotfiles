@@ -252,12 +252,25 @@ export FZF_PREVIEW_CMD="${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}"
 export FZF_DEFAULT_COMMAND='git ls-files 2>/dev/null || fd -t f --follow --color always || rg --file --follow --color always || find . -type f'
 export FZF_DEFAULT_COMMAND_HIDDEN='fd -t f -HI --follow  --exclude "{.git,.venv}"'
 export FZF_DEFAULT_COMMAND_DIR='fd -t d -HI --follow  --exclude "{.git,.venv}"'
-export FZF_COLORSCHEMA='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
+# Gruvbox
+# export FZF_COLORSCHEMA='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
+# Catppuccin Mocha
+export FZF_COLORSCHEMA=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 export FZF_DEFAULT_OPTS="--reverse -x -m --height 50% --border --ansi --inline-info \
 	--preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' \
 	--preview-window=right:50%:wrap $FZF_COLORSCHEMA \
 	--prompt='▶' --pointer='→' --marker='✅'"
 export SKIM_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND"
+export SKIM_DEFAULT_OPTIONS="--reverse -x -m --height 50% --border --ansi --inline-info \
+	--preview='${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}' \
+	--preview-window=right:50%:wrap $FZF_COLORSCHEMA \
+	--prompt='▶'"
+export SKIM_DEFAULT_OPTIONS="$SKIM_DEFAULT_OPTIONS \
+--color=fg:#cdd6f4,bg:#1e1e2e,matched:#313244,matched_bg:#f2cdcd,current:#cdd6f4,current_bg:#45475a,current_match:#1e1e2e,current_match_bg:#f5e0dc,spinner:#a6e3a1,info:#cba6f7,prompt:#89b4fa,cursor:#f38ba8,selected:#eba0ac,header:#94e2d5,border:#6c7086"
+
 export FZF_CTRL_T_OPTS="--height 60% \
 	--border sharp \
 	--layout reverse \
