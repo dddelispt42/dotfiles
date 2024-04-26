@@ -9,7 +9,8 @@ end
 lualine.setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox_dark',
+    -- theme = 'gruvbox_dark',
+    theme = 'auto',
     -- component_separators = '|',
     -- section_separators = '',
   },

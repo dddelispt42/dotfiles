@@ -401,15 +401,7 @@ require('lazy').setup({
         'yamatsum/nvim-cursorline',
         event = 'VeryLazy',
     },
-    -- {
-    --     'ellisonleao/gruvbox.nvim',
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         vim.cmd [[colorscheme gruvbox]]
-    --     end,
-    -- },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
     {
         'akinsho/bufferline.nvim',
         dependencies = 'nvim-tree/nvim-web-devicons',

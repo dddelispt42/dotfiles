@@ -28,7 +28,6 @@ border_symbol = "│"
 border_style  = { fg = "#665c54" }
 
 # Highlighting
-# syntect_theme = "~/.config/yazi/Gruvbox-Dark.tmTheme"
 
 # : }}}
 
