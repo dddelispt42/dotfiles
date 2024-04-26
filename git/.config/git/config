@@ -17,9 +17,6 @@
 [interactive]
     diffFilter = delta --color-only
 [delta]
-    ; plus-color = syntax "#012800"
-    ; minus-color = normal "#340001"
-    ; syntax-theme = gruvbox-dark
     features = catppuccin-frappe side-by-side line-numbers decorations
     ; features = catppuccin-frappe side-by-side line-numbers
     whitespace-error-style = 22 reverse

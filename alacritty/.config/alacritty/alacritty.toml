@@ -1,5 +1,4 @@
 import = [
-    # ./gruvbox_dark_theme.yaml
     "~/.config/alacritty/catppuccin-mocha.toml"
 ]
 
