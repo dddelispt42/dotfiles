@@ -57,8 +57,8 @@ if tty -s; then
     command -v zoxide >/dev/null && eval "$(zoxide init zsh --cmd cd)"
     command -v direnv >/dev/null && eval "$(direnv hook zsh)"
     # change TAB for zsh-autocomplete (TODO)
-    bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-    bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+    # bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+    # bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 fi
 
 # if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
