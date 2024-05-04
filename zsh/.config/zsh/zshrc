@@ -13,6 +13,7 @@ HISTSIZE=120000                 # lines of history to maintain memory
 SAVEHIST=120000                 # lines of history to maintain in history file.
 HISTORY_IGNORE="(ls|cd|pwd|exit|keyadd)*"
 setopt HIST_EXPIRE_DUPS_FIRST  # allow dups, but expire old ones when I hit HISTSIZE
+setopt HIST_VERIFY
 setopt EXTENDED_HISTORY        # save timestamp and runtime information
 export ZLE_SPACE_SUFFIX_CHARS='&|'
 
