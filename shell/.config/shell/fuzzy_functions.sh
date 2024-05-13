@@ -149,6 +149,11 @@ f.() {
  	ff "$@"
 	popd >/dev/null || return
 }
+fn() {
+	pushd "${WIKI_PATH:-$HOME/notes}" >/dev/null || return
+ 	ff "$@"
+	popd >/dev/null || return
+}
 floc() {
 	FZF_DEFAULT_COMMAND="locate -Ai $*" ff
 }
