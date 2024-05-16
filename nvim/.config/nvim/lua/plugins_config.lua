@@ -83,7 +83,7 @@ require('lazy').setup({
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- optional
-            'nvim-tree/nvim-web-devicons',     -- optional
+            'nvim-tree/nvim-web-devicons', -- optional
         },
     },
     {
@@ -124,7 +124,7 @@ require('lazy').setup({
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('trouble').setup {
-                auto_open = true,  -- automatically open the list when you have diagnostics
+                auto_open = true, -- automatically open the list when you have diagnostics
                 auto_close = true, -- automatically close the list when you have no diagnostics
                 -- automatically preview the location of the diagnostic.
                 -- <esc> to close preview and go back to last window
@@ -308,7 +308,7 @@ require('lazy').setup({
                 },
                 surrounds = {
                     HTML = {
-                        ['t'] = 'type',  -- Change just the tag type
+                        ['t'] = 'type', -- Change just the tag type
                         ['T'] = 'whole', -- Change the whole tag contents
                     },
                     aliases = {
@@ -317,7 +317,7 @@ require('lazy').setup({
                         ['B'] = '}',
                         ['r'] = ']',
                         -- Table aliases only apply for changes/deletions
-                        ['q'] = { '"', "'", '`' },                     -- Any quote character
+                        ['q'] = { '"', "'", '`' }, -- Any quote character
                         ['s'] = { ')', ']', '}', '>', "'", '"', '`' }, -- Any surrounding delimiter
                     },
                 },
@@ -555,19 +555,19 @@ require('lazy').setup({
         event = { 'BufReadPre', 'BufNewFile' },
     },
     {
-        "vhyrro/luarocks.nvim",
+        'vhyrro/luarocks.nvim',
         priority = 1000,
         config = true,
         opts = {
-            rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
-        }
+            rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' },
+        },
     },
     {
-        "rest-nvim/rest.nvim",
-        ft = "http",
-        dependencies = { "luarocks.nvim" },
+        'rest-nvim/rest.nvim',
+        ft = 'http',
+        dependencies = { 'luarocks.nvim' },
         config = function()
-            require("rest-nvim").setup()
+            require('rest-nvim').setup()
         end,
     },
     {
@@ -614,10 +614,10 @@ require('lazy').setup({
     {
         'David-Kunz/gen.nvim',
         opts = {
-            model = 'llama3',    -- The default model to use.
-            host = 'ollama',     -- The host running the Ollama service
-            port = '11434',      -- The port on which the Ollama service is listening.
-            quit_map = 'q',      -- set keymap for close the response window
+            model = 'llama3', -- The default model to use.
+            host = 'ollama', -- The host running the Ollama service
+            port = '11434', -- The port on which the Ollama service is listening.
+            quit_map = 'q', -- set keymap for close the response window
             retry_map = '<c-r>', -- set keymap to re-send the current prompt
             init = function(options)
                 pcall(io.popen, 'ollama serve > /dev/null 2>&1 &')
@@ -625,19 +625,18 @@ require('lazy').setup({
             -- Function to initialize Ollama
             command = function(options)
                 local body = { model = options.model, stream = true }
-                return 'curl --silent --no-buffer -X POST http://' ..
-                options.host .. ':' .. options.port .. '/api/chat -d $body'
+                return 'curl --silent --no-buffer -X POST http://' .. options.host .. ':' .. options.port .. '/api/chat -d $body'
             end,
             -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
             -- This can also be a command string.
             -- The executed command must return a JSON object with { response, context }
             -- (context property is optional).
             -- list_models = '<omitted lua function>', -- Retrieves a list of model names
-            display_mode = 'float', -- The display mode. Can be "float" or "split".
-            show_prompt = false,    -- Shows the prompt submitted to Ollama.
-            show_model = false,     -- Displays which model you are using at the beginning of your chat session.
-            no_auto_close = false,  -- Never closes the window automatically.
-            debug = false,          -- Prints errors and the command which is run.
+            display_mode = 'split', -- The display mode. Can be "float" or "split".
+            show_prompt = true, -- Shows the prompt submitted to Ollama.
+            show_model = true, -- Displays which model you are using at the beginning of your chat session.
+            no_auto_close = false, -- Never closes the window automatically.
+            debug = false, -- Prints errors and the command which is run.
         },
     },
     {
@@ -656,6 +655,23 @@ require('lazy').setup({
                 -- },
                 debounce_delay = 1000,
             }
+        end,
+    },
+    {
+        'kristijanhusak/vim-dadbod-ui',
+        dependencies = {
+            { 'tpope/vim-dadbod', lazy = true },
+            { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+        },
+        cmd = {
+            'DBUI',
+            'DBUIToggle',
+            'DBUIAddConnection',
+            'DBUIFindBuffer',
+        },
+        init = function()
+            -- Your DBUI configuration
+            vim.g.db_ui_use_nerd_fonts = 1
         end,
     },
     {
@@ -682,7 +698,7 @@ require('lazy').setup({
         rtp = {
             reset = false, -- reset the runtime path to $VIMRUNTIME and your config directory
             ---@type string[]
-            paths = {},    -- add any custom paths here that you want to includes in the rtp
+            paths = {}, -- add any custom paths here that you want to includes in the rtp
             ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
                 '2html_plugin',
