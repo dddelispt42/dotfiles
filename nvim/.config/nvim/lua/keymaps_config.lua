@@ -39,7 +39,7 @@ map('c', 'W!', 'w !doas tee %', { noremap = true, silent = true }) -- write as r
 map('c', 'Q!', 'q!', { noremap = true, silent = true })
 map('c', 'Qa!', 'qa!', { noremap = true, silent = true })
 map('i', '<c-bs>', '<c-w>', { noremap = true, silent = true }) -- ctrl-backspace to delete previous word
-map('i', '<c-h>', '<c-w>', { noremap = true, silent = true })  -- ctrl-backspace to delete previous word
+map('i', '<c-h>', '<c-w>', { noremap = true, silent = true }) -- ctrl-backspace to delete previous word
 -- Move visual block
 map({ 'n', 'v' }, '<A-j>', ':m +1<CR>gv=gv', { noremap = true, silent = true })
 map({ 'n', 'v' }, '<A-k>', ':m -2<CR>gv=gv', { noremap = true, silent = true })
@@ -63,8 +63,7 @@ map('n', '<C-Up>', ':resize +2<CR>', { noremap = true, silent = true })
 map('n', '<C-Down>', ':resize -2<CR>', { noremap = true, silent = true })
 map('n', '<C-Left>', ':vertical resize -2<CR>', { noremap = true, silent = true })
 map('n', '<C-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })
-map('n', '<leader>ur', '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
-    { desc = 'Redraw / clear hlsearch / diff update' })
+map('n', '<leader>ur', '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>', { desc = 'Redraw / clear hlsearch / diff update' })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 -- map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
@@ -149,10 +148,8 @@ map('n', '[ov', ':set novirtualedit<CR>', { noremap = true, silent = true, desc 
 map('n', ']ov', ':set virtualedit<CR>', { noremap = true, silent = true, desc = '[o]ption [v]irtualedit' })
 map('n', '[ow', ':set nowrap<CR>', { noremap = true, silent = true, desc = '[o]ption no [w]rap' })
 map('n', ']ow', ':set wrap<CR>', { noremap = true, silent = true, desc = '[o]ption [w]rap' })
-map('n', '[ox', ':set nocursorline nocursorcolumn<CR>',
-    { noremap = true, silent = true, desc = '[o]ption no [x]=cursor(line,column)' })
-map('n', ']ox', ':set cursorline cursorcolumn<CR>',
-    { noremap = true, silent = true, desc = '[o]ption [x]=cursor(line,column)' })
+map('n', '[ox', ':set nocursorline nocursorcolumn<CR>', { noremap = true, silent = true, desc = '[o]ption no [x]=cursor(line,column)' })
+map('n', ']ox', ':set cursorline cursorcolumn<CR>', { noremap = true, silent = true, desc = '[o]ption [x]=cursor(line,column)' })
 
 local diagnostic_goto = function(next, severity)
     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
@@ -193,7 +190,7 @@ map('n', '<leader>cl', ':diffg LO<CR>', { noremap = true, silent = true, desc = 
 
 -- LSP
 -- map('n', '<leader>la', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
-map('n', '<leader>la', "<cmd>Lspsaga code_action<cr>", { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
+map('n', '<leader>la', '<cmd>Lspsaga code_action<cr>', { noremap = true, silent = true, desc = '[l]sp code [a]ction' })
 -- map('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, desc = '[K] ... hover' })
 map('n', 'K', '<cmd>Lspsaga hover_doc<cr>', { noremap = true, silent = true, desc = '[K] ... hover' })
 map('n', '<leader>lS', vim.lsp.buf.signature_help, { noremap = true, silent = true, desc = '[l]sp [S]ignature help' })
@@ -206,23 +203,26 @@ map('n', '<leader>le', vim.lsp.diagnostic.get_line_diagnostics, {
 })
 map('n', '[e', vim.diagnostic.goto_prev, { noremap = true, silent = true })
 map('n', ']e', vim.diagnostic.goto_next, { noremap = true, silent = true })
+map('n', '<leader>lh', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { noremap = true, silent = true, desc = '[l]sp [h]int (inline)' })
 map('n', '<leader>lr', vim.lsp.buf.references, { noremap = true, silent = true, desc = '[l]sp [r]eferences' })
 -- map('n', '<leader>ld', vim.lsp.buf.definition, { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 -- map('n', '<leader>ld', "<cmd>Lspsaga peek_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 map('n', '<leader>ld', "<cmd>Lspsaga goto_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
+map('n', '<leader>ld', '<cmd>Lspsaga peek_definition<cr>', { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 map('n', '<leader>lD', vim.lsp.buf.declaration, { noremap = true, silent = true, desc = '[l]sp [D]eclaration' })
 map('n', '<leader>li', vim.lsp.buf.implementation, { noremap = true, silent = true, desc = '[l]sp [i]implementation' })
 -- map('n', '<leader>lI', vim.lsp.buf.incoming_calls, { noremap = true, silent = true, desc = '[l]sp [I]ncoming calls' })
-map('n', '<leader>lI', "<cmd>Lspsaga incoming_calls<cr>", { noremap = true, silent = true, desc = '[l]sp [I]ncoming calls' })
+map('n', '<leader>lI', '<cmd>Lspsaga incoming_calls<cr>', { noremap = true, silent = true, desc = '[l]sp [I]ncoming calls' })
 -- map('n', '<leader>lO', vim.lsp.buf.outgoing_calls, { noremap = true, silent = true, desc = '[l]sp [O]outgoing calls' })
-map('n', '<leader>lO', "<cmd>Lspsaga outgoing_calls<cr>", { noremap = true, silent = true, desc = '[l]sp [O]outgoing calls' })
+map('n', '<leader>lO', '<cmd>Lspsaga outgoing_calls<cr>', { noremap = true, silent = true, desc = '[l]sp [O]outgoing calls' })
 -- map('n', '<leader>lt', vim.lsp.buf.type_definition, { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
-map('n', '<leader>lt', "<cmd>Lsapsaga peek_type_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
+map('n', '<leader>lt', '<cmd>Lsapsaga peek_type_definition<cr>', { noremap = true, silent = true, desc = '[l]sp [t]ype definition' })
 map('n', '<leader>lF', '<cmd>Lspsaga finder tyd+def+ref+imp<cr>', { noremap = true, silent = true, desc = '[l]sp [F]inder' })
 map('n', '<leader>lB', '<cmd>Lspsaga outline<cr>', { noremap = true, silent = true, desc = '[l]sp [B]ar w/ infos' })
-map({'n', 't'}, '<A-t>', '<cmd>Lspsaga term_toggle<cr>', { noremap = true, silent = true, desc = '[l]sp [t]erminal toggle' })
-map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { timeout_ms = 10000 }<cr>',
-    { noremap = true, silent = true, desc = '[l]sp [f]ormat' })
+map({ 'n', 't' }, '<A-t>', '<cmd>Lspsaga term_toggle<cr>', { noremap = true, silent = true, desc = '[l]sp [t]erminal toggle' })
+map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { timeout_ms = 10000 }<cr>', { noremap = true, silent = true, desc = '[l]sp [f]ormat' })
 map('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, {
     noremap = true,
     silent = true,
@@ -274,10 +274,8 @@ map('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 
 -- Trouble
 map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [x]toggle' })
-map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>',
-    { silent = true, noremap = true, desc = '[x]Trouble [w]orkspace' })
-map('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>',
-    { silent = true, noremap = true, desc = '[x]Trouble [d]ocument' })
+map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true, desc = '[x]Trouble [w]orkspace' })
+map('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', { silent = true, noremap = true, desc = '[x]Trouble [d]ocument' })
 map('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true, desc = '[x]Trouble [l]ocation list' })
 map('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true, desc = '[x]Trouble [q]uicklist' })
 map('n', '<leader>xt', '<cmd>TodoTrouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [t]odos' })
@@ -305,12 +303,12 @@ map('n', '<leader>dm', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.
 })
 map('n', '<leader>dR', 'run_last()<cr>', { noremap = true, silent = true, desc = '[d]AP [R]un last' })
 map('n', '<leader>dC', '<cmd>Telescope dap commands<cr>', { noremap = true, silent = true, desc = '[d]AP [C]ommands' })
-map('n', '<leader>dF', '<cmd>Telescope dap configurations<cr>',
-    { noremap = true, silent = true, desc = '[d]AP con[F]iguration' })
-map('n', '<leader>dL', '<cmd>Telescope dap list_breakpoints<cr>',
-    { noremap = true, silent = true, desc = '[d]AP [L]ist breakpoints' })
-map('n', '<leader>dV', '<cmd>Telescope dap variables<cr>',
-    { noremap = true, silent = true, desc = '[d]AP list [v]ariables' })
+map('n', '<leader>dF', '<cmd>Telescope dap configurations<cr>', { noremap = true, silent = true, desc = '[d]AP con[F]iguration' })
+map('n', '<leader>dL', '<cmd>Telescope dap list_breakpoints<cr>', { noremap = true, silent = true, desc = '[d]AP [L]ist breakpoints' })
+map('n', '<leader>dV', '<cmd>Telescope dap variables<cr>', { noremap = true, silent = true, desc = '[d]AP list [v]ariables' })
+map('n', '<leader>d?', function()
+    require('dapui').eval(nil, { enter = true })
+end, { noremap = true, silent = true, desc = '[d]AP [?] eval var under cursor' })
 
 -- Tree SJ
 map('n', '<leader>J', function()

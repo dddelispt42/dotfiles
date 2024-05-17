@@ -20,7 +20,7 @@ require 'cursorline_config'
 require 'notify_config'
 require 'orgmode_config'
 
-if os.getenv("DEV_ENV") then
+if os.getenv 'DEV_ENV' then
     require 'lsp_config'
     require 'debug_config'
     require 'rest_config'

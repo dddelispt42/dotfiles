@@ -7,10 +7,10 @@ if not notify_ok then
     return
 end
 
-notify.setup({
+notify.setup {
     level = vim.log.levels.INFO,
-    render = "compact",
-    stages = "slide",
+    render = 'compact',
+    stages = 'slide',
     timeout = 1000,
-})
+}
 vim.notify = notify

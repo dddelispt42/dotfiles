@@ -117,12 +117,12 @@ if vim.loop.os_uname().sysname == 'Linux' then
     nvim_lsp.bufls.setup {}
     -- nvim_lsp.ccls.setup {}
     nvim_lsp.clangd.setup {
-      on_attach = on_attach,
-      capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      cmd = {
-        "clangd",
-        "--offset-encoding=utf-16",
-      },
+        on_attach = on_attach,
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        cmd = {
+            'clangd',
+            '--offset-encoding=utf-16',
+        },
     }
     nvim_lsp.cmake.setup {}
     nvim_lsp.cssls.setup {}
