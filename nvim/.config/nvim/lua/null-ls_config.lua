@@ -31,7 +31,7 @@ mason_null_ls.setup {
         'format_r',
         'gitlint',
         'gitrebase',
-        'gitsigns',  -- TODO: check
+        'gitsigns', -- TODO: check
         'gofmt',
         'hadolint',
         'jq',
@@ -102,7 +102,7 @@ none_ls.setup {
         none_ls.builtins.diagnostics.sqlfluff,
         none_ls.builtins.diagnostics.statix,
         none_ls.builtins.diagnostics.todo_comments,
-        none_ls.builtins.diagnostics.trail_space,
+        none_ls.builtins.diagnostics.trail_space.with { disabled_filetypes = { 'dbout' } },
         none_ls.builtins.diagnostics.trivy,
         none_ls.builtins.diagnostics.vacuum,
         none_ls.builtins.diagnostics.vint,

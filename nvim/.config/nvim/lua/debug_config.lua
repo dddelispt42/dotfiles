@@ -47,7 +47,7 @@ masondap.setup {
             -- all sources with no handler get passed here
 
             -- Keep original functionality of `automatic_setup = true`
-            require 'mason-nvim-dap.automatic_setup' (config)
+            require 'mason-nvim-dap.automatic_setup'(config)
         end,
         python = function(config)
             nvimdap.adapters.python = {
@@ -130,8 +130,7 @@ masondap.setup {
                     request = 'launch',
                     name = 'Launch file',
                     showDebugOutput = true,
-                    pathBashdb = vim.fn.stdpath 'data' ..
-                    '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+                    pathBashdb = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
                     pathBashdbLib = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
                     trace = true,
                     file = '${file}',
@@ -223,8 +222,8 @@ dapui.setup {
         },
     },
     floating = {
-        max_height = nil,  -- These can be integers or a float between 0 and 1.
-        max_width = nil,   -- Floats will be treated as percentage of your screen.
+        max_height = nil, -- These can be integers or a float between 0 and 1.
+        max_width = nil, -- Floats will be treated as percentage of your screen.
         border = 'single', -- Border style. Can be "single", "double" or "rounded"
         mappings = {
             close = { 'q', '<Esc>' },
@@ -304,7 +303,5 @@ persi_bp.setup {
 local map = vim.keymap.set
 -- Save breakpoints to file automatically.
 map('n', '<leader>db', '<cmd>PBToggleBreakpoint<cr>', { noremap = true, silent = true, desc = '[d]AP [b]reakpoint' })
-map('n', '<leader>dB', '<cmd>PBSetConditionalBreakpoint<cr>',
-    { noremap = true, silent = true, desc = '[d]AP set [B]reakpoint w/ condition' })
-map('n', '<leader>dx', '<cmd>PBClearAllBreakpoints<cr>',
-    { noremap = true, silent = true, desc = '[d]AP clear [x] all breakpoints' })
+map('n', '<leader>dB', '<cmd>PBSetConditionalBreakpoint<cr>', { noremap = true, silent = true, desc = '[d]AP set [B]reakpoint w/ condition' })
+map('n', '<leader>dx', '<cmd>PBClearAllBreakpoints<cr>', { noremap = true, silent = true, desc = '[d]AP clear [x] all breakpoints' })

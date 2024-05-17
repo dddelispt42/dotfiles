@@ -99,9 +99,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 cmplsp.default_capabilities(capabilities)
 
 -- Setup up vim-dadbod
-cmp.setup.filetype({ "sql" }, {
-  sources = {
-    { name = "vim-dadbod-completion" },
-    { name = "buffer" },
-  },
+cmp.setup.filetype({ 'sql' }, {
+    sources = {
+        { name = 'vim-dadbod-completion' },
+        { name = 'buffer' },
+    },
 })
