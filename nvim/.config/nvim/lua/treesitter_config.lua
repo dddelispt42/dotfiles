@@ -152,8 +152,8 @@ ts.setup {
             lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
                 -- You can use the capture groups defined in textobjects.scm
-                ['ap'] = { query = '@parameter.outer', desc = 'Select outer part of parameter' },
-                ['ip'] = { query = '@parameter.inner', desc = 'Select inner part of parameter' },
+                ['aa'] = { query = '@parameter.outer', desc = 'Select outer part of argument' },
+                ['ia'] = { query = '@parameter.inner', desc = 'Select inner part of argument' },
                 ['ai'] = { query = '@conditional.outer', desc = 'Select outer part of conditional' },
                 ['ii'] = { query = '@conditional.inner', desc = 'Select inner part of conditional' },
                 ['al'] = { query = '@loop.outer', desc = 'Select outer part of loop' },
@@ -177,7 +177,7 @@ ts.setup {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
-                [']p'] = { query = '@parameter.inner', desc = 'Goto next parameter' },
+                [']a'] = { query = '@parameter.inner', desc = 'Goto next argument' },
                 [']m'] = { query = '@function.outer', desc = 'Goto next function' },
                 [']]'] = { query = '@class.outer', desc = 'Goto next class' },
                 [']o'] = '@loop.*',
@@ -185,7 +185,7 @@ ts.setup {
                 [']z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
             },
             goto_next_end = {
-                [']P'] = { query = '@parameter.outer', desc = 'Goto end of next parameter' },
+                [']A'] = { query = '@parameter.outer', desc = 'Goto end of next argument' },
                 [']M'] = { query = '@function.outer', desc = 'Goto end of next function' },
                 [']['] = { query = '@class.outer', desc = 'Goto end of next class' },
                 [']O'] = '@loop.*',
@@ -193,7 +193,7 @@ ts.setup {
                 [']Z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
             },
             goto_previous_start = {
-                ['[p'] = { query = '@parameter.inner', desc = 'Goto of previous parameter' },
+                ['[a'] = { query = '@parameter.inner', desc = 'Goto of previous argument' },
                 ['[m'] = { query = '@function.outer', desc = 'Goto of previous function' },
                 ['[['] = { query = '@class.outer', desc = 'Goto of previous class' },
                 ['[o'] = '@loop.*',
@@ -201,7 +201,7 @@ ts.setup {
                 ['[z'] = { query = '@fold', query_group = 'folds', desc = 'Previous fold' },
             },
             goto_previous_end = {
-                ['[P'] = { query = '@parameter.outer', desc = 'Goto end of previous parameter' },
+                ['[A'] = { query = '@parameter.outer', desc = 'Goto end of previous argument' },
                 ['[M'] = { query = '@function.outer', desc = 'Goto end of previous function' },
                 ['[]'] = { query = '@class.outer', desc = 'Goto end of previous class' },
                 ['[='] = '@loop.*',

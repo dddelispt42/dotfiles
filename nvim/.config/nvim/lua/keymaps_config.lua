@@ -150,6 +150,8 @@ map('n', '[ow', ':set nowrap<CR>', { noremap = true, silent = true, desc = '[o]p
 map('n', ']ow', ':set wrap<CR>', { noremap = true, silent = true, desc = '[o]ption [w]rap' })
 map('n', '[ox', ':set nocursorline nocursorcolumn<CR>', { noremap = true, silent = true, desc = '[o]ption no [x]=cursor(line,column)' })
 map('n', ']ox', ':set cursorline cursorcolumn<CR>', { noremap = true, silent = true, desc = '[o]ption [x]=cursor(line,column)' })
+map('n', '[oD', ':lua vim.diagnostic.disable()<CR>', { noremap = true, silent = true, desc = '[o]ption no [D]iagnostics' })
+map('n', ']oD', ':lua vim.diagnostic.enable()<CR>', { noremap = true, silent = true, desc = '[o]ption [D]iagnostics' })
 
 local diagnostic_goto = function(next, severity)
     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
@@ -211,6 +213,17 @@ map('n', '<leader>lr', vim.lsp.buf.references, { noremap = true, silent = true, 
 -- map('n', '<leader>ld', "<cmd>Lspsaga peek_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 map('n', '<leader>ld', "<cmd>Lspsaga goto_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 map('n', '<leader>ld', '<cmd>Lspsaga peek_definition<cr>', { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
+map('n', '<leader>lx', function()
+    if vim.diagnostic.is_disabled() then
+        vim.diagnostic.enable()
+    else
+        vim.diagnostic.disable()
+    end
+end, { noremap = true, silent = true, desc = '[l]sp [x] toggle diagnostics' })
+map('n', '<leader>lr', vim.lsp.buf.references, { noremap = true, silent = true, desc = '[l]sp [r]eferences' })
+-- map('n', '<leader>ld', vim.lsp.buf.definition, { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
+-- map('n', '<leader>ld', "<cmd>Lspsaga peek_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
+map('n', '<leader>ld', '<cmd>Lspsaga goto_definition<cr>', { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 map('n', '<leader>lD', vim.lsp.buf.declaration, { noremap = true, silent = true, desc = '[l]sp [D]eclaration' })
 map('n', '<leader>li', vim.lsp.buf.implementation, { noremap = true, silent = true, desc = '[l]sp [i]implementation' })
 -- map('n', '<leader>lI', vim.lsp.buf.incoming_calls, { noremap = true, silent = true, desc = '[l]sp [I]ncoming calls' })
