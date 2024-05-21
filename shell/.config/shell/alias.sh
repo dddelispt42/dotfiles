@@ -1,7 +1,5 @@
 # shellcheck disable=SC2148
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 
 # some more ls aliases
 command -v lsd >/dev/null && alias ls="lsd --group-dirs first"
@@ -137,7 +135,7 @@ alias ls_installed_debian_packages="aptitude search '~i!~M'"
 # hors - check stackoverflow and other stuff in terminal
 alias hors="hors -c -a"
 alias tray="trayer --edge top --align center --expand false --width 5 --distance 20 &"
-alias pacsize="pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
+alias pacsize="pacman -Qi | grep -E '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
 pacbloat() {
 	pacman -Qe | awk '{print $1;}' | while read -r line; do
 		if ! grep "$line" "$HOME"/dev/heiko/bootstrap/vars/*.pkgs >/dev/null; then
