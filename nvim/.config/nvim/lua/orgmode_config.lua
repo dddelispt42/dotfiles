@@ -66,49 +66,18 @@ orgmode.setup {
         },
     },
 }
+local orgroam_ok, orgroam = pcall(require, 'org-roam')
+if not orgroam_ok then
+    vim.notify 'org-roam plugin not loaded!'
+    return
+end
+orgroam.setup {
+    directory = '~/notes/roam',
+}
 
--- local neorg_ok, neorg = pcall(require, 'neorg')
--- if not neorg_ok then
---     vim.notify("neorg plugin not loaded!")
---     return
--- end
-
--- neorg.setup {
---     load = {
---         ['core.defaults'] = {},
---         ['core.highlights'] = {},
---         ['core.norg.dirman'] = {
---             config = {
---                 workspaces = {
---                     work = '~/notes/work',
---                     home = '~/notes/home',
---                 },
---             },
---         },
---         ['core.norg.journal'] = {},
---         ['core.norg.concealer'] = {},
---         ['core.norg.qol.toc'] = {},
---         ['core.norg.qol.todo_items'] = {
---             config = { task_cycle = '<S-Space>' },
---         },
---         ['core.syntax'] = {},
---         ['core.tangle'] = {},
---         ['core.norg.completion'] = {
---             config = { engine = 'nvim-cmp' },
---         },
---         ['core.export'] = {},
---         ['core.export.markdown'] = {},
---         ['core.presenter'] = {
---             config = { zen_mode = 'zen-mode' },
---         },
---         ['core.integrations.treesitter'] = {},
---         ['core.norg.esupports.metagen'] = {},
---     },
--- }
-
--- local orgbullets_ok, orgbullets = pcall(require, 'org-bullets')
--- if not orgbullets_ok then
---     vim.notify("org-bullets plugin not loaded!")
---     return
--- end
--- orgbullets.setup()
+local orgbullets_ok, orgbullets = pcall(require, 'org-bullets')
+if not orgbullets_ok then
+    vim.notify 'org-bullets plugin not loaded!'
+    return
+end
+orgbullets.setup()
