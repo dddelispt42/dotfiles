@@ -52,15 +52,6 @@ alias j="jobs -l"
 alias makectags='ctags -f tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .'
 alias lsblk="lsblk -a -o 'NAME,MAJ:MIN,RM,RO,TYPE,SIZE,FSUSED,FSUSE%,LABEL,UUID,PTTYPE,FSTYPE,MOUNTPOINT'"
 
-##########
-# xterms #
-##########
-# bg: #a0b0c0 #d0d0d0 #c0b0a0 #c0a080
-#     #fef9e3d6c9ba #a97cd644abd0 #b6c7a339a339 #aa6db65fc936 #a70ab2f09b24 #e0c3c127a9b2
-
-# alias xterm='xterm -name $(hostname) -ls -sb -sl 1500 -bg $XTERM_COLOR -font fixed'
-# alias clip="xterm -fn fixed -title Clipboard -e tcsh -c 'cat > /dev/null' &"
-
 ######
 # ps #
 ######
@@ -87,7 +78,7 @@ alias cp="cp -i"
 # alias vim="vimTabs"
 command -v nvim >/dev/null && alias vim="nvim"
 command -v nvim >/dev/null && alias vimdiff="nvim -d"
-command -v hwatch >/dev/null && alias watch='hwatch -c -d'
+command -v hwatch >/dev/null && alias watch='hwatch -c -d word'
 alias vi="vim"
 alias v='$VISUAL'
 alias bim='$EDITOR'

@@ -491,21 +491,23 @@ fdc () {
 fdi() {
 	local iid key images
 	iid=$(docker images | sed 1d | fzf -q "$1" --preview ""\
-		--header="Ctrl-[s]elect/[u]nselect/[t]oggle/Pre[v]iew- [d]elete/[p]rune/[y]ank/[d]dangling/[h]idden" \
+		--header="Ctrl-[s]elect/[u]nselect/[t]oggle/Pre[v]iew- [x]remove/[p]rune/[y]ank/[d]angling/[h]idden" \
 		--bind='ctrl-s:select-all' \
 		--bind='ctrl-u:deselect-all' \
 		--bind='ctrl-t:toggle-all' \
 		--bind="ctrl-h:change-prompt([Hidden]▶)+reload(docker images --all | sed 1d)" \
 		--bind="ctrl-d:change-prompt([Dangling]▶)+reload(docker images --filter dangling=true | sed 1d)" \
 		--bind='ctrl-v:toggle-preview' \
-		--expect='ctrl-d,ctrl-y,ctrl-p' \
-		| awk '{print $1}') || return
+		--expect='ctrl-x,ctrl-y,ctrl-p' \
+		| awk '{print $3}') || return
 	key=$(echo "$iid" | head -1)
 	images=$(echo "$iid" | tail -n +2)
+	echo $key
+	echo $images
 	if [[ -n $images ]]; then
-		if [ "$key" = ctrl-d ]; then
+		if [ "$key" = ctrl-x ]; then
 			echo "$images" | while read -r line; do
-				docker rmi "$line"
+				echo docker rmi "$line"
 			done
 		elif [ "$key" = ctrl-p ]; then
 			docker image prune
