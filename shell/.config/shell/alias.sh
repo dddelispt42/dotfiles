@@ -7,14 +7,14 @@ command -v lsd >/dev/null && alias lt='ls --tree'
 if command -v eza >/dev/null; then
 	# general use
 	alias ls='eza'                                                        # ls
-	alias l='eza -lbF --git'                                              # list, size, type, git
-	alias ll='eza -lbGF --git'                                            # long list
-	alias llm='eza -lbG --git --sort=modified'                            # long list, modified date sort
-	alias la='eza -lbhHigmuSaa --time-style=long-iso --git --color-scale' # all list
-	alias lx='eza -lbhHigmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+	alias l='eza -lbF --git --icons'                                              # list, size, type, git
+	alias ll='eza -lbGF --git --icons'                                            # long list
+	alias llm='eza -lbG --git --sort=modified --icons'                            # long list, modified date sort
+	alias la='eza -lbhHigmuSaa --time-style=long-iso --icons --git --color-scale' # all list
+	alias lx='eza -lbhHigmuSa@ --time-style=long-iso --icons --git --color-scale' # all + extended list
 	# specialty views
 	alias lS='eza -1'               # one column, just names
-	alias lt='eza --tree --level=2' # tree
+	alias lt='eza --tree --level=2 --long --icons --git' # tree
 	alias eza='eza --git --group-directories-first --classify'
 else
 	alias l='ls -l'
