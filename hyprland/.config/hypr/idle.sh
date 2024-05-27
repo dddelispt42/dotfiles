@@ -4,6 +4,6 @@
 # 	timeout 3600 'loginctl suspend' \
 # 	before-sleep 'swaylock -f -c 000000'
 swayidle -w \
-	timeout 900 'waylock' \
+	timeout 1800 'waylock' \
 	timeout 3600 'loginctl suspend' \
 	before-sleep 'waylock'
