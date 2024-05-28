@@ -84,7 +84,7 @@ o.wrap = true -- display lines as one long line
 -- if a file is being edited by another program (or was written to file while editing
 -- with another program), it is not allowed to be edited
 o.writebackup = false
-o.shellslash = true
+-- o.shellslash = true
 
 -- window-local options
 wo.number = true
