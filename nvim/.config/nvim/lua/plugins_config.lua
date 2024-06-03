@@ -129,7 +129,7 @@ require('lazy').setup({
                 -- automatically preview the location of the diagnostic.
                 -- <esc> to close preview and go back to last window
                 auto_preview = true,
-                mode = 'document_diagnostics',
+                mode = 'diagnostics',
             }
         end,
         event = { 'BufReadPre', 'BufNewFile' },
@@ -500,8 +500,7 @@ require('lazy').setup({
     -- 'brooth/far.vim',   -- TODO: is there a lua substitute?
     -- " allows opening files at specific location - e.g. /tmp/bal:10:2
     'wsdjeg/vim-fetch', -- TODO: is there a lua substitute?
-    -- " Plug 'henrik/vim-open-url'
-    -- 'romainl/vim-cool',
+    'axieax/urlview.nvim',
     -- " better encryption plugin - dependencies: https://github.com/jedisct1/encpipe
     -- 'hauleth/vim-encpipe', -- TODO: is there a lua substitute?
     -- " floating windows

@@ -51,6 +51,7 @@ export NNTPSERVER=news.aioe.org
 export EDITOR="vim"
 command -v nvim >/dev/null && export EDITOR="nvim"
 export VISUAL=$EDITOR
+export SUDO_EDITOR=$EDITOR
 export BROWSER=elinks
 if [ -n "${DISPLAY+1}" ]; then
 	# export BROWSER=brave
