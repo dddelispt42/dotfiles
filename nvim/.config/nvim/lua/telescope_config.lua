@@ -41,13 +41,23 @@ tele.setup {
         },
         mappings = {
             n = {
+                ['<esc>'] = actions.close,
+                ['<tab>'] = actions.toggle_selection + actions.move_selection_next,
+                ['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
                 ['<M-p>'] = action_layout.toggle_preview,
             },
             i = {
+                ['<esc>'] = actions.close,
+                ['<C-j>'] = actions.move_selection_next,
+                ['<C-k>'] = actions.move_selection_previous,
+                ['<tab>'] = actions.toggle_selection + actions.move_selection_next,
+                ['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
                 ['<C-u>'] = false,
                 ['<C-d>'] = false,
                 ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
                 ['<M-p>'] = action_layout.toggle_preview,
+                ['<C-DOWN>'] = require('telescope.actions').cycle_history_next,
+                ['<C-UP>'] = require('telescope.actions').cycle_history_prev,
             },
         },
     },

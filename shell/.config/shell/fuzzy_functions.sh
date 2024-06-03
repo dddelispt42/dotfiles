@@ -442,13 +442,13 @@ function fbookm {
 fdc () {
 	local cid key images
 	cid=$(docker ps | sed 1d | fzf -q "$1" --preview "docker inspect {1}"\
-		--header="Ctrl-[s]elect/[u]nselect/[t]oggle/Pre[v]iew- sta[r]t/st[o]p/e[x]ec/[l]og/[d]elete/[y]ank/[h]idden" \
+		--header="Ctrl-[s]elect/[u]nselect/[t]oggle/Pre[v]iew- sta[r]t/st[o]p/e[x]ec/[l]og/[d]elete/[y]ank/[h]idden/[a]ttach" \
 		--bind='ctrl-s:select-all' \
 		--bind='ctrl-u:deselect-all' \
 		--bind='ctrl-t:toggle-all' \
 		--bind="ctrl-h:change-prompt([Hidden]▶)+reload(docker ps --all | sed 1d)" \
 		--bind='ctrl-v:toggle-preview' \
-		--expect='ctrl-r,ctrl-o,ctrl-x,ctrl-l,ctrl-d,ctrl-y,ctrl-p' \
+		--expect='ctrl-r,ctrl-o,ctrl-x,ctrl-l,ctrl-d,ctrl-y,ctrl-p,ctrl-a' \
 		| awk '{print $1}') || return
 	key=$(echo "$cid" | head -1)
 	containers=$(echo "$cid" | tail -n +2)
@@ -456,6 +456,10 @@ fdc () {
 		if [ "$key" = ctrl-r ]; then
 			echo "$containers" | while read -r line; do
 				docker start "$line"
+			done
+		elif [ "$key" = ctrl-a ]; then
+			echo "$containers" | while read -r line; do
+				sudo cntr attach "$line"
 			done
 		elif [ "$key" = ctrl-o ]; then
 			echo "$containers" | while read -r line; do
@@ -484,7 +488,11 @@ fdc () {
 				echo "$containers" | while read -r line; do echo "$line"; done
 			fi
 		else
-			docker exec -it "$(echo "$containers" | head -1)" /bin/bash
+			if command -v cntr >/dev/null; then
+				sudo cntr attach "$(echo "$containers" | head -1)"
+			else
+				docker exec -it "$(echo "$containers" | head -1)" /bin/bash
+			fi
 		fi
 	fi
 }

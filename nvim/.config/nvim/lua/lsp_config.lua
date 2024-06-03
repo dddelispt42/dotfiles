@@ -139,7 +139,8 @@ if vim.loop.os_uname().sysname == 'Linux' then
     nvim_lsp.nginx_language_server.setup {}
     nvim_lsp.openscad_lsp.setup {}
     nvim_lsp.pyright.setup {}
-    nvim_lsp.pylyzer.setup {}
+    -- TODO(heiko): retest - did not find modules (bug)
+    -- nvim_lsp.pylyzer.setup {}
     nvim_lsp.rnix.setup {}
     nvim_lsp.rust_analyzer.setup {}
     -- nvim_lsp.sonarlint.setup {}
