@@ -285,15 +285,6 @@ map('n', '<leader>h-', '<cmd>Gitsigns toggle_deleted<CR>')
 map('o', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 map('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 
--- Trouble
-map('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [x]toggle' })
-map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true, desc = '[x]Trouble [w]orkspace' })
-map('n', '<leader>xd', '<cmd>Trouble diagnostics<cr>', { silent = true, noremap = true, desc = '[x]Trouble [d]ocument' })
-map('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true, desc = '[x]Trouble [l]ocation list' })
-map('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true, desc = '[x]Trouble [q]uicklist' })
-map('n', '<leader>xt', '<cmd>TodoTrouble<cr>', { silent = true, noremap = true, desc = '[x]Trouble [t]odos' })
-map('n', 'gR', '<cmd>Trouble lsp_references<cr>', { silent = true, noremap = true, desc = '[x]Trouble [R]references' })
-
 -- GUI mode - zooms
 map('n', '<C-ScrollWheelUp>', '<cmd>GUIFontSizeUp<CR>', { silent = true, noremap = true })
 map('n', '<C-ScrollWheelDown>', '<cmd>GUIFontSizeDown<CR>', { silent = true, noremap = true })
