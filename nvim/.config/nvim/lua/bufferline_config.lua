@@ -1,4 +1,3 @@
--- luacheck: globals vim
 ---@diagnostic disable: undefined-global
 
 -- local status_ok, bufferline = pcall(require, "bufferline")
