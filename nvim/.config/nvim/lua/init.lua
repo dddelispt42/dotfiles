@@ -19,6 +19,7 @@ require 'bufferline_config'
 require 'cursorline_config'
 require 'notify_config'
 require 'orgmode_config'
+require 'textobjects_config'
 
 if os.getenv 'DEV_ENV' then
     require 'lsp_config'

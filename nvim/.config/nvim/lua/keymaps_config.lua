@@ -211,7 +211,7 @@ end, { noremap = true, silent = true, desc = '[l]sp [h]int (inline)' })
 map('n', '<leader>lr', vim.lsp.buf.references, { noremap = true, silent = true, desc = '[l]sp [r]eferences' })
 -- map('n', '<leader>ld', vim.lsp.buf.definition, { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 -- map('n', '<leader>ld', "<cmd>Lspsaga peek_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
-map('n', '<leader>ld', "<cmd>Lspsaga goto_definition<cr>", { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
+map('n', '<leader>ld', '<cmd>Lspsaga goto_definition<cr>', { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 map('n', '<leader>ld', '<cmd>Lspsaga peek_definition<cr>', { noremap = true, silent = true, desc = '[l]sp [d]efinition' })
 map('n', '<leader>lx', function()
     if vim.diagnostic.is_disabled() then
@@ -314,9 +314,13 @@ map('n', '<leader>d?', function()
     require('dapui').eval(nil, { enter = true })
 end, { noremap = true, silent = true, desc = '[d]AP [?] eval var under cursor' })
 
--- Tree SJ
-map('n', '<leader>J', function()
-    require('treesj').toggle { split = { recursive = true } }
-end, { noremap = true, silent = true, desc = '[J]oin line toggle - syntax aware' })
+-- Windows
+map('n', '<leader>wc', '<cmd>close<cr>', { noremap = true, silent = true, desc = '[w]indow [c]lose' })
+map('n', '<leader>wn',
+    function()
+        require('focus').split_nicely()
+    end,
+    { noremap = true, silent = true, desc = '[w]indow [n]ew' }
+)
 
 -- TODO: check neotest and use leader-t etc

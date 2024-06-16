@@ -345,3 +345,7 @@ function ya() {
 git_default_branch() {
 	(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') 2>/dev/null
 }
+
+cdwt () {
+	cd "$(git worktree list | fzf -0 -1 | awk '{print $1;}')" || true
+}

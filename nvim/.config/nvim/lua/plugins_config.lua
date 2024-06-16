@@ -71,7 +71,8 @@ require('lazy').setup({
             -- Additional lua configuration, makes nvim stuff amazing
             'folke/neodev.nvim',
             'jayp0521/mason-nvim-dap.nvim',
-            'simrat39/rust-tools.nvim',
+            -- 'simrat39/rust-toolu.nvim',
+            'mrcjkb/rustaceanvim',
         },
         event = { 'BufReadPre', 'BufNewFile' },
     },
@@ -194,6 +195,11 @@ require('lazy').setup({
         },
     },
     {
+        'chrisgrieser/nvim-various-textobjs',
+        lazy = false,
+        opts = { useDefaultKeymaps = true },
+    },
+    {
         'nvim-treesitter/completion-treesitter',
         build = function()
             vim.cmd [[TSUpdate]]
@@ -261,28 +267,28 @@ require('lazy').setup({
         },
         cmd = { 'DapUIToggle', 'DapToggleRepl', 'DapToggleBreakpoint' },
     },
-    {
-        'numToStr/Comment.nvim',
-        config = true,
-        keys = {
-            {
-                'gcc',
-                mode = { 'n' },
-                function()
-                    require('Comment').toggle()
-                end,
-                desc = 'Comment',
-            },
-            {
-                'gc',
-                mode = { 'v' },
-                function()
-                    require('Comment').toggle()
-                end,
-                desc = 'Comment',
-            },
-        },
-    },
+    -- {
+    --     'numToStr/Comment.nvim',
+    --     config = true,
+    --     keys = {
+    --         {
+    --             'gcc',
+    --             mode = { 'n' },
+    --             function()
+    --                 require('Comment').toggle()
+    --             end,
+    --             desc = 'Comment',
+    --         },
+    --         {
+    --             'gc',
+    --             mode = { 'v' },
+    --             function()
+    --                 require('Comment').toggle()
+    --             end,
+    --             desc = 'Comment',
+    --         },
+    --     },
+    -- },
     {
         'nvim-neotest/neotest',
         dependencies = {
@@ -352,12 +358,13 @@ require('lazy').setup({
     {
         'Wansmer/treesj',
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
-        keys = { '<space>m', '<space>J', '<space>s' },
+        keys = { '<space>j', '<space>J' },
         config = function()
             require('treesj').setup {
                 -- Use default keymaps
                 -- (<space>m - toggle, <space>j - join, <space>s - split)
                 -- use_default_keymaps = true,
+                use_default_keymaps = false,
 
                 -- Node with syntax error will not be formatted
                 check_syntax_error = true,
@@ -379,6 +386,12 @@ require('lazy').setup({
                 -- Use `dot` for repeat action
                 dot_repeat = true,
             }
+            -- For default preset
+            vim.keymap.set('n', '<leader>j', require('treesj').toggle, { noremap = true, silent = true, desc = '[J]oin line toggle - syntax aware' })
+            -- For extending default preset with `recursive = true`
+            vim.keymap.set('n', '<leader>J', function()
+                require('treesj').toggle { split = { recursive = true } }
+            end, { noremap = true, silent = true, desc = '[J]oin line toggle - syntax aware' })
         end,
     },
     {
@@ -394,11 +407,10 @@ require('lazy').setup({
         config = true,
         event = { 'BufReadPre', 'BufNewFile' },
     },
-    {
-        'tpope/vim-fugitive', -- TODO: is there a lua substitute?
-        cmd = 'Git',
-    },
-    -- 'tpope/vim-rhubarb', -- required by fugitive to :Gbrowse
+    -- {
+    --     'tpope/vim-fugitive', -- TODO: is there a lua substitute?
+    --     cmd = 'Git',
+    -- },
     {
         'ThePrimeagen/refactoring.nvim',
         event = 'LspAttach',
@@ -542,7 +554,6 @@ require('lazy').setup({
     -- 'brooth/far.vim',   -- TODO: is there a lua substitute?
     -- " allows opening files at specific location - e.g. /tmp/bal:10:2
     'wsdjeg/vim-fetch', -- TODO: is there a lua substitute?
-    'axieax/urlview.nvim',
     -- " better encryption plugin - dependencies: https://github.com/jedisct1/encpipe
     -- 'hauleth/vim-encpipe', -- TODO: is there a lua substitute?
     -- " floating windows
@@ -603,10 +614,6 @@ require('lazy').setup({
         config = true, -- or `opts = {}`
     },
     -- { 'michaelb/sniprun', build = 'bash ./install.sh' },
-    {
-        'dhruvasagar/vim-table-mode', -- TODO: is there a lua substitute?
-        event = { 'BufReadPre', 'BufNewFile' },
-    },
     {
         'vhyrro/luarocks.nvim',
         priority = 1000,
@@ -710,6 +717,7 @@ require('lazy').setup({
             }
         end,
     },
+    { 'nvim-focus/focus.nvim', version = false, config = true },
     {
         'kristijanhusak/vim-dadbod-ui',
         dependencies = {
@@ -726,11 +734,6 @@ require('lazy').setup({
             -- Your DBUI configuration
             vim.g.db_ui_use_nerd_fonts = 1
         end,
-    },
-    {
-        'm4xshen/hardtime.nvim',
-        dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
-        opts = {},
     },
 }, {
     -- defaults = { lazy = false },
