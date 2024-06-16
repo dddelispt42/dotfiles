@@ -142,7 +142,7 @@ if vim.loop.os_uname().sysname == 'Linux' then
     -- TODO(heiko): retest - did not find modules (bug)
     -- nvim_lsp.pylyzer.setup {}
     nvim_lsp.rnix.setup {}
-    nvim_lsp.rust_analyzer.setup {}
+    -- nvim_lsp.rust_analyzer.setup {}
     -- nvim_lsp.sonarlint.setup {}
     nvim_lsp.spectral.setup {}
     nvim_lsp.stylelint_lsp.setup {}
