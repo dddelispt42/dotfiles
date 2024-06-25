@@ -162,7 +162,7 @@ bin/zeal-portable-0.5.0-windows-x64/
 cache/
 cargo-timing*.html
 ctags
-dist/
+# dist/
 doc/ctags
 doc/tags
 doc/tags-te
