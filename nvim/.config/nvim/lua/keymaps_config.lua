@@ -245,7 +245,7 @@ map('n', '<leader>lwl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { noremap = true, silent = true, desc = '[l]sp [w]orkspace folder [l]ist' })
 -- TODO: move LSP keymaps to lsp_config.lua and only load if LSP is loaded
-map('n', '<c-]>', vim.lsp.buf.definition, { noremap = true, silent = true, desc = '[c-]] ... tags basd on lsp' })
+-- map('n', '<c-]>', vim.lsp.buf.definition, { noremap = true, silent = true, desc = '[c-]] ... tags basd on lsp' })
 -- Open applications
 map('n', '<c-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = '[c-n]vim tree toggle' })
 map('n', '<leader>gd', ':DiffviewOpen<CR>', { noremap = true, silent = true, desc = '[g]it [d]iff' })
