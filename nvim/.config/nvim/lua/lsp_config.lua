@@ -234,12 +234,29 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
     update_in_insert = true,
 })
 
-local rusttools_ok, rusttools = pcall(require, 'rust-tools')
-if not rusttools_ok then
-    vim.notify 'rust-tools plugin not loaded!'
+-- local rusttools_ok, rusttools = pcall(require, 'rust-tools')
+-- if not rusttools_ok then
+--     vim.notify 'rust-tools plugin not loaded!'
+--     return
+-- end
+-- rusttools.setup {
+--     server = {
+--         on_attach = function(_, bufnr)
+--             -- Hover actions
+--             vim.keymap.set('n', 'K', rusttools.hover_actions.hover_actions, { buffer = bufnr })
+--             -- Code action groups
+--             vim.keymap.set('n', '<Leader>la', rusttools.code_action_group.code_action_group, { buffer = bufnr })
+--         end,
+--     },
+-- }
+-- local rusttools_ok, rusttools = pcall(require, 'rust-tools')
+
+local rustaceanvim_ok, rustaceanvim = pcall(require, 'rustaceanvim')
+if not rustaceanvim_ok then
+    vim.notify 'rustaceanvim plugin not loaded!'
     return
 end
-rusttools.setup {
+rustaceanvim.setup {
     server = {
         on_attach = function(_, bufnr)
             -- Hover actions
