@@ -75,6 +75,7 @@
     su = status -u
     uncommit = reset HEAD~1 --mixed
     f = fetch
+    fp = fetch --prune
     fa = fetch --all
     r = reset
     rh = reset --hard
@@ -85,6 +86,8 @@
     ; wd = diff --word-diff=color --ignore-all-space
     ; wds = diff --staged --word-diff --ignore-all-space
     ws = show --minimal --word-diff=color --ignore-all-space
+[push]
+    autoSetupRemote = true
 [diff]
     ; tool = nvimdiff
     tool = difftastic
