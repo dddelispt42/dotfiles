@@ -37,8 +37,8 @@ github = 'wfxr/forgit'
 github = 'djui/alias-tips'
 # [plugins.zsh-interactive-cd]
 # github = 'changyuheng/zsh-interactive-cd'
-# [plugins.fzf-zsh-completions]
-# github = 'chitoku-k/fzf-zsh-completions'
+[plugins.fzf-zsh-completions]
+github = 'chitoku-k/fzf-zsh-completions'
 # [plugins.zsh-zoxide]
 # github = 'z-shell/zsh-zoxide'
 # [plugins.zsh-autocomplete]
