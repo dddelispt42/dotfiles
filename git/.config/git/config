@@ -1,7 +1,5 @@
 [https]
     sslverify = true
-; [http]
-;     sslverify = true
 [credential]
 [user]
     name = Heiko Riemer
@@ -11,11 +9,10 @@
 [core]
     editor = nvim
     autocrlf = false
-    ; autocrlf = false
-    ; fileMode = false
     filemode = false
     pager = delta
     excludesfile = ~/.config/git/ignore
+    attributesfile = ~/.config/git/attributes
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -49,7 +46,6 @@
     cs = show --minimal --word-diff=color --word-diff-regex=. --ignore-all-space
     di = diff --minimal
     dc = diff --cached
-    difftex = difftool -y -t latex
     dft = difftool
     dfst = diff --stat
     dls = diff-tree --no-commit-id --name-status -r
@@ -85,8 +81,6 @@
     upgh = !git fetch --recurse-submodules github && git rebase github/$((git symbolic-ref refs/remotes/origin/HEAD || echo main) | sed 's@^refs/remotes/origin/@@')
     upus = !git fetch --recurse-submodules upstream && git rebase upstream/$((git symbolic-ref refs/remotes/origin/HEAD || echo main) | sed 's@^refs/remotes/origin/@@')
     upuus = !git fetch --recurse-submodules upupstream && git rebase upupstream/$((git symbolic-ref refs/remotes/origin/HEAD || echo main) | sed 's@^refs/remotes/origin/@@')
-    ; wd = diff --word-diff=color --ignore-all-space
-    ; wds = diff --staged --word-diff --ignore-all-space
     ws = show --minimal --word-diff=color --ignore-all-space
 [push]
     autoSetupRemote = true
@@ -97,21 +91,18 @@
 [difftool]
     prompt = false
 [difftool "difftastic"]
-    cmd = difft --color always "$LOCAL" "$REMOTE"
-[difftool.json]
-    cmd = jsondiff "$LOCAL" "$REMOTE"
-[difftool.latex]
-    cmd = latexdiff "$LOCAL" "$REMOTE"
-[diff "pdf"]
+    command = difft --color always "$LOCAL" "$REMOTE"
+; [diff "json"]
+;     command = jdiff "$LOCAL" "$REMOTE"
+[diff "latex"]
+    command = latexdiff "$LOCAL" "$REMOTE"
+[diff "preview.sh"]
     binary = true
     textconv = ~/.config/lf/preview.sh
-[diff "odt"]
-    binary = true
-    textconv = odt2txt
 [merge]
     tool = nvimdiff
 [mergetool "nvimdiff4"]
-    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J' -c 'set diffopt&' -c 'set diffopt+=algorithm:patience'
+    command = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J' -c 'set diffopt&' -c 'set diffopt+=algorithm:patience'
     keepBackup = false
 [color "diff"]
     meta = yellow

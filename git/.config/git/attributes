@@ -1,0 +1,24 @@
+*.json diff=json
+*.tex diff=latex
+*.bib diff=latex
+*.toc diff=latex
+*.pdf diff=preview.sh
+*.7z diff=preview.sh
+*.epub diff=preview.sh
+*.ch diff=preview.sh
+*.y diff=preview.sh
+# TODO: check reladiff on githuub
+*.db diff=preview.sh
+*.sqlite diff=preview.sh
+*.schema diff=preview.sh
+*.odt diff=preview.sh
+*.ods diff=preview.sh
+*.odp diff=preview.sh
+*.md diff=preview.sh
+*.markdown diff=preview.sh
+*.rar diff=preview.sh
+*.smd diff=json
+*.gliffy diff=json
+*.tar* diff=preview.sh
+*.jar diff=preview.sh
+

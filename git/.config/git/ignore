@@ -34,7 +34,7 @@ golangenv-system/
 *.dump
 *.egg-info
 *.exe
-*.gif
+# *.gif
 # *.gz
 *.ico
 *.ilk
