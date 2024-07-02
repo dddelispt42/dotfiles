@@ -37,15 +37,21 @@ github = 'wfxr/forgit'
 github = 'djui/alias-tips'
 # [plugins.zsh-interactive-cd]
 # github = 'changyuheng/zsh-interactive-cd'
-[plugins.fzf-zsh-completions]
-github = 'chitoku-k/fzf-zsh-completions'
 # [plugins.zsh-zoxide]
 # github = 'z-shell/zsh-zoxide'
-# [plugins.zsh-autocomplete]
-# github = 'marlonrichert/zsh-autocomplete.git'
-[plugins.fzf-tab]
-github = 'Aloxaf/fzf-tab.git'
+# [plugins.fzf-tab]
+# github = 'Aloxaf/fzf-tab.git'
 [plugins.ugit]
 github = 'Bhupesh-V/ugit'
 [plugins.fzf-docker]
 github = 'pierpo/fzf-docker'
+[plugins.zsh-completions]
+github = 'zsh-users/zsh-completions'
+[plugins.zsh-autocomplete]
+github = 'marlonrichert/zsh-autocomplete.git'
+# [plugins.fzf-tab-completion]
+# github = 'lincheney/fzf-tab-completion'
+[plugins.fzf-zsh-completions]
+github = 'chitoku-k/fzf-zsh-completions'
+[plugins.zsh-autosuggestions]
+github = 'zsh-users/zsh-autosuggestions'
