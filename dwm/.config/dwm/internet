@@ -5,7 +5,7 @@
 
 case $BLOCK_BUTTON in
 1)
-	"$TERMINAL" -e nmtui
+	"${TERMINAL:-wezterm}" -e nmtui
 	pkill -RTMIN+4 dwmblocks
 	;;
 3) notify-send "🌐 Internet module" "\- Click to connect
@@ -14,7 +14,7 @@ case $BLOCK_BUTTON in
 ❎: no ethernet
 🌐: ethernet working
 " ;;
-6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+6) "${TERMINAL:-wezterm}" -e "$EDITOR" "$0" ;;
 esac
 
 case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in

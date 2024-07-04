@@ -17,7 +17,7 @@ transmission-remote -l | grep % |
 				s/Z/🌱/g" | awk '{print $2 $1}' | paste -sd ' '
 
 case $BLOCK_BUTTON in
-1) setsid -f "$TERMINAL" -e tremc ;;
+1) setsid -f "${TERMINAL:-wezterm}" -e tremc ;;
 2) td-toggle ;;
 3) notify-send "🌱 Torrent module" "\- Left click to open tremc.
 - Middle click to toggle transmission.
@@ -29,5 +29,5 @@ Module shows number of torrents:
 🔽: downloading
 ✅: done
 🌱: done and seeding" ;;
-6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+6) "${TERMINAL:-wezterm}" -e "$EDITOR" "$0" ;;
 esac

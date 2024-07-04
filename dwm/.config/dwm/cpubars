@@ -9,10 +9,10 @@
 cache=/tmp/cpubarscache
 
 case $BLOCK_BUTTON in
-2) setsid -f "$TERMINAL" -e htop ;;
+2) setsid -f "${TERMINAL:-wezterm}" -e htop ;;
 3) notify-send "🪨 CPU load module" "Each bar represents
 one CPU core" ;;
-6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+6) "${TERMINAL:-wezterm}" -e "$EDITOR" "$0" ;;
 esac
 
 # id total idle

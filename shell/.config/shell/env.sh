@@ -104,8 +104,10 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # default terminal emulator
 export TERMINAL=xterm
+command -v alacritty >/dev/null && export TERMINAL="alacritty"
 command -v st >/dev/null && export TERMINAL="st"
 command -v foot >/dev/null && test -n "$WAYLAND_DISPLAY" && export TERMINAL="foot"
+command -v wezterm >/dev/null && export TERMINAL="wezterm"
 
 # my BIB file
 export BIB=$HOME/Documents/uni.bib

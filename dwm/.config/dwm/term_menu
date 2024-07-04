@@ -7,8 +7,8 @@ done | rofi -dmenu)"
 if [[ -n "$selected" ]]; then
 	session="$(ssh "$selected" -- tmux ls | rofi -dmenu)"
 	if [[ -n "$selected" ]]; then
-		"${TERMINAL:-alacritty}" -e ssh -t "$selected" tmux a -d -t "${session//: */}" &
+		"${TERMINAL:-wezterm}" -e ssh -t "$selected" tmux a -d -t "${session//: */}" &
 	else
-		"${TERMINAL:-alacritty}" -e ssh -t "$selected" tmux &
+		"${TERMINAL:-wezterm}" -e ssh -t "$selected" tmux &
 	fi
 fi

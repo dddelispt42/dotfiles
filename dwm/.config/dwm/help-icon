@@ -13,6 +13,6 @@ case $BLOCK_BUTTON in
 2) restartwm ;;
 3) notify-send "❓ Help module" "\- Left click to open LARBS guide.
 - Middle click to refresh window manager." ;;
-6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+6) "${TERMINAL:-wezterm}" -e "$EDITOR" "$0" ;;
 esac
 echo "❓"
