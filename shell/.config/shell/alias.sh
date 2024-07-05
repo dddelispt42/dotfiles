@@ -120,12 +120,17 @@ alias pretty-json="python -mjson.tool"
 alias music-dl='youtube-dl --audio-format=mp3 --extract-audio --metadata-from-title "%(artist)s - %(title)s"'
 alias clip='xclip -selection clipboard'
 alias top='htop'
+#
+# Docker aliases
+alias chrome.sh='docker run --rm -ti fathyb/carbonyl'
+alias ff.sh='docker run --rm -it browsh/browsh'
 alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
 alias lazydocker='docker run --rm -it -v \
 /var/run/docker.sock:/var/run/docker.sock \
 -v lazydocker.config:/.config/jesseduffield/lazydocker \
 lazyteam/lazydocker'
 alias inotify-info='docker run --rm --privileged -v /proc:/proc inotify-info'
+
 alias path='echo -e ${PATH//:/\\n}'
 alias ls_installed_debian_packages="aptitude search '~i!~M'"
 # hors - check stackoverflow and other stuff in terminal
