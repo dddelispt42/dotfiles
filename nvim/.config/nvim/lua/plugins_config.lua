@@ -219,6 +219,7 @@ require('lazy').setup({
     },
     {
         'stevearc/aerial.nvim',
+        lazy = true,
         opts = {
             filter_kind = {
                 -- "Array",
@@ -607,29 +608,32 @@ require('lazy').setup({
             },
         },
     },
-    {
-        'lukas-reineke/headlines.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
-        dependencies = 'nvim-treesitter/nvim-treesitter',
-        config = true, -- or `opts = {}`
-    },
+    -- {
+    --     'lukas-reineke/headlines.nvim',
+    --     event = { 'BufReadPre', 'BufNewFile' },
+    --     dependencies = 'nvim-treesitter/nvim-treesitter',
+    --     config = true, -- or `opts = {}`
+    -- },
     -- { 'michaelb/sniprun', build = 'bash ./install.sh' },
-    {
-        'vhyrro/luarocks.nvim',
-        priority = 1000,
-        config = true,
-        opts = {
-            rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' },
-        },
-    },
-    {
-        'rest-nvim/rest.nvim',
-        ft = 'http',
-        dependencies = { 'luarocks.nvim' },
-        config = function()
-            require('rest-nvim').setup()
-        end,
-    },
+    -- {
+    --     'rest-nvim/rest.nvim',
+    --     ft = 'http',
+    --     dependencies = {
+    --         {
+    --             {
+    --                 'vhyrro/luarocks.nvim',
+    --                 priority = 1000,
+    --                 config = true,
+    --                 opts = {
+    --                     rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' },
+    --                 },
+    --             },
+    --         },
+    --     },
+    --     config = function()
+    --         require('rest-nvim').setup()
+    --     end,
+    -- },
     {
         'folke/noice.nvim',
         event = 'VeryLazy',
@@ -717,7 +721,7 @@ require('lazy').setup({
             }
         end,
     },
-    { 'nvim-focus/focus.nvim', version = false, config = true },
+    { 'nvim-focus/focus.nvim', version = false, config = true, lazy = true },
     {
         'kristijanhusak/vim-dadbod-ui',
         dependencies = {
@@ -758,32 +762,39 @@ require('lazy').setup({
             ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
                 '2html_plugin',
-                'tohtml',
+                'black',
+                'bugreport',
+                'compiler',
+                'editorconfig',
+                'filetype',
+                'ftplugin',
+                'fzf',
                 'getscript',
                 'getscriptPlugin',
                 'gzip',
                 'logipat',
+                'man',
+                'matchit',
                 'netrw',
+                'netrwFileHandlers',
                 'netrwPlugin',
                 'netrwSettings',
-                'netrwFileHandlers',
-                'matchit',
+                'optwin',
+                'rplugin',
+                'rrhelper',
+                'skim',
+                'json',
+                'spellfile_plugin',
+                'synmenu',
+                'syntax',
                 'tar',
                 'tarPlugin',
-                'rrhelper',
-                'spellfile_plugin',
+                'tohtml',
+                'tutor',
                 'vimball',
                 'vimballPlugin',
                 'zip',
                 'zipPlugin',
-                'tutor',
-                'rplugin',
-                'syntax',
-                'synmenu',
-                'optwin',
-                'compiler',
-                'bugreport',
-                'ftplugin',
             },
         },
     },
