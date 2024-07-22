@@ -530,3 +530,6 @@ fdi() {
 		fi
 	fi
 }
+ftype() {
+	ttyper -l "$(ttyper --list-languages | sort -u | fzf -1 -0)"
+}
