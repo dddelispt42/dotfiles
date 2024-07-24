@@ -52,6 +52,7 @@
     ds = diff --minimal --staged
     ff = merge --ff-only
     gpg = log --show-signature
+    gv = remote -v
     ign = ls-files -o -i --exclude-standard
     noff = merge --no-ff
     gr = log --all --graph --decorate --oneline
