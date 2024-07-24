@@ -1,6 +1,9 @@
-#format = "$all"
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = false
 palette = "catppuccin_mocha"
+# format = "$all"
 
 # [battery]
 # full_symbol = "🔋"
@@ -14,92 +17,192 @@ palette = "catppuccin_mocha"
 # style = "bold yellow"
 
 [character]
-success_symbol = " "
-error_symbol = "✖ "
-vicmd_symbol = " "
+disabled = false
+success_symbol = "[➜](bold green)"
+error_symbol = "[✖](bold red)"
+vicmd_symbol = "[](yellow)"
 
 [cmd_duration]
+disabled = false
 min_time = 400
+format = ' [$duration](bold yellow)'
+
+[container]
+disabled = false
+format = '[$symbol \[$name\]]($style) '
 
 [directory]
+disabled = false
 truncation_length = 8
 truncation_symbol = "…/"
+truncate_to_repo = true
 read_only = "🔒"
+read_only_style	= 'red'
+repo_root_style ='cyan'
+
+[direnv]
+disabled = false
 
 [git_branch]
+disabled = false
 symbol = ""
+always_show_remote = true
+ignore_branches = ['main', 'master']
 # truncation_length = 4
 
 [git_state]
-# progress_divider = " of "
-cherry_pick = "🍒 PICKING(bold red)"
+disabled = false
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = " PICKING(bold red)"
 
 [git_commit]
-commit_hash_length = 4
-tag_symbol = "🔖"
+disabled = false
+commit_hash_length = 7
+tag_symbol = '[🏷](bold green)'
 
 [git_status]
-conflicted = "🏳$count"
-ahead = "🏎💨$count"
-behind = "😰$count"
-diverged = "😵$count"
-untracked = "🤷$count"
-stashed = "📦$count"
-modified = "📝$count"
-staged = "➕$count"
-renamed = "👅$count"
-deleted = "🗑$count"
+disabled = false
+style = 'white'
+ahead = '[⇡ $count](green) '
+behind = '[⇣ $count](yellow) '
+conflicted = "[🏳 $count](red) "
+deleted = "[🗑 $count](mangenta) "
+diverged = '⇕⇡ ${ahead_count} ⇣ ${behind_count}'
+modified = "[ $count](orange) "
+renamed = "󰪹$count"
+staged = " $count"
+# staged = '[++\($count\)](green)'
+stashed = "📦 $count"
+untracked = "[ $count](cyan) "
 
 [git_metrics]
+disabled = false
 added_style = 'bold blue'
 format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 
+[golang]
+disabled = false
+format = 'via [$symbol($version )($mod_version )]($style)'
 
-[jobs]
-symbol = '+ '
-number_threshold = 4
-symbol_threshold = 1
-
-[julia]
-symbol = '∴ '
+[helm]
+disabled = false
+format = 'via [⎈ $version](bold white) '
 
 [hostname]
 ssh_only = false
-format =  "@[$hostname](bold blue) "
-trim_at = ".companyname.com"
+# format =  "@[$hostname](bold blue) "
+format = '[$ssh_symbol](bold blue)@[$hostname](bold red) '
+trim_at = ".eheiko.net"
 #prefix = "⟪"
 #suffix = "⟫"
+
+[java]
+disabled = false
+
+[jobs]
+disabled = false
+symbol = '+ '
+number_threshold = 2
+symbol_threshold = 1
+
+[julia]
+disabled = false
+symbol = '∴ '
+
+[kotlin]
+disabled = false
+symbol = '🅺 '
+
+[kubernetes]
+disabled = false
+format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+contexts = [
+  { context_pattern = "dev.local.cluster.k8s", style = "green", symbol = "💔 " },
+]
 
 [line_break]
 disabled = false
 
+[localip]
+disabled = false
+ssh_only = true
+format = '@[$localipv4](bold red) '
+
+[lua]
+disabled = false
+format = 'via [🌕 $version](bold blue) '
+
+[memory_usage]
+disabled = false
+threshold = 90
+symbol = '󰍛'
+style = 'bold dimmed green'
+
+[nix_shell]
+disabled = false
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = 'via [☃️ $state( \($name\))](bold blue) '
+
+[nodejs]
+disabled = false
+format = 'via [🤖 $version](bold green) '
+
+[openstack]
+disabled = false
+format = 'on [$symbol$cloud(\($project\))]($style) '
+style = 'bold yellow'
+symbol = '󰅟 '
+
+[os]
+disabled = true
+
+[package]
+disabled = false
+symbol = "🎁"
+
+[python]
+disabled = false
+
+[rust]
+disabled = false
+symbol = "⚙️ "
+
+[shlvl]
+disabled = false
+symbol = " "
+# format = '(+$shlvl) '
+# style = 'bold yellow'
+threshold = 2
+
+[status]
+disabled = true
+style = 'bg:blue'
+symbol = '🔴 '
+# success_symbol = '🟢 SUCCESS'
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+
+[sudo]
+disabled = false
+format = '$symbol'
+style = 'bold green'
+symbol = ''
+
 [username]
+disabled = false
 style_user = "white bold"
 style_root = "black bold"
 format = "[$user]($style)"
 show_always = true
+
+[zig]
 disabled = false
-
-[package]
-symbol = "🎁"
-
-[rust]
-symbol = "⚙️ "
-
-# [status]
-# style = 'bg:blue'
-# symbol = '🔴 '
-# success_symbol = '🟢 SUCCESS'
-# format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
-# map_symbol = true
-# disabled = false
-
-[sudo]
-style = 'bold green'
-symbol = '🧙'
-disabled = false
+symbol = '⚡️ '
 
 [custom.vifm]
+disabled = false
 command = "echo vifm"  # shows output of command
 #files = ["foo"]       # can specify filters
 when = """ test x"${VIFM}" != "x" """

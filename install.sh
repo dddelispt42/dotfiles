@@ -32,13 +32,15 @@ mkdir -p "$XDG_STATE_HOME"
 mkdir -p "$XDG_DESKTOP_DIR"
 mkdir -p "$XDG_DOCUMENTS_DIR"
 mkdir -p "$XDG_DOWNLOAD_DIR"
-mkdir -p "$XDG_MUSIC_DIR"
+mkdir -p "$XDG_MUSIC_DIR" 2>/dev/null
 mkdir -p "$XDG_PICTURES_DIR"
 mkdir -p "$XDG_PICTURES_DIR"/screenshots
 mkdir -p "$XDG_PUBLICSHARE_DIR"
 mkdir -p "$XDG_TEMPLATES_DIR"
 mkdir -p "$XDG_VIDEOS_DIR"
 mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+
 migrate_to_clean "$HOME"/.ansible "$XDG_CONFIG_HOME"/ansible
 migrate_to_clean "$HOME"/.RFCs "$XDG_CACHE_HOME"/RFCs
 migrate_to_clean "$HOME"/.surf "$XDG_CACHE_HOME"/surf
@@ -129,7 +131,7 @@ migrate_to_clean "$HOME"/.myclirc "${XDG_CONFIG_HOME}"/myclirc
 stow -vS -t "$HOME"/ X11
 stow -vS -t "$HOME"/ alacritty
 stow -vS -t "$HOME"/ bat
-bat cache --build
+bat cache --build 1>/dev/null
 stow -vS -t "$HOME"/ imv
 stow -vS -t "$HOME"/ bottom
 stow -vS -t "$HOME"/ gitui
@@ -155,6 +157,7 @@ stow -vS -t "$HOME"/ sheldon
 stow -vS -t "$HOME"/ shell
 stow -vS -t "$HOME"/ starship
 stow -vS -t "$HOME"/ stylua
+stow -vS -t "$HOME"/ swappy
 stow -vS -t "$HOME"/ tmux
 stow -vS -t "$HOME"/ topgrade
 stow -vS -t "$HOME"/ vifm
@@ -224,13 +227,10 @@ fi
 
 mkdir -p "$XDG_STATE_HOME"/nvim/{undo,backup,swap,sessions,spell} &>/dev/null
 if command -v nvim >/dev/null; then
-	# cd "$XDG_DATA_HOME/nvim/lazy/neogit" || echo "Neogit dir not found"
-	# git co -- doc/tags 2>/dev/null
-	# cd "$XDG_DATA_HOME/nvim/lazy/rest.nvim" || echo "rest.nvim dir not found"
-	# git co -- doc/tags 2>/dev/null
 	cd "$ROOTDIR" || true
 	nvim --headless "+Lazy! sync" +qa &>/dev/null
 	nvim --headless "+MasonUpdate" +qa &>/dev/null
+	nvim --headless "+MasonToolsUpdate" +qa &>/dev/null
 	nvim --headless "+TSUpdate" +qa &>/dev/null
 fi
 

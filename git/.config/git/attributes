@@ -8,6 +8,7 @@
 *.ch diff=preview.sh
 *.y diff=preview.sh
 # TODO: check reladiff on githuub
+# TODO: use dyff for xml, toml, json, yaml
 *.db diff=preview.sh
 *.sqlite diff=preview.sh
 *.schema diff=preview.sh
