@@ -92,7 +92,7 @@ export RESET_COLOR='\033[0m'
 
 export DISABLE_AUTO_TITLE='true'
 
-export STARSHIP_CONFIG="${XDG_CACHE_HOME:-$HOME/.config}/starship.toml"
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship.toml"
 
 # TMUX
 export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp"
