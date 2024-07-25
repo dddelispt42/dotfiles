@@ -1,6 +1,5 @@
 [https]
     sslverify = true
-[credential]
 [user]
     name = Heiko Riemer
     email = heiko@eheiko.net
@@ -43,6 +42,10 @@
     cim = commit -v -m
     co = checkout
     cb = checkout -b
+    ; Usage:
+    ; git change-commits GIT_AUTHOR_NAME "old name" "new name"
+    ; git change-commits GIT_AUTHOR_EMAIL "old email" "new email"
+    change-commits="!f() { VAR1=$1; VAR='$'$1; OLD=$2; NEW=$3; echo \"Are you sure for replace $VAR  $OLD => $NEW ?(Y/N)\";read OK;if [ \"$OK\" = 'Y' ] ; then shift 3; git filter-branch  --env-filter \"if [ \\\"${VAR}\\\" = '$OLD' ]; then export $VAR1='$NEW';echo 'to $NEW'; fi\" $@; fi;};  f "
     cs = show --minimal --word-diff=color --word-diff-regex=. --ignore-all-space
     di = diff --minimal
     dc = diff --cached
@@ -52,11 +55,10 @@
     ds = diff --minimal --staged
     ff = merge --ff-only
     gpg = log --show-signature
-    gv = remote -v
     ign = ls-files -o -i --exclude-standard
     noff = merge --no-ff
     gr = log --all --graph --decorate --oneline
-    l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an>%Creset\\ %C(red)%d%Creset\\ %s\\ %C(blue)%G?"
+    l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an,\\ %ae>%Creset\\ %C(red)%d%Creset\\ %s\\ %C(blue)%G?"
     lg = log --oneline --reverse
     kill-branches = "!f() { git branch | awk '!/^*|master/ {print $1 }' | xargs git branch ${1--d};}; f"
     mt = mergetool
@@ -67,6 +69,7 @@
     rb = rebase
     rbc = rebase --continue
     rbi = rebase -i --keep-base
+    rv = remote -v
     s = status
     slog = log --pretty=oneline --abbrev-commit
     st = status
@@ -161,7 +164,10 @@
 [log]
     date = local
 [include]
-    path = ~/.config/gitconfig.local
     path = ~/.config/git/catppuccin.gitconfig
-; [includeIf "hasconfig:remote.*.url:git@github.com:<organisation>/**"]
-; 	path = work.local
+[includeIf "hasconfig:remote.*.url:https://git@bitbucket.infinera.com/*/**"]
+    path = ~/.config/gitconfig.work
+[includeIf "hasconfig:remote.*.url:https://git@bitbucket.infinera.com/*/*/**"]
+    path = ~/.config/gitconfig.work
+[includeIf "hasconfig:remote.*.url:ssh://git@bitbucket.infinera.com:7999/**"]
+    path = ~/.config/gitconfig.work
