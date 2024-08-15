@@ -130,6 +130,7 @@ migrate_to_clean "$HOME"/.myclirc "${XDG_CONFIG_HOME}"/myclirc
 
 stow -vS -t "$HOME"/ X11
 stow -vS -t "$HOME"/ alacritty
+stow -vS -t "$HOME"/ atuin
 stow -vS -t "$HOME"/ bat
 bat cache --build 1>/dev/null
 stow -vS -t "$HOME"/ imv
