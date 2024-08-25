@@ -7,6 +7,7 @@ golangenv-system/
 **/doc/tags
 **/doc/tags-te
 .envrc
+.env
 *.spec
 *.7z
 *.DOC
