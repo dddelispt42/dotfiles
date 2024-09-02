@@ -72,7 +72,11 @@ require('lazy').setup({
             'folke/neodev.nvim',
             'jayp0521/mason-nvim-dap.nvim',
             -- 'simrat39/rust-toolu.nvim',
-            'mrcjkb/rustaceanvim',
+            {
+                'mrcjkb/rustaceanvim',
+                version = '^5', -- Recommended
+                lazy = false, -- This plugin is already lazy
+            },
         },
         event = { 'BufReadPre', 'BufNewFile' },
     },

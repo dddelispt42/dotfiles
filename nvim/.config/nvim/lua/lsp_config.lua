@@ -136,7 +136,8 @@ if vim.loop.os_uname().sysname == 'Linux' then
     nvim_lsp.lua_ls.setup {}
     nvim_lsp.marksman.setup {}
     nvim_lsp.mutt_ls.setup {}
-    nvim_lsp.nginx_language_server.setup {}
+    -- TODO(heiko): does not work with newest python version
+    -- nvim_lsp.nginx_language_server.setup {}
     nvim_lsp.openscad_lsp.setup {}
     nvim_lsp.pyright.setup {}
     -- TODO(heiko): retest - did not find modules (bug)
@@ -255,6 +256,30 @@ local rustaceanvim_ok, rustaceanvim = pcall(require, 'rustaceanvim')
 if not rustaceanvim_ok then
     vim.notify 'rustaceanvim plugin not loaded!'
     return
+end
+
+vim.g.rustaceanvim = function()
+  -- Update this path
+  local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
+  local codelldb_path = extension_path .. 'adapter/codelldb'
+  local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+  local this_os = vim.uv.os_uname().sysname;
+
+  -- The path is different on Windows
+  if this_os:find "Windows" then
+    codelldb_path = extension_path .. "adapter\\codelldb.exe"
+    liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+  else
+    -- The liblldb extension is .so for Linux and .dylib for MacOS
+    liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+  end
+
+  local cfg = require('rustaceanvim.config')
+  return {
+    dap = {
+      adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+    },
+  }
 end
 --
 -- Setup neovim lua configuration
