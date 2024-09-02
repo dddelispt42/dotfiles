@@ -206,6 +206,8 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 # Python - disable keyring
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
+# Python
+export VIRTUAL_ENV=.venv
 # Poetry
 export POETRY_VIRTUALENVS_IN_PROJECT=1
 

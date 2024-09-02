@@ -100,10 +100,10 @@ __handle_files() {
 			echo "$files" | while read -r line; do
 				__run_with_history "${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh" "$line"
 			done
-		elif [ "$key" = ctrl-e ]; then
-			print -s -- "${EDITOR:-vim}" "$(echo "$files" | while read -r line; do echo "$line"; done)"
-			# shellcheck disable=SC2046
-			"${EDITOR:-vim}" $(echo "$files" | while read -r line; do echo "$line"; done)
+		# elif [ "$key" = ctrl-e ]; then
+		# 	print -s -- "${EDITOR:-vim}" "$(echo "$files" | while read -r line; do echo "$line"; done)"
+		# 	# shellcheck disable=SC2046
+		# 	"${EDITOR:-vim}" $(echo "$files" | while read -r line; do echo "$line"; done)
 		elif [ "$key" = ctrl-y ]; then
 			if [[ -n "${WAYLAND_DISPLAY}" ]]; then
 				echo "$files" | while read -r line; do echo "$line"; done | wl-copy
