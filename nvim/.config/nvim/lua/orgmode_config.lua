@@ -34,17 +34,17 @@ orgmode.setup {
         t = 'TODO',
         tw = {
             description = 'Todo - WORK',
-            template = '* TODO [#5] %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n    :EFFORT: 30min\n   :END:',
+            template = '* TODO [#5] %? :%n:work:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n    :Effort: 0:30\n   :END:',
             target = '~/notes/capture.org',
         },
         th = {
             description = 'Todo - HOME',
-            template = '* TODO [#5] %? :%n:home:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n    :EFFORT: 30min\n   :END:',
+            template = '* TODO [#5] %? :%n:home:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n    :Effort: 0:30\n   :END:',
             target = '~/notes/capture.org',
         },
         d = {
             description = 'Delegated task',
-            template = '* DELEGATED [#5] %? :who:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n    :EFFORT: 10min\n   :END:',
+            template = '* DELEGATED [#5] %? :who:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n    :Effort: 0:10\n   :END:',
             target = '~/notes/capture.org',
         },
         m = {
