@@ -23,7 +23,7 @@ extend-select = [
     "CPY",
     "D",
     "DJ",
-    "DOC",
+    # "DOC",
     "DTZ",
     "E",
     "EM",
@@ -31,7 +31,7 @@ extend-select = [
     "EXE",
     "F",
     "FA",
-    "FAST",
+    # "FAST",
     "FBT",
     "FIX",
     "FLY",
@@ -77,7 +77,8 @@ extend-select = [
     "YTT",
 ]
 
-# Never enforce `E501` (line length violations).
+# Never enforce `E501` (line length violations)
+#
 ignore = ["D203", "D211", "D213", "D406", "D407", "TD003", "G004", "FIX002", "COM812", "ISC001"]
 
 # Always autofix, but never try to fix `F401` (unused imports).

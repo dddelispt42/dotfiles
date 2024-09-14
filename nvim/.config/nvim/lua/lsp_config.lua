@@ -57,7 +57,7 @@ local my_lsps = {
     'texlab',
     'tflint',
     'thriftls',
-    'tsserver',
+    'ts_ls',
     'typos_lsp',
     'vimls',
     'yamlls',
@@ -150,7 +150,7 @@ if vim.loop.os_uname().sysname == 'Linux' then
     nvim_lsp.tailwindcss.setup {}
     nvim_lsp.texlab.setup {}
     nvim_lsp.tflint.setup {}
-    nvim_lsp.tsserver.setup {}
+    nvim_lsp.ts_ls.setup {}
     nvim_lsp.vimls.setup {}
     nvim_lsp.zls.setup {}
 end
