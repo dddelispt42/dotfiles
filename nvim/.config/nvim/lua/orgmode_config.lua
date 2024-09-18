@@ -25,7 +25,7 @@ orgmode.setup {
     org_deadline_warning_days = 3,
     org_agenda_span = 'week',
     -- org_agenda_start_day = '-1d',
-    org_priority_highest = 1,
+    org_priority_highest = 0,
     org_priority_default = 7,
     org_priority_lowest = 9,
     org_agenda_skip_scheduled_if_done = true,
