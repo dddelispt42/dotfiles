@@ -31,7 +31,7 @@ mason_null_ls.setup {
         -- 'format_r',
         'gitlint',
         -- 'gitrebase',
-        -- 'gitsigns', -- TODO: check
+        'gitsigns', -- TODO: check
         'gofumpt',
         'hadolint',
         'jq',

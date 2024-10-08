@@ -222,7 +222,6 @@ require('lazy').setup({
         ft = 'plantuml',
     },
     'MTDL9/vim-log-highlighting', -- TODO: is there a lua substitute?
-    -- 'Sol-Ponz/plantuml-previewer.nvim',
     {
         'javiorfo/nvim-soil',
         ft = 'plantuml',
@@ -419,10 +418,6 @@ require('lazy').setup({
         config = true,
         event = { 'BufReadPre', 'BufNewFile' },
     },
-    -- {
-    --     'tpope/vim-fugitive', -- TODO: is there a lua substitute?
-    --     cmd = 'Git',
-    -- },
     {
         'ThePrimeagen/refactoring.nvim',
         event = 'LspAttach',
@@ -476,11 +471,6 @@ require('lazy').setup({
         end,
         event = 'VeryLazy',
     },
-    {
-        'vimwiki/vimwiki', -- TODO: is there a lua substitute?
-        ft = 'vimwiki',
-    },
-    -- 'tpope/vim-repeat',      -- TODO: is there a lua substitute?
     {
         'tpope/vim-speeddating', -- TODO: is there a lua substitute?
         event = { 'BufReadPre', 'BufNewFile' },
@@ -547,9 +537,8 @@ require('lazy').setup({
         'will133/vim-dirdiff', -- TODO: is there a lua substitute?
         cmd = 'DirDiff',
     },
-    -- 'christoomey/vim-conflicted',  -- TODO: is there a lua substitute?
     {
-        'christoomey/vim-sort-motion', -- TODO: is there a lua substitute?
+        'christoomey/vim-sort-motion', -- TODO: is there a lua substitute? - see mini.nvim
         event = { 'BufReadPre', 'BufNewFile' },
     },
     {
@@ -563,17 +552,12 @@ require('lazy').setup({
             return require('tmux').setup()
         end,
     },
-    -- 'brooth/far.vim',   -- TODO: is there a lua substitute?
     -- " allows opening files at specific location - e.g. /tmp/bal:10:2
     'wsdjeg/vim-fetch', -- TODO: is there a lua substitute?
-    -- " better encryption plugin - dependencies: https://github.com/jedisct1/encpipe
-    -- 'hauleth/vim-encpipe', -- TODO: is there a lua substitute?
-    -- " floating windows
-    -- 'machakann/vim-highlightedyank',
-    {
-        'voldikss/vim-floaterm', -- TODO: is there a lua substitute?
-        event = 'VeryLazy',
-    },
+    -- {
+    --     'voldikss/vim-floaterm', -- TODO: is there a lua substitute?
+    --     event = 'VeryLazy',
+    -- },
     {
         'dddelispt42/gui-font-resize.nvim',
         config = function()
