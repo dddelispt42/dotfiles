@@ -42,6 +42,11 @@ orgmode.setup {
             template = '* TODO [#5] %? :%n:home:\n %U\n   :PROPERTIES:\n   :CATEGORY: home\n   :Effort: 0:30\n   :END:',
             target = '~/notes/capture.org',
         },
+        tb = {
+            description = 'Todo - BUSINESS',
+            template = '* TODO [#5] %? :%n:home:business:\n %U\n   :PROPERTIES:\n   :CATEGORY: home,business\n   :Effort: 1:30\n   :END:',
+            target = '~/notes/capture.org',
+        },
         d = {
             description = 'Delegated task',
             template = '* DELEGATED [#5] %? :who:\n %U\n   :PROPERTIES:\n   :CATEGORY: work\n   :Effort: 0:10\n   :END:',
