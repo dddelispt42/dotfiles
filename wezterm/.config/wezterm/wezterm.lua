@@ -14,6 +14,7 @@ config.max_fps = 120
 -- config.font = wezterm.font 'FiraCode Nerd Font'
 config.font = wezterm.font_with_fallback {
     'FiraCode Nerd Font',
+    'VictorMono Nerd Font',
     'JetBrains Mono',
 }
 config.color_scheme = 'Catppuccin Mocha'
