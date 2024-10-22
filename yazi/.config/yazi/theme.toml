@@ -1,1 +1,2 @@
-theme_catppuccin_mocha.toml
+[flavor]
+use = "catppuccin-mocha"
