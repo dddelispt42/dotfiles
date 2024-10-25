@@ -122,8 +122,9 @@ alias clip='xclip -selection clipboard'
 alias top='htop'
 #
 # Docker aliases
-alias chrome.sh='docker run --rm -ti fathyb/carbonyl'
-alias ff.sh='docker run --rm -it browsh/browsh'
+alias chrome.sh='docker run --rm --name=chrome.sh -ti fathyb/carbonyl'
+alias ff.sh='docker run --rm -it --name=browsh browsh/browsh'
+alias dive='docker run --rm -it --name=dive --volume /var/run/docker.sock:/var/run/docker.sock:ro wagoodman/dive:latest'
 alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
 alias lazydocker='docker run --rm -it -v \
 /var/run/docker.sock:/var/run/docker.sock \
