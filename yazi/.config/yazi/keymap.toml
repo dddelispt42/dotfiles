@@ -49,7 +49,7 @@ keymap = [
 	{ on = [ "D" ],         run = "remove --permanently",   desc = "Permanently delete the files" },
 	{ on = [ "a" ],         run = "create",                 desc = "Create a file or directory (ends with / for directories)" },
 	{ on = [ "r" ],         run = "rename",                 desc = "Rename a file or directory" },
-	{ on = [ "R" ],         run = "shell --interactive --block 'find $@ | nvim -s'",                 desc = "Rename a file or directory via vimv" },
+	{ on = [ "R" ],         run = "shell --interactive --block 'find $@ | vimv -s'",                 desc = "Rename a file or directory via vimv" },
 	{ on = [ ";" ],         run = "shell --interactive",                  desc = "Run a shell command" },
 	{ on = [ ":" ],         run = "shell --interactive --block",          desc = "Run a shell command (block the UI until the command finishes)" },
 	{ on = [ "." ],         run = "hidden toggle",          desc = "Toggle the visibility of hidden files" },
