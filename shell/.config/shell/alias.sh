@@ -125,12 +125,11 @@ alias top='htop'
 alias chrome.sh='docker run --rm --name=chrome.sh -ti fathyb/carbonyl'
 alias ff.sh='docker run --rm -it --name=browsh browsh/browsh'
 alias dive='docker run --rm -it --name=dive --volume /var/run/docker.sock:/var/run/docker.sock:ro wagoodman/dive:latest'
-alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
-alias lazydocker='docker run --rm -it -v \
-/var/run/docker.sock:/var/run/docker.sock \
--v lazydocker.config:/.config/jesseduffield/lazydocker \
+alias ctop='docker run --rm -it --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
+alias lazydocker='docker run --rm -it --name lazydocker -v /var/run/docker.sock:/var/run/docker.sock \
+	-v lazydocker.config:/.config/jesseduffield/lazydocker \
 lazyteam/lazydocker'
-alias inotify-info='docker run --rm --privileged -v /proc:/proc inotify-info'
+alias inotify-info='docker run --rm --name inotify-info --privileged -v /proc:/proc inotify-info'
 
 alias path='echo -e ${PATH//:/\\n}'
 alias ls_installed_debian_packages="aptitude search '~i!~M'"

@@ -41,7 +41,7 @@ mkdir -p "$XDG_VIDEOS_DIR"
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 
-migrate_to_clean "$HOME"/.ansible "$XDG_CONFIG_HOME"/ansible
+migrate_to_clean "$HOME"/.ansible "$XDG_DATA_HOME"/ansible
 migrate_to_clean "$HOME"/.RFCs "$XDG_CACHE_HOME"/RFCs
 migrate_to_clean "$HOME"/.surf "$XDG_CACHE_HOME"/surf
 migrate_to_clean "$HOME"/.Skype "$XDG_CONFIG_HOME"/Skype
