@@ -15,7 +15,7 @@ local my_lsps = {
     'autotools_ls',
     'bashls',
     'biome',
-    'bufls',
+    -- 'bufls',
     'clangd',
     'cssls',
     'cssmodules_ls',
@@ -46,7 +46,7 @@ local my_lsps = {
     'remark_ls',
     'rescriptls',
     'rnix',
-    'ruff_lsp',
+    'ruff',
     'rust_analyzer',
     'slint_lsp',
     -- 'sonarlint-language-server',
@@ -82,7 +82,7 @@ if vim.loop.os_uname().sysname == 'Windows_NT' then
         'jdtls',
         'jsonls',
         'lemminx',
-        'ruff_lsp',
+        'ruff',
         'taplo',
         'typos_lsp',
         'yamlls',
@@ -114,7 +114,7 @@ if vim.loop.os_uname().sysname == 'Linux' then
     nvim_lsp.autotools_ls.setup {}
     nvim_lsp.bashls.setup {}
     nvim_lsp.biome.setup {}
-    nvim_lsp.bufls.setup {}
+    -- nvim_lsp.bufls.setup {}
     -- nvim_lsp.ccls.setup {}
     nvim_lsp.clangd.setup {
         on_attach = on_attach,
@@ -162,7 +162,7 @@ nvim_lsp.emmet_ls.setup {}
 nvim_lsp.html.setup {}
 nvim_lsp.jdtls.setup {}
 nvim_lsp.lemminx.setup {}
-nvim_lsp.ruff_lsp.setup {}
+nvim_lsp.ruff.setup {}
 nvim_lsp.taplo.setup {}
 nvim_lsp.typos_lsp.setup {
     init_options = {
