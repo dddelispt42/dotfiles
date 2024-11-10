@@ -18,6 +18,7 @@
     features = catppuccin-frappe side-by-side line-numbers decorations
     ; features = catppuccin-frappe side-by-side line-numbers
     whitespace-error-style = 22 reverse
+    navigate = true
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
@@ -105,6 +106,7 @@
     textconv = ~/.config/lf/preview.sh
 [merge]
     tool = nvimdiff
+    conflictstyle = zdiff3
 [mergetool "nvimdiff4"]
     command = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J' -c 'set diffopt&' -c 'set diffopt+=algorithm:patience'
     keepBackup = false
