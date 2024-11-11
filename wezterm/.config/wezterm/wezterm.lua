@@ -10,6 +10,7 @@ local act = wezterm.action
 local size_adjust = 2
 
 config.term = "wezterm"
+config.enable_wayland = true
 config.max_fps = 120
 -- config.font = wezterm.font 'FiraCode Nerd Font'
 config.font = wezterm.font_with_fallback {
