@@ -309,6 +309,9 @@ map('n', '<leader>d?', function()
     require('dapui').eval(nil, { enter = true })
 end, { noremap = true, silent = true, desc = '[d]AP [?] eval var under cursor' })
 
+-- DADBOD
+map('n', '<leader>D', '<cmd>DBUIToggle<cr>', { noremap = true, silent = true, desc = '[D]BUI toggle' })
+
 -- Windows
 map('n', '<leader>wc', '<cmd>close<cr>', { noremap = true, silent = true, desc = '[w]indow [c]lose' })
 map('n', '<leader>wn',
