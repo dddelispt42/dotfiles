@@ -44,7 +44,7 @@ export FIREFOX_PROFILE
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PATH=$HOME/bin:$HOME/opt:$HOME/dev/heiko/bin:$HOME/.local/bin:$HOME/.config/dwm:$PATH
+PATH=$HOME/bin:$HOME/opt:$HOME/dev/$USER/bin:$HOME/.local/bin:$HOME/.config/dwm:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
@@ -122,6 +122,10 @@ export PATH=$PATH:$MAVEN_HOME/bin
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 PATH=$CARGO_HOME/bin:$RUSTUP_HOME:$PATH
+
+# GO
+export GO_BIN_PATH=$XDG_DATA_HOME/go/bin
+PATH=$GO_BIN_PATH:$PATH
 
 # RFCs
 export RFC_DIR=$XDG_CACHE_HOME/RFCs
