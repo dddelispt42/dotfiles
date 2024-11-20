@@ -170,6 +170,8 @@
     sort = -committerdate
 [log]
     date = local
+[absorb]
+    autoStageIfNothingStaged = true
 [include]
     path = ~/.config/git/catppuccin.gitconfig
 [includeIf "hasconfig:remote.*.url:https://git@bitbucket.infinera.com/*/**"]
