@@ -257,6 +257,10 @@ if [[ "$ANDROID_ROOT" == "/system" ]]; then
 	export PATH=$HOME/.shortcuts:$PATH
 fi
 
+if command -v carapace >/dev/null; then
+	export PATH=$HOME/.nix-profile/bin:$PATH
+fi
+
 # fuzzy finder variables
 # fzf --preview command for file and directory
 export FZF_PREVIEW_CMD="${XDG_CONFIG_HOME:-$HOME/.config}/lf/preview.sh {}"

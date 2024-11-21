@@ -3,7 +3,8 @@
 # stty erase ""
 # stty ek
 
-zmodload zsh/zprof
+# Enable for performance testing
+# zmodload zsh/zprof
 
 # some history related settings
 HISTFILE=${XDG_CACHE_HOME:-$HOME/.cache}/zhistory       # enable history saving on shell exit
@@ -67,4 +68,14 @@ fi
 #     dbus-run-session Hyprland
 # fi
 
-zprof > /tmp/zsh.$$
+if command -v carapace >/dev/null; then
+    export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense,argcomplete,carapace,clap,cobra,complete,kingpin,urfavecli,yargs' # optional
+    export CARAPACE_LENIENT=1
+    export CARAPACE_TOOLTOP=1
+    zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+    zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+    source <(carapace _carapace)
+fi
+
+# Enable for performance debugging
+# zprof > /tmp/zsh.$$
