@@ -49,7 +49,11 @@ alias s="source"
 alias j="jobs -l"
 # alias erase="stty istrip erase"
 # alias makectags='ctags -f ./.git/tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .'
-alias makectags='ctags -f tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .'
+if command -v ptags >/dev/null; then
+	alias makectags='ptags -c -f tags --exclude="*.js" --exclude="*.html"'
+else
+	alias makectags='ctags -f tags -R --exclude="*.js" --exclude="*.html" --tag-relative=yes .'
+fi
 alias lsblk="lsblk -a -o 'NAME,MAJ:MIN,RM,RO,TYPE,SIZE,FSUSED,FSUSE%,LABEL,UUID,PTTYPE,FSTYPE,MOUNTPOINT'"
 
 ######
