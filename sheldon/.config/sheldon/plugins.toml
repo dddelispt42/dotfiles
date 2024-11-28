@@ -51,7 +51,7 @@ github = 'zsh-users/zsh-completions'
 github = 'marlonrichert/zsh-autocomplete.git'
 # [plugins.fzf-tab-completion]
 # github = 'lincheney/fzf-tab-completion'
-[plugins.fzf-zsh-completions]
-github = 'chitoku-k/fzf-zsh-completions'
+# [plugins.fzf-zsh-completions]
+# github = 'chitoku-k/fzf-zsh-completions'
 [plugins.zsh-autosuggestions]
 github = 'zsh-users/zsh-autosuggestions'

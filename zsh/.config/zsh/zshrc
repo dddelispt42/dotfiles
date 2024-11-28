@@ -60,22 +60,23 @@ if tty -s; then
     command -v direnv >/dev/null && eval "$(direnv hook zsh)"
     command -v atuin >/dev/null && eval "$(atuin init zsh)"
     # change TAB for zsh-autocomplete
-    bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-    bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+    # bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+    # bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+    if command -v carapace >/dev/null; then
+        export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense,argcomplete,carapace,clap,cobra,complete,kingpin,urfavecli,yargs' # optional
+        export CARAPACE_LENIENT=1
+        export CARAPACE_TOOLTOP=1
+        zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+        zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+        source <(carapace _carapace)
+    fi
+
 fi
 
 # if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 #     dbus-run-session Hyprland
 # fi
-
-if command -v carapace >/dev/null; then
-    export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense,argcomplete,carapace,clap,cobra,complete,kingpin,urfavecli,yargs' # optional
-    export CARAPACE_LENIENT=1
-    export CARAPACE_TOOLTOP=1
-    zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-    zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
-    source <(carapace _carapace)
-fi
 
 # Enable for performance debugging
 # zprof > /tmp/zsh.$$
