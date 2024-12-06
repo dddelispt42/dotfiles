@@ -44,7 +44,7 @@ export FIREFOX_PROFILE
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PATH=$HOME/bin:$HOME/opt:$HOME/dev/$USER/bin:$HOME/.local/bin:$HOME/.config/dwm:$PATH
+PATH=$HOME/bin:$HOME/opt:$HOME/dev/$USER/bin:$HOME/.local/bin:$HOME/.config/dwm:/usr/local/sbin:/usr/local/bin:/usr/bin:$PATH
 export PATH
 
 export NNTPSERVER=news.aioe.org
@@ -121,11 +121,11 @@ export PATH=$PATH:$MAVEN_HOME/bin
 # CARGO and RUST
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
-PATH=$CARGO_HOME/bin:$RUSTUP_HOME:$PATH
+PATH=$PATH:$CARGO_HOME/bin:$RUSTUP_HOME
 
 # GO
 export GO_BIN_PATH=$XDG_DATA_HOME/go/bin
-PATH=$GO_BIN_PATH:$PATH
+PATH=$PATH:$GO_BIN_PATH
 
 # RFCs
 export RFC_DIR=$XDG_CACHE_HOME/RFCs
@@ -203,7 +203,7 @@ export _ZO_FZF_OPTS="-x --multi --height 50% --border --inline-info --preview='$
 export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 
 # JAVA
-export PATH=/opt/java/bin:$PATH
+export PATH=$PATH:/opt/java/bin
 export JAVA_HOME=/opt/java
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
@@ -258,7 +258,7 @@ if [[ "$ANDROID_ROOT" == "/system" ]]; then
 fi
 
 if command -v carapace >/dev/null; then
-	export PATH=$HOME/.nix-profile/bin:$PATH
+	export PATH=$PATH:$HOME/.nix-profile/bin
 fi
 
 # fuzzy finder variables
