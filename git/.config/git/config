@@ -139,6 +139,8 @@
     editor = interactive-rebase-tool
 [pull]
     ff = only
+[submodule]
+    recurse = true
 [status]
     submodulesummary = 1
 [gpg]
