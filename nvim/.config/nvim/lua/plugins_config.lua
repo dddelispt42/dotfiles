@@ -200,7 +200,7 @@ require('lazy').setup({
     {
         'chrisgrieser/nvim-various-textobjs',
         lazy = false,
-        opts = { useDefaultKeymaps = true },
+        -- opts = { useDefaultKeymaps = true },
     },
     {
         'nvim-treesitter/completion-treesitter',
