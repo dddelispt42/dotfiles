@@ -18,34 +18,57 @@ palette = "catppuccin_mocha"
 
 [character]
 disabled = false
-success_symbol = "[➜](bold green)"
-error_symbol = "[✖](bold red)"
+# success_symbol = "[➜](bold green)"
+# error_symbol = "[✖](bold red)"
 vicmd_symbol = "[](yellow)"
+success_symbol = "[ ](bold green)"
+error_symbol = "[✘ ](italic red)"
 
 [cmd_duration]
 disabled = false
 min_time = 400
-format = ' [$duration](bold yellow)'
+style = "yellow bold"
+format = '[ $duration]($style)'
 
 [container]
 disabled = false
 format = '[$symbol \[$name\]]($style) '
 
+[docker_context]
+symbol = " "
+style = "fg:#06969A bold"
+format = '[$symbol $context ]($style) $path'
+
 [directory]
 disabled = false
+# style = "fg:white bg:black"
+style = "fg:white"
+format = "[ $path ]($style)"
 truncation_length = 8
 truncation_symbol = "…/"
+# truncation_symbol = " …/"
 truncate_to_repo = true
 read_only = "🔒"
 read_only_style	= 'red'
 repo_root_style ='cyan'
+
+[directory.substitutions]
+"~" = " ~"
+"~/docs" = " ~/docs"
+"~/dl" = "  ~/dl"
+"~/media" = " ~/media"
+"~/photos" = " ~/photos"
+"~/dev" = " ~/dev"
 
 [direnv]
 disabled = false
 
 [git_branch]
 disabled = false
-symbol = ""
+# symbol = ""
+symbol = " "
+style = "fg:black bg:green"
+format = '[$symbol $branch]($style)'
 always_show_remote = true
 ignore_branches = ['main', 'master']
 # truncation_length = 4
@@ -63,17 +86,18 @@ tag_symbol = '[🏷](bold green)'
 [git_status]
 disabled = false
 style = 'white'
-ahead = '[⇡ $count](green) '
-behind = '[⇣ $count](yellow) '
-conflicted = "[🏳 $count](red) "
-deleted = "[🗑 $count](mangenta) "
-diverged = '⇕⇡ ${ahead_count} ⇣ ${behind_count}'
-modified = "[ $count](orange) "
-renamed = "󰪹$count"
-staged = " $count"
-# staged = '[++\($count\)](green)'
-stashed = "📦 $count"
-untracked = "[ $count](cyan) "
+ahead = '[ $count](green) '
+behind = '[ $count](yellow) '
+conflicted = "[🏳$count](red) "
+deleted = "[﫧$count](mangenta) "
+diverged = '⇡${ahead_count} ⇣ ${behind_count}'
+modified = "[ $count](orange) "
+renamed = " $count"
+staged = " $count"
+# # staged = '[\($count\)](green)'
+stashed = " $count"
+untracked = "[ $count](cyan) "
+format = '[$all_status$ahead_behind ]($style)'
 
 [git_metrics]
 disabled = false
@@ -82,7 +106,10 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 
 [golang]
 disabled = false
-format = 'via [$symbol($version )($mod_version )]($style)'
+# format = 'via [$symbol($version )($mod_version )]($style)'
+symbol = ""
+style = "fg:#00ACD7 bold"
+format = '[$symbol ($version) ]($style)'
 
 [helm]
 disabled = false
@@ -98,6 +125,9 @@ trim_at = ".eheiko.net"
 
 [java]
 disabled = false
+symbol = " "
+style = "fg:#F0931C bold"
+format = '[ $symbol ($version) ]($style)'
 
 [jobs]
 disabled = false
@@ -107,7 +137,9 @@ symbol_threshold = 1
 
 [julia]
 disabled = false
-symbol = '∴ '
+symbol = " "
+style = "fg:#CA3C32 bold"
+format = '[ $symbol ($version) ]($style)'
 
 [kotlin]
 disabled = false
@@ -130,13 +162,19 @@ format = '@[$localipv4](bold red) '
 
 [lua]
 disabled = false
-format = 'via [🌕 $version](bold blue) '
+symbol = " "
+style = "fg:#0402A9 bold"
+format = '[$symbol ($version) ]($style)'
+
 
 [memory_usage]
 disabled = false
-threshold = 90
-symbol = '󰍛'
+threshold = 80
+# symbol = '󰍛'
+symbol = ' '
 style = 'bold dimmed green'
+# style = 'yellow bold'
+format = '[$symbol $ram]($style)'
 
 [nix_shell]
 disabled = false
@@ -158,16 +196,28 @@ symbol = '󰅟 '
 [os]
 disabled = true
 
+[c]
+symbol = ""
+style = "fg:#3F4347 bold"
+format = '[$symbol ($version) ]($style)'
+
 [package]
-disabled = false
+disabled = true
 symbol = "🎁"
 
 [python]
 disabled = false
+symbol = ""
+style = "fg:#316A9A bold"
+format = '[$symbol ($version) ]($style)'
 
 [rust]
 disabled = false
-symbol = "⚙️ "
+# symbol = "⚙️ "
+symbol = ""
+style = "fg:#C26F2E bold"
+format = '[$symbol ($version) ]($style)'
+
 
 [shlvl]
 disabled = false
@@ -201,13 +251,13 @@ show_always = true
 disabled = false
 symbol = '⚡️ '
 
-[custom.vifm]
-disabled = false
-command = "echo vifm"  # shows output of command
-#files = ["foo"]       # can specify filters
-when = """ test x"${VIFM}" != "x" """
-format = "[$output](bg:red) "
-#shell = ["pwsh.exe", "-NoProfile", "-Command", "-"]
+# [custom.vifm]
+# disabled = false
+# command = "echo vifm"  # shows output of command
+# #files = ["foo"]       # can specify filters
+# when = """ test x"${VIFM}" != "x" """
+# format = "[$output](bg:red) "
+# #shell = ["pwsh.exe", "-NoProfile", "-Command", "-"]
 
 #[custom.foo]
 #command = "echo foo"  # shows output of command
