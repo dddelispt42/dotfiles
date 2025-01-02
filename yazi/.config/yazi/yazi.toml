@@ -84,3 +84,13 @@ previewers = [
   { mime = "*/x-wine-extension-ini", run = "code" },
   { name = "*", run = "preview" },
 ]
+
+# [[plugin.prepend_fetchers]]
+# id   = "git"
+# name = "*"
+# run  = "git"
+#
+# [[plugin.prepend_fetchers]]
+# id   = "git"
+# name = "*/"
+# run  = "git"

@@ -332,7 +332,7 @@ vicd() {
 	cd "$dst" || true
 }
 
-function ya() {
+function y() {
 	local tmp
 	tmp="$(mktemp -t "yazi-cwd.XXXXX")"
 	yazi "$@" --cwd-file="$tmp"

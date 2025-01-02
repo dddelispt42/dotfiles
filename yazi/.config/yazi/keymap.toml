@@ -65,6 +65,11 @@ keymap = [
 	{ on = [ "c", "f" ], run = "copy filename",         desc = "Copy the name of the file" },
 	{ on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy the name of the file without the extension" },
 
+	# Plugin: chmod
+    { on = [ "c", "m" ], run  = "plugin chmod", desc = "Chmod on selected files" },
+	# Plugin: diff
+    { on   = "<C-d>", run  = "plugin diff", desc = "Diff the selected with the hovered file" },
+
 	# Find
 	{ on = [ "/" ], run = "find" },
 	{ on = [ "?" ], run = "find --previous" },
