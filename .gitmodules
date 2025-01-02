@@ -4,3 +4,6 @@
 [submodule "vifm/.config/vifm/vifm-colors"]
 	path = vifm/.config/vifm/colors
 	url = https://github.com/vifm/vifm-colors.git
+[submodule "yazi/.config/yazi/plugins/preview.yazi"]
+	path = yazi/.config/yazi/plugins/preview.yazi
+	url = https://github.com/Urie96/preview.yazi.git
