@@ -238,7 +238,7 @@ keys() {
 
 # Usage: randomSE [number]
 randomSE() {
-	jq '..|.short?' dev/work/nms-se-tools/jira/config/seTeam.json | grep -v 'null' | sort -R | tail -"${1:-1}"
+	jq '..|.short?' "${HOME}/dev/work/nms-se-tools/plpbot/config/seTeam.json" | grep -v 'null' | sort -R | tail -"${1:-1}"
 }
 
 # Codi
