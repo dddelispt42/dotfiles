@@ -1,6 +1,2 @@
 test -s ~/.config/shell/env.sh && source "$_" || true
 test -s $ZDOTDIR/zshrc && source "$_" || true
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
