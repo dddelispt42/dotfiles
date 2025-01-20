@@ -38,6 +38,20 @@ if command -v VBoxClient >/dev/null; then
 	ps aux | grep "[V]BoxClient --checkhostversion" >/dev/null || VBoxClient --checkhostversion >/dev/null
 fi
 
+if command -v aichat >/dev/null; then
+    _aichat_zsh() {
+    if [[ -n "$BUFFER" ]]; then
+        local _old=$BUFFER
+        BUFFER+="⌛"
+        zle -I && zle redisplay
+        BUFFER=$(aichat -e "$_old")
+        zle end-of-line
+    fi
+    }
+    zle -N _aichat_zsh
+    bindkey '\ee' _aichat_zsh
+fi
+
 test -s /usr/share/fzf/key-bindings.zsh && source "$_" || true
 test -s /usr/share/fzf/completion.zsh && source "$_" || true
 test -s /usr/share/doc/fzf/examples/key-bindings.zsh && source "$_" || true
