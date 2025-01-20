@@ -7,25 +7,25 @@ xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
 xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
 xset fp+ "${HOME}/.local/share/fonts"
 
-if [ "$HOST" == "work" ]; then
-	# MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
-	# xrandr --output $MONITOR --mode 1920x1080 --rate 60
-	VBoxClient --vmsvga
-	VBoxClient --clipboard
-	VBoxClient --draganddrop
-	VBoxClient --seamless
-	# VBoxClient --display
-	VBoxClient --checkhostversion
-	# nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
-	# nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
-	# nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
-	# nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
-	# else
-	# nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
-	# nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
-	# nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
-	# nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
-fi
+# if [ "$HOST" == "work" ]; then
+# 	# MONITOR=$(xrandr --listmonitors | grep -v "Monitors:" | sed 's/.*\s//;1q')
+# 	# xrandr --output $MONITOR --mode 1920x1080 --rate 60
+# 	VBoxClient --vmsvga
+# 	VBoxClient --clipboard
+# 	VBoxClient --draganddrop
+# 	VBoxClient --seamless
+# 	# VBoxClient --display
+# 	VBoxClient --checkhostversion
+# 	# nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
+# 	# nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
+# 	# nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
+# 	# nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
+# 	# else
+# 	# nohup "$TERMI" --class "$TERMI - heiko@localhost" --title "$TERMI - heiko@localhost" &
+# 	# nohup "$TERMI" --class "$TERMI - heiko@ed" --title "$TERMI - heiko@ed" &
+# 	# nohup "$TERMI" --class "$TERMI - heiko@ed2" --title "$TERMI - heiko@ed2" &
+# 	# nohup "$TERMI" --class "$TERMI - heiko@backup" --title "$TERMI - heiko@backup" &
+# fi
 
 "${XDG_CONFIG_HOME:-$HOME/.config}/dunst/launch.sh" &
 # udiskie -A -t &
@@ -46,18 +46,18 @@ if [[ -z "${DISPLAY}" ]]; then
 		disown
 	fi
 fi
-# if command -v brave >/dev/null; then
-# 	nohup brave &
-# fi
+if command -v brave >/dev/null; then
+	nohup brave &
+fi
 # if command -v qutebrowser >/dev/null; then
 # 	nohup qutebrowser &
 # fi
 if command -v thunderbird >/dev/null; then
 	nohup thunderbird &
 fi
-# if command -v signal-desktop >/dev/null; then
-# 	nohup signal-desktop &
-# fi
+if command -v signal-desktop >/dev/null; then
+	nohup signal-desktop &
+fi
 if command -v ntfy >/dev/null; then
 	nohup ntfy subscribe --from-config &
 fi

@@ -28,6 +28,16 @@ case ${TERM} in
         ;;
 esac
 
+# Enable VBox guest extensions of VBoxClient is installed
+if command -v VBoxClient >/dev/null; then
+	ps aux | grep "[V]BoxClient --vmsvga" >/dev/null || VBoxClient --vmsvga >/dev/null
+	ps aux | grep "[V]BoxClient --clipboard" >/dev/null || VBoxClient --clipboard >/dev/null
+	ps aux | grep "[V]BoxClient --draganddrop" >/dev/null || VBoxClient --draganddrop >/dev/null
+	ps aux | grep "[V]BoxClient --seamless" >/dev/null || VBoxClient --seamless >/dev/null
+	# ps aux | grep "[V]BoxClient --display" >/dev/null || VBoxClient --display >/dev/null
+	ps aux | grep "[V]BoxClient --checkhostversion" >/dev/null || VBoxClient --checkhostversion >/dev/null
+fi
+
 test -s /usr/share/fzf/key-bindings.zsh && source "$_" || true
 test -s /usr/share/fzf/completion.zsh && source "$_" || true
 test -s /usr/share/doc/fzf/examples/key-bindings.zsh && source "$_" || true
