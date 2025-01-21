@@ -1,6 +1,3 @@
-import = [
-    "~/.config/alacritty/catppuccin-mocha.toml"
-]
 
 [env]
 TERM = "xterm-256color"
@@ -10,3 +7,8 @@ size = 11
 bold.family = "FiraCode Nerd Font"
 italic.family = "FiraCode Nerd Font"
 bold_italic.family = "FiraCode NerdFont"
+
+[general]
+import = [
+    "~/.config/alacritty/catppuccin-mocha.toml"
+]
