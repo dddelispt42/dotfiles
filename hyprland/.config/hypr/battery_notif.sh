@@ -5,8 +5,8 @@ BAT_LOW=20
 DISPLAY=:0
 
 while true; do
-    BATTERY_PATH=$(upower -e | grep battery)
-    LINE_POWER_PATH=$(upower -e | grep line_power)
+    BATTERY_PATH=$(upower -e | grep battery | head -1)
+    LINE_POWER_PATH=$(upower -e | grep line_power_AC | head -1)
     BATTERY_PERCENTAGE=$(upower -i "$BATTERY_PATH" | grep 'percentage:' | awk '{ print $2 }' | sed 's/%//')
     CABLE_PLUGGED=$(upower -i "$LINE_POWER_PATH" | grep -A2 'line-power' | grep online | awk '{ print $2 }')
 

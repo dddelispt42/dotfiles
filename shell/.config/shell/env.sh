@@ -97,6 +97,7 @@ export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship.toml"
 # TMUX
 export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp"
 export TMUX_TMPDIR="${XDG_CACHE_HOME:-$HOME/.cache}/"
+export TMUX_PLUGIN_MANAGER_PATH="${XDG_CONFIG_HOME}/tmux/plugins"
 
 # enable CLICOLORS
 export CLICOLORS=1
