@@ -602,6 +602,7 @@ require('lazy').setup({
             },
         },
     },
+    { 'mistweaverco/kulala.nvim', opts = {} },
     -- {
     --     'lukas-reineke/headlines.nvim',
     --     event = { 'BufReadPre', 'BufNewFile' },
