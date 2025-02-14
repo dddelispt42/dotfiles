@@ -63,12 +63,12 @@
     gr = log --all --graph --decorate --oneline
     l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an,\\ %ae>%Creset\\ %C(red)%d%Creset\\ %s\\ %C(blue)%G?"
     lg = log --oneline --reverse
-    kill-branches = "!f() { git branch | awk '!/^*|master/ {print $1 }' | xargs git branch ${1--d};}; f"
+    kill-branches = "!f() { git branch | awk '!/^*|main/ {print $1 }' | xargs git branch ${1--d};}; f"
     mt = mergetool
     mylog = log --stat
     pf = push --force-with-lease
-    pom = push origin master
-    pgm = push github master
+    pom = push origin main
+    pgm = push github main
     rb = rebase
     rbc = rebase --continue
     rbi = rebase -i --keep-base
