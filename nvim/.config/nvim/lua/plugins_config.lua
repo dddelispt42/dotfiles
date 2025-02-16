@@ -72,6 +72,7 @@ require('lazy').setup({
         },
         event = { 'BufReadPre', 'BufNewFile' },
     },
+    { "cordx56/rustowl", dependencies = { "neovim/nvim-lspconfig" } },
     {
         'nvimdev/lspsaga.nvim',
         event = 'LspAttach',
