@@ -177,32 +177,15 @@ nvim_lsp.typos_lsp.setup {
 
 nvim_lsp.jsonls.setup {
     settings = {
-        yaml = {
-            schemaStore = {
-                -- You must disable built-in schemaStore support if you want to use
-                -- this plugin and its advanced options like `ignore`.
-                enable = false,
+        json = {
+            schemas = require('schemastore').json.schemas {
+                -- select = {
+                --     '.eslintrc',
+                --     'package.json',
+                -- },
+                -- ignore = {},
             },
-            schemas = require('schemastore').yaml.schemas {
-                ignore = {
-                    '.eslintrc',
-                },
-            },
-            -- TODO: add schema for mappings
-            extra = {
-                {
-                    description = 'My custom JSON schema',
-                    fileMatch = 'foo.json',
-                    name = 'foo.json',
-                    url = 'https://example.com/schema/foo.json',
-                },
-                {
-                    description = 'My other custom JSON schema',
-                    fileMatch = { 'bar.json', '.baar.json' },
-                    name = 'bar.json',
-                    url = 'https://example.com/schema/bar.json',
-                },
-            },
+            validate = { enable = true },
         },
     },
 }
@@ -212,17 +195,29 @@ nvim_lsp.yamlls.setup {
             schemaStore = {
                 -- You must disable built-in schemaStore support if you want to use
                 -- this plugin and its advanced options like `ignore`.
-                enable = false,
+                enable = true,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
             },
             schemas = require('schemastore').yaml.schemas {
-                ignore = {
-                    '.eslintrc',
-                },
+                -- ignore = {
+                --     '.eslintrc',
+                -- },
             },
-            -- schemas = {
-            --     ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-            --     ["../path/relative/to/file.yml"] = "/.github/workflows/*",
-            --     ["/path/from/root/of/project"] = "/.github/workflows/*",
+            -- TODO: add schema for mappings
+            -- extra = {
+            --     {
+            --         description = 'My custom JSON schema',
+            --         fileMatch = 'foo.json',
+            --         name = 'foo.json',
+            --         url = 'https://example.com/schema/foo.json',
+            --     },
+            --     {
+            --         description = 'My other custom JSON schema',
+            --         fileMatch = { 'bar.json', '.baar.json' },
+            --         name = 'bar.json',
+            --         url = 'https://example.com/schema/bar.json',
+            --     },
             -- },
         },
     },
