@@ -45,7 +45,7 @@ require('lazy').setup({
     --     },
     --     cmd = { 'ZenMode', 'Twilight' },
     -- },
-    { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
+    { 'glacambre/firenvim', build = ':call firenvim#install(0)' },
     {
         'kyazdani42/nvim-tree.lua',
         cmd = 'NvimTreeToggle',
@@ -72,7 +72,7 @@ require('lazy').setup({
         },
         event = { 'BufReadPre', 'BufNewFile' },
     },
-    { "cordx56/rustowl", dependencies = { "neovim/nvim-lspconfig" } },
+    { 'cordx56/rustowl', dependencies = { 'neovim/nvim-lspconfig' } },
     {
         'nvimdev/lspsaga.nvim',
         event = 'LspAttach',
@@ -603,7 +603,7 @@ require('lazy').setup({
             },
         },
     },
-    { 'mistweaverco/kulala.nvim', opts = {} },
+    { 'mistweaverco/kulala.nvim', opts = { additional_curl_options = { '--insecure' } } },
     -- {
     --     'lukas-reineke/headlines.nvim',
     --     event = { 'BufReadPre', 'BufNewFile' },
