@@ -603,7 +603,14 @@ require('lazy').setup({
             },
         },
     },
-    { 'mistweaverco/kulala.nvim', opts = { additional_curl_options = { '--insecure' } } },
+    {
+        'mistweaverco/kulala.nvim',
+        opts = {
+            additional_curl_options = { '--insecure' },
+            winbar = true,
+            global_keymaps = true,
+        },
+    },
     -- {
     --     'lukas-reineke/headlines.nvim',
     --     event = { 'BufReadPre', 'BufNewFile' },
