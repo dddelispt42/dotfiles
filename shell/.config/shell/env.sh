@@ -261,9 +261,7 @@ if [[ "$ANDROID_ROOT" == "/system" ]]; then
 	export PATH=$HOME/.shortcuts:$PATH
 fi
 
-if command -v carapace >/dev/null; then
-	export PATH=$PATH:$HOME/.nix-profile/bin
-fi
+export PATH=$PATH:$HOME/.nix-profile/bin
 
 # fuzzy finder variables
 # fzf --preview command for file and directory

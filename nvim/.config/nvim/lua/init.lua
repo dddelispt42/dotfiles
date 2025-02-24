@@ -24,7 +24,6 @@ require 'textobjects_config'
 if os.getenv 'DEV_ENV' then
     require 'lsp_config'
     require 'debug_config'
-    require 'rest_config'
     require 'plantuml_config'
     require 'refactoring_config'
     require 'noice_config'
