@@ -30,6 +30,7 @@ orgmode.setup {
     org_priority_highest = 0,
     org_priority_default = 7,
     org_priority_lowest = 9,
+    org_startup_folded = 'content',
     -- org_agenda_skip_scheduled_if_done = true,
     -- org_agenda_skip_deadline_if_done = true,
     org_agenda_custom_commands = {
@@ -55,16 +56,39 @@ orgmode.setup {
                     org_agenda_overriding_header = 'My unplanned todos',
                     org_agenda_todo_ignore_scheduled = 'all', -- Ignore all headlines that are scheduled. Possible values: past | future | all
                 },
+                -- {
+                --     type = 'agenda',
+                --     org_agenda_overriding_header = 'Whole week overview',
+                --     org_agenda_span = 'week', -- 'week' is default, so it's not necessary here, just an example
+                --     -- org_agenda_start_on_weekday = 1, -- Start on Monday
+                --     org_agenda_remove_tags = true, -- Do not show tags only for this view
+                -- },
+            },
+        },
+        w = {
+            description = 'Personal agenda',
+            types = {
+                {
+                    type = 'tags_todo',
+                    match = '+PRIORITY="1"', --Same as providing a "Match:" for tags view <leader>oa + m, See: https://orgmode.org/manual/Matching-tags-and-properties.html
+                    org_agenda_overriding_header = 'My work todos',
+                    org_agenda_category_filter_preset = 'work', -- Show only headlines from `todos` category. Same value providad as when pressing `/` in the Agenda view
+                    org_agenda_sorting_strategy = { 'todo-state-up', 'priority-down' }, -- See all options available on org_agenda_sorting_strategy
+                },
                 {
                     type = 'agenda',
-                    org_agenda_overriding_header = 'Whole week overview',
-                    org_agenda_span = 'week', -- 'week' is default, so it's not necessary here, just an example
-                    -- org_agenda_start_on_weekday = 1, -- Start on Monday
-                    org_agenda_remove_tags = true, -- Do not show tags only for this view
+                    match = 'work', --Same as providing a "Match:" for tags view <leader>oa + m, See: https://orgmode.org/manual/Matching-tags-and-properties.html
+                    org_agenda_overriding_header = 'Work projects agenda',
+                },
+                {
+                    type = 'tags',
+                    match = 'work', --Same as providing a "Match:" for tags view <leader>oa + m, See: https://orgmode.org/manual/Matching-tags-and-properties.html
+                    org_agenda_overriding_header = 'Work projects unplanned',
+                    org_agenda_todo_ignore_scheduled = 'all', -- Ignore all headlines that are scheduled. Possible values: past | future | all
                 },
             },
         },
-        p = {
+        h = {
             description = 'Personal agenda',
             types = {
                 {
@@ -75,6 +99,7 @@ orgmode.setup {
                 },
                 {
                     type = 'agenda',
+                    match = 'work', --Same as providing a "Match:" for tags view <leader>oa + m, See: https://orgmode.org/manual/Matching-tags-and-properties.html
                     org_agenda_overriding_header = 'Personal projects agenda',
                 },
                 {
@@ -82,7 +107,29 @@ orgmode.setup {
                     match = 'home', --Same as providing a "Match:" for tags view <leader>oa + m, See: https://orgmode.org/manual/Matching-tags-and-properties.html
                     org_agenda_overriding_header = 'Personal projects notes',
                     org_agenda_todo_ignore_scheduled = 'all', -- Ignore all headlines that are scheduled. Possible values: past | future | all
-                    -- org_agenda_tag_filter_preset = 'NOTES-REFACTOR', -- Show only headlines with NOTES tag that does not have a REFACTOR tag. Same value providad as when pressing `/` in the Agenda view
+                },
+            },
+        },
+        b = {
+            description = 'Business agenda',
+            types = {
+                {
+                    type = 'tags_todo',
+                    match = '+PRIORITY="1"', --Same as providing a "Match:" for tags view <leader>oa + m, See: https://orgmode.org/manual/Matching-tags-and-properties.html
+                    org_agenda_overriding_header = 'My business todos',
+                    org_agenda_category_filter_preset = 'busi', -- Show only headlines from `todos` category. Same value providad as when pressing `/` in the Agenda view
+                    org_agenda_sorting_strategy = { 'todo-state-up', 'priority-down' }, -- See all options available on org_agenda_sorting_strategy
+                },
+                {
+                    type = 'agenda',
+                    match = 'busi', --Same as providing a "Match:" for tags view <leader>oa + m, See: https://orgmode.org/manual/Matching-tags-and-properties.html
+                    org_agenda_overriding_header = 'Business projects agenda',
+                },
+                {
+                    type = 'tags',
+                    match = 'busi', --Same as providing a "Match:" for tags view <leader>oa + m, See: https://orgmode.org/manual/Matching-tags-and-properties.html
+                    org_agenda_overriding_header = 'Business projects notes',
+                    org_agenda_todo_ignore_scheduled = 'all', -- Ignore all headlines that are scheduled. Possible values: past | future | all
                 },
             },
         },
