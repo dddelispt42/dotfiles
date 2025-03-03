@@ -186,12 +186,19 @@ nvim_lsp.jsonls.setup {
                 -- ignore = {},
             },
             validate = { enable = true },
+            format = { enable = true },
+            colorDecorators = { enable = true },
         },
     },
 }
 nvim_lsp.yamlls.setup {
     settings = {
         yaml = {
+            completion = true,
+            validate = true,
+            format = { enable = true },
+            hover = true,
+            printWidth = 120,
             schemaStore = {
                 -- You must disable built-in schemaStore support if you want to use
                 -- this plugin and its advanced options like `ignore`.
