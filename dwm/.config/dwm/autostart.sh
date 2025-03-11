@@ -46,9 +46,9 @@ if [[ -z "${DISPLAY}" ]]; then
 		disown
 	fi
 fi
-if command -v brave >/dev/null; then
-	nohup brave &
-fi
+# if command -v brave >/dev/null; then
+# 	nohup brave &
+# fi
 # if command -v qutebrowser >/dev/null; then
 # 	nohup qutebrowser &
 # fi
