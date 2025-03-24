@@ -80,7 +80,7 @@ ts.setup {
         'nix',
         'norg',
         'ocaml',
-        'org',
+        -- 'org',
         'passwd',
         'perl',
         -- 'php',
