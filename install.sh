@@ -1,7 +1,7 @@
 #!/bin/bash
 ROOTDIR="$(realpath "$(dirname "$0")")"
-# FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/VictorMono.zip"
-FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip"
+# FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/VictorMono.zip"
+FONTURL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip"
 # FONT="VictorMono"
 FONT="FiraCode"
 
