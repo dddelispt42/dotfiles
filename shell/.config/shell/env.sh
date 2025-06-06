@@ -243,6 +243,10 @@ export WIKI_PATH="${HOME}/Sync/share/notes/"
 #Dotfiles
 export DOTFILES="${HOME}/dev/${USER}/dotfiles/"
 
+# SOPS and AGE key
+export AGE_KEY_FILE=$HOME/.config/age/key.txt
+export SOPS_AGE_KEY_FILE=$AGE_KEY_FILE
+
 # RSS FEEDS
 # export SFEED_PIPER
 # export SFEED_PIPER_INTERACTIVE

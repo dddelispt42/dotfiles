@@ -311,6 +311,8 @@ end, { noremap = true, silent = true, desc = '[d]AP [?] eval var under cursor' }
 
 -- DADBOD
 map('n', '<leader>D', '<cmd>DBUIToggle<cr>', { noremap = true, silent = true, desc = '[D]BUI toggle' })
+-- Sniprun
+map('n', '<leader>X', '<cmd>Sniprun<cr>', { noremap = true, silent = true, desc = 'e[X]ecute sniprun ' })
 
 -- Windows
 map('n', '<leader>wc', '<cmd>close<cr>', { noremap = true, silent = true, desc = '[w]indow [c]lose' })
