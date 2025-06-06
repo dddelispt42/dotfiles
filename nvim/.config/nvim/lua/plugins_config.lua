@@ -612,13 +612,21 @@ require('lazy').setup({
             global_keymaps = true,
         },
     },
-    -- {
-    --     'lukas-reineke/headlines.nvim',
-    --     event = { 'BufReadPre', 'BufNewFile' },
-    --     dependencies = 'nvim-treesitter/nvim-treesitter',
-    --     config = true, -- or `opts = {}`
-    -- },
-    -- { 'michaelb/sniprun', build = 'bash ./install.sh' },
+    {
+        'michaelb/sniprun',
+        branch = 'master',
+
+        build = 'sh install.sh',
+        -- do 'sh install.sh 1' if you want to force compile locally
+        -- (instead of fetching a binary from the github release). Requires Rust >= 1.65
+
+        config = function()
+            require('sniprun').setup {
+                -- your options
+            }
+        end,
+    },
+
     {
         'folke/noice.nvim',
         event = 'VeryLazy',

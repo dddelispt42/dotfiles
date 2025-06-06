@@ -143,6 +143,7 @@ stow -vS -t "$HOME"/ gitui
 stow -vS -t "$HOME"/ hyprland
 stow -vS -t "$HOME"/ imv
 stow -vS -t "$HOME"/ lf
+stow -vS -t "$HOME"/ presenterm
 stow -vS -t "$HOME"/ mpv
 stow -vS -t "$HOME"/ neofetch
 stow -vS -t "$HOME"/ nix
