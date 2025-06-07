@@ -128,49 +128,49 @@ migrate_to_clean "$HOME"/.sqlite_history "$XDG_DATA_HOME"/sqlite_history
 migrate_to_clean "$HOME"/.icons "${XDG_DATA_HOME}"/icons
 migrate_to_clean "$HOME"/.myclirc "${XDG_CONFIG_HOME}"/myclirc
 
-stow -vS -t "$HOME"/ X11
-stow -vS -t "$HOME"/ alacritty
-stow -vS -t "$HOME"/ atuin
-stow -vS -t "$HOME"/ bat && bat cache --build 1>/dev/null
-stow -vS -t "$HOME"/ bottom
-stow -vS -t "$HOME"/ broot
-stow -vS -t "$HOME"/ direnv
-stow -vS -t "$HOME"/ dunst
-stow -vS -t "$HOME"/ dwm
-stow -vS -t "$HOME"/ foot
-stow -vS -t "$HOME"/ git
-stow -vS -t "$HOME"/ gitui
-stow -vS -t "$HOME"/ hyprland
-stow -vS -t "$HOME"/ imv
-stow -vS -t "$HOME"/ lf
-stow -vS -t "$HOME"/ presenterm
-stow -vS -t "$HOME"/ mpv
-stow -vS -t "$HOME"/ neofetch
-stow -vS -t "$HOME"/ nix
-stow -vS -t "$HOME"/ nvim
-stow -vS -t "$HOME"/ paru
-stow -vS -t "$HOME"/ polybar
-stow -vS -t "$HOME"/ qutebrowser
-stow -vS -t "$HOME"/ ranger
-stow -vS -t "$HOME"/ rofi
-stow -vS -t "$HOME"/ ruff
-stow -vS -t "$HOME"/ sheldon
-stow -vS -t "$HOME"/ shell
-stow -vS -t "$HOME"/ starship
-stow -vS -t "$HOME"/ stylua
-stow -vS -t "$HOME"/ swappy
-stow -vS -t "$HOME"/ tmux
-stow -vS -t "$HOME"/ topgrade
-stow -vS -t "$HOME"/ vifm
-stow -vS -t "$HOME"/ waybar
-stow -vS -t "$HOME"/ wezterm
-stow -vS -t "$HOME"/ xplr
-stow -vS -t "$HOME"/ xsuspender
-stow -vS -t "$HOME"/ yazi
-stow -vS -t "$HOME"/ ytfzf
-stow -vS -t "$HOME"/ zathura
-stow -vS -t "$HOME"/ zellij
-stow -vS -t "$HOME"/ zsh
+stow --dotfiles -vS -t "$HOME"/ X11
+stow --dotfiles -vS -t "$HOME"/ alacritty
+stow --dotfiles -vS -t "$HOME"/ atuin
+stow --dotfiles -vS -t "$HOME"/ bat && bat cache --build 1>/dev/null
+stow --dotfiles -vS -t "$HOME"/ bottom
+stow --dotfiles -vS -t "$HOME"/ broot
+stow --dotfiles -vS -t "$HOME"/ direnv
+stow --dotfiles -vS -t "$HOME"/ dunst
+stow --dotfiles -vS -t "$HOME"/ dwm
+stow --dotfiles -vS -t "$HOME"/ foot
+stow --dotfiles -vS -t "$HOME"/ git
+stow --dotfiles -vS -t "$HOME"/ gitui
+stow --dotfiles -vS -t "$HOME"/ hyprland
+stow --dotfiles -vS -t "$HOME"/ imv
+stow --dotfiles -vS -t "$HOME"/ lf
+stow --dotfiles -vS -t "$HOME"/ presenterm
+stow --dotfiles -vS -t "$HOME"/ mpv
+stow --dotfiles -vS -t "$HOME"/ neofetch
+stow --dotfiles -vS -t "$HOME"/ nix
+stow --dotfiles -vS -t "$HOME"/ nvim
+stow --dotfiles -vS -t "$HOME"/ paru
+stow --dotfiles -vS -t "$HOME"/ polybar
+stow --dotfiles -vS -t "$HOME"/ qutebrowser
+stow --dotfiles -vS -t "$HOME"/ ranger
+stow --dotfiles -vS -t "$HOME"/ rofi
+stow --dotfiles -vS -t "$HOME"/ ruff
+stow --dotfiles -vS -t "$HOME"/ sheldon
+stow --dotfiles -vS -t "$HOME"/ shell
+stow --dotfiles -vS -t "$HOME"/ starship
+stow --dotfiles -vS -t "$HOME"/ stylua
+stow --dotfiles -vS -t "$HOME"/ swappy
+stow --dotfiles -vS -t "$HOME"/ tmux
+stow --dotfiles -vS -t "$HOME"/ topgrade
+stow --dotfiles -vS -t "$HOME"/ vifm
+stow --dotfiles -vS -t "$HOME"/ waybar
+stow --dotfiles -vS -t "$HOME"/ wezterm
+stow --dotfiles -vS -t "$HOME"/ xplr
+stow --dotfiles -vS -t "$HOME"/ xsuspender
+stow --dotfiles -vS -t "$HOME"/ yazi
+stow --dotfiles -vS -t "$HOME"/ ytfzf
+stow --dotfiles -vS -t "$HOME"/ zathura
+stow --dotfiles -vS -t "$HOME"/ zellij
+stow --dotfiles -vS -t "$HOME"/ zsh
 
 # add links
 test -d "${HOME}/opt" || mkdir -p "$_"
@@ -183,25 +183,25 @@ test -s ../dev/base/quite-intriguing/quite-intriguing && ln -sf "$_" qi
 test -s ../dev/base/quite-intriguing/quite-intriguing-preview && ln -sf "$_" quite-intriguing-preview
 test -s ../dev/cli/sc-im/src/sc-im && ln -sf "$_" sc-im
 test -s ../dev/rice/theme.sh/bin/theme.sh && ln -sf "$_" theme.sh
-test -s ../dev/heiko/dotfiles/lf/.config/lf/preview.sh && ln -sf "$_" preview.sh
-test -s ../dev/heiko/dotfiles/lf/.config/lf/open.sh && ln -sf "$_" open.sh
+test -s ../dev/heiko/dotfiles/lf/dot-config/lf/preview.sh && ln -sf "$_" preview.sh
+test -s ../dev/heiko/dotfiles/lf/dot-config/lf/open.sh && ln -sf "$_" open.sh
 cd - || echo "Missing previous directory"
 
 # copy vs. stow
-cp -f ./user-dirs/.config/* "$XDG_CONFIG_HOME"
+cp -f ./user-dirs/dot-config/* "$XDG_CONFIG_HOME"
 
-stow -vD -t "$HOME"/ btop >&/dev/null
+stow --dotfiles -vD -t "$HOME"/ btop >&/dev/null
 mkdir -p "$XDG_CONFIG_HOME"/btop
-cp ./btop/.config/btop/btop.conf "$XDG_CONFIG_HOME"/btop
+cp ./btop/dot-config/btop/btop.conf "$XDG_CONFIG_HOME"/btop
 
-stow -vD -t "$HOME"/ htop >&/dev/null
+stow --dotfiles -vD -t "$HOME"/ htop >&/dev/null
 mkdir -p "$XDG_CONFIG_HOME"/htop
-cp ./htop/.config/htop/htoprc "$XDG_CONFIG_HOME"/htop
+cp ./htop/dot-config/htop/htoprc "$XDG_CONFIG_HOME"/htop
 
 # no longer used
-stow -vD -t "$HOME"/ flake8 >&/dev/null
-stow -vD -t "$HOME"/ pycodestyle >&/dev/null
-stow -vD -t "$HOME"/ pylint >&/dev/null
+stow --dotfiles -vD -t "$HOME"/ flake8 >&/dev/null
+stow --dotfiles -vD -t "$HOME"/ pycodestyle >&/dev/null
+stow --dotfiles -vD -t "$HOME"/ pylint >&/dev/null
 
 # if [ "$OSTYPE" = "linux-android" ]; then
 # 	stow -vS -t "$HOME"/ android # Android
@@ -248,25 +248,25 @@ mkdir -p "$HOME/dev/heiko" &>/dev/null
 
 # copy to Windows if exiting
 if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
-	cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
+	cp "$HOME"/dev/heiko/dotfiles/nvim/dot-config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
 	mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
-	cp "$HOME"/dev/heiko/dotfiles/nvim/.config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
+	cp "$HOME"/dev/heiko/dotfiles/nvim/dot-config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
 	cp "${XDG_CONFIG_HOME:-$HOME/.config}"/git/* /mnt/users/hriemer/.config/git/
 fi
 if test -d /mnt/users/hriemer/.config/vifm/; then
-	rsync -av --delete vifm/.config/vifm/ /mnt/users/hriemer/AppData/Roaming/Vifm/ || true
+	rsync -av --delete vifm/dot-config/vifm/ /mnt/users/hriemer/AppData/Roaming/Vifm/ || true
 fi
 # if test -d /mnt/users/hriemer/AppData/Roaming/yazi/config; then
-# 	rsync -av --delete "$ROOTDIR/yazi/.config/yazi/" /mnt/users/hriemer/AppData/Roaming/yazi/config || true
+# 	rsync -av --delete "$ROOTDIR/yazi/dot-config/yazi/" /mnt/users/hriemer/AppData/Roaming/yazi/config || true
 # fi
 
-git submodule update --init vifm/.config/vifm/colors/
+git submodule update --init vifm/dot-config/vifm/colors/
 
 # protect settings dir
 chmod 700 "$HOME/.cache" "$HOME/.config" "$HOME/.ssh"
 
 # tmux tpm
-git submodule update --init tmux/.config/tmux/plugins/tpm
-"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/install_plugins | grep -vE "^Already installed"
-"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/update_plugins all | grep -vE "(update success|Already up to date)"
-"$ROOTDIR"/tmux/.config/tmux/plugins/tpm/bin/clean_plugins
+git submodule update --init tmux/dot-config/tmux/plugins/tpm
+"$ROOTDIR"/tmux/dot-config/tmux/plugins/tpm/bin/install_plugins | grep -vE "^Already installed"
+"$ROOTDIR"/tmux/dot-config/tmux/plugins/tpm/bin/update_plugins all | grep -vE "(update success|Already up to date)"
+"$ROOTDIR"/tmux/dot-config/tmux/plugins/tpm/bin/clean_plugins

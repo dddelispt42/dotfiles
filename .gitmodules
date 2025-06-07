@@ -1,6 +1,6 @@
 [submodule "tmux/.config/tmux/plugins/tpm"]
-	path = tmux/.config/tmux/plugins/tpm
+	path = tmux/dot-config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule "vifm/.config/vifm/vifm-colors"]
-	path = vifm/.config/vifm/colors
+	path = vifm/dot-config/vifm/colors
 	url = https://github.com/vifm/vifm-colors.git
