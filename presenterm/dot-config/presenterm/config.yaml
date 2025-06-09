@@ -9,7 +9,7 @@ options:
   image_attributes_prefix: ""
 defaults:
   terminal_font_size: 16
-  theme: light
+  theme: dark
   max_columns: 100
   max_columns_alignment: left
   max_rows: 100
