@@ -9,6 +9,10 @@ options:
   image_attributes_prefix: ""
 defaults:
   terminal_font_size: 16
+  image_protocol: sixel
+  incremental_lists:
+    pause_before: false
+    pause_after: true
   theme: dark
   max_columns: 100
   max_columns_alignment: left
@@ -76,7 +80,12 @@ snippet:
 mermaid:
   scale: 2
 export:
+  snippets: sequential
   dimensions:
     columns: 80
     rows: 30
   snippets: sequential
+speaker_notes:
+  always_publish: true
+typst:
+  ppi: 400
