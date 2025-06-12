@@ -125,6 +125,8 @@
 ;     command = jdiff "$LOCAL" "$REMOTE"
 [diff "latex"]
     command = latexdiff "$LOCAL" "$REMOTE"
+[diff "dyff"]
+        command = "dyff_between() { dyff --color on between --omit-header \"$2\" \"$5\"; }; dyff_between"
 [diff "preview.sh"]
     binary = true
     textconv = ~/.config/lf/preview.sh
