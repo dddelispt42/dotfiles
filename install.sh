@@ -248,9 +248,9 @@ mkdir -p "$HOME/dev/heiko" &>/dev/null
 
 # copy to Windows if exiting
 if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
-	cp "$HOME"/dev/heiko/dotfiles/nvim/dot-config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
-	mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
-	cp "$HOME"/dev/heiko/dotfiles/nvim/dot-config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
+	# cp "$HOME"/dev/heiko/dotfiles/nvim/dot-config/nvim/init.vim /mnt/users/hriemer/AppData/Local/nvim/
+	# mkdir -p /mnt/users/hriemer/AppData/Local/nvim/lua/
+	# cp "$HOME"/dev/heiko/dotfiles/nvim/dot-config/nvim/lua/* /mnt/users/hriemer/AppData/Local/nvim/lua/
 	cp "${XDG_CONFIG_HOME:-$HOME/.config}"/git/* /mnt/users/hriemer/.config/git/
 fi
 if test -d /mnt/users/hriemer/.config/vifm/; then
