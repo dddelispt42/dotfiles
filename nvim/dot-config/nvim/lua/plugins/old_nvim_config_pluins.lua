@@ -1,0 +1,54 @@
+return {
+  -- { -- Autocompletion
+  --     'hrsh7th/nvim-cmp',
+  --     event = 'InsertEnter',
+  --     dependencies = {
+  --         'f3fora/cmp-spell',
+  --         'hrsh7th/cmp-buffer',
+  --         'hrsh7th/cmp-cmdline',
+  --         'hrsh7th/cmp-emoji',
+  --         'hrsh7th/cmp-nvim-lsp',
+  --         'hrsh7th/cmp-nvim-lua',
+  --         'hrsh7th/cmp-path',
+  --         'hrsh7th/cmp-nvim-lsp-signature-help',
+  --         'ray-x/cmp-treesitter',
+  --         'rcarriga/cmp-dap',
+  --         'saadparwaiz1/cmp_luasnip',
+  --         -- "pontusk/cmp-vimwiki-tags"
+  --     },
+  -- },
+  -- {
+  --     'L3MON4D3/LuaSnip',
+  --     dependencies = { 'rafamadriz/friendly-snippets' },
+  --     build = 'make install_jsregexp',
+  --     event = 'InsertEnter',
+  -- },
+  -- { -- Highlight, edit, and navigate code
+  --     'nvim-treesitter/nvim-treesitter',
+  --     build = ':TSUpdate',
+  --     event = { 'BufReadPre', 'BufNewFile' },
+  --     dependencies = {
+  --         'nvim-treesitter/nvim-treesitter-refactor',
+  --         'nvim-treesitter/nvim-treesitter-context',
+  --         'nvim-treesitter/nvim-treesitter-textobjects',
+  --         'RRethy/nvim-treesitter-endwise',
+  --         'RRethy/nvim-treesitter-textsubjects',
+  --         'windwp/nvim-ts-autotag',
+  --     },
+  -- },
+  -- {
+  --     'chrisgrieser/nvim-various-textobjs',
+  --     lazy = false,
+  --     -- opts = { useDefaultKeymaps = true },
+  -- },
+  -- {
+  --     'nvim-treesitter/completion-treesitter',
+  --     build = function()
+  --         vim.cmd [[TSUpdate]]
+  --     end,
+  --     event = { 'BufReadPre', 'BufNewFile' },
+  -- },
+  -- {
+  --   "MTDL9/vim-log-highlighting", -- TODO: is there a lua substitute?
+  -- },
+}

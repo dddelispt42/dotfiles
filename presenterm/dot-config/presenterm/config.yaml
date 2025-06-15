@@ -6,7 +6,7 @@ options:
   incremental_lists: true
   auto_render_languages:
     - mermaid
-  image_attributes_prefix: ""
+  image_attributes_prefix: "width:50%"
 defaults:
   terminal_font_size: 16
   image_protocol: sixel
@@ -80,7 +80,6 @@ snippet:
 mermaid:
   scale: 2
 export:
-  snippets: sequential
   dimensions:
     columns: 80
     rows: 30
