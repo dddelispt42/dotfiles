@@ -31,7 +31,6 @@ xset fp+ "${HOME}/.local/share/fonts"
 # udiskie -A -t &
 if [[ -z "${DISPLAY}" ]]; then
 	"${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" "$HOST"
-	# TODO: substitute by circadian
 	nohup xfce4-power-manager &
 	nohup "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" &
 	# trayer --edge top --align center --expand false --width 5 --distance 20 &

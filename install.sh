@@ -67,8 +67,6 @@ migrate_to_clean "$HOME"/.gimp-2.2 "$XDG_CONFIG_HOME"/gimp-2.2
 migrate_to_clean "$HOME"/.gimp-2.4 "$XDG_CONFIG_HOME"/gimp-2.4
 migrate_to_clean "$HOME"/.gimp-2.6 "$XDG_CONFIG_HOME"/gimp-2.6
 migrate_to_clean "$HOME"/.gimp-2.8 "$XDG_CONFIG_HOME"/gimp-2.8
-# TODO: works only with xinit not startx
-# migrate_to_clean "$HOME"/.xinitrc "$XDG_CONFIG_HOME"/X11/xinitrc
 migrate_to_clean "$HOME"/.htoprc "$XDG_CONFIG_HOME"/htoprc
 migrate_to_clean "$HOME"/.httpie "$XDG_CONFIG_HOME"/httpie
 migrate_to_clean "$HOME"/.i3 "$XDG_CONFIG_HOME"/i3
@@ -145,7 +143,6 @@ stow --dotfiles -vS -t "$HOME"/ imv
 stow --dotfiles -vS -t "$HOME"/ lf
 stow --dotfiles -vS -t "$HOME"/ presenterm
 stow --dotfiles -vS -t "$HOME"/ mpv
-stow --dotfiles -vS -t "$HOME"/ neofetch
 stow --dotfiles -vS -t "$HOME"/ nix
 stow --dotfiles -vS -t "$HOME"/ nvim
 stow --dotfiles -vS -t "$HOME"/ paru
@@ -236,14 +233,11 @@ if command -v nvim >/dev/null; then
 	nvim --headless "+TSUpdate" +qa &>/dev/null
 fi
 
-# TODO: check if key is too old
 test -s "$HOME/.ssh/id_ed25519" || ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I)" -a 100
 test -s "$HOME/.ssh/id_ed25519_sec" || ssh-keygen -t ed25519 -C "$(whoami)@$(cat /etc/hostname)-$(date -I)-sec" -f "$HOME/.ssh/id_ed25519_sec" -a 100
 echo "Add public key to authorized_keys for git server:"
 cat "$HOME/.ssh/id_ed25519.pub"
 cat "$HOME/.ssh/id_ed25519_sec.pub"
-# TODO: only if new key was generated
-# read -p "Add public key to git server..." yn
 mkdir -p "$HOME/dev/heiko" &>/dev/null
 
 # copy to Windows if exiting

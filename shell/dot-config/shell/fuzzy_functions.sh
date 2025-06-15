@@ -3,8 +3,6 @@
 # TODO: fix fgr fuzzy search - just one function (see ff)
 # TODO: merge __handlexxx with caller
 # TODO: fix file/path yank (on X only - Wayland works)
-# TODO: check TODOs in file
-
 _fzf_compgen_path() {
 	fd --hidden --exclude .git . "$1"
 }

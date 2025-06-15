@@ -1,5 +1,3 @@
-# TODO: check reladiff on githuub
-# TODO: use dyff for xml, toml, json, yaml
 *.7z diff=preview.sh
 *.bib diff=latex
 *.c merge=mergiraf
@@ -33,8 +31,9 @@
 *.tar* diff=preview.sh
 *.tex diff=latex
 *.toc diff=latex
+*.toml diff=dyff merge=merigraf
 *.xhtml merge=mergiraf
-*.xml merge=mergiraf
+*.xml merge=mergiraf diff=dyff
 *.y diff=preview.sh
-*.yaml merge=mergiraf
-*.yml merge=mergiraf
+*.yaml merge=mergiraf diff=dyff
+*.yml merge=mergiraf diff=dyff

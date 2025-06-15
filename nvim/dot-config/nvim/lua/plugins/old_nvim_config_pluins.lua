@@ -48,7 +48,4 @@ return {
   --     end,
   --     event = { 'BufReadPre', 'BufNewFile' },
   -- },
-  -- {
-  --   "MTDL9/vim-log-highlighting", -- TODO: is there a lua substitute?
-  -- },
 }

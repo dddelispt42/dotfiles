@@ -10,7 +10,6 @@ stow -vD -t "$HOME"/ git
 stow -vD -t "$HOME"/ htop
 stow -vD -t "$HOME"/ lf
 stow -vD -t "$HOME"/ mpv
-stow -vD -t "$HOME"/ neofetch
 stow -vD -t "$HOME"/ nvim
 stow -vD -t "$HOME"/ polybar
 stow -vD -t "$HOME"/ pycodestyle

@@ -1,11 +1,13 @@
 return {
   {
-    "aklt/plantuml-syntax", -- TODO: check if TS syntax exists
-    ft = "plantuml",
+    "https://gitlab.com/itaranto/plantuml.nvim",
+    version = "*",
+    config = function()
+      require("plantuml").setup()
+    end,
   },
   {
-    "javiorfo/nvim-soil",
+    "aklt/plantuml-syntax", -- TODO: check if TS syntax exists
     ft = "plantuml",
-    event = { "BufReadPre", "BufNewFile" },
   },
 }
