@@ -170,7 +170,7 @@ return {
       mappings = {
         global = {
           -- org_agenda = { "gA", "<Leader>oac" },
-          org_toggle_checkbox = { "g<space>", "<c-space>" },
+          org_toggle_checkbox = { "<Leader>X" },
           -- org_capture = { 'gC', '<Leader>oc' },
         },
       },

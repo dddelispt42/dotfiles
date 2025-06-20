@@ -9,7 +9,7 @@ options:
   image_attributes_prefix: "width:50%"
 defaults:
   terminal_font_size: 16
-  image_protocol: sixel
+  image_protocol: auto
   incremental_lists:
     pause_before: false
     pause_after: true
@@ -78,7 +78,7 @@ snippet:
   render:
     threads: 2
 mermaid:
-  scale: 2
+  scale: 4
 export:
   dimensions:
     columns: 80
