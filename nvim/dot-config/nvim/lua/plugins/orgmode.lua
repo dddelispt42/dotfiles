@@ -22,7 +22,7 @@ return {
       -- org_hide_emphasis_markers = true,
       -- org_indent_mode = 'noindent',
       org_deadline_warning_days = 14,
-      org_agenda_span = "day",
+      org_agenda_span = "week",
       org_log_repeat = false,
       calendar_week_start_day = 1,
       -- org_agenda_start_day = '-1d',
@@ -47,7 +47,7 @@ return {
             {
               type = "agenda",
               org_agenda_overriding_header = "My daily agenda",
-              org_agenda_span = "day", -- can be any value as org_agenda_span
+              org_agenda_span = "week", -- can be any value as org_agenda_span
             },
             {
               type = "tags_todo",
@@ -142,7 +142,7 @@ return {
         },
         th = {
           description = "Todo - HOME",
-          template = "* TODO [#5] %?  [0/1]  :%n:home:\n %U SCHEDULED: %t\n   :PROPERTIES:\n   :CATEGORY: home\n   :Effort: 0:30\n   :END:",
+          template = "* TODO [#5] %?  [0/1]  :%n:home:\n %U SCHEDULED: %t\n   :PROPERTIES:\n   :CATEGORY: home\n   :Effort: 1:00\n   :END:",
           target = "~/notes/capture.org",
         },
         tb = {
