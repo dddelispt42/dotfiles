@@ -84,6 +84,12 @@ previewers = [
   { mime = "*/x-wine-extension-ini", run = "code" },
   { name = "*", run = "preview" },
 ]
+prepend_preloaders = [
+	{ mime = "video/*", run = "noop" },
+]
+append_preloaders = [
+	{ mime = "video/*", run = "noop" },
+]
 
 # [[plugin.prepend_fetchers]]
 # id   = "git"
