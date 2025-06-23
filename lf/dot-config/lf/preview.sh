@@ -30,17 +30,18 @@ if [ -d "$1" ]; then
 	exit
 elif [ -f "$1" ]; then
 	case "$1" in
+	# *.jpg | *.JPG | *.jpeg | *.JPEG | *.png | *.PNG | *.tif | *.tiff | *.TIF | *.TIFF | .git | *.GIF | *.bmp | *.BMP) chafa --fill=block --symbols=block -c 256 -s 80x"${HEIGHT}" "$1" ;;
 	*.7z) 7z l "$1" ;;
-	*.epub | *.EPUB) epub2txt "$1" | head -$LINES ;;
+	*.aac | *.AAC | *.mpa | *.MPA | *.m4a | *.M4A | *.mp3 | *.MP3) mediainfo "$1" ;;
 	*.ch | *.y) bat -l c "$1" || cat "$1" ;;
 	*.db | *.sqlite | *.DB | *.SQLITE) sqlite3 "$1" .schema | head -$LINES ;; # TODO improve and make more useful
-	# *.jpg | *.JPG | *.jpeg | *.JPEG | *.png | *.PNG | *.tif | *.tiff | *.TIF | *.TIFF | .git | *.GIF | *.bmp | *.BMP) chafa --fill=block --symbols=block -c 256 -s 80x"${HEIGHT}" "$1" ;;
+	*.epub | *.EPUB) epub2txt "$1" | head -$LINES ;;
+	*.jar | *.JAR | *.zip | *.zipx | *.ZIP | *.ZIPX) unzip -l "$1" ;;
 	*.jpg | *.JPG | *.jpeg | *.JPEG | *.png | *.PNG | *.tif | *.tiff | *.TIF | *.TIFF | .git | *.GIF | *.bmp | *.BMP) viu "$1" ;;
 	*.lz4 | .LZ4) lz4 --list "$1" ;;
 	*.md | *.MD | *.markdown) mdcat "$1" || glow "$1" || bat "$1" || highlight -O ansi --force "$1" || cat "$1" ;;
 	*.odt | *.ODT | *.ods | *.ODS | *.odp | *.ODP) odt2txt "$1" ;;
 	*.ogv | *.OGV | *.mp4 | *.MP4 | *.mkv | *.MKV | *.avi | *.AVI | *.swf | *.SWF | *.flv | *.FLV | *.mov | *.MOV | *.mpg | *.MPG | *.webm | *.WEBM | *.m4v | *.M4V) mediainfo "$1" ;;
-	*.aac | *.AAC | *.mpa | *.MPA | *.m4a | *.M4A | *.mp3 | *.MP3) mediainfo "$1" ;;
 	*.pdf | *.PDF) pdftotext "$1" - ;;
 	*.rar | *.RAR) unrar l "$1" ;;
 	*.smd | *.gliffy) bat -l json "$1" || cat "$1" ;;
@@ -48,7 +49,8 @@ elif [ -f "$1" ]; then
 	*.tex | *.bbl | *.bib | *.vrb | *.toc | *.snm | *.nav) bat -l tex "$1" || cat "$1" ;;
 	*.tmpl) bat -l html "$1" || cat "$1" ;;
 	*.wadl | *.proj) bat -l xml "$1" || cat "$1" ;;
-	*.jar | *.JAR | *.zip | *.zipx | *.ZIP | *.ZIPX) unzip -l "$1" ;;
+  *.csv | *.CSV | *.tsv | *.TSV) xsv table "$1" ;;
+  *.xls | *.XLS) xls2csv "$1" ;;
 	*) bat --color always "$1" || highlight -O ansi --force "$1" || cat "$1" ;;
 	esac
 else

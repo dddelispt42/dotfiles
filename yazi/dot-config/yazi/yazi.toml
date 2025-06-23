@@ -79,6 +79,7 @@ previewers = [
   { name = "*.md", run = "preview" },
   { name = "*.csv", run = "preview" },
   { mime = "text/*", run = "code" },
+	{ mime = "video/*", run = "noop" },
   { mime = "*/xml", run = "code" },
   { mime = "*/javascript", run = "code" },
   { mime = "*/x-wine-extension-ini", run = "code" },
