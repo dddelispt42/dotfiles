@@ -2,5 +2,5 @@
 	path = tmux/dot-config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule "vifm/dot-config/vifm/vifm-colors"]
-	path = vifm/dot-config/vifm/colors
+	path = _vifm/dot-config/vifm/colors
 	url = https://github.com/vifm/vifm-colors.git

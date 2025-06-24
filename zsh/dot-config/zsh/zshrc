@@ -60,7 +60,6 @@ test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.sh && source "$_" || t
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/ssh_agent.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/alias.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/keybinding.sh && source "$_" || true
-test -s ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/svn_prompt.sh && source "$_" || true
 test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/fuzzy_functions.sh && source "$_" || true
 # test -s ${XDG_CONFIG_HOME:-$HOME/.config}/shell/themes.sh && source "$_" || true
 test -s $HOME/dev/cli/fzf-git.sh/fzf-git.sh/shell/themes.sh && source "$_" || true
