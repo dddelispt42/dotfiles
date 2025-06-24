@@ -1,9 +1,9 @@
 broot/dot-config/broot/launcher/
 nvim/dot-config/nvim/lazy-lock.json
-qutebrowser/dot-config/qutebrowser/blocked-hosts
-qutebrowser/dot-config/qutebrowser/bookmarks/
-qutebrowser/dot-config/qutebrowser/qsettings/
-qutebrowser/dot-config/qutebrowser/quickmarks
+_qutebrowser/dot-config/qutebrowser/blocked-hosts
+_qutebrowser/dot-config/qutebrowser/bookmarks/
+_qutebrowser/dot-config/qutebrowser/qsettings/
+_qutebrowser/dot-config/qutebrowser/quickmarks
 tmux/dot-config/tmux/plugins
 vifm/dot-config/vifm/vifm-help.txt
 vifm/dot-config/vifm/vifminfo.json
