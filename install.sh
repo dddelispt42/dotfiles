@@ -121,3 +121,9 @@ git submodule update --init tmux/dot-config/tmux/plugins/tpm
 "$ROOTDIR"/tmux/dot-config/tmux/plugins/tpm/bin/install_plugins | grep -vE "^Already installed"
 "$ROOTDIR"/tmux/dot-config/tmux/plugins/tpm/bin/update_plugins all | grep -vE "(update success|Already up to date)"
 "$ROOTDIR"/tmux/dot-config/tmux/plugins/tpm/bin/clean_plugins
+
+if tty -s; then
+  if command -v xdg-ninja >/dev/null; then
+    xdg-ninja --skip-unsupported
+  fi
+fi
