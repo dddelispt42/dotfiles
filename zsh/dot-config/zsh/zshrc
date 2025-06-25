@@ -92,7 +92,7 @@ if tty -s; then
         zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
         source <(carapace _carapace)
     fi
-
+    fastfetch
 fi
 
 # include host specific settings
