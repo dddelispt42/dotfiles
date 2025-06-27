@@ -244,7 +244,7 @@ export WIKI_PATH="${HOME}/Sync/share/notes/"
 export DOTFILES="${HOME}/dev/${USER}/dotfiles/"
 
 # SOPS and AGE key
-export AGE_KEY_FILE=$HOME/.config/age/key.txt
+export AGE_KEY_FILE="${XDG_CONFIG_HOME}/age/${USER}.txt"
 export SOPS_AGE_KEY_FILE=$AGE_KEY_FILE
 
 # RSS FEEDS
@@ -314,6 +314,9 @@ export FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ 
 # pop from stash
 # shellcheck disable=SC2016
 export FORGIT_STASH_FZF_OPTS=' --bind="del:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)" --bind="ctrl-space:reload(git stash pop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)" '
+
+#GITHUB
+export GITHUB_USERID=dddelispt42
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\

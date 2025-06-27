@@ -104,6 +104,32 @@ cat "$HOME/.ssh/id_ed25519.pub"
 cat "$HOME/.ssh/id_ed25519_sec.pub"
 mkdir -p "$HOME/dev/heiko" &>/dev/null
 
+if command -v age >/dev/null; then
+	mkdir -p "${XDG_CONFIG_HOME}/age"
+	keyfile="${XDG_CONFIG_HOME}/age/${USER}@$(hostname).txt"
+	if ! [ -f "$keyfile" ]; then
+		age-keygen -o "$keyfile"
+		chmod 600 "$keyfile"
+		if command -v paper-age >/dev/null; then
+			if [ ! -f "${keyfile}.pdf" ] || [ "$keyfile" -nt "${keyfile}.pdf" ]; then
+				echo "Creating paper backup of age key..."
+				paper-age -t "$keyfile" "$keyfile" -o "${keyfile}.pdf"
+			fi
+		fi
+	fi
+	keyfile="${XDG_CONFIG_HOME}/age/${USER}@$(hostname).age"
+	if ! [ -f "$keyfile" ]; then
+		age-keygen | age -p >"$keyfile"
+		chmod 600 "$keyfile"
+		if command -v paper-age >/dev/null; then
+			if [ ! -f "${keyfile}.pdf" ] || [ "$keyfile" -nt "${keyfile}.pdf" ]; then
+				echo "Creating paper backup of age key..."
+				paper-age -t "$keyfile" "$keyfile" -o "${keyfile}.pdf"
+			fi
+		fi
+	fi
+fi
+
 # TODO: clone directly in Windows vs. copy from VM
 # copy to Windows if exiting
 if test -d /mnt/users/hriemer/AppData/Local/nvim/; then
@@ -123,7 +149,7 @@ git submodule update --init tmux/dot-config/tmux/plugins/tpm
 "$ROOTDIR"/tmux/dot-config/tmux/plugins/tpm/bin/clean_plugins
 
 if tty -s; then
-  if command -v xdg-ninja >/dev/null; then
-    xdg-ninja --skip-unsupported
-  fi
+	if command -v xdg-ninja >/dev/null; then
+		xdg-ninja --skip-unsupported
+	fi
 fi
