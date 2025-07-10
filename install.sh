@@ -129,6 +129,7 @@ if command -v age >/dev/null; then
 		fi
 	fi
 fi
+# TODO(heiko): check if there is yubikey and generate sk keys for age/ssh
 
 # TODO: clone directly in Windows vs. copy from VM
 # copy to Windows if exiting

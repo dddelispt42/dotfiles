@@ -166,6 +166,7 @@ fyt() {
 alias thokr='thokr -w 200 -l english10k'
 alias xbindkeys=xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config
 alias svn=svn --config-dir "$XDG_CONFIG_HOME/subversion"
+alias mvn='mvn --settings ${XDG_CONFIG_HOME}/m2/settings.xml'
 alias jui='docker run --rm -it -v $XDG_CONFIG_HOME/jira.d/:/config/ pmjohann/go-jira-ui'
 alias X="startx"
 alias W="dbus-run-session Hyprland"

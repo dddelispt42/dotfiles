@@ -120,6 +120,7 @@ export BIB=$HOME/Documents/uni.bib
 
 # MAVEN
 export MAVEN_HOME=/opt/maven
+export M2_PATH=${XDG_CONFIG_HOME}/m2
 export PATH=$PATH:$MAVEN_HOME/bin
 
 # CARGO and RUST
@@ -317,6 +318,12 @@ export FORGIT_STASH_FZF_OPTS=' --bind="del:reload(git stash drop $(cut -d: -f1 <
 
 #GITHUB
 export GITHUB_USERID=dddelispt42
+# Jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+# TLDR
+export TLDR_CACHE_DIR="$XDG_CACHE_HOME"/tldr
+# XAUTHORITY
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
