@@ -143,10 +143,10 @@ map g. :cd '~/dev/heiko/dotfiles'
 map gh :cd '~'
 map gi :cd '~/dev'
 map gl :cd '~/dl'
-map gk :cd '~/Sync/work'
+map gk :cd '~/Sync/share'
 map go :cd '~/opt'
 map gr :cd '/'
-map gn :cd '~/Sync/work/notes'
+map gn :cd '~/Sync/share/notes'
 map gp :cd '~/Sync/podcasts'
 
 cmd usage !dua || du -sk * | sort -n

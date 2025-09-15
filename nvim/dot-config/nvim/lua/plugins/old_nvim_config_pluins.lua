@@ -48,4 +48,60 @@ return {
   --     end,
   --     event = { 'BufReadPre', 'BufNewFile' },
   -- },
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
+  -- Useful status updates for LSP
+  "j-hui/fidget.nvim",
+  -- Additional lua configuration, makes nvim stuff amazing
+  "folke/neodev.nvim",
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^5", -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+  { "cordx56/rustowl", dependencies = { "neovim/nvim-lspconfig" } },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "LostNeophyte/null-ls-embedded",
+      "nvimtools/none-ls-extras.nvim",
+    },
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "nvimtools/none-ls.nvim",
+    },
+    -- config = function()
+    --     require("your.null-ls.config") -- require your null-ls config here (example below)
+    -- end,
+  },
+  {
+    "Weissle/persistent-breakpoints.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("bufferline").setup({})
+    end,
+    event = "VeryLazy",
+  },
+  {
+    "dddelispt42/gui-font-resize.nvim",
+    config = function()
+      return require("gui-font-resize").setup({ default_size = 10, change_by = 1, bounds = { maximum = 20 } })
+    end,
+  },
+  {
+    "tversteeg/registers.nvim",
+    event = "VeryLazy",
+    config = function()
+      local registers = require("registers")
+      registers.setup({})
+    end,
+  },
+  { "nvim-focus/focus.nvim", version = false, config = true, lazy = true },
 }

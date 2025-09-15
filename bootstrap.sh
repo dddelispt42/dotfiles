@@ -44,7 +44,7 @@ EOF
 sudo bash -c "$(declare -f run_as_root); run_as_root"
 newgrp docker
 
-mkdir -p "$HOME/.ssh"
+mkdir -p "$HOME/.ssh" "$HOME/.config/tmuxp/"
 chmod 700 "$HOME/.ssh"
 test -d "${HOME}/opt" || mkdir -p "$_"
 mkdir -p "$HOME/dev/heiko"
