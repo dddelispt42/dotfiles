@@ -6,6 +6,7 @@
 [credential]
     helper = cache
 [core]
+    compression = 9
     editor = nvim
     autocrlf = false
     filemode = false
@@ -182,7 +183,11 @@
     verbose = true
 [init]
     defaultBranch = main
+[maintenance]
+    auto = true
+    strategy = incremental
 [tag]
+    sort = -version:refname
     gpgsign = true
     forceSignAnnotated = true
     sort = version:refname
