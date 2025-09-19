@@ -58,7 +58,6 @@ return {
     version = "^5", -- Recommended
     lazy = false, -- This plugin is already lazy
   },
-  { "cordx56/rustowl", dependencies = { "neovim/nvim-lspconfig" } },
   {
     "nvimtools/none-ls.nvim",
     dependencies = {
