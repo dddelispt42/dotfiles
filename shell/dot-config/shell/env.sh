@@ -186,6 +186,7 @@ export RANDFILE="$XDG_CACHE_HOME"/rnd
 export GRADLE_HOME="$XDG_CACHE_HOME"/gradle
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export IPYTHONDIR="$XDG_CACHE_HOME"/ipython
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 # TODO: works only with xinit not startx
 # export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
@@ -238,6 +239,7 @@ export NNN_TRASH=1
 #KLAUT_ROOT
 export KLAUT="$HOME/Sync/share/"
 export TODOLIST="${KLAUT:-$HOME/Sync/share}/notes/work.org"
+export FLASHCARD_DIR="${KLAUT:-$HOME/Sync/share}/learn/"
 
 #WIKI
 export WIKI_PATH="${HOME}/Sync/share/notes/"
