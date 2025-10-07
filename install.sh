@@ -154,3 +154,17 @@ if tty -s; then
 		xdg-ninja --skip-unsupported
 	fi
 fi
+
+# Yazi
+ya pkg add AnirudhG07/rich-preview
+ya pkg add boydaihungst/mediainfo
+ya pkg add dedukun/bookmarks
+ya pkg add peterfication/mux
+ya pkg add uhs-robert/sshfs
+ya pkg add yazi-rs/plugins:chmod
+ya pkg add yazi-rs/plugins:diff
+ya pkg add yazi-rs/plugins:git
+ya pkg add yazi-rs/plugins:mount
+ya pkg add yazi-rs/plugins:piper
+ya pkg add yazi-rs/plugins:smart-enter
+ya pkg upgrade

@@ -1,5 +1,57 @@
-[plugin]
-deps = [{ use = "yazi-rs/plugins:chmod", rev = "600614a" }, { use = "yazi-rs/plugins:git", rev = "600614a" }, { use = "yazi-rs/plugins:diff", rev = "600614a" }]
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "d1c8baa"
+hash = "8ad3e90b079190b4905f24a44f4ca06b"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "d1c8baa"
+hash = "82376c3381ae915fd799d40f4dd4c6cd"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "d1c8baa"
+hash = "435a2af56ecfb3d05755fd5e24977d8b"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "d1c8baa"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+
+[[plugin.deps]]
+use = "uhs-robert/sshfs"
+rev = "0d6e699"
+hash = "458a404b1b9d6e72ee27812629782a0b"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "d1c8baa"
+hash = "63b6c222bf2103b3023389dde5e2ecfe"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "9ef1254"
+hash = "92fbb5483657fa7976cdf4e0104e18e0"
+
+[[plugin.deps]]
+use = "AnirudhG07/rich-preview"
+rev = "843c3fa"
+hash = "b4040931f0d2f9670ddb4923e55cd881"
+
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "2093ab7"
+hash = "16a10359fc2a3cd8cc8bcfbe00f744d3"
+
+[[plugin.deps]]
+use = "peterfication/mux"
+rev = "266233e"
+hash = "1963dda85333e5e2cb6ff5d7d5a6ad4e"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "d1c8baa"
+hash = "a20327710c3a8d37ee0972128dcb6a31"
 
 [flavor]
 deps = []
