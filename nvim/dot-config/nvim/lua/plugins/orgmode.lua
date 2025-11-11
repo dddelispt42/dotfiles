@@ -4,8 +4,18 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       {
-        "chipsenkbeil/org-roam.nvim",
-        "akinsho/org-bullets.nvim",
+        {
+          "chipsenkbeil/org-roam.nvim",
+          config = function()
+            require("org-roam").setup({
+              directory = "~/notes/roam/",
+              bindings = {
+                prefix = "<Leader>N",
+              },
+            })
+          end,
+        },
+        -- "akinsho/org-bullets.nvim",
       },
     },
     opts = {
