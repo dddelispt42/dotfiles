@@ -20,13 +20,13 @@ hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "uhs-robert/sshfs"
-rev = "0d6e699"
-hash = "458a404b1b9d6e72ee27812629782a0b"
+rev = "75a025c"
+hash = "e1cebecfee70daef1f97aa083209340c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "9a52857"
-hash = "63b6c222bf2103b3023389dde5e2ecfe"
+rev = "1612f00"
+hash = "a0fd9d5a1a911a66a0e1aa6dd0dd0a61"
 
 [[plugin.deps]]
 use = "dedukun/bookmarks"
@@ -35,13 +35,13 @@ hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "AnirudhG07/rich-preview"
-rev = "843c3fa"
-hash = "b4040931f0d2f9670ddb4923e55cd881"
+rev = "831234e"
+hash = "ed3363e256e210593f0f8e4cec3e36a9"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "2093ab7"
-hash = "16a10359fc2a3cd8cc8bcfbe00f744d3"
+rev = "4f0d6b0"
+hash = "6fc881f53dd748b559f73fcaf38ab99e"
 
 [[plugin.deps]]
 use = "peterfication/mux"
@@ -50,8 +50,8 @@ hash = "1963dda85333e5e2cb6ff5d7d5a6ad4e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "d1c8baa"
-hash = "a20327710c3a8d37ee0972128dcb6a31"
+rev = "1612f00"
+hash = "d00cacddd5e4f58e2fb13aecae42d655"
 
 [flavor]
 deps = []

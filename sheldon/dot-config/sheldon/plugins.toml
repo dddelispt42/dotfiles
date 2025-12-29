@@ -23,8 +23,10 @@ shell = "zsh"
 github = "ael-code/zsh-colored-man-pages"
 [plugins.zsh-command-time]
 github = "popstas/zsh-command-time"
-[plugins.fast-syntax-highlighting]
-github = "zdharma-continuum/fast-syntax-highlighting"
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+# [plugins.fast-syntax-highlighting]
+# github = "zdharma-continuum/fast-syntax-highlighting"
 # [plugins.zsh-fuzzy-search-and-edit]
 # github = "seletskiy/zsh-fuzzy-search-and-edit"
 [plugins.emoji-cli]

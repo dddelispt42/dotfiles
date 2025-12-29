@@ -1,4 +1,4 @@
-# shellcheck disable=SC2148
+# shellcheck disable=SC2149
 # PS1='[\u@\h \W]\$ '
 
 # If you come from bash you might have to change your $PATH.

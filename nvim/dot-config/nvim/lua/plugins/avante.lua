@@ -19,6 +19,8 @@ return {
         endpoint = "http://192.168.1.104:11434/v1",
         model = "qwen3-coder",
         disable_tools = true,
+        endpoint = "http://ollama.eheiko.net:11434",
+        model = "gemma3:4b",
       },
       -- claude = {
       --   endpoint = "https://api.anthropic.com",
