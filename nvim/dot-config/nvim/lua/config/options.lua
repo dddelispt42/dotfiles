@@ -8,3 +8,4 @@ local opt = vim.opt
 opt.completeopt = "menu,menuone,noinsert,noselect,preview"
 
 vim.g.autoformat = false -- LazyVim auto format
+vim.g.wrap = true

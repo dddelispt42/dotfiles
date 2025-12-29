@@ -76,7 +76,8 @@ enabled = false
 [plugin]
 previewers = [
   { name = "*/", run = "folder", sync = true },
-  { name = "*.md", run = "preview" },
+  # { name = "*.md", run = "preview" },
+  { name = "*.md", run = "glow" },
   { name = "*.csv", run = "preview" },
   { mime = "text/*", run = "code" },
 	{ mime = "video/*", run = "noop" },

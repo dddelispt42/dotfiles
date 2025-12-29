@@ -13,8 +13,12 @@ return {
     provider = "ollama",
     providers = {
       ollama = {
-        endpoint = "http://ollama:11434",
-        model = "gemma3:4b",
+        __inherited_from = "openai",
+        api_key_name = "",
+        -- endpoint = "http://ollama:11434",
+        endpoint = "http://192.168.1.104:11434/v1",
+        model = "qwen3-coder",
+        disable_tools = true,
       },
       -- claude = {
       --   endpoint = "https://api.anthropic.com",
@@ -26,6 +30,13 @@ return {
       --   },
       -- },
     },
+    behaviour = {
+      auto_suggestions = false,
+      auto_set_highlight_group = true,
+      auto_set_keymaps = true,
+      auto_apply_diff_after_generation = false,
+      support_past_from_clipboard = true,
+    }
   },
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
