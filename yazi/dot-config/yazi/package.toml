@@ -1,21 +1,21 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "1612f00"
-hash = "5b2eb0cc2050cec1e4de83cfa51a5b90"
+rev = "230b9c6"
+hash = "8da0b15a97b5dfd13941d1ecc617ac7c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "1612f00"
-hash = "82376c3381ae915fd799d40f4dd4c6cd"
+rev = "230b9c6"
+hash = "2f08b8249b57737e7257298a3b2a2edc"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "1612f00"
-hash = "4fccaaf10c36dc2466e2438a386ff017"
+rev = "230b9c6"
+hash = "9ad20d763df07ce40fd09de549d914b0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "1612f00"
+rev = "230b9c6"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]

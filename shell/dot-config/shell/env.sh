@@ -327,6 +327,9 @@ export TLDR_CACHE_DIR="$XDG_CACHE_HOME"/tldr
 # XAUTHORITY
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
+# AI related
+export SEARXNG_API_URL="https://searx.riemer.page"
+
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
 fi=📃:\

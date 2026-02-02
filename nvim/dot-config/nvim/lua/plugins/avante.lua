@@ -1,59 +1,80 @@
 return {
-  "yetone/avante.nvim",
-  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  build = "make", -- ⚠️ must add this line! ! !
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-  event = "VeryLazy",
+  'yetone/avante.nvim',
+  build = function()
+    -- conditionally use the correct build system for the current OS
+    if vim.fn.has 'win32' == 1 then
+      return 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
+    else
+      return 'make'
+    end
+  end,
+  event = 'VeryLazy',
   version = false, -- Never set this value to "*"! Never!
   ---@module 'avante'
   ---@type avante.Config
   opts = {
     -- add any opts here
     -- for example
+    -- provider = 'claude',
     provider = "ollama",
+    auto_suggestions_provider = "ollama",
+    mode = "agentic",
+    -- provider = 'openai',
     providers = {
-      ollama = {
-        __inherited_from = "openai",
-        api_key_name = "",
-        -- endpoint = "http://ollama:11434",
-        endpoint = "http://192.168.1.104:11434/v1",
-        model = "qwen3-coder",
-        disable_tools = true,
-        endpoint = "http://ollama.eheiko.net:11434",
-        model = "gemma3:4b",
-      },
       -- claude = {
-      --   endpoint = "https://api.anthropic.com",
+      -- -- openai = {
+      --   endpoint = '<https://api.anthropic.com>',
       --   model = "claude-sonnet-4-20250514",
+      --   api_key_name = 'CLAUDE_API_KEY',
+      --   -- model = 'o3-mini',
+      --   -- api_key_name = 'OPENAI_API_KEY',
       --   timeout = 30000, -- Timeout in milliseconds
       --   extra_request_body = {
       --     temperature = 0.75,
       --     max_tokens = 20480,
       --   },
       -- },
-    },
-    behaviour = {
-      auto_suggestions = false,
-      auto_set_highlight_group = true,
-      auto_set_keymaps = true,
-      auto_apply_diff_after_generation = false,
-      support_past_from_clipboard = true,
-    }
+      ollama = {
+        __inherited_from = "openai",
+        api_key_name = "",
+        endpoint = "http://ollama.riemer.page:11434/v1",
+        -- model = "qwen3-coder:30b",
+        model = "gpt-oss:latest",
+        disable_tools = true, -- Open-source models often do not support tools.
+      },
+      -- ollama = {
+      --   -- endpoint = "http://ollama:11434",
+      --   -- endpoint = "http://192.168.1.104:11434/v1",
+      --   endpoint = "http://ollama.riemer.page:11434",
+      --   -- model = "qwq:32b",
+      --   -- model = "gemma3:4b",
+      --   model = "qwen3-coder:30b",
+      --   is_env_set = require("avante.providers.ollama").check_endpoint_alive,
+      --   -- __inherited_from = "openai",
+      --   -- api_key_name = "",
+      --   -- disable_tools = false,
+      -- },
   },
+    web_search_engine = {
+      provider = "searxng", -- tavily, serpapi, google, kagi, brave, or searxng
+      proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
+    },
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
+    'nvim-lua/plenary.nvim',
+    'MunifTanjim/nui.nvim',
     --- The below dependencies are optional,
-    -- "mini-nvim/mini.pick", -- for file_selector provider mini.pick
-    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    "ibhagwan/fzf-lua", -- for file_selector provider fzf
-    "folke/snacks.nvim", -- for input provider snacks
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    -- 'echasnovski/mini.pick', -- for file_selector provider mini.pick
+    -- 'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
+    'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
+    'ibhagwan/fzf-lua', -- for file_selector provider fzf
+    'stevearc/dressing.nvim', -- for input provider dressing
+    'folke/snacks.nvim', -- for input provider snacks
+    'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
+    'zbirenbaum/copilot.lua', -- for providers='copilot'
     {
       -- support for image pasting
-      "HakonHarnes/img-clip.nvim",
-      event = "VeryLazy",
+      'HakonHarnes/img-clip.nvim',
+      event = 'VeryLazy',
       opts = {
         -- recommended settings
         default = {
@@ -69,11 +90,28 @@ return {
     },
     {
       -- Make sure to set this up properly if you have lazy=true
-      "MeanderingProgrammer/render-markdown.nvim",
+      'MeanderingProgrammer/render-markdown.nvim',
       opts = {
-        file_types = { "markdown", "Avante" },
+        file_types = { 'markdown', 'Avante' },
       },
-      ft = { "markdown", "Avante" },
+      ft = { 'markdown', 'Avante' },
     },
   },
+  config = function()
+    require('avante').setup {
+      -- system_prompt as function ensures LLM always has latest MCP server state
+      -- This is evaluated for every message, even in existing chats
+      system_prompt = function()
+        local hub = require('mcphub').get_hub_instance()
+        return hub and hub:get_active_servers_prompt() or ''
+      end,
+      -- Using function prevents requiring mcphub before it's loaded
+      custom_tools = function()
+        return {
+          require('mcphub.extensions.avante').mcp_tool(),
+        }
+      end,
+    }
+  end,
+  }
 }

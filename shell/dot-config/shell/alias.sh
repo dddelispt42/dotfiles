@@ -170,3 +170,5 @@ alias mvn='mvn --settings ${XDG_CONFIG_HOME}/m2/settings.xml'
 alias jui='docker run --rm -it -v $XDG_CONFIG_HOME/jira.d/:/config/ pmjohann/go-jira-ui'
 alias X="startx"
 alias W="dbus-run-session Hyprland"
+
+alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'

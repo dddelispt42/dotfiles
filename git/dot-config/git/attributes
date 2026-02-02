@@ -31,9 +31,9 @@
 *.tar* diff=preview.sh
 *.tex diff=latex
 *.toc diff=latex
-*.toml diff=dyff merge=merigraf
+# *.toml diff=dyff merge=merigraf
 *.xhtml merge=mergiraf
 *.xml merge=mergiraf diff=dyff
 *.y diff=preview.sh
-*.yaml merge=mergiraf diff=dyff
-*.yml merge=mergiraf diff=dyff
+# *.yaml merge=mergiraf diff=dyff
+# *.yml merge=mergiraf diff=dyff
