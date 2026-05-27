@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "230b9c6"
-hash = "8da0b15a97b5dfd13941d1ecc617ac7c"
+rev = "19dc890"
+hash = "5b2eb0cc2050cec1e4de83cfa51a5b90"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "230b9c6"
-hash = "2f08b8249b57737e7257298a3b2a2edc"
+rev = "19dc890"
+hash = "82376c3381ae915fd799d40f4dd4c6cd"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"

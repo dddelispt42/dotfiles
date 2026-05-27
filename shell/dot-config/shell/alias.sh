@@ -172,3 +172,16 @@ alias X="startx"
 alias W="dbus-run-session Hyprland"
 
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
+# Global aliases
+alias -g NE='2>/dev/null'
+alias -g ND='>/dev/null'
+alias -g NUL='>/dev/null 2>1'
+alias -g JQ='| jq'
+alias -g C='| wl-copy'
+alias -g L='| less'
+alias -g B='| bat'
+
+# Suffix alias
+alias -s md='$EDITOR'
+alias -s yaml='$EDITOR'
+alias -s json='jless'

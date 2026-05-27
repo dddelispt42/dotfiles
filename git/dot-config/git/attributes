@@ -33,7 +33,7 @@
 *.toc diff=latex
 # *.toml diff=dyff merge=merigraf
 *.xhtml merge=mergiraf
-*.xml merge=mergiraf diff=dyff
+# *.xml merge=mergiraf diff=dyff
 *.y diff=preview.sh
 # *.yaml merge=mergiraf diff=dyff
 # *.yml merge=mergiraf diff=dyff
