@@ -214,3 +214,5 @@
     path = ~/.config/gitconfig.work
 [includeIf "hasconfig:remote.*.url:ssh://git@bitbucket.infinera.com:7999/**"]
     path = ~/.config/gitconfig.work
+[http]
+	sslVerify = false

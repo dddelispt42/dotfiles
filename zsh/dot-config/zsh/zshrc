@@ -104,3 +104,21 @@ test -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zshrc.local && source "$_" || true
 
 # Enable for performance debugging
 # zprof > /tmp/zsh.$$
+
+
+
+
+
+
+# === Zscaler SSL Certificate Fix (v2.0) ===
+# Node.js
+export NODE_EXTRA_CA_CERTS="/home/heiko/.zscaler-certs/ca-bundle-with-zscaler.pem"
+# Bun runtime (Claude Code v2.1.17+)
+export NODE_USE_SYSTEM_CA=1
+# Python
+export SSL_CERT_FILE="/home/heiko/.zscaler-certs/ca-bundle-with-zscaler.pem"
+export REQUESTS_CA_BUNDLE="/home/heiko/.zscaler-certs/ca-bundle-with-zscaler.pem"
+# curl / AWS
+export CURL_CA_BUNDLE="/home/heiko/.zscaler-certs/ca-bundle-with-zscaler.pem"
+export AWS_CA_BUNDLE="/home/heiko/.zscaler-certs/ca-bundle-with-zscaler.pem"
+# === End Zscaler Fix ===
