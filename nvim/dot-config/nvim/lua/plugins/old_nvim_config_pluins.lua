@@ -95,12 +95,12 @@ return {
     end,
   },
   {
-    "tversteeg/registers.nvim",
-    event = "VeryLazy",
-    config = function()
-      local registers = require("registers")
-      registers.setup({})
-    end,
+    -- "tversteeg/registers.nvim",
+    -- event = "VeryLazy",
+    -- config = function()
+    --   local registers = require("registers")
+    --   registers.setup({})
+    -- end,
   },
   { "nvim-focus/focus.nvim", version = false, config = true, lazy = true },
 }

@@ -25,7 +25,7 @@ keyadd() {
 	local selected
 	if selected="$(for key in $(fd 'id_*' -a --exclude '*.pub' "$SSHDIR"); do if ! ssh-add -L | grep "$(awk '{print $2};' "$key.pub")" >/dev/null; then echo "$key"; fi; done | fzf -x -0)"; then
 		echo "$selected" | while read -r line; do
-			ssh-add "$line"
+			SSH_ASKPASS_REQUIRE=never ssh-add "$line"
 		done
 	fi
 }

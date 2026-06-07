@@ -106,7 +106,7 @@ mkdir -p "$HOME/dev/heiko" &>/dev/null
 
 if command -v age >/dev/null; then
 	mkdir -p "${XDG_CONFIG_HOME}/age"
-	keyfile="${XDG_CONFIG_HOME}/age/${USER}@$(hostname).txt"
+	keyfile="${XDG_CONFIG_HOME}/age/${USER}@$(cat /etc/hostname).txt"
 	if ! [ -f "$keyfile" ]; then
 		age-keygen -o "$keyfile"
 		chmod 600 "$keyfile"
@@ -117,7 +117,7 @@ if command -v age >/dev/null; then
 			fi
 		fi
 	fi
-	keyfile="${XDG_CONFIG_HOME}/age/${USER}@$(hostname).age"
+	keyfile="${XDG_CONFIG_HOME}/age/${USER}@$(cat /etc/hostname).age"
 	if ! [ -f "$keyfile" ]; then
 		age-keygen | age -p >"$keyfile"
 		chmod 600 "$keyfile"

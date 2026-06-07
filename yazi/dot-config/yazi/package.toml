@@ -1,21 +1,21 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "c2c16c8"
+rev = "598cdb6"
 hash = "f0c8c378184d5f8abd1b095a443d336d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "c2c16c8"
+rev = "598cdb6"
 hash = "8b1af6b5a69797ee951f2a80ce570818"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "c2c16c8"
+rev = "598cdb6"
 hash = "e3260d0b1feded8c8e3ae3afa1169e30"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "c2c16c8"
+rev = "598cdb6"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
@@ -25,7 +25,7 @@ hash = "8c1b36103121a66b37308afaf7124575"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "c2c16c8"
+rev = "598cdb6"
 hash = "88e56a64b7ce7c4314427452343fef17"
 
 [[plugin.deps]]
@@ -40,8 +40,8 @@ hash = "d64feec9761392cbc250d199ab4b8a3a"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "4f80288"
-hash = "40e0a6a769045ada6aafafd33c27f3de"
+rev = "ef8105a"
+hash = "62d0987e6cf4c4cc75db08f3554a1a81"
 
 [[plugin.deps]]
 use = "peterfication/mux"
@@ -50,7 +50,7 @@ hash = "1fcbcce39229bd75e81be4dcb1d3e5a8"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "c2c16c8"
+rev = "598cdb6"
 hash = "d99cfbc3812e7738505f9e4bedb759cd"
 
 [flavor]
