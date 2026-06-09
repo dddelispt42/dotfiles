@@ -40,8 +40,8 @@ hash = "d64feec9761392cbc250d199ab4b8a3a"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "ef8105a"
-hash = "62d0987e6cf4c4cc75db08f3554a1a81"
+rev = "a6d30a1"
+hash = "579fe44e64b655ce46eeb526e3332f55"
 
 [[plugin.deps]]
 use = "peterfication/mux"

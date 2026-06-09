@@ -8,3 +8,4 @@ map('n', '[b', ':bprevious<CR>', { noremap = true, silent = true, desc = 'previo
 map('n', ']b', ':bnext<CR>', { noremap = true, silent = true, desc = 'next [b]uffer' })
 map('n', '[B', ':bfirst<CR>', { noremap = true, silent = true, desc = 'first [b]uffer' })
 map('n', ']B', ':blast<CR>', { noremap = true, silent = true, desc = 'last [b]uffer' })
+map('n', '<leader>ct', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { silent = true, noremap = true, desc = "[c]ode diagnostic toggle" })
