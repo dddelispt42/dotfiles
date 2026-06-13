@@ -150,6 +150,8 @@ pacbloat() {
 	done
 }
 
+alias termaid="uvx termaid"
+
 # For spoken audio
 alias yta="youtube-dl --format worstaudio --extract-audio --no-playlist"
 # For music
@@ -169,7 +171,8 @@ alias svn=svn --config-dir "$XDG_CONFIG_HOME/subversion"
 alias mvn='mvn --settings ${XDG_CONFIG_HOME}/m2/settings.xml'
 alias jui='docker run --rm -it -v $XDG_CONFIG_HOME/jira.d/:/config/ pmjohann/go-jira-ui'
 alias X="startx"
-alias W="dbus-run-session Hyprland"
+# alias W="dbus-run-session Hyprland"
+alias W="dbus-run-session start-hyprland"
 
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 # Global aliases

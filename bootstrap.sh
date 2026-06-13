@@ -37,7 +37,7 @@ EOF
 
 	read -r -p "Last byte of the IP address - 192.168.1." ip
 	interface=$(connmanctl services | grep ethernet | sed 's/.*\s\(\w*\)$/\1/')
-	connmanctl config "$interface" --nameservers 192.168.1.11 192.168.1.1
+	connmanctl config "$interface" --nameservers 192.168.1.1 192.168.1.5 192.168.1.6
 	connmanctl config "$interface" --autoconnect yes
 	connmanctl config "$interface" --ipv4 manual "192.168.1.$ip" 255.255.255.0 192.168.1.254
 }
