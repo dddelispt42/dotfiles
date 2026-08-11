@@ -45,6 +45,7 @@ export FIREFOX_PROFILE
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 PATH=$HOME/bin:$HOME/opt:$HOME/dev/$USER/bin:$HOME/.local/bin:$HOME/.config/dwm:/usr/local/sbin:/usr/local/bin:/usr/bin:$PATH
+PATH="/home/heiko/.local/share/npm/bin:$PATH"
 export PATH
 
 export NNTPSERVER=news.aioe.org

@@ -15,3 +15,4 @@ map('n', '<leader>cb', '<Plug>(git-conflict-both)', { noremap = true, silent = t
 map('n', '<leader>c0', '<Plug>(git-conflict-none)', { noremap = true, silent = true, desc = '[c]onflict n[0]ne' })
 map('n', '[x', '<Plug>(git-conflict-prev-conflict)', { noremap = true, silent = true, desc = '[c]onflict [p]rev' })
 map('n', ']x', '<Plug>(git-conflict-next-conflict)', { noremap = true, silent = true, desc = '[c]onflict [n]ext' })
+map('n', '<leader>ct', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { silent = true, noremap = true, desc = "[c]ode diagnostic toggle" })
