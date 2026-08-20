@@ -9,7 +9,7 @@ if command -v eza >/dev/null; then
 	alias ls='eza'                                                        # ls
 	alias l='eza -lbF --git --icons'                                              # list, size, type, git
 	alias ll='eza -lbGF --git --icons'                                            # long list
-	alias llm='eza -lbG --git --sort=modified --icons'                            # long list, modified date sort
+	alias llm='eza -lbG --git --sort=modified --icons=auto'                            # long list, modified date sort
 	alias la='eza -lbhHigmuSaa --time-style=long-iso --icons --git --color-scale' # all list
 	alias lx='eza -lbhHigmuSa@ --time-style=long-iso --icons --git --color-scale' # all + extended list
 	# specialty views
