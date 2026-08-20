@@ -1,5 +1,5 @@
 [mgr]
-layout         = [ 1, 4, 3 ]
+layout         = [ 1, 4, 4 ]
 # sort_by        = "modified"
 sort_sensitive = false
 sort_reverse   = false
@@ -74,31 +74,129 @@ bizarre_retry = 5
 enabled = false
 
 [plugin]
-previewers = [
-  { url = "*/", run = "folder", sync = true },
-  { url = "*.md", run = "preview" },
-  { url = "*.md", run = "glow" },
-  { url = "*.csv", run = "preview" },
-  { mime = "text/*", run = "code" },
-	{ mime = "video/*", run = "noop" },
-  { mime = "*/xml", run = "code" },
-  { mime = "*/javascript", run = "code" },
-  { mime = "*/x-wine-extension-ini", run = "code" },
-  { url = "*", run = "preview" },
+prepend_previewers = [
+{ url = "*/", run = "eza-preview"},
+{ mime = "audio/*", run = "audio-preview" },
+{ url = "*.csv", run = "duckdb" },
+{ url = "*.tsv", run = "duckdb" },
+{ url = "*.json", run = "duckdb" },
+{ url = "*.parquet", run = "duckdb" },
+{ url = "*.txt", run = "duckdb" },
+{ url = "*.xlsx", run = "duckdb" },
+{ url = "*.db", run = "duckdb" },
+{ url = "*.duckdb", run = "duckdb" },
+{ url = "*.epub", run = "preview-epub" },
+  # 3d objects
+{ url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
+
+  # Replace magick, image, video with mediainfo
+{ mime = "{audio,video,image}/*", run = "mediainfo"},
+  # .srt subtitle, adobe illustrator, adobe photoshop file
+{ mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
+
+  # Sometimes AI file is recognized as "application/pdf". Lmao.
+  # In this case use file extension instead:
+{ url = "*.{ai,eps,ait}", run = "mediainfo" },
+
+  # Hide metadata by default.
+  # Example for image mimetype:
+{ mime = "{image}/*", run = "mediainfo --no-metadata" },
+
+  # Hide image preview by default.
+  # Example for video mimetype:
+{ mime = "{video}/*", run = "mediainfo --no-preview" },
+
+  # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
+  # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
+
+{ url = "*.md",       run = "mermaid" },
+{ url = "*.mmd",      run = "mermaid" },
+{ url = "*.mermaid",  run = "mermaid" },
+
+  # 3D models with OpenSCAD
+{ url = "*.{scad,csg,3mf,amf,dxf,off,stl}", run = "openscad" },
+
+  # Office Documents
+{ mime = "application/openxmlformats-officedocument.*", run = "office" },
+{ mime = "application/oasis.opendocument.*", run = "office" },
+{ mime = "application/ms-*", run = "office" },
+{ mime = "application/msword", run = "office" },
+{ url = "*.docx", run = "office" },
+
+{ mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run  = "ouch"},
+  { url = '**/.git/', run = 'preview-git' },
+    { url = '*.sqlite3', run = 'preview-sqlite' },
+  { mime = 'application/sqlite3', run = 'preview-sqlite' },
+    { url = '*.typ', run = 'preview-typst' },
+
 ]
+# previewers = [
+#   { url = "*/", run = "folder", sync = true },
+#   # { url = "*.md", run = "preview.sh" },
+#   # { url = "*.md", run = "glow" },
+#   # { url = "*.csv", run = "preview.sh" },
+#   # { mime = "text/*", run = "code" },
+# 	{ mime = "video/*", run = "noop" },
+#   { mime = "*/xml", run = "code" },
+#   { mime = "*/javascript", run = "code" },
+#   { mime = "*/x-wine-extension-ini", run = "code" },
+#   { url = "*", run = "preview.sh" },
+# ]
 prepend_preloaders = [
-	{ mime = "video/*", run = "noop" },
+  # { mime = "audio/*", run = "audio-preview", multi = false },
+# { url = "*.csv", run = "duckdb", multi = false },
+  # { url = "*.tsv", run = "duckdb", multi = false },
+# { url = "*.json", run = "duckdb", multi = false },
+  # { url = "*.parquet", run = "duckdb", multi = false },
+  # { url = "*.txt", run = "duckdb", multi = false },
+# { url = "*.xlsx", run = "duckdb", multi = false },
+  # { mime = "video/*", run = "noop", multi = false },
+  # { url = "*.epub", run = "preview-epub" }
+  # 3d objects
+  # { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
+
+  # Replace magick, image, video with mediainfo
+{ mime = "{audio,video,image}/*", run = "mediainfo" },
+  # .srt subtitle, adobe illustrator, adobe photoshop file
+{ mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
+
+  # Sometimes AI file is recognized as "application/pdf". Lmao.
+  # In this case use file extension instead:
+{ url = "*.{ai,eps,ait}", run = "mediainfo" },
+
+  # Hide metadata by default.
+  # Example for image mimetype:
+{ mime = "{image}/*", run = "mediainfo --no-metadata" },
+
+  # Hide image preview by default.
+  # Example for video mimetype:
+{ mime = "{video}/*", run = "mediainfo --no-preview" },
+
+  # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
+  # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
+
+  # 3D models with OpenSCAD
+{ url = "*.{scad,csg,3mf,amf,dxf,off,stl}", run = "openscad" },
+
+    # Office Documents
+    # { mime = "application/openxmlformats-officedocument.*", run = "office" },
+    # { mime = "application/oasis.opendocument.*", run = "office" },
+    { mime = "application/ms-*", run = "office" },
+    { mime = "application/msword", run = "office" },
+    { url = "*.docx", run = "office" },
+    # { url = '*.typ', run = 'preview-typst' },
+
 ]
 append_preloaders = [
-	{ mime = "video/*", run = "noop" },
+	# { mime = "video/*", run = "noop" },
 ]
 
-# [[plugin.prepend_fetchers]]
-# id   = "git"
-# url = "*"
-# run  = "git"
-#
-# [[plugin.prepend_fetchers]]
-# id   = "git"
-# url = "*/"
-# run  = "git"
+[[plugin.prepend_fetchers]]
+group   = "git"
+url = "*"
+run  = "git"
+
+[[plugin.prepend_fetchers]]
+group   = "git"
+url = "*/"
+run  = "git"

@@ -238,11 +238,12 @@ export NNN_TRASH=1
 
 #KLAUT_ROOT
 export KLAUT="$HOME/Sync/share/"
-export TODOLIST="${KLAUT:-$HOME/Sync/share}/notes/work.org"
+# export TODOLIST="${KLAUT:-$HOME}/notes/work.org"
+export TODOLIST="${HOME}/notes/work.org"
 export FLASHCARD_DIR="${KLAUT:-$HOME/Sync/share}/learn/"
 
 #WIKI
-export WIKI_PATH="${HOME}/Sync/share/notes/"
+export WIKI_PATH="${HOME}/notes/"
 #Dotfiles
 export DOTFILES="${HOME}/dev/${USER}/dotfiles/"
 

@@ -1,57 +1,102 @@
 [[plugin.deps]]
-use = "yazi-rs/plugins:chmod"
-rev = "598cdb6"
-hash = "f0c8c378184d5f8abd1b095a443d336d"
+use = "gesellkammer/audio-preview"
+rev = "c95e4f6"
+hash = "94334f36009e7e1635de43c98c6502c5"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:diff"
-rev = "598cdb6"
-hash = "8b1af6b5a69797ee951f2a80ce570818"
+use = "wylie102/duckdb"
+rev = "3f8c863"
+hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:mount"
-rev = "598cdb6"
-hash = "e3260d0b1feded8c8e3ae3afa1169e30"
+use = "AminurAlam/yazi-plugins:preview-epub"
+rev = "8c2ce96"
+hash = "bf6587cec9b915a54c6cd3e187b0071e"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:smart-enter"
-rev = "598cdb6"
-hash = "187cc58ba7ac3befd49c342129e6f1b6"
+use = "ahkohd/eza-preview"
+rev = "e8fb6c8"
+hash = "c238595c801caa4f28553b9af8cf8804"
 
 [[plugin.deps]]
-use = "uhs-robert/sshfs"
-rev = "a8b8903"
-hash = "8c1b36103121a66b37308afaf7124575"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:git"
-rev = "598cdb6"
-hash = "88e56a64b7ce7c4314427452343fef17"
-
-[[plugin.deps]]
-use = "dedukun/bookmarks"
-rev = "9ef1254"
-hash = "92fbb5483657fa7976cdf4e0104e18e0"
-
-[[plugin.deps]]
-use = "AnirudhG07/rich-preview"
-rev = "7d616ad"
-hash = "d64feec9761392cbc250d199ab4b8a3a"
+use = "ruudjhuu/f3d-preview"
+rev = "33ce345"
+hash = "5368a9f95ebeb613d9a2614d594a185c"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "a6d30a1"
-hash = "579fe44e64b655ce46eeb526e3332f55"
+rev = "e079a00"
+hash = "8dd8bc3484547390ba50dfa58d7436b0"
 
 [[plugin.deps]]
-use = "peterfication/mux"
-rev = "e4e6771"
-hash = "1fcbcce39229bd75e81be4dcb1d3e5a8"
+use = "passion0102/mermaid"
+rev = "90e4756"
+hash = "465917273513ba3d8e9a226954c5945c"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:piper"
-rev = "598cdb6"
-hash = "d99cfbc3812e7738505f9e4bedb759cd"
+use = "ettom/openscad"
+rev = "4397564"
+hash = "996ad1c3b9260026ecdb2d8e7d454c50"
+
+[[plugin.deps]]
+use = "macydnah/office"
+rev = "41ebef8"
+hash = "5805affd3ae8adcb3c72b6997d21c0a6"
+
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "8e70ec7"
+hash = "543eb6688a3c8eebe9d8f7d1ae0603a3"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:preview-git"
+rev = "8c2ce96"
+hash = "ba369f2f02be9e932cf7882c113d6844"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:preview-sqlite"
+rev = "8c2ce96"
+hash = "11ee002ea5080a73f2c2db5dceda50df"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:preview-typst"
+rev = "8c2ce96"
+hash = "2aacd8b872663cc36ac6c5bf6b6dc867"
+
+[[plugin.deps]]
+use = "AnirudhG07/archivemount"
+rev = "f5c5c5c"
+hash = "89487f3b53bdf605e990a9575ec244d5"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "efa4d79"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "efa4d79"
+hash = "14558d2829c0aa05e99c57de8f74d199"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/bypass"
+rev = "4a0c70e"
+hash = "3c66d95bf63fa16178e98967fbae9429"
+
+[[plugin.deps]]
+use = "Ape/open-with-cmd"
+rev = "eba191d"
+hash = "722a60eca1b338c9c24bb508d2d48578"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "efa4d79"
+hash = "5bb0bfab901d3601c370eafdd66edd31"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "e60e122"
+hash = "fbaf0adc8efc59555b748d36aab62d40"
 
 [flavor]
 deps = []

@@ -212,7 +212,9 @@
     path = ~/.config/gitconfig.work
 [includeIf "hasconfig:remote.*.url:https://git@bitbucket.infinera.com/*/*/**"]
     path = ~/.config/gitconfig.work
-[includeIf "hasconfig:remote.*.url:ssh://git@bitbucket.infinera.com:7999/**"]
+[includeIf "hasconfig:remote.*.url:ssh://git@bitbucket.infinera.com*/**"]
+    path = ~/.config/gitconfig.work
+[includeIf "hasconfig:remote.*.url:*.nokia.com:*/**"]
     path = ~/.config/gitconfig.work
 [http]
 	sslVerify = false
