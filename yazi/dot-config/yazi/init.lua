@@ -19,13 +19,13 @@ require("duckdb"):setup()
 -- THEME.git.modified_sign = "M"
 -- THEME.git.deleted_sign = "D"
 
-require("mermaid"):setup({
-  -- All keys are optional; defaults shown.
-  backend = "mmdc",                 -- "auto" | "mermaid.ink" | "mmdc"
-  format = "png",                   -- "png" | "svg"
-  endpoint = "https://mermaid.ink", -- HTTP base (kroki / self-hosted work too)
-  timeout = 10,                     -- curl --max-time, seconds
-  glow_timeout = 15,                -- wall-clock cap on glow, seconds
-  image_rows = nil,                 -- nil = follow zoom step; integer = fixed rows
-  read_limit_mb = 8,                -- ceiling on io.read
-})
+-- require("mermaid"):setup({
+--   -- All keys are optional; defaults shown.
+--   backend = "mmdc",                 -- "auto" | "mermaid.ink" | "mmdc"
+--   format = "png",                   -- "png" | "svg"
+--   endpoint = "https://mermaid.ink", -- HTTP base (kroki / self-hosted work too)
+--   timeout = 10,                     -- curl --max-time, seconds
+--   glow_timeout = 15,                -- wall-clock cap on glow, seconds
+--   image_rows = nil,                 -- nil = follow zoom step; integer = fixed rows
+--   read_limit_mb = 8,                -- ceiling on io.read
+-- })
