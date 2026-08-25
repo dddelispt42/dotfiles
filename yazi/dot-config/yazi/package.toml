@@ -25,8 +25,8 @@ hash = "5368a9f95ebeb613d9a2614d594a185c"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "e079a00"
-hash = "8dd8bc3484547390ba50dfa58d7436b0"
+rev = "73a3658"
+hash = "fa787a8ef785f2976ea2861f62b8c6c4"
 
 [[plugin.deps]]
 use = "passion0102/mermaid"
@@ -45,8 +45,8 @@ hash = "5805affd3ae8adcb3c72b6997d21c0a6"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "8e70ec7"
-hash = "543eb6688a3c8eebe9d8f7d1ae0603a3"
+rev = "cfe4f50"
+hash = "eff5702573b6cfba61e4ac8b1969629a"
 
 [[plugin.deps]]
 use = "AminurAlam/yazi-plugins:preview-git"
@@ -70,12 +70,12 @@ hash = "89487f3b53bdf605e990a9575ec244d5"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "efa4d79"
+rev = "c591a36"
 hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "efa4d79"
+rev = "c591a36"
 hash = "14558d2829c0aa05e99c57de8f74d199"
 
 [[plugin.deps]]
@@ -90,13 +90,48 @@ hash = "722a60eca1b338c9c24bb508d2d48578"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "efa4d79"
+rev = "c591a36"
 hash = "5bb0bfab901d3601c370eafdd66edd31"
 
 [[plugin.deps]]
 use = "KKV9/compress"
-rev = "e60e122"
-hash = "fbaf0adc8efc59555b748d36aab62d40"
+rev = "80e5268"
+hash = "868db729374b97871bc30b96d0e9061f"
+
+[[plugin.deps]]
+use = "AnirudhG07/rich-preview"
+rev = "02597c4"
+hash = "33982a6e2d6df07619a2a0fc163a0950"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "9ef1254"
+hash = "92fbb5483657fa7976cdf4e0104e18e0"
+
+[[plugin.deps]]
+use = "peterfication/mux"
+rev = "e4e6771"
+hash = "1fcbcce39229bd75e81be4dcb1d3e5a8"
+
+[[plugin.deps]]
+use = "uhs-robert/sshfs"
+rev = "a8b8903"
+hash = "8c1b36103121a66b37308afaf7124575"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "044c3cc"
+hash = "46cbdc05596a3ecd730b288e28c7079d"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "044c3cc"
+hash = "45a533508a9840cc5a10cf6129f63e6a"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "044c3cc"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [flavor]
 deps = []

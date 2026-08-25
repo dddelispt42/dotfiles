@@ -77,14 +77,7 @@ enabled = false
 prepend_previewers = [
 { url = "*/", run = "eza-preview"},
 { mime = "audio/*", run = "audio-preview" },
-{ url = "*.csv", run = "duckdb" },
-{ url = "*.tsv", run = "duckdb" },
-{ url = "*.json", run = "duckdb" },
-{ url = "*.parquet", run = "duckdb" },
-{ url = "*.txt", run = "duckdb" },
-{ url = "*.xlsx", run = "duckdb" },
-{ url = "*.db", run = "duckdb" },
-{ url = "*.duckdb", run = "duckdb" },
+{ url = "*.{csv,json,parquet,tsv,xlsx,db,duckdb}", run = "duckdb" },
 { url = "*.epub", run = "preview-epub" },
   # 3d objects
 { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
@@ -109,9 +102,7 @@ prepend_previewers = [
   # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
   # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
 
-{ url = "*.md",       run = "mermaid" },
-{ url = "*.mmd",      run = "mermaid" },
-{ url = "*.mermaid",  run = "mermaid" },
+{ url = "*.{md,mmd,mermaid}", run = "mermaid" },
 
   # 3D models with OpenSCAD
 { url = "*.{scad,csg,3mf,amf,dxf,off,stl}", run = "openscad" },
@@ -124,10 +115,10 @@ prepend_previewers = [
 { url = "*.docx", run = "office" },
 
 { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run  = "ouch"},
-  { url = '**/.git/', run = 'preview-git' },
-    { url = '*.sqlite3', run = 'preview-sqlite' },
-  { mime = 'application/sqlite3', run = 'preview-sqlite' },
-    { url = '*.typ', run = 'preview-typst' },
+{ url = '**/.git/', run = 'preview-git' },
+{ url = '*.sqlite3', run = 'preview-sqlite' },
+{ mime = 'application/sqlite3', run = 'preview-sqlite' },
+{ url = '*.typ', run = 'preview-typst' },
 
 ]
 # previewers = [
