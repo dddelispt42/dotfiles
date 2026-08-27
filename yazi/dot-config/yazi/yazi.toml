@@ -1,68 +1,64 @@
 [mgr]
-layout         = [ 1, 4, 4 ]
+layout = [1, 4, 4]
 # sort_by        = "modified"
 sort_sensitive = false
-sort_reverse   = false
+sort_reverse = false
 sort_dir_first = true
-show_hidden    = true
-show_symlink   = true
+show_hidden = true
+show_symlink = true
 
 [preview]
-tab_size   = 2
-max_width  = 600
+tab_size = 2
+max_width = 600
 max_height = 900
-cache_dir  = ""
+cache_dir = ""
 
 [opener]
 folder = [
-	{ run = 'open -R "$@"', desc = "Reveal in Finder" },
-	{ run = '$EDITOR "$@"' },
+  { run = 'open -R "$@"', desc = "Reveal in Finder" },
+  { run = '$EDITOR "$@"' },
 ]
-archive = [
-	{ run = 'unar "$1"', desc = "Extract here" },
-]
-text = [
-	{ run = '$EDITOR "$@"', block = true },
-]
+archive = [{ run = 'unar "$1"', desc = "Extract here" }]
+text = [{ run = '$EDITOR "$@"', block = true }]
 image = [
-	{ run = 'open "$@"', desc = "Open" },
-	{ run = '''exiftool "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show EXIF" },
+  { run = 'open "$@"', desc = "Open" },
+  { run = '''exiftool "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show EXIF" },
 ]
 video = [
-	{ run = 'umpv "$@"' },
-	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info" },
+  { run = 'umpv "$@"' },
+  { run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info" },
 ]
 audio = [
-	{ run = 'umpv "$@"' },
-	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info" },
+  { run = 'umpv "$@"' },
+  { run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info" },
 ]
 fallback = [
-	{ run = 'open "$@"', desc = "Open" },
-	{ run = 'open -R "$@"', desc = "Reveal in Finder" },
+  { run = 'open "$@"', desc = "Open" },
+  { run = 'open -R "$@"', desc = "Reveal in Finder" },
 ]
 
 [open]
 rules = [
-	{ url = "*/", use = "folder" },
+  { url = "*/", use = "folder" },
 
-	{ mime = "text/*", use = "text" },
-	{ mime = "image/*", use = "image" },
-	{ mime = "video/*", use = "video" },
-	{ mime = "audio/*", use = "audio" },
-	{ mime = "inode/x-empty", use = "text" },
+  { mime = "text/*", use = "text" },
+  { mime = "image/*", use = "image" },
+  { mime = "video/*", use = "video" },
+  { mime = "audio/*", use = "audio" },
+  { mime = "inode/x-empty", use = "text" },
 
-	{ mime = "application/json", use = "text" },
-	{ mime = "*/javascript", use = "text" },
+  { mime = "application/json", use = "text" },
+  { mime = "*/javascript", use = "text" },
 
-	{ mime = "application/zip", use = "archive" },
-	{ mime = "application/gzip", use = "archive" },
-	{ mime = "application/x-tar", use = "archive" },
-	{ mime = "application/x-bzip", use = "archive" },
-	{ mime = "application/x-bzip2", use = "archive" },
-	{ mime = "application/x-7z-compressed", use = "archive" },
-	{ mime = "application/x-rar", use = "archive" },
+  { mime = "application/zip", use = "archive" },
+  { mime = "application/gzip", use = "archive" },
+  { mime = "application/x-tar", use = "archive" },
+  { mime = "application/x-bzip", use = "archive" },
+  { mime = "application/x-bzip2", use = "archive" },
+  { mime = "application/x-7z-compressed", use = "archive" },
+  { mime = "application/x-rar", use = "archive" },
 
-	{ mime = "*", use = "fallback" },
+  { mime = "*", use = "fallback" },
 ]
 
 [tasks]
@@ -75,50 +71,50 @@ enabled = false
 
 [plugin]
 prepend_previewers = [
-{ url = "*/", run = "eza-preview"},
-{ mime = "audio/*", run = "audio-preview" },
-{ url = "*.{csv,json,parquet,tsv,xlsx,db,duckdb}", run = "duckdb" },
-{ url = "*.epub", run = "preview-epub" },
+  { url = "{*/,.*/}", run = "eza-preview" },
+  # { mime = "audio/*", run = "audio-preview" },
+  { url = "*.{csv,parquet,tsv,xlsx,duckdb}", run = "duckdb" },
+  { url = "*.epub", run = "preview-epub" },
   # 3d objects
-{ url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
+  # { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run = "f3d-preview" },
 
   # Replace magick, image, video with mediainfo
-{ mime = "{audio,video,image}/*", run = "mediainfo"},
+  { mime = "{audio,video,image}/*", run = "mediainfo" },
   # .srt subtitle, adobe illustrator, adobe photoshop file
-{ mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
+  # { mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
 
   # Sometimes AI file is recognized as "application/pdf". Lmao.
   # In this case use file extension instead:
-{ url = "*.{ai,eps,ait}", run = "mediainfo" },
+  # { url = "*.{ai,eps,ait}", run = "mediainfo" },
 
   # Hide metadata by default.
   # Example for image mimetype:
-{ mime = "{image}/*", run = "mediainfo --no-metadata" },
+  { mime = "{image}/*", run = "mediainfo --no-metadata" },
 
   # Hide image preview by default.
   # Example for video mimetype:
-{ mime = "{video}/*", run = "mediainfo --no-preview" },
+  # { mime = "{video}/*", run = "mediainfo --no-preview" },
 
   # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
   # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
 
-{ url = "*.{md,mmd,mermaid}", run = "mermaid" },
+  { url = "*.{md,mmd,mermaid}", run = "mermaid" },
 
   # 3D models with OpenSCAD
-{ url = "*.{scad,csg,3mf,amf,dxf,off,stl}", run = "openscad" },
+  # { url = "*.{scad,csg,3mf,amf,dxf,off,stl}", run = "openscad" },
 
   # Office Documents
-{ mime = "application/openxmlformats-officedocument.*", run = "office" },
-{ mime = "application/oasis.opendocument.*", run = "office" },
-{ mime = "application/ms-*", run = "office" },
-{ mime = "application/msword", run = "office" },
-{ url = "*.docx", run = "office" },
+  { mime = "application/openxmlformats-officedocument.*", run = "office" },
+  { mime = "application/oasis.opendocument.*", run = "office" },
+  { mime = "application/ms-*", run = "office" },
+  { mime = "application/msword", run = "office" },
+  { url = "*.docx", run = "office" },
 
-{ mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run  = "ouch"},
-{ url = '**/.git/', run = 'preview-git' },
-{ url = '*.sqlite3', run = 'preview-sqlite' },
-{ mime = 'application/sqlite3', run = 'preview-sqlite' },
-{ url = '*.typ', run = 'preview-typst' },
+  { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run = "ouch" },
+  { url = '**/.git/', run = 'preview-git' },
+  { url = '{*.db,*.sqlite3}', run = 'preview-sqlite' },
+  { mime = 'application/sqlite3', run = 'preview-sqlite' },
+  # { url = '*.typ', run = 'preview-typst' },
 
 ]
 # previewers = [
@@ -135,59 +131,58 @@ prepend_previewers = [
 # ]
 prepend_preloaders = [
   # { mime = "audio/*", run = "audio-preview", multi = false },
-# { url = "*.csv", run = "duckdb", multi = false },
+  # { url = "*.csv", run = "duckdb", multi = false },
   # { url = "*.tsv", run = "duckdb", multi = false },
-# { url = "*.json", run = "duckdb", multi = false },
+  # { url = "*.json", run = "duckdb", multi = false },
   # { url = "*.parquet", run = "duckdb", multi = false },
   # { url = "*.txt", run = "duckdb", multi = false },
-# { url = "*.xlsx", run = "duckdb", multi = false },
+  # { url = "*.xlsx", run = "duckdb", multi = false },
   # { mime = "video/*", run = "noop", multi = false },
   # { url = "*.epub", run = "preview-epub" }
   # 3d objects
   # { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
 
   # Replace magick, image, video with mediainfo
-{ mime = "{audio,video,image}/*", run = "mediainfo" },
   # .srt subtitle, adobe illustrator, adobe photoshop file
-{ mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
+  { mime = "{audio,video,image}/*,application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
 
   # Sometimes AI file is recognized as "application/pdf". Lmao.
   # In this case use file extension instead:
-{ url = "*.{ai,eps,ait}", run = "mediainfo" },
+  { url = "*.{ai,eps,ait}", run = "mediainfo" },
 
   # Hide metadata by default.
   # Example for image mimetype:
-{ mime = "{image}/*", run = "mediainfo --no-metadata" },
+  { mime = "{image}/*", run = "mediainfo --no-metadata" },
 
   # Hide image preview by default.
   # Example for video mimetype:
-{ mime = "{video}/*", run = "mediainfo --no-preview" },
+  { mime = "{video}/*", run = "mediainfo --no-preview" },
 
   # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
   # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
 
   # 3D models with OpenSCAD
-{ url = "*.{scad,csg,3mf,amf,dxf,off,stl}", run = "openscad" },
+  # { url = "*.{scad,csg,3mf,amf,dxf,off,stl}", run = "openscad" },
 
-    # Office Documents
-    # { mime = "application/openxmlformats-officedocument.*", run = "office" },
-    # { mime = "application/oasis.opendocument.*", run = "office" },
-    { mime = "application/ms-*", run = "office" },
-    { mime = "application/msword", run = "office" },
-    { url = "*.docx", run = "office" },
-    # { url = '*.typ', run = 'preview-typst' },
+  # Office Documents
+  # { mime = "application/openxmlformats-officedocument.*", run = "office" },
+  # { mime = "application/oasis.opendocument.*", run = "office" },
+  { mime = "application/ms-*", run = "office" },
+  { mime = "application/msword", run = "office" },
+  { url = "*.docx", run = "office" },
+  # { url = '*.typ', run = 'preview-typst' },
 
 ]
 append_preloaders = [
-	# { mime = "video/*", run = "noop" },
+  # { mime = "video/*", run = "noop" },
 ]
 
-[[plugin.prepend_fetchers]]
-group   = "git"
-url = "*"
-run  = "git"
-
-[[plugin.prepend_fetchers]]
-group   = "git"
-url = "*/"
-run  = "git"
+# [[plugin.prepend_fetchers]]
+# group = "git"
+# url = "*"
+# run = "git"
+#
+# [[plugin.prepend_fetchers]]
+# group = "git"
+# url = "*/"
+# run = "git"
