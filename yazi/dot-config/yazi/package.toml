@@ -10,8 +10,8 @@ hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[plugin.deps]]
 use = "AminurAlam/yazi-plugins:preview-epub"
-rev = "8c2ce96"
-hash = "bf6587cec9b915a54c6cd3e187b0071e"
+rev = "9997d5b"
+hash = "475ca512768cd51412461ee58b17188e"
 
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
