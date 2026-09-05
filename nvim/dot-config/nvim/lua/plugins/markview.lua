@@ -6,10 +6,4 @@ return {
       check_rtp = false,
     },
   },
-
-  -- For blink.cmp's completion
-  -- source
-  -- dependencies = {
-  --     "saghen/blink.cmp"
-  -- },
 }

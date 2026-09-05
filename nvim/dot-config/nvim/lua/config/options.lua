@@ -5,7 +5,7 @@
 vim.g.deprecation_warnings = true -- Hide deprecation warnings
 
 local opt = vim.opt
-opt.completeopt = "menu,menuone,noinsert,noselect,preview"
+opt.completeopt = "menu,menuone,noinsert"
 
 vim.g.autoformat = false -- LazyVim auto format
 vim.g.wrap = true
