@@ -16,6 +16,12 @@
 #--paging=never
 --paging=always
 
+# Use a pager that works well inside tmux and wezterm
+# --RAW-CONTROL-CHARS: pass through ANSI colors
+# --quit-if-one-screen: don't page output that fits on one screen
+# --mouse: enable mouse scrolling in the pager
+--pager="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
+
 # Uncomment the following line if you are using less version >= 551 and want to
 # enable mouse scrolling support in `bat` when running inside tmux. This might
 # disable text selection, unless you press shift.

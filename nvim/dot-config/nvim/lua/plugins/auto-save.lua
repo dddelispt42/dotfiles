@@ -6,7 +6,7 @@ return {
         enabled = true,
         debounce = 1000,
         notify = false,
-        events = { "BufReadPre", "BufNewFile" },
+        events = { "InsertLeave", "TextChanged" },
       },
     },
   },

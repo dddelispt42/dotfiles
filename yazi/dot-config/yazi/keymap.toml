@@ -18,7 +18,7 @@ prepend_keymap = [
 { on = "<F8>", run = "plugin mediainfo -- show-metadata", desc = "Show media preview metadata" },
 { on = "<F9>", run = "plugin mediainfo -- show-preview", desc = "Show media preview image" },
 
-  # Reset to defautl settings in yazi.toml file
+  # Reset to default settings in yazi.toml file
 { on = "<F5>", run = "plugin mediainfo -- reset", desc = "Reset media preview to default settings" },
 
   # Use multiple actions

@@ -12,3 +12,9 @@ map('n', '<leader>ct', function() vim.diagnostic.enable(not vim.diagnostic.is_en
 -- Conflict resolution keys are defined in plugins/git-conflict.lua
 -- Register picker via snacks (alternative to registers.nvim)
 map({ 'n', 'x' }, '<leader>r', function() require('snacks').picker.registers() end, { desc = '[R]egister picker' })
+-- Tmux-aware window navigation (replaces LazyVim's <C-hjkl> which only does nvim windows)
+-- tmux.nvim handles moving between nvim windows and tmux panes seamlessly
+map('n', '<C-h>', function() pcall(require('tmux').move_left) end, { desc = 'Left window/pane' })
+map('n', '<C-j>', function() pcall(require('tmux').move_bottom) end, { desc = 'Bottom window/pane' })
+map('n', '<C-k>', function() pcall(require('tmux').move_top) end, { desc = 'Top window/pane' })
+map('n', '<C-l>', function() pcall(require('tmux').move_right) end, { desc = 'Right window/pane' })
