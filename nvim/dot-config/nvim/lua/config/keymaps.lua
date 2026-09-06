@@ -18,3 +18,10 @@ map('n', '<C-h>', function() pcall(require('tmux').move_left) end, { desc = 'Lef
 map('n', '<C-j>', function() pcall(require('tmux').move_bottom) end, { desc = 'Bottom window/pane' })
 map('n', '<C-k>', function() pcall(require('tmux').move_top) end, { desc = 'Top window/pane' })
 map('n', '<C-l>', function() pcall(require('tmux').move_right) end, { desc = 'Right window/pane' })
+-- Strip trailing whitespace in the current buffer
+map('n', '<leader>sw', function()
+  local save_view = vim.fn.winsaveview()
+  vim.cmd([[%s/\s\+$//e]])
+  vim.fn.winrestview(save_view)
+  vim.notify("Trailing whitespace removed", vim.log.levels.INFO)
+end, { desc = '[S]trip trailing [w]hitespace' })

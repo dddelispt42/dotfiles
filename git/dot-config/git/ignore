@@ -9,6 +9,7 @@ golangenv-system/
 .envrc
 .codegraph
 .env
+gitleaks.json
 *.spec
 *.7z
 *.DOC
