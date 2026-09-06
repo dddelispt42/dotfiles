@@ -29,11 +29,6 @@ rev = "73a3658"
 hash = "fa787a8ef785f2976ea2861f62b8c6c4"
 
 [[plugin.deps]]
-use = "passion0102/mermaid"
-rev = "90e4756"
-hash = "465917273513ba3d8e9a226954c5945c"
-
-[[plugin.deps]]
 use = "ettom/openscad"
 rev = "4397564"
 hash = "996ad1c3b9260026ecdb2d8e7d454c50"

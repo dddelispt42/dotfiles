@@ -15,8 +15,11 @@ set render-loading false
 set adjust-open "best-fit"
 set synctex true
 set synctex-editor-command "nvr --remote-silent +%{line} %{input}"
-# Fix following links(!)
-set sandbox none
+# NOTE: sandbox restricts URI handlers and file access.
+# synctex works without sandbox=none as long as the editor command does not
+# need to open arbitrary URIs. Disabled only if following links inside PDFs
+# fails — then uncomment the next line at your own risk.
+# set sandbox none
 
 # Navigation
 map g goto top

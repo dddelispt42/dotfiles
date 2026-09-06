@@ -98,7 +98,7 @@ prepend_previewers = [
   # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
   # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
 
-  { url = "*.{md,mmd,mermaid}", run = "mermaid" },
+  # { url = "*.{md,mmd,mermaid}", run = "mermaid" },
 
   # 3D models with OpenSCAD
   # { url = "*.{scad,csg,3mf,amf,dxf,off,stl}", run = "openscad" },

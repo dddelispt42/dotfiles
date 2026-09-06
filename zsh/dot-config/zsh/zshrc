@@ -6,29 +6,33 @@
 # Enable for performance testing
 # zmodload zsh/zprof
 
-# some history related settings
-HISTFILE=${XDG_CACHE_HOME:-$HOME/.cache}/zhistory       # enable history saving on shell exit
-setopt APPEND_HISTORY          # append rather than overwrite history file.
-setopt SHARE_HISTORY          # append rather than overwrite history file.
-HISTSIZE=120000                 # lines of history to maintain memory
-SAVEHIST=120000                 # lines of history to maintain in history file.
-HISTORY_IGNORE="(ls|cd|pwd|exit|keyadd)*"
-setopt HIST_EXPIRE_DUPS_FIRST  # allow dups, but expire old ones when I hit HISTSIZE
+# history settings: ignore duplicates and commands starting with space
+HISTFILE=${XDG_CACHE_HOME:-$HOME/.cache}/zhistory
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS   # don't record duplicates
+setopt HIST_IGNORE_SPACE      # don't record commands starting with a space
+HISTSIZE=120000
+SAVEHIST=120000
+HISTORY_IGNORE="(ls|cd|pwd|exit|keyadd|fg|bg|history|clear|reset|man|which|where|type)*"
+setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_VERIFY
 setopt EXTENDED_HISTORY        # save timestamp and runtime information
 export ZLE_SPACE_SUFFIX_CHARS='&|'
 
 # set the terminal title via Zsh precmd hook
 autoload -Uz add-zsh-hook
-case ${TERM} in
-    xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
-        title_precmd() { printf '\033]0;%s@%s:%s\007' "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}" ; }
-        ;;
-    screen*|tmux*)
-        title_precmd() { printf '\033_%s@%s:%s\033\\' "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}" ; }
-        ;;
-esac
-add-zsh-hook precmd title_precmd 2>/dev/null || true
+_title_precmd() {
+    case ${TERM} in
+        xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
+            printf '\033]0;%s@%s:%s\007' "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"
+            ;;
+        screen*|tmux*)
+            printf '\033_%s@%s:%s\033\\' "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"
+            ;;
+    esac
+}
+add-zsh-hook precmd _title_precmd
 
 # Enable VBox guest extensions of VBoxClient is installed
 if command -v VBoxClient >/dev/null; then
