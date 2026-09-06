@@ -151,7 +151,7 @@ export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 export _ZO_ECHO=1
 
 # move dofiles to XDG dirs
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
@@ -159,10 +159,10 @@ export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/inputrc"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
 export KDEHOME="${XDG_CONFIG_HOME:-$HOME/.config}/kde"
-export ICEAUTHORITY="{$XDG_CACHE_HOME:-$HOME/.cache}"/ICEauthority
-export MINIKUBE_HOME="{$XDG_DATA_HOME:-$HOME/.local/share}"/minikube
-export TERMINFO="{$XDG_DATA_HOME:-$HOME/.local/share}"/terminfo
-export TERMINFO_DIRS="{$XDG_DATA_HOME:-$HOME/.local/share}"/terminfo:/usr/share/terminfo
+export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.cache}"/ICEauthority
+export MINIKUBE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"/minikube
+export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}"/terminfo
+export TERMINFO_DIRS="${XDG_DATA_HOME:-$HOME/.local/share}"/terminfo:/usr/share/terminfo
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
 export GRADLE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gradle"
 #export GNUPGHOME="$XDG_DATA_HOME/gnupg"
@@ -184,11 +184,10 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 export BOGOFILTER_DIR="$XDG_CACHE_HOME"/bogofilter
 export RANDFILE="$XDG_CACHE_HOME"/rnd
-export GRADLE_HOME="$XDG_CACHE_HOME"/gradle
+export GRADLE_HOME="$XDG_DATA_HOME"/gradle
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export IPYTHONDIR="$XDG_CACHE_HOME"/ipython
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
-export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 # TODO: works only with xinit not startx
 # export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export GEM_HOME="$XDG_DATA_HOME"/gem

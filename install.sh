@@ -24,7 +24,7 @@ mkdir -p "$XDG_STATE_HOME"
 mkdir -p "$XDG_DESKTOP_DIR"
 mkdir -p "$XDG_DOCUMENTS_DIR"
 mkdir -p "$XDG_DOWNLOAD_DIR"
-mkdir -p "$XDG_MUSIC_DIR" 3>/dev/null
+mkdir -p "$XDG_MUSIC_DIR" 2>/dev/null
 mkdir -p "$XDG_PICTURES_DIR"
 mkdir -p "$XDG_PICTURES_DIR"/screenshots
 mkdir -p "$XDG_PUBLICSHARE_DIR"

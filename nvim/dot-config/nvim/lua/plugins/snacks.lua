@@ -25,20 +25,9 @@ return {
         debounce = 200,
       },
 
-      -- Indent guides (replaces indent-blankline)
+      -- Indent guides (replaced by mini.indentscope)
       indent = {
-        enabled = true,
-        indent = {
-          only_scope = true,
-          priority = 0,
-        },
-        chunk = {
-          enabled = true,
-          priority = 0,
-        },
-        blank = {
-          enabled = false,
-        },
+        enabled = false,
       },
 
       -- Notifications (replaces noice.nvim notification part)
@@ -51,21 +40,25 @@ return {
       profiler = {
         enabled = true,
       },
+
+      -- Safer buffer deletion — keeps window layout intact
+      bufdelete = {
+        enabled = true,
+      },
+
+      -- Image rendering in buffers (for rendered markdown, etc.)
+      image = {
+        enabled = true,
+      },
+
+      -- Diagnostic counts in the status column
+      statuscolumn = {
+        enabled = true,
+      },
     },
   },
 
-  -- Disable noice.nvim (using snacks.notifier instead)
-  {
-    "folke/noice.nvim",
-    enabled = false,
-  },
-
-  -- Disable nvim-lint (LazyVim core — using LSP + none-ls diagnostics instead)
-  {
-    "mfussenegger/nvim-lint",
-    enabled = false,
-  },
-
-  -- Keep todo-comments.nvim (not replaced — no good snacks equivalent)
-  -- Keep neoconf.nvim (not replaced — no snacks equivalent)
+  -- Disable LazyVim core plugins we don't use
+  { "folke/noice.nvim", enabled = false },
+  { "mfussenegger/nvim-lint", enabled = false },
 }

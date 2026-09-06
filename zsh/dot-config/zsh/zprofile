@@ -1,2 +1,5 @@
+# zprofile loads for login shells (including non-interactive SSH).
+# env.sh exports are always needed; zshrc is guarded by [[ $- == *i* ]]
+# so non-interactive shells skip prompt/fzf/keybinds.
 test -s ~/.config/shell/env.sh && source "$_" || true
 test -s $ZDOTDIR/zshrc && source "$_" || true

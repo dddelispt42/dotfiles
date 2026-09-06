@@ -40,7 +40,7 @@ XTerm*selectToClipboard: true
 
 !! blue dark/light
 *color4:                          #458588
-*color12:                         #835a98
+*color12:                         #83a598
 
 !! magenta dark/light
 *color5:                          #b16286

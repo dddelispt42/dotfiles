@@ -47,7 +47,7 @@ return {
             enabled = true,
             score_offset = 40,
             opts = {
-              min_keyword_length = 3,
+              min_keyword_len = 3,
             },
           },
           -- vim-dadbod SQL completions

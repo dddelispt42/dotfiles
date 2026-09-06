@@ -18,15 +18,17 @@ setopt HIST_VERIFY
 setopt EXTENDED_HISTORY        # save timestamp and runtime information
 export ZLE_SPACE_SUFFIX_CHARS='&|'
 
-# set the terminal title
+# set the terminal title via Zsh precmd hook
+autoload -Uz add-zsh-hook
 case ${TERM} in
     xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
-        PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        title_precmd() { printf '\033]0;%s@%s:%s\007' "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}" ; }
         ;;
     screen*|tmux*)
-        PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        title_precmd() { printf '\033_%s@%s:%s\033\\' "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}" ; }
         ;;
 esac
+add-zsh-hook precmd title_precmd 2>/dev/null || true
 
 # Enable VBox guest extensions of VBoxClient is installed
 if command -v VBoxClient >/dev/null; then

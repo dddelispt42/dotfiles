@@ -13,11 +13,9 @@ config = config  # noqa: PLW0127, F821  # pyright: ignore[reportUndefinedVariabl
 
 
 def filter_yt(info: interceptor.Request) -> None:
-    """Block the given request if necessary."""
+    """Block YouTube ad requests only. Does NOT block YouTube itself."""
     url = info.request_url
     if url.host() == 'www.youtube.com' and url.path() == '/get_video_info' and '&adformat=' in url.query():
-        info.block()
-    if url.host() == 'www.youtube.com':
         info.block()
 
 

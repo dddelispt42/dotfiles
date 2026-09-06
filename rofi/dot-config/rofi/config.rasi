@@ -8,7 +8,7 @@ configuration {
 	/* height: 700px; */
 	/* lines: 13; */
 	/* columns: 4; */
-	font: "FiraCode Nerd Font Mono 12";
+	font: "FiraCode Nerd Font 12";
     filter: "";
     scroll-method: 0;
     normalize-match: true;
@@ -104,6 +104,5 @@ configuration {
       delay:  0;
     }
 }
-//@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
-/* @theme "/usr/share/rofi/themes/gruvbox-dark.rasi" */
+// Previous theme was Gruvbox
 @theme "catppuccin-mocha"

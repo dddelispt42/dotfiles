@@ -4,7 +4,6 @@ HOST=$(hostname)
 # TERMI="${TERMINAL:-wezterm}"
 
 xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
-xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/X11/.Xresources"
 xset fp+ "${HOME}/.local/share/fonts"
 
 # if [ "$HOST" == "work" ]; then
@@ -32,7 +31,6 @@ xset fp+ "${HOME}/.local/share/fonts"
 if [[ -z "${DISPLAY}" ]]; then
 	"${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" "$HOST"
 	nohup xfce4-power-manager &
-	nohup "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" &
 	# trayer --edge top --align center --expand false --width 5 --distance 20 &
 	if command -v clipmenud >/dev/null; then
 		nohup clipmenud &

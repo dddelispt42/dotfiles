@@ -2,7 +2,7 @@
     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 20, // Waybar height (to be removed for auto height)
-    "width": 1920, // Waybar width
+    "width": null, // Waybar width: null for dynamic
     "spacing": 2, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces"],
@@ -48,7 +48,7 @@
         }
     },
     "bluetooth": {
-      "on-click": "st -e bluetui",
+      "on-click": "foot bluetui",
       "format": " {status}",
       "format-connected": " {device_alias}",
       "format-connected-battery": " {device_alias} {device_battery_percentage}%",
@@ -71,7 +71,7 @@
     "cpu": {
         "format": "{usage}% ",
         "tooltip": false,
-        "on-click": "st -e btop"
+        "on-click": "foot btop"
     },
     "memory": {
         "format": "{}% "
@@ -88,8 +88,8 @@
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-scroll-up": "light -T 1.1",
-        "on-scroll-down": "light -T 0.9"
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-"
     },
     "battery": {
         "states": {
