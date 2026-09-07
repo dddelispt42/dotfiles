@@ -25,8 +25,8 @@ hash = "5368a9f95ebeb613d9a2614d594a185c"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "73a3658"
-hash = "fa787a8ef785f2976ea2861f62b8c6c4"
+rev = "d2dd310"
+hash = "60d5e07c04ab0d422d812272be516307"
 
 [[plugin.deps]]
 use = "ettom/openscad"
@@ -45,17 +45,17 @@ hash = "eff5702573b6cfba61e4ac8b1969629a"
 
 [[plugin.deps]]
 use = "AminurAlam/yazi-plugins:preview-git"
-rev = "8c2ce96"
+rev = "9997d5b"
 hash = "ba369f2f02be9e932cf7882c113d6844"
 
 [[plugin.deps]]
 use = "AminurAlam/yazi-plugins:preview-sqlite"
-rev = "8c2ce96"
+rev = "9997d5b"
 hash = "11ee002ea5080a73f2c2db5dceda50df"
 
 [[plugin.deps]]
 use = "AminurAlam/yazi-plugins:preview-typst"
-rev = "8c2ce96"
+rev = "9997d5b"
 hash = "2aacd8b872663cc36ac6c5bf6b6dc867"
 
 [[plugin.deps]]
@@ -65,12 +65,12 @@ hash = "89487f3b53bdf605e990a9575ec244d5"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "c591a36"
+rev = "4dc7f1b"
 hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "c591a36"
+rev = "4dc7f1b"
 hash = "14558d2829c0aa05e99c57de8f74d199"
 
 [[plugin.deps]]
@@ -80,12 +80,12 @@ hash = "3c66d95bf63fa16178e98967fbae9429"
 
 [[plugin.deps]]
 use = "Ape/open-with-cmd"
-rev = "eba191d"
-hash = "722a60eca1b338c9c24bb508d2d48578"
+rev = "56705e2"
+hash = "7c84fff414a652c86c44523dbb08026f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "c591a36"
+rev = "4dc7f1b"
 hash = "5bb0bfab901d3601c370eafdd66edd31"
 
 [[plugin.deps]]
