@@ -66,23 +66,26 @@ return {
         },
       },
 
-      -- Don't show completion while typing in certain contexts
-      disabled = {
-        filetypes = function(ctx)
-          return vim.tbl_contains({
-            "TelescopePrompt",
-            "alpha",
-            "Avante",
-            "AvanteInput",
-            "log",
-            "qf",
-            "noice",
-            "NeogitCommit",
-            "NeogitLogView",
-            "help",
-          }, vim.bo[ctx.buf].filetype)
-        end,
-      },
+      -- Disable completion in certain filetypes (using the enabled function)
+      enabled = function()
+        local buf = vim.api.nvim_get_current_buf()
+        local ft = vim.bo[buf].filetype
+        if vim.tbl_contains({
+          "TelescopePrompt",
+          "alpha",
+          "Avante",
+          "AvanteInput",
+          "log",
+          "qf",
+          "noice",
+          "NeogitCommit",
+          "NeogitLogView",
+          "help",
+        }, ft) then
+          return false
+        end
+        return true
+      end,
 
       completion = {
         -- Show documentation window automatically
