@@ -24,6 +24,19 @@
     ; features = catppuccin-frappe side-by-side line-numbers
     whitespace-error-style = 22 reverse
     navigate = true
+    ; delta is the pager for `git diff`, and delta starts a SECOND pager for its
+    ; own output. Its documented default is `less`, which is not installed here,
+    ; so delta silently skipped paging and dumped the whole diff to stdout.
+    ;
+    ; delta 0.20.1 does NOT read $PAGER (despite what its --help claims) - only
+    ; $DELTA_PAGER or this `delta.pager` setting. `git config` passes it as
+    ; --pager, which wins over the env var, so it works from any shell.
+    ;
+    ; `bat` re-highlights delta's output; bat itself pages via its own
+    ; BAT_PAGER (set to its builtin pager in shell/env.sh when `less` is absent).
+    pager = bat
+    ; Uncomment to page delta itself instead of handing off to bat:
+    ; paging = always
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul

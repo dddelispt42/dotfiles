@@ -16,22 +16,67 @@
 #--paging=never
 --paging=always
 
-# Use a pager that works well inside tmux and wezterm
-# --RAW-CONTROL-CHARS: pass through ANSI colors
-# --quit-if-one-screen: don't page output that fits on one screen
-# --mouse: enable mouse scrolling in the pager
---pager="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
+# Pager selection.
+#
+# IMPORTANT: do NOT hard-code `less` here. bat's config is a static file with no
+# conditionals, and when the configured pager binary is MISSING bat does not
+# error - it silently gives up on paging and dumps the whole input straight to
+# the prompt. That was the "pager does not page" bug: `less` was not installed.
+#
+# `builtin` is bat's own bundled pager (minus). It needs no external binary and
+# is always available, so paging keeps working on any machine.
+#
+# LIMITATION: minus draws a single, HARD-CODED prompt string ("bat") at the
+# bottom. It has no position/progress indicator - no percentage, no "lines
+# x-y of N". The prompt text is set by bat via minus's set_prompt() API and
+# there is no env var or flag to change it. Install `less` to get a real
+# position + percentage prompt (see below).
+--pager="builtin"
 
-# Uncomment the following line if you are using less version >= 551 and want to
-# enable mouse scrolling support in `bat` when running inside tmux. This might
-# disable text selection, unless you press shift.
-#--pager="--RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
+# If `less` IS installed and you prefer it, use this instead (it gives you
+# search, --mouse scrolling, --quit-if-one-screen and a POSITION/PERCENT
+# prompt via -P):
+# --pager="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
+#
+# With less you can also enable its status column, which is the closest thing
+# to a progress indicator a pager offers:
+#   less -R -+F -P 'lines %lt-%lb of %L (%pB)'
+# (bat accepts only a plain command here, so put flags in $LESS instead if the
+#  quoting gets awkward - see the LESS variable in shell/env.sh.)
 
 # Syntax mappings: map a certain filename pattern to a language.
 #   Example 1: use the C++ syntax for .ino files
 #   Example 2: Use ".gitignore"-style highlighting for ".ignore" files
 #--map-syntax "*.ino:C++"
 #--map-syntax ".ignore:Git Ignore"
+# Handy extras worth enabling on this machine:
+#   *.conf/*.toml are already autodetected; these are for odd extensions.
+# NOTE: this bat build has no "Makefile" syntax, so Justfile cannot be mapped
+# to it. Leave Justfile to the shell/Debian syntax bat picks by default.
+#--map-syntax "*.tera:HTML"
 
-# --style="header,changes,snip"
---style="header,changes"
+# ---------------------------------------------------------------------------
+# Decorations / style
+# ---------------------------------------------------------------------------
+# Components available in bat 0.26.1:
+#   changes, grid, header-filename, header-filesize, numbers, rule, snip
+#
+# `header-filesize` adds the file size to the header (only shown when bat gets
+# one or more FILE arguments - not for piped stdin). It is the closest thing to
+# extra "info" bat can display, since the pager owns the bottom status line.
+#
+# Use `--style=full` for everything, or `-p`/BAT_STYLE=plain for none.
+--style="header-filename,header-filesize,changes,grid"
+
+# Tabs: bat's default expands a tab to 4 spaces. `--tabs=0` passes tabs through
+# unchanged (useful when copying out of the pager).
+#--tabs=0
+
+# Wrap long lines. `never` truncates instead of wrapping, which keeps the grid
+# aligned but hides long lines - handy for wide CSV/log files.
+#--wrap=never
+
+# Neutralize a possible BAT_STYLE/BAT_THEME exported by another tool. Options
+# here are defaults only; the command line and BAT_* env vars still win.
+#--theme-dark="Catppuccin Mocha"
+#--theme-light="Catppuccin Latte"

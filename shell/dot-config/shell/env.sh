@@ -64,7 +64,21 @@ fi
 export PAGER=less
 if command -v bat >/dev/null; then
 	export PAGER=bat
-	export BAT_PAGER="less -RX"
+	# Only point BAT_PAGER at `less` when it actually exists.
+	#
+	# bat does NOT report an error when its configured pager binary is missing:
+	# it silently skips paging and dumps the entire input at the prompt. That is
+	# exactly the "pager does not page" symptom, and `less` is not installed on
+	# this machine (only `more`, which cannot handle bat's ANSI output).
+	#
+	# `builtin` selects bat's bundled pager ("minus") - no external binary, so
+	# paging works everywhere. It accepts file input and piped stdin (which is
+	# what `git diff | delta | bat` feeds it).
+	if command -v less >/dev/null; then
+		export BAT_PAGER="less -RX"
+	else
+		export BAT_PAGER="builtin"
+	fi
 fi
 
 # AUTOSSH
@@ -160,8 +174,21 @@ export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
 export KDEHOME="${XDG_CONFIG_HOME:-$HOME/.config}/kde"
 export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.cache}"/ICEauthority
 export MINIKUBE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"/minikube
-export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}"/terminfo
-export TERMINFO_DIRS="${XDG_DATA_HOME:-$HOME/.local/share}"/terminfo:/usr/share/terminfo
+# TERMINFO must point at a directory that actually EXISTS. Pointing it at a
+# non-existent path makes ncurses treat that as the authoritative database and
+# fail to find entries (e.g. tmux-256color) that ARE present in /usr/share, which
+# is what made shells complain about missing terminfo. Only set it when the dir
+# exists; TERMINFO_DIRS below already covers the search path.
+_terminfo_local="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
+if [ -d "$_terminfo_local" ]; then
+    export TERMINFO="$_terminfo_local"
+fi
+unset _terminfo_local
+
+# NOTE: do NOT clobber TERMINFO_DIRS - append our local dir so the system
+# database is always reachable. A leading empty/unset value keeps ncurses'
+# built-in default (/usr/share/terminfo, /lib/terminfo, /etc/terminfo).
+export TERMINFO_DIRS="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo:${TERMINFO_DIRS:-/usr/share/terminfo}"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
 export GRADLE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gradle"
 #export GNUPGHOME="$XDG_DATA_HOME/gnupg"
