@@ -3,18 +3,20 @@
 
 add_newline = false
 palette = "catppuccin_mocha"
-# format = "$all"
+format = "$all"
+right_format = "$directory"
 
-# [battery]
-# full_symbol = "🔋"
-# charging_symbol = "⚡️"
-# discharging_symbol = "💀"
-# [[battery.display]]
-# threshold = 20
-# style = "bold red"
-# [[battery.display]]
-# threshold = 35
-# style = "bold yellow"
+[battery]
+disabled = false
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+[[battery.display]]
+threshold = 20
+style = "bold red"
+[[battery.display]]
+threshold = 35
+style = "bold yellow"
 
 [character]
 disabled = false
