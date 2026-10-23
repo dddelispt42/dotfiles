@@ -4,7 +4,83 @@
 add_newline = false
 palette = "catppuccin_mocha"
 format = "$all"
-right_format = "$directory"
+# right_format = "$directory"
+right_format = """
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$hg_state\
+$pijul_channel\
+$docker_context\
+$package\
+$bun\
+$c\
+$cmake\
+$cobol\
+$cpp\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$fortran\
+$gleam\
+$golang\
+$gradle\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$maven\
+$mojo\
+$nim\
+$nodejs\
+$ocaml\
+$odin\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$xmake\
+$zig\
+$buf\
+$guix_shell\
+$nix_shell\
+$conda\
+$pixi\
+$meson\
+$spack\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$crystal\
+"""
 
 [battery]
 disabled = false
@@ -64,6 +140,14 @@ repo_root_style ='cyan'
 
 [direnv]
 disabled = false
+symbol = "🔓"
+format = "[$symbol$loaded/$allowed]($style) "
+style = "bold bright-yellow"
+loaded_msg = "✓"
+unloaded_msg = "○"
+allowed_msg = "✓"
+not_allowed_msg = "…"
+denied_msg = "✗"
 
 [git_branch]
 disabled = false

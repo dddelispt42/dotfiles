@@ -39,7 +39,7 @@ elif [ -f "$1" ]; then
 	*.jar | *.JAR | *.zip | *.zipx | *.ZIP | *.ZIPX) unzip -l "$1" ;;
 	*.jpg | *.JPG | *.jpeg | *.JPEG | *.png | *.PNG | *.tif | *.tiff | *.TIF | *.TIFF | *.gif | *.GIF | *.bmp | *.BMP) viu "$1" ;;
 	*.lz4 | .LZ4) lz4 --list "$1" ;;
-	*.md | *.MD | *.markdown) mdcat "$1" || glow "$1" || bat "$1" || highlight -O ansi --force "$1" || cat "$1" ;;
+	*.md | *.MD | *.markdown) glow "$1" || bat "$1" || mdcat "$1" || highlight -O ansi --force "$1" || cat "$1" ;;
 	*.odt | *.ODT | *.ods | *.ODS | *.odp | *.ODP) odt2txt "$1" ;;
 	*.ogv | *.OGV | *.mp4 | *.MP4 | *.mkv | *.MKV | *.avi | *.AVI | *.swf | *.SWF | *.flv | *.FLV | *.mov | *.MOV | *.mpg | *.MPG | *.webm | *.WEBM | *.m4v | *.M4V) mediainfo "$1" ;;
 	*.pdf | *.PDF) pdftotext "$1" - ;;

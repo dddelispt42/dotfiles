@@ -1,5 +1,3 @@
-[https]
-    ;sslverify = true
 [user]
     name = Heiko Riemer
     email = heiko@eheiko.net
