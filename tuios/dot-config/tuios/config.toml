@@ -161,28 +161,29 @@ right_click_opens_menu = true
 kitty_placeholders = "auto"
 zoom_borderless = true
 
-[appearance.scrollbar]
-style = "track"
+# [appearance.scrollbar]
+# style = "track"
 
-[appearance.sidebar.left]
-enabled = false
-width = 25
+# [appearance.sidebar.left]
+# enabled = true
+# width = 25
 
 [appearance.sidebar]
 enabled = true
 width = 25
 position = "left"
 sections = "sessions:25,terminals,files:25,agents:34,git"
-row_style = "marker"
-header_style = "icon"
-density = "normal"
+row_style = "pill"
+header_style = "plain"
+density = "roomy"
 show_numbers = true
 folder_click = "navigate"
 file_delete = "trash"
+header_case = "uppercase"
 
-[appearance.sidebar.right]
-enabled = false
-width = 25
+# [appearance.sidebar.right]
+# enabled = false
+# width = 25
 
 [notifications.agent]
 sound = true
@@ -196,3 +197,6 @@ window_size = "latest"
 [tape]
 auto_review = false
 show_status = true
+
+[hosts.aibox]
+addr = "aibox"

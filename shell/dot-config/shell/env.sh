@@ -289,6 +289,9 @@ export SFEED_URL_FILE="$HOME/.cache/sfeed_urls"
 export SFEED_CONFIG_FILE="${KLAUT:-$HOME/Sync/share}/_share/feeds/sfeedrc"
 export SFEED_CACHE_DIR="$XDG_CACHE_HOME/sfeed/cache/"
 
+export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
+export TLDR_CACHE_DIR="$XDG_CACHE_HOME"/tldr
+
 # PROOTs on Android
 if [[ "$ANDROID_ROOT" == "/system" ]]; then
 	export PROOT_GENTOO="$HOME/proots/gentoo"
