@@ -14,27 +14,30 @@ max_height = 900
 cache_dir = ""
 
 [opener]
+# NOTE: yazi substitutes %s (all selected paths), %s1/%sN (N-th path), %d/%dN (dirname).
+# It does NOT pass shell positional parameters, so "$@" / "$1" expand to nothing and
+# the program opens without a file. Always use the %s placeholders here.
 folder = [
-  { run = 'open -R "$@"', desc = "Reveal in Finder" },
-  { run = '$EDITOR "$@"' },
+  { run = 'xdg-open %d1', desc = "Reveal in file manager" },
+  { run = '$EDITOR %s' },
 ]
-archive = [{ run = 'unar "$1"', desc = "Extract here" }]
-text = [{ run = '$EDITOR "$@"', block = true }]
+archive = [{ run = 'ya pub extract --list %s', desc = "Extract here" }]
+text = [{ run = '$EDITOR %s', block = true }]
 image = [
-  { run = 'open "$@"', desc = "Open" },
-  { run = '''exiftool "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show EXIF" },
+  { run = 'xdg-open %s1', desc = "Open" },
+  { run = '''exiftool %s1; echo "Press enter to exit"; read''', block = true, desc = "Show EXIF" },
 ]
 video = [
-  { run = 'umpv "$@"' },
-  { run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info" },
+  { run = 'umpv %s' },
+  { run = '''mediainfo %s1; echo "Press enter to exit"; read''', block = true, desc = "Show media info" },
 ]
 audio = [
-  { run = 'umpv "$@"' },
-  { run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info" },
+  { run = 'umpv %s' },
+  { run = '''mediainfo %s1; echo "Press enter to exit"; read''', block = true, desc = "Show media info" },
 ]
 fallback = [
-  { run = 'open "$@"', desc = "Open" },
-  { run = 'open -R "$@"', desc = "Reveal in Finder" },
+  { run = 'xdg-open %s1', desc = "Open" },
+  { run = 'xdg-open %d1', desc = "Reveal in file manager" },
 ]
 
 [open]
