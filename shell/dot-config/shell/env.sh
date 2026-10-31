@@ -298,6 +298,11 @@ if [[ "$ANDROID_ROOT" == "/system" ]]; then
 	export PATH=$HOME/.shortcuts:$PATH
 fi
 
+# fcitx5 as input module
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+
 export PATH=$PATH:$HOME/.nix-profile/bin
 
 # fuzzy finder variables
